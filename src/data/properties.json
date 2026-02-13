@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1",
+    "titel": "Elegante Stadtvilla mit Garten",
+    "preis": 485000,
+    "quadratmeter": 185,
+    "ort": "Weinheim",
+    "zimmer": 5,
+    "beschreibung": "Traumhafte Stadtvilla in bester Weinheimer Lage. Das lichtdurchflutete Anwesen überzeugt mit hochwertigen Materialien, offener Wohnküche und einem großzügigen Garten. Perfekt für Familien, die Wert auf Stil und Ruhe legen.",
+    "vorschaubild": "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Stadtvilla",
+    "galerie": [
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Stadtvilla",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Ansicht+2",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Garten"
+    ],
+    "status": "verfügbar"
+  },
+  {
+    "id": "2",
+    "titel": "Moderne Dachgeschosswohnung",
+    "preis": 295000,
+    "quadratmeter": 92,
+    "ort": "Weinheim",
+    "zimmer": 3,
+    "beschreibung": "Helle Dachgeschosswohnung mit atemberaubendem Blick über die Bergstraße. Moderne Ausstattung, offenes Wohnkonzept und eine sonnige Terrasse machen diese Immobilie zu etwas Besonderem.",
+    "vorschaubild": "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Dachgeschoss",
+    "galerie": [
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Dachgeschoss",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Terrasse"
+    ],
+    "status": "reserviert"
+  },
+  {
+    "id": "3",
+    "titel": "Gewerbeimmobilie Bergstraße",
+    "preis": 720000,
+    "quadratmeter": 420,
+    "ort": "Weinheim",
+    "zimmer": 0,
+    "beschreibung": "Strategisch gelegene Gewerbeimmobilie an der Bergstraße. Ideal für Logistik, Lager oder Produktion. Große Hallenfläche, Büroräume und ausreichend Stellplätze. Sofort bezugsfertig.",
+    "vorschaubild": "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Gewerbe",
+    "galerie": [
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Gewerbe",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Halle",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Büro",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Stellplätze"
+    ],
+    "status": "verfügbar"
+  },
+  {
+    "id": "4",
+    "titel": "Charmantes Reihenhaus",
+    "preis": 365000,
+    "quadratmeter": 125,
+    "ort": "Weinheim",
+    "zimmer": 4,
+    "beschreibung": "Gepflegtes Reihenhaus in ruhiger Wohnlage. Mit Garten, Garage und moderner Heizung. Die zentrale Lage ermöglicht kurze Wege zu Schulen, Einkauf und ÖPNV.",
+    "vorschaubild": "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Reihenhaus",
+    "galerie": [
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Reihenhaus",
+      "https://placehold.co/800x600/e8e4e0/6b5b4f?text=Garten"
+    ],
+    "status": "verfügbar"
+  }
+]

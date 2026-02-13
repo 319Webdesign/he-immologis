@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "titel": "Nationale Spedition",
+    "beschreibung": "Zuverlässige Güterbeförderung in ganz Deutschland. Von der Bergstraße bis zur Küste – wir liefern pünktlich und sicher. Optimierte Routenplanung für maximale Effizienz.",
+    "icon-name": "truck"
+  },
+  {
+    "id": "2",
+    "titel": "Internationaler Transport",
+    "beschreibung": "Europäische und weltweite Transportlösungen. Zollabwicklung, Dokumentation und zuverlässige Lieferung – alles aus einer Hand. Ihr Partner für grenzenlose Logistik.",
+    "icon-name": "globe"
+  },
+  {
+    "id": "3",
+    "titel": "Lager & Kommissionierung",
+    "beschreibung": "Moderne Lagerflächen in Weinheim und Umgebung. Professionelle Kommissionierung, Bestandsführung und Just-in-Time-Lieferung. Skalierbar nach Ihrem Bedarf.",
+    "icon-name": "warehouse"
+  },
+  {
+    "id": "4",
+    "titel": "Express-Lieferung",
+    "beschreibung": "Schnelle Zustellung bei zeitkritischen Sendungen. Same-Day-Delivery in der Region Bergstraße und darüber hinaus. Wenn es eilt – wir sind für Sie da.",
+    "icon-name": "package-check"
+  },
+  {
+    "id": "5",
+    "titel": "Umzugslogistik",
+    "beschreibung": "Professionelle Umzugsunterstützung für Privat und Gewerbe. Sichere Verpackung, schonender Transport und koordinierte Abläufe. Ihr Umzug in besten Händen.",
+    "icon-name": "home"
+  }
+]
