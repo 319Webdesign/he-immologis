@@ -94,7 +94,7 @@ export default function Navbar() {
         {/* Nav-Punkte zentriert */}
         <div className="hidden flex-1 justify-center lg:flex">
           <div className="flex flex-nowrap items-center gap-1 xl:gap-2">
-            <Link href="/immobilien" className={navLinkClass("/immobilien")}>
+            <Link href="/verkaufen" className={navLinkClass("/verkaufen")}>
               Verkaufen
             </Link>
             <Link href="/immobilien" className={navLinkClass("/immobilien")}>
@@ -192,7 +192,7 @@ export default function Navbar() {
 
             <div className="flex flex-col gap-1">
               <Link
-                href="/immobilien"
+                href="/verkaufen"
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
