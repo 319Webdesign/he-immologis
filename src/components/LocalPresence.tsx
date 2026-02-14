@@ -33,7 +33,7 @@ const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
   { name: "Viernheim", image: "/img/orte/viernheim.jpeg" },
   { name: "Lorsch", image: "/img/orte/lorsch.jpeg" },
   { name: "Ladenburg", image: "/img/orte/ladenburg.jpeg", aspect: "9:16" },
-  { name: "Schriesheim", image: "/img/orte/schriesheim.jpeg" },
+  { name: "Schriesheim", image: "/img/orte/Schriesheim.jpeg" },
   { name: "Dossenheim", image: "/img/orte/dossenheim.jpeg" },
   { name: "Lampertheim", image: "/img/orte/lampertheim.jpeg" },
   { name: "Mannheim", image: "/img/orte/mannheim.jpeg" },

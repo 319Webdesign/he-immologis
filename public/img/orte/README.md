@@ -8,7 +8,7 @@ Bitte folgende Bilder in diesen Ordner legen (werden in LocalPresence angezeigt)
 - viernheim.jpeg
 - lorsch.jpeg
 - ladenburg.jpeg
-- schriesheim.jpeg
+- Schriesheim.jpeg
 - dossenheim.jpeg
 - lampertheim.jpeg
 - mannheim.jpeg
