@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ServiceCards from "@/components/ServiceCards";
+import ServicesPackagesSection from "@/components/ServicesPackagesSection";
 
 export const metadata: Metadata = {
   title: "Immobilien-Services | HE immologis UG",
@@ -29,17 +29,17 @@ export default function ImmobilienServicesPage() {
             id="services-hero-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
           >
-            Mehr als nur Vermittlung: Unsere Immobilien-Services
+            Maßgeschneiderte Lösungen für Ihren Immobilienverkauf
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-slate-700 sm:text-xl">
-            Von der ersten Wertermittlung bis zur Schlüsselübergabe – wir
-            begleiten Sie mit Fachwissen und lokaler Expertise in Weinheim.
+            Wählen Sie unser bewährtes Komplettpaket oder ergänzen Sie es
+            individuell durch unsere Zusatzmodule.
           </p>
         </div>
       </section>
 
-      {/* Service-Pricing-Cards */}
-      <ServiceCards />
+      {/* Komplettpaket + Zusatzmodule (mit Animation) */}
+      <ServicesPackagesSection />
 
       {/* CTA-Banner */}
       <section
@@ -59,7 +59,7 @@ export default function ImmobilienServicesPage() {
           <div className="mt-10">
             <Link
               href="/"
-              className="inline-flex items-center justify-center rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-3xl px-8 py-4 text-base font-semibold text-white shadow-md transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
               style={{ backgroundColor: BRAND_BLUE }}
             >
               Jetzt Beratungsgespräch vereinbaren
