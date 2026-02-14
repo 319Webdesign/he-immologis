@@ -32,7 +32,7 @@ export default function ValueBanner() {
 
   return (
     <section
-      className="border-y border-slate-200/90 bg-white py-6 sm:py-8"
+      className="relative border-y-2 border-slate-200 bg-gradient-to-r from-slate-50 via-blue-50/40 to-slate-50 py-8 sm:py-10"
       aria-labelledby="wertermittlung-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -40,13 +40,13 @@ export default function ValueBanner() {
           {/* Links: Icon + Headline + Begleittext */}
           <div className="flex flex-1 items-center gap-4">
             <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-200/80 bg-slate-50/80 text-slate-600"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-slate-200 bg-white shadow-sm text-slate-600"
               aria-hidden
             >
               <span className="relative">
-                <Home className="h-5 w-5 text-slate-500" strokeWidth={1.75} />
+                <Home className="h-6 w-6 text-slate-600" strokeWidth={1.75} />
                 <Search
-                  className="absolute -right-1.5 -top-1.5 h-3 w-3 text-slate-500"
+                  className="absolute -right-1.5 -top-1.5 h-3.5 w-3.5 text-[#3d6d99]"
                   strokeWidth={2}
                 />
               </span>
@@ -54,11 +54,11 @@ export default function ValueBanner() {
             <div>
               <h2
                 id="wertermittlung-heading"
-                className="font-sans text-lg font-semibold tracking-tight text-slate-800 sm:text-xl"
+                className="font-sans text-xl font-bold tracking-tight text-slate-800 sm:text-2xl"
               >
                 Kostenlose Immobilien-Wertermittlung
               </h2>
-              <p className="mt-0.5 text-sm leading-snug text-slate-600">
+              <p className="mt-1 text-sm leading-snug text-slate-600 sm:text-base">
                 Erhalten Sie eine fundierte Markteinschätzung für Ihr Objekt in
                 der Region.
               </p>
@@ -77,7 +77,7 @@ export default function ValueBanner() {
               id="objekttyp"
               value={objekttyp}
               onChange={(e) => setObjekttyp(e.target.value)}
-              className="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition-colors focus:border-[#3d6d99] focus:ring-1 focus:ring-[#3d6d99]/30"
+              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#3d6d99] focus:ring-2 focus:ring-[#3d6d99]/25"
             >
               <option value="">Objekttyp</option>
               {OBJEKTTYPEN.map((o) => (
@@ -93,7 +93,7 @@ export default function ValueBanner() {
               id="zustand"
               value={zustand}
               onChange={(e) => setZustand(e.target.value)}
-              className="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition-colors focus:border-[#3d6d99] focus:ring-1 focus:ring-[#3d6d99]/30"
+              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#3d6d99] focus:ring-2 focus:ring-[#3d6d99]/25"
             >
               <option value="">Zustand</option>
               {ZUSTAENDE.map((z) => (
@@ -104,8 +104,7 @@ export default function ValueBanner() {
             </select>
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2"
-              style={{ backgroundColor: "#3d6d99" }}
+              className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-emerald-500/35 transition-all hover:bg-emerald-600 hover:shadow-xl hover:shadow-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               Wert prüfen
             </button>

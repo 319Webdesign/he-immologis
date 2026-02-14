@@ -23,17 +23,17 @@ const CARDS = [
   },
 ] as const;
 
-const CITIES = [
-  "Weinheim",
-  "Heppenheim",
-  "Bensheim",
-  "Viernheim",
-  "Lorsch",
-  "Ladenburg",
-  "Schriesheim",
-  "Dossenheim",
-  "Lampertheim",
-  "Mannheim",
+const CITIES: { name: string; image?: string }[] = [
+  { name: "Weinheim", image: "/img/orte/weinheim.jpeg" },
+  { name: "Heppenheim", image: "/img/orte/heppenheim.jpeg" },
+  { name: "Bensheim" },
+  { name: "Viernheim" },
+  { name: "Lorsch" },
+  { name: "Ladenburg" },
+  { name: "Schriesheim" },
+  { name: "Dossenheim" },
+  { name: "Lampertheim" },
+  { name: "Mannheim" },
 ];
 
 export default function LocalPresence() {
@@ -91,10 +91,29 @@ export default function LocalPresence() {
           <div className="mt-6 flex flex-nowrap justify-center gap-2">
             {CITIES.map((city) => (
               <span
-                key={city}
-                className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
+                key={city.name}
+                className="group/city relative shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
               >
-                {city}
+                {city.name}
+                {city.image && (
+                  <span
+                    className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 hidden -translate-x-1/2 rounded-lg border-2 shadow-xl group-hover/city:block"
+                    style={{ minWidth: 380, borderColor: "#4682B4" }}
+                  >
+                    <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#4682B4" }} />
+                    <img
+                      src={city.image}
+                      alt={city.name}
+                      className="rounded-md object-cover"
+                      style={{
+                        width: 380,
+                        height: 214,
+                        minWidth: 380,
+                        minHeight: 214,
+                      }}
+                    />
+                  </span>
+                )}
               </span>
             ))}
           </div>
