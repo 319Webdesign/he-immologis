@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Maximize2, BedDouble } from "lucide-react";
+import { MapPin, BedDouble } from "lucide-react";
 import type { Property } from "@/types";
+
+const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
 interface PropertyCardProps {
   property: Property;
@@ -16,7 +18,11 @@ function formatPrice(price: number): string {
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
-  const isExternalImage = property.vorschaubild.startsWith("http");
+  const imageSrc =
+    property.vorschaubild?.startsWith("http") ||
+    property.vorschaubild?.startsWith("/")
+      ? property.vorschaubild
+      : PLACEHOLDER_IMG;
 
   return (
     <Link
@@ -24,19 +30,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
-        {isExternalImage ? (
-          <Image
-            src={property.vorschaubild}
-            alt={property.titel}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-zinc-200 text-zinc-400">
-            <Maximize2 className="h-16 w-16" />
-          </div>
-        )}
+        <Image
+          src={imageSrc}
+          alt={property.titel}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
         <span
           className={`absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-medium ${
             property.status === "verfügbar"

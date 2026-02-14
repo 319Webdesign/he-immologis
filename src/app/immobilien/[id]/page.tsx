@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, MapPin, Maximize2, BedDouble } from "lucide-react";
+import { ArrowLeft, MapPin, BedDouble } from "lucide-react";
 import propertiesData from "@/data/properties.json";
 import type { Property } from "@/types";
 
 const properties = propertiesData as Property[];
+const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -42,7 +43,8 @@ export default async function PropertyDetailPage({ params }: PageProps) {
 
   if (!property) notFound();
 
-  const isExternalImage = (url: string) => url.startsWith("http");
+  const getImageSrc = (url: string) =>
+    url?.startsWith("http") || url?.startsWith("/") ? url : PLACEHOLDER_IMG;
 
   return (
     <>
@@ -59,37 +61,29 @@ export default async function PropertyDetailPage({ params }: PageProps) {
           {/* Galerie */}
           <div className="space-y-4">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-200">
-              {isExternalImage(property.vorschaubild) ? (
-                <Image
-                  src={property.vorschaubild}
-                  alt={property.titel}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center text-zinc-400">
-                  <Maximize2 className="h-24 w-24" />
-                </div>
-              )}
+              <Image
+                src={getImageSrc(property.vorschaubild)}
+                alt={property.titel}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
             </div>
-            {property.galerie.length > 1 && (
+            {property.galerie.length > 0 && (
               <div className="grid grid-cols-3 gap-2">
                 {property.galerie.slice(0, 3).map((img, i) => (
                   <div
                     key={i}
                     className="relative aspect-video overflow-hidden rounded-lg bg-zinc-200"
                   >
-                    {isExternalImage(img) ? (
-                      <Image
-                        src={img}
-                        alt={`${property.titel} ${i + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="150px"
-                      />
-                    ) : null}
+                    <Image
+                      src={getImageSrc(img)}
+                      alt={`${property.titel} ${i + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="150px"
+                    />
                   </div>
                 ))}
               </div>
