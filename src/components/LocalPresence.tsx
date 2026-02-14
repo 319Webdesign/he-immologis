@@ -30,6 +30,10 @@ const CITIES = [
   "Viernheim",
   "Lorsch",
   "Ladenburg",
+  "Schriesheim",
+  "Dossenheim",
+  "Lampertheim",
+  "Mannheim",
 ];
 
 export default function LocalPresence() {
@@ -60,7 +64,10 @@ export default function LocalPresence() {
               key={title}
               className="flex flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md lg:p-8"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-800 text-white">
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
+                style={{ backgroundColor: "#4682B4" }}
+              >
                 <Icon className="h-6 w-6" aria-hidden />
               </div>
               <h3 className="mt-4 font-sans text-lg font-semibold text-slate-900">
@@ -74,15 +81,18 @@ export default function LocalPresence() {
         </div>
 
         {/* Unsere Region */}
-        <div className="mt-16 rounded-2xl bg-slate-800 px-6 py-10 sm:mt-20 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
-          <h3 className="font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+        <div
+          className="mt-16 rounded-2xl px-4 py-10 sm:mt-20 sm:px-5 sm:py-12 lg:px-6 lg:py-14"
+          style={{ backgroundColor: "#4682B4" }}
+        >
+          <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Zuhause an der Bergstraße
           </h3>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-nowrap justify-center gap-2">
             {CITIES.map((city) => (
               <span
                 key={city}
-                className="rounded-full border border-slate-600 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-200"
+                className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
               >
                 {city}
               </span>
@@ -90,14 +100,6 @@ export default function LocalPresence() {
           </div>
         </div>
 
-        {/* Vertrauens-Element */}
-        <div className="mx-auto mt-12 max-w-3xl text-center sm:mt-16">
-          <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-            Als inhabergeführtes Unternehmen mit Sitz in Weinheim kennen wir den
-            lokalen Markt und die Menschen hier persönlich. Wir sind kein
-            anonymer Großkonzern, sondern Ihr Partner auf Augenhöhe.
-          </p>
-        </div>
       </div>
     </section>
   );
