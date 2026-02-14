@@ -174,7 +174,7 @@ export default function Footer() {
                   href="/logistik"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Logistik
+                  Logistikberatung
                 </Link>
               </li>
               <li>

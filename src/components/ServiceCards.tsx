@@ -2,92 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import {
+  DEFAULT_SERVICES,
+  type ServiceCardItem,
+} from "@/data/services";
 
 const BRAND_BLUE = "#4682B4";
 
-export interface ServiceCardItem {
-  id: string;
-  title: string;
-  subtitle?: string;
-  price: string;
-  description: string;
-  image: string;
-  href?: string;
-}
-
-const DEFAULT_SERVICES: ServiceCardItem[] = [
-  {
-    id: "1",
-    title: "Marktwertanalyse & Wertermittlung als Einzelauftrag",
-    price: "595,- EUR als Einzelauftrag",
-    description:
-      "Professionelle Ermittlung des Marktwertes für Ihren Immobilienverkauf.",
-    image: "/img/service-marktwertanalyse.png",
-  },
-  {
-    id: "2",
-    title: "Beratung und Begleitung als Einzelauftrag",
-    price: "150 EUR / Stunde",
-    description:
-      "Individuelle Beratung und persönliche Begleitung bei Ihrem Immobilienvorhaben.",
-    image:
-      "https://placehold.co/800x450/e2e8f0/475569?text=Beratung+%26+Begleitung&font=source-sans",
-  },
-  {
-    id: "3",
-    title: "Kaufvertragsabwicklung",
-    price: "1,19 % Provisionshonorar vom Verkaufspreis",
-    description:
-      "Professionelle Begleitung von der Vertragsunterzeichnung bis zur Schlüsselübergabe.",
-    image:
-      "https://placehold.co/800x450/cbd5e1/334155?text=Kaufvertragsabwicklung&font=source-sans",
-  },
-  {
-    id: "4",
-    title: "Immobilienverkauf",
-    subtitle: "Ein sicherer Verkauf in 5 klaren Schritten",
-    price: "3,57 % inklusive MwSt. vom Verkaufspreis der Immobilie",
-    description:
-      "Vollständige Vermarktung Ihrer Immobilie – von der Wertermittlung bis zur erfolgreichen Übergabe.",
-    image:
-      "https://placehold.co/800x450/94a3b8/1e293b?text=Immobilienverkauf&font=source-sans",
-  },
-  {
-    id: "5",
-    title: "High-End-Immobilienaufnahmen",
-    subtitle: "Hochwertige Drohnen- und Kameraproduktion für Luxusimmobilien",
-    price: "600 € inkl. MwSt.",
-    description: "",
-    image: "/img/tim.jpeg",
-  },
-  {
-    id: "6",
-    title: "Energieausweis & benötigte Unterlagenbeschaffung (Einzelauftrag)",
-    price: "150 € inkl. MwSt. pro angefangener Stunde",
-    description:
-      "Beantragung des Energieausweises und vollständige Beschaffung aller erforderlichen Unterlagen für Ihren Immobilienverkauf.",
-    image:
-      "https://placehold.co/800x450/f1f5f9/475569?text=Energieausweis&font=source-sans",
-  },
-  {
-    id: "7",
-    title: "Exklusive Objektkoordination und Nachbetreuung nach Übergabe",
-    price: "120 € pro angefangener Stunde",
-    description:
-      "Persönliche Koordination aller Gewerke und kontinuierliche Nachbetreuung nach der Immobilienübergabe.",
-    image:
-      "https://placehold.co/800x450/e2e8f0/334155?text=Objektkoordination&font=source-sans",
-  },
-  {
-    id: "8",
-    title: "Verkäuferschutzmodul. Exposé und qualifizierte Interessentenprüfung",
-    price: "120 € inkl. MwSt. pro angefangener Stunde",
-    description:
-      "Hochwertiges Exposé und sorgfältige Bonitätsprüfung aller Interessenten für Ihren Verkauf.",
-    image:
-      "https://placehold.co/800x450/cbd5e1/475569?text=Verk%C3%A4uferschutz&font=source-sans",
-  },
-];
+export type { ServiceCardItem };
 
 interface ServiceCardsProps {
   services?: ServiceCardItem[];
@@ -152,7 +74,7 @@ export default function ServiceCards({ services = DEFAULT_SERVICES }: ServiceCar
 
                 {/* Aktion – Button */}
                 <Link
-                  href={service.href ?? "/#kontakt"}
+                  href={service.href ?? `/immobilien-services/${service.slug}`}
                   className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
                   style={{
                     backgroundColor: BRAND_BLUE,
