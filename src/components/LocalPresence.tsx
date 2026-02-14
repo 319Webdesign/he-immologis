@@ -41,6 +41,11 @@ const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
 
 export default function LocalPresence() {
   const [openCity, setOpenCity] = useState<string | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (cityName: string) => {
+    setFailedImages((prev) => new Set(prev).add(cityName));
+  };
 
   return (
     <section
@@ -109,7 +114,7 @@ export default function LocalPresence() {
                 className="group/city relative shrink-0 cursor-pointer rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm touch-manipulation"
               >
                 {city.name}
-                {city.image && (
+                {city.image && !failedImages.has(city.name) && (
                   <span
                     className={`pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 rounded-lg border-2 shadow-xl ${openCity === city.name ? "block" : "hidden group-hover/city:block"}`}
                     style={{
@@ -127,6 +132,7 @@ export default function LocalPresence() {
                           ? { width: 180, height: 320, minWidth: 180, minHeight: 320 }
                           : { width: 320, height: 180, minWidth: 320, minHeight: 180 }
                       }
+                      onError={() => handleImageError(city.name)}
                     />
                   </span>
                 )}
