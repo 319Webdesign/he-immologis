@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import LocalPresence from "@/components/LocalPresence";
+import PhilosophyAlternative from "@/components/PhilosophyAlternative";
 import ValueBanner from "@/components/ValueBanner";
 
 export default function HomePage() {
@@ -8,6 +9,7 @@ export default function HomePage() {
       <Hero />
       <ValueBanner />
       <LocalPresence />
+      <PhilosophyAlternative />
     </>
   );
 }

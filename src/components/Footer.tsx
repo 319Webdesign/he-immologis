@@ -212,7 +212,8 @@ export default function Footer() {
                 href="https://319webdesign.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+                className="font-semibold transition-colors hover:opacity-80"
+                style={{ color: "#D3EFDE" }}
               >
                 319Webdesign
               </a>
