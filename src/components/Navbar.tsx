@@ -104,8 +104,8 @@ export default function Navbar() {
               Mieten
             </Link>
             <Link
-              href="/logistik#services"
-              className={navLinkClass("/logistik")}
+              href="/immobilien-services"
+              className={navLinkClass("/immobilien-services")}
             >
               Service
             </Link>
@@ -213,7 +213,7 @@ export default function Navbar() {
                 Mieten
               </Link>
               <Link
-                href="/logistik#services"
+                href="/immobilien-services"
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >

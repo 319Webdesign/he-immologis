@@ -175,7 +175,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/service"
+                  href="/immobilien-services"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Service

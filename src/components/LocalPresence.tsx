@@ -12,28 +12,28 @@ const CARDS = [
     description: "Unterstützung für Suchende in der Region. Wir finden die passende Immobilie für Sie.",
   },
   {
-    icon: Truck,
-    title: "Logistik & Transport",
-    description: "Zuverlässige Abwicklung und Beratung. Transportlösungen aus einer Hand.",
-  },
-  {
     icon: Key,
     title: "Vermietung",
     description: "Professionelle Mietersuche und vollständige Abwicklung für Eigentümer und Mieter.",
   },
+  {
+    icon: Truck,
+    title: "Logistik & Transport",
+    description: "Zuverlässige Abwicklung und Beratung. Transportlösungen aus einer Hand.",
+  },
 ] as const;
 
-const CITIES: { name: string; image?: string }[] = [
+const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
   { name: "Weinheim", image: "/img/orte/weinheim.jpeg" },
   { name: "Heppenheim", image: "/img/orte/heppenheim.jpeg" },
-  { name: "Bensheim" },
-  { name: "Viernheim" },
-  { name: "Lorsch" },
-  { name: "Ladenburg" },
-  { name: "Schriesheim" },
-  { name: "Dossenheim" },
-  { name: "Lampertheim" },
-  { name: "Mannheim" },
+  { name: "Bensheim", image: "/img/orte/bensheim.jpeg" },
+  { name: "Viernheim", image: "/img/orte/viernheim.jpeg" },
+  { name: "Lorsch", image: "/img/orte/lorsch.jpeg" },
+  { name: "Ladenburg", image: "/img/orte/ladenburg.jpeg", aspect: "9:16" },
+  { name: "Schriesheim", image: "/img/orte/schriesheim.jpeg" },
+  { name: "Dossenheim", image: "/img/orte/dossenheim.jpeg" },
+  { name: "Lampertheim", image: "/img/orte/lampertheim.jpeg" },
+  { name: "Mannheim", image: "/img/orte/mannheim.jpeg" },
 ];
 
 export default function LocalPresence() {
@@ -98,19 +98,21 @@ export default function LocalPresence() {
                 {city.image && (
                   <span
                     className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 hidden -translate-x-1/2 rounded-lg border-2 shadow-xl group-hover/city:block"
-                    style={{ minWidth: 380, borderColor: "#4682B4" }}
+                    style={{
+                      minWidth: city.aspect === "9:16" ? 180 : 320,
+                      borderColor: "#4682B4",
+                    }}
                   >
                     <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#4682B4" }} />
                     <img
                       src={city.image}
                       alt={city.name}
                       className="rounded-md object-cover"
-                      style={{
-                        width: 380,
-                        height: 214,
-                        minWidth: 380,
-                        minHeight: 214,
-                      }}
+                      style={
+                        city.aspect === "9:16"
+                          ? { width: 180, height: 320, minWidth: 180, minHeight: 320 }
+                          : { width: 320, height: 180, minWidth: 320, minHeight: 180 }
+                      }
                     />
                   </span>
                 )}
