@@ -50,7 +50,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         </span>
       </div>
       <div className="p-6">
-        <h2 className="font-display text-xl font-semibold text-zinc-900 group-hover:text-amber-800">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-amber-800">
           {property.titel}
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-zinc-600">

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 /**
@@ -48,29 +47,11 @@ export default function Hero() {
 
       {/* Inhalt zentral */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-[7.5rem] text-center">
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl lg:text-7xl">
-          HE immologis – Ihre Experten für Immobilien & Logistik in Hessen
+        <h1 className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl lg:text-7xl">
+          Neues kann endlich beginnen.
+          <br />
+          Verkaufen. Finden. Möglich machen.
         </h1>
-        <p className="mt-6 max-w-2xl text-lg text-white/95 drop-shadow sm:text-xl">
-          Professionelle Vermittlung und effiziente Transportlösungen aus einer
-          Hand.
-        </p>
-
-        {/* Zwei-Welten-Weiche: CTAs */}
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
-          <Link
-            href="/immobilien"
-            className="inline-flex items-center justify-center rounded-lg border-2 border-white bg-white/10 px-8 py-4 text-base font-medium text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-zinc-900 sm:text-lg"
-          >
-            Bereich Immobilien
-          </Link>
-          <Link
-            href="/logistik"
-            className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-8 py-4 text-base font-medium text-zinc-900 transition-colors hover:bg-amber-400 sm:text-lg"
-          >
-            Bereich Logistik
-          </Link>
-        </div>
       </div>
 
       {/* Scroll-Down-Hinweis am unteren Rand */}

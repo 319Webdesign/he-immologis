@@ -49,7 +49,7 @@ export default function Contact({
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Kontaktinformationen */}
           <div>
-            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="font-sans text-3xl font-semibold tracking-tight sm:text-4xl">
               {title}
             </h2>
             <p

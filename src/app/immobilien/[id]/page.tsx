@@ -109,7 +109,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
             >
               {property.status}
             </span>
-            <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+            <h1 className="mt-4 font-sans text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
               {property.titel}
             </h1>
             <p className="mt-6 text-2xl font-semibold text-amber-800">

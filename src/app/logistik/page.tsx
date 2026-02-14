@@ -40,7 +40,7 @@ export default function LogistikPage() {
       {/* Hero */}
       <section className="bg-zinc-900 px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
-          <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="font-sans text-4xl font-semibold tracking-tight sm:text-5xl">
             Logistik & Transport
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-300">
@@ -52,7 +52,7 @@ export default function LogistikPage() {
 
       {/* Leistungsübersicht */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+        <h2 className="font-sans text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
           Unsere Leistungen
         </h2>
         <p className="mt-4 max-w-2xl text-lg text-zinc-600">
@@ -72,7 +72,7 @@ export default function LogistikPage() {
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-800 transition-colors group-hover:bg-amber-200">
                   <IconComponent className="h-7 w-7" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-zinc-900">
+                <h3 className="font-sans text-xl font-semibold text-zinc-900">
                   {service.titel}
                 </h3>
                 <p className="mt-3 text-zinc-600">{service.beschreibung}</p>
