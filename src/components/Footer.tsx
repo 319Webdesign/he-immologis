@@ -115,7 +115,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2">
               <li>
                 <Link
-                  href="/immobilien"
+                  href="/anbieten"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Verkaufen
@@ -123,7 +123,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/immobilien"
+                  href="/verkaufen"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Kaufen
@@ -131,7 +131,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/immobilien"
+                  href="/mieten"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Mieten

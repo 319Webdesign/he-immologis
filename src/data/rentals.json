@@ -1,0 +1,62 @@
+[
+  {
+    "id": "m1",
+    "titel": "Moderne 3-Zimmer-Wohnung in Weinheim",
+    "kaltmiete": 980,
+    "quadratmeter": 78,
+    "ort": "Weinheim",
+    "zimmer": 3,
+    "objekttyp": "Wohnung",
+    "status": "Neu",
+    "vorschaubild": "/img/immobilie-placeholder.png",
+    "beschreibung": "Helle Wohnung in zentraler Lage mit Balkon und moderner Ausstattung."
+  },
+  {
+    "id": "m2",
+    "titel": "Großzügige 4-Zimmer-Wohnung mit Gartenanteil",
+    "kaltmiete": 1250,
+    "quadratmeter": 95,
+    "ort": "Weinheim",
+    "zimmer": 4,
+    "objekttyp": "Wohnung",
+    "status": "Verfügbar",
+    "vorschaubild": "/img/immobilie-placeholder.png",
+    "beschreibung": "Ruhige Lage mit Blick ins Grün. Großer Keller und Stellplatz inklusive."
+  },
+  {
+    "id": "m3",
+    "titel": "Einfamilienhaus mit Garten",
+    "kaltmiete": 1850,
+    "quadratmeter": 140,
+    "ort": "Weinheim",
+    "zimmer": 5,
+    "objekttyp": "Haus",
+    "status": "Reserviert",
+    "vorschaubild": "/img/immobilie-placeholder.png",
+    "beschreibung": "Gepflegtes Haus in familienfreundlicher Umgebung. Garage und Terrasse."
+  },
+  {
+    "id": "m4",
+    "titel": "Zweiraumwohnung Stadtrand",
+    "kaltmiete": 650,
+    "quadratmeter": 52,
+    "ort": "Weinheim",
+    "zimmer": 2,
+    "objekttyp": "Wohnung",
+    "status": "Verfügbar",
+    "vorschaubild": "/img/immobilie-placeholder.png",
+    "beschreibung": "Ideale Erstwohnung. Fußläufig zu ÖPNV und Einkaufsmöglichkeiten."
+  },
+  {
+    "id": "m5",
+    "titel": "Gewerbe-Penthouse mit Terrasse",
+    "kaltmiete": 2400,
+    "quadratmeter": 180,
+    "ort": "Weinheim",
+    "zimmer": 4,
+    "objekttyp": "Gewerbe",
+    "status": "Neu",
+    "vorschaubild": "/img/immobilie-placeholder.png",
+    "beschreibung": "Exklusives Objekt für Wohnen und Arbeiten. Dachterrasse mit Bergblick."
+  }
+]

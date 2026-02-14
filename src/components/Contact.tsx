@@ -3,16 +3,20 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 
+const STEELBLUE = "#4682B4";
+
 interface ContactProps {
   variant?: "default" | "compact" | "dark";
   title?: string;
   subtitle?: string;
+  accentColor?: "amber" | "steelblue";
 }
 
 export default function Contact({
   variant = "default",
   title = "Kontaktieren Sie uns",
   subtitle = "Wir freuen uns auf Ihre Nachricht und stehen Ihnen gerne jederzeit zur Verfügung.",
+  accentColor = "amber",
 }: ContactProps) {
   const [formState, setFormState] = useState({
     name: "",
@@ -38,6 +42,30 @@ export default function Contact({
 
   const isDark = variant === "dark";
   const isCompact = variant === "compact";
+  const useSteelblue = accentColor === "steelblue";
+
+  const iconWrapperStyle = useSteelblue
+    ? { backgroundColor: `${STEELBLUE}20`, color: STEELBLUE }
+    : undefined;
+  const iconWrapperClass = !useSteelblue
+    ? isDark
+      ? "bg-amber-600/20"
+      : "bg-amber-100"
+    : "";
+  const iconClass = !useSteelblue
+    ? isDark
+      ? "text-amber-400"
+      : "text-amber-700"
+    : "";
+
+  const btnStyle = useSteelblue
+    ? { backgroundColor: STEELBLUE }
+    : undefined;
+  const btnClass = !useSteelblue
+    ? isDark
+      ? "bg-amber-600 hover:bg-amber-500 focus:ring-offset-zinc-800"
+      : "bg-zinc-900 hover:bg-zinc-800 focus:ring-offset-2"
+    : "hover:opacity-90 focus:ring-[#4682B4] focus:ring-offset-2";
 
   return (
     <section
@@ -63,12 +91,12 @@ export default function Contact({
             <div className="mt-10 space-y-6">
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${
-                    isDark ? "bg-amber-600/20" : "bg-amber-100"
-                  }`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${iconWrapperClass}`}
+                  style={iconWrapperStyle}
                 >
                   <MapPin
-                    className={`h-6 w-6 ${isDark ? "text-amber-400" : "text-amber-700"}`}
+                    className={`h-6 w-6 ${iconClass}`}
+                    style={useSteelblue ? { color: STEELBLUE } : undefined}
                   />
                 </div>
                 <div>
@@ -83,12 +111,12 @@ export default function Contact({
 
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${
-                    isDark ? "bg-amber-600/20" : "bg-amber-100"
-                  }`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${iconWrapperClass}`}
+                  style={iconWrapperStyle}
                 >
                   <Phone
-                    className={`h-6 w-6 ${isDark ? "text-amber-400" : "text-amber-700"}`}
+                    className={`h-6 w-6 ${iconClass}`}
+                    style={useSteelblue ? { color: STEELBLUE } : undefined}
                   />
                 </div>
                 <div>
@@ -104,12 +132,12 @@ export default function Contact({
 
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${
-                    isDark ? "bg-amber-600/20" : "bg-amber-100"
-                  }`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${iconWrapperClass}`}
+                  style={iconWrapperStyle}
                 >
                   <Mail
-                    className={`h-6 w-6 ${isDark ? "text-amber-400" : "text-amber-700"}`}
+                    className={`h-6 w-6 ${iconClass}`}
+                    style={useSteelblue ? { color: STEELBLUE } : undefined}
                   />
                 </div>
                 <div>
@@ -226,11 +254,8 @@ export default function Contact({
 
                 <button
                   type="submit"
-                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
-                    isDark
-                      ? "bg-amber-600 hover:bg-amber-500 focus:ring-offset-zinc-800"
-                      : "bg-zinc-900 hover:bg-zinc-800 focus:ring-offset-2"
-                  }`}
+                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${btnClass}`}
+                  style={btnStyle}
                 >
                   <Send className="h-5 w-5" />
                   Nachricht senden

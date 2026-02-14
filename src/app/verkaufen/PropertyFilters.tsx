@@ -15,7 +15,7 @@ export default function PropertyFilters() {
     } else {
       params.set(key, value);
     }
-    router.push(`/immobilien${params.toString() ? `?${params}` : ""}`);
+    router.push(`/verkaufen${params.toString() ? `?${params}` : ""}`);
   };
 
   return (

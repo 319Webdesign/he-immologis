@@ -50,7 +50,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
     <>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
-          href="/immobilien"
+          href="/verkaufen"
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900"
         >
           <ArrowLeft className="h-4 w-4" />
