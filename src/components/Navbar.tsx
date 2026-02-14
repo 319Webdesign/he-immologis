@@ -31,7 +31,7 @@ export default function Navbar() {
 
   const utilityLinkClass = (variant: "bar" | "mobile") =>
     variant === "bar"
-      ? "flex items-center gap-2 text-xs text-white transition-colors hover:opacity-80"
+      ? "flex items-center gap-2 text-xs text-slate-700 transition-colors hover:opacity-80"
       : "flex items-center gap-2 text-xs text-black transition-colors hover:opacity-80";
 
   const utilityLinks = (variant: "bar" | "mobile") => (
@@ -65,8 +65,8 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white">
       {/* Obere Utility-Leiste */}
       <div
-        className="border-b border-slate-500/30"
-        style={{ backgroundColor: "#3EB489" }}
+        className="border-b border-slate-300/50"
+        style={{ backgroundColor: "#D3EFDE" }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-end px-4 py-2.5 text-sm sm:px-6 lg:px-8">
           {utilityLinks("bar")}
@@ -158,7 +158,7 @@ export default function Navbar() {
           <Link
             href="mailto:info@he-immologis.de"
             className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
-            style={{ backgroundColor: "#3EB489" }}
+            style={{ backgroundColor: "#4682B4" }}
           >
             Jetzt kontaktieren
           </Link>
@@ -185,7 +185,7 @@ export default function Navbar() {
               href="mailto:info@he-immologis.de"
               onClick={() => setMobileMenuOpen(false)}
               className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-medium text-white transition-colors hover:opacity-90"
-              style={{ backgroundColor: "#3EB489" }}
+              style={{ backgroundColor: "#4682B4" }}
             >
               Jetzt kontaktieren
             </Link>
