@@ -36,7 +36,11 @@ export default function Footer() {
               HE immologis (haftungsbeschränkt) i. Gr.
             </p>
             <p className="mt-2 text-sm text-slate-300">
-              Ihr Partner für Immobilien und Logistikberatung in Baden-Württemberg & Hessen.
+              Ihr Partner für
+              <br />
+              Immobilien - & Logistikberatung
+              <br />
+              in Baden-Württemberg & Hessen.
             </p>
             <div className="mt-4 flex gap-4" aria-label="Social Media">
               <a

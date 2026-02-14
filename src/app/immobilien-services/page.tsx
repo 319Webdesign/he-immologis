@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ServiceSection from "@/components/ServiceSection";
+import ServiceCards from "@/components/ServiceCards";
 
 export const metadata: Metadata = {
   title: "Immobilien-Services | HE immologis UG",
@@ -15,46 +15,6 @@ export const metadata: Metadata = {
 };
 
 const BRAND_BLUE = "#4682B4";
-
-const SERVICES = [
-  {
-    number: "01",
-    icon: "calculator" as const,
-    title: "Professionelle Marktwertermittlung",
-    description:
-      "Eine fundierte Analyse ist die Basis jedes Erfolgs. Wir nutzen aktuelle Marktdaten der Bergstraße, um den optimalen Preis für Ihre Immobilie zu finden.",
-    features: [
-      "Kostenlose Erstberatung",
-      "Berücksichtigung von Modernisierungen",
-      "Schriftliche Auswertung",
-    ],
-  },
-  {
-    number: "02",
-    icon: "image" as const,
-    title: "Vermarktung & Präsentation",
-    description:
-      "Wir setzen Ihre Immobilie in Szene. Mit Profi-Fotografie und zielgruppenspezifischen Exposés erreichen wir die richtigen Käufer.",
-    features: [
-      "Hochwertiges Exposé",
-      "Portalschaltung",
-      "Social Media Marketing",
-      "Bestandskunden-Matching",
-    ],
-  },
-  {
-    number: "03",
-    icon: "file-check" as const,
-    title: "Abwicklung & After-Sales",
-    description:
-      "Wir nehmen Ihnen den Stress ab. Wir prüfen Interessenten, organisieren Notartermine und begleiten die Übergabe.",
-    features: [
-      "Bonitätsprüfung",
-      "Kaufvertrags-Vorbereitung",
-      "Rechtssicheres Übergabeprotokoll",
-    ],
-  },
-];
 
 export default function ImmobilienServicesPage() {
   return (
@@ -78,19 +38,8 @@ export default function ImmobilienServicesPage() {
         </div>
       </section>
 
-      {/* Service-Fokus Segmente */}
-      <div className="bg-white">
-        {SERVICES.map((service) => (
-          <ServiceSection
-            key={service.number}
-            number={service.number}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-            features={service.features}
-          />
-        ))}
-      </div>
+      {/* Service-Pricing-Cards */}
+      <ServiceCards />
 
       {/* CTA-Banner */}
       <section

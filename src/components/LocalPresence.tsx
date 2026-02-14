@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Home, Search, Truck, Key } from "lucide-react";
 
 const CARDS = [
@@ -37,6 +40,8 @@ const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
 ];
 
 export default function LocalPresence() {
+  const [openCity, setOpenCity] = useState<string | null>(null);
+
   return (
     <section
       className="bg-white py-16 sm:py-20 lg:py-24"
@@ -92,12 +97,21 @@ export default function LocalPresence() {
             {CITIES.map((city) => (
               <span
                 key={city.name}
-                className="group/city relative shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
+                role={city.image ? "button" : undefined}
+                tabIndex={city.image ? 0 : undefined}
+                onClick={() => city.image && setOpenCity((c) => (c === city.name ? null : city.name))}
+                onKeyDown={(e) => {
+                  if (city.image && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    setOpenCity((c) => (c === city.name ? null : city.name));
+                  }
+                }}
+                className="group/city relative shrink-0 cursor-pointer rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm touch-manipulation"
               >
                 {city.name}
                 {city.image && (
                   <span
-                    className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 hidden -translate-x-1/2 rounded-lg border-2 shadow-xl group-hover/city:block"
+                    className={`pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 rounded-lg border-2 shadow-xl ${openCity === city.name ? "block" : "hidden group-hover/city:block"}`}
                     style={{
                       minWidth: city.aspect === "9:16" ? 180 : 320,
                       borderColor: "#4682B4",
