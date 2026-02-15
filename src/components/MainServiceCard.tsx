@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
 const BRAND_BLUE = "#4682B4";
-const IMAGE_SRC =
-  "https://placehold.co/800x500/4682B4/ffffff?text=Rundum-Sorglos&font=source-sans";
+const IMAGE_SRC = "/img/hausvorschau.jpeg";
 
 const FEATURES = [
   "Präzise Wertermittlung",
@@ -40,7 +40,7 @@ export default function MainServiceCard() {
             className="absolute right-4 top-4 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg"
             style={{ backgroundColor: BRAND_BLUE }}
           >
-            Bestseller
+            Komplettmandat
           </span>
         </div>
 
@@ -50,7 +50,7 @@ export default function MainServiceCard() {
             id="main-service-title"
             className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
           >
-            Immobilienverkauf
+            Der ganzheitliche Verkaufsprozess – von der Bewertung bis zur Übergabe
           </h2>
           <p className="mt-3 text-slate-600">
             Ein sicherer Verkauf in 5 klaren Schritten
@@ -71,6 +71,13 @@ export default function MainServiceCard() {
           <p className="mt-6 text-slate-700">
             Für diesen umfassenden Service berechnen wir das ortsübliche Erfolgshonorar von 3,57 % inkl. MwSt., bezogen auf den notariell beurkundeten Kaufpreis.
           </p>
+          <Link
+            href="/immobilien-services/immobilienverkauf"
+            className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 sm:w-auto"
+            style={{ backgroundColor: BRAND_BLUE }}
+          >
+            Mehr Infos
+          </Link>
         </div>
       </div>
     </motion.article>

@@ -28,6 +28,157 @@ export async function generateMetadata({
   };
 }
 
+function KomplettmandatContent({
+  service,
+}: {
+  service: ServiceCardItem;
+}) {
+  const sections = service.detailSections ?? [];
+  const intro = sections.slice(0, 2);
+  const steps = [
+    sections[2],
+    sections[3],
+    sections[4],
+    sections[5],
+    sections[6],
+    sections[7],
+    sections[8],
+    sections[9],
+    sections[10],
+    sections[11],
+  ];
+  const verguetungTitle = sections[12];
+  const verguetungBody = sections[13];
+
+  return (
+    <>
+      <div className="mt-8 space-y-6">
+        {intro.map((text, i) => (
+          <p key={i} className="text-lg leading-relaxed text-slate-600">
+            {text}
+          </p>
+        ))}
+      </div>
+
+      <div className="mt-12 space-y-6">
+        {[0, 2, 4, 6, 8].map((idx) => (
+          <div
+            key={idx}
+            className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md sm:gap-5 sm:p-7"
+          >
+            <span
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white sm:h-12 sm:w-12"
+              style={{ backgroundColor: BRAND_BLUE }}
+            >
+              {idx / 2 + 1}
+            </span>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900">
+                {steps[idx]?.replace(/^\d+\.\s*/, "")}
+              </h3>
+              <p className="mt-2 text-slate-600 leading-relaxed">
+                {steps[idx + 1]}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <section
+        className="mt-12 rounded-2xl border-2 px-6 py-7 sm:px-8 sm:py-8"
+        style={{
+          borderColor: BRAND_BLUE,
+          backgroundColor: `${BRAND_BLUE}08`,
+        }}
+        aria-labelledby="verguetung-heading"
+      >
+        <h2
+          id="verguetung-heading"
+          className="font-sans text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl"
+        >
+          {verguetungTitle}
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-slate-700">
+          {verguetungBody}
+        </p>
+      </section>
+    </>
+  );
+}
+
+const DOKUMENTMODUL_LIST_INTRO =
+  "Hierzu zählen insbesondere, jedoch nicht abschließend:";
+const DOKUMENTMODUL_LIST_LENGTH = 6;
+
+function DefaultContent({
+  paragraphs,
+  slug,
+}: {
+  paragraphs: string[];
+  slug?: string;
+}) {
+  const isDokumentmodul = slug === "energieausweis";
+  const listIntroIndex = isDokumentmodul
+    ? paragraphs.findIndex((p) => p === DOKUMENTMODUL_LIST_INTRO)
+    : -1;
+  const listStart = listIntroIndex >= 0 ? listIntroIndex + 1 : 0;
+  const listEnd = listStart + DOKUMENTMODUL_LIST_LENGTH;
+
+  return (
+    <div className="mt-8 space-y-8">
+      {paragraphs.map((text, i) => {
+        if (isDokumentmodul && listIntroIndex >= 0 && i === listIntroIndex)
+          return null;
+        if (isDokumentmodul && listIntroIndex >= 0 && i >= listStart && i < listEnd) {
+          if (i > listStart) return null;
+          return (
+            <div key="dokumentmodul-list" className="space-y-3">
+              <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 pt-4 border-t border-slate-200 mt-8">
+                {DOKUMENTMODUL_LIST_INTRO}
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-lg leading-relaxed text-slate-600">
+                {paragraphs.slice(listStart, listEnd).map((item, j) => (
+                  <li key={j}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+        const isH2 = i === 0 && text.length < 80;
+        const isHeading =
+          !isH2 &&
+          text.length < 70 &&
+          !text.endsWith(".") &&
+          !text.endsWith(",") &&
+          text.length > 0;
+        if (isH2)
+          return (
+            <h2
+              key={i}
+              className="font-sans text-2xl font-semibold tracking-tight text-slate-900"
+            >
+              {text}
+            </h2>
+          );
+        if (isHeading)
+          return (
+            <h3
+              key={i}
+              className="font-sans text-xl font-semibold tracking-tight text-slate-900 pt-4 first:pt-0 border-t border-slate-200 first:border-t-0 mt-8 first:mt-0"
+            >
+              {text}
+            </h3>
+          );
+        return (
+          <p key={i} className="text-lg leading-relaxed text-slate-600">
+            {text}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const service: ServiceCardItem | undefined = DEFAULT_SERVICES.find(
@@ -40,6 +191,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     service.detailSections && service.detailSections.length > 0
       ? service.detailSections
       : [service.description];
+
+  const isKomplettmandat =
+    slug === "immobilienverkauf" && (service.detailSections?.length ?? 0) >= 14;
 
   return (
     <>
@@ -71,16 +225,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             {service.price}
           </span>
 
-          <div className="mt-8 space-y-6">
-            {paragraphs.map((text, i) => (
-              <p
-                key={i}
-                className="text-lg leading-relaxed text-slate-600"
-              >
-                {text}
-              </p>
-            ))}
-          </div>
+          {isKomplettmandat ? (
+            <KomplettmandatContent service={service} />
+          ) : (
+            <DefaultContent paragraphs={paragraphs} slug={slug} />
+          )}
 
           {/* Anfrage-Sektion */}
           <section

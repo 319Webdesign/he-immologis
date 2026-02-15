@@ -5,9 +5,19 @@ import { DEFAULT_SERVICES } from "@/data/services";
 import MainServiceCard from "@/components/MainServiceCard";
 import { ServiceCard } from "@/components/ServiceCards";
 
-const ZUSATZMODULE = DEFAULT_SERVICES.filter(
-  (s) => s.slug !== "immobilienverkauf"
-);
+const EINZELMODUL_SLUGS = [
+  "marktwertanalyse",
+  "beratung-begleitung",
+  "high-end-immobilienaufnahmen",
+  "verkaeuferschutzmodul",
+  "kaufvertragsabwicklung",
+  "energieausweis",
+  "objektkoordination",
+] as const;
+
+const ZUSATZMODULE = EINZELMODUL_SLUGS.map(
+  (slug) => DEFAULT_SERVICES.find((s) => s.slug === slug)!
+).filter(Boolean);
 
 const container = {
   hidden: { opacity: 0 },
@@ -45,7 +55,7 @@ export default function ServicesPackagesSection() {
           id="zusatzmodule-heading"
           className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:mt-16 sm:text-3xl"
         >
-          Individuelle Zusatzmodule
+          Einzelmodule
         </h2>
 
         <motion.div
