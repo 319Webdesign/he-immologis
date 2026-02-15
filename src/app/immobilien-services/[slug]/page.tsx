@@ -231,6 +231,32 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <DefaultContent paragraphs={paragraphs} slug={slug} />
           )}
 
+          {slug === "high-end-immobilienaufnahmen" && (
+            <section
+              className="mt-12 rounded-xl border border-slate-200 bg-white px-5 py-5 sm:px-6 sm:py-6"
+              aria-labelledby="heinerfilm-heading"
+            >
+              <h2
+                id="heinerfilm-heading"
+                className="font-sans text-lg font-semibold tracking-tight text-slate-900"
+              >
+                Heinerfilm
+              </h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Die professionellen Film- und Fotoaufnahmen realisieren wir in Kooperation mit Heinerfilm.
+              </p>
+              <a
+                href="https://heinerfilm.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center text-sm font-medium"
+                style={{ color: BRAND_BLUE }}
+              >
+                Mehr erfahren auf heinerfilm.de →
+              </a>
+            </section>
+          )}
+
           {/* Anfrage-Sektion */}
           <section
             className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-8 sm:px-8 sm:py-10"

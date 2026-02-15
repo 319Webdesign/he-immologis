@@ -45,8 +45,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "150 EUR / Stunde",
     description:
       "Individuelle Beratung und persönliche Begleitung bei Ihrem Immobilienvorhaben.",
-    image:
-      "https://placehold.co/800x450/e2e8f0/475569?text=Beratung+%26+Begleitung&font=source-sans",
+    image: "/img/service-beratung.png",
     detailSections: [
       "Sie brauchen keine Vollvermarktung, sondern gezielte Beratung oder Begleitung in bestimmten Phasen? Wir unterstützen Sie stundenweise mit unserem Know-how – ob bei der Einschätzung von Objekten, der Verhandlung mit der Bank oder der Koordination von Gewerken.",
       "Die Beratung kann vor Ort, per Video oder am Telefon stattfinden. So bleiben Sie flexibel und zahlen nur für das, was Sie wirklich benötigen.",
@@ -62,9 +61,21 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     description: "Exposé, Fotografie, Drohne, Objektaufbereitung",
     image: "/img/tim.jpeg",
     detailSections: [
-      "Für anspruchsvolle Objekte bieten wir professionelle Immobilienaufnahmen: Drohnenaufnahmen für Außenansichten und Lage, hochwertige Innenaufnahmen und eine stimmige Bildsprache, die Ihre Immobilie optimal präsentiert.",
-      "Die Aufnahmen eignen sich für Exposés, Portale und Ihre eigene Werbung. Sie erhalten bearbeitete Dateien in hoher Auflösung zur uneingeschränkten Nutzung.",
-      "Preis: 600 € inkl. MwSt. inkl. Vor-Ort-Termin und Lieferung der Dateien. Gerne erstellen wir ein individuelles Angebot für größere Objekte oder Pakete.",
+      "Premium-Visualisierung für Objektpräsentationen, Image-Content und Luxusimmobilien-Marketing",
+      "Mit professionellen Luft- und Bodenaufnahmen schärfen Sie die Wahrnehmung Ihrer Immobilie auf ein neues Niveau. Unsere Aufnahmen liefern ästhetische Klarheit, emotionale Wirkung und eine visuelle Sprache, die potenzielle Käufer sofort anspricht und langfristig im Gedächtnis bleibt – technisch präzise, visuell eindrucksvoll und markenstark inszeniert.",
+      "Wir kombinieren modernste Kameratechnik mit professioneller Film- und Fotoproduktion, um Ihre Immobilie aus jedem relevanten Blickwinkel darzustellen. Dabei erzählen wir nicht nur Bilder, sondern schaffen Inhalte, die Vertrauen schaffen, Exklusivität transportieren und die Kaufentscheidung emotional unterstützen.",
+      "Was Sie erhalten",
+      "🎥 Hochwertige Drohnen-Luftaufnahmen",
+      "Spektakuläre Perspektiven aus der Vogelperspektive, die Lage, Umfeld und Architektur Ihrer Immobilie in voller Wirkung zeigen – ideal für Exposés, Websites und Social Media.",
+      "📸 Professionelle Kamerafotografie bis 4K",
+      "Detailstarke Innen- und Außenaufnahmen, die Materialien, Raumwirkung und Lichtführung Ihrer Immobilie perfekt einfangen.",
+      "🎬 Anspruchsvolle Postproduktion",
+      "Bildoptimierung, Farbkorrektur und stilvolle Sequenzierung – damit jedes Foto und Video nicht nur dokumentiert, sondern inszeniert.",
+      "📐 Storytelling & Präsentationsqualität",
+      "Visuelles Storytelling statt reiner Dokumentation – Ihre Immobilie wird inhaltlich wie emotional in Szene gesetzt.",
+      "Preis",
+      "High-End-Immobilienaufnahmen",
+      "Hochwertige Drohnen- und Kameraproduktion für Luxusimmobilien: 600 € inkl. MwSt.",
     ],
   },
   {
@@ -74,8 +85,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "120 € inkl. MwSt. pro angefangener Stunde",
     description:
       "Qualifizierte Interessentenprüfung & Bonität",
-    image:
-      "https://placehold.co/800x450/cbd5e1/475569?text=Verk%C3%A4uferschutz&font=source-sans",
+    image: "/img/service-verkaeuferschutz.png",
     detailSections: [
       "Exposé & geprüfte Kaufinteressenten",
       "Sicherheit beginnt vor der ersten Besichtigung.",
@@ -104,8 +114,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "1,19 % Provisionshonorar vom Verkaufspreis",
     description:
       "Notarvorbereitung & Kaufvertragsabwicklung",
-    image:
-      "https://placehold.co/800x450/cbd5e1/334155?text=Kaufvertragsabwicklung&font=source-sans",
+    image: "/img/service-vertragsmodul.png",
     detailSections: [
       "Der Kaufvertrag ist unterzeichnet – damit beginnt die Phase der Abwicklung: Fristen überwachen, Unterlagen einholen, Notartermin und Finanzierung abstimmen, Übergabe vorbereiten. Wir übernehmen die Koordination und sorgen dafür, dass nichts auf der Strecke bleibt.",
       "Unsere Abwicklung entlastet Verkäufer und Käufer gleichermaßen und reduziert das Risiko von Verzögerungen oder Fehlern.",
@@ -119,8 +128,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "150 € inkl. MwSt. pro angefangener Stunde",
     description:
       "Beantragung des Energieausweises und vollständige Beschaffung aller erforderlichen Unterlagen für Ihren Immobilienverkauf.",
-    image:
-      "https://placehold.co/800x450/f1f5f9/475569?text=Energieausweis&font=source-sans",
+    image: "/img/service-dokumentmodul.png",
     detailSections: [
       "Die Beschaffung objektbezogener Unterlagen erfolgt ausschließlich auf Grundlage eines gesonderten, schriftlich oder in Textform erteilten Einzelauftrags sowie nach ausdrücklicher Freigabe des Eigentümers.",
       "Wir übernehmen im Rahmen dieses Auftrags die organisatorische Koordination und Anforderung erforderlicher Dokumente bei zuständigen Behörden, Notariaten, Hausverwaltungen, Energieberatern oder sonstigen Dritten.",
