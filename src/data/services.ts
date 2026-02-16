@@ -169,7 +169,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "Auf Anfrage",
     description:
       "Persönliche Begleitung und Koordination nach dem Verkauf oder bei laufenden Vorhaben.",
-    image: "/img/service/nachbetreuung.jpeg",
+    image: "/img/service/nachbetreung.jpeg",
     detailSections: [
       "Das Nachbetreuungsmodul bietet Ihnen einen verlässlichen Ansprechpartner für alle Schritte nach dem Verkauf oder während laufender Projekte.",
       "Ob Übergabekoordination, Gewerkeabstimmung oder Ansprechpartner für Mieter und Käufer – wir sorgen für Transparenz und reibungslose Abläufe.",
