@@ -140,7 +140,7 @@ export default function Navbar() {
 
               {logistikOpen && (
                 <div className="absolute left-0 top-full pt-1">
-                  <div className="min-w-[220px] rounded-lg border border-zinc-100 bg-white py-2 shadow-lg">
+                  <div className="min-w-[320px] whitespace-nowrap rounded-lg border border-zinc-100 bg-white py-2 shadow-lg">
                     {LOGISTIKBERATUNG_SUB.map((item) => (
                       <Link
                         key={item.label}
@@ -164,7 +164,7 @@ export default function Navbar() {
         {/* Rechts: CTA */}
         <div className="hidden md:block">
           <Link
-            href="mailto:info@he-immologis.de"
+            href="/ueber-mich#kontakt"
             className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ backgroundColor: "#4682B4" }}
           >
@@ -190,7 +190,7 @@ export default function Navbar() {
               {utilityLinks("mobile")}
             </div>
             <Link
-              href="mailto:info@he-immologis.de"
+              href="/ueber-mich#kontakt"
               onClick={() => setMobileMenuOpen(false)}
               className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-medium text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: "#4682B4" }}

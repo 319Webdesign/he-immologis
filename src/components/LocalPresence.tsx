@@ -59,10 +59,10 @@ export default function LocalPresence() {
             id="kompetenz-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
-            Verkaufen. Kaufen. Mieten. Services
+            Verkaufen. Kaufen. Mieten. Services.
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            Individuelle Betreuung für Ihre Immobilien
+            Individuelle Betreuung für Ihre Immobilien in Weinheim und an der Bergstraße.
           </p>
         </header>
 

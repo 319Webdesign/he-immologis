@@ -69,6 +69,7 @@ export default function Contact({
 
   return (
     <section
+      id="kontakt"
       className={`py-16 sm:py-24 ${
         isDark ? "bg-zinc-900 text-white" : "bg-zinc-50"
       }`}
