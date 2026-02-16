@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Contact from "@/components/Contact";
 
 export const metadata: Metadata = {
@@ -19,49 +20,116 @@ const BRAND_BLUE = "#4682B4";
 export default function UeberMichPage() {
   return (
     <>
-      {/* Hero / Header */}
+      {/* Zwei Spalten: 30% Bild links, 70% Text rechts */}
       <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-800 sm:text-4xl">
-            Über mich
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-slate-600">
-            Persönliche Beratung für Ihre Immobilie – in Weinheim und an der Bergstraße.
-          </p>
-        </div>
-      </section>
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[30%_1fr] lg:gap-12">
+            {/* Links: Bild */}
+            <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl bg-slate-100 lg:max-w-none">
+              <Image
+                src="/img/holger.jpeg"
+                alt="Holger Eberhard"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1023px) 100vw, 30vw"
+                priority
+              />
+            </div>
 
-      {/* Inhalt */}
-      <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="prose prose-slate prose-lg max-w-none">
-          <p className="text-slate-600 leading-relaxed">
-            Als Geschäftsführer der HE immologis UG verbinde ich langjährige Erfahrung
-            in der Immobilienbranche mit dem Fokus auf Ihre individuellen Ziele.
-            Ob Verkauf, Kauf oder Miete – ich begleite Sie mit fundierter Marktkenntnis,
-            transparenten Prozessen und einem Full-Service-Angebot von der Wertermittlung
-            bis zur Schlüsselübergabe.
-          </p>
-          <p className="mt-6 text-slate-600 leading-relaxed">
-            Mein Büro in Weinheim ist Ihr Anlaufpunkt für die Region Bergstraße und
-            darüber hinaus. Ich freue mich auf das Gespräch mit Ihnen.
-          </p>
+            {/* Rechts: Text */}
+            <div className="min-w-0">
+              <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                Über mich
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-slate-700">
+                Mein Name ist Holger Eberhard.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah – und offiziell geduldeter Mitbewohner unseres Zwergrauhaardackels Houdini.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen, manche Menschen – und die Geschichten hinter so mancher Immobilie. Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Diese Verbindung zwischen Weinheim und Südafrika prägt mein Denken und Handeln:
+              </p>
+              <p className="mt-2 font-semibold text-slate-800">
+                Lokal verwurzelt. Global orientiert.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                „Local roots. Global vision.“ ist für mich kein Slogan – sondern gelebte Realität.
+              </p>
 
-          <div
-            className="mt-10 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-            style={{ borderColor: BRAND_BLUE, backgroundColor: `${BRAND_BLUE}08` }}
-          >
-            <h2 className="font-sans text-xl font-semibold tracking-tight text-slate-900">
-              Holger Eberhard
-            </h2>
-            <p className="mt-1 text-slate-600">Geschäftsführer, HE immologis UG</p>
-            <p className="mt-4 text-slate-700">
-              Ahornstr. 59 · 69469 Weinheim
-            </p>
-            <p className="mt-1 text-slate-700">
-              <a href="tel:+4917632198462" className="hover:underline">0176 321 98 462</a>
-              {" · "}
-              <a href="mailto:info@he-immologis.de" className="hover:underline">info@he-immologis.de</a>
-            </p>
+              <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
+                Mein beruflicher Weg
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Über viele Jahre war ich international in der Logistik- und Unternehmenswelt tätig. Ich habe internationale Vertriebsteams harmoniert, komplexe Großprojekte über alle Verkehrsträger hinweg verantwortet, M&A-Prozesse begleitet und temperaturgeführte Supply-Chain-Lösungen entwickelt.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Dies geht nur mit Struktur, Eigenverantwortung und wirtschaftlicher Tragfähigkeit.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Diese unternehmerische Erfahrung bringe ich heute in den regionalen Immobilienmarkt entlang der Bergstraße ein. Denn auch Immobilien erfordern Strategie, Verhandlungssicherheit, Marktverständnis und klare Entscheidungen.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Parallel engagiere ich mich in logistischen Hilfsprojekten in südafrikanischen Townships und begleite ausgewählte Schulungs- und branchenbasierte M&A-Projekte in Europa. Unternehmertum bedeutet für mich Verantwortung – wirtschaftlich wie gesellschaftlich.
+              </p>
+
+              <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
+                Meine Haltung zu Immobilien
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Immobilien sind für mich mehr als Objekte.
+              </p>
+              <p className="mt-2 leading-relaxed text-slate-600">
+                Sie sind Lebensentscheidungen. Übergänge. Neuanfänge.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Ob Verkauf, Kauf oder Vermietung – ich begleite meine Kunden persönlich, diskret und strukturiert durch den gesamten Prozess: von der fundierten Wertermittlung über eine klare Vermarktungsstrategie bis zum erfolgreichen Abschluss.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Mein Anspruch:
+              </p>
+              <p className="mt-2 leading-relaxed text-slate-600">
+                wirtschaftlich tragfähige Lösungen zu schaffen – und dabei stets den Menschen hinter der Immobilie im Blick zu behalten.
+              </p>
+
+              <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
+                Warum HE immologis?
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Aus meiner internationalen Logistik- und Beratungserfahrung und meiner regionalen Immobilienleidenschaft entstand mein Unternehmensname:
+              </p>
+              <p className="mt-2 font-semibold text-slate-800">
+                Immo & Logis – HE immologis.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Er verbindet zwei Welten, die auf den ersten Blick gegensätzlich erscheinen:
+              </p>
+              <p className="mt-2 leading-relaxed text-slate-600">
+                globale Strukturkompetenz und regionales Vertrauen.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Heute lebe und arbeite ich genau in dieser Schnittstelle.
+              </p>
+
+              <p className="mt-12 leading-relaxed text-slate-600">
+                Ich freue mich darauf, auch Ihre Geschichte ein Stück begleiten zu dürfen.
+              </p>
+              <div
+                className="mt-10 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
+                style={{ borderColor: BRAND_BLUE, backgroundColor: `${BRAND_BLUE}08` }}
+              >
+                <p className="font-semibold text-slate-900">Herzlich</p>
+                <p className="mt-2 text-xl font-semibold text-slate-900">Holger Eberhard</p>
+                <p className="mt-1 text-slate-600">Geschäftsführer</p>
+                <p className="mt-2 text-slate-700">HE immologis UG (haftungsbeschränkt) i. G.</p>
+                <p className="mt-1 text-sm text-slate-600">
+                  Immobilien- und Logistikberatung · Wertermittlung (TA)
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
