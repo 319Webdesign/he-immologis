@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 const BRAND_BLUE = "#3d6d99";
+const STEELBLUE = "#4682B4";
 
 const SERVICES: {
   title: string;
@@ -65,24 +66,24 @@ export default function SellerServices() {
           Unser Premium-Service für Verkäufer
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.title}
-                className="flex min-h-[200px] flex-col border-b border-slate-200/80 p-6 transition-colors duration-200 hover:bg-[#3d6d99]/[0.06] last:border-b-0 md:border-r md:[&:nth-child(2n)]:border-r-0 md:[&:nth-child(n+5)]:border-b-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(n+4)]:border-b-0"
+                className="flex min-h-[200px] flex-col rounded-xl p-6 text-white shadow-md transition-shadow duration-200 hover:shadow-lg"
+                style={{ backgroundColor: STEELBLUE }}
               >
                 <div
-                  className="mb-4 flex h-10 w-10 shrink-0 items-center justify-center"
-                  style={{ color: BRAND_BLUE }}
+                  className="mb-4 flex h-10 w-10 shrink-0 items-center justify-center text-white"
                 >
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-sans text-lg font-semibold text-slate-800">
+                <h3 className="font-sans text-lg font-semibold text-white">
                   {service.title}
                 </h3>
-                <p className="mt-2 min-h-[2.75rem] flex-1 text-sm leading-relaxed text-slate-600">
+                <p className="mt-2 min-h-[2.75rem] flex-1 text-sm leading-relaxed text-white/90">
                   {service.text}
                 </p>
               </div>

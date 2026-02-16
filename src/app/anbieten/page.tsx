@@ -35,6 +35,9 @@ export default async function AnbietenPage({ searchParams }: AnbietenPageProps) 
         </div>
       </section>
 
+      {/* CTA (vor dem Formular) */}
+      <FinalCTA />
+
       {/* Formular-Bereich */}
       <section
         id="anfrage-formular"
@@ -50,9 +53,6 @@ export default async function AnbietenPage({ searchParams }: AnbietenPageProps) 
 
       {/* Premium-Service für Verkäufer */}
       <SellerServices />
-
-      {/* Abschließende CTA */}
-      <FinalCTA />
     </>
   );
 }
