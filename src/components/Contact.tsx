@@ -122,10 +122,10 @@ export default function Contact({
                 <div>
                   <h3 className="font-medium">Telefon</h3>
                   <a
-                    href="tel:+496201123456"
+                    href="tel:+4917632198462"
                     className={`hover:underline ${isDark ? "text-zinc-300" : "text-zinc-600"}`}
                   >
-                    +49 6201 123 456
+                    0176 321 98 462
                   </a>
                 </div>
               </div>

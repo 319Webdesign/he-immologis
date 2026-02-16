@@ -15,7 +15,12 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function AnbietenPage() {
+interface AnbietenPageProps {
+  searchParams: Promise<{ objekttyp?: string; zustand?: string }>;
+}
+
+export default async function AnbietenPage({ searchParams }: AnbietenPageProps) {
+  const params = await searchParams;
   return (
     <>
       {/* Header-Bereich */}
@@ -36,7 +41,10 @@ export default function AnbietenPage() {
         className="bg-slate-50/80 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
       >
         <div className="mx-auto max-w-4xl">
-          <SellForm />
+          <SellForm
+            initialObjekttyp={params.objekttyp}
+            initialZustand={params.zustand}
+          />
         </div>
       </section>
 

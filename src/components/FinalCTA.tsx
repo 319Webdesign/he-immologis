@@ -63,7 +63,7 @@ export default function FinalCTA() {
               href="tel:+4917632198462"
               className="font-medium text-white underline decoration-white/60 underline-offset-2 hover:decoration-white"
             >
-              +49 176 321 98 462
+              0176 321 98 462
             </a>
           </p>
         </div>

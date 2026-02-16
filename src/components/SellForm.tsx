@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const IMMOBILIEN_TYPEN = [
   "Einfamilienhaus",
+  "Zweifamilienhaus",
   "Reihenhaus",
   "Doppelhaushälfte",
   "Mehrfamilienhaus",
@@ -11,6 +12,7 @@ const IMMOBILIEN_TYPEN = [
   "Grundstück",
   "Gewerbeimmobilie",
   "Gewerbe / Wohnen",
+  "Gewerbe- / Wohnimmobilie",
 ] as const;
 
 const ZUSTAENDE = [
@@ -42,7 +44,29 @@ function isValidEmail(email: string): boolean {
   return emailRegex.test(email.trim());
 }
 
-export default function SellForm() {
+/** Map Wertermittlungs-Dropdown (ValueBanner) auf Formular-Optionen */
+function mapInitialZustand(urlZustand: string | undefined): string {
+  if (!urlZustand) return "";
+  const map: Record<string, string> = {
+    normal: "gepflegt",
+    modernisiert: "renoviert / modernisiert",
+    kernsaniert: "kernsaniert",
+    modernisierungsbedürftig: "renovierungsbedürftig",
+    sanierungsbedürftig: "sanierungsbedürftig",
+  };
+  return map[urlZustand] ?? "";
+}
+
+interface SellFormProps {
+  initialObjekttyp?: string;
+  initialZustand?: string;
+}
+
+export default function SellForm({
+  initialObjekttyp,
+  initialZustand,
+}: SellFormProps = {}) {
+  const mappedZustand = mapInitialZustand(initialZustand);
   const [formData, setFormData] = useState<FormData>({
     vorname: "",
     nachname: "",
@@ -52,9 +76,9 @@ export default function SellForm() {
     hausnummer: "",
     plz: "",
     ort: "",
-    immobilientyp: "",
+    immobilientyp: initialObjekttyp ?? "",
     baujahr: "",
-    zustand: "",
+    zustand: mappedZustand,
     nachricht: "",
     agbAkzeptiert: false,
   });

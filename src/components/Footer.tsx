@@ -23,13 +23,13 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Spalte 1: Firma & Logo */}
           <div className="flex flex-col">
-            <Link href="/" className="-mt-2 mb-4 inline-block">
+            <Link href="/" className="-mt-2 mb-4 inline-block overflow-visible">
               <Image
                 src="/img/logo.png"
                 alt="HE immologis"
-                width={120}
-                height={36}
-                className="brightness-0 invert"
+                width={150}
+                height={54}
+                className="h-11 w-auto max-w-[150px] object-contain object-left brightness-0 invert"
               />
             </Link>
             <p className="font-sans text-lg font-semibold text-white">
@@ -100,7 +100,7 @@ export default function Footer() {
                   className="flex items-center gap-3 text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-slate-400" />
-                  <span>+49 176 321 98 462</span>
+                  <span>0176 321 98 462</span>
                 </a>
               </li>
               <li>

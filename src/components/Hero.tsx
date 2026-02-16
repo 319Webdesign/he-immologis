@@ -46,12 +46,15 @@ export default function Hero() {
       />
 
       {/* Inhalt zentral */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-[7.5rem] text-center">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-24 pt-[7.5rem] text-center sm:pb-32">
         <h1 className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl lg:text-7xl">
           Neues kann endlich beginnen.
           <br />
           Verkaufen. Finden. Möglich machen.
         </h1>
+        <p className="mt-6 text-lg font-normal tracking-wide text-white/90 sm:text-xl md:mt-8">
+          Weinheim. Bergstraße.
+        </p>
       </div>
 
       {/* Scroll-Down-Hinweis am unteren Rand */}

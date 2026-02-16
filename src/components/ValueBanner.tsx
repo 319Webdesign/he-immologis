@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Home, Search } from "lucide-react";
 import { useState } from "react";
 
@@ -26,9 +27,13 @@ export default function ValueBanner() {
   const [objekttyp, setObjekttyp] = useState("");
   const [zustand, setZustand] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  const wertermittlungHref = (() => {
+    const params = new URLSearchParams();
+    if (objekttyp) params.set("objekttyp", objekttyp);
+    if (zustand) params.set("zustand", zustand);
+    const qs = params.toString();
+    return `/anbieten${qs ? `?${qs}` : ""}#anfrage-formular`;
+  })();
 
   return (
     <section
@@ -66,8 +71,7 @@ export default function ValueBanner() {
           </div>
 
           {/* Rechts: 2 Dropdowns + Button */}
-          <form
-            onSubmit={handleSubmit}
+          <div
             className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:flex-row sm:gap-3 lg:w-auto"
           >
             <label htmlFor="objekttyp" className="sr-only">
@@ -102,13 +106,17 @@ export default function ValueBanner() {
                 </option>
               ))}
             </select>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-emerald-500/35 transition-all hover:bg-emerald-600 hover:shadow-xl hover:shadow-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            <Link
+              href={wertermittlungHref}
+              className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+              style={{
+                backgroundColor: "#4682B4",
+                boxShadow: "0 10px 15px -3px rgba(70, 130, 180, 0.35)",
+              }}
             >
-              Wert prüfen
-            </button>
-          </form>
+              Wertermittlung
+            </Link>
+          </div>
         </div>
       </div>
     </section>

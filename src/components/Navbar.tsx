@@ -40,9 +40,9 @@ export default function Navbar() {
         <Mail className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">info@he-immologis.de</span>
       </a>
-      <a href="tel:+496201123456" className={utilityLinkClass(variant)}>
+      <a href="tel:+4917632198462" className={utilityLinkClass(variant)}>
         <Phone className="h-3.5 w-3.5" />
-        <span className="hidden sm:inline">+49 6201 123 456</span>
+        <span className="hidden sm:inline">0176 321 98 462</span>
       </a>
       <button
         type="button"
@@ -78,15 +78,15 @@ export default function Navbar() {
         {/* Logo links */}
         <Link
           href="/"
-          className="block shrink-0 transition-opacity hover:opacity-80"
+          className="block shrink-0 overflow-visible transition-opacity hover:opacity-80"
         >
           <Image
             src="/img/logo.png"
             alt="HE immologis"
-            width={110}
-            height={33}
-            className="block"
-            sizes="(max-width: 640px) 90px, 110px"
+            width={280}
+            height={100}
+            className="block h-16 w-auto object-contain object-left sm:h-20"
+            sizes="(max-width: 640px) 220px, 280px"
             priority
           />
         </Link>
@@ -108,6 +108,12 @@ export default function Navbar() {
               className={navLinkClass("/immobilien-services")}
             >
               Service
+            </Link>
+            <Link
+              href="/immobilie-suchen"
+              className={navLinkClass("/immobilie-suchen")}
+            >
+              Immobilie suchen
             </Link>
 
             {/* Logistikberatung mit Dropdown */}
@@ -218,6 +224,13 @@ export default function Navbar() {
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
                 Service
+              </Link>
+              <Link
+                href="/immobilie-suchen"
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+              >
+                Immobilie suchen
               </Link>
               <div className="rounded-lg px-4 py-2">
                 <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">

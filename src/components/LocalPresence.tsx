@@ -62,8 +62,7 @@ export default function LocalPresence() {
             Verkaufen. Kaufen. Mieten. Services
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            Kurze Wege, lokale Marktkenntnis und individuelle Betreuung für
-            Immobilien und Logistik.
+            Individuelle Betreuung für Ihre Immobilien
           </p>
         </header>
 
