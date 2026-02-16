@@ -45,7 +45,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "150 EUR / Stunde",
     description:
       "Individuelle Beratung und persönliche Begleitung bei Ihrem Immobilienvorhaben.",
-    image: "/img/service-beratung.png",
+    image: "/img/service/beratungsmodul.jpeg",
     detailSections: [
       "Sie brauchen keine Vollvermarktung, sondern gezielte Beratung oder Begleitung in bestimmten Phasen? Wir unterstützen Sie stundenweise mit unserem Know-how – ob bei der Einschätzung von Objekten, der Verhandlung mit der Bank oder der Koordination von Gewerken.",
       "Die Beratung kann vor Ort, per Video oder am Telefon stattfinden. So bleiben Sie flexibel und zahlen nur für das, was Sie wirklich benötigen.",

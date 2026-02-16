@@ -45,10 +45,10 @@ export default function UeberMichPage() {
                 Mein Name ist Holger Eberhard.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah – und offiziell geduldeter Mitbewohner unseres Zwergrauhaardackels Houdini.
+                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah und offiziell geduldeter Mitbewohner <br /> unseres Zwergrauhaardackels Houdini.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen, manche Menschen – und die Geschichten hinter so mancher Immobilie. Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.
+                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen,<br /> Menschen und die Geschichten hinter so mancher Immobilie. <br /> Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Diese Verbindung zwischen Weinheim und Südafrika prägt mein Denken und Handeln:
@@ -64,7 +64,7 @@ export default function UeberMichPage() {
                 Mein beruflicher Weg
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Über viele Jahre war ich international in der Logistik- und Unternehmenswelt tätig. Ich habe internationale Vertriebsteams harmoniert, komplexe Großprojekte über alle Verkehrsträger hinweg verantwortet, M&A-Prozesse begleitet und temperaturgeführte Supply-Chain-Lösungen entwickelt.
+                Über viele Jahre war ich international in der Logistik- und Unternehmenswelt tätig. <br /> Ich habe internationale Vertriebsteams harmoniert, komplexe Großprojekte über alle <br /> Verkehrsträger hinweg verantwortet, M&A-Prozesse begleitet und temperaturgeführte Supply-Chain-Lösungen entwickelt.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Dies geht nur mit Struktur, Eigenverantwortung und wirtschaftlicher Tragfähigkeit.
