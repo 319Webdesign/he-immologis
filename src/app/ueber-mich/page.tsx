@@ -45,10 +45,15 @@ export default function UeberMichPage() {
                 Mein Name ist Holger Eberhard.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah und offiziell geduldeter Mitbewohner <br /> unseres Zwergrauhaardackels Houdini.
+                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah und offiziell geduldeter Mitbewohner
+                <br /> unseres Zwergrauhaardackels Houdini.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen,<br /> Menschen und die Geschichten hinter so mancher Immobilie. <br /> Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.
+                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen, Menschen
+                <br /> und einige Geschichten hinter mancher Immobilie.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Diese Verbindung zwischen Weinheim und Südafrika prägt mein Denken und Handeln:
@@ -64,16 +69,26 @@ export default function UeberMichPage() {
                 Mein beruflicher Weg
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Über viele Jahre war ich international in der Logistik- und Unternehmenswelt tätig. <br /> Ich habe internationale Vertriebsteams harmoniert, komplexe Großprojekte über alle <br /> Verkehrsträger hinweg verantwortet, M&A-Prozesse begleitet und temperaturgeführte Supply-Chain-Lösungen entwickelt.
+                Über viele Jahre bin ich im internationalen Bereich Vertrieb und Entwicklung in der
+                <br /> Logistikwelt tätig. Ich habe die Zusammenarbeit internationaler Vertriebsteams in
+                <br /> Projekten harmoniert, komplexe Großprojekte über alle Verkehrsträger hinweg
+                <br /> verantwortet, M&A Prozesse begleitet und komplexe temperaturgeführte
+                <br /> Supply-Chain-Lösungen entwickelt.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Dies geht nur mit Struktur, Eigenverantwortung und wirtschaftlicher Tragfähigkeit.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Diese unternehmerische Erfahrung bringe ich heute in den regionalen Immobilienmarkt entlang der Bergstraße ein. Denn auch Immobilien erfordern Strategie, Verhandlungssicherheit, Marktverständnis und klare Entscheidungen.
+                Diese unternehmerische Erfahrung bringe ich heute in den regionalen Immobilienmarkt
+                <br /> entlang der Bergstraße ein. Denn auch Immobilien erfordern Strategie,
+                <br /> Verhandlungssicherheit, Marktverständnis und klare Entscheidungen.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Parallel engagiere ich mich in logistischen Hilfsprojekten in südafrikanischen Townships und begleite ausgewählte Schulungs- und branchenbasierte M&A-Projekte in Europa. Unternehmertum bedeutet für mich Verantwortung – wirtschaftlich wie gesellschaftlich.
+                Parallel möchte ich mich künftig in logistischen Hilfsprojekten nach Südfrika engagieren und
+                <br /> branchenbasierte M&A und Schulungsprojekte in Europa begleiten.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Unternehmertum bedeutet für mich Verantwortung – wirtschaftlich wie gesellschaftlich.
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
@@ -86,29 +101,31 @@ export default function UeberMichPage() {
                 Sie sind Lebensentscheidungen. Übergänge. Neuanfänge.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Ob Verkauf, Kauf oder Vermietung – ich begleite meine Kunden persönlich, diskret und strukturiert durch den gesamten Prozess: von der fundierten Wertermittlung über eine klare Vermarktungsstrategie bis zum erfolgreichen Abschluss.
+                Ob Verkauf, Kauf oder Vermietung – ich begleite meine Kunden persönlich, diskret und
+                <br /> strukturiert durch den gesamten Prozess: von der fundierten Wertermittlung über eine klare
+                <br /> Vermarktungsstrategie bis zum erfolgreichen Abschluss.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Mein Anspruch:
               </p>
               <p className="mt-2 leading-relaxed text-slate-600">
-                wirtschaftlich tragfähige Lösungen zu schaffen – und dabei stets den Menschen hinter der Immobilie im Blick zu behalten.
+                wirtschaftlich tragfähige Lösungen zu schaffen – und dabei stets den Menschen hinter der
+                <br /> Immobilie im Blick zu behalten.
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
                 Warum HE immologis?
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Aus meiner internationalen Logistik- und Beratungserfahrung und meiner regionalen Immobilienleidenschaft entstand mein Unternehmensname:
+                Aus meiner internationalen Logistik- und Beratungserfahrung und meiner regionalen
+                <br /> Immobilienleidenschaft entstand mein Unternehmensname:
               </p>
               <p className="mt-2 font-semibold text-slate-800">
                 Immo & Logis – HE immologis.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Er verbindet zwei Welten, die auf den ersten Blick gegensätzlich erscheinen:
-              </p>
-              <p className="mt-2 leading-relaxed text-slate-600">
-                globale Strukturkompetenz und regionales Vertrauen.
+                <br /> globale Strukturkompetenz und regionales Vertrauen.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Heute lebe und arbeite ich genau in dieser Schnittstelle.
