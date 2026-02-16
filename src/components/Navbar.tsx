@@ -113,7 +113,7 @@ export default function Navbar() {
               href="/immobilie-suchen"
               className={navLinkClass("/immobilie-suchen")}
             >
-              Immobilie suchen
+              Suchen
             </Link>
 
             {/* Logistikberatung mit Dropdown */}
@@ -153,7 +153,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/logistik" className={navLinkClass("/logistik")}>
+            <Link href="/ueber-mich" className={navLinkClass("/ueber-mich")}>
               Über mich
             </Link>
           </div>
@@ -230,7 +230,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
-                Immobilie suchen
+                Suchen
               </Link>
               <div className="rounded-lg px-4 py-2">
                 <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">
@@ -248,7 +248,7 @@ export default function Navbar() {
                 ))}
               </div>
               <Link
-                href="/logistik"
+                href="/ueber-mich"
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
