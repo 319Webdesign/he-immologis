@@ -19,7 +19,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "595,- EUR als Einzelauftrag",
     description:
       "Präzise Wertermittlung & Marktanalyse",
-    image: "/img/service-marktwertanalyse.png",
+    image: "/img/service/bewertungsmodul.jpeg",
     detailSections: [
       "Substanz erkennen. Werte verstehen. Sicher entscheiden.",
       "Wir beginnen dort, wo es zählt – bei Ihrer Immobilie.",
@@ -55,7 +55,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
   {
     id: "3",
     slug: "high-end-immobilienaufnahmen",
-    title: "Präsentationsmodul",
+    title: "High End Präsentationsmodul",
     subtitle: "Hochwertige Drohnen- und Kameraproduktion für Luxusimmobilien",
     price: "600 € inkl. MwSt.",
     description: "Exposé, Fotografie, Drohne, Objektaufbereitung",
@@ -81,17 +81,17 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
   {
     id: "4",
     slug: "verkaeuferschutzmodul",
-    title: "Verkäuferschutz-Modul",
+    title: "Verkäuferschutzmodul",
     price: "120 € inkl. MwSt. pro angefangener Stunde",
     description:
       "Qualifizierte Interessentenprüfung & Bonität",
-    image: "/img/service-verkaeuferschutz.png",
+    image: "/img/service/verkaeuferschutzmodul.jpeg",
     detailSections: [
       "Exposé & geprüfte Kaufinteressenten",
       "Sicherheit beginnt vor der ersten Besichtigung.",
       "Ein Immobilienverkauf ist kein Besichtigungstourismus.",
       "Er verlangt Struktur, Seriosität und wirtschaftliche Klarheit.",
-      "Mit unserem Verkäuferschutz-Modul stellen wir sicher, dass Ihre Immobilie professionell präsentiert wird – und nur geprüfte Kaufinteressenten Zugang erhalten.",
+      "Mit unserem Verkäuferschutzmodul stellen wir sicher, dass Ihre Immobilie professionell präsentiert wird – und nur geprüfte Kaufinteressenten Zugang erhalten.",
       "Was wir für Sie tun",
       "Hochwertiges Exposé",
       "Ihre Immobilie wird klar, vollständig und marktgerecht positioniert.",
@@ -110,11 +110,11 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
   {
     id: "5",
     slug: "kaufvertragsabwicklung",
-    title: "Vertragsmodul",
+    title: "Notarvertragsmodul",
     price: "1,19 % Provisionshonorar vom Verkaufspreis",
     description:
       "Notarvorbereitung & Kaufvertragsabwicklung",
-    image: "/img/service-vertragsmodul.png",
+    image: "/img/service/Notarvertragsmodul.jpeg",
     detailSections: [
       "Der Kaufvertrag ist unterzeichnet – damit beginnt die Phase der Abwicklung: Fristen überwachen, Unterlagen einholen, Notartermin und Finanzierung abstimmen, Übergabe vorbereiten. Wir übernehmen die Koordination und sorgen dafür, dass nichts auf der Strecke bleibt.",
       "Unsere Abwicklung entlastet Verkäufer und Käufer gleichermaßen und reduziert das Risiko von Verzögerungen oder Fehlern.",
@@ -124,7 +124,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
   {
     id: "6",
     slug: "energieausweis",
-    title: "Dokumentmodul",
+    title: "Dokumentenmodul",
     price: "150 € inkl. MwSt. pro angefangener Stunde",
     description:
       "Beantragung des Energieausweises und vollständige Beschaffung aller erforderlichen Unterlagen für Ihren Immobilienverkauf.",
@@ -153,7 +153,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "120 € pro angefangener Stunde",
     description:
       "Objektübergabe & Nachbetreuung",
-    image: "/img/übergabemodul.jpeg",
+    image: "/img/service/uebergabemodul.jpeg",
     detailSections: [
       "Exklusive Objektkoordination und Nachbetreuung nach Übergabe",
       "Nach der Schlüsselübergabe endet mein Service nicht – im Gegenteil: Gerade wenn Sie zeitlich eingebunden sind, weiter entfernt im In- oder Ausland weilen oder schlicht Unterstützung schätzen, stehe ich Ihnen als verlässlicher Koordinator zur Seite.",
@@ -164,6 +164,20 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
   },
   {
     id: "8",
+    slug: "nachbetreuungsmodul",
+    title: "Nachbetreuungsmodul",
+    price: "Auf Anfrage",
+    description:
+      "Persönliche Begleitung und Koordination nach dem Verkauf oder bei laufenden Vorhaben.",
+    image: "/img/service/nachbetreuung.jpeg",
+    detailSections: [
+      "Das Nachbetreuungsmodul bietet Ihnen einen verlässlichen Ansprechpartner für alle Schritte nach dem Verkauf oder während laufender Projekte.",
+      "Ob Übergabekoordination, Gewerkeabstimmung oder Ansprechpartner für Mieter und Käufer – wir sorgen für Transparenz und reibungslose Abläufe.",
+      "Preis und Umfang stimmen wir individuell mit Ihnen ab. Sprechen Sie uns an.",
+    ],
+  },
+  {
+    id: "9",
     slug: "immobilienverkauf",
     title: "Der ganzheitliche Verkaufsprozess – von der Bewertung bis zur Übergabe",
     subtitle: "Ein sicherer Verkauf in 5 klaren Schritten",

@@ -1,7 +1,8 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { DEFAULT_SERVICES } from "@/data/services";
+import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
 import MainServiceCard from "@/components/MainServiceCard";
 import { ServiceCard } from "@/components/ServiceCards";
 
@@ -13,11 +14,17 @@ const EINZELMODUL_SLUGS = [
   "kaufvertragsabwicklung",
   "energieausweis",
   "objektkoordination",
+  "nachbetreuungsmodul",
 ] as const;
 
-const ZUSATZMODULE = EINZELMODUL_SLUGS.map(
-  (slug) => DEFAULT_SERVICES.find((s) => s.slug === slug)!
-).filter(Boolean);
+function buildZusatzmodule(): ServiceCardItem[] {
+  const list: ServiceCardItem[] = [];
+  for (const slug of EINZELMODUL_SLUGS) {
+    const service = DEFAULT_SERVICES.find((s) => s.slug === slug);
+    if (service) list.push(service);
+  }
+  return list;
+}
 
 const container = {
   hidden: { opacity: 0 },
@@ -33,6 +40,8 @@ const item = {
 };
 
 export default function ServicesPackagesSection() {
+  const zusatzmodule = useMemo(buildZusatzmodule, []);
+
   return (
     <section
       className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
@@ -64,9 +73,10 @@ export default function ServicesPackagesSection() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          aria-label={`${zusatzmodule.length} Einzelmodule`}
         >
-          {ZUSATZMODULE.map((service) => (
-            <motion.div key={service.id} variants={item}>
+          {zusatzmodule.map((service) => (
+            <motion.div key={service.slug} variants={item}>
               <ServiceCard service={service} />
             </motion.div>
           ))}

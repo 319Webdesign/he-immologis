@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/logistik", destination: "/logistikberatung", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

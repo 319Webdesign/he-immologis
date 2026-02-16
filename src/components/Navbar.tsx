@@ -13,12 +13,14 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-/* Dropdown-Unterpunkte für Logistikberatung */
+/* Dropdown: Logistikberatung SMART – Übersicht + 5 Module */
 const LOGISTIKBERATUNG_SUB = [
-  { label: "Nationale Spedition", href: "/logistik" },
-  { label: "Internationaler Transport", href: "/logistik" },
-  { label: "Lager & Kommissionierung", href: "/logistik" },
-  { label: "Express-Lieferung", href: "/logistik" },
+  { label: "Übersicht SMART", href: "/logistikberatung" },
+  { label: "S – Schulung", href: "/logistikberatung/schulung" },
+  { label: "M – M & A", href: "/logistikberatung/ma" },
+  { label: "A – Entscheidernetzwerke", href: "/logistikberatung/entscheidernetzwerke" },
+  { label: "R – Interim-Lösungen", href: "/logistikberatung/interim" },
+  { label: "T – Transportnetzwerkstrategien", href: "/logistikberatung/transportnetzwerkstrategien" },
 ] as const;
 
 export default function Navbar() {
@@ -125,7 +127,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className={`flex items-center gap-1 rounded-lg px-3 py-2 text-lg font-normal text-black transition-colors hover:opacity-80 ${
-                  pathname.startsWith("/logistik") ? "opacity-100" : "opacity-90"
+                  pathname.startsWith("/logistikberatung") ? "opacity-100" : "opacity-90"
                 }`}
               >
                 Logistikberatung
