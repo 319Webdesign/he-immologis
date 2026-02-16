@@ -124,7 +124,14 @@ export default function UeberMichPage() {
                 <p className="font-semibold text-slate-900">Herzlich</p>
                 <p className="mt-2 text-xl font-semibold text-slate-900">Holger Eberhard</p>
                 <p className="mt-1 text-slate-600">Geschäftsführer</p>
-                <p className="mt-2 text-slate-700">HE immologis UG (haftungsbeschränkt) i. G.</p>
+                <Image
+                  src="/img/unterschrift.png"
+                  alt="Unterschrift Holger Eberhard"
+                  width={200}
+                  height={80}
+                  className="mt-4 object-contain object-left"
+                />
+                <p className="mt-4 text-slate-700">HE immologis UG (haftungsbeschränkt) i. G.</p>
                 <p className="mt-1 text-sm text-slate-600">
                   Immobilien- und Logistikberatung · Wertermittlung (TA)
                 </p>
