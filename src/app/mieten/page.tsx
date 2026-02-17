@@ -40,6 +40,30 @@ export default function MietenPage() {
           <MietenContent rentals={allRentals} />
         </Suspense>
       </section>
+
+      {/* Hinweise Maklerprovision / Bestellerprinzip */}
+      <section
+        className="border-t border-zinc-200 bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8"
+        aria-labelledby="mieten-hinweise-heading"
+      >
+        <div className="mx-auto max-w-4xl">
+          <h2 id="mieten-hinweise-heading" className="sr-only">
+            Hinweise zur Maklerprovision
+          </h2>
+          <div className="rounded-xl border border-zinc-200 bg-zinc-50/80 p-6 text-sm leading-relaxed text-zinc-700 sm:p-8">
+            <span className="mb-4 inline-block rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-medium uppercase tracking-wider text-zinc-500">
+              Hinweise
+            </span>
+            <p className="font-medium text-zinc-800">
+              In Baden-Württemberg und Hessen gilt beim Vermieten von Wohnraum das
+              Bestellerprinzip. Das heißt, wer den Makler beauftragt, trägt die
+              Kosten. Die Maklerprovision darf in Baden-Württemberg und Hessen
+              zwei Nettokaltmieten zuzüglich 19 % Umsatzsteuer betragen, die der
+              Makler für seine Tätigkeit erhält.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

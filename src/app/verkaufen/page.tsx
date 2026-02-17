@@ -23,12 +23,12 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
   const params = await searchParams;
   return (
     <>
-      <section className="border-b border-slate-200/90 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-800 sm:text-4xl">
+      <section className="border-b border-slate-200/90 bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl text-center">
+          <h1 className="font-sans text-4xl font-semibold tracking-tight text-slate-800 sm:text-5xl">
             Ihre Immobilie verkaufen.
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
             Ich finde den richtigen Käufer.
           </p>
         </div>

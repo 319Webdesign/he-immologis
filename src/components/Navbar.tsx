@@ -138,6 +138,9 @@ export default function Navbar() {
             >
               Suchen
             </Link>
+            <Link href="/geld-verdienen" className={navLinkClass("/geld-verdienen")}>
+              Geldtipp
+            </Link>
 
             {/* Logistikberatung mit Dropdown */}
             <div
@@ -254,6 +257,13 @@ export default function Navbar() {
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
                 Suchen
+              </Link>
+              <Link
+                href="/geld-verdienen"
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+              >
+                Geldtipp
               </Link>
               <div className="rounded-lg px-4 py-2">
                 <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">

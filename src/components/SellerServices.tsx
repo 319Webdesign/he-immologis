@@ -28,7 +28,7 @@ const SERVICES: {
     icon: Camera,
   },
   {
-    title: "Energieausweis-Service",
+    title: "Dokumentenbeschaffung",
     text: "Wir kümmern uns um alle notwendigen gesetzlichen Unterlagen.",
     icon: FileText,
   },
@@ -43,7 +43,7 @@ const SERVICES: {
     icon: Gavel,
   },
   {
-    title: "After-Sales-Betreuung",
+    title: "Nachbetreuung",
     text: "Auch nach dem Verkauf bleiben wir Ihr Ansprechpartner für die Übergabe.",
     icon: Handshake,
   },

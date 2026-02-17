@@ -171,6 +171,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/geld-verdienen"
+                  className="text-sm text-slate-300 transition-colors hover:text-white"
+                >
+                  Geldtipp
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/logistikberatung"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
