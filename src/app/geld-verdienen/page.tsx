@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Wallet, MapPin, Camera, FileDown, ArrowRight } from "lucide-react";
+import { Wallet, MapPin, Camera, Info, FileDown, ArrowRight } from "lucide-react";
 import ProvisionsStaffel from "./ProvisionsStaffel";
+import TippgeberForm from "./TippgeberForm";
 import Contact from "@/components/Contact";
 
 export const metadata: Metadata = {
@@ -59,11 +60,10 @@ export default function GeldVerdienenPage() {
             Geld verdienen mit Ihrem Netzwerk
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-sm">
-            Kennen Sie jemanden, der seine Immobilie verkaufen möchte? Werden Sie Tippgeber und
-            profitieren Sie von Ihrer Empfehlung.
+            Werden Sie Tippgeber und profitieren Sie von Ihrer Empfehlung.
           </p>
           <p className="mt-4 text-2xl font-bold text-white drop-shadow-sm sm:text-3xl">
-            bis zu 5.000 € Provision
+            Provision bis zu 5.000 €
           </p>
         </div>
       </section>
@@ -213,6 +213,35 @@ export default function GeldVerdienenPage() {
                 </Link>
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tippgeber-Formular */}
+      <section
+        className="border-b border-slate-200 bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        aria-labelledby="formular-heading"
+      >
+        <div className="mx-auto max-w-2xl">
+          <div className="flex items-center gap-3">
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+              style={{ backgroundColor: `${BRAND_BLUE}18` }}
+            >
+              <Info className="h-5 w-5" style={{ color: BRAND_BLUE }} />
+            </div>
+            <h2
+              id="formular-heading"
+              className="font-sans text-2xl font-semibold tracking-tight text-slate-800 sm:text-3xl"
+            >
+              Das Tippgeber-Formular
+            </h2>
+          </div>
+          <p className="mt-3 text-slate-600">
+            Geben Sie uns Ihren Tipp – diskret und unverbindlich. Wir melden uns bei Ihnen.
+          </p>
+          <div className="mt-8">
+            <TippgeberForm />
           </div>
         </div>
       </section>

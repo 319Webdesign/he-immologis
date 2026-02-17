@@ -124,7 +124,7 @@ export default function TippgeberStaffelPage() {
               Hinweisschreiben / Tippgebervereinbarung herunterladen
             </Link>
             <Link
-              href="/geld-verdienen"
+              href="/geld-verdienen#formular-heading"
               className={`${outlineButtonClass} focus:ring-[#4682B4]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >

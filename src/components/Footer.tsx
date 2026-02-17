@@ -174,7 +174,7 @@ export default function Footer() {
                   href="/geld-verdienen"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Geldtipp
+                  Tippprämie
                 </Link>
               </li>
               <li>
