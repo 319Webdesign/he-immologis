@@ -37,7 +37,8 @@ export default function ValueBanner() {
 
   return (
     <section
-      className="relative border-y-2 border-slate-200 bg-gradient-to-r from-slate-50 via-blue-50/40 to-slate-50 py-8 sm:py-10"
+      className="relative py-10 sm:py-12"
+      style={{ backgroundColor: "#D3EFDE" }}
       aria-labelledby="wertermittlung-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -70,7 +71,7 @@ export default function ValueBanner() {
             </div>
           </div>
 
-          {/* Rechts: 2 Dropdowns + Button */}
+          {/* Rechts: 2 Dropdowns + Button (CTA) */}
           <div
             className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:flex-row sm:gap-3 lg:w-auto"
           >
@@ -81,7 +82,7 @@ export default function ValueBanner() {
               id="objekttyp"
               value={objekttyp}
               onChange={(e) => setObjekttyp(e.target.value)}
-              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#3d6d99] focus:ring-2 focus:ring-[#3d6d99]/25"
+              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
             >
               <option value="">Objekttyp</option>
               {OBJEKTTYPEN.map((o) => (
@@ -97,7 +98,7 @@ export default function ValueBanner() {
               id="zustand"
               value={zustand}
               onChange={(e) => setZustand(e.target.value)}
-              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#3d6d99] focus:ring-2 focus:ring-[#3d6d99]/25"
+              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
             >
               <option value="">Zustand</option>
               {ZUSTAENDE.map((z) => (

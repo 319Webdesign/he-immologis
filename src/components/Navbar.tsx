@@ -49,11 +49,32 @@ export default function Navbar() {
       <button
         type="button"
         onClick={toggleLang}
-        className={utilityLinkClass(variant)}
-        aria-label="Sprache wechseln"
+        className={`${utilityLinkClass(variant)} flex items-center gap-1.5`}
+        aria-label={lang === "DE" ? "Sprache wechseln (aktuell: Deutsch)" : "Switch language (current: English)"}
       >
-        <Globe className="h-3.5 w-3.5" />
-        <span>{lang}</span>
+        <Globe className="h-3.5 w-3.5 shrink-0" title={lang === "DE" ? "Deutsch" : "English"} />
+        <span className="flex items-center gap-1">
+          <span title="Deutsch" className="block">
+            <Image
+              src="/img/flags/de.svg"
+              alt=""
+              width={24}
+              height={16}
+              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "DE" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              aria-hidden
+            />
+          </span>
+          <span title="English" className="block">
+            <Image
+              src="/img/flags/en.svg"
+              alt=""
+              width={24}
+              height={12}
+              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "EN" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              aria-hidden
+            />
+          </span>
+        </span>
       </button>
     </div>
   );

@@ -21,7 +21,7 @@ const CARDS = [
   },
   {
     icon: Truck,
-    title: "Logistik & Transport",
+    title: "Logistikberatung",
     description: "Zuverlässige Abwicklung und Beratung. Transportlösungen aus einer Hand.",
   },
 ] as const;

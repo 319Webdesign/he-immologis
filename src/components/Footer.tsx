@@ -240,6 +240,18 @@ export default function Footer() {
               AGB
             </Link>
             <Link
+              href="/widerruf"
+              className="text-slate-400 transition-colors hover:text-white"
+            >
+              Widerruf
+            </Link>
+            <Link
+              href="/cookies"
+              className="text-slate-400 transition-colors hover:text-white"
+            >
+              Cookies
+            </Link>
+            <Link
               href="/zertifikate"
               className="text-slate-400 transition-colors hover:text-white"
             >
