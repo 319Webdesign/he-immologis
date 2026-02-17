@@ -16,13 +16,25 @@ export const metadata: Metadata = {
 export default function ImmobilieSuchenPage() {
   return (
     <>
-      {/* Intro */}
-      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-800 sm:text-4xl">
+      {/* Hero mit Hintergrundbild */}
+      <section
+        className="relative flex min-h-[320px] items-center justify-center overflow-hidden border-b border-slate-200 px-4 py-16 sm:min-h-[380px] sm:px-6 sm:py-24 lg:px-8"
+        aria-labelledby="hero-suche-heading"
+        style={{
+          backgroundImage: "url(/img/hero-suche.jpeg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
+          <h1
+            id="hero-suche-heading"
+            className="font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
+          >
             Immobilie suchen
           </h1>
-          <div className="mt-6 space-y-4 text-lg text-slate-600">
+          <div className="mt-6 space-y-3 text-lg text-white/95 drop-shadow-sm sm:mt-8">
             <p>
               Teilen Sie uns kostenlos Ihre Wünsche und Vorstellungen mit.
             </p>

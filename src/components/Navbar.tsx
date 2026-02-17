@@ -52,7 +52,7 @@ export default function Navbar() {
         className={`${utilityLinkClass(variant)} flex items-center gap-1.5`}
         aria-label={lang === "DE" ? "Sprache wechseln (aktuell: Deutsch)" : "Switch language (current: English)"}
       >
-        <Globe className="h-3.5 w-3.5 shrink-0" title={lang === "DE" ? "Deutsch" : "English"} />
+        <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden />
         <span className="flex items-center gap-1">
           <span title="Deutsch" className="block">
             <Image
