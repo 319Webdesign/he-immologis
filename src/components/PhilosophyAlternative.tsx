@@ -19,12 +19,9 @@ const SECTIONS = [
   },
   {
     id: "02",
-    headline: "Verfügbarkeit",
+    headline: "Flexible Kontaktmöglichkeiten.",
     paragraphs: [
-      "Eine hohe Erreichbarkeit ist für mich selbstverständlich.",
-      "Sie erreichen mich von Montag bis Freitag zwischen 9:00 und 18:00 Uhr, sowie samstags von 9:00 bis 12:00 Uhr.",
-      "Auch außerhalb dieser Zeiten bin ich mobil für Sie ansprechbar.",
-      "Ich stehe für verbindliche Aussagen und direkte Kommunikation — ohne unnötige Wartezeiten.",
+      "Sie können sich darauf verlassen, dass ich flexibel und zuverlässig agiere, wann immer wir Termine vereinbaren. Pünktlichkeit und Erreichbarkeit sind für mich selbstverständlich. Auch außerhalb der klassischen Geschäftszeiten bin ich erreichbar – sei es telefonisch, per WhatsApp oder auf einem Weg, der Ihnen am besten passt.",
     ],
     tagline: "Ihre Immobilie. Jederzeit erreichbar.",
     Icon: Clock,
@@ -89,6 +86,21 @@ export default function PhilosophyAlternative() {
                 >
                   {headline}
                 </h3>
+                {id === "01" && (
+                  <p className="relative z-10 mt-2 text-lg font-bold text-black">
+                    Ihre Immobilie. Im Mittelpunkt.
+                  </p>
+                )}
+                {id === "02" && (
+                  <p className="relative z-10 mt-2 text-lg font-bold text-black">
+                    Ihre Immobilie. Jederzeit erreichbar.
+                  </p>
+                )}
+                {id === "03" && (
+                  <p className="relative z-10 mt-2 text-lg font-bold text-black">
+                    Ihre Immobilie. Volle Aufmerksamkeit.
+                  </p>
+                )}
                 <div
                   className={`relative z-10 mt-6 max-w-xl space-y-4 text-base leading-relaxed text-black sm:text-lg ${
                     order === "image-first" ? "md:ml-auto md:text-right" : ""
@@ -97,7 +109,21 @@ export default function PhilosophyAlternative() {
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
-                  <p className="pt-2 font-semibold text-black">{tagline}</p>
+                  {id === "01" && (
+                    <p className="pt-2 font-bold text-black">
+                      Wenige Mandate. Höchste Sorgsamkeit
+                    </p>
+                  )}
+                  {id === "02" && (
+                    <p className="pt-2 font-bold text-black">
+                      Wenn Sie mich brauchen: einfach da.
+                    </p>
+                  )}
+                  {id === "03" && (
+                    <p className="pt-2 font-bold text-black">
+                      Verlässlich. Ordentlich. Transparent.
+                    </p>
+                  )}
                 </div>
               </div>
 

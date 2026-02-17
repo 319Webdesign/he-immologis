@@ -117,10 +117,10 @@ export default function Navbar() {
         {/* Nav-Punkte zentriert */}
         <div className="hidden flex-1 justify-center lg:flex">
           <div className="flex flex-nowrap items-center gap-1 xl:gap-2">
-            <Link href="/anbieten" className={navLinkClass("/anbieten")}>
+            <Link href="/verkaufen" className={navLinkClass("/verkaufen")}>
               Verkaufen
             </Link>
-            <Link href="/verkaufen" className={navLinkClass("/verkaufen")}>
+            <Link href="/kaufen" className={navLinkClass("/kaufen")}>
               Kaufen
             </Link>
             <Link href="/mieten" className={navLinkClass("/mieten")}>
@@ -220,15 +220,15 @@ export default function Navbar() {
             </Link>
 
             <div className="flex flex-col gap-1">
+                <Link
+                  href="/verkaufen"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                >
+                  Verkaufen
+                </Link>
               <Link
-                href="/anbieten"
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
-              >
-                Verkaufen
-              </Link>
-              <Link
-                href="/verkaufen"
+                href="/kaufen"
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >

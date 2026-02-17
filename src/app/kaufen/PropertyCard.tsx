@@ -26,7 +26,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
   return (
     <Link
-      href={`/verkaufen/${property.id}`}
+      href={`/kaufen/${property.id}`}
       className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">

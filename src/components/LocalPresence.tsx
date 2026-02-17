@@ -11,7 +11,7 @@ const CARDS = [
   },
   {
     icon: Search,
-    title: "Suche & Kauf",
+    title: "Kauf & Suche",
     description: "Unterstützung für Suchende in der Region. Wir finden die passende Immobilie für Sie.",
   },
   {

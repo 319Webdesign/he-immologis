@@ -32,7 +32,7 @@ export default function ValueBanner() {
     if (objekttyp) params.set("objekttyp", objekttyp);
     if (zustand) params.set("zustand", zustand);
     const qs = params.toString();
-    return `/anbieten${qs ? `?${qs}` : ""}#anfrage-formular`;
+    return `/verkaufen${qs ? `?${qs}` : ""}#anfrage-formular`;
   })();
 
   return (
