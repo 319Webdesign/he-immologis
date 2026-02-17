@@ -48,8 +48,8 @@ export default function ImmobilieSuchenPage() {
         </div>
       </section>
 
-      {/* Formular */}
-      <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      {/* Formular – breiter damit Lagepräferenz-Labels einzeilig bleiben */}
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <SearchRequestForm />
       </section>
     </>

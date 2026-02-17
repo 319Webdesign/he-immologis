@@ -53,9 +53,7 @@ export default function UeberMichPage() {
                 <br /> und einige Geschichten hinter mancher Immobilie.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.
-              </p>
-              <p className="mt-4 leading-relaxed text-slate-600">
+                Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.             
                 Diese Verbindung zwischen Weinheim und Südafrika prägt mein Denken und Handeln:
               </p>
               <p className="mt-2 font-semibold text-slate-800">
@@ -95,9 +93,7 @@ export default function UeberMichPage() {
                 Meine Haltung zu Immobilien
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Immobilien sind für mich mehr als Objekte.
-              </p>
-              <p className="mt-2 leading-relaxed text-slate-600">
+                Immobilien sind für mich mehr als Objekte.        
                 Sie sind Lebensentscheidungen. Übergänge. Neuanfänge.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
@@ -129,9 +125,7 @@ export default function UeberMichPage() {
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Heute lebe und arbeite ich genau in dieser Schnittstelle.
-              </p>
-
-              <p className="mt-12 leading-relaxed text-slate-600">
+             
                 Ich freue mich darauf, auch Ihre Geschichte ein Stück begleiten zu dürfen.
               </p>
               <div

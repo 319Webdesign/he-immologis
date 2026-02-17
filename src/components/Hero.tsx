@@ -46,7 +46,7 @@ export default function Hero() {
       />
 
       {/* Inhalt zentral */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-24 pt-[7.5rem] text-center sm:pb-32">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-24 pt-[10rem] text-center sm:pb-32 sm:pt-[11rem]">
         <h1 className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl lg:text-7xl">
           Neues kann endlich beginnen.
           <br />

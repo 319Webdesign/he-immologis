@@ -154,7 +154,7 @@ export default function SearchRequestForm() {
                   onChange={() => toggleLage(opt)}
                   className="h-4 w-4 shrink-0 rounded border-slate-300 text-[#4682B4] focus:ring-[#4682B4]"
                 />
-                <span className="text-sm text-slate-700">{opt}</span>
+                <span className="text-sm text-slate-700 lg:whitespace-nowrap">{opt}</span>
               </label>
             ))}
           </div>
