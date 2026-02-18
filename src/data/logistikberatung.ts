@@ -61,7 +61,7 @@ export const SMART_MODULE: SmartModul[] = [
   {
     slug: "entscheidernetzwerke",
     letter: "A",
-    title: "Aufbau von Entscheidernetzwerken in Logistik",
+    title: "Aufbau Entscheidernetzwerke",
     shortDescription:
       "Europäisches Netzwerk aus Entscheidern der Logistik- und Pharmalogistikbranche – strukturiert an einen Tisch.",
     paragraphs: [

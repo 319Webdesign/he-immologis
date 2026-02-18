@@ -17,17 +17,17 @@ export const metadata: Metadata = {
 export default function ImmobilieSuchenPage() {
   return (
     <>
-      {/* Hero mit Hintergrundbild */}
+      {/* Hero mit Hintergrundbild – Dartscheibe, ohne Blur */}
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="hero-suche-heading"
         style={{
-          backgroundImage: "url(/img/hero-suche.jpeg)",
+          backgroundImage: "url(/img/dartscheibe.jpeg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
+        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-1 flex-col items-center justify-center text-center">
           <h1
             id="hero-suche-heading"

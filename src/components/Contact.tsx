@@ -6,7 +6,7 @@ import { useState } from "react";
 const STEELBLUE = "#4682B4";
 
 interface ContactProps {
-  variant?: "default" | "compact" | "dark";
+  variant?: "default" | "compact" | "dark" | "white";
   title?: string;
   subtitle?: string;
   accentColor?: "amber" | "steelblue";
@@ -41,6 +41,7 @@ export default function Contact({
   };
 
   const isDark = variant === "dark";
+  const isWhite = variant === "white";
   const isCompact = variant === "compact";
   const useSteelblue = accentColor === "steelblue";
 
@@ -67,11 +68,15 @@ export default function Contact({
       : "bg-zinc-900 hover:bg-zinc-800 focus:ring-offset-2"
     : "hover:opacity-90 focus:ring-[#4682B4] focus:ring-offset-2";
 
+  const focusClass = useSteelblue
+    ? "focus:border-[#4682B4] focus:ring-[#4682B4]"
+    : "focus:border-amber-500 focus:ring-amber-500";
+
   return (
     <section
       id="kontakt"
       className={`py-16 sm:py-24 ${
-        isDark ? "bg-zinc-900 text-white" : "bg-zinc-50"
+        isWhite ? "bg-white" : isDark ? "bg-zinc-900 text-white" : "bg-zinc-50"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -158,7 +163,7 @@ export default function Contact({
           {!isCompact && (
             <div
               className={`rounded-2xl p-8 ${
-                isDark ? "bg-zinc-800" : "bg-white shadow-lg"
+                isDark ? "bg-zinc-800" : "bg-white shadow-md"
               }`}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -176,7 +181,7 @@ export default function Contact({
                     required
                     value={formState.name}
                     onChange={handleChange}
-                    className={`mt-2 block w-full rounded-lg border px-4 py-3 focus:border-amber-500 focus:ring-amber-500 ${
+                    className={`mt-2 block w-full rounded-lg border px-4 py-3 ${focusClass} ${
                       isDark
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
@@ -199,7 +204,7 @@ export default function Contact({
                     required
                     value={formState.email}
                     onChange={handleChange}
-                    className={`mt-2 block w-full rounded-lg border px-4 py-3 focus:border-amber-500 focus:ring-amber-500 ${
+                    className={`mt-2 block w-full rounded-lg border px-4 py-3 ${focusClass} ${
                       isDark
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
@@ -221,7 +226,7 @@ export default function Contact({
                     name="phone"
                     value={formState.phone}
                     onChange={handleChange}
-                    className={`mt-2 block w-full rounded-lg border px-4 py-3 focus:border-amber-500 focus:ring-amber-500 ${
+                    className={`mt-2 block w-full rounded-lg border px-4 py-3 ${focusClass} ${
                       isDark
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
@@ -244,7 +249,7 @@ export default function Contact({
                     required
                     value={formState.message}
                     onChange={handleChange}
-                    className={`mt-2 block w-full rounded-lg border px-4 py-3 focus:border-amber-500 focus:ring-amber-500 ${
+                    className={`mt-2 block w-full rounded-lg border px-4 py-3 ${focusClass} ${
                       isDark
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
@@ -255,7 +260,7 @@ export default function Contact({
 
                 <button
                   type="submit"
-                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${btnClass}`}
+                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${useSteelblue ? "focus:ring-[#4682B4]" : "focus:ring-amber-500"} ${btnClass}`}
                   style={btnStyle}
                 >
                   <Send className="h-5 w-5" />

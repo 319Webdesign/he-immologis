@@ -19,9 +19,24 @@ export const metadata: Metadata = {
 
 const BRAND_BLUE = "#4682B4";
 
+const VIDEO_SRC = "/video/eiswuerfel.webm";
+
 export default function LogistikberatungPage() {
   return (
     <>
+      {/* Video oben, volle Breite – begrenzte Höhe */}
+      <section className="w-full overflow-hidden" aria-label="Video">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="h-auto max-h-96 w-full object-cover sm:max-h-[28rem] lg:max-h-[36rem]"
+        >
+          <source src={VIDEO_SRC} type="video/webm" />
+        </video>
+      </section>
+
       {/* Hero */}
       <section
         className="border-b border-slate-200 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
@@ -69,7 +84,10 @@ export default function LogistikberatungPage() {
                 {modul.letter}
               </span>
               <h3 className="mt-4 font-sans text-xl font-semibold tracking-tight text-slate-900">
-                SMART Modul {modul.letter} – {modul.title}
+                <span className="block">SMART Modul {modul.letter}</span>
+                <span className="mt-0.5 block text-base font-semibold text-slate-700">
+                  – {modul.title}
+                </span>
               </h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
                 {modul.shortDescription}
@@ -90,7 +108,8 @@ export default function LogistikberatungPage() {
 
       {/* Kontakt */}
       <Contact
-        variant="dark"
+        variant="white"
+        accentColor="steelblue"
         title="Logistikberatung – Ihr Anliegen"
         subtitle="Sie möchten mehr zu einem SMART-Modul erfahren oder ein unverbindliches Gespräch vereinbaren? Kontaktieren Sie uns."
       />

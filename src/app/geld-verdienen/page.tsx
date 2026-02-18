@@ -80,8 +80,10 @@ export default function GeldVerdienenPage() {
           >
             Die Tippgeber-Staffel
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-slate-600">
-            Ihre Provision richtet sich nach dem notariell beurkundeten Kaufpreis.
+          <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
+            Wenn ein Tipp abgegeben wird, der eine nicht öffentlich angebotene Immobilie betrifft,
+            wird ein Makleralleinauftrag gesichert, die Immobilie vermarktet und verkauft – und bei
+            Abschluss wird die Tippgeber-Prämie ausgezahlt.
           </p>
           <ProvisionsStaffel />
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
