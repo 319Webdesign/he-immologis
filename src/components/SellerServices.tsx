@@ -33,7 +33,7 @@ const SERVICES: {
     icon: FileText,
   },
   {
-    title: "Qualifizierte Interessenten-Prüfung",
+    title: "Qualifizierte Interessentenprüfung",
     text: "Besichtigungen nur mit geprüften Käufern und Bonitätscheck.",
     icon: UserCheck,
   },
@@ -93,7 +93,7 @@ export default function SellerServices() {
 
         <div className="mt-12 flex justify-center">
           <Link
-            href="/logistikberatung"
+            href="/immobilien-services"
             className="inline-flex items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2"
             style={{ backgroundColor: BRAND_BLUE }}
           >

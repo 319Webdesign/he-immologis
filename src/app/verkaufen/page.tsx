@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import SellForm from "@/components/SellForm";
 import SellerServices from "@/components/SellerServices";
@@ -27,10 +28,10 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
       <section className="relative flex min-h-[70vh] flex-col border-b border-slate-200/90 bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1 className="font-sans text-4xl font-semibold tracking-tight text-slate-800 sm:text-5xl">
-            Verkaufen in Weinheim und Umgebung. Jetzt realisieren.
+            Verkaufen in Weinheim und Umgebung.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
-            Klar bewertet. Optimal positioniert. Sicher verkauft.
+            Jetzt realisieren. Klar bewertet. Optimal positioniert. Sicher verkauft.
           </p>
         </div>
         <a
@@ -66,7 +67,14 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
               Hinweis
             </span>
             <p className="font-medium text-zinc-800">
-              Zur guten Ordnung weisen wir darauf hin, dass im Falle der Beauftragung eine Maklerprovision von jeweils 3,57 % des notariell beurkundeten Kaufpreises anfällt, inklusive gesetzlicher Mehrwertsteuer. Diese Provision wird jeweils zur Hälfte von Käufer und Verkäufer getragen, sofern nicht abweichend vereinbart. Der Anspruch auf die Provision entsteht, sobald der Makler mit der Vermittlungstätigkeit beauftragt ist und der Kaufvertrag notariell beurkundet wurde. Sollte der Maklervertrag zurückgezogen werden, obwohl die Tätigkeit bereits durchgeführt wurde, fällt eine Rücktrittsgebühr in Höhe von 10 % des später erzielten Kaufpreises an. Alternativ, falls kein Verkauf zustande kommt, werden die Aufwendungen aufwandsgemäß erstattet, jedoch mindestens in Höhe von 950 Euro. Sollte es zu einem anderen Verkauf kommen, obwohl ein qualifizierter Maklerauftrag vorliegt, gelten die rechtlichen Bestimmungen des qualifizierten Maklervertrags und die Provision wird entsprechend abgerechnet.
+              Zur guten Ordnung weisen wir darauf hin, dass im Falle der Beauftragung eine Maklerprovision von jeweils 3,57 % des notariell beurkundeten Kaufpreises anfällt, inklusive gesetzlicher Mehrwertsteuer. Diese Provision wird jeweils zur Hälfte von Käufer und Verkäufer getragen, sofern nicht abweichend vereinbart. Der Anspruch auf die Provision entsteht, sobald der Makler mit der Vermittlungstätigkeit beauftragt ist und der Kaufvertrag notariell beurkundet wurde.
+            </p>
+            <p className="mt-4 font-medium text-zinc-800">
+              Soweit nichts anderes vereinbart ist, gelten unsere Allgemeinen Geschäftsbedingungen (
+              <Link href="/agb" className="text-[#4682B4] underline hover:no-underline">
+                AGB
+              </Link>
+              ) sowie die gesetzlichen Bestimmungen.
             </p>
           </div>
         </div>
