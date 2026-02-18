@@ -70,7 +70,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
               Zur guten Ordnung weisen wir darauf hin, dass im Falle der Beauftragung eine Maklerprovision von jeweils 3,57 % des notariell beurkundeten Kaufpreises anfällt, inklusive gesetzlicher Mehrwertsteuer. Diese Provision wird jeweils zur Hälfte von Käufer und Verkäufer getragen, sofern nicht abweichend vereinbart. Der Anspruch auf die Provision entsteht, sobald der Makler mit der Vermittlungstätigkeit beauftragt ist und der Kaufvertrag notariell beurkundet wurde.
             </p>
             <p className="mt-4 font-medium text-zinc-800">
-              Soweit nichts anderes vereinbart ist, gelten unsere Allgemeinen Geschäftsbedingungen (
+              Hier gelten unsere Allgemeinen Geschäftsbedingungen (
               <Link href="/agb" className="text-[#4682B4] underline hover:no-underline">
                 AGB
               </Link>

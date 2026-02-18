@@ -50,7 +50,10 @@ export default function MainServiceCard() {
             id="main-service-title"
             className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
           >
-            Der ganzheitliche Verkaufsprozess – von der Bewertung bis zur Übergabe
+            Der ganzheitliche Verkaufsprozess
+            <span className="mt-1 block text-lg font-semibold text-slate-900 sm:text-xl">
+              – von der Bewertung bis zur Übergabe
+            </span>
           </h2>
           <p className="mt-3 text-slate-600">
             Ein sicherer Verkauf in 5 klaren Schritten

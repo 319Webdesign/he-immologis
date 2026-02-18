@@ -200,7 +200,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "5. Notar & Übergabe",
       "Koordination der Beurkundung, Begleitung zum Notar sowie strukturierte Objektübergabe mit Protokoll.",
       "Transparente Vergütung",
-      "Für diesen umfassenden Service berechnen wir das ortsübliche Erfolgshonorar von 3,57 % inkl. MwSt., bezogen auf den notariell beurkundeten Kaufpreis. Kommt es wider Erwarten nicht zum Verkauf, berechnen wir eine Aufwandsentschädigung von 950 € brutto.",
+      "Für diesen umfassenden Service berechnen wir das ortsübliche Erfolgshonorar von 3,57 % inkl. MwSt., bezogen auf den notariell beurkundeten Kaufpreis. Kommt es wider Erwarten nicht zum Verkauf, berechnen wir eine Aufwandsentschädigung.",
     ],
   },
 ];

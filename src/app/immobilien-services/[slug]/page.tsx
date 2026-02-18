@@ -101,6 +101,13 @@ function KomplettmandatContent({
         <p className="mt-4 text-lg leading-relaxed text-slate-700">
           {verguetungBody}
         </p>
+        <p className="mt-4 text-lg leading-relaxed text-slate-700">
+          Hier gelten unsere Allgemeinen Geschäftsbedingungen (
+          <Link href="/agb" className="text-[#4682B4] underline hover:no-underline">
+            AGB
+          </Link>
+          ) sowie die gesetzlichen Bestimmungen.
+        </p>
       </section>
     </>
   );
@@ -208,7 +215,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         <article>
           <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {service.title}
+            {slug === "immobilienverkauf" ? (
+              <>
+                Der ganzheitliche Verkaufsprozess
+                <span className="mt-1 block text-xl font-semibold text-slate-900 sm:text-2xl">
+                  – von der Bewertung bis zur Übergabe
+                </span>
+              </>
+            ) : (
+              service.title
+            )}
           </h1>
           {service.subtitle && (
             <p className="mt-2 text-lg font-medium text-slate-600">

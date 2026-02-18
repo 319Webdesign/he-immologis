@@ -71,7 +71,7 @@ export default function MietenPage() {
               Makler für seine Tätigkeit erhält.
             </p>
             <p className="mt-4 font-medium text-zinc-800">
-              Soweit nichts anderes vereinbart ist, gelten unsere Allgemeinen Geschäftsbedingungen (
+              Hier gelten unsere Allgemeinen Geschäftsbedingungen (
               <Link href="/agb" className="text-[#4682B4] underline hover:no-underline">
                 AGB
               </Link>
