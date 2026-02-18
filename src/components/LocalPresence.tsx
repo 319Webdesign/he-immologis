@@ -6,7 +6,7 @@ import { Home, Search, Truck, Key } from "lucide-react";
 const CARDS = [
   {
     icon: Home,
-    title: "Immobilien Verkauf",
+    title: "Verkauf",
     description: "Fokus auf lokale Marktwerte und faire Bewertung – wir verkaufen Ihre Immobilie.",
   },
   {
@@ -26,7 +26,7 @@ const CARDS = [
     smart: [
       { letter: "S", label: "Schulung" },
       { letter: "M", label: "M & A" },
-      { letter: "A", label: "Aufbau Entscheidernetzwerken" },
+      { letter: "A", label: "Aufbau Entscheidernetzwerke" },
       { letter: "R", label: "Regionale Interim-Lösungen" },
       { letter: "T", label: "Transportnetzwerkstrategien" },
     ],
