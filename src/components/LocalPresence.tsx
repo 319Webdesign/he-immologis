@@ -7,7 +7,7 @@ const CARDS = [
   {
     icon: Home,
     title: "Immobilien Verkauf",
-    description: "Fokus auf lokale Marktwerte und faire Bewertung – wir verkaufen Ihre Immobilie professionell an der Bergstraße.",
+    description: "Fokus auf lokale Marktwerte und faire Bewertung – wir verkaufen Ihre Immobilie.",
   },
   {
     icon: Search,
@@ -23,6 +23,13 @@ const CARDS = [
     icon: Truck,
     title: "Logistikberatung",
     description: "Zuverlässige Abwicklung und Beratung. Transportlösungen aus einer Hand.",
+    smart: [
+      { letter: "S", label: "Schulung" },
+      { letter: "M", label: "M & A" },
+      { letter: "A", label: "Aufbau von Entscheidernetzwerken" },
+      { letter: "R", label: "Regionale Interim-Lösungen" },
+      { letter: "T", label: "Transportnetzwerkstrategien" },
+    ],
   },
 ] as const;
 
@@ -59,7 +66,7 @@ export default function LocalPresence() {
             id="kompetenz-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
-            Verkaufen. Kaufen. Suchen. Mieten. Services.
+            Verkaufen. Kaufen. Mieten. Services. Suchen.
           </h2>
           <p className="mt-4 text-lg text-slate-600">
             Ihr neues Zuhause in Weinheim und an der Bergstraße beginnt hier.
@@ -68,25 +75,39 @@ export default function LocalPresence() {
 
         {/* Kompetenz-Karten Grid */}
         <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {CARDS.map(({ icon: Icon, title, description }) => (
-            <article
-              key={title}
-              className="flex flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md lg:p-8"
-            >
-              <div
-                className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
-                style={{ backgroundColor: "#4682B4" }}
+          {CARDS.map((card) => {
+            const { icon: Icon, title, description } = card;
+            const smart = "smart" in card ? card.smart : null;
+            return (
+              <article
+                key={title}
+                className="flex flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md lg:p-8"
               >
-                <Icon className="h-6 w-6" aria-hidden />
-              </div>
-              <h3 className="mt-4 font-sans text-lg font-semibold text-slate-900">
-                {title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-                {description}
-              </p>
-            </article>
-          ))}
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
+                  style={{ backgroundColor: "#4682B4" }}
+                >
+                  <Icon className="h-6 w-6" aria-hidden />
+                </div>
+                <h3 className="mt-4 font-sans text-lg font-semibold text-slate-900">
+                  {title}
+                </h3>
+                {smart ? (
+                  <ul className="mt-2 flex-1 space-y-1.5 text-sm leading-relaxed text-slate-600">
+                    {smart.map(({ letter, label }) => (
+                      <li key={letter}>
+                        <strong className="font-semibold text-slate-800">{letter}</strong> – {label}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                    {description}
+                  </p>
+                )}
+              </article>
+            );
+          })}
         </div>
 
         {/* Unsere Region */}

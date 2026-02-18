@@ -38,11 +38,11 @@ export default function LogistikberatungPage() {
             {SMART_INTRO.acronym.map(({ letter, label }) => (
               <span
                 key={letter}
-                className="rounded-lg px-4 py-2 text-sm font-semibold text-white"
+                className="rounded-lg px-4 py-2 text-sm text-white"
                 style={{ backgroundColor: BRAND_BLUE }}
                 title={label}
               >
-                {letter} – {label}
+                <strong>{letter}</strong> – {label}
               </span>
             ))}
           </div>

@@ -4,10 +4,10 @@ export const SMART_INTRO = {
     "SMART – Beratung und Vertriebsunterstützung in Supply Chain und temperaturgeführter Logistik.",
   acronym: [
     { letter: "S", label: "Schulung" },
-    { letter: "M", label: "für M & A" },
+    { letter: "M", label: "M & A" },
     { letter: "A", label: "Aufbau von Entscheidernetzwerken" },
     { letter: "R", label: "Regionale Interim-Lösungen" },
-    { letter: "T", label: "Transportnetzwerkstrategien (temperaturgeführt / nicht temperaturgeführt)" },
+    { letter: "T", label: "Transportnetzwerkstrategien" },
   ],
   tagline:
     "Von der Idee zur Struktur. Vom Kontakt zur Zusammenarbeit. Von der Planung zur Umsetzung.",
