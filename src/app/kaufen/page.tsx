@@ -45,7 +45,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
             Kaufen in Weinheim und Umgebung.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600">
-            Jetzt entscheiden. Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
+            Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
           </p>
         </div>
         <a

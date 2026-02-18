@@ -31,7 +31,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
             Verkaufen in Weinheim und Umgebung.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
-            Jetzt realisieren. Klar bewertet. Optimal positioniert. Sicher verkauft.
+            Klar bewertet. Optimal positioniert. Sicher verkauft.
           </p>
         </div>
         <a
