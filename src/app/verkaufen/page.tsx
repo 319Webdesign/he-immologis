@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ChevronDown } from "lucide-react";
 import SellForm from "@/components/SellForm";
 import SellerServices from "@/components/SellerServices";
 import FinalCTA from "@/components/FinalCTA";
@@ -23,15 +24,23 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
   const params = await searchParams;
   return (
     <>
-      <section className="border-b border-slate-200/90 bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="mx-auto max-w-7xl text-center">
+      <section className="relative flex min-h-[70vh] flex-col border-b border-slate-200/90 bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1 className="font-sans text-4xl font-semibold tracking-tight text-slate-800 sm:text-5xl">
-            Ihre Immobilie verkaufen.
+            Verkaufen in Weinheim und Umgebung. Jetzt realisieren.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
-            Ich finde den richtigen Käufer.
+            Klar bewertet. Optimal positioniert. Sicher verkauft.
           </p>
         </div>
+        <a
+          href="#anfrage-formular"
+          className="absolute bottom-6 left-0 right-0 flex flex-col items-center gap-1 text-slate-600 transition-colors hover:text-slate-900 sm:bottom-8"
+          aria-label="Zum Verkaufsanfrage-Formular scrollen"
+        >
+          <span className="text-sm font-medium">Jetzt Verkaufswert ermitteln</span>
+          <ChevronDown className="h-7 w-7 animate-bounce text-slate-500" aria-hidden />
+        </a>
       </section>
 
       <FinalCTA />

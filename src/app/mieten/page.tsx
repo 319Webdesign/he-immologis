@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { ChevronDown } from "lucide-react";
 import MietenContent from "./MietenContent";
 import rentalsData from "@/data/rentals.json";
 import type { Rental } from "@/types";
@@ -22,20 +23,27 @@ export default function MietenPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-zinc-100 bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="mx-auto max-w-7xl text-center">
+      <section className="relative flex min-h-[70vh] flex-col border-b border-zinc-100 bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1 className="font-sans text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
-            Mietobjekte in Weinheim & Region
+            Mieten in Weinheim und Umgebung. Jetzt anfragen.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600">
-            Finden Sie Ihr neues Zuhause. Persönlich betreut und sorgfältig
-            ausgewählt.
+            Passend ausgewählt. Transparent vermittelt. Zuhause ankommen.
           </p>
         </div>
+        <a
+          href="#mietobjekte"
+          className="absolute bottom-6 left-0 right-0 flex flex-col items-center gap-1 text-zinc-600 transition-colors hover:text-zinc-900 sm:bottom-8"
+          aria-label="Zu den Mietobjekten scrollen"
+        >
+          <span className="text-sm font-medium">Passende Mietimmobilie finden</span>
+          <ChevronDown className="h-7 w-7 animate-bounce text-zinc-500" aria-hidden />
+        </a>
       </section>
 
       {/* Filter + Grid */}
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section id="mietobjekte" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100" />}>
           <MietenContent rentals={allRentals} />
         </Suspense>

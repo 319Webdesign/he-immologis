@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ChevronDown } from "lucide-react";
 import SearchRequestForm from "@/components/SearchRequestForm";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function ImmobilieSuchenPage() {
     <>
       {/* Hero mit Hintergrundbild */}
       <section
-        className="relative flex min-h-[320px] items-center justify-center overflow-hidden border-b border-slate-200 px-4 py-16 sm:min-h-[380px] sm:px-6 sm:py-24 lg:px-8"
+        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="hero-suche-heading"
         style={{
           backgroundImage: "url(/img/hero-suche.jpeg)",
@@ -27,29 +28,31 @@ export default function ImmobilieSuchenPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
+        <div className="relative z-10 mx-auto flex max-w-3xl flex-1 flex-col items-center justify-center text-center">
           <h1
             id="hero-suche-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
           >
-            Immobilie suchen
+            Suche in Weinheim und Umgebung.
+            <br />
+            Ihre Vorstellungen – wir übernehmen die gezielte Suche.
           </h1>
-          <div className="mt-6 space-y-3 text-lg text-white/95 drop-shadow-sm sm:mt-8">
-            <p>
-              Teilen Sie uns kostenlos Ihre Wünsche und Vorstellungen mit.
-            </p>
-            <p>
-              Wir unterstützen Sie gezielt bei der Suche nach der passenden Immobilie.
-            </p>
-            <p>
-              Sobald wir ein Objekt finden, das Ihren Angaben entspricht, informieren wir Sie umgehend telefonisch oder per E-Mail.
-            </p>
-          </div>
+          <p className="mt-6 text-lg text-white/95 drop-shadow-sm sm:mt-8">
+            Wir finden und informieren Sie direkt.
+          </p>
         </div>
+        <a
+          href="#suchauftrag"
+          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
+          aria-label="Zum Suchauftrag-Formular scrollen"
+        >
+          <span className="text-sm font-medium">Jetzt entdecken lassen</span>
+          <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
+        </a>
       </section>
 
       {/* Formular – breiter damit Lagepräferenz-Labels einzeilig bleiben */}
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <section id="suchauftrag" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <SearchRequestForm />
       </section>
     </>

@@ -38,7 +38,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
   });
   return (
     <>
-      <section className="relative flex min-h-[70vh] flex-col bg-zinc-100 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
+      <section className="relative flex min-h-[70vh] flex-col bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1 className="font-sans text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
             Kaufen in Weinheim und Umgebung. Jetzt entscheiden.
