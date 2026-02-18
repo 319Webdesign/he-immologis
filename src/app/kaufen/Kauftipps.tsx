@@ -3,16 +3,177 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const KAUFTIPPS: { title: string; content: string }[] = [
+const KAUFTIPPS: { title: string; content: string | React.ReactNode }[] = [
   {
     title: "Erstgespräch",
-    content:
-      "Im persönlichen Erstgespräch klären wir Ihre Wünsche, Ihr Budget und Ihre Zeitplanung. Wir erfassen, welche Art von Immobilie Sie suchen, in welchen Lagen und mit welchen Ausstattungsmerkmalen. So können wir gezielt passende Objekte auswählen und Sie nicht mit unnötigen Vorschlägen überhäufen. Gleichzeitig erhalten Sie von uns eine Einschätzung zum aktuellen Markt in Weinheim und der Bergstraße.",
+    content: (
+      <div className="space-y-5">
+        <p>
+          Der Kauf einer Immobilie gehört zu den wichtigsten Entscheidungen im Leben.
+          Neben Emotionen spielen rechtliche, finanzielle und bauliche Aspekte eine große Rolle – und genau deshalb sollte dieser Schritt strukturiert begleitet werden.
+          Gerade in der Region Bergstraße und im Rhein-Neckar-Raum unterscheiden sich Lagen oft stärker, als es auf den ersten Blick wirkt:
+          Zwischen Hanglage, Tal, Ortsteil und Nachbarstadt können Wertentwicklung, Alltagstauglichkeit und Lebensqualität deutlich variieren.
+          Deshalb verstehen wir unsere Aufgabe nicht darin, Ihnen einfach Immobilien zu zeigen.
+          Unser Ziel ist es, gemeinsam mit Ihnen herauszufinden, welche Immobilie wirklich zu Ihrem Leben passt.
+        </p>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">Die Grundlage: Ihre persönliche Situation</h3>
+          <p className="mt-1 text-zinc-700">Bevor wir suchen, klären wir gemeinsam:</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Wie möchten Sie heute wohnen – und in fünf oder zehn Jahren?</li>
+            <li>Wie sieht Ihr realistischer Finanzierungsrahmen aus?</li>
+            <li>Welche Wege müssen im Alltag funktionieren (Arbeit, Schule, Verkehr)?</li>
+            <li>Soll die Immobilie langfristig Zuhause oder auch Vermögensanlage sein?</li>
+          </ul>
+          <p className="mt-2 text-zinc-700">Erst daraus entsteht ein klares Suchprofil.</p>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">Die richtige Lage – nicht nur die richtige Adresse</h3>
+          <p className="mt-1 text-zinc-700">In Weinheim, an der Bergstraße und im Rhein-Neckar-Gebiet entscheiden oft Details:</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Hanglage oder Ebene</li>
+            <li>Innenstadt, Ortsteil oder Randlage</li>
+            <li>Verkehrsanbindung Richtung Mannheim / Heidelberg</li>
+            <li>Infrastruktur und Nahversorgung</li>
+            <li>Entwicklungsperspektiven einzelner Wohngebiete</li>
+          </ul>
+          <p className="mt-2 text-zinc-700">
+            Wir helfen Ihnen dabei, nicht nur ein schönes Haus zu finden –
+            sondern einen Standort, der langfristig zu Ihrem Leben passt.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">Unser Anspruch</h3>
+          <p className="mt-1 text-zinc-700">
+            Ein Immobilienkauf ist kein Einzeltermin, sondern ein Prozess.
+            Wir begleiten Sie strukturiert von der ersten Überlegung bis nach dem Einzug.
+            Unser Ziel ist nicht nur ein erfolgreicher Abschluss.
+            Unser Ziel ist eine Entscheidung, die sich auch Jahre später noch richtig anfühlt.
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     title: "Finanzierung",
-    content:
-      "Eine solide Finanzierung ist die Basis für Ihren Kauf. Wir empfehlen, frühzeitig mit Ihrer Bank oder einem unabhängigen Finanzierungsberater zu sprechen. Klären Sie Ihre monatliche Belastbarkeit, den Eigenanteil und mögliche Fördermittel. Mit einer Finanzierungsbestätigung oder zumindest einer groben Einschätzung Ihrer Kaufkraft können wir Verhandlungen und Besichtigungen zielgerichtet angehen und Sie wirken gegenüber Verkäufern und Maklern seriös vorbereitet.",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">1. Finanzierungsplanung</h3>
+          <p className="mt-2 text-zinc-700 font-medium">Eigene finanzielle Situation prüfen</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Eigenkapital und Rücklagen ermitteln</li>
+            <li>Monatlich verfügbares Einkommen berechnen</li>
+            <li>Laufende Verpflichtungen berücksichtigen (Kredite, Leasing, Unterhalt)</li>
+            <li>Persönlichen finanziellen Puffer festlegen</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Kaufnebenkosten einplanen</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Grunderwerbsteuer</li>
+            <li>Notar- und Grundbuchkosten</li>
+            <li>ggf. Maklerprovision</li>
+            <li>Versicherungen</li>
+            <li>Renovierungs- und Instandhaltungsrücklagen</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Finanzierung vergleichen</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Sollzins und Effektivzins vergleichen</li>
+            <li>Zinsbindung wählen (10 / 15 / 20 / 30 Jahre)</li>
+            <li>Tilgungssatz festlegen</li>
+            <li>Sondertilgungsmöglichkeiten prüfen</li>
+            <li>Förderprogramme (z. B. KfW) berücksichtigen</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Finanzierungsbestätigung einholen</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Maximales Budget bestimmen</li>
+            <li>Monatliche Rate kalkulieren</li>
+            <li>Schneller handlungsfähig beim Kaufangebot</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">2. Immobiliensuche</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Lage, Größe und Budget festlegen</li>
+            <li>Wunschkriterien priorisieren (Must-Have / Nice-to-Have)</li>
+            <li>Infrastruktur und Umgebung prüfen</li>
+            <li>Zukunftsplanung berücksichtigen (Familie, Homeoffice, Mobilität)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">3. Besichtigung &amp; Hausprüfung</h3>
+          <p className="mt-2 text-zinc-700 font-medium">Erste Besichtigung</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Allgemeiner Eindruck</li>
+            <li>Raumaufteilung und Helligkeit</li>
+            <li>Lärm, Nachbarschaft, Verkehr</li>
+            <li>Parkmöglichkeiten</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Zweite Besichtigung mit Sachverständigem</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Bausubstanz</li>
+            <li>Modernisierungsbedarf</li>
+            <li>realistische Renovierungskosten</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Technische Prüfung</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Dach und Dämmung</li>
+            <li>Fassade und Keller (Feuchtigkeit)</li>
+            <li>Elektrik und Leitungen</li>
+            <li>Sanitärinstallation</li>
+            <li>Heizung und Warmwasseranlage</li>
+            <li>Fenster und Abdichtungen</li>
+            <li>Hinweise auf Schimmel oder Schädlingsbefall</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Energieausweis prüfen</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Energieeffizienzklasse</li>
+            <li>Heizungsart</li>
+            <li>Dämmstandard</li>
+            <li>mögliche gesetzliche Sanierungspflichten</li>
+            <li>langfristige Energiekosten abschätzen</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">4. Kaufentscheidung</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Marktpreis mit Vergleichsobjekten prüfen</li>
+            <li>Renovierungskosten berücksichtigen</li>
+            <li>Finanzierung final abstimmen</li>
+            <li>Kaufpreisangebot formulieren</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">5. Kaufabwicklung</h3>
+          <p className="mt-2 text-zinc-700 font-medium">Vor dem Notartermin</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Finanzierungszusage der Bank</li>
+            <li>Grundbuch prüfen</li>
+            <li>Teilungserklärung &amp; Protokolle (bei Wohnung)</li>
+            <li>Energieausweis und Bauunterlagen einsehen</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Notartermin</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Kaufvertrag verstehen und prüfen</li>
+            <li>Zahlungsfristen beachten</li>
+            <li>Auflassungsvormerkung im Grundbuch</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Nach dem Kauf</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Kaufpreiszahlung</li>
+            <li>Schlüsselübergabe mit Protokoll</li>
+            <li>Zählerstände dokumentieren</li>
+            <li>Versicherungen abschließen</li>
+            <li>Ummeldungen vornehmen</li>
+          </ul>
+        </div>
+        <div className="rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3">
+          <p className="font-sans font-semibold text-zinc-900">Tipp</p>
+          <p className="mt-1 text-zinc-700">
+            Erst Finanzierung klären, dann suchen – so vermeiden Sie Enttäuschungen und gewinnen Verhandlungssicherheit.
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     title: "Suche und finde",
@@ -95,10 +256,14 @@ export default function Kauftipps() {
                   id={`kauftipp-content-${index}`}
                   role="region"
                   aria-labelledby={`kauftipp-trigger-${index}`}
-                  className={`overflow-hidden transition-all duration-200 ease-out ${isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}
+                  className={`overflow-hidden transition-all duration-200 ease-out ${isOpen ? "max-h-[4500px] opacity-100" : "max-h-0 opacity-0"}`}
                 >
                   <div className="rounded-b-xl border border-t-0 border-zinc-200 bg-white px-4 py-5 shadow-sm sm:px-5 sm:py-6">
-                    <p className="leading-relaxed text-zinc-700">{tip.content}</p>
+                    {typeof tip.content === "string" ? (
+                      <p className="leading-relaxed text-zinc-700">{tip.content}</p>
+                    ) : (
+                      <div className="leading-relaxed text-zinc-700">{tip.content}</div>
+                    )}
                   </div>
                 </div>
               </li>

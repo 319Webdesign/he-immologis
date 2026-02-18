@@ -4,10 +4,10 @@ import { ChevronDown } from "lucide-react";
 
 /**
  * Video-Hero für die Startseite.
- * - Platzhalter-Video: /video/hero.mp4 (ersetzen mit echtem Asset)
+ * - Video: /video/startseitefilm.webm
  * - Platzhalter-Poster (Mobile): /img/hero-poster.jpg (optional; sonst Gradient)
  */
-const VIDEO_SRC = "/video/hero.mp4";
+const VIDEO_SRC = "/video/startseitefilm.webm";
 const POSTER_SRC = "/img/hero-poster.jpg";
 
 export default function Hero() {
@@ -36,7 +36,7 @@ export default function Hero() {
         poster={POSTER_SRC}
         aria-hidden
       >
-        <source src={VIDEO_SRC} type="video/mp4" />
+        <source src={VIDEO_SRC} type="video/webm" />
       </video>
 
       {/* Dunkles Overlay für Lesbarkeit */}
