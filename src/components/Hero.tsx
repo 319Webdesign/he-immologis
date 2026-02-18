@@ -45,20 +45,22 @@ export default function Hero() {
         aria-hidden
       />
 
-      {/* Inhalt zentral */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-24 pt-[10rem] text-center sm:pb-32 sm:pt-[11rem]">
-        <h1 className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl lg:text-7xl">
-          Neues kann endlich beginnen.
-          <br />
-          Verkaufen. Finden. Möglich machen.
-        </h1>
-        <p className="mt-6 text-lg font-normal tracking-wide text-white/90 sm:text-xl md:mt-8">
-          Weinheim. Bergstraße.
-        </p>
+      {/* Inhalt zentral – absolut in der Mitte */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
+        <div className="text-center hero-text-fade">
+          <h1 className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
+            Neues kann endlich beginnen.
+            <br />
+            Verkaufen. Finden. Möglich machen.
+          </h1>
+          <p className="mt-4 text-base font-normal tracking-wide text-white/90 sm:text-lg md:mt-6">
+            Weinheim. Bergstraße.
+          </p>
+        </div>
       </div>
 
       {/* Scroll-Down-Hinweis am unteren Rand */}
-      <div className="relative z-10 flex flex-col items-center pb-8">
+      <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-8">
         <span className="mb-2 text-xs uppercase tracking-widest text-white/70">
           Mehr entdecken
         </span>
