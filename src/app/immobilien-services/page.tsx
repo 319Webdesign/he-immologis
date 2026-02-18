@@ -27,13 +27,12 @@ export default function ImmobilienServicesPage() {
         <div className="mx-auto max-w-4xl text-center">
           <h1
             id="services-hero-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+            className="font-sans text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"
           >
-            Maßgeschneiderte Lösungen für Ihren Immobilienverkauf
+            Maßgeschneiderte Verkaufslösungen.
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-slate-700 sm:text-xl">
-            Wählen Sie unser bewährtes Komplettpaket oder ergänzen Sie es
-            individuell durch unsere Zusatzmodule.
+            Vom vollständigen Immobilienverkauf bis zu individuell wählbaren Teilmodulen – Sie entscheiden, wie umfassend wir Sie begleiten.
           </p>
         </div>
       </section>
