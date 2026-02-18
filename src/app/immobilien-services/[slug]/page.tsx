@@ -288,7 +288,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot?
               Schreiben Sie uns – wir melden uns zeitnah bei Ihnen.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:info@he-immologis.de?subject=Anfrage%20–%20${encodeURIComponent(service.title)}`}
                 className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
@@ -296,12 +296,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               >
                 E-Mail schreiben
               </a>
-              <a
-                href="tel:+4917632198462"
-                className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
-              >
-                Anrufen
-              </a>
+              <p className="text-slate-600">
+                Oder anrufen:{" "}
+                <a
+                  href="tel:+4917632198462"
+                  className="font-medium text-slate-900 underline hover:no-underline"
+                >
+                  0176 321 98 462
+                </a>
+              </p>
             </div>
           </section>
         </article>
