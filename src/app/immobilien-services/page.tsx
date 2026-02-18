@@ -32,7 +32,9 @@ export default function ImmobilienServicesPage() {
             Maßgeschneiderte Verkaufslösungen.
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-slate-700 sm:text-xl">
-            Vom vollständigen Immobilienverkauf bis zu individuell wählbaren Teilmodulen – Sie entscheiden, wie umfassend wir Sie begleiten.
+            Vom vollständigen Immobilienverkauf bis zu individuell wählbaren Teilmodulen
+            <br />
+            – Sie entscheiden, wie umfassend wir Sie begleiten.
           </p>
         </div>
       </section>
