@@ -5,7 +5,7 @@ export const SMART_INTRO = {
   acronym: [
     { letter: "S", label: "Schulung" },
     { letter: "M", label: "M & A" },
-    { letter: "A", label: "Aufbau von Entscheidernetzwerken" },
+    { letter: "A", label: "Aufbau Entscheidernetzwerken" },
     { letter: "R", label: "Regionale Interim-Lösungen" },
     { letter: "T", label: "Transportnetzwerkstrategien" },
   ],

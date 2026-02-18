@@ -26,7 +26,7 @@ const CARDS = [
     smart: [
       { letter: "S", label: "Schulung" },
       { letter: "M", label: "M & A" },
-      { letter: "A", label: "Aufbau von Entscheidernetzwerken" },
+      { letter: "A", label: "Aufbau Entscheidernetzwerken" },
       { letter: "R", label: "Regionale Interim-Lösungen" },
       { letter: "T", label: "Transportnetzwerkstrategien" },
     ],
@@ -81,7 +81,7 @@ export default function LocalPresence() {
             return (
               <article
                 key={title}
-                className="flex flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md lg:p-8"
+                className={`flex flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md lg:p-8 ${smart ? "min-w-[20rem]" : ""}`}
               >
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
