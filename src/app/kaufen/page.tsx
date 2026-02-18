@@ -5,6 +5,7 @@ import propertiesData from "@/data/properties.json";
 import type { Property } from "@/types";
 import PropertyCard from "./PropertyCard";
 import PropertyFilters from "./PropertyFilters";
+import Kauftipps from "./Kauftipps";
 import Contact from "@/components/Contact";
 
 export const metadata: Metadata = {
@@ -41,10 +42,10 @@ export default async function KaufenPage({ searchParams }: PageProps) {
       <section className="relative flex min-h-[70vh] flex-col bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1 className="font-sans text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
-            Kaufen in Weinheim und Umgebung. Jetzt entscheiden.
+            Kaufen in Weinheim und Umgebung.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600">
-            Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
+            Jetzt entscheiden. Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
           </p>
         </div>
         <a
@@ -73,6 +74,8 @@ export default async function KaufenPage({ searchParams }: PageProps) {
           </p>
         )}
       </section>
+
+      <Kauftipps />
 
       <Contact
         title="Immobilien-Anfrage"
