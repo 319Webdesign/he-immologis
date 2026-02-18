@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { ChevronDown } from "lucide-react";
 import propertiesData from "@/data/properties.json";
 import type { Property } from "@/types";
 import PropertyCard from "./PropertyCard";
@@ -37,19 +38,26 @@ export default async function KaufenPage({ searchParams }: PageProps) {
   });
   return (
     <>
-      <section className="bg-zinc-100 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="mx-auto max-w-7xl text-center">
+      <section className="relative flex min-h-[70vh] flex-col bg-zinc-100 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1 className="font-sans text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
-            Immobilien in Weinheim
+            Kaufen in Weinheim und Umgebung. Jetzt entscheiden.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600">
-            Entdecken Sie unsere Auswahl an hochwertigen Immobilien in Weinheim
-            und der Region Bergstraße. Seriöse Beratung, transparente Prozesse.
+            Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
           </p>
         </div>
+        <a
+          href="#immobilien"
+          className="group mt-auto flex flex-col items-center gap-1 pb-8 pt-4 text-zinc-600 transition-colors hover:text-zinc-900"
+          aria-label="Zu den Immobilien scrollen"
+        >
+          <span className="text-sm font-medium">Jetzt Immobilien ansehen</span>
+          <ChevronDown className="h-7 w-7 animate-bounce text-zinc-500" aria-hidden />
+        </a>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section id="immobilien" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100" />}>
           <PropertyFilters />
         </Suspense>

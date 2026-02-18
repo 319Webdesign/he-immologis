@@ -23,10 +23,18 @@ const LOGISTIKBERATUNG_SUB = [
   { label: "T – Transportnetzwerkstrategien", href: "/logistikberatung/transportnetzwerkstrategien" },
 ] as const;
 
+/* Dropdown: Tipp-Prämie */
+const TIPP_PRAEMIE_SUB = [
+  { label: "Tipp geben", href: "/geld-verdienen" },
+  { label: "Banner werben", href: "/geld-verdienen#werbeflaeche-heading" },
+  { label: "Aufsteller werben", href: "/geld-verdienen/aufsteller" },
+] as const;
+
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logistikOpen, setLogistikOpen] = useState(false);
+  const [tippPraemieOpen, setTippPraemieOpen] = useState(false);
   const [lang, setLang] = useState<"DE" | "EN">("DE");
 
   const toggleLang = () => setLang((prev) => (prev === "DE" ? "EN" : "DE"));
@@ -80,7 +88,7 @@ export default function Navbar() {
   );
 
   const navLinkClass = (href: string) =>
-    `rounded-lg px-3 py-2 text-lg font-normal text-black transition-colors hover:opacity-80 ${
+    `whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
       pathname.startsWith(href) ? "opacity-100" : "opacity-90"
     }`;
 
@@ -138,9 +146,42 @@ export default function Navbar() {
             >
               Suchen
             </Link>
-            <Link href="/geld-verdienen" className={navLinkClass("/geld-verdienen")}>
-              Tippprämie
-            </Link>
+            {/* Tipp-Prämie mit Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setTippPraemieOpen(true)}
+              onMouseLeave={() => setTippPraemieOpen(false)}
+            >
+              <button
+                type="button"
+                className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
+                  pathname.startsWith("/geld-verdienen") ? "opacity-100" : "opacity-90"
+                }`}
+              >
+                Tipp-Prämie
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    tippPraemieOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {tippPraemieOpen && (
+                <div className="absolute left-0 top-full pt-1">
+                  <div className="min-w-[200px] whitespace-nowrap rounded-lg border border-zinc-100 bg-white py-2 shadow-lg">
+                    {TIPP_PRAEMIE_SUB.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Logistikberatung mit Dropdown */}
             <div
@@ -150,7 +191,7 @@ export default function Navbar() {
             >
               <button
                 type="button"
-                className={`flex items-center gap-1 rounded-lg px-3 py-2 text-lg font-normal text-black transition-colors hover:opacity-80 ${
+                className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
                   pathname.startsWith("/logistikberatung") ? "opacity-100" : "opacity-90"
                 }`}
               >
@@ -258,13 +299,21 @@ export default function Navbar() {
               >
                 Suchen
               </Link>
-              <Link
-                href="/geld-verdienen"
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
-              >
-                Tippprämie
-              </Link>
+              <div className="rounded-lg px-4 py-2">
+                <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">
+                  Tipp-Prämie
+                </p>
+                {TIPP_PRAEMIE_SUB.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block rounded-lg px-3 py-2 text-base font-medium text-black hover:bg-zinc-50"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
               <div className="rounded-lg px-4 py-2">
                 <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">
                   Logistikberatung

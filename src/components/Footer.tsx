@@ -174,7 +174,23 @@ export default function Footer() {
                   href="/geld-verdienen"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Tippprämie
+                  Tipp geben
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/geld-verdienen#werbeflaeche-heading"
+                  className="text-sm text-slate-300 transition-colors hover:text-white"
+                >
+                  Banner werben
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/geld-verdienen/aufsteller"
+                  className="text-sm text-slate-300 transition-colors hover:text-white"
+                >
+                  Aufsteller werben
                 </Link>
               </li>
               <li>
