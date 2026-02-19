@@ -58,7 +58,12 @@ export default function LogistikberatungPage() {
             ))}
           </div>
           <p className="mx-auto mt-10 max-w-3xl text-center text-lg leading-relaxed text-white/95 drop-shadow-sm">
-            {SMART_INTRO.heroDescription}
+            {SMART_INTRO.heroDescription.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < SMART_INTRO.heroDescription.length - 1 && <br />}
+              </span>
+            ))}
           </p>
         </div>
       </section>
@@ -99,6 +104,40 @@ export default function LogistikberatungPage() {
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Eiswürfel – Video + Text */}
+      <section
+        className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        aria-labelledby="eiswuerfel-heading"
+      >
+        <div className="mx-auto max-w-5xl">
+          <h2 id="eiswuerfel-heading" className="sr-only">
+            Stabile Strukturen in der Logistik
+          </h2>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div className="overflow-hidden rounded-2xl bg-slate-100">
+              <video
+                src="/video/eiswuerfel.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="h-auto w-full"
+                preload="auto"
+              >
+                Ihr Browser unterstützt die Wiedergabe dieses Videos nicht.
+              </video>
+            </div>
+            <p className="text-lg leading-relaxed text-slate-700">
+              Wie ein Eiswürfel nur unter den richtigen Bedingungen stabil bleibt,
+              schaffen wir mit Schulung, Strategie, Netzwerk und Interimslösungen
+              stabile Strukturen
+              <br />
+              – in temperierten wie nicht temperierten Logistikszenarien.
+            </p>
+          </div>
         </div>
       </section>
 

@@ -8,8 +8,11 @@ export const SMART_INTRO = {
     { letter: "R", label: "Regionale Interim-Lösungen" },
     { letter: "T", label: "Transportnetzwerkstrategien" },
   ],
-  heroDescription:
-    "SMART – Beratung und Vertriebsunterstützung für Supply-Chain-Lösungen in temperaturgeführten und nicht temperaturgeführten Logistiknetzwerken",
+  heroDescription: [
+    "SMART –",
+    "Beratung und Vertriebsunterstützung für Supply-Chain-Lösungen",
+    "in temperaturgeführten und nicht temperaturgeführten Logistiknetzwerken",
+  ],
 } as const;
 
 export interface SmartModul {
