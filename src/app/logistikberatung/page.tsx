@@ -140,7 +140,7 @@ export default function LogistikberatungPage() {
               schaffen wir mit Schulung, Strategie, Netzwerk und Interimslösungen
               stabile Strukturen
               <br />
-              – in temperierten wie nicht temperierten Logistikszenarien.“
+              – in temperierten wie nicht temperierten Logistikszenarien“.
             </p>
           </div>
         </div>

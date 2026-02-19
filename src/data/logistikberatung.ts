@@ -1,10 +1,10 @@
 export const SMART_INTRO = {
-  title: ["„Wir drehen Ihre Performance", "kontrolliert nach oben.“"],
+  title: ["„Wir drehen Ihre Performance", "kontrolliert nach oben“."],
   subtitle: "Menschen. Struktur. Strategie. Netzwerk.",
   acronym: [
     { letter: "S", label: "Schulung" },
     { letter: "M", label: "M & A" },
-    { letter: "A", label: "Aufbau Entscheidernetzwerken" },
+    { letter: "A", label: "Aufbau Entscheidernetzwerke" },
     { letter: "R", label: "Regionale Interim-Lösungen" },
     { letter: "T", label: "Transportnetzwerkstrategien" },
   ],
