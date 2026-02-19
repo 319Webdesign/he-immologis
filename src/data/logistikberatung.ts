@@ -1,7 +1,6 @@
 export const SMART_INTRO = {
-  title: "Logistikberatung – SMART",
-  subtitle:
-    "SMART – Beratung und Vertriebsunterstützung in Supply Chain und temperaturgeführter Logistik.",
+  title: "Wir drehen Performance kontrolliert nach oben.",
+  subtitle: "Menschen. Struktur. Strategie. Netzwerk.",
   acronym: [
     { letter: "S", label: "Schulung" },
     { letter: "M", label: "M & A" },
@@ -9,8 +8,8 @@ export const SMART_INTRO = {
     { letter: "R", label: "Regionale Interim-Lösungen" },
     { letter: "T", label: "Transportnetzwerkstrategien" },
   ],
-  tagline:
-    "Von der Idee zur Struktur. Vom Kontakt zur Zusammenarbeit. Von der Planung zur Umsetzung.",
+  heroDescription:
+    "SMART – Beratung und Vertriebsunterstützung für Supply-Chain-Lösungen in temperaturgeführten und nicht temperaturgeführten Logistiknetzwerken",
 } as const;
 
 export interface SmartModul {

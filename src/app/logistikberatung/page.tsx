@@ -57,8 +57,8 @@ export default function LogistikberatungPage() {
               </span>
             ))}
           </div>
-          <p className="mt-10 text-xl font-medium italic text-white/90 drop-shadow-sm">
-            {SMART_INTRO.tagline}
+          <p className="mx-auto mt-10 max-w-3xl text-center text-lg leading-relaxed text-white/95 drop-shadow-sm">
+            {SMART_INTRO.heroDescription}
           </p>
         </div>
       </section>
