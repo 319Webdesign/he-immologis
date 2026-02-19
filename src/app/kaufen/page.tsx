@@ -44,8 +44,8 @@ export default async function KaufenPage({ searchParams }: PageProps) {
         aria-labelledby="hero-kaufen-heading"
         style={{
           backgroundImage: "url(/img/header-kaufen.jpeg)",
-          backgroundSize: "100% auto",
-          backgroundPosition: "center 25%",
+          backgroundSize: "cover",
+          backgroundPosition: "68% 18%",
           backgroundRepeat: "no-repeat",
           backgroundColor: "#1e293b",
         }}

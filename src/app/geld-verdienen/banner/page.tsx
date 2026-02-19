@@ -6,38 +6,37 @@ import {
   Home,
   Store,
   Check,
-  ArrowRight,
   Mail,
   MessageCircle,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Werbe-Aufsteller – 500 € Prämie für Geschäfte & Büros | HE immologis",
+  title: "Banner werben – 500 € Prämie für Privatgrundstücke & Zäune | HE immologis",
   description:
-    "Stellen Sie einen Immobilien-Aufsteller von HE immologis auf – ohne Verpflichtung. Auf- und Abbau durch uns. 500 € Prämie bei erfolgreichem Verkauf.",
+    "Vermieten Sie Werbefläche: Banner von HE immologis an Zaun, Garage oder Grundstück. Dauerhaft sichtbar, ohne Platz zu nehmen. 500 € Prämie bei Verkauf.",
   keywords: [
-    "Aufsteller Werbung",
-    "Werbefläche Immobilien",
-    "500 € Prämie Aufsteller",
+    "Banner Werbung Immobilien",
+    "Werbefläche vermieten",
+    "500 € Prämie Banner",
     "HE immologis",
   ],
 };
 
 const BRAND_BLUE = "#4682B4";
 // Zwei PDFs möglich; bei nur einer Datei beide auf denselben Pfad setzen
-const DOWNLOAD_PRIVAT = "/downloads/HE_Immologis_Aufstellervereinbarung.pdf";
-const DOWNLOAD_GEWERBE = "/downloads/HE_Immologis_Aufstellervereinbarung.pdf";
+const DOWNLOAD_PRIVAT = "/downloads/HE_Immologis_Mustervertrag_Werbeflaeche.pdf";
+const DOWNLOAD_GEWERBE = "/downloads/HE_Immologis_Mustervertrag_Werbeflaeche.pdf";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-export default function AufstellerPage() {
+export default function BannerPage() {
   return (
     <>
       {/* Hero */}
       <section
         className="relative border-b border-slate-200 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-        aria-labelledby="aufsteller-hero-heading"
+        aria-labelledby="banner-hero-heading"
       >
         <div className="mx-auto max-w-4xl">
           <Link
@@ -48,14 +47,15 @@ export default function AufstellerPage() {
             Zurück zu Geld verdienen
           </Link>
           <h1
-            id="aufsteller-hero-heading"
+            id="banner-hero-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl"
           >
-            Geld verdienen mit einem Werbe-Aufsteller
+            Geld verdienen mit einer Bannerfläche
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            Sie haben ein Geschäft, Büro oder privat eine gut sichtbare Fläche im Eingangsbereich?
-            Dann stellen Sie einfach einen Immobilien-Aufsteller von HE immologis auf.
+            Sie besitzen einen Zaun, ein Grundstück oder eine gut sichtbare Fläche? Dann stellen Sie
+            diese einfach für ein Immobilien-Werbebanner von HE immologis für einen von Ihnen
+            freigegebenen Zeitraum zur Verfügung.
           </p>
           <p className="mt-4 text-2xl font-bold sm:text-3xl" style={{ color: BRAND_BLUE }}>
             500 € Prämie bei erfolgreichem Verkauf
@@ -96,9 +96,9 @@ export default function AufstellerPage() {
                 <Check className="h-4 w-4" />
               </span>
               <span className="text-slate-700">
-                <strong className="text-slate-900">Kein Aufwand</strong> – Auf- und Abbau übernimmt
-                HE immologis. Der Aufsteller steht nur während der Öffnungszeiten draußen und wird
-                danach wieder hereingestellt.
+                <strong className="text-slate-900">Dauerhaft sichtbar, ohne Aufwand</strong> – Das
+                Banner hängt dauerhaft und <strong className="text-slate-800">nimmt keinen Platz
+                weg</strong>. Anbringung und Material kommen von HE immologis.
               </span>
             </li>
             <li className="flex items-start gap-3">
@@ -110,8 +110,7 @@ export default function AufstellerPage() {
               </span>
               <span className="text-slate-700">
                 <strong className="text-slate-900">Rechtlich selbstständig</strong> – Sie müssen
-                niemanden ansprechen oder vermitteln. Eine kleine Stellfläche kann so nebenbei Geld
-                verdienen.
+                niemanden ansprechen oder vermitteln. Ihre Fläche wird zur Einnahmequelle.
               </span>
             </li>
           </ul>
@@ -140,7 +139,7 @@ export default function AufstellerPage() {
               </span>
               <p className="mt-4 font-medium text-slate-900">Fläche anbieten</p>
               <p className="mt-1 text-sm text-slate-600">
-                Sie melden uns Ihre gut sichtbare Fläche im Eingangsbereich.
+                Sie melden uns Ihre Fläche – Zaun, Garage oder Grundstück.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
@@ -150,9 +149,9 @@ export default function AufstellerPage() {
               >
                 2
               </span>
-              <p className="mt-4 font-medium text-slate-900">Aufsteller wird platziert</p>
+              <p className="mt-4 font-medium text-slate-900">Banner wird platziert</p>
               <p className="mt-1 text-sm text-slate-600">
-                HE immologis stellt den Aufsteller auf und baut ihn bei Bedarf ab – ohne Ihr Zutun.
+                HE immologis bringt das Banner an. Es hängt dauerhaft und nimmt keinen Platz weg.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
@@ -164,38 +163,41 @@ export default function AufstellerPage() {
               </span>
               <p className="mt-4 font-medium text-slate-900">Prämie kassieren</p>
               <p className="mt-1 text-sm text-slate-600">
-                Bei erfolgreichem Verkauf über Ihren Aufsteller erhalten Sie 500 € Prämie.
+                Bei erfolgreichem Verkauf über Ihr Banner erhalten Sie 500 € Prämie.
               </p>
             </div>
-          </div>
-          <div className="mt-6 flex justify-center gap-2 text-slate-400" aria-hidden>
-            <ArrowRight className="h-5 w-5" />
-            <ArrowRight className="h-5 w-5" />
           </div>
         </div>
       </section>
 
-      {/* Inhalt (aus Aufsteller werben) */}
+      {/* Inhalt (Banner-spezifisch) */}
       <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-4xl space-y-6 text-lg leading-relaxed text-slate-700">
           <p>
-            Der Aufsteller wird während der Öffnungszeiten sichtbar platziert und danach wieder
-            hereingestellt – mehr müssen Sie nicht tun.
+            Sie müssen nichts betreuen oder auf- und abbauen – das Banner hängt dauerhaft sichtbar.
           </p>
-          <p>Sie müssen niemanden ansprechen oder vermitteln.</p>
           <p>
-            Kommt ein Kunde über diesen Aufsteller zu uns und es entsteht daraus ein erfolgreicher
+            Kommt ein Kunde über dieses Banner zu uns und es entsteht daraus ein erfolgreicher
             Immobilienverkauf, erhalten Sie eine einmalige Tippgeber-Prämie von{" "}
-            <strong className="text-slate-800">500 €</strong>. Die Auszahlung erfolgt nach Abschluss
-            des notariellen Kaufvertrags und Eingang der Maklercourtage.
+            <strong className="text-slate-800">500 €</strong>. Die Auszahlung erfolgt nach
+            notariellem Kaufvertragsabschluss und Eingang der Maklercourtage.
           </p>
           <p>
-            Sie gehen keine Verpflichtungen ein und handeln rechtlich selbstständig. Eine kleine
-            Stellfläche kann so nebenbei Geld verdienen.
+            Sie gehen keinerlei Verpflichtung ein und handeln rechtlich selbstständig. Eine einfache
+            Fläche kann so nebenbei Geld verdienen.
           </p>
           <p>
-            Im Anhang finden Sie die Aufstellervereinbarungen Geschäft und Privat. Bei erfolgreichem
-            Abschluss zahlen wir Ihre Prämie direkt an Sie aus.
+            Bei erfolgreichem Abschluss zahlen wir Ihre Prämie direkt an Sie aus.
+          </p>
+          <p className="text-slate-600">
+            Für Geschäfte & Büros:{" "}
+            <Link
+              href="/geld-verdienen/aufsteller"
+              className="font-medium transition-colors hover:underline"
+              style={{ color: BRAND_BLUE }}
+            >
+              Werbe-Aufsteller – alle Infos
+            </Link>
           </p>
         </div>
       </section>
@@ -224,7 +226,7 @@ export default function AufstellerPage() {
                 Privatpersonen
               </h3>
               <p className="mt-2 text-slate-600">
-                Vereinbarung für private Stellflächen (z. B. im eigenen Geschäft oder Büro).
+                Mustervertrag Werbefläche für private Grundstücke, Zäune, Garagen.
               </p>
               <Link
                 href={DOWNLOAD_PRIVAT}
@@ -248,7 +250,7 @@ export default function AufstellerPage() {
                 Gewerbe & Ladenbesitzer
               </h3>
               <p className="mt-2 text-slate-600">
-                Vereinbarung für gewerbliche Stellflächen (Laden, Büro, Praxis).
+                Mustervertrag Werbefläche für gewerbliche Flächen.
               </p>
               <Link
                 href={DOWNLOAD_GEWERBE}

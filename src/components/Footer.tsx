@@ -179,7 +179,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/geld-verdienen"
+                  href="/geld-verdienen/tipp-geben"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Tipp geben
@@ -187,7 +187,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/geld-verdienen#werbeflaeche-heading"
+                  href="/geld-verdienen/banner"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Banner werben

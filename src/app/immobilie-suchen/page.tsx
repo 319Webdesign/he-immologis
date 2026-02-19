@@ -37,7 +37,9 @@ export default function ImmobilieSuchenPage() {
           >
             Suche in Weinheim und Umgebung.
             <br />
-            Ihre Vorstellungen – wir übernehmen die gezielte Suche.
+            Ihre Vorstellungen
+            <br />
+            <span className="text-2xl sm:text-3xl lg:text-4xl">– wir übernehmen die gezielte Suche.</span>
           </h1>
           <p className="mt-6 text-lg text-white/95 drop-shadow-sm sm:mt-8">
             Wir finden und informieren Sie direkt.

@@ -25,8 +25,8 @@ const LOGISTIKBERATUNG_SUB = [
 
 /* Dropdown: Tipp-Prämie */
 const TIPP_PRAEMIE_SUB = [
-  { label: "Tipp geben", href: "/geld-verdienen" },
-  { label: "Banner werben", href: "/geld-verdienen#werbeflaeche-heading" },
+  { label: "Tipp geben", href: "/geld-verdienen/tipp-geben" },
+  { label: "Banner werben", href: "/geld-verdienen/banner" },
   { label: "Aufsteller werben", href: "/geld-verdienen/aufsteller" },
 ] as const;
 

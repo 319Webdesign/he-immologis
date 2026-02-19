@@ -44,7 +44,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
           >
             Verkaufen in Weinheim und Umgebung.
             <br />
-            Keine Burgen – Gerne Ihre Immobilie.
+            <span className="text-3xl sm:text-4xl">Keine Burgen – Gerne Ihre Immobilie.</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm">
             Klar bewertet. Optimal positioniert. Sicher verkauft.

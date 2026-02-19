@@ -27,11 +27,11 @@ export default function TippgeberStaffelPage() {
       <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <Link
-            href="/geld-verdienen"
+            href="/geld-verdienen/tipp-geben"
             className="mb-8 inline-flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-900"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zu Geld verdienen
+            Zurück zu Tipp geben
           </Link>
 
           <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">

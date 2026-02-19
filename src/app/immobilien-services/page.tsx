@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import ServicesPackagesSection from "@/components/ServicesPackagesSection";
 
 export const metadata: Metadata = {
@@ -19,28 +20,46 @@ const BRAND_BLUE = "#4682B4";
 export default function ImmobilienServicesPage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero mit Hintergrundbild */}
       <section
-        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        className="relative flex min-h-[70vh] flex-col overflow-hidden px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="services-hero-heading"
+        style={{
+          backgroundImage: "url(/img/hero-service.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#1e293b",
+        }}
       >
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
           <h1
             id="services-hero-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"
+            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
             Maßgeschneiderte Verkaufslösungen.
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-slate-700 sm:text-xl">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm sm:text-xl">
             Vom vollständigen Immobilienverkauf bis zu individuell wählbaren Teilmodulen
             <br />
             – Sie entscheiden, wie umfassend wir Sie begleiten.
           </p>
         </div>
+        <a
+          href="#leistungen"
+          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
+          aria-label="Zu den Leistungen scrollen"
+        >
+          <span className="text-sm font-medium">Leistungen ansehen</span>
+          <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
+        </a>
       </section>
 
       {/* Komplettpaket + Zusatzmodule (mit Animation) */}
-      <ServicesPackagesSection />
+      <section id="leistungen" aria-label="Leistungen">
+        <ServicesPackagesSection />
+      </section>
 
       {/* CTA-Banner */}
       <section

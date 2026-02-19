@@ -62,7 +62,7 @@ export default function ValueBanner() {
                 id="wertermittlung-heading"
                 className="font-sans text-xl font-bold tracking-tight text-slate-800 sm:text-2xl"
               >
-                Kostenlose Immobilien-Wertermittlung
+                Kostenlose <br /> Immobilien-Wertermittlung
               </h2>
               <p className="mt-1 text-sm leading-snug text-slate-600 sm:text-base">
                 Erhalten Sie eine fundierte Markteinschätzung für Ihr Objekt in
