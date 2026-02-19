@@ -1,5 +1,5 @@
 export const SMART_INTRO = {
-  title: "Wir drehen Performance kontrolliert nach oben.",
+  title: ["„Wir drehen Ihre Performance", "kontrolliert nach oben.“"],
   subtitle: "Menschen. Struktur. Strategie. Netzwerk.",
   acronym: [
     { letter: "S", label: "Schulung" },
@@ -9,7 +9,7 @@ export const SMART_INTRO = {
     { letter: "T", label: "Transportnetzwerkstrategien" },
   ],
   heroDescription: [
-    "SMART –",
+    "-SMART-",
     "Beratung und Vertriebsunterstützung für Supply-Chain-Lösungen",
     "in temperaturgeführten und nicht temperaturgeführten Logistiknetzwerken",
   ],

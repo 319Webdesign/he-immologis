@@ -40,7 +40,12 @@ export default function LogistikberatungPage() {
             id="hero-logistik-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
-            {SMART_INTRO.title}
+            {SMART_INTRO.title.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < SMART_INTRO.title.length - 1 && <br />}
+              </span>
+            ))}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-white/95 drop-shadow-sm">
             {SMART_INTRO.subtitle}
@@ -131,11 +136,11 @@ export default function LogistikberatungPage() {
               </video>
             </div>
             <p className="text-lg leading-relaxed text-slate-700">
-              Wie ein Eiswürfel nur unter den richtigen Bedingungen stabil bleibt,
+              „Wie ein Eiswürfel nur unter den richtigen Bedingungen stabil bleibt,
               schaffen wir mit Schulung, Strategie, Netzwerk und Interimslösungen
               stabile Strukturen
               <br />
-              – in temperierten wie nicht temperierten Logistikszenarien.
+              – in temperierten wie nicht temperierten Logistikszenarien.“
             </p>
           </div>
         </div>
