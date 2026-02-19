@@ -19,34 +19,30 @@ export const metadata: Metadata = {
 
 const BRAND_BLUE = "#4682B4";
 
-const VIDEO_SRC = "/video/eiswuerfel.webm";
-
 export default function LogistikberatungPage() {
   return (
     <>
-      {/* Video oben, volle Breite – begrenzte Höhe */}
-      <section className="w-full overflow-hidden" aria-label="Video">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-auto max-h-96 w-full object-cover sm:max-h-[28rem] lg:max-h-[36rem]"
-        >
-          <source src={VIDEO_SRC} type="video/webm" />
-        </video>
-      </section>
-
-      {/* Hero */}
+      {/* Hero mit Dartscheiben-Hintergrund und Texten */}
       <section
-        className="border-b border-slate-200 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
-        style={{ backgroundColor: "#f8fafc" }}
+        className="relative min-h-[70vh] border-b border-slate-200 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        aria-labelledby="hero-logistik-heading"
+        style={{
+          backgroundImage: "url(/img/hero-logistikberatung.jpeg)",
+          backgroundSize: "100% auto",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#1e293b",
+        }}
       >
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-sans text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+        <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <h1
+            id="hero-logistik-heading"
+            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+          >
             {SMART_INTRO.title}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-slate-700">
+          <p className="mt-6 text-lg leading-relaxed text-white/95 drop-shadow-sm">
             {SMART_INTRO.subtitle}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 sm:gap-4">
@@ -61,7 +57,7 @@ export default function LogistikberatungPage() {
               </span>
             ))}
           </div>
-          <p className="mt-10 text-xl font-medium italic text-slate-600">
+          <p className="mt-10 text-xl font-medium italic text-white/90 drop-shadow-sm">
             {SMART_INTRO.tagline}
           </p>
         </div>

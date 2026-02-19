@@ -22,9 +22,11 @@ export default function ImmobilieSuchenPage() {
         className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="hero-suche-heading"
         style={{
-          backgroundImage: "url(/img/dartscheibe.jpeg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundImage: "url(/img/hero-suche.jpeg)",
+          backgroundSize: "100% auto",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#1e293b",
         }}
       >
         <div className="absolute inset-0 bg-slate-900/40" aria-hidden />

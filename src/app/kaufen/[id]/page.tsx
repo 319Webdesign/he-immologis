@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, MapPin, BedDouble } from "lucide-react";
+import { ArrowLeft, MapPin, Home } from "lucide-react";
 import propertiesData from "@/data/properties.json";
-import type { Property } from "@/types";
+import type { PropertyWithDetails } from "@/types";
+import { PropertyActionIcons, ExposeForm } from "./PropertyDetailActions";
 
-const properties = propertiesData as Property[];
+const properties = propertiesData as PropertyWithDetails[];
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
 interface PageProps {
@@ -17,8 +18,34 @@ function formatPrice(price: number): string {
   return new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(price);
+}
+
+function formatNumber(value: number | undefined): string {
+  if (value == null) return "—";
+  return new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(value);
+}
+
+function DataRow({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number | undefined | null;
+}) {
+  const v = value ?? "—";
+  const display = typeof v === "number" ? formatNumber(v) : String(v);
+  return (
+    <tr className="border-b border-zinc-200">
+      <td className="py-2 pr-6 text-zinc-600">{label}</td>
+      <td className="py-2 text-right font-medium text-zinc-900">{display}</td>
+    </tr>
+  );
 }
 
 export async function generateStaticParams() {
@@ -39,16 +66,34 @@ export async function generateMetadata({
 
 export default async function PropertyDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const property = properties.find((p) => p.id === id);
+  const p = properties.find((prop) => prop.id === id);
 
-  if (!property) notFound();
+  if (!p) notFound();
 
   const getImageSrc = (url: string) =>
     url?.startsWith("http") || url?.startsWith("/") ? url : PLACEHOLDER_IMG;
 
+  const allImages = [p.vorschaubild, ...(p.galerie || [])].filter(Boolean);
+  const plz = p.plz ?? "69469";
+  const immoNr = p.immoNr ?? p.id;
+  const objekttyp = p.objekttyp ?? "Einfamilienhaus";
+  const objektart = p.objektart ?? "Haus";
+  const baujahr = p.baujahr ?? 2014;
+  const nutzflaeche = p.nutzflaeche ?? Math.round((p.quadratmeter ?? 0) * 0.2);
+  const grundstueck = p.grundstuecksflaeche ?? 580;
+  const verfuegbarAb = p.verfuegbarAb ?? "ab sofort";
+  const aussenprovision = p.aussenprovision ?? 3.57;
+  const gesamtkaufpreis =
+    (p.nebenkosten ?? 0) +
+    (p.garagePreis ?? 0) +
+    (p.stellplatzPreis ?? 0) +
+    p.preis;
+  const strasse = p.strasse ?? "";
+
   return (
     <>
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        {/* Zurück-Link */}
         <Link
           href="/kaufen"
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900"
@@ -57,82 +102,373 @@ export default async function PropertyDetailPage({ params }: PageProps) {
           Zurück zur Übersicht
         </Link>
 
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div className="space-y-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-200">
-              <Image
-                src={getImageSrc(property.vorschaubild)}
-                alt={property.titel}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            </div>
-            {property.galerie.length > 0 && (
-              <div className="grid grid-cols-3 gap-2">
-                {property.galerie.slice(0, 3).map((img, i) => (
-                  <div
-                    key={i}
-                    className="relative aspect-video overflow-hidden rounded-lg bg-zinc-200"
-                  >
-                    <Image
-                      src={getImageSrc(img)}
-                      alt={`${property.titel} ${i + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="150px"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+        {/* 2. Bilder */}
+        <div className="space-y-4">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-zinc-200">
+            <Image
+              src={getImageSrc(allImages[0] || "")}
+              alt={p.titel}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 896px"
+              priority
+            />
           </div>
+          {allImages.length > 1 && (
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {allImages.slice(1, 5).map((img, i) => (
+                <div
+                  key={i}
+                  className="relative aspect-video overflow-hidden rounded-lg bg-zinc-200"
+                >
+                  <Image
+                    src={getImageSrc(img)}
+                    alt={`${p.titel} ${i + 2}`}
+                    fill
+                    className="object-cover"
+                    sizes="200px"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
-          <div>
-            <span
-              className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${
-                property.status === "verfügbar"
-                  ? "bg-green-100 text-green-800"
-                  : property.status === "reserviert"
-                    ? "bg-amber-100 text-amber-800"
-                    : "bg-zinc-100 text-zinc-600"
-              }`}
-            >
-              {property.status}
-            </span>
-            <h1 className="mt-4 font-sans text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-              {property.titel}
-            </h1>
-            <p className="mt-6 text-2xl font-semibold text-amber-800">
-              {formatPrice(property.preis)}
+          {/* 3. Vier Icons */}
+          <PropertyActionIcons propertyId={p.id} propertyTitle={p.titel} />
+        </div>
+
+        {/* 4. Icon Ort / Wohnung / PLZ Ort */}
+        <div className="mt-8 flex flex-wrap items-center gap-4 text-zinc-600">
+          <span className="flex items-center gap-2">
+            <MapPin className="h-5 w-5" />
+            {p.ort}
+          </span>
+          <span className="flex items-center gap-2">
+            <Home className="h-5 w-5" />
+            {objekttyp}
+          </span>
+          <span>
+            {plz} {p.ort}
+          </span>
+        </div>
+
+        {/* 5. Überschrift */}
+        <h1 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+          {p.titel}
+        </h1>
+
+        {/* 6. Objektbeschreibung */}
+        <section className="mt-8">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Objektbeschreibung
+          </h2>
+          <p className="mt-2 whitespace-pre-line text-zinc-600 leading-relaxed">
+            {p.beschreibung}
+          </p>
+        </section>
+
+        {/* 7. Objektdaten */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Objektdaten
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200">
+            <table className="w-full min-w-[280px]">
+              <tbody>
+                <DataRow label="ImmoNr. / Kennung" value={immoNr} />
+                <DataRow label="Ort" value={p.ort} />
+                <DataRow label="Objekttyp" value={objekttyp} />
+                <DataRow label="Baujahr" value={baujahr} />
+                <DataRow
+                  label="vermietet"
+                  value={p.vermietet === true ? "ja" : p.vermietet === false ? "nein" : "—"}
+                />
+                <DataRow
+                  label="Wohnfläche"
+                  value={p.quadratmeter != null ? `ca. ${p.quadratmeter} qm` : "—"}
+                />
+                <DataRow
+                  label="Nutzfläche"
+                  value={
+                    nutzflaeche != null ? `ca. ${formatNumber(nutzflaeche)} qm` : "—"
+                  }
+                />
+                <DataRow
+                  label="Grundstücksfläche"
+                  value={
+                    grundstueck != null
+                      ? `ca. ${formatNumber(grundstueck)} qm`
+                      : "—"
+                  }
+                />
+                <DataRow label="Anzahl Zimmer" value={p.zimmer} />
+                <DataRow label="Verfügbar ab" value={verfuegbarAb} />
+                <DataRow label="Preis" value={formatPrice(p.preis)} />
+                <DataRow
+                  label="Außenprovision"
+                  value={
+                    aussenprovision != null ? `${formatNumber(aussenprovision)} %` : "—"
+                  }
+                />
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 8. Eckdaten der Immobilie */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Eckdaten der Immobilie
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200">
+            <table className="w-full min-w-[280px]">
+              <tbody>
+                <DataRow label="ImmoNr. / Kennung" value={immoNr} />
+                <DataRow label="Objektart" value={objektart} />
+                <DataRow label="Objekttyp" value={objekttyp} />
+                <DataRow label="Baujahr" value={baujahr} />
+                <DataRow label="Nutzungsart" value={p.nutzungsart ?? "Wohnen Kauf"} />
+                <DataRow label="Verfügbar ab" value={verfuegbarAb} />
+                <DataRow
+                  label="Wohnfläche"
+                  value={
+                    p.quadratmeter != null
+                      ? `ca. ${formatNumber(p.quadratmeter)} qm`
+                      : "—"
+                  }
+                />
+                <DataRow
+                  label="Nutzfläche"
+                  value={
+                    nutzflaeche != null
+                      ? `ca. ${formatNumber(nutzflaeche)} qm`
+                      : "—"
+                  }
+                />
+                <DataRow
+                  label="Grundstücksfläche"
+                  value={
+                    grundstueck != null
+                      ? `ca. ${formatNumber(grundstueck)} qm`
+                      : "—"
+                  }
+                />
+                <DataRow label="Anzahl Zimmer" value={p.zimmer} />
+                <DataRow label="Anzahl Küche" value={p.anzahlKueche ?? 1} />
+                <DataRow
+                  label="Anzahl Schlafzimmer"
+                  value={p.anzahlSchlafzimmer ?? Math.max(1, p.zimmer - 2)}
+                />
+                <DataRow label="Anzahl Wohnzimmer" value={p.anzahlWohnzimmer ?? 1} />
+                <DataRow label="Anzahl Bad" value={p.anzahlBad ?? 1} />
+                <DataRow label="Anzahl Gäste-WC" value={p.anzahlGaesteWc ?? 1} />
+                <DataRow label="Anzahl Balkone" value={p.anzahlBalkone ?? 0} />
+                <DataRow label="Anzahl Terrasse" value={p.anzahlTerrasse ?? 1} />
+                <DataRow label="Anzahl Loggia" value={p.anzahlLoggia ?? 0} />
+                <DataRow label="Anzahl Keller" value={p.anzahlKeller ?? 1} />
+                <DataRow label="Etage" value={p.etage ?? 1} />
+                <DataRow label="Etagenzahl gesamt" value={p.etagenzahlGesamt ?? 2} />
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 9. Preise */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Preise
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200">
+            <table className="w-full min-w-[280px]">
+              <tbody>
+                <DataRow label="Kaufpreis" value={formatPrice(p.preis)} />
+                <DataRow
+                  label="Nebenkosten"
+                  value={formatPrice(p.nebenkosten ?? 0)}
+                />
+                <DataRow
+                  label="Garage / Tiefgarage"
+                  value={formatPrice(p.garagePreis ?? 0)}
+                />
+                <DataRow
+                  label="Stellplatz"
+                  value={formatPrice(p.stellplatzPreis ?? 0)}
+                />
+                <DataRow
+                  label="Gesamtkaufpreis"
+                  value={formatPrice(gesamtkaufpreis)}
+                />
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 10. Außenprovision */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Außenprovision
+          </h2>
+          <p className="mt-2 text-zinc-600">
+            Außenprovision {formatNumber(aussenprovision)} % inklusive MwSt.
+          </p>
+        </section>
+
+        {/* 11. Geografische Angaben */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Geografische Angaben
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200">
+            <table className="w-full min-w-[200px]">
+              <tbody>
+                <DataRow label="Straße" value={strasse || "—"} />
+                <DataRow label="PLZ" value={plz} />
+                <DataRow label="Ort" value={p.ort} />
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 12. Ausstattung */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Ausstattung
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200">
+            <table className="w-full min-w-[280px]">
+              <tbody>
+                <DataRow
+                  label="Beheizung"
+                  value={
+                    p.beheizung ??
+                    "Gas, Öl, Fernwärme, Wärmepumpe, Elektro, Solarthermie"
+                  }
+                />
+                <DataRow
+                  label="Boden"
+                  value={
+                    p.boden ??
+                    "Parkett, Fliesen, Laminat, Teppich, Vinyl, Steinzeug"
+                  }
+                />
+                <DataRow
+                  label="Fahrstuhl"
+                  value={p.fahrstuhl === true ? "ja" : "nein"}
+                />
+                <DataRow
+                  label="Anzahl Stellplätze"
+                  value={p.anzahlStellplaetze ?? 1}
+                />
+                <DataRow
+                  label="Anzahl Garage / Tiefgarage"
+                  value={p.anzahlGarage ?? 0}
+                />
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 13. Beschreibung Lage */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Beschreibung Lage
+          </h2>
+          <div className="mt-4 rounded-xl border border-zinc-200 p-4">
+            <p className="whitespace-pre-line text-zinc-600 leading-relaxed min-h-[120px]">
+              {p.beschreibungLage ||
+                "Ruhige Wohnlage in Weinheim mit guter Anbindung zu Schulen, Einkauf und ÖPNV. Die Bergstraße und die Innenstadt sind schnell erreichbar."}
             </p>
-            <div className="mt-6 flex flex-wrap gap-6 text-zinc-600">
-              <span className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                {property.ort}
-              </span>
-              {property.zimmer > 0 && (
-                <span className="flex items-center gap-2">
-                  <BedDouble className="h-5 w-5" />
-                  {property.zimmer} Zimmer
-                </span>
-              )}
-              <span>{property.quadratmeter} m²</span>
-            </div>
-            <p className="mt-8 text-lg leading-relaxed text-zinc-600">
-              {property.beschreibung}
-            </p>
-            <div className="mt-10">
-              <a
-                href="mailto:info@he-immologis.de?subject=Anfrage%20Immobilie"
-                className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-8 py-3 font-medium text-white transition-colors hover:bg-zinc-800"
-              >
-                Anfrage senden
-              </a>
+          </div>
+        </section>
+
+        {/* 14. Energieeffizienz */}
+        <section className="mt-10">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            Energieeffizienz
+          </h2>
+          <div className="mt-4 flex flex-wrap gap-6">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-zinc-600">Effizienzklasse:</span>
+              <div className="flex gap-0.5 font-medium">
+                {(["A", "B", "C", "D", "E", "F", "G", "H"] as const).map(
+                  (klasse) => (
+                    <span
+                      key={klasse}
+                      className={`inline-flex h-8 w-8 items-center justify-center rounded border text-sm ${
+                        (p.energieeffizienzklasse ?? "B") === klasse
+                          ? "border-amber-600 bg-amber-50 text-amber-800"
+                          : "border-zinc-300 bg-zinc-50 text-zinc-500"
+                      }`}
+                    >
+                      {klasse}
+                    </span>
+                  )
+                )}
+              </div>
             </div>
           </div>
-        </div>
+          <div className="mt-6 overflow-hidden rounded-xl border border-zinc-200">
+            <table className="w-full min-w-[280px]">
+              <tbody>
+                <DataRow label="Baujahr" value={p.energieBaujahr ?? baujahr} />
+                <DataRow
+                  label="Endenergieverbrauch"
+                  value={
+                    p.endenergieverbrauch != null
+                      ? `${formatNumber(p.endenergieverbrauch)} kWh/(m²a)`
+                      : "—"
+                  }
+                />
+                <DataRow
+                  label="Energieausweistyp"
+                  value={
+                    p.energieausweistyp
+                      ? `${p.energieausweistyp}`
+                      : "Gebrauchsausweis oder Bedarfsausweis"
+                  }
+                />
+                <DataRow
+                  label="Energieausweis gültig bis"
+                  value={p.energieausweisGueltigBis ?? "01.01.2030"}
+                />
+                <DataRow
+                  label="Energieeffizienzklasse"
+                  value={p.energieeffizienzklasse ?? "B"}
+                />
+                <DataRow
+                  label="Wesentlicher Energieträger"
+                  value={
+                    p.wesentlicherEnergietraeger ?? "Fernwärme (siehe Ausstattung)"
+                  }
+                />
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 15. Hinweis */}
+        <section className="mt-10 rounded-xl border border-amber-200 bg-amber-50/50 p-6">
+          <p className="text-sm text-zinc-700 leading-relaxed">
+            Bitte beachten Sie, dass alle Angaben ohne Gewähr sind und
+            ausschließlich auf Informationen basieren, die uns von unserem
+            Auftraggeber übermittelt wurden. Wir übernehmen keine Haftung für die
+            Vollständigkeit, Richtigkeit und Aktualität dieser Angaben.
+          </p>
+        </section>
+
+        {/* 16.–18. Exposé anfordern + Formular + Checkboxen + Absenden */}
+        <section className="mt-12 rounded-2xl border border-zinc-200 bg-zinc-50/50 p-8">
+          <h2 className="font-sans text-xl font-semibold text-zinc-900">
+            Exposé anfordern
+          </h2>
+          <p className="mt-2 text-zinc-600">
+            Kontaktdaten angeben – wir senden Ihnen das Exposé und stehen für
+            Rückfragen zur Verfügung.
+          </p>
+          <div className="mt-8">
+            <ExposeForm propertyTitle={p.titel} />
+          </div>
+        </section>
       </div>
     </>
   );

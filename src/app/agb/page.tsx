@@ -78,9 +78,42 @@ export default function AgbPage() {
             </p>
           </section>
 
+          <section id="widerruf">
+            <h2 className="font-sans text-lg font-semibold text-slate-900">
+              §6 Widerrufsbelehrung
+            </h2>
+            <p className="mt-2">
+              Ist der Auftraggeber Verbraucher im Sinne des § 13 BGB und wird der Maklervertrag außerhalb von Geschäftsräumen oder im Fernabsatz (z. B. per E-Mail, Telefon, Online-Formular) geschlossen, steht dem Auftraggeber ein gesetzliches Widerrufsrecht zu.
+            </p>
+            <p className="mt-2">
+              Der Auftraggeber hat das Recht, binnen vierzehn (14) Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.
+            </p>
+            <p className="mt-2">
+              Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.
+            </p>
+            <p className="mt-2">
+              Um das Widerrufsrecht auszuüben, muss der Auftraggeber der HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, E-Mail info@he-immologis.de, Mobil 0176 321 98 462, mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über seinen Entschluss, diesen Vertrag zu widerrufen, informieren. Der Auftraggeber kann dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
+            </p>
+            <p className="mt-2">
+              Zur Wahrung der Widerrufsfrist reicht es aus, dass die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist abgesendet wird.
+            </p>
+            <h3 className="mt-4 font-sans text-base font-semibold text-slate-900">
+              Folgen des Widerrufs
+            </h3>
+            <p className="mt-2">
+              Widerruft der Auftraggeber diesen Vertrag, hat die HE immologis UG (haftungsbeschränkt) i. Gr. alle Zahlungen, die sie vom Auftraggeber erhalten hat, unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über den Widerruf dieses Vertrags eingegangen ist.
+            </p>
+            <p className="mt-2">
+              Hat der Auftraggeber ausdrücklich verlangt, dass die Maklertätigkeit während der Widerrufsfrist beginnen soll, so hat der Auftraggeber der HE immologis UG (haftungsbeschränkt) i. Gr. einen angemessenen Betrag zu zahlen, der dem Anteil der bis zum Zeitpunkt des Widerrufs bereits erbrachten Leistungen im Vergleich zum Gesamtumfang der vertraglich vorgesehenen Leistungen entspricht.
+            </p>
+            <p className="mt-2">
+              Das Widerrufsrecht erlischt bei einem Vertrag zur Erbringung von Dienstleistungen vorzeitig, wenn die Dienstleistung vollständig erbracht wurde und mit der Ausführung der Dienstleistung erst begonnen wurde, nachdem der Auftraggeber dazu seine ausdrückliche Zustimmung gegeben hat und gleichzeitig seine Kenntnis davon bestätigt hat, dass er sein Widerrufsrecht bei vollständiger Vertragserfüllung verliert.
+            </p>
+          </section>
+
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §6 Kontaktaufnahme mit dem Anbieter
+              §7 Kontaktaufnahme mit dem Anbieter
             </h2>
             <p className="mt-2">
               Die Kontaktaufnahme mit dem Anbieter ist stets über die HE immologis UG (haftungsbeschränkt) in Gründung einzuleiten.
@@ -89,7 +122,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §7 Objektangaben / Exposé
+              §8 Objektangaben / Exposé
             </h2>
             <p className="mt-2">
               Objektangaben sowie Exposés beruhen auf den vom Anbieter bzw. Auftraggeber erteilten Informationen. Für die vom Anbieter oder Auftraggeber gelieferten Informationen haftet ausschließlich der jeweilige Informationsgeber auch gegenüber Dritten. Eine Haftung bzw. Gewähr für die Richtigkeit und Vollständigkeit der Angaben wird daher von der HE immologis UG (haftungsbeschränkt) i. Gr. nicht übernommen.
@@ -98,7 +131,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §8 Provision
+              §9 Provision
             </h2>
             <p className="mt-2">
               Der Provisionsanspruch der HE immologis UG (haftungsbeschränkt) i. Gr. entsteht mit Vertragsabschluss des rechtswirksamen Hautvertrages oder einer vertragsähnlichen Bindung (z. B. Vorvertrag, Vertragsangebot, Vorkaufsrecht oder Dienstvertrag über die Vermittlung), sofern eine Provision vereinbart wurde und nicht zu gesetzlichen Vorgaben in Widerspruch steht.
@@ -123,7 +156,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §9 Fortbestand des Provisionsanspruchs
+              §10 Fortbestand des Provisionsanspruchs
             </h2>
             <p className="mt-2">
               Der Provisionsanspruch bleibt bestehen, auch wenn der Vertrag aufgrund einer auflösenden Bedingung, eines Rücktrittsrechts oder aus sonstigen Gründen aufgehoben wird.
@@ -132,7 +165,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §10 Geschäfte mit Angehörigen oder verbundenen Dritten
+              §11 Geschäfte mit Angehörigen oder verbundenen Dritten
             </h2>
             <p className="mt-2">
               Der Provisionsanspruch entsteht ebenfalls, wenn anstelle des Auftraggebers ein Familienangehöriger oder ein wirtschaftlich verbundener Dritter den Vertrag abschließt.
@@ -141,7 +174,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §11 Anwesenheit beim Notartermin
+              §12 Anwesenheit beim Notartermin
             </h2>
             <p className="mt-2">
               Die HE immologis UG (haftungsbeschränkt) i. Gr. ist berechtigt, am notariellen Vertragsabschluss teilzunehmen.
@@ -150,7 +183,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §12 Nachweis- oder Vermittlungstätigkeit
+              §13 Nachweis- oder Vermittlungstätigkeit
             </h2>
             <p className="mt-2">
               Soweit keine abweichende schriftliche Vereinbarung getroffen wurde, erbringt die HE immologis UG (haftungsbeschränkt) i. Gr. eine Nachweis- oder Vermittlungstätigkeit. Die Nachweistätigkeit beschränkt sich auf die Benennung und Beschreibung eines konkreten Objektes.
@@ -159,7 +192,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §13 Folgegeschäft
+              §14 Folgegeschäft
             </h2>
             <p className="mt-2">
               Ein Provisionsanspruch der HE immologis UG (haftungsbeschränkt) i. Gr. besteht auch bei Folgegeschäften, die innerhalb eines zeitlichen und wirtschaftlichen Zusammenhangs seit dem Ursprungsvertrag abgeschlossen werden. Ein Folgegeschäfts liegt dabei vor, wenn eine Erweiterung oder Veränderung der abgeschlossenen Vertragsgelegenheit eintritt.
@@ -168,7 +201,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §14 Zahlungsverzug
+              §15 Zahlungsverzug
             </h2>
             <p className="mt-2">
               Bei Zahlungsverzug schuldet der Auftraggeber Verzugszinsen in Höhe von 5 % über dem Basiszinssatz, mindestens jedoch 6 %. Ist kein Verbraucher beteiligt, beträgt der Zinssatz mindestens 8 % über dem Basiszinssatz. Der Basiszinssatz (oder kurz Basiszins) wird halbjährlich jeweils zum 1. Januar und 1. Juli jedes Jahres durch die Deutsche Bundesbank angepasst. Gemäß BGB § 288 lehnt sich der Zinssatz für Verzugszinsen an den jeweils aktuellen Basiszinssatz an. Dem Auftraggeber bleibt der Nachweis eines geringeren Schadens vorbehalten.
@@ -177,7 +210,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §15 Nachweis- oder Vermittlungstätigkeit
+              §16 Nachweis- oder Vermittlungstätigkeit
             </h2>
             <p className="mt-2">
               Soweit keine abweichende schriftliche Vereinbarung getroffen wurde, erbringt die HE immologis UG (haftungsbeschränkt) i. Gr. eine Nachweis- oder Vermittlungstätigkeit. Die Nachweistätigkeit beschränkt sich auf die Benennung und Beschreibung eines konkreten Objektes.
@@ -186,7 +219,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §16 Vorkenntnis des Objekts
+              §17 Vorkenntnis des Objekts
             </h2>
             <p className="mt-2">
               Ist dem Auftraggeber das nachgewiesene Objekt bereits bekannt, hat er dies unverzüglich, spätestens innerhalb von 5 Werktagen, schriftlich mitzuteilen und nachzuweisen. Unterlässt der Auftraggeber die Mitteilung, gilt das Objekt als unbekannt.
@@ -198,7 +231,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §17 Vorkenntnis Objekt und Rückfragepflicht des Eigentümers
+              §18 Vorkenntnis Objekt und Rückfragepflicht des Eigentümers
             </h2>
             <p className="mt-2">
               Für Objekte, die der HE immologis UG (haftungsbeschränkt) i. Gr. zur Vermarktung überlassen wurden, ist der Eigentümer verpflichtet, vor Abschluss eines beabsichtigten Hauptvertrages (insbesondere Kauf- oder Mietvertrag) unter Angabe von Namen und vollständiger Anschrift des vorgesehenen Vertragspartners bei der HE immologis UG (haftungsbeschränkt) i. Gr. schriftlich anzufragen, ob die Zuführung dieses Vertragspartners auf eine Tätigkeit der HE immologis UG (haftungsbeschränkt) i. Gr. zurückzuführen ist. Der Hauptvertrag darf erst nach entsprechender Auskunft bzw. Bestätigung durch die HE immologis UG (haftungsbeschränkt) i. Gr. abgeschlossen werden.
@@ -207,7 +240,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §18 Nebenabreden
+              §19 Nebenabreden
             </h2>
             <p className="mt-2">
               Nebenabreden bedürfen zu ihrer Wirksamkeit der schriftlichen Bestätigung durch die HE immologis UG (haftungsbeschränkt) i. Gr.
@@ -216,7 +249,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §19 Salvatorische Klausel
+              §20 Salvatorische Klausel
             </h2>
             <p className="mt-2">
               Sollten eine oder mehrere der vorstehenden Bestimmungen ungültig sein oder werden, so soll die Wirksamkeit der übrigen Bestimmungen hiervon nicht berührt werden. Die unwirksame Bestimmung soll gemäß § 306 Abs. 2 BGB durch die gesetzliche Regelung ersetzt werden, sofern das weitere Festhalten an dem Vertrag keine unzumutbare Härte für eine Vertragspartei darstellt.
@@ -225,7 +258,7 @@ export default function AgbPage() {
 
           <section>
             <h2 className="font-sans text-lg font-semibold text-slate-900">
-              §20 Gerichtsstand
+              §21 Gerichtsstand
             </h2>
             <p className="mt-2">
               Soweit gesetzlich zulässig, ist Gerichtsstand Weinheim. Handelt es sich bei unserem Kunden um einen Kaufmann im Sinne des HGB, ist ebenfalls als Gerichtsstand Weinheim vereinbart. Es gilt deutsches Recht.

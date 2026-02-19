@@ -24,7 +24,7 @@ export default function WiderrufPage() {
           <p>
             Die vollständige Widerrufsbelehrung und das Muster-Widerrufsformular finden Sie in unseren{" "}
             <Link href="/agb#widerruf" className="text-[#4682B4] underline hover:no-underline">
-              AGB (§ 6 Widerrufsrecht)
+              AGB (§ 6 Widerrufsbelehrung)
             </Link>
             .
           </p>

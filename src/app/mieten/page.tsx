@@ -23,23 +23,37 @@ const allRentals = rentalsData as Rental[];
 export default function MietenPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-[70vh] flex-col border-b border-zinc-100 bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
-          <h1 className="font-sans text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
+      {/* Hero mit Hintergrundbild */}
+      <section
+        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-zinc-100 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
+        aria-labelledby="hero-mieten-heading"
+        style={{
+          backgroundImage: "url(/img/hero-mieten.jpeg)",
+          backgroundSize: "100% auto",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#1e293b",
+        }}
+      >
+        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
+          <h1
+            id="hero-mieten-heading"
+            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+          >
             Mieten in Weinheim und Umgebung.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm">
             Passend ausgewählt. Transparent vermittelt. Zuhause ankommen.
           </p>
         </div>
         <a
           href="#mietobjekte"
-          className="absolute bottom-6 left-0 right-0 flex flex-col items-center gap-1 text-zinc-600 transition-colors hover:text-zinc-900 sm:bottom-8"
+          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
           aria-label="Zu den Mietobjekten scrollen"
         >
           <span className="text-sm font-medium">Passende Mietimmobilie finden</span>
-          <ChevronDown className="h-7 w-7 animate-bounce text-zinc-500" aria-hidden />
+          <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
 
