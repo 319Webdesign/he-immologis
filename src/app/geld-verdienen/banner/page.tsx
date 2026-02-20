@@ -178,7 +178,7 @@ export default function BannerPage() {
           </p>
           <p>
             Kommt ein Kunde über dieses Banner zu uns und es entsteht daraus ein erfolgreicher
-            Immobilienverkauf, erhalten Sie eine einmalige Tippgeber-Prämie von{" "}
+            Immobilienverkauf, erhalten Sie Ihre Banner-Prämie von{" "}
             <strong className="text-slate-800">500 €</strong>. Die Auszahlung erfolgt nach
             notariellem Kaufvertragsabschluss und Eingang der Maklercourtage.
           </p>
@@ -188,16 +188,6 @@ export default function BannerPage() {
           </p>
           <p>
             Bei erfolgreichem Abschluss zahlen wir Ihre Prämie direkt an Sie aus.
-          </p>
-          <p className="text-slate-600">
-            Für Geschäfte & Büros:{" "}
-            <Link
-              href="/geld-verdienen/aufsteller"
-              className="font-medium transition-colors hover:underline"
-              style={{ color: BRAND_BLUE }}
-            >
-              Werbe-Aufsteller – alle Infos
-            </Link>
           </p>
         </div>
       </section>

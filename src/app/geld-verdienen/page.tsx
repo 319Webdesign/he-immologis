@@ -204,16 +204,6 @@ export default function GeldVerdienenPage() {
                   Mustervertrag Werbefläche herunterladen
                 </Link>
               </div>
-              <p className="mt-4 text-sm text-slate-600">
-                Für Geschäfte & Büros:{" "}
-                <Link
-                  href="/geld-verdienen/aufsteller"
-                  className="font-medium transition-colors hover:underline"
-                  style={{ color: BRAND_BLUE }}
-                >
-                  Werbe-Aufsteller – alle Infos
-                </Link>
-              </p>
             </div>
           </div>
         </div>

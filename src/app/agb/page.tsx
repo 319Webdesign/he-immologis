@@ -74,7 +74,7 @@ export default function AgbPage() {
               §5 Einschaltung weitere Makler
             </h2>
             <p className="mt-2">
-              Die HE immologis UG (haftungsbeschränkt) i. G. ist berechtigt, einen oder weitere Makler zur Erfüllung des Auftrags hinzuzuziehen.
+              Die HE immologis UG (haftungsbeschränkt) i.Gr. ist berechtigt, einen oder weitere Makler zur Erfüllung des Auftrags hinzuzuziehen.
             </p>
           </section>
 
@@ -116,7 +116,7 @@ export default function AgbPage() {
               §7 Kontaktaufnahme mit dem Anbieter
             </h2>
             <p className="mt-2">
-              Die Kontaktaufnahme mit dem Anbieter ist stets über die HE immologis UG (haftungsbeschränkt) in Gründung einzuleiten.
+              Die Kontaktaufnahme mit dem Anbieter ist stets über die HE immologis UG (haftungsbeschränkt) i.Gr. einzuleiten.
             </p>
           </section>
 

@@ -23,7 +23,7 @@ const SERVICES: {
     icon: BarChart3,
   },
   {
-    title: "High-End Immobilienfotos",
+    title: "High End Immobilienfotos",
     text: "Visuelles Marketing durch Profi-Aufnahmen und Drohnenbilder.",
     icon: Camera,
   },

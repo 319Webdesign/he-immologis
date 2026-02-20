@@ -55,6 +55,7 @@ export default function AufstellerPage() {
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Sie haben ein Geschäft, Büro oder privat eine gut sichtbare Fläche im Eingangsbereich?
+            <br />
             Dann stellen Sie einfach einen Immobilien-Aufsteller von HE immologis auf.
           </p>
           <p className="mt-4 text-2xl font-bold sm:text-3xl" style={{ color: BRAND_BLUE }}>
@@ -185,7 +186,7 @@ export default function AufstellerPage() {
           <p>Sie müssen niemanden ansprechen oder vermitteln.</p>
           <p>
             Kommt ein Kunde über diesen Aufsteller zu uns und es entsteht daraus ein erfolgreicher
-            Immobilienverkauf, erhalten Sie eine einmalige Tippgeber-Prämie von{" "}
+            Immobilienverkauf, erhalten Sie Ihre Aufsteller-Prämie von{" "}
             <strong className="text-slate-800">500 €</strong>. Die Auszahlung erfolgt nach Abschluss
             des notariellen Kaufvertrags und Eingang der Maklercourtage.
           </p>

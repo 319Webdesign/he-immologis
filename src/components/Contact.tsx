@@ -110,7 +110,11 @@ export default function Contact({
                   <p className={isDark ? "text-zinc-400" : "text-zinc-600"}>
                     HE immologis UG
                     <br />
-                    Weinheim, Bergstraße
+                    (haftungsbeschränkt) i.Gr.
+                    <br />
+                    Ahornstr. 59
+                    <br />
+                    69469 Weinheim
                   </p>
                 </div>
               </div>

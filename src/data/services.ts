@@ -74,7 +74,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "📐 Storytelling & Präsentationsqualität",
       "Visuelles Storytelling statt reiner Dokumentation – Ihre Immobilie wird inhaltlich wie emotional in Szene gesetzt.",
       "Preis",
-      "High-End-Immobilienaufnahmen",
+      "High End Immobilienaufnahmen",
       "Hochwertige Drohnen- und Kameraproduktion für Luxusimmobilien: 600 € inkl. MwSt.",
     ],
   },

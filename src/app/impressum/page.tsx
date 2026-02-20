@@ -46,17 +46,16 @@ export default function ImpressumPage() {
             <h2 className="font-sans text-lg font-semibold text-slate-900">
               Kontakt
             </h2>
-            <p className="mt-2">
-              Telefon:{" "}
+            <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
+              <span>Telefon:</span>
               <a href="tel:+4917632198462" className="text-[#4682B4] underline hover:no-underline">
                 0176 321 98 462
               </a>
-              <br />
-              E-Mail:{" "}
+              <span>E-Mail:</span>
               <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
                 info@he-immologis.de
               </a>
-            </p>
+            </div>
           </section>
 
           <section>
