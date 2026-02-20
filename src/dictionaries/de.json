@@ -1,0 +1,172 @@
+{
+  "zertifikate": {
+    "metaTitle": "Qualifikation & Zertifikate",
+    "metaDescription": "Zertifikate und Qualifikationen der HE immologis UG – Professionalität durch stetige Weiterbildung. Erlaubnis § 34c GewO, Immobilienmakler, Wertermittlung.",
+    "heroTitle": "Qualifikation & Zertifikate",
+    "heroSubline": "Professionalität durch stetige Weiterbildung. Als inhabergeführtes Unternehmen lege ich größten Wert auf fachliche Fundierung und rechtliche Sicherheit.",
+    "ourCertificates": "Unsere Zertifikate",
+    "viewPdf": "Zertifikat einsehen (PDF)",
+    "wertermittlungExtra": "Internationale Version (Englisch)",
+    "weiterbildungTitle": "Weiterbildungspflicht",
+    "weiterbildungText": "Gemäß § 34c Abs. 2a GewO und § 15b MaBV erfüllen wir regelmäßig die gesetzliche Fortbildungspflicht von mindestens 20 Stunden innerhalb von 3 Jahren. So bleiben wir für Sie immer auf dem neuesten Stand der Rechtsprechung und Marktentwicklung.",
+    "categories": {
+      "legal": "Gesetzliche Erlaubnis",
+      "training": "Fachfortbildung",
+      "valuation": "Wertermittlung"
+    },
+    "certs": [
+      {
+        "title": "Erlaubnis nach § 34c GewO",
+        "summary": [
+          "Gewerbsmäßige Immobilienberatung und -vermittlung",
+          "IHK-Prüfung nach § 34c GewO bestanden",
+          "Amtliche Erlaubnis zur Ausübung des Maklerberufs"
+        ]
+      },
+      {
+        "title": "Zertifikat Immobilienmakler 34c (Fw2)",
+        "summary": [
+          "Geprüfte Fachkenntnis Immobilienmakler",
+          "Rechtliche und kaufmännische Grundlagen",
+          "Beratung und Vermittlung nach § 34c"
+        ]
+      },
+      {
+        "title": "Zertifikat 34c Immobilienmakler",
+        "summary": [
+          "Qualifikation Immobilienmakler § 34c GewO",
+          "Sachkunde und Berufspraxis",
+          "Vermittlung und Beratung von Immobilien"
+        ]
+      },
+      {
+        "title": "Zertifikat 34c Immobilienmakler der TA",
+        "summary": [
+          "Zertifikat Immobilienmakler § 34c GewO (TA)",
+          "Fachkunde und rechtliche Grundlagen",
+          "Beratung und Vermittlung von Immobilien"
+        ]
+      },
+      {
+        "title": "Zertifikat Wertermittlung der TA",
+        "summary": [
+          "Sachwertverfahren",
+          "Ertragswertverfahren",
+          "Vergleichswertverfahren und Bewertungsgrundlagen"
+        ]
+      }
+    ]
+  },
+  "tippgeber": {
+    "metaTitle": "Tipp geben – Tippgeber-Programm | HE immologis",
+    "metaDescription": "Werden Sie Tippgeber und sichern Sie sich bis zu 5.000 € Provision. Kennen Sie jemanden, der verkaufen möchte? HE immologis UG.",
+    "heroTitle": "Tipp geben – Geld verdienen",
+    "heroSubline": "Werden Sie Tippgeber und profitieren Sie von Ihrer Empfehlung.",
+    "heroCta": "Provision bis zu 5.000 €",
+    "staffelTitle": "Die Tippgeber-Staffel",
+    "introQuestion": "Kennen Sie jemanden, der seine Immobilie verkaufen möchte?",
+    "introText": "Dann geben Sie uns einfach den Hinweis – und sichern Sie sich eine attraktive Tippgeber-Prämie. Sie müssen nichts organisieren und kein Makler sein. Ein guter Kontakt genügt – wir kümmern uns um den Rest.",
+    "howTitle": "So verdienen Sie Geld",
+    "howSteps": [
+      "Sie nennen uns eine Immobilie, die noch nicht öffentlich angeboten wird.",
+      "Wir kontaktieren den Eigentümer und übernehmen die komplette Vermarktung.",
+      "Kommt es durch unsere Vermittlung zum erfolgreichen Verkauf, erhalten Sie Ihre Provision."
+    ],
+    "premiumTitle": "Ihre Prämie je nach Verkaufspreis",
+    "hinweis": "Hinweis:",
+    "hinweisText": "Wenn ein Tipp abgegeben wird, der eine nicht öffentlich angebotene Immobilie betrifft, wird ein Makleralleinauftrag gesichert, die Immobilie vermarktet und verkauft – und bei Abschluss wird die Tippgeber-Prämie ausgezahlt.",
+    "downloadAgreement": "Tippgebervereinbarung",
+    "downloadLetter": "Hinweisschreiben",
+    "afterCheck": "Nach Prüfung erhalten Sie eine schriftliche Tippgebervereinbarung. Bei erfolgreichem Abschluss zahlen wir Ihre Prämie direkt an Sie aus.",
+    "contactTitle": "Ihr Ansprechpartner",
+    "contactName": "Holger Eberhard",
+    "contactRole": "Geschäftsführer, HE immologis UG"
+  },
+  "verkaufen": {
+    "meta": {
+      "title": "Immobilie verkaufen",
+      "description": "Ihre Immobilie in besten Händen – Stellen Sie jetzt eine unverbindliche Verkaufsanfrage. HE immologis UG berät Sie kompetent beim Verkauf Ihrer Immobilie in Weinheim und der Region.",
+      "keywords": ["Immobilie verkaufen Weinheim", "Verkaufsanfrage Immobilie", "HE immologis Verkauf", "Immobilienverkauf Bergstraße"]
+    },
+    "hero": {
+      "titleLine1": "Verkaufen in Weinheim und Umgebung.",
+      "titleLine2": "Keine Burgen – Gerne Ihre Immobilie.",
+      "subtitle": "Klar bewertet. Optimal positioniert. Sicher verkauft.",
+      "ctaText": "Jetzt Verkaufswert ermitteln",
+      "ctaAriaLabel": "Zum Verkaufsanfrage-Formular scrollen"
+    },
+    "provision": {
+      "headingSrOnly": "Hinweis zur Maklerprovision",
+      "badge": "Hinweis",
+      "paragraph1": "Zur guten Ordnung weisen wir darauf hin, dass im Falle der Beauftragung eine Maklerprovision von jeweils 3,57 % des notariell beurkundeten Kaufpreises anfällt, inklusive gesetzlicher Mehrwertsteuer. Diese Provision wird jeweils zur Hälfte von Käufer und Verkäufer getragen, sofern nicht abweichend vereinbart. Der Anspruch auf die Provision entsteht, sobald der Makler mit der Vermittlungstätigkeit beauftragt ist und der Kaufvertrag notariell beurkundet wurde.",
+      "paragraph2Prefix": "Hier gelten unsere Allgemeinen Geschäftsbedingungen (",
+      "paragraph2Suffix": ") sowie die gesetzlichen Bestimmungen.",
+      "agbLinkText": "AGB"
+    },
+    "finalCta": {
+      "title": "Sie sind sich noch unsicher über den Marktwert?",
+      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen. Holger Eberhard bewertet Ihre Immobilie fachgerecht, diskret und für Sie vollkommen kostenfrei.",
+      "buttonText": "Kostenlose Wertermittlung anfragen",
+      "callText": "Lieber direkt anrufen?"
+    },
+    "sellerServices": {
+      "heading": "Mehr als nur Vermittlung – Unser Full-Service-Versprechen",
+      "subheading": "Unser Premium-Service für Verkäufer",
+      "buttonText": "Zu meinen Services",
+      "services": [
+        {"title": "Professionelle Wertermittlung", "text": "Fundierte Marktanalyse für den optimalen Verkaufspreis."},
+        {"title": "High End Immobilienfotos", "text": "Visuelles Marketing durch Profi-Aufnahmen und Drohnenbilder."},
+        {"title": "Dokumentenbeschaffung", "text": "Wir kümmern uns um alle notwendigen gesetzlichen Unterlagen."},
+        {"title": "Qualifizierte Interessentenprüfung", "text": "Besichtigungen nur mit geprüften Käufern und Bonitätscheck."},
+        {"title": "Notar- & Vertragsmanagement", "text": "Komplette Vorbereitung und Begleitung zum Beurkundungstermin."},
+        {"title": "Nachbetreuung", "text": "Auch nach dem Verkauf bleiben wir Ihr Ansprechpartner für die Übergabe."}
+      ]
+    },
+    "sellForm": {
+      "sectionPersonal": "Persönliche Daten",
+      "sectionObject": "Objektdaten (Adresse)",
+      "sectionProperty": "Immobiliendetails",
+      "sectionAdditional": "Zusatzinformationen",
+      "labels": {
+        "vorname": "Vorname",
+        "nachname": "Nachname",
+        "email": "E-Mail-Adresse",
+        "telefon": "Telefonnummer",
+        "strasse": "Straße",
+        "hausnummer": "Hausnummer",
+        "plz": "Postleitzahl",
+        "ort": "Ort",
+        "immobilientyp": "Immobilientyp",
+        "baujahr": "Baujahr Immobilie",
+        "zustand": "Zustand Ihrer Immobilie",
+        "nachricht": "Erste Informationen zur Immobilie / Nachricht an uns"
+      },
+      "placeholders": {
+        "vorname": "Max",
+        "nachname": "Mustermann",
+        "email": "ihre@email.de",
+        "telefon": "+49 123 456789",
+        "strasse": "Bergstraße",
+        "hausnummer": "42",
+        "plz": "69469",
+        "ort": "Weinheim",
+        "pleaseChoose": "Bitte wählen",
+        "baujahr": "1985",
+        "nachricht": "Beschreiben Sie Ihre Immobilie kurz oder teilen Sie uns weitere Wünsche mit..."
+      },
+      "immobilienTypen": ["Einfamilienhaus", "Zweifamilienhaus", "Reihenhaus", "Doppelhaushälfte", "Mehrfamilienhaus", "Eigentumswohnung", "Grundstück", "Gewerbeimmobilie", "Gewerbe / Wohnen", "Gewerbe- / Wohnimmobilie"],
+      "zustaende": ["gepflegt", "renoviert / modernisiert", "kernsaniert", "renovierungsbedürftig", "sanierungsbedürftig"],
+      "errors": {
+        "emailRequired": "E-Mail-Adresse ist ein Pflichtfeld.",
+        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "agbRequired": "Bitte akzeptieren Sie die AGB, um die Anfrage zu senden."
+      },
+      "successTitle": "Vielen Dank für Ihre Anfrage",
+      "successMessage": "Holger Eberhard wird sich zeitnah bei Ihnen melden.",
+      "agbLabelPrefix": "Ich habe die ",
+      "agbLabelSuffix": " gelesen und akzeptiere diese. *",
+      "agbLinkText": "AGB",
+      "submitButton": "Anfrage senden"
+    }
+  }
+}

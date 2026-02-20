@@ -28,8 +28,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LogistikberatungSlugPage({ params }: Props) {
   const { slug } = await params;
-  const modul = SMART_MODULE.find((m) => m.slug === slug);
+  const modulIndex = SMART_MODULE.findIndex((m) => m.slug === slug);
+  const modul = modulIndex >= 0 ? SMART_MODULE[modulIndex] : undefined;
   if (!modul) notFound();
+  const nextModul = modulIndex >= 0 && modulIndex < SMART_MODULE.length - 1
+    ? SMART_MODULE[modulIndex + 1]
+    : null;
 
   type Block =
     | { type: "p"; text: string }
@@ -85,7 +89,9 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
             {modul.letter}
           </div>
           <h1 className="mt-4 font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            SMART Modul {modul.letter} – {modul.title}
+            SMART Modul {modul.letter}
+            <br />
+            <span className="text-2xl sm:text-3xl">– {modul.title}</span>
           </h1>
           {modul.subtitle && (
             <p className="mt-2 text-lg text-slate-600">({modul.subtitle})</p>
@@ -156,7 +162,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
           ))}
         </div>
 
-        <div className="mt-12">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <Link
             href="/logistikberatung"
             className="inline-flex items-center text-sm font-semibold"
@@ -164,6 +170,15 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
           >
             ← Alle SMART Module
           </Link>
+          {nextModul && (
+            <Link
+              href={`/logistikberatung/${nextModul.slug}`}
+              className="inline-flex items-center text-sm font-semibold"
+              style={{ color: BRAND_BLUE }}
+            >
+              Modul {nextModul.letter} – {nextModul.title} →
+            </Link>
+          )}
         </div>
       </section>
 

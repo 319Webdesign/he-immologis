@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { MapPin, BedDouble } from "lucide-react";
 import type { Property } from "@/types";
 
@@ -18,6 +21,8 @@ function formatPrice(price: number): string {
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
+  const pathname = usePathname();
+  const lang = (pathname?.split("/")[1] ?? "de") as string;
   const imageSrc =
     property.vorschaubild?.startsWith("http") ||
     property.vorschaubild?.startsWith("/")
@@ -26,7 +31,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
   return (
     <Link
-      href={`/kaufen/${property.id}`}
+      href={`/${lang}/kaufen/${property.id}`}
       className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">

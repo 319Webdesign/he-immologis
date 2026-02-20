@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Home, Search } from "lucide-react";
 import { useState } from "react";
 
@@ -24,6 +25,8 @@ const ZUSTAENDE = [
 ] as const;
 
 export default function ValueBanner() {
+  const pathname = usePathname();
+  const lang = (pathname?.split("/")[1] ?? "de") as string;
   const [objekttyp, setObjekttyp] = useState("");
   const [zustand, setZustand] = useState("");
 
@@ -32,7 +35,7 @@ export default function ValueBanner() {
     if (objekttyp) params.set("objekttyp", objekttyp);
     if (zustand) params.set("zustand", zustand);
     const qs = params.toString();
-    return `/verkaufen${qs ? `?${qs}` : ""}#anfrage-formular`;
+    return `/${lang}/verkaufen${qs ? `?${qs}` : ""}#anfrage-formular`;
   })();
 
   return (

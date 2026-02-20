@@ -1,27 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const IMMOBILIEN_TYPEN = [
-  "Einfamilienhaus",
-  "Zweifamilienhaus",
-  "Reihenhaus",
-  "Doppelhaushälfte",
-  "Mehrfamilienhaus",
-  "Eigentumswohnung",
-  "Grundstück",
-  "Gewerbeimmobilie",
-  "Gewerbe / Wohnen",
-  "Gewerbe- / Wohnimmobilie",
-] as const;
-
-const ZUSTAENDE = [
-  "gepflegt",
-  "renoviert / modernisiert",
-  "kernsaniert",
-  "renovierungsbedürftig",
-  "sanierungsbedürftig",
-] as const;
+import Link from "next/link";
 
 interface FormData {
   vorname: string;
@@ -44,29 +24,48 @@ function isValidEmail(email: string): boolean {
   return emailRegex.test(email.trim());
 }
 
-/** Map Wertermittlungs-Dropdown (ValueBanner) auf Formular-Optionen */
-function mapInitialZustand(urlZustand: string | undefined): string {
-  if (!urlZustand) return "";
-  const map: Record<string, string> = {
-    normal: "gepflegt",
-    modernisiert: "renoviert / modernisiert",
-    kernsaniert: "kernsaniert",
-    modernisierungsbedürftig: "renovierungsbedürftig",
-    sanierungsbedürftig: "sanierungsbedürftig",
-  };
-  return map[urlZustand] ?? "";
-}
+export type SellFormDict = {
+  sectionPersonal: string;
+  sectionObject: string;
+  sectionProperty: string;
+  sectionAdditional: string;
+  labels: Record<string, string>;
+  placeholders: Record<string, string>;
+  immobilienTypen: string[];
+  zustaende: string[];
+  errors: { emailRequired: string; emailInvalid: string; agbRequired: string };
+  successTitle: string;
+  successMessage: string;
+  agbLabelPrefix: string;
+  agbLabelSuffix: string;
+  agbLinkText: string;
+  submitButton: string;
+};
 
 interface SellFormProps {
-  initialObjekttyp?: string;
-  initialZustand?: string;
+  dict: SellFormDict;
+  lang: string;
+  initialObjekttypIndex?: number;
+  initialZustandIndex?: number;
 }
 
 export default function SellForm({
-  initialObjekttyp,
-  initialZustand,
-}: SellFormProps = {}) {
-  const mappedZustand = mapInitialZustand(initialZustand);
+  dict,
+  lang,
+  initialObjekttypIndex,
+  initialZustandIndex,
+}: SellFormProps) {
+  const typen = dict.immobilienTypen;
+  const zustaende = dict.zustaende;
+  const initialTyp =
+    initialObjekttypIndex != null && typen[initialObjekttypIndex] != null
+      ? typen[initialObjekttypIndex]
+      : "";
+  const initialZustand =
+    initialZustandIndex != null && zustaende[initialZustandIndex] != null
+      ? zustaende[initialZustandIndex]
+      : "";
+
   const [formData, setFormData] = useState<FormData>({
     vorname: "",
     nachname: "",
@@ -76,16 +75,14 @@ export default function SellForm({
     hausnummer: "",
     plz: "",
     ort: "",
-    immobilientyp: initialObjekttyp ?? "",
+    immobilientyp: initialTyp,
     baujahr: "",
-    zustand: mappedZustand,
+    zustand: initialZustand,
     nachricht: "",
     agbAkzeptiert: false,
   });
 
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>(
-    {}
-  );
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (
@@ -108,14 +105,13 @@ export default function SellForm({
     const newErrors: Partial<Record<keyof FormData, string>> = {};
 
     if (!formData.email.trim()) {
-      newErrors.email = "E-Mail-Adresse ist ein Pflichtfeld.";
+      newErrors.email = dict.errors.emailRequired;
     } else if (!isValidEmail(formData.email)) {
-      newErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
+      newErrors.email = dict.errors.emailInvalid;
     }
 
     if (!formData.agbAkzeptiert) {
-      newErrors.agbAkzeptiert =
-        "Bitte akzeptieren Sie die AGB, um die Anfrage zu senden.";
+      newErrors.agbAkzeptiert = dict.errors.agbRequired;
     }
 
     setErrors(newErrors);
@@ -125,8 +121,6 @@ export default function SellForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-
-    // Hier könnte die Formularverarbeitung (z.B. API-Call) erfolgen
     console.log("Verkaufsanfrage:", formData);
     setIsSubmitted(true);
   };
@@ -166,6 +160,10 @@ export default function SellForm({
     </div>
   );
 
+  const p = dict.placeholders;
+  const l = dict.labels;
+  const prefix = `/${lang}`;
+
   if (isSubmitted) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm sm:p-16">
@@ -185,10 +183,10 @@ export default function SellForm({
           </svg>
         </div>
         <h3 className="mt-6 font-sans text-xl font-semibold text-slate-800">
-          Vielen Dank für Ihre Anfrage
+          {dict.successTitle}
         </h3>
-        <p className="mt-3 max-w-md mx-auto text-slate-600">
-          Holger Eberhard wird sich zeitnah bei Ihnen melden.
+        <p className="mx-auto mt-3 max-w-md text-slate-600">
+          {dict.successMessage}
         </p>
       </div>
     );
@@ -197,17 +195,12 @@ export default function SellForm({
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10 lg:p-12">
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Gruppe 1: Persönliche Daten */}
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-800">
-            Persönliche Daten
+            {dict.sectionPersonal}
           </h3>
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field
-              id="vorname"
-              name="vorname"
-              label="Vorname"
-            >
+            <Field id="vorname" name="vorname" label={l.vorname}>
               <input
                 type="text"
                 id="vorname"
@@ -215,14 +208,10 @@ export default function SellForm({
                 value={formData.vorname}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="Max"
+                placeholder={p.vorname}
               />
             </Field>
-            <Field
-              id="nachname"
-              name="nachname"
-              label="Nachname"
-            >
+            <Field id="nachname" name="nachname" label={l.nachname}>
               <input
                 type="text"
                 id="nachname"
@@ -230,16 +219,10 @@ export default function SellForm({
                 value={formData.nachname}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="Mustermann"
+                placeholder={p.nachname}
               />
             </Field>
-            <Field
-              id="email"
-              name="email"
-              label="E-Mail-Adresse"
-              required
-              error={errors.email}
-            >
+            <Field id="email" name="email" label={l.email} required error={errors.email}>
               <input
                 type="email"
                 id="email"
@@ -247,15 +230,11 @@ export default function SellForm({
                 value={formData.email}
                 onChange={handleChange}
                 className={`${inputBase} ${errors.email ? inputError : ""}`}
-                placeholder="ihre@email.de"
+                placeholder={p.email}
                 aria-invalid={!!errors.email}
               />
             </Field>
-            <Field
-              id="telefon"
-              name="telefon"
-              label="Telefonnummer"
-            >
+            <Field id="telefon" name="telefon" label={l.telefon}>
               <input
                 type="tel"
                 id="telefon"
@@ -263,23 +242,18 @@ export default function SellForm({
                 value={formData.telefon}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="+49 123 456789"
+                placeholder={p.telefon}
               />
             </Field>
           </div>
         </div>
 
-        {/* Gruppe 2: Objektdaten (Adresse) */}
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-800">
-            Objektdaten (Adresse)
+            {dict.sectionObject}
           </h3>
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field
-              id="strasse"
-              name="strasse"
-              label="Straße"
-            >
+            <Field id="strasse" name="strasse" label={l.strasse}>
               <input
                 type="text"
                 id="strasse"
@@ -287,14 +261,10 @@ export default function SellForm({
                 value={formData.strasse}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="Bergstraße"
+                placeholder={p.strasse}
               />
             </Field>
-            <Field
-              id="hausnummer"
-              name="hausnummer"
-              label="Hausnummer"
-            >
+            <Field id="hausnummer" name="hausnummer" label={l.hausnummer}>
               <input
                 type="text"
                 id="hausnummer"
@@ -302,14 +272,10 @@ export default function SellForm({
                 value={formData.hausnummer}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="42"
+                placeholder={p.hausnummer}
               />
             </Field>
-            <Field
-              id="plz"
-              name="plz"
-              label="Postleitzahl"
-            >
+            <Field id="plz" name="plz" label={l.plz}>
               <input
                 type="text"
                 id="plz"
@@ -317,14 +283,10 @@ export default function SellForm({
                 value={formData.plz}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="69469"
+                placeholder={p.plz}
               />
             </Field>
-            <Field
-              id="ort"
-              name="ort"
-              label="Ort"
-            >
+            <Field id="ort" name="ort" label={l.ort}>
               <input
                 type="text"
                 id="ort"
@@ -332,23 +294,18 @@ export default function SellForm({
                 value={formData.ort}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="Weinheim"
+                placeholder={p.ort}
               />
             </Field>
           </div>
         </div>
 
-        {/* Gruppe 3: Immobiliendetails */}
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-800">
-            Immobiliendetails
+            {dict.sectionProperty}
           </h3>
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field
-              id="immobilientyp"
-              name="immobilientyp"
-              label="Immobilientyp"
-            >
+            <Field id="immobilientyp" name="immobilientyp" label={l.immobilientyp}>
               <select
                 id="immobilientyp"
                 name="immobilientyp"
@@ -356,19 +313,15 @@ export default function SellForm({
                 onChange={handleChange}
                 className={inputBase}
               >
-                <option value="">Bitte wählen</option>
-                {IMMOBILIEN_TYPEN.map((typ) => (
+                <option value="">{p.pleaseChoose}</option>
+                {dict.immobilienTypen.map((typ) => (
                   <option key={typ} value={typ}>
                     {typ}
                   </option>
                 ))}
               </select>
             </Field>
-            <Field
-              id="baujahr"
-              name="baujahr"
-              label="Baujahr Immobilie"
-            >
+            <Field id="baujahr" name="baujahr" label={l.baujahr}>
               <input
                 type="number"
                 id="baujahr"
@@ -376,16 +329,12 @@ export default function SellForm({
                 value={formData.baujahr}
                 onChange={handleChange}
                 className={inputBase}
-                placeholder="1985"
+                placeholder={p.baujahr}
                 min={1800}
                 max={new Date().getFullYear() + 1}
               />
             </Field>
-            <Field
-              id="zustand"
-              name="zustand"
-              label="Zustand Ihrer Immobilie"
-            >
+            <Field id="zustand" name="zustand" label={l.zustand}>
               <select
                 id="zustand"
                 name="zustand"
@@ -393,8 +342,8 @@ export default function SellForm({
                 onChange={handleChange}
                 className={inputBase}
               >
-                <option value="">Bitte wählen</option>
-                {ZUSTAENDE.map((z) => (
+                <option value="">{p.pleaseChoose}</option>
+                {dict.zustaende.map((z) => (
                   <option key={z} value={z}>
                     {z}
                   </option>
@@ -404,29 +353,23 @@ export default function SellForm({
           </div>
         </div>
 
-        {/* Gruppe 4: Zusatzinformationen */}
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-800">
-            Zusatzinformationen
+            {dict.sectionAdditional}
           </h3>
-          <Field
-            id="nachricht"
-            name="nachricht"
-            label="Erste Informationen zur Immobilie / Nachricht an uns"
-          >
+          <Field id="nachricht" name="nachricht" label={l.nachricht}>
             <textarea
               id="nachricht"
               name="nachricht"
               rows={6}
               value={formData.nachricht}
               onChange={handleChange}
-              className={`${inputBase} resize-y min-h-[140px]`}
-              placeholder="Beschreiben Sie Ihre Immobilie kurz oder teilen Sie uns weitere Wünsche mit..."
+              className={`${inputBase} min-h-[140px] resize-y`}
+              placeholder={p.nachricht}
             />
           </Field>
         </div>
 
-        {/* AGB-Checkbox */}
         <div className="pt-2">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
             <div className="flex items-start gap-3">
@@ -439,20 +382,17 @@ export default function SellForm({
                 className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 text-[#3d6d99] focus:ring-[#3d6d99]/30"
                 aria-invalid={!!errors.agbAkzeptiert}
               />
-              <label
-                htmlFor="agbAkzeptiert"
-                className="text-sm text-slate-700"
-              >
-                Ich habe die{" "}
-                <a
-                  href="/agb"
+              <label htmlFor="agbAkzeptiert" className="text-sm text-slate-700">
+                {dict.agbLabelPrefix}
+                <Link
+                  href={`${prefix}/agb`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#3d6d99] underline hover:opacity-80"
                 >
-                  AGB
-                </a>{" "}
-                gelesen und akzeptiere diese. <span className="text-red-500">*</span>
+                  {dict.agbLinkText}
+                </Link>
+                {dict.agbLabelSuffix}
               </label>
             </div>
           </div>
@@ -469,7 +409,7 @@ export default function SellForm({
             className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2 sm:w-auto sm:min-w-[200px]"
             style={{ backgroundColor: "#3d6d99" }}
           >
-            Anfrage senden
+            {dict.submitButton}
           </button>
         </div>
       </form>

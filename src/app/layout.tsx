@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const playfair = Playfair_Display({
   variable: "--font-display",
@@ -50,13 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${geistSans.variable} font-sans antialiased`}
       >
-        <Navbar />
-        <main className="min-h-screen pt-[7.5rem]">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

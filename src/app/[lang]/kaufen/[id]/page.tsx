@@ -6,6 +6,7 @@ import { ArrowLeft, MapPin, Home } from "lucide-react";
 import propertiesData from "@/data/properties.json";
 import type { PropertyWithDetails } from "@/types";
 import { PropertyActionIcons, ExposeForm } from "./PropertyDetailActions";
+import { getLocaleFromHeaders } from "@/lib/i18n";
 
 const properties = propertiesData as PropertyWithDetails[];
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
@@ -66,6 +67,7 @@ export async function generateMetadata({
 
 export default async function PropertyDetailPage({ params }: PageProps) {
   const { id } = await params;
+  const locale = await getLocaleFromHeaders();
   const p = properties.find((prop) => prop.id === id);
 
   if (!p) notFound();
@@ -95,7 +97,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Zurück-Link */}
         <Link
-          href="/kaufen"
+          href={`/${locale}/kaufen`}
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900"
         >
           <ArrowLeft className="h-4 w-4" />

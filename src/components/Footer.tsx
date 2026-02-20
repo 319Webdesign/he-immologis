@@ -15,7 +15,10 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-export default function Footer() {
+type Locale = "de" | "en";
+
+export default function Footer({ lang }: { lang: Locale }) {
+  const prefix = `/${lang}`;
   return (
     <footer className="bg-slate-900 text-white" role="contentinfo">
       {/* Hauptbereich: 4 Spalten */}
@@ -23,7 +26,7 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Spalte 1: Firma & Logo */}
           <div className="flex flex-col">
-            <Link href="/" className="-mt-2 mb-4 inline-block overflow-visible">
+            <Link href={prefix} className="-mt-2 mb-4 inline-block overflow-visible">
               <Image
                 src="/img/logo.png"
                 alt="HE immologis"
@@ -147,7 +150,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2">
               <li>
                 <Link
-                  href="/verkaufen"
+                  href={`${prefix}/verkaufen`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Verkaufen
@@ -155,7 +158,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/kaufen"
+                  href={`${prefix}/kaufen`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Kaufen
@@ -163,7 +166,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/mieten"
+                  href={`${prefix}/mieten`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Mieten
@@ -171,7 +174,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/immobilie-suchen"
+                  href={`${prefix}/immobilie-suchen`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Suchen
@@ -179,7 +182,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/geld-verdienen/tipp-geben"
+                  href={`${prefix}/geld-verdienen/tipp-geben`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Tipp geben
@@ -187,7 +190,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/geld-verdienen/banner"
+                  href={`${prefix}/geld-verdienen/banner`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Banner werben
@@ -195,7 +198,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/geld-verdienen/aufsteller"
+                  href={`${prefix}/geld-verdienen/aufsteller`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Aufsteller werben
@@ -203,7 +206,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/logistikberatung"
+                  href={`${prefix}/logistikberatung`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Logistikberatung
@@ -211,7 +214,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/immobilien-services"
+                  href={`${prefix}/immobilien-services`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   Service
@@ -254,37 +257,37 @@ export default function Footer() {
             aria-label="Rechtliche Links"
           >
             <Link
-              href="/impressum"
+              href={`${prefix}/impressum`}
               className="text-slate-400 transition-colors hover:text-white"
             >
               Impressum
             </Link>
             <Link
-              href="/datenschutz"
+              href={`${prefix}/datenschutz`}
               className="text-slate-400 transition-colors hover:text-white"
             >
               Datenschutz
             </Link>
             <Link
-              href="/agb"
+              href={`${prefix}/agb`}
               className="text-slate-400 transition-colors hover:text-white"
             >
               AGB
             </Link>
             <Link
-              href="/widerruf"
+              href={`${prefix}/widerruf`}
               className="text-slate-400 transition-colors hover:text-white"
             >
               Widerruf
             </Link>
             <Link
-              href="/cookies"
+              href={`${prefix}/cookies`}
               className="text-slate-400 transition-colors hover:text-white"
             >
               Cookies
             </Link>
             <Link
-              href="/zertifikate"
+              href={`${prefix}/zertifikate`}
               className="text-slate-400 transition-colors hover:text-white"
             >
               Zertifikate

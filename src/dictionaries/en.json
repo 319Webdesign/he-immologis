@@ -1,0 +1,172 @@
+{
+  "zertifikate": {
+    "metaTitle": "Qualifications & Certificates",
+    "metaDescription": "Certificates and qualifications of HE immologis UG – professionalism through continuous training. § 34c GewO licence, real estate agent, valuation.",
+    "heroTitle": "Qualifications & Certificates",
+    "heroSubline": "Professionalism through continuous training. As a founder-led company, I place the highest value on solid expertise and legal compliance.",
+    "ourCertificates": "Our Certificates",
+    "viewPdf": "View certificate (PDF)",
+    "wertermittlungExtra": "International version (English)",
+    "weiterbildungTitle": "Continuing education requirement",
+    "weiterbildungText": "In accordance with § 34c (2a) GewO and § 15b MaBV, we regularly fulfil the statutory continuing education requirement of at least 20 hours within 3 years. This keeps us up to date with the latest legal practice and market developments for you.",
+    "categories": {
+      "legal": "Legal authorisation",
+      "training": "Professional training",
+      "valuation": "Valuation"
+    },
+    "certs": [
+      {
+        "title": "Authorisation pursuant to § 34c GewO",
+        "summary": [
+          "Commercial real estate advisory and brokerage",
+          "Chamber of Commerce examination § 34c GewO passed",
+          "Official authorisation to practise as a broker"
+        ]
+      },
+      {
+        "title": "Real estate agent certificate 34c (Fw2)",
+        "summary": [
+          "Certified expertise real estate agent",
+          "Legal and commercial fundamentals",
+          "Advisory and brokerage pursuant to § 34c"
+        ]
+      },
+      {
+        "title": "Certificate 34c real estate agent",
+        "summary": [
+          "Qualification real estate agent § 34c GewO",
+          "Expertise and professional practice",
+          "Brokerage and advisory for real estate"
+        ]
+      },
+      {
+        "title": "Certificate 34c real estate agent (TA)",
+        "summary": [
+          "Real estate agent certificate § 34c GewO (TA)",
+          "Expertise and legal fundamentals",
+          "Advisory and brokerage for real estate"
+        ]
+      },
+      {
+        "title": "Valuation certificate (TA)",
+        "summary": [
+          "Cost approach (Sachwertverfahren)",
+          "Income approach (Ertragswertverfahren)",
+          "Sales comparison approach and valuation fundamentals"
+        ]
+      }
+    ]
+  },
+  "tippgeber": {
+    "metaTitle": "Give a tip – Referral programme | HE immologis",
+    "metaDescription": "Become a referrer and earn up to €5,000 commission. Know someone who wants to sell? HE immologis UG.",
+    "heroTitle": "Give a tip – Earn money",
+    "heroSubline": "Become a referrer and benefit from your recommendation.",
+    "heroCta": "Commission up to €5,000",
+    "staffelTitle": "The referrer commission tiers",
+    "introQuestion": "Do you know someone who wants to sell their property?",
+    "introText": "Then simply pass on the lead – and secure an attractive referrer bonus. You don’t need to organise anything or be an agent. A good contact is enough – we take care of the rest.",
+    "howTitle": "How you earn",
+    "howSteps": [
+      "You tell us about a property that is not yet publicly listed.",
+      "We contact the owner and take over the full marketing.",
+      "If a sale is completed through our brokerage, you receive your commission."
+    ],
+    "premiumTitle": "Your bonus depending on sale price",
+    "hinweis": "Note:",
+    "hinweisText": "When a tip is given for a property that is not publicly offered, we secure an exclusive brokerage mandate, market and sell the property – and upon completion the referrer bonus is paid out.",
+    "downloadAgreement": "Referrer agreement",
+    "downloadLetter": "Disclosure letter",
+    "afterCheck": "After review you will receive a written referrer agreement. Upon successful completion we pay your bonus directly to you.",
+    "contactTitle": "Your contact",
+    "contactName": "Holger Eberhard",
+    "contactRole": "Managing Director, HE immologis UG"
+  },
+  "verkaufen": {
+    "meta": {
+      "title": "Sell your property",
+      "description": "Your property in the best hands – Submit a non-binding sale enquiry now. HE immologis UG advises you competently on selling your property in Weinheim and the region.",
+      "keywords": ["Sell property Weinheim", "Property sale enquiry", "HE immologis sale", "Property sale Bergstraße"]
+    },
+    "hero": {
+      "titleLine1": "Selling in Weinheim and the surrounding area.",
+      "titleLine2": "No castles – We'd be glad to have your property.",
+      "subtitle": "Clearly valued. Optimally positioned. Sold with confidence.",
+      "ctaText": "Get your sale value now",
+      "ctaAriaLabel": "Scroll to sale enquiry form"
+    },
+    "provision": {
+      "headingSrOnly": "Note on broker commission",
+      "badge": "Note",
+      "paragraph1": "For the sake of clarity we would like to point out that, when instructed, a broker commission of 3.57% of the notarially certified purchase price applies, including statutory VAT. This commission is borne equally by buyer and seller unless otherwise agreed. The right to commission arises once the broker is instructed to carry out the brokerage and the purchase agreement has been notarially certified.",
+      "paragraph2Prefix": "Our General Terms and Conditions (",
+      "paragraph2Suffix": ") as well as statutory provisions apply here.",
+      "agbLinkText": "GTC"
+    },
+    "finalCta": {
+      "title": "Still unsure about the market value?",
+      "description": "Let's take the first step together. Holger Eberhard will value your property professionally, discreetly and completely free of charge for you.",
+      "buttonText": "Request free valuation",
+      "callText": "Prefer to call directly?"
+    },
+    "sellerServices": {
+      "heading": "More than just brokerage – Our full-service promise",
+      "subheading": "Our premium service for sellers",
+      "buttonText": "To my services",
+      "services": [
+        {"title": "Professional valuation", "text": "Sound market analysis for the optimal sale price."},
+        {"title": "High-end property photography", "text": "Visual marketing with professional shots and drone imagery."},
+        {"title": "Document procurement", "text": "We take care of all necessary legal documents."},
+        {"title": "Qualified buyer screening", "text": "Viewings only with vetted buyers and credit checks."},
+        {"title": "Notary & contract management", "text": "Full preparation and support through to the notarisation appointment."},
+        {"title": "After-sales support", "text": "We remain your contact for handover even after the sale."}
+      ]
+    },
+    "sellForm": {
+      "sectionPersonal": "Personal details",
+      "sectionObject": "Property address",
+      "sectionProperty": "Property details",
+      "sectionAdditional": "Additional information",
+      "labels": {
+        "vorname": "First name",
+        "nachname": "Last name",
+        "email": "Email address",
+        "telefon": "Phone number",
+        "strasse": "Street",
+        "hausnummer": "House no.",
+        "plz": "Postcode",
+        "ort": "Town/City",
+        "immobilientyp": "Property type",
+        "baujahr": "Year built",
+        "zustand": "Condition of your property",
+        "nachricht": "Initial information about the property / Message to us"
+      },
+      "placeholders": {
+        "vorname": "Max",
+        "nachname": "Mustermann",
+        "email": "your@email.com",
+        "telefon": "+49 123 456789",
+        "strasse": "Main Street",
+        "hausnummer": "42",
+        "plz": "69469",
+        "ort": "Weinheim",
+        "pleaseChoose": "Please select",
+        "baujahr": "1985",
+        "nachricht": "Briefly describe your property or share any additional requirements..."
+      },
+      "immobilienTypen": ["Single-family house", "Two-family house", "Terraced house", "Semi-detached house", "Multi-family house", "Condominium", "Land", "Commercial property", "Commercial / Residential", "Mixed-use property"],
+      "zustaende": ["well maintained", "renovated / modernised", "fully refurbished", "in need of renovation", "in need of refurbishment"],
+      "errors": {
+        "emailRequired": "Email address is required.",
+        "emailInvalid": "Please enter a valid email address.",
+        "agbRequired": "Please accept the GTC to submit your enquiry."
+      },
+      "successTitle": "Thank you for your enquiry",
+      "successMessage": "Holger Eberhard will get back to you shortly.",
+      "agbLabelPrefix": "I have read and accept the ",
+      "agbLabelSuffix": ". *",
+      "agbLinkText": "GTC",
+      "submitButton": "Send enquiry"
+    }
+  }
+}

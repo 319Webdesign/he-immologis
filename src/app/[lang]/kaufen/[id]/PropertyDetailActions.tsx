@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Heart,
   List,
@@ -20,10 +21,12 @@ export function PropertyActionIcons({
   propertyTitle,
 }: PropertyDetailActionsProps) {
   const [merken, setMerken] = useState(false);
+  const pathname = usePathname();
+  const lang = (pathname?.split("/")[1] ?? "de") as string;
 
   const shareUrl =
     typeof window !== "undefined"
-      ? `${window.location.origin}/kaufen/${propertyId}`
+      ? `${window.location.origin}/${lang}/kaufen/${propertyId}`
       : "";
   const mailto = `mailto:info@he-immologis.de?subject=Objektanfrage: ${encodeURIComponent(propertyTitle)}&body=Guten Tag,%0D%0A%0D%0Aich interessiere mich für folgende Immobilie:%0D%0A${encodeURIComponent(shareUrl)}`;
 
@@ -88,6 +91,8 @@ interface ExposeFormProps {
 }
 
 export function ExposeForm({ propertyTitle }: ExposeFormProps) {
+  const pathname = usePathname();
+  const lang = (pathname?.split("/")[1] ?? "de") as string;
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -194,7 +199,7 @@ export function ExposeForm({ propertyTitle }: ExposeFormProps) {
           />
           <span className="text-sm text-zinc-700">
             Ich akzeptiere die{" "}
-            <Link href="/datenschutz" className="text-[#4682B4] underline hover:no-underline">
+            <Link href={`/${lang}/datenschutz`} className="text-[#4682B4] underline hover:no-underline">
               Datenschutzbedingungen
             </Link>{" "}
             der HE immologis UG (haftungsbeschränkt) i.Gr. und bin damit einverstanden, dass mich die HE immologis UG (haftungsbeschränkt) i.Gr. kontaktiert (telefonisch oder per E-Mail) und meine angegebenen Daten speichert. *
@@ -215,7 +220,7 @@ export function ExposeForm({ propertyTitle }: ExposeFormProps) {
           />
           <span className="text-sm text-zinc-700">
             AGB (erforderlich): Ich habe die{" "}
-            <Link href="/agb" className="text-[#4682B4] underline hover:no-underline">
+            <Link href={`/${lang}/agb`} className="text-[#4682B4] underline hover:no-underline">
               Allgemeinen Geschäftsbedingungen
             </Link>{" "}
             gelesen und akzeptiert. *

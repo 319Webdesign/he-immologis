@@ -30,14 +30,18 @@ const TIPP_PRAEMIE_SUB = [
   { label: "Aufsteller werben", href: "/geld-verdienen/aufsteller" },
 ] as const;
 
-export default function Navbar() {
+type Locale = "de" | "en";
+
+export default function Navbar({ lang }: { lang: Locale }) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logistikOpen, setLogistikOpen] = useState(false);
   const [tippPraemieOpen, setTippPraemieOpen] = useState(false);
-  const [lang, setLang] = useState<"DE" | "EN">("DE");
 
-  const toggleLang = () => setLang((prev) => (prev === "DE" ? "EN" : "DE"));
+  const prefix = `/${lang}`;
+  const pathWithoutLang = pathname.replace(/^\/(de|en)/, "") || "/";
+  const switchToDe = pathWithoutLang === "/" ? "/de" : `/de${pathWithoutLang}`;
+  const switchToEn = pathWithoutLang === "/" ? "/en" : `/en${pathWithoutLang}`;
 
   const utilityLinkClass = (variant: "bar" | "mobile") =>
     variant === "bar"
@@ -54,42 +58,37 @@ export default function Navbar() {
         <Phone className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">0176 321 98 462</span>
       </a>
-      <button
-        type="button"
-        onClick={toggleLang}
-        className={`${utilityLinkClass(variant)} flex items-center gap-1.5`}
-        aria-label={lang === "DE" ? "Sprache wechseln (aktuell: Deutsch)" : "Switch language (current: English)"}
-      >
+      <span className={`${utilityLinkClass(variant)} flex items-center gap-1.5`} role="group" aria-label={lang === "de" ? "Sprache wechseln (aktuell: Deutsch)" : "Switch language (current: English)"}>
         <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden />
         <span className="flex items-center gap-1">
-          <span title="Deutsch" className="block">
+          <Link href={switchToDe} title="Deutsch" className="block">
             <Image
               src="/img/flags/de.svg"
               alt=""
               width={24}
               height={16}
-              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "DE" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "de" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
-          </span>
-          <span title="English" className="block">
+          </Link>
+          <Link href={switchToEn} title="English" className="block">
             <Image
               src="/img/flags/en.svg"
               alt=""
               width={24}
               height={12}
-              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "EN" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "en" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
-          </span>
+          </Link>
         </span>
-      </button>
+      </span>
     </div>
   );
 
   const navLinkClass = (href: string) =>
     `whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
-      pathname.startsWith(href) ? "opacity-100" : "opacity-90"
+      pathname === href || pathname.startsWith(href + "/") ? "opacity-100" : "opacity-90"
     }`;
 
   return (
@@ -108,7 +107,7 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 border-b border-zinc-200 px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo links */}
         <Link
-          href="/"
+          href={prefix}
           className="block shrink-0 overflow-visible transition-opacity hover:opacity-80"
         >
           <Image
@@ -125,24 +124,24 @@ export default function Navbar() {
         {/* Nav-Punkte zentriert */}
         <div className="hidden flex-1 justify-center lg:flex">
           <div className="flex flex-nowrap items-center gap-1 xl:gap-2">
-            <Link href="/verkaufen" className={navLinkClass("/verkaufen")}>
+            <Link href={`${prefix}/verkaufen`} className={navLinkClass(`${prefix}/verkaufen`)}>
               Verkaufen
             </Link>
-            <Link href="/kaufen" className={navLinkClass("/kaufen")}>
+            <Link href={`${prefix}/kaufen`} className={navLinkClass(`${prefix}/kaufen`)}>
               Kaufen
             </Link>
-            <Link href="/mieten" className={navLinkClass("/mieten")}>
+            <Link href={`${prefix}/mieten`} className={navLinkClass(`${prefix}/mieten`)}>
               Mieten
             </Link>
             <Link
-              href="/immobilien-services"
-              className={navLinkClass("/immobilien-services")}
+              href={`${prefix}/immobilien-services`}
+              className={navLinkClass(`${prefix}/immobilien-services`)}
             >
               Service
             </Link>
             <Link
-              href="/immobilie-suchen"
-              className={navLinkClass("/immobilie-suchen")}
+              href={`${prefix}/immobilie-suchen`}
+              className={navLinkClass(`${prefix}/immobilie-suchen`)}
             >
               Suchen
             </Link>
@@ -155,7 +154,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
-                  pathname.startsWith("/geld-verdienen") ? "opacity-100" : "opacity-90"
+                  pathname.includes("/geld-verdienen") ? "opacity-100" : "opacity-90"
                 }`}
               >
                 Tipp-Prämie
@@ -172,7 +171,7 @@ export default function Navbar() {
                     {TIPP_PRAEMIE_SUB.map((item) => (
                       <Link
                         key={item.label}
-                        href={item.href}
+                        href={`${prefix}${item.href}`}
                         className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
                       >
                         {item.label}
@@ -192,7 +191,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
-                  pathname.startsWith("/logistikberatung") ? "opacity-100" : "opacity-90"
+                  pathname.includes("/logistikberatung") ? "opacity-100" : "opacity-90"
                 }`}
               >
                 Logistikberatung
@@ -209,7 +208,7 @@ export default function Navbar() {
                     {LOGISTIKBERATUNG_SUB.map((item) => (
                       <Link
                         key={item.label}
-                        href={item.href}
+                        href={`${prefix}${item.href}`}
                         className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
                       >
                         {item.label}
@@ -220,7 +219,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/ueber-mich" className={navLinkClass("/ueber-mich")}>
+            <Link href={`${prefix}/ueber-mich`} className={navLinkClass(`${prefix}/ueber-mich`)}>
               Über mich
             </Link>
           </div>
@@ -229,7 +228,7 @@ export default function Navbar() {
         {/* Rechts: CTA */}
         <div className="hidden md:block">
           <Link
-            href="/ueber-mich#kontakt"
+            href={`${prefix}/ueber-mich#kontakt`}
             className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ backgroundColor: "#4682B4" }}
           >
@@ -255,7 +254,7 @@ export default function Navbar() {
               {utilityLinks("mobile")}
             </div>
             <Link
-              href="/ueber-mich#kontakt"
+              href={`${prefix}/ueber-mich#kontakt`}
               onClick={() => setMobileMenuOpen(false)}
               className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-medium text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: "#4682B4" }}
@@ -265,35 +264,35 @@ export default function Navbar() {
 
             <div className="flex flex-col gap-1">
                 <Link
-                  href="/verkaufen"
+                  href={`${prefix}/verkaufen`}
                   onClick={() => setMobileMenuOpen(false)}
                   className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
                 >
                   Verkaufen
                 </Link>
               <Link
-                href="/kaufen"
+                href={`${prefix}/kaufen`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
                 Kaufen
               </Link>
               <Link
-                href="/mieten"
+                href={`${prefix}/mieten`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
                 Mieten
               </Link>
               <Link
-                href="/immobilien-services"
+                href={`${prefix}/immobilien-services`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
                 Service
               </Link>
               <Link
-                href="/immobilie-suchen"
+                href={`${prefix}/immobilie-suchen`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >
@@ -306,7 +305,7 @@ export default function Navbar() {
                 {TIPP_PRAEMIE_SUB.map((item) => (
                   <Link
                     key={item.label}
-                    href={item.href}
+                    href={`${prefix}${item.href}`}
                     onClick={() => setMobileMenuOpen(false)}
                     className="block rounded-lg px-3 py-2 text-base font-medium text-black hover:bg-zinc-50"
                   >
@@ -321,7 +320,7 @@ export default function Navbar() {
                 {LOGISTIKBERATUNG_SUB.map((item) => (
                   <Link
                     key={item.label}
-                    href={item.href}
+                    href={`${prefix}${item.href}`}
                     onClick={() => setMobileMenuOpen(false)}
                     className="block rounded-lg px-3 py-2 text-base font-medium text-black hover:bg-zinc-50"
                   >
@@ -330,7 +329,7 @@ export default function Navbar() {
                 ))}
               </div>
               <Link
-                href="/ueber-mich"
+                href={`${prefix}/ueber-mich`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
               >

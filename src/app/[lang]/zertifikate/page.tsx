@@ -1,66 +1,20 @@
 import type { Metadata } from "next";
 import { ShieldCheck, GraduationCap, Search, FileText } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Qualifikation & Zertifikate",
-  description:
-    "Zertifikate und Qualifikationen der HE immologis UG – Professionalität durch stetige Weiterbildung. Erlaubnis § 34c GewO, Immobilienmakler, Wertermittlung.",
-};
+import { getDictionary } from "@/dictionaries";
+import { getLocaleFromHeaders } from "@/lib/i18n";
 
 const BASE = "/Zertifikate";
+const PDFS = [
+  `${BASE}/Erlaubnis34CIHK.pdf`,
+  `${BASE}/Zertifikat_Immobilienmakler_34C_Fw2.pdf`,
+  `${BASE}/Zertifikat34c_Immobilienmakler.pdf`,
+  `${BASE}/Zulassung_Immobilienmakler_TA.pdf`,
+  `${BASE}/Zertifikat_Wertermittlung_TA.pdf`,
+] as const;
+const WERTERMITTLUNG_ENGLISH = { href: `${BASE}/Zertifikat_Wertermittlung_Englisch.pdf` };
 
-const certs = [
-  {
-    category: "Gesetzliche Erlaubnis",
-    categoryIcon: ShieldCheck,
-    title: "Erlaubnis nach § 34c GewO",
-    summary: [
-      "Gewerbsmäßige Immobilienberatung und -vermittlung",
-      "IHK-Prüfung nach § 34c GewO bestanden",
-      "Amtliche Erlaubnis zur Ausübung des Maklerberufs",
-    ],
-    pdf: `${BASE}/Erlaubnis 34C IHK.pdf`,
-  },
-  {
-    category: "Fachfortbildung",
-    categoryIcon: GraduationCap,
-    title: "Zertifikat Immobilienmakler 34c (Fw2)",
-    summary: [
-      "Geprüfte Fachkenntnis Immobilienmakler",
-      "Rechtliche und kaufmännische Grundlagen",
-      "Beratung und Vermittlung nach § 34c",
-    ],
-    pdf: `${BASE}/Fw2. Zertifikat Immobilienmakler 34C.pdf`,
-  },
-  {
-    category: "Fachfortbildung",
-    categoryIcon: GraduationCap,
-    title: "Zertifikat 34c Immobilienmakler",
-    summary: [
-      "Qualifikation Immobilienmakler § 34c GewO",
-      "Sachkunde und Berufspraxis",
-      "Vermittlung und Beratung von Immobilien",
-    ],
-    pdf: `${BASE}/Zertifikat 34c Immobilienmakler.pdf`,
-  },
-  {
-    category: "Wertermittlung",
-    categoryIcon: Search,
-    title: "Zertifikat Wertermittlung",
-    summary: [
-      "Sachwertverfahren",
-      "Ertragswertverfahren",
-      "Vergleichswertverfahren und Bewertungsgrundlagen",
-    ],
-    pdf: `${BASE}/Zertifikat Wertermittlung TA.pdf`,
-  },
-];
-
-// Wertermittlung-Karte: Zusatzlink für englische Version
-const wertermittlungEnglisch = {
-  label: "Internationale Version (Englisch)",
-  href: `${BASE}/Zertifikat Wertermittlung Englisch.pdf`,
-};
+const CATEGORY_ICONS = [ShieldCheck, GraduationCap, GraduationCap, GraduationCap, Search] as const;
+const CATEGORY_KEYS = ["legal", "training", "training", "training", "valuation"] as const;
 
 function CertCard({
   category,
@@ -68,6 +22,7 @@ function CertCard({
   title,
   summary,
   pdf,
+  viewPdfLabel,
   extraLink,
 }: {
   category: string;
@@ -75,6 +30,7 @@ function CertCard({
   title: string;
   summary: string[];
   pdf: string;
+  viewPdfLabel: string;
   extraLink?: { label: string; href: string };
 }) {
   const encodedPdf = pdf.replace(/ /g, "%20");
@@ -100,7 +56,7 @@ function CertCard({
           className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800"
         >
           <FileText className="h-4 w-4" aria-hidden />
-          Zertifikat einsehen (PDF)
+          {viewPdfLabel}
         </a>
         {extraLink && (
           <a
@@ -117,10 +73,23 @@ function CertCard({
   );
 }
 
-export default function ZertifikatePage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocaleFromHeaders();
+  const dict = await getDictionary(locale);
+  return {
+    title: dict.zertifikate.metaTitle,
+    description: dict.zertifikate.metaDescription,
+  };
+}
+
+export default async function ZertifikatePage() {
+  const locale = await getLocaleFromHeaders();
+  const dict = await getDictionary(locale);
+  const d = dict.zertifikate;
+  const categories = d.categories as Record<string, string>;
+
   return (
     <>
-      {/* Hero */}
       <section
         className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
         aria-labelledby="zertifikate-hero-heading"
@@ -130,40 +99,35 @@ export default function ZertifikatePage() {
             id="zertifikate-hero-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl"
           >
-            Qualifikation & Zertifikate
+            {d.heroTitle}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-slate-600">
-            Professionalität durch stetige Weiterbildung. Als inhabergeführtes
-            Unternehmen lege ich größten Wert auf fachliche Fundierung und
-            rechtliche Sicherheit.
+            {d.heroSubline}
           </p>
         </div>
       </section>
 
-      {/* Zertifikate-Grid */}
       <section
         className="bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
         aria-labelledby="zertifikate-grid-heading"
       >
         <div className="mx-auto max-w-6xl">
-          <h2
-            id="zertifikate-grid-heading"
-            className="sr-only"
-          >
-            Unsere Zertifikate
+          <h2 id="zertifikate-grid-heading" className="sr-only">
+            {d.ourCertificates}
           </h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
-            {certs.map((c) => (
+            {d.certs.map((c, i) => (
               <CertCard
                 key={c.title}
-                category={c.category}
-                categoryIcon={c.categoryIcon}
+                category={categories[CATEGORY_KEYS[i]]}
+                categoryIcon={CATEGORY_ICONS[i]}
                 title={c.title}
                 summary={c.summary}
-                pdf={c.pdf}
+                pdf={PDFS[i]}
+                viewPdfLabel={d.viewPdf}
                 extraLink={
-                  c.title.includes("Wertermittlung") && !c.title.includes("Englisch")
-                    ? wertermittlungEnglisch
+                  i === 4
+                    ? { label: d.wertermittlungExtra, href: WERTERMITTLUNG_ENGLISH.href }
                     : undefined
                 }
               />
@@ -172,7 +136,6 @@ export default function ZertifikatePage() {
         </div>
       </section>
 
-      {/* Weiterbildungspflicht */}
       <section
         className="border-t border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
         aria-labelledby="weiterbildung-heading"
@@ -182,13 +145,10 @@ export default function ZertifikatePage() {
             id="weiterbildung-heading"
             className="font-sans text-2xl font-semibold tracking-tight text-slate-900"
           >
-            Weiterbildungspflicht
+            {d.weiterbildungTitle}
           </h2>
           <p className="mt-6 leading-relaxed text-slate-700">
-            Gemäß § 34c Abs. 2a GewO und § 15b MaBV erfüllen wir regelmäßig die
-            gesetzliche Fortbildungspflicht von mindestens 20 Stunden innerhalb
-            von 3 Jahren. So bleiben wir für Sie immer auf dem neuesten Stand
-            der Rechtsprechung und Marktentwicklung.
+            {d.weiterbildungText}
           </p>
         </div>
       </section>

@@ -1,10 +1,12 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function PropertyFilters() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const lang = (pathname?.split("/")[1] ?? "de") as string;
   const status = searchParams.get("status") ?? "alle";
   const ort = searchParams.get("ort") ?? "alle";
 
@@ -15,7 +17,7 @@ export default function PropertyFilters() {
     } else {
       params.set(key, value);
     }
-    router.push(`/kaufen${params.toString() ? `?${params}` : ""}`);
+    router.push(`/${lang}/kaufen${params.toString() ? `?${params}` : ""}`);
   };
 
   return (
