@@ -25,7 +25,7 @@ export default function ImmobilienServicesPage() {
         className="relative flex min-h-[70vh] flex-col overflow-hidden px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="services-hero-heading"
         style={{
-          backgroundImage: "url(/img/hero-service.png)",
+          backgroundImage: "url(/img/hero-service.jpeg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
