@@ -5,28 +5,26 @@ import { usePathname } from "next/navigation";
 import { Home, Search } from "lucide-react";
 import { useState } from "react";
 
-const OBJEKTTYPEN = [
-  "Einfamilienhaus",
-  "Zweifamilienhaus",
-  "Mehrfamilienhaus",
-  "Reihenhaus",
-  "Eigentumswohnung",
-  "Grundstück",
-  "Gewerbe- / Wohnimmobilie",
-] as const;
+export type ValueBannerDict = {
+  headingLine1: string;
+  headingLine2: string;
+  subline: string;
+  labelObjekttyp: string;
+  labelZustand: string;
+  labelZustandShort: string;
+  ctaText: string;
+  objekttypen: { value: string; label: string }[];
+  zustaende: { value: string; label: string }[];
+};
 
-const ZUSTAENDE = [
-  "normal",
-  "modernisiert",
-  "kernsaniert",
-  "modernisierungsbedürftig",
-  "sanierungsbedürftig",
-  "sonstiges",
-] as const;
+interface ValueBannerProps {
+  dict: ValueBannerDict;
+  lang?: string;
+}
 
-export default function ValueBanner() {
+export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) {
   const pathname = usePathname();
-  const lang = (pathname?.split("/")[1] ?? "de") as string;
+  const lang = langProp ?? (pathname?.split("/")[1] ?? "de");
   const [objekttyp, setObjekttyp] = useState("");
   const [zustand, setZustand] = useState("");
 
@@ -65,11 +63,10 @@ export default function ValueBanner() {
                 id="wertermittlung-heading"
                 className="font-sans text-xl font-bold tracking-tight text-slate-800 sm:text-2xl"
               >
-                Kostenlose <br /> Wertermittlung Ihrer Immobilie
+                {dict.headingLine1} <br /> {dict.headingLine2}
               </h2>
               <p className="mt-1 text-sm leading-snug text-slate-600 sm:text-base">
-                Erhalten Sie eine fundierte Markteinschätzung für Ihr Objekt in
-                der Region.
+                {dict.subline}
               </p>
             </div>
           </div>
@@ -79,7 +76,7 @@ export default function ValueBanner() {
             className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:flex-row sm:gap-3 lg:w-auto"
           >
             <label htmlFor="objekttyp" className="sr-only">
-              Objekttyp
+              {dict.labelObjekttyp}
             </label>
             <select
               id="objekttyp"
@@ -87,15 +84,15 @@ export default function ValueBanner() {
               onChange={(e) => setObjekttyp(e.target.value)}
               className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
             >
-              <option value="">Objekttyp</option>
-              {OBJEKTTYPEN.map((o) => (
-                <option key={o} value={o}>
-                  {o}
+              <option value="">{dict.labelObjekttyp}</option>
+              {dict.objekttypen.map((o) => (
+                <option key={o.value} value={o.value}>
+                  {o.label}
                 </option>
               ))}
             </select>
             <label htmlFor="zustand" className="sr-only">
-              Zustand der Immobilie
+              {dict.labelZustand}
             </label>
             <select
               id="zustand"
@@ -103,10 +100,10 @@ export default function ValueBanner() {
               onChange={(e) => setZustand(e.target.value)}
               className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
             >
-              <option value="">Zustand</option>
-              {ZUSTAENDE.map((z) => (
-                <option key={z} value={z}>
-                  {z}
+              <option value="">{dict.labelZustandShort}</option>
+              {dict.zustaende.map((z) => (
+                <option key={z.value} value={z.value}>
+                  {z.label}
                 </option>
               ))}
             </select>
@@ -118,7 +115,7 @@ export default function ValueBanner() {
                 boxShadow: "0 10px 15px -3px rgba(70, 130, 180, 0.35)",
               }}
             >
-              Wertermittlung
+              {dict.ctaText}
             </Link>
           </div>
         </div>

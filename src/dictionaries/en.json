@@ -1,4 +1,30 @@
 {
+  "valueBanner": {
+    "headingLine1": "Free",
+    "headingLine2": "property valuation",
+    "subline": "Get a sound market assessment for your property in the region.",
+    "labelObjekttyp": "Property type",
+    "labelZustand": "Condition of property",
+    "labelZustandShort": "Condition",
+    "ctaText": "Valuation",
+    "objekttypen": [
+      { "value": "Einfamilienhaus", "label": "Single-family house" },
+      { "value": "Zweifamilienhaus", "label": "Two-family house" },
+      { "value": "Mehrfamilienhaus", "label": "Multi-family house" },
+      { "value": "Reihenhaus", "label": "Terraced house" },
+      { "value": "Eigentumswohnung", "label": "Condominium" },
+      { "value": "Grundstück", "label": "Land" },
+      { "value": "Gewerbe- / Wohnimmobilie", "label": "Mixed-use property" }
+    ],
+    "zustaende": [
+      { "value": "normal", "label": "well maintained" },
+      { "value": "modernisiert", "label": "renovated / modernised" },
+      { "value": "kernsaniert", "label": "fully refurbished" },
+      { "value": "modernisierungsbedürftig", "label": "in need of renovation" },
+      { "value": "sanierungsbedürftig", "label": "in need of refurbishment" },
+      { "value": "sonstiges", "label": "other" }
+    ]
+  },
   "zertifikate": {
     "metaTitle": "Qualifications & Certificates",
     "metaDescription": "Certificates and qualifications of HE immologis UG – professionalism through continuous training. § 34c GewO licence, real estate agent, valuation.",
@@ -110,8 +136,8 @@
       "callText": "Prefer to call directly?"
     },
     "sellerServices": {
-      "heading": "More than just brokerage – Our full-service promise",
-      "subheading": "Our premium service for sellers",
+      "heading": "More than just brokerage – Our full-service promise.",
+      "subheading": "Our premium service for sellers.",
       "buttonText": "To my services",
       "services": [
         {"title": "Professional valuation", "text": "Sound market analysis for the optimal sale price."},

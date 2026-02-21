@@ -1,4 +1,30 @@
 {
+  "valueBanner": {
+    "headingLine1": "Kostenlose",
+    "headingLine2": "Wertermittlung Ihrer Immobilie",
+    "subline": "Erhalten Sie eine fundierte Markteinschätzung für Ihr Objekt in der Region.",
+    "labelObjekttyp": "Objekttyp",
+    "labelZustand": "Zustand der Immobilie",
+    "labelZustandShort": "Zustand",
+    "ctaText": "Wertermittlung",
+    "objekttypen": [
+      { "value": "Einfamilienhaus", "label": "Einfamilienhaus" },
+      { "value": "Zweifamilienhaus", "label": "Zweifamilienhaus" },
+      { "value": "Mehrfamilienhaus", "label": "Mehrfamilienhaus" },
+      { "value": "Reihenhaus", "label": "Reihenhaus" },
+      { "value": "Eigentumswohnung", "label": "Eigentumswohnung" },
+      { "value": "Grundstück", "label": "Grundstück" },
+      { "value": "Gewerbe- / Wohnimmobilie", "label": "Gewerbe- / Wohnimmobilie" }
+    ],
+    "zustaende": [
+      { "value": "normal", "label": "normal" },
+      { "value": "modernisiert", "label": "modernisiert" },
+      { "value": "kernsaniert", "label": "kernsaniert" },
+      { "value": "modernisierungsbedürftig", "label": "modernisierungsbedürftig" },
+      { "value": "sanierungsbedürftig", "label": "sanierungsbedürftig" },
+      { "value": "sonstiges", "label": "sonstiges" }
+    ]
+  },
   "zertifikate": {
     "metaTitle": "Qualifikation & Zertifikate",
     "metaDescription": "Zertifikate und Qualifikationen der HE immologis UG – Professionalität durch stetige Weiterbildung. Erlaubnis § 34c GewO, Immobilienmakler, Wertermittlung.",
@@ -110,8 +136,8 @@
       "callText": "Lieber direkt anrufen?"
     },
     "sellerServices": {
-      "heading": "Mehr als nur Vermittlung – Unser Full-Service-Versprechen",
-      "subheading": "Unser Premium-Service für Verkäufer",
+      "heading": "Mehr als nur Vermittlung – Unser Full-Service-Versprechen.",
+      "subheading": "Unser Premium-Service für Verkäufer.",
       "buttonText": "Zu meinen Services",
       "services": [
         {"title": "Professionelle Wertermittlung", "text": "Fundierte Marktanalyse für den optimalen Verkaufspreis."},
