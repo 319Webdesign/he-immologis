@@ -58,3 +58,21 @@ body {
 .hero-text-fade {
   animation: hero-text-fade 8s ease-in-out infinite;
 }
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.92;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 2.2s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0); /* GPU-Beschleunigung für Handy */
+}

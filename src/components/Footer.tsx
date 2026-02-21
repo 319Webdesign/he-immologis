@@ -36,7 +36,9 @@ export default function Footer({ lang }: { lang: Locale }) {
               />
             </Link>
             <p className="font-sans text-lg font-semibold text-white">
-              HE immologis (haftungsbeschränkt) i. Gr.
+              HE immologis
+              <br className="sm:hidden" />
+              (haftungsbeschränkt) i. Gr.
             </p>
             <p className="mt-2 text-sm text-slate-300">
               Ihr Partner für

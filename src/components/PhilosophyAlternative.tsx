@@ -4,45 +4,28 @@ import {
   Layers,
 } from "lucide-react";
 
-const SECTIONS = [
-  {
-    id: "01",
-    headline: "Exklusivität",
-    paragraphs: [
-      "Bei mir wird Ihre Immobilie nicht einfach neben vielen anderen im Schaufenster präsentiert. Sie steht im Fokus.",
-      "Sie erhalten vom ersten Gespräch bis zum erfolgreichen Abschluss eine persönliche, direkte und verbindliche Begleitung.",
-      "Ich übernehme bewusst nur eine begrenzte Anzahl an Mandaten. So sichere ich Ihrer Immobilie die Aufmerksamkeit, Sorgfalt und Exklusivität, die sie verdient — und Ihnen die Betreuung, die Sie erwarten dürfen.",
-    ],
-    tagline: "Ihre Immobilie. Im Mittelpunkt.",
-    Icon: Crown,
-    order: "text-first",
-  },
-  {
-    id: "02",
-    headline: "Flexible Kontaktmöglichkeiten.",
-    paragraphs: [
-      "Sie können sich darauf verlassen, dass ich flexibel und zuverlässig agiere, wann immer wir Termine vereinbaren. Pünktlichkeit und Erreichbarkeit sind für mich selbstverständlich. Auch außerhalb der klassischen Geschäftszeiten bin ich erreichbar – sei es telefonisch, per WhatsApp oder auf einem Weg, der Ihnen am besten passt.",
-    ],
-    tagline: "Ihre Immobilie. Jederzeit erreichbar.",
-    Icon: Clock,
-    order: "image-first",
-  },
-  {
-    id: "03",
-    headline: "Flexibilität",
-    paragraphs: [
-      "Flexibilität ist kein Schlagwort, sondern war für mich schon immer Arbeitsprinzip.",
-      "Jede Immobilie, jeder Eigentümer und jede Situation ist anders — deshalb gibt es bei mir keine Standardabläufe, sondern passgenaue Lösungen. Termine, Vermarktungswege, Besichtigungsmodelle und Abstimmungen richte ich konsequent an Ihren Bedürfnissen und den Marktgegebenheiten aus.",
-      "Ich reagiere schnell, denke voraus und passe Strategien an, wenn sich Rahmenbedingungen ändern.",
-      "So entstehen bewegliche Prozesse — mit klarem Ziel und verlässlicher Struktur.",
-    ],
-    tagline: "Ihre Immobilie. Volle Aufmerksamkeit.",
-    Icon: Layers,
-    order: "text-first",
-  },
-] as const;
+const SECTION_ICONS = [Crown, Clock, Layers] as const;
+const SECTION_ORDERS: ("text-first" | "image-first")[] = ["text-first", "image-first", "text-first"];
 
-export default function PhilosophyAlternative() {
+export type PhilosophySection = {
+  id: string;
+  headline: string;
+  tagline: string;
+  paragraphs: string[];
+  extra: string;
+};
+
+export type PhilosophyDict = {
+  heading: string;
+  sections: PhilosophySection[];
+};
+
+interface PhilosophyAlternativeProps {
+  dict: PhilosophyDict;
+}
+
+export default function PhilosophyAlternative({ dict }: PhilosophyAlternativeProps) {
+  const { heading, sections } = dict;
   return (
     <section
       className="bg-white py-20 sm:py-24 lg:py-32"
@@ -53,11 +36,14 @@ export default function PhilosophyAlternative() {
           id="philosophy-heading"
           className="mb-16 font-sans text-3xl font-bold tracking-tight text-black sm:mb-20 sm:text-4xl lg:mb-24 lg:text-5xl"
         >
-          Mehr Wert. Ihr Plus.
+          {heading}
         </h2>
 
         <div className="space-y-24 sm:space-y-32 lg:space-y-40">
-          {SECTIONS.map(({ id, headline, paragraphs, tagline, Icon, order }) => (
+          {sections.map(({ id, headline, paragraphs, tagline, extra }, index) => {
+            const Icon = SECTION_ICONS[index];
+            const order = SECTION_ORDERS[index];
+            return (
             <article
               key={id}
               className="relative flex flex-col gap-12 md:flex-row md:items-center md:gap-16 lg:gap-24"
@@ -86,21 +72,9 @@ export default function PhilosophyAlternative() {
                 >
                   {headline}
                 </h3>
-                {id === "01" && (
-                  <p className="relative z-10 mt-2 text-lg font-bold text-black">
-                    Ihre Immobilie. Im Mittelpunkt.
-                  </p>
-                )}
-                {id === "02" && (
-                  <p className="relative z-10 mt-2 text-lg font-bold text-black">
-                    Ihre Immobilie. Jederzeit erreichbar.
-                  </p>
-                )}
-                {id === "03" && (
-                  <p className="relative z-10 mt-2 text-lg font-bold text-black">
-                    Ihre Immobilie. Volle Aufmerksamkeit.
-                  </p>
-                )}
+                <p className="relative z-10 mt-2 text-lg font-bold text-black">
+                  {tagline}
+                </p>
                 <div
                   className={`relative z-10 mt-6 max-w-xl space-y-4 text-base leading-relaxed text-black sm:text-lg ${
                     order === "image-first" ? "md:ml-auto md:text-right" : ""
@@ -109,21 +83,9 @@ export default function PhilosophyAlternative() {
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
-                  {id === "01" && (
-                    <p className="pt-2 font-bold text-black">
-                      Wenige Mandate. Höchste Sorgsamkeit
-                    </p>
-                  )}
-                  {id === "02" && (
-                    <p className="pt-2 font-bold text-black">
-                      Wenn Sie mich brauchen: einfach da.
-                    </p>
-                  )}
-                  {id === "03" && (
-                    <p className="pt-2 font-bold text-black">
-                      Verlässlich. Ordentlich. Transparent.
-                    </p>
-                  )}
+                  <p className="pt-2 font-bold text-black">
+                    {extra}
+                  </p>
                 </div>
               </div>
 
@@ -147,7 +109,8 @@ export default function PhilosophyAlternative() {
                 </div>
               </div>
             </article>
-          ))}
+          );
+          })}
         </div>
 
         {/* Feine Trennlinie zwischen den Sektionen würde hier redundant sein – der Weißraum trennt */}

@@ -1,4 +1,79 @@
 {
+  "home": {
+    "hero": {
+      "line1": "Neues kann endlich beginnen.",
+      "line2": "Verkaufen. Finden. Möglich machen.",
+      "subline": "Weinheim. Bergstraße.",
+      "discoverMore": "Mehr entdecken"
+    }
+  },
+  "localPresence": {
+    "heading": "Verkaufen. Kaufen. Mieten. Services. Suchen.",
+    "subline": "Ihr neues Zuhause in Weinheim und an der Bergstraße beginnt hier.",
+    "regionTitle": "Zuhause an der Bergstraße",
+    "cards": [
+      {
+        "title": "Verkauf",
+        "description": "Fokus auf lokale Marktwerte und faire Bewertung – wir verkaufen Ihre Immobilie."
+      },
+      {
+        "title": "Kauf & Suche",
+        "description": "Unterstützung für Suchende in der Region. Wir finden die passende Immobilie für Sie."
+      },
+      {
+        "title": "Vermietung",
+        "description": "Professionelle Mietersuche und vollständige Abwicklung für Eigentümer und Mieter."
+      },
+      {
+        "title": "Logistikberatung",
+        "description": "Zuverlässige Abwicklung und Beratung. Transportlösungen aus einer Hand.",
+        "smart": [
+          { "letter": "S", "label": "Schulung" },
+          { "letter": "M", "label": "M & A" },
+          { "letter": "A", "label": "Aufbau Entscheidernetzwerke" },
+          { "letter": "R", "label": "Regionale Interim-Lösungen" },
+          { "letter": "T", "label": "Transportnetzwerkstrategien" }
+        ]
+      }
+    ]
+  },
+  "philosophy": {
+    "heading": "Mehr Wert. Ihr Plus.",
+    "sections": [
+      {
+        "id": "01",
+        "headline": "Exklusivität",
+        "tagline": "Ihre Immobilie. Im Mittelpunkt.",
+        "paragraphs": [
+          "Bei mir wird Ihre Immobilie nicht einfach neben vielen anderen im Schaufenster präsentiert. Sie steht im Fokus.",
+          "Sie erhalten vom ersten Gespräch bis zum erfolgreichen Abschluss eine persönliche, direkte und verbindliche Begleitung.",
+          "Ich übernehme bewusst nur eine begrenzte Anzahl an Mandaten. So sichere ich Ihrer Immobilie die Aufmerksamkeit, Sorgfalt und Exklusivität, die sie verdient — und Ihnen die Betreuung, die Sie erwarten dürfen."
+        ],
+        "extra": "Wenige Mandate. Höchste Sorgsamkeit"
+      },
+      {
+        "id": "02",
+        "headline": "Flexible Kontaktmöglichkeiten.",
+        "tagline": "Ihre Immobilie. Jederzeit erreichbar.",
+        "paragraphs": [
+          "Sie können sich darauf verlassen, dass ich flexibel und zuverlässig agiere, wann immer wir Termine vereinbaren. Pünktlichkeit und Erreichbarkeit sind für mich selbstverständlich. Auch außerhalb der klassischen Geschäftszeiten bin ich erreichbar – sei es telefonisch, per WhatsApp oder auf einem Weg, der Ihnen am besten passt."
+        ],
+        "extra": "Wenn Sie mich brauchen: einfach da."
+      },
+      {
+        "id": "03",
+        "headline": "Flexibilität",
+        "tagline": "Ihre Immobilie. Volle Aufmerksamkeit.",
+        "paragraphs": [
+          "Flexibilität ist kein Schlagwort, sondern war für mich schon immer Arbeitsprinzip.",
+          "Jede Immobilie, jeder Eigentümer und jede Situation ist anders — deshalb gibt es bei mir keine Standardabläufe, sondern passgenaue Lösungen. Termine, Vermarktungswege, Besichtigungsmodelle und Abstimmungen richte ich konsequent an Ihren Bedürfnissen und den Marktgegebenheiten aus.",
+          "Ich reagiere schnell, denke voraus und passe Strategien an, wenn sich Rahmenbedingungen ändern.",
+          "So entstehen bewegliche Prozesse — mit klarem Ziel und verlässlicher Struktur."
+        ],
+        "extra": "Verlässlich. Ordentlich. Transparent."
+      }
+    ]
+  },
   "valueBanner": {
     "headingLine1": "Kostenlose",
     "headingLine2": "Wertermittlung Ihrer Immobilie",
@@ -86,7 +161,7 @@
   "tippgeber": {
     "metaTitle": "Tipp geben – Tippgeber-Programm | HE immologis",
     "metaDescription": "Werden Sie Tippgeber und sichern Sie sich bis zu 5.000 € Provision. Kennen Sie jemanden, der verkaufen möchte? HE immologis UG.",
-    "heroTitle": "Tipp geben – Geld verdienen",
+    "heroTitle": "Tippgeber werden. Vorteile sichern.",
     "heroSubline": "Werden Sie Tippgeber und profitieren Sie von Ihrer Empfehlung.",
     "heroCta": "Provision bis zu 5.000 €",
     "staffelTitle": "Die Tippgeber-Staffel",

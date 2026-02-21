@@ -33,7 +33,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
     if (objekttyp) params.set("objekttyp", objekttyp);
     if (zustand) params.set("zustand", zustand);
     const qs = params.toString();
-    return `/${lang}/verkaufen${qs ? `?${qs}` : ""}#anfrage-formular`;
+    return `/${lang}/verkaufen/kontaktformular${qs ? `?${qs}` : ""}`;
   })();
 
   return (

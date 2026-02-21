@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 export default function ImmobilieSuchenPage() {
   return (
     <>
-      {/* Hero mit Hintergrundbild – auf Handy mit cover, ab lg volle Breite */}
+      {/* Hero – auf Handy breiter (weniger Padding), Text etwas kleiner */}
       <section
-        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 bg-cover bg-center bg-no-repeat px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"
+        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 bg-cover bg-center bg-no-repeat px-2 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"
         aria-labelledby="hero-suche-heading"
         style={{
           backgroundImage: "url(/img/hero-suche.jpeg)",
@@ -27,19 +27,19 @@ export default function ImmobilieSuchenPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
-        <div className="relative z-10 mx-auto flex max-w-3xl flex-1 flex-col items-center justify-center text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-2 pt-20 text-center sm:px-0 sm:pt-0">
           <h1
             id="hero-suche-heading"
-            className="font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
+            className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
           >
             Suche in Weinheim und Umgebung.
             <br />
             Ihre Vorstellungen
             <br />
-            <span className="text-2xl sm:text-3xl lg:text-4xl">– wir übernehmen die gezielte Suche.</span>
+            <span className="text-xl sm:text-3xl lg:text-4xl">– wir übernehmen die Suche.</span>
           </h1>
-          <p className="mt-6 text-lg text-white/95 drop-shadow-sm sm:mt-8">
-            Wir finden und informieren Sie direkt.
+          <p className="mt-4 text-base text-white/95 drop-shadow-sm sm:mt-8 sm:text-lg">
+            Ihre Wünsche. Wir suchen gezielt.
           </p>
         </div>
         <a

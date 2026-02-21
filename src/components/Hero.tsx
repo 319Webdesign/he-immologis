@@ -10,7 +10,18 @@ import { ChevronDown } from "lucide-react";
 const VIDEO_SRC = "/video/startseitefilm.webm";
 const POSTER_SRC = "/img/hero-poster.jpg";
 
-export default function Hero() {
+export type HomeHeroDict = {
+  line1: string;
+  line2: string;
+  subline: string;
+  discoverMore: string;
+};
+
+interface HeroProps {
+  dict: HomeHeroDict;
+}
+
+export default function Hero({ dict }: HeroProps) {
   return (
     <section
       className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden -mt-[7.5rem]"
@@ -35,16 +46,16 @@ export default function Hero() {
         aria-hidden
       />
 
-      {/* Inhalt zentral – absolut in der Mitte */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
+      {/* Inhalt zentral – auf Handy etwas nach unten, ab sm zentriert */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center px-4 pt-20 sm:pt-0">
         <div className="text-center hero-text-fade">
           <h1 className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
-            Neues kann endlich beginnen.
+            {dict.line1}
             <br />
-            Verkaufen. Finden. Möglich machen.
+            {dict.line2}
           </h1>
           <p className="mt-4 text-base font-normal tracking-wide text-white/90 sm:text-lg md:mt-6">
-            Weinheim. Bergstraße.
+            {dict.subline}
           </p>
         </div>
       </div>
@@ -52,7 +63,7 @@ export default function Hero() {
       {/* Scroll-Down-Hinweis am unteren Rand */}
       <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-8">
         <span className="mb-2 text-xs uppercase tracking-widest text-white/70">
-          Mehr entdecken
+          {dict.discoverMore}
         </span>
         <ChevronDown
           className="h-8 w-8 animate-bounce text-white/80"

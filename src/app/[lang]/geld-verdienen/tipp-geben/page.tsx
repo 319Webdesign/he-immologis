@@ -50,17 +50,14 @@ export default async function TippGebenPage() {
           priority
           quality={90}
         />
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-2 text-center">
           <h1
             id="hero-tipp-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-black sm:text-5xl"
           >
             {t.heroTitle}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-800">
-            {t.heroSubline}
-          </p>
-          <p className="mt-4 text-2xl font-bold text-black sm:text-3xl">
+          <p className="mt-8 inline-block animate-breathe text-2xl font-bold text-black sm:text-3xl">
             {t.heroCta}
           </p>
         </div>

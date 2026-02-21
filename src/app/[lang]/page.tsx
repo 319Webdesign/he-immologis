@@ -20,10 +20,10 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <Hero />
+      <Hero dict={dict.home.hero} />
       <ValueBanner dict={dict.valueBanner} lang={locale} />
-      <LocalPresence />
-      <PhilosophyAlternative />
+      <LocalPresence dict={dict.localPresence} />
+      <PhilosophyAlternative dict={dict.philosophy} />
     </>
   );
 }

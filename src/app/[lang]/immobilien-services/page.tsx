@@ -33,7 +33,7 @@ export default function ImmobilienServicesPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center pt-20 text-center sm:pt-0">
           <h1
             id="services-hero-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
@@ -41,9 +41,9 @@ export default function ImmobilienServicesPage() {
             Maßgeschneiderte Verkaufslösungen.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm sm:text-xl">
-            Vom vollständigen Immobilienverkauf bis zu individuell wählbaren Teilmodulen
-            <br />
-            – Sie entscheiden, wie umfassend wir Sie begleiten.
+            Komplett Verkauf oder Einzelmodule
+            <br className="sm:hidden" />
+            – Sie entscheiden.
           </p>
         </div>
         <a

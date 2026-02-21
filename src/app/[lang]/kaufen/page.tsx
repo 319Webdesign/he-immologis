@@ -51,7 +51,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center text-center">
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-start pt-56 text-center sm:justify-center sm:pt-0">
           <h1
             id="hero-kaufen-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
@@ -59,7 +59,9 @@ export default async function KaufenPage({ searchParams }: PageProps) {
             Kaufen in Weinheim und Umgebung.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm">
-            Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
+            Gezielt ausgewählt. Klar geprüft.
+            <br className="sm:hidden" />
+            Sicher umgesetzt.
           </p>
         </div>
         <a

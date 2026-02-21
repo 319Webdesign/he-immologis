@@ -1,4 +1,79 @@
 {
+  "home": {
+    "hero": {
+      "line1": "Something new can finally begin.",
+      "line2": "Sell. Find. Make it possible.",
+      "subline": "Weinheim. Bergstraße.",
+      "discoverMore": "Discover more"
+    }
+  },
+  "localPresence": {
+    "heading": "Sell. Buy. Rent. Services. Search.",
+    "subline": "Your new home in Weinheim and the Bergstraße starts here.",
+    "regionTitle": "Home on the Bergstraße",
+    "cards": [
+      {
+        "title": "Sell",
+        "description": "Focus on local market values and fair valuation – we sell your property."
+      },
+      {
+        "title": "Buy & Search",
+        "description": "Support for those looking in the region. We find the right property for you."
+      },
+      {
+        "title": "Rent",
+        "description": "Professional tenant search and full handling for owners and tenants."
+      },
+      {
+        "title": "Logistics Consulting",
+        "description": "Reliable handling and advice. Transport solutions from a single source.",
+        "smart": [
+          { "letter": "S", "label": "Training" },
+          { "letter": "M", "label": "M & A" },
+          { "letter": "A", "label": "Building decision-maker networks" },
+          { "letter": "R", "label": "Regional interim solutions" },
+          { "letter": "T", "label": "Transport network strategies" }
+        ]
+      }
+    ]
+  },
+  "philosophy": {
+    "heading": "More value. Your advantage.",
+    "sections": [
+      {
+        "id": "01",
+        "headline": "Exclusivity",
+        "tagline": "Your property. In the spotlight.",
+        "paragraphs": [
+          "With me, your property is not simply displayed in the shop window alongside many others. It is in the spotlight.",
+          "You receive personal, direct and committed support from the first conversation through to successful completion.",
+          "I deliberately take on only a limited number of mandates. This ensures your property gets the attention, care and exclusivity it deserves – and you get the support you can expect."
+        ],
+        "extra": "Few mandates. Highest level of care."
+      },
+      {
+        "id": "02",
+        "headline": "Flexible ways to get in touch.",
+        "tagline": "Your property. Reachable anytime.",
+        "paragraphs": [
+          "You can rely on me to act flexibly and reliably whenever we arrange appointments. Punctuality and availability are a matter of course for me. I am also reachable outside standard business hours – whether by phone, WhatsApp or in a way that suits you best."
+        ],
+        "extra": "When you need me: just there."
+      },
+      {
+        "id": "03",
+        "headline": "Flexibility",
+        "tagline": "Your property. Full attention.",
+        "paragraphs": [
+          "Flexibility is not a buzzword for me – it has always been my working principle.",
+          "Every property, every owner and every situation is different — so I don’t use standard processes, but tailored solutions. Appointments, marketing channels, viewing models and coordination are consistently aligned to your needs and market conditions.",
+          "I respond quickly, think ahead and adapt strategies when framework conditions change.",
+          "The result: flexible processes — with a clear goal and reliable structure."
+        ],
+        "extra": "Reliable. Orderly. Transparent."
+      }
+    ]
+  },
   "valueBanner": {
     "headingLine1": "Free",
     "headingLine2": "property valuation",

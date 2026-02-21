@@ -50,7 +50,7 @@ export default function MainServiceCard() {
             id="main-service-title"
             className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
           >
-            Der ganzheitliche Verkaufsprozess
+            Der komplette Verkaufsprozess
             <span className="mt-1 block text-lg font-semibold text-slate-900 sm:text-xl">
               – von der Bewertung bis zur Übergabe
             </span>

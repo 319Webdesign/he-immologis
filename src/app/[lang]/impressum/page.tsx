@@ -25,7 +25,7 @@ export default function ImpressumPage() {
               Anbieter
             </h2>
             <p className="mt-2">
-              <strong>HE immologis UG (haftungsbeschränkt) i. Gr.</strong>
+              <strong>HE immologis<br className="sm:hidden" /> UG (haftungsbeschränkt) i. Gr.</strong>
               <br />
               Ahornstr. 59
               <br />

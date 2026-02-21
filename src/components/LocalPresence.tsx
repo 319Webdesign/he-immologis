@@ -3,35 +3,20 @@
 import { useState } from "react";
 import { Home, Search, Truck, Key } from "lucide-react";
 
-const CARDS = [
-  {
-    icon: Home,
-    title: "Verkauf",
-    description: "Fokus auf lokale Marktwerte und faire Bewertung – wir verkaufen Ihre Immobilie.",
-  },
-  {
-    icon: Search,
-    title: "Kauf & Suche",
-    description: "Unterstützung für Suchende in der Region. Wir finden die passende Immobilie für Sie.",
-  },
-  {
-    icon: Key,
-    title: "Vermietung",
-    description: "Professionelle Mietersuche und vollständige Abwicklung für Eigentümer und Mieter.",
-  },
-  {
-    icon: Truck,
-    title: "Logistikberatung",
-    description: "Zuverlässige Abwicklung und Beratung. Transportlösungen aus einer Hand.",
-    smart: [
-      { letter: "S", label: "Schulung" },
-      { letter: "M", label: "M & A" },
-      { letter: "A", label: "Aufbau Entscheidernetzwerke" },
-      { letter: "R", label: "Regionale Interim-Lösungen" },
-      { letter: "T", label: "Transportnetzwerkstrategien" },
-    ],
-  },
-] as const;
+const ICONS = [Home, Search, Key, Truck] as const;
+
+export type LocalPresenceCard = {
+  title: string;
+  description: string;
+  smart?: { letter: string; label: string }[];
+};
+
+export type LocalPresenceDict = {
+  heading: string;
+  subline: string;
+  regionTitle: string;
+  cards: LocalPresenceCard[];
+};
 
 const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
   { name: "Weinheim", image: "/img/orte/weinheim.jpeg" },
@@ -46,7 +31,12 @@ const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
   { name: "Mannheim", image: "/img/orte/mannheim.jpeg" },
 ];
 
-export default function LocalPresence() {
+interface LocalPresenceProps {
+  dict: LocalPresenceDict;
+}
+
+export default function LocalPresence({ dict }: LocalPresenceProps) {
+  const { heading, subline, regionTitle, cards } = dict;
   const [openCity, setOpenCity] = useState<string | null>(null);
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
@@ -66,22 +56,22 @@ export default function LocalPresence() {
             id="kompetenz-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
-            Verkaufen. Kaufen. Mieten. Services. Suchen.
+            {heading}
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            Ihr neues Zuhause in Weinheim und an der Bergstraße beginnt hier.
+            {subline}
           </p>
         </header>
 
         {/* Kompetenz-Karten Grid: auf Handy zentriert, ab sm Grid */}
         <div className="mt-12 flex flex-col items-center gap-6 sm:mt-16 sm:grid sm:grid-cols-2 sm:items-stretch lg:grid-cols-4 lg:gap-8">
-          {CARDS.map((card) => {
-            const { icon: Icon, title, description } = card;
-            const smart = "smart" in card ? card.smart : null;
+          {cards.map((card, index) => {
+            const Icon = ICONS[index];
+            const { title, description, smart } = card;
             return (
               <article
                 key={title}
-                className={`flex w-full max-w-sm flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md sm:max-w-none lg:p-8 ${smart ? "lg:min-w-[20rem]" : ""}`}
+                className={`flex w-full max-w-sm flex-col rounded-xl border border-slate-200 p-6 transition-shadow hover:shadow-md sm:max-w-none lg:p-8 ${smart ? "bg-slate-200/90 lg:min-w-[20rem]" : "bg-slate-50/50"}`}
               >
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
@@ -116,7 +106,7 @@ export default function LocalPresence() {
           style={{ backgroundColor: "#4682B4" }}
         >
           <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            Zuhause an der Bergstraße
+            {regionTitle}
           </h3>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {CITIES.map((city) => (
