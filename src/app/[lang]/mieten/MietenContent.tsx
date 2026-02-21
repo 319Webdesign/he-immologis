@@ -50,13 +50,13 @@ export default function MietenContent({ rentals }: MietenContentProps) {
 
   return (
     <div className="space-y-10">
-      {/* Filter-Leiste */}
-      <div className="flex flex-wrap items-center gap-3 rounded-xl border border-zinc-100 bg-white px-4 py-3 shadow-sm sm:gap-4 sm:px-5">
+      {/* Filter-Leiste: auf dem Handy in einer Reihe */}
+      <div className="flex flex-nowrap items-center gap-2 overflow-x-auto rounded-xl border border-zinc-100 bg-white px-3 py-3 shadow-sm sm:gap-4 sm:px-5">
         <select
           id="objekttyp"
           value={objekttyp}
           onChange={(e) => setObjekttyp(e.target.value)}
-          className="rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-sm text-zinc-700 outline-none transition-colors focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400/30"
+          className="min-w-0 flex-1 shrink-0 rounded-lg border border-zinc-200 bg-white px-3 py-2.5 text-sm text-zinc-700 outline-none transition-colors focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400/30 sm:flex-initial sm:px-4"
         >
           <option value="alle">Objekttyp</option>
           {OBJEKTTYPEN.filter((o) => o !== "alle").map((o) => (
@@ -69,7 +69,7 @@ export default function MietenContent({ rentals }: MietenContentProps) {
           id="zimmer"
           value={zimmer}
           onChange={(e) => setZimmer(e.target.value)}
-          className="rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-sm text-zinc-700 outline-none transition-colors focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400/30"
+          className="min-w-0 flex-1 shrink-0 rounded-lg border border-zinc-200 bg-white px-3 py-2.5 text-sm text-zinc-700 outline-none transition-colors focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400/30 sm:flex-initial sm:px-4"
         >
           {ZIMMER_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -81,7 +81,7 @@ export default function MietenContent({ rentals }: MietenContentProps) {
           id="preisspanne"
           value={preisspanne}
           onChange={(e) => setPreisspanne(e.target.value)}
-          className="rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-sm text-zinc-700 outline-none transition-colors focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400/30"
+          className="min-w-0 flex-1 shrink-0 rounded-lg border border-zinc-200 bg-white px-3 py-2.5 text-sm text-zinc-700 outline-none transition-colors focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400/30 sm:flex-initial sm:px-4"
         >
           {PREIS_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>

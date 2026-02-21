@@ -25,13 +25,10 @@ export default function MietenPage() {
     <>
       {/* Hero mit Hintergrundbild */}
       <section
-        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-zinc-100 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
+        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-zinc-100 bg-cover bg-center bg-no-repeat px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"
         aria-labelledby="hero-mieten-heading"
         style={{
           backgroundImage: "url(/img/hero-mieten.jpeg)",
-          backgroundSize: "100% auto",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
           backgroundColor: "#1e293b",
         }}
       >

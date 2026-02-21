@@ -17,15 +17,12 @@ export const metadata: Metadata = {
 export default function ImmobilieSuchenPage() {
   return (
     <>
-      {/* Hero mit Hintergrundbild – Dartscheibe, ohne Blur */}
+      {/* Hero mit Hintergrundbild – auf Handy mit cover, ab lg volle Breite */}
       <section
-        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
+        className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 bg-cover bg-center bg-no-repeat px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"
         aria-labelledby="hero-suche-heading"
         style={{
           backgroundImage: "url(/img/hero-suche.jpeg)",
-          backgroundSize: "100% auto",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
           backgroundColor: "#1e293b",
         }}
       >

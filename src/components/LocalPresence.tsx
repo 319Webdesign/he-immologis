@@ -56,10 +56,10 @@ export default function LocalPresence() {
 
   return (
     <section
-      className="bg-white py-16 sm:py-20 lg:py-24"
+      className="w-full max-w-full overflow-x-hidden bg-white py-16 sm:py-20 lg:py-24"
       aria-labelledby="kompetenz-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Titel & Untertitel */}
         <header className="mx-auto max-w-3xl text-center">
           <h2
@@ -73,15 +73,15 @@ export default function LocalPresence() {
           </p>
         </header>
 
-        {/* Kompetenz-Karten Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        {/* Kompetenz-Karten Grid: auf Handy zentriert, ab sm Grid */}
+        <div className="mt-12 flex flex-col items-center gap-6 sm:mt-16 sm:grid sm:grid-cols-2 sm:items-stretch lg:grid-cols-4 lg:gap-8">
           {CARDS.map((card) => {
             const { icon: Icon, title, description } = card;
             const smart = "smart" in card ? card.smart : null;
             return (
               <article
                 key={title}
-                className={`flex flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md lg:p-8 ${smart ? "min-w-[20rem]" : ""}`}
+                className={`flex w-full max-w-sm flex-col rounded-xl border border-slate-200 bg-slate-50/50 p-6 transition-shadow hover:shadow-md sm:max-w-none lg:p-8 ${smart ? "lg:min-w-[20rem]" : ""}`}
               >
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
@@ -118,7 +118,7 @@ export default function LocalPresence() {
           <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Zuhause an der Bergstraße
           </h3>
-          <div className="mt-6 flex flex-nowrap justify-center gap-2">
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
             {CITIES.map((city) => (
               <span
                 key={city.name}

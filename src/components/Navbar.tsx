@@ -37,6 +37,8 @@ export default function Navbar({ lang }: { lang: Locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logistikOpen, setLogistikOpen] = useState(false);
   const [tippPraemieOpen, setTippPraemieOpen] = useState(false);
+  const [mobileTippOpen, setMobileTippOpen] = useState(false);
+  const [mobileLogistikOpen, setMobileLogistikOpen] = useState(false);
 
   const prefix = `/${lang}`;
   const pathWithoutLang = pathname.replace(/^\/(de|en)/, "") || "/";
@@ -248,15 +250,12 @@ export default function Navbar({ lang }: { lang: Locale }) {
 
       {/* Mobile Menü */}
       {mobileMenuOpen && (
-        <div className="border-t border-zinc-100 bg-white lg:hidden">
-          <div className="space-y-2 px-4 py-4">
-            <div className="flex flex-wrap gap-4 border-b border-zinc-100 pb-4">
-              {utilityLinks("mobile")}
-            </div>
+        <div className="border-t border-zinc-100 bg-white lg:hidden max-h-[calc(100vh-7.5rem)] overflow-y-auto overscroll-contain">
+          <div className="space-y-2 px-4 py-4 pb-8">
             <Link
               href={`${prefix}/ueber-mich#kontakt`}
               onClick={() => setMobileMenuOpen(false)}
-              className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-medium text-white transition-colors hover:opacity-90"
+              className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: "#4682B4" }}
             >
               Jetzt kontaktieren
@@ -266,72 +265,98 @@ export default function Navbar({ lang }: { lang: Locale }) {
                 <Link
                   href={`${prefix}/verkaufen`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                  className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
                 >
                   Verkaufen
                 </Link>
               <Link
                 href={`${prefix}/kaufen`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 Kaufen
               </Link>
               <Link
                 href={`${prefix}/mieten`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 Mieten
               </Link>
               <Link
                 href={`${prefix}/immobilien-services`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 Service
               </Link>
               <Link
                 href={`${prefix}/immobilie-suchen`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 Suchen
               </Link>
-              <div className="rounded-lg px-4 py-2">
-                <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">
-                  Tipp-Prämie
-                </p>
-                {TIPP_PRAEMIE_SUB.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={`${prefix}${item.href}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-base font-medium text-black hover:bg-zinc-50"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <div className="rounded-lg">
+                <button
+                  type="button"
+                  onClick={() => setMobileTippOpen((o) => !o)}
+                  className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
+                  aria-expanded={mobileTippOpen}
+                >
+                  <span className="font-semibold uppercase tracking-wider">Tipp-Prämie</span>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 transition-transform ${mobileTippOpen ? "rotate-180" : ""}`}
+                    aria-hidden
+                  />
+                </button>
+                {mobileTippOpen && (
+                  <div className="flex flex-col gap-0 pl-2 pb-2">
+                    {TIPP_PRAEMIE_SUB.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={`${prefix}${item.href}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="rounded-lg px-3 py-2 text-base font-normal text-black hover:bg-zinc-50"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div className="rounded-lg px-4 py-2">
-                <p className="mb-1 text-base font-semibold uppercase tracking-wider text-black">
-                  Logistikberatung
-                </p>
-                {LOGISTIKBERATUNG_SUB.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={`${prefix}${item.href}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-base font-medium text-black hover:bg-zinc-50"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <div className="rounded-lg">
+                <button
+                  type="button"
+                  onClick={() => setMobileLogistikOpen((o) => !o)}
+                  className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
+                  aria-expanded={mobileLogistikOpen}
+                >
+                  <span className="font-semibold uppercase tracking-wider">Logistikberatung</span>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 transition-transform ${mobileLogistikOpen ? "rotate-180" : ""}`}
+                    aria-hidden
+                  />
+                </button>
+                {mobileLogistikOpen && (
+                  <div className="flex flex-col gap-0 pl-2 pb-2">
+                    {LOGISTIKBERATUNG_SUB.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={`${prefix}${item.href}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="rounded-lg px-3 py-2 text-base font-normal text-black hover:bg-zinc-50"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
               <Link
                 href={`${prefix}/ueber-mich`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-normal text-black hover:bg-zinc-50"
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 Über mich
               </Link>

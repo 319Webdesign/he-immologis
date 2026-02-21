@@ -4,8 +4,8 @@ import { ChevronDown } from "lucide-react";
 
 /**
  * Video-Hero für die Startseite.
- * - Video: /video/startseitefilm.webm
- * - Platzhalter-Poster (Mobile): /img/hero-poster.jpg (optional; sonst Gradient)
+ * - Video: /video/startseitefilm.webm (alle Geräte inkl. Handy)
+ * - Poster: /img/hero-poster.jpg als Erstbild bis das Video lädt
  */
 const VIDEO_SRC = "/video/startseitefilm.webm";
 const POSTER_SRC = "/img/hero-poster.jpg";
@@ -16,23 +16,13 @@ export default function Hero() {
       className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden -mt-[7.5rem]"
       aria-label="Hero-Bereich"
     >
-      {/* Hintergrund: Auf Mobile statisches Bild/Gradient (datensparend), ab md Video */}
-      <div
-        className="absolute inset-0 z-0 md:hidden"
-        style={{
-          backgroundImage: POSTER_SRC
-            ? `url(${POSTER_SRC})`
-            : "linear-gradient(135deg, #27272a 0%, #18181b 100%)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+      {/* Video auf allen Geräten (muted + playsInline für Mobile-Autoplay) */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 hidden h-full w-full object-cover md:block"
+        className="absolute inset-0 z-0 h-full w-full object-cover"
         poster={POSTER_SRC}
         aria-hidden
       >

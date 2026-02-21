@@ -83,7 +83,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
             ← Logistikberatung SMART
           </Link>
           <div
-            className="mt-2 inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white"
+            className="ml-3 mt-4 inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white sm:ml-4"
             style={{ backgroundColor: BRAND_BLUE }}
           >
             {modul.letter}
@@ -173,7 +173,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
           {nextModul && (
             <Link
               href={`/logistikberatung/${nextModul.slug}`}
-              className="inline-flex items-center text-sm font-semibold"
+              className="ml-auto inline-flex items-center text-sm font-semibold sm:ml-0"
               style={{ color: BRAND_BLUE }}
             >
               Modul {nextModul.letter} – {nextModul.title} →

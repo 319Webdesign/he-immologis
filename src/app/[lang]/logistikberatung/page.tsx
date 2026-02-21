@@ -22,15 +22,12 @@ const BRAND_BLUE = "#4682B4";
 export default function LogistikberatungPage() {
   return (
     <>
-      {/* Hero mit Dartscheiben-Hintergrund und Texten */}
+      {/* Hero mit Hintergrundbild – auf Handy mit cover, ab lg volle Breite */}
       <section
-        className="relative min-h-[70vh] border-b border-slate-200 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        className="relative min-h-[70vh] border-b border-slate-200 bg-cover bg-center bg-no-repeat px-4 py-16 sm:px-6 sm:py-24 lg:bg-[length:100%_auto] lg:px-8"
         aria-labelledby="hero-logistik-heading"
         style={{
           backgroundImage: "url(/img/hero-logistikberatung.jpeg)",
-          backgroundSize: "100% auto",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
           backgroundColor: "#1e293b",
         }}
       >

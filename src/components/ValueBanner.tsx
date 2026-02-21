@@ -71,45 +71,45 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
             </div>
           </div>
 
-          {/* Rechts: 2 Dropdowns + Button (CTA) */}
-          <div
-            className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:flex-row sm:gap-3 lg:w-auto"
-          >
-            <label htmlFor="objekttyp" className="sr-only">
-              {dict.labelObjekttyp}
-            </label>
-            <select
-              id="objekttyp"
-              value={objekttyp}
-              onChange={(e) => setObjekttyp(e.target.value)}
-              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
-            >
-              <option value="">{dict.labelObjekttyp}</option>
-              {dict.objekttypen.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-            <label htmlFor="zustand" className="sr-only">
-              {dict.labelZustand}
-            </label>
-            <select
-              id="zustand"
-              value={zustand}
-              onChange={(e) => setZustand(e.target.value)}
-              className="rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
-            >
-              <option value="">{dict.labelZustandShort}</option>
-              {dict.zustaende.map((z) => (
-                <option key={z.value} value={z.value}>
-                  {z.label}
-                </option>
-              ))}
-            </select>
+          {/* Rechts: 2 Dropdowns nebeneinander, Button darunter (Mobile); ab lg alles in einer Zeile */}
+          <div className="flex w-full shrink-0 flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 lg:w-auto lg:flex-row lg:flex-nowrap">
+            <div className="flex flex-1 gap-2 sm:flex-initial sm:gap-3">
+              <label htmlFor="objekttyp" className="sr-only">
+                {dict.labelObjekttyp}
+              </label>
+              <select
+                id="objekttyp"
+                value={objekttyp}
+                onChange={(e) => setObjekttyp(e.target.value)}
+                className="min-w-0 flex-1 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
+              >
+                <option value="">{dict.labelObjekttyp}</option>
+                {dict.objekttypen.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              <label htmlFor="zustand" className="sr-only">
+                {dict.labelZustand}
+              </label>
+              <select
+                id="zustand"
+                value={zustand}
+                onChange={(e) => setZustand(e.target.value)}
+                className="min-w-0 flex-1 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/25"
+              >
+                <option value="">{dict.labelZustandShort}</option>
+                {dict.zustaende.map((z) => (
+                  <option key={z.value} value={z.value}>
+                    {z.label}
+                  </option>
+                ))}
+              </select>
+            </div>
             <Link
               href={wertermittlungHref}
-              className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+              className="inline-flex w-full items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 sm:w-auto"
               style={{
                 backgroundColor: "#4682B4",
                 boxShadow: "0 10px 15px -3px rgba(70, 130, 180, 0.35)",
