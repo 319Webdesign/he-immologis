@@ -85,7 +85,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Individuelle Beratung und persönliche Begleitung bei Ihrem Immobilienvorhaben.",
     titleEn: "Advisory Module",
     descriptionEn: "Individual consulting and personal guidance for your real estate project",
-    priceEn: "€150 per hour",
+    priceEn: "€149 incl. VAT per hour",
     image: "/img/service/beratungsmodul.jpeg",
     detailSections: [
       "Sie brauchen keine Vollvermarktung, sondern gezielte Beratung oder Begleitung in bestimmten Phasen? Wir unterstützen Sie stundenweise mit unserem Know-how – ob bei der Einschätzung von Objekten, der Verhandlung mit der Bank oder der Koordination von Gewerken.",
@@ -132,7 +132,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Qualifizierte Interessentenprüfung & Bonität",
     titleEn: "Seller Protection Module",
     descriptionEn: "Qualified buyer screening & creditworthiness verification",
-    priceEn: "€120 incl. VAT per commenced hour",
+    priceEn: "€149 incl. VAT per commenced hour",
     image: "/img/service/verkaeuferschutzmodul.jpeg",
     detailSections: [
       "Exposé & geprüfte Kaufinteressenten",
@@ -181,7 +181,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Beantragung des Energieausweises und vollständige Beschaffung aller erforderlichen Unterlagen für Ihren Immobilienverkauf.",
     titleEn: "Documentation Module",
     descriptionEn: "Application for energy performance certificate and full procurement of all required documents for your property sale",
-    priceEn: "€150 incl. VAT per commenced hour",
+    priceEn: "€149 incl. VAT per commenced hour",
     image: "/img/service-dokumentmodul.png",
     detailSections: [
       "Die Beschaffung objektbezogener Unterlagen erfolgt ausschließlich auf Grundlage eines gesonderten, schriftlich oder in Textform erteilten Einzelauftrags sowie nach ausdrücklicher Freigabe des Eigentümers.",
@@ -209,7 +209,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Objektübergabe & Nachbetreuung",
     titleEn: "Handover Module",
     descriptionEn: "Property handover & post-sale coordination",
-    priceEn: "€120 per commenced hour",
+    priceEn: "€149 incl. VAT per commenced hour",
     image: "/img/service/uebergabemodul.jpeg",
     detailSections: [
       "Exklusive Objektkoordination und Nachbetreuung nach Übergabe",
@@ -242,6 +242,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     title: "Der ganzheitliche Verkaufsprozess – von der Bewertung bis zur Übergabe",
     subtitle: "Ein sicherer Verkauf in 5 klaren Schritten",
     price: "3,57 % inklusive MwSt. vom Verkaufspreis der Immobilie",
+    priceEn: "3.57% incl. VAT of the property sale price",
     description:
       "Vollständige Vermarktung Ihrer Immobilie – von der Wertermittlung bis zur erfolgreichen Übergabe.",
     image:
