@@ -276,5 +276,42 @@
       "agbLinkText": "AGB",
       "submitButton": "Anfrage senden"
     }
+  },
+  "kaufen": {
+    "meta": {
+      "title": "Immobilien Weinheim",
+      "description": "Exklusive Immobilien in Weinheim und an der Bergstraße. Wohnungen, Häuser und Gewerbeimmobilien – seriös und hochwertig vermittelt von HE immologis.",
+      "keywords": ["Immobilien Weinheim", "Immobilien Bergstraße", "Wohnung Weinheim", "Haus kaufen Weinheim", "HE immologis"]
+    },
+    "hero": {
+      "title": "Kaufen in Weinheim und Umgebung.",
+      "titleMobileLine1": "Kaufen in Weinheim",
+      "titleMobileLine2": "und Umgebung.",
+      "subtitle": "Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.",
+      "subtitleMobileLine1": "Gezielt ausgewählt. Klar geprüft.",
+      "subtitleMobileLine2": "Sicher umgesetzt.",
+      "ctaText": "Jetzt Immobilien ansehen",
+      "ctaAriaLabel": "Zu den Immobilien scrollen"
+    },
+    "filters": {
+      "labelStatus": "Status",
+      "labelLocation": "Ort",
+      "allStatus": "Alle Status",
+      "allLocations": "Alle Orte",
+      "statusAvailable": "Verfügbar",
+      "statusReserved": "Reserviert",
+      "statusSold": "Verkauft"
+    },
+    "noResults": "Keine Immobilien entsprechen den gewählten Filtern.",
+    "kauftipps": {
+      "heading": "Tipps beim Kauf einer Immobilie",
+      "intro": "Der Kauf einer Immobilie ist eine weitreichende Entscheidung. Mit der richtigen Vorbereitung treffen Sie fundierte und sichere Entscheidungen.",
+      "tipTitles": ["Erstgespräch", "Finanzierung", "Suche und finde", "Zustandsprüfung", "Dokumente und Einträge prüfen", "Preisverhandlung", "Beurkundung", "Übergabe und Einzug", "Nachbetreuung"],
+      "tipContents": []
+    },
+    "contact": {
+      "title": "Immobilien-Anfrage",
+      "subtitle": "Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen? Wir beraten Sie gerne und unverbindlich."
+    }
   }
 }

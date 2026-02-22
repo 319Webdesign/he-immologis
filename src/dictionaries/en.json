@@ -194,73 +194,73 @@
       "keywords": ["Sell property Weinheim", "Property sale enquiry", "HE immologis sale", "Property sale Bergstraße"]
     },
     "hero": {
-      "titleLine1": "Selling in Weinheim and the surrounding area.",
-      "titleLine2": "No castles – We'd be glad to have your property.",
-      "titleLine1Mobile": "Selling in Weinheim<br>and the surrounding area.",
-      "titleLine2Mobile": "No castles –<br>We'd be glad to have your property.",
-      "subtitle": "Clearly valued. Optimally positioned. Sold with confidence.",
-      "subtitleMobile": "Clearly valued. Optimally positioned.<br>Sold with confidence.",
-      "ctaText": "Get your sale value now",
+      "titleLine1": "Sell in Weinheim and Surroundings",
+      "titleLine2": "No castles – but gladly your property.",
+      "titleLine1Mobile": "Sell in Weinheim<br>and Surroundings.",
+      "titleLine2Mobile": "No castles –<br>but gladly your property.",
+      "subtitle": "Clearly valued. Optimally positioned. Securely sold.",
+      "subtitleMobile": "Clearly valued. Optimally positioned.<br>Securely sold.",
+      "ctaText": "Determine your property value now",
       "ctaAriaLabel": "Scroll to sale enquiry form"
     },
     "provision": {
-      "headingSrOnly": "Note on broker commission",
+      "headingSrOnly": "Brokerage Commission Notice",
       "badge": "Note",
-      "paragraph1": "For the sake of clarity we would like to point out that, when instructed, a broker commission of 3.57% of the notarially certified purchase price applies, including statutory VAT. This commission is borne equally by buyer and seller unless otherwise agreed. The right to commission arises once the broker is instructed to carry out the brokerage and the purchase agreement has been notarially certified.",
+      "paragraph1": "For the sake of transparency, please note that in the event of an appointment, a brokerage commission of 3.57% of the notarized purchase price (incl. statutory VAT) will apply. Unless otherwise agreed, this commission is borne equally by buyer and seller. The commission claim arises once the broker has been commissioned and the purchase agreement has been notarized.",
       "paragraph2Prefix": "Our General Terms and Conditions (",
-      "paragraph2Suffix": ") as well as statutory provisions apply here.",
+      "paragraph2Suffix": ") and statutory regulations apply.",
       "agbLinkText": "GTC"
     },
     "finalCta": {
-      "title": "Still unsure about the market value?",
-      "description": "Let's take the first step together.<br /><strong>We value your property professionally – of course free of charge.</strong>",
-      "buttonText": "Request free valuation",
+      "title": "Are you still unsure about the market value?",
+      "description": "Let's take the first step together. Holger Eberhard will evaluate your property professionally, discreetly and completely free of charge.",
+      "buttonText": "Request a free valuation",
       "callText": "Prefer to call directly?"
     },
     "sellerServices": {
-      "heading": "More than just brokerage – Our full-service promise.",
-      "subheading": "Our premium service for sellers.",
-      "buttonText": "To my services",
+      "heading": "More Than Brokerage – Our Full-Service Commitment",
+      "subheading": "Our Premium Service for Sellers",
+      "buttonText": "Explore My Services",
       "services": [
-        {"title": "Professional valuation", "text": "Sound market analysis for the optimal sale price."},
-        {"title": "High-end property photography", "text": "Visual marketing with professional shots and drone imagery."},
-        {"title": "Document procurement", "text": "We take care of all necessary legal documents."},
-        {"title": "Qualified buyer screening", "text": "Viewings only with vetted buyers and credit checks."},
-        {"title": "Notary & contract management", "text": "Full preparation and support through to the notarisation appointment."},
-        {"title": "After-sales support", "text": "We remain your contact for handover even after the sale."}
+        {"title": "Professional Valuation", "text": "In-depth market analysis to determine the optimal sales price."},
+        {"title": "High-End Property Photography", "text": "Visual marketing through professional photography and drone footage."},
+        {"title": "Document Procurement", "text": "We obtain all legally required documents for the sale."},
+        {"title": "Qualified Buyer Screening", "text": "Viewings only with verified buyers and credit checks."},
+        {"title": "Notary & Contract Management", "text": "Complete preparation and support throughout the notarization process."},
+        {"title": "Aftercare", "text": "We remain your trusted contact even after the sale and during handover."}
       ]
     },
     "sellForm": {
-      "sectionPersonal": "Personal details",
-      "sectionObject": "Property address",
-      "sectionProperty": "Property details",
-      "sectionAdditional": "Additional information",
+      "sectionPersonal": "Personal Details",
+      "sectionObject": "Property Details (Address)",
+      "sectionProperty": "Property Information",
+      "sectionAdditional": "Additional Information",
       "labels": {
-        "vorname": "First name",
-        "nachname": "Last name",
-        "email": "Email address",
-        "telefon": "Phone number",
+        "vorname": "First Name",
+        "nachname": "Last Name",
+        "email": "Email Address",
+        "telefon": "Phone Number",
         "strasse": "Street",
-        "hausnummer": "House no.",
-        "plz": "Postcode",
-        "ort": "Town/City",
-        "immobilientyp": "Property type",
-        "baujahr": "Year built",
-        "zustand": "Condition of your property",
-        "nachricht": "Initial information about the property / Message to us"
+        "hausnummer": "House Number",
+        "plz": "Postal Code",
+        "ort": "City",
+        "immobilientyp": "Property Type",
+        "baujahr": "Year of Construction",
+        "zustand": "Condition of the Property",
+        "nachricht": "Initial details about the property / Message to us"
       },
       "placeholders": {
         "vorname": "Max",
         "nachname": "Mustermann",
         "email": "your@email.com",
         "telefon": "+49 123 456789",
-        "strasse": "Main Street",
+        "strasse": "Bergstraße",
         "hausnummer": "42",
         "plz": "69469",
         "ort": "Weinheim",
         "pleaseChoose": "Please select",
         "baujahr": "1985",
-        "nachricht": "Briefly describe your property or share any additional requirements..."
+        "nachricht": "Briefly describe your property or share additional information and requests..."
       },
       "immobilienTypen": ["Single-family house", "Two-family house", "Terraced house", "Semi-detached house", "Multi-family house", "Condominium", "Land", "Commercial property", "Commercial / Residential", "Mixed-use property"],
       "zustaende": ["well maintained", "renovated / modernised", "fully refurbished", "in need of renovation", "in need of refurbishment"],
@@ -271,10 +271,57 @@
       },
       "successTitle": "Thank you for your enquiry",
       "successMessage": "Holger Eberhard will get back to you shortly.",
-      "agbLabelPrefix": "I have read and accept the ",
-      "agbLabelSuffix": ". *",
+      "agbLabelPrefix": "I have read and accept the General Terms and Conditions (",
+      "agbLabelSuffix": "). *",
       "agbLinkText": "GTC",
-      "submitButton": "Send enquiry"
+      "submitButton": "Submit Request"
+    }
+  },
+  "kaufen": {
+    "meta": {
+      "title": "Properties Weinheim",
+      "description": "Exclusive properties in Weinheim and the Bergstraße region. Apartments, houses and commercial property – reliably and professionally brokered by HE immologis.",
+      "keywords": ["Properties Weinheim", "Properties Bergstraße", "Apartment Weinheim", "Buy house Weinheim", "HE immologis"]
+    },
+    "hero": {
+      "title": "Buy in Weinheim and Surroundings",
+      "titleMobileLine1": "Buy in Weinheim",
+      "titleMobileLine2": "and Surroundings.",
+      "subtitle": "Carefully selected. Clearly reviewed. Securely executed.",
+      "subtitleMobileLine1": "Carefully selected. Clearly reviewed.",
+      "subtitleMobileLine2": "Securely executed.",
+      "ctaText": "View Properties Now",
+      "ctaAriaLabel": "Scroll to properties"
+    },
+    "filters": {
+      "labelStatus": "Status",
+      "labelLocation": "Location",
+      "allStatus": "All Status",
+      "allLocations": "All Locations",
+      "statusAvailable": "Available",
+      "statusReserved": "Reserved",
+      "statusSold": "Sold"
+    },
+    "noResults": "No properties match the selected filters.",
+    "kauftipps": {
+      "heading": "Tips for Buying a Property",
+      "intro": "Purchasing a property is a significant decision. With the right preparation, you can make informed and confident choices.",
+      "tipTitles": ["Initial Consultation", "Financing", "Search and Selection", "Property Condition Inspection", "Review of Documents and Land Registry Entries", "Price Negotiation", "Notarization", "Handover and Move-In", "Aftercare"],
+      "tipContents": [
+        "We clarify your personal situation, budget and location preferences before starting the search. Our aim is to find a property that truly fits your life – in Weinheim, the Bergstraße and the Rhine-Neckar region.",
+        "Plan your finances early: equity, running costs, notary and land registry fees, and broker commission. Compare financing options and obtain a financing certificate so you can act quickly when you find the right property.",
+        "We continuously monitor the market in Weinheim and the Bergstraße region and will contact you when a property matches your criteria. You receive clear descriptions and can decide in peace whether to view it.",
+        "During viewings we check the condition of the property: structure, heating, electrics, moisture, defects and refurbishment needs. We recommend an independent surveyor if needed so you can assess the price and plan realistically.",
+        "Before buying, review the land register extract, floor plan, energy certificate, declaration of division (for condominiums) and owners’ meeting minutes. We help you spot discrepancies or encumbrances and understand the rights and obligations attached to the property.",
+        "Based on market comparison, condition and your finances we provide a realistic price recommendation. We negotiate with the seller or their agent and aim for fair terms and a transparent, timely conclusion.",
+        "The notarial purchase contract is the legally binding step. We prepare the documents with you and can accompany you to the notary. The notary explains the contract, certifies the transfer and initiates the land register entry.",
+        "At handover, keys are handed over, meter readings recorded and the condition documented. We coordinate between you and the seller and are available for any questions so that move-in runs smoothly.",
+        "We remain your contact after the purchase. For questions on utilities, insurance, tradespeople or future sales, you can turn to us as your long-term partner for property in Weinheim and the Bergstraße."
+      ]
+    },
+    "contact": {
+      "title": "Property Inquiry",
+      "subtitle": "Are you interested in one of our properties or would you like to sell your property? We are happy to advise you — without obligation."
     }
   }
 }

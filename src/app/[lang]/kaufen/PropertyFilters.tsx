@@ -2,13 +2,37 @@
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-export default function PropertyFilters() {
+export type KaufenFiltersDict = {
+  labelStatus: string;
+  labelLocation: string;
+  allStatus: string;
+  allLocations: string;
+  statusAvailable: string;
+  statusReserved: string;
+  statusSold: string;
+};
+
+interface PropertyFiltersProps {
+  dict: KaufenFiltersDict;
+  lang: string;
+}
+
+const STATUS_VALUES = ["alle", "verfügbar", "reserviert", "verkauft"] as const;
+
+export default function PropertyFilters({ dict, lang }: PropertyFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const lang = (pathname?.split("/")[1] ?? "de") as string;
   const status = searchParams.get("status") ?? "alle";
   const ort = searchParams.get("ort") ?? "alle";
+
+  const statusLabel = (value: string) => {
+    if (value === "alle") return dict.allStatus;
+    if (value === "verfügbar") return dict.statusAvailable;
+    if (value === "reserviert") return dict.statusReserved;
+    if (value === "verkauft") return dict.statusSold;
+    return value;
+  };
 
   const updateFilter = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -24,7 +48,7 @@ export default function PropertyFilters() {
     <div className="flex flex-wrap gap-4 rounded-xl bg-white p-4 shadow-sm">
       <div>
         <label htmlFor="status" className="sr-only">
-          Status
+          {dict.labelStatus}
         </label>
         <select
           id="status"
@@ -32,15 +56,16 @@ export default function PropertyFilters() {
           onChange={(e) => updateFilter("status", e.target.value)}
           className="rounded-lg border border-zinc-300 px-4 py-2 text-sm focus:border-amber-500 focus:ring-amber-500"
         >
-          <option value="alle">Alle Status</option>
-          <option value="verfügbar">Verfügbar</option>
-          <option value="reserviert">Reserviert</option>
-          <option value="verkauft">Verkauft</option>
+          {STATUS_VALUES.map((v) => (
+            <option key={v} value={v}>
+              {statusLabel(v)}
+            </option>
+          ))}
         </select>
       </div>
       <div>
         <label htmlFor="ort" className="sr-only">
-          Ort
+          {dict.labelLocation}
         </label>
         <select
           id="ort"
@@ -48,7 +73,7 @@ export default function PropertyFilters() {
           onChange={(e) => updateFilter("ort", e.target.value)}
           className="rounded-lg border border-zinc-300 px-4 py-2 text-sm focus:border-amber-500 focus:ring-amber-500"
         >
-          <option value="alle">Alle Orte</option>
+          <option value="alle">{dict.allLocations}</option>
           <option value="Weinheim">Weinheim</option>
         </select>
       </div>

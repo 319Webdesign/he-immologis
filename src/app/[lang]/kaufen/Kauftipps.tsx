@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const KAUFTIPPS: { title: string; content: string | React.ReactNode }[] = [
+export type KaufenKauftippsDict = {
+  heading: string;
+  intro: string;
+  tipTitles: string[];
+  tipContents?: string[];
+};
+
+const KAUFTIPPS_DE: { title: string; content: string | React.ReactNode }[] = [
   {
     title: "Erstgespräch",
     content: (
@@ -212,8 +219,17 @@ const KAUFTIPPS: { title: string; content: string | React.ReactNode }[] = [
   },
 ];
 
-export default function Kauftipps() {
+interface KauftippsProps {
+  dict: KaufenKauftippsDict;
+  lang: string;
+}
+
+export default function Kauftipps({ dict, lang }: KauftippsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const useEnContent = lang === "en" && Array.isArray(dict.tipContents) && dict.tipContents.length > 0;
+  const tips = useEnContent
+    ? dict.tipTitles.map((title, i) => ({ title, content: dict.tipContents![i] ?? "" }))
+    : KAUFTIPPS_DE.map((tip, i) => ({ title: dict.tipTitles[i] ?? tip.title, content: tip.content }));
 
   return (
     <section
@@ -225,14 +241,14 @@ export default function Kauftipps() {
           id="kauftipps-heading"
           className="font-sans text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"
         >
-          Tipps beim Kauf einer Immobilie
+          {dict.heading}
         </h2>
         <p className="mt-2 text-zinc-600">
-          Der Kauf einer Immobilie ist eine weitreichende Entscheidung. Mit der richtigen Vorbereitung treffen Sie fundierte und sichere Entscheidungen.
+          {dict.intro}
         </p>
 
         <ul className="mt-8 space-y-3">
-          {KAUFTIPPS.map((tip, index) => {
+          {tips.map((tip, index) => {
             const isOpen = openIndex === index;
             return (
               <li key={tip.title}>

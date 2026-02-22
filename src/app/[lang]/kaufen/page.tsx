@@ -7,19 +7,8 @@ import PropertyCard from "./PropertyCard";
 import PropertyFilters from "./PropertyFilters";
 import Kauftipps from "./Kauftipps";
 import Contact from "@/components/Contact";
-
-export const metadata: Metadata = {
-  title: "Immobilien Weinheim",
-  description:
-    "Exklusive Immobilien in Weinheim und an der Bergstraße. Wohnungen, Häuser und Gewerbeimmobilien – seriös und hochwertig vermittelt von HE immologis.",
-  keywords: [
-    "Immobilien Weinheim",
-    "Immobilien Bergstraße",
-    "Wohnung Weinheim",
-    "Haus kaufen Weinheim",
-    "HE immologis",
-  ],
-};
+import { getDictionary } from "@/dictionaries";
+import { getLocaleFromHeaders } from "@/lib/i18n";
 
 const allProperties = propertiesData as Property[];
 
@@ -27,10 +16,24 @@ interface PageProps {
   searchParams: Promise<{ status?: string; ort?: string }>;
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocaleFromHeaders();
+  const dict = await getDictionary(locale);
+  const m = dict.kaufen.meta;
+  return {
+    title: m.title,
+    description: m.description,
+    keywords: m.keywords,
+  };
+}
+
 export default async function KaufenPage({ searchParams }: PageProps) {
+  const locale = await getLocaleFromHeaders();
+  const dict = await getDictionary(locale);
   const params = await searchParams;
   const statusFilter = params.status ?? "alle";
   const ortFilter = params.ort ?? "alle";
+  const k = dict.kaufen;
 
   const properties = allProperties.filter((p) => {
     if (statusFilter !== "alle" && p.status !== statusFilter) return false;
@@ -57,36 +60,34 @@ export default async function KaufenPage({ searchParams }: PageProps) {
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
             <span className="sm:hidden">
-              Kaufen in Weinheim
+              {k.hero.titleMobileLine1}
               <br />
-              und Umgebung.
+              {k.hero.titleMobileLine2}
             </span>
-            <span className="hidden sm:inline">Kaufen in Weinheim und Umgebung.</span>
+            <span className="hidden sm:inline">{k.hero.title}</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm">
             <span className="sm:hidden">
-              Gezielt ausgewählt. Klar geprüft.
+              {k.hero.subtitleMobileLine1}
               <br />
-              Sicher umgesetzt.
+              {k.hero.subtitleMobileLine2}
             </span>
-            <span className="hidden sm:inline">
-              Gezielt ausgewählt. Klar geprüft. Sicher umgesetzt.
-            </span>
+            <span className="hidden sm:inline">{k.hero.subtitle}</span>
           </p>
         </div>
         <a
           href="#immobilien"
           className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
-          aria-label="Zu den Immobilien scrollen"
+          aria-label={k.hero.ctaAriaLabel}
         >
-          <span className="text-sm font-medium">Jetzt Immobilien ansehen</span>
+          <span className="text-sm font-medium">{k.hero.ctaText}</span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
 
       <section id="immobilien" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100" />}>
-          <PropertyFilters />
+          <PropertyFilters dict={k.filters} lang={locale} />
         </Suspense>
         {properties.length > 0 ? (
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -95,17 +96,15 @@ export default async function KaufenPage({ searchParams }: PageProps) {
             ))}
           </div>
         ) : (
-          <p className="mt-10 text-center text-zinc-500">
-            Keine Immobilien entsprechen den gewählten Filtern.
-          </p>
+          <p className="mt-10 text-center text-zinc-500">{k.noResults}</p>
         )}
       </section>
 
-      <Kauftipps />
+      <Kauftipps dict={k.kauftipps} lang={locale} />
 
       <Contact
-        title="Immobilien-Anfrage"
-        subtitle="Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen? Wir beraten Sie gerne und unverbindlich."
+        title={k.contact.title}
+        subtitle={k.contact.subtitle}
         accentColor="steelblue"
       />
     </>
