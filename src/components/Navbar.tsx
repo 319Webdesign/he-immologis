@@ -304,7 +304,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
                   aria-expanded={mobileTippOpen}
                 >
-                  <span className="font-semibold uppercase tracking-wider">Tipp-Prämie</span>
+                  <span className="font-semibold">Tipp-Prämie</span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 transition-transform ${mobileTippOpen ? "rotate-180" : ""}`}
                     aria-hidden
@@ -332,7 +332,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
                   aria-expanded={mobileLogistikOpen}
                 >
-                  <span className="font-semibold uppercase tracking-wider">Logistikberatung</span>
+                  <span className="font-semibold">Logistikberatung</span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 transition-transform ${mobileLogistikOpen ? "rotate-180" : ""}`}
                     aria-hidden
