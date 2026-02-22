@@ -54,7 +54,7 @@
   "footer": {
     "companyLine1": "HE immologis UG",
     "companyLine2": "(haftungsbeschränkt) i. Gr.",
-    "partnerText": "Ihr Partner für Immobilien- & Logistikberatung in Baden-Württemberg & Hessen.",
+    "partnerText": "Ihr Partner für <br> Immobilien- & Logistikberatung in <br> Baden-Württemberg & Hessen.",
     "contact": "Kontakt",
     "managingDirector": "Geschäftsführer",
     "openingHours": "Öffnungszeiten",
@@ -93,15 +93,15 @@
     "cards": [
       {
         "title": "Verkauf",
-        "description": "Fokus auf lokale Marktwerte und faire Bewertung.<br><strong>Wir verkaufen Ihre Immobilie.</strong>"
+        "description": "Fokus auf lokale Marktwerte und faire Bewertung.<br><strong>Ihr Immobilienverkauf.</strong>"
       },
       {
         "title": "Kauf & Suche",
-        "description": "Unterstützung für Suchende in der Region.<br><strong>Wir finden Ihre Immobilie.</strong>"
+        "description": "Unterstützung für Suchende in der Region.<br><strong>Ihre Immobiliensuche.</strong>"
       },
       {
         "title": "Vermietung",
-        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z.<br><strong>Wir vermieten Ihre Immobilie.</strong>"
+        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z.<br><strong>Ihre Immobilienvermietung.</strong>"
       },
       {
         "title": "Logistikberatung",
@@ -138,7 +138,8 @@
         "headline": "Flexible Kontaktmöglichkeiten.",
         "tagline": "Ihre Immobilie. Jederzeit erreichbar.",
         "paragraphs": [
-          "Sie können sich darauf verlassen, dass ich flexibel und zuverlässig agiere, wann immer wir Termine vereinbaren. Pünktlichkeit und Erreichbarkeit sind für mich selbstverständlich. Auch außerhalb der klassischen Geschäftszeiten bin ich erreichbar – sei es telefonisch, per WhatsApp oder auf einem Weg, der Ihnen am besten passt."
+          "Sie können sich darauf verlassen, dass ich flexibel und zuverlässig agiere, wann immer wir Termine vereinbaren. Pünktlichkeit und Erreichbarkeit sind für mich selbstverständlich.",
+          "Auch außerhalb der klassischen Geschäftszeiten bin ich erreichbar – sei es telefonisch, per WhatsApp oder auf einem Weg, der Ihnen am besten passt."
         ],
         "extra": "Wenn Sie mich brauchen: einfach da."
       },
@@ -389,7 +390,7 @@
     },
     "contact": {
       "title": "Immobilien-Anfrage",
-      "subtitle": "Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen? Wir beraten Sie gerne und unverbindlich."
+      "subtitle": "Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen?<br class=\"sm:hidden\" /> Wir beraten Sie gerne und unverbindlich."
     }
   },
   "mieten": {

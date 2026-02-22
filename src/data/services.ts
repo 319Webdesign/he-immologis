@@ -80,7 +80,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     id: "2",
     slug: "beratung-begleitung",
     title: "Beratungsmodul",
-    price: "149,- EUR / h",
+    price: "149,- EUR / Stunde",
     description:
       "Individuelle Beratung und persönliche Begleitung bei Ihrem Immobilienvorhaben.",
     titleEn: "Advisory Module",
@@ -127,7 +127,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     id: "4",
     slug: "verkaeuferschutzmodul",
     title: "Verkäuferschutzmodul",
-    price: "149,- EUR / h",
+    price: "149,- EUR / Stunde",
     description:
       "Qualifizierte Interessentenprüfung & Bonität",
     titleEn: "Seller Protection Module",
@@ -176,7 +176,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     id: "6",
     slug: "energieausweis",
     title: "Dokumentenmodul",
-    price: "149,- EUR / h",
+    price: "149,- EUR / Stunde",
     description:
       "Beantragung des Energieausweises und vollständige Beschaffung aller erforderlichen Unterlagen für Ihren Immobilienverkauf.",
     titleEn: "Documentation Module",
@@ -204,7 +204,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     id: "7",
     slug: "objektkoordination",
     title: "Übergabemodul",
-    price: "149,- EUR / h",
+    price: "149,- EUR / Stunde",
     description:
       "Objektübergabe & Nachbetreuung",
     titleEn: "Handover Module",

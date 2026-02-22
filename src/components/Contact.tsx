@@ -123,9 +123,8 @@ export default function Contact({
               className={`mt-4 text-lg ${
                 isDark ? "text-zinc-300" : "text-zinc-600"
               }`}
-            >
-              {subtitle}
-            </p>
+              dangerouslySetInnerHTML={{ __html: subtitle }}
+            />
 
             <div className="mt-10 space-y-6">
               <div className="flex items-start gap-4">
