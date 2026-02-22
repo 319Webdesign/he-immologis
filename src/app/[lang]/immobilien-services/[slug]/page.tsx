@@ -11,20 +11,29 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return DEFAULT_SERVICES.map((s) => ({ slug: s.slug }));
+  const slugs = DEFAULT_SERVICES.map((s) => s.slug);
+  const params: { lang: string; slug: string }[] = [];
+  for (const lang of ["de", "en"]) {
+    for (const slug of slugs) {
+      params.push({ lang, slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { lang, slug } = await params;
   const service = DEFAULT_SERVICES.find((s) => s.slug === slug);
-  if (!service) return { title: "Service nicht gefunden" };
+  if (!service) return { title: lang === "en" ? "Service not found" : "Service nicht gefunden" };
+  const title = lang === "en" && service.titleEn ? service.titleEn : service.title;
+  const description = lang === "en" && service.descriptionEn ? service.descriptionEn : service.description;
   return {
-    title: `${service.title} | HE immologis UG`,
+    title: `${title} | HE immologis UG`,
     description:
-      service.description ||
-      `${service.title} – Professioneller Service von HE immologis in Weinheim.`,
+      description ||
+      (lang === "en" ? `${title} – Professional service from HE immologis in Weinheim.` : `${title} – Professioneller Service von HE immologis in Weinheim.`),
   };
 }
 
@@ -222,6 +231,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const paragraphs =
     sections && sections.length > 0 ? sections : [service.description];
   const displayPrice = locale === "en" && service.priceEn ? service.priceEn : service.price;
+  const displayTitle = locale === "en" && service.titleEn ? service.titleEn : service.title;
+  const displaySubtitle = locale === "en" && service.subtitleEn ? service.subtitleEn : service.subtitle;
 
   const isKomplettmandat =
     slug === "immobilienverkauf" && (service.detailSections?.length ?? 0) >= 14;
@@ -230,11 +241,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     <>
       <div className="mx-auto max-w-3xl px-4 pt-16 pb-8 sm:px-6 sm:pt-20 lg:px-8">
         <Link
-          href="/immobilien-services"
+          href={locale ? `/${locale}/immobilien-services` : "/immobilien-services"}
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900"
         >
           <ArrowLeft className="h-4 w-4" />
-          Zurück zu allen Services
+          {locale === "en" ? "Back to all services" : "Zurück zu allen Services"}
         </Link>
 
         <article>
@@ -247,12 +258,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 </span>
               </>
             ) : (
-              service.title
+              displayTitle
             )}
           </h1>
-          {service.subtitle && (
+          {(displaySubtitle ?? service.subtitle) && (
             <p className="mt-2 text-lg font-medium text-slate-600">
-              {service.subtitle}
+              {displaySubtitle ?? service.subtitle}
             </p>
           )}
           <span

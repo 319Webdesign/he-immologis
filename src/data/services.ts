@@ -11,6 +11,12 @@ export interface ServiceCardItem {
   detailSections?: string[];
   /** Englische Absätze für die Service-Detailseite (wenn gesetzt, wird bei lang=en verwendet). */
   detailSectionsEn?: string[];
+  /** Titel auf Englisch (Karten auf /en/immobilien-services). */
+  titleEn?: string;
+  /** Untertitel auf Englisch. */
+  subtitleEn?: string;
+  /** Kurzbeschreibung auf Englisch. */
+  descriptionEn?: string;
   /** Preis-Anzeige auf Englisch (z. B. für Karten auf /en/immobilien-services). */
   priceEn?: string;
 }
@@ -66,6 +72,8 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Two-family house: €799.00 incl. VAT",
       "Multi-family house: €899.00 incl. VAT",
     ],
+    titleEn: "Valuation Module",
+    descriptionEn: "Precise property valuation & market analysis",
     priceEn: "From €599.00 per individual assignment",
   },
   {
@@ -75,6 +83,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "149,- EUR / h",
     description:
       "Individuelle Beratung und persönliche Begleitung bei Ihrem Immobilienvorhaben.",
+    titleEn: "Advisory Module",
+    descriptionEn: "Individual consulting and personal guidance for your real estate project",
+    priceEn: "€150 per hour",
     image: "/img/service/beratungsmodul.jpeg",
     detailSections: [
       "Sie brauchen keine Vollvermarktung, sondern gezielte Beratung oder Begleitung in bestimmten Phasen? Wir unterstützen Sie stundenweise mit unserem Know-how – ob bei der Einschätzung von Objekten, der Verhandlung mit der Bank oder der Koordination von Gewerken.",
@@ -89,6 +100,10 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     subtitle: "Hochwertige Drohnen- und Kameraproduktion für Luxusimmobilien",
     price: "600,- EUR pauschal",
     description: "Exposé, Fotografie, Drohne, Objektaufbereitung",
+    titleEn: "High-End Presentation Module",
+    subtitleEn: "Premium drone and professional camera production for luxury properties",
+    descriptionEn: "Exposé, photography, drone footage, property staging",
+    priceEn: "€600 incl. VAT",
     image: "/img/tim.jpeg",
     detailSections: [
       "Premium-Visualisierung für Objektpräsentationen, Image-Content und Luxusimmobilien-Marketing",
@@ -115,6 +130,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "149,- EUR / h",
     description:
       "Qualifizierte Interessentenprüfung & Bonität",
+    titleEn: "Seller Protection Module",
+    descriptionEn: "Qualified buyer screening & creditworthiness verification",
+    priceEn: "€120 incl. VAT per commenced hour",
     image: "/img/service/verkaeuferschutzmodul.jpeg",
     detailSections: [
       "Exposé & geprüfte Kaufinteressenten",
@@ -144,6 +162,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "1,19 % vom Kaufpreis",
     description:
       "Notarvorbereitung & Kaufvertragsabwicklung",
+    titleEn: "Notary Contract Module",
+    descriptionEn: "Notary preparation & purchase contract coordination",
+    priceEn: "1.19% commission based on the sale price",
     image: "/img/service/Notarvertragsmodul.jpeg",
     detailSections: [
       "Der Kaufvertrag ist unterzeichnet – damit beginnt die Phase der Abwicklung: Fristen überwachen, Unterlagen einholen, Notartermin und Finanzierung abstimmen, Übergabe vorbereiten. Wir übernehmen die Koordination und sorgen dafür, dass nichts auf der Strecke bleibt.",
@@ -158,6 +179,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "149,- EUR / h",
     description:
       "Beantragung des Energieausweises und vollständige Beschaffung aller erforderlichen Unterlagen für Ihren Immobilienverkauf.",
+    titleEn: "Documentation Module",
+    descriptionEn: "Application for energy performance certificate and full procurement of all required documents for your property sale",
+    priceEn: "€150 incl. VAT per commenced hour",
     image: "/img/service-dokumentmodul.png",
     detailSections: [
       "Die Beschaffung objektbezogener Unterlagen erfolgt ausschließlich auf Grundlage eines gesonderten, schriftlich oder in Textform erteilten Einzelauftrags sowie nach ausdrücklicher Freigabe des Eigentümers.",
@@ -183,6 +207,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "149,- EUR / h",
     description:
       "Objektübergabe & Nachbetreuung",
+    titleEn: "Handover Module",
+    descriptionEn: "Property handover & post-sale coordination",
+    priceEn: "€120 per commenced hour",
     image: "/img/service/uebergabemodul.jpeg",
     detailSections: [
       "Exklusive Objektkoordination und Nachbetreuung nach Übergabe",
@@ -199,6 +226,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     price: "Auf Anfrage",
     description:
       "Persönliche Begleitung und Koordination nach dem Verkauf oder bei laufenden Vorhaben.",
+    titleEn: "Aftercare Module",
+    descriptionEn: "Personal support and coordination after the sale or during ongoing projects",
+    priceEn: "Upon request",
     image: "/img/service/nachbetreung.jpeg",
     detailSections: [
       "Das Nachbetreuungsmodul bietet Ihnen einen verlässlichen Ansprechpartner für alle Schritte nach dem Verkauf oder während laufender Projekte.",

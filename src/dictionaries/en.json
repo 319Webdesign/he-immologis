@@ -8,6 +8,84 @@
       "discoverMore": "Discover more"
     }
   },
+  "nav": {
+    "sell": "Sell",
+    "buy": "Buy",
+    "rent": "Rent",
+    "service": "Service",
+    "search": "Search",
+    "referralBonus": "Referral Bonus",
+    "referralSub": [
+      { "label": "Give a tip" },
+      { "label": "Banner advertising" },
+      { "label": "Display advertising" }
+    ],
+    "logistics": "Logistics Consulting",
+    "logisticsSub": [
+      { "label": "SMART Overview" },
+      { "label": "S – Training" },
+      { "label": "M – M & A" },
+      { "label": "A – Decision-maker networks" },
+      { "label": "R – Interim solutions" },
+      { "label": "T – Transport network strategies" }
+    ],
+    "aboutMe": "About Me",
+    "contactNow": "Contact Now",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "ariaLangSwitchDe": "Sprache wechseln (aktuell: Deutsch)",
+    "ariaLangSwitchEn": "Switch language (current: English)",
+    "logoAlt": "HE immologis"
+  },
+  "contactForm": {
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "nameLabel": "Name *",
+    "emailLabel": "Email *",
+    "phoneLabel": "Phone",
+    "messageLabel": "Message *",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "your@email.com",
+    "phonePlaceholder": "+49 123 456789",
+    "messagePlaceholder": "Your message…",
+    "submitButton": "Send message"
+  },
+  "footer": {
+    "companyLine1": "HE immologis UG",
+    "companyLine2": "(limited liability) in formation",
+    "partnerText": "Your partner for real estate & logistics consulting in Baden-Württemberg & Hesse.",
+    "contact": "Contact",
+    "managingDirector": "Managing Director",
+    "openingHours": "Opening Hours",
+    "openingWeekdays": "Mon – Fri",
+    "openingSaturday": "Sat.",
+    "openingTime1": "9:00 – 18:00",
+    "openingTime2": "9:00 – 12:00",
+    "courtInfo": "Mannheim Local Court, HRB 755995",
+    "vatPlaceholder": "VAT ID [placeholder]",
+    "quickLinks": "Quick Links",
+    "sell": "Sell",
+    "buy": "Buy",
+    "rent": "Rent",
+    "search": "Search",
+    "tipGive": "Give a tip",
+    "bannerAd": "Banner advertising",
+    "displayAd": "Display advertising",
+    "logistics": "Logistics Consulting",
+    "service": "Service",
+    "contactLink": "Contact",
+    "bankDetails": "Bank Details",
+    "legalLinksAria": "Legal links",
+    "imprint": "Imprint",
+    "privacy": "Privacy Policy",
+    "gtc": "GTC",
+    "revocation": "Right of withdrawal",
+    "cookies": "Cookies",
+    "certificates": "Certificates",
+    "copyright": "© 2026 HE immologis UG. All rights reserved.",
+    "designedBy": "Designed by"
+  },
   "localPresence": {
     "heading": "Sell. Buy. Rent.<br> Services. Search.",
     "subline": "Your new home in Weinheim and the Bergstraße starts here.",
@@ -322,6 +400,82 @@
     "contact": {
       "title": "Property Inquiry",
       "subtitle": "Are you interested in one of our properties or would you like to sell your property? We are happy to advise you — without obligation."
+    }
+  },
+  "mieten": {
+    "meta": {
+      "title": "Rental Properties Weinheim",
+      "description": "Find your new home in Weinheim and the Bergstraße region. Apartments, houses and commercial – personally managed by HE immologis.",
+      "keywords": ["Rental apartment Weinheim", "Rent house Bergstraße", "Apartment for rent Weinheim", "HE immologis Rentals"]
+    },
+    "hero": {
+      "title": "Rent in Weinheim and Surroundings",
+      "subtitle": "Carefully selected. Transparently arranged. Feel at home.",
+      "ctaText": "Find the right rental property",
+      "ctaAriaLabel": "Scroll to rental properties"
+    },
+    "filters": {
+      "labelPropertyType": "Property Type",
+      "propertyTypeOptions": [
+        { "value": "Wohnung", "label": "Apartment" },
+        { "value": "Haus", "label": "House" },
+        { "value": "Gewerbe", "label": "Commercial" }
+      ],
+      "allRooms": "All Rooms",
+      "roomOptions": ["1 room", "2 rooms", "3 rooms", "4 rooms", "5+ rooms"],
+      "allPrices": "All Prices",
+      "priceOptions": ["up to 800 €", "800 – 1,200 €", "1,200 – 1,800 €", "over 1,800 €"]
+    },
+    "provision": {
+      "headingSrOnly": "Brokerage Commission Notice",
+      "badge": "Note",
+      "paragraph1": "In Baden-Württemberg and Hesse, the \"commissioning principle\" (Bestellerprinzip) applies to residential rentals. This means that the party who commissions the real estate agent bears the costs. The brokerage commission in these federal states may amount to a maximum of two net monthly rents plus 19% VAT for the services rendered by the agent.",
+      "paragraph2Prefix": "Our General Terms and Conditions (",
+      "paragraph2Suffix": ") and statutory regulations apply.",
+      "agbLinkText": "GTC"
+    },
+    "noRentals": {
+      "text": "All our properties are currently rented. Get on our waiting list!",
+      "buttonText": "Register search request"
+    },
+    "card": {
+      "viewDetails": "View details",
+      "netRentSuffix": "net rent",
+      "roomsLabel": "rooms",
+      "statusNew": "New",
+      "statusReserved": "Reserved",
+      "statusAvailable": "Available"
+    }
+  },
+  "immobilienServices": {
+    "meta": {
+      "title": "Real Estate Services | HE immologis UG",
+      "description": "From valuation to key handover: professional real estate services in Weinheim and the Bergstraße. Market valuation, marketing and transaction support.",
+      "keywords": ["Real estate services Weinheim", "Market valuation Bergstraße", "Property marketing", "HE immologis"]
+    },
+    "hero": {
+      "title": "Tailored Sales Solutions.",
+      "subtitleLine1": "From a full-service property sale to individually selectable service modules –",
+      "subtitleLine2": "you decide how comprehensively we support you.",
+      "ctaText": "View Services",
+      "ctaAriaLabel": "Scroll to services"
+    },
+    "mainCard": {
+      "badge": "Full-Service Mandate",
+      "title": "The Complete Sales Process",
+      "subtitle": "—from valuation to handover",
+      "stepsIntro": "A secure sale in 5 clearly defined steps:",
+      "features": ["Precise Property Valuation", "High-Quality Property Presentation", "Targeted Marketing & Buyer Qualification", "Financing Verification", "Notary Coordination & Handover"],
+      "priceParagraph": "For this comprehensive service, we charge the standard local success fee of 3.57% incl. VAT, calculated on the notarized purchase price.",
+      "moreInfoButton": "More Information"
+    },
+    "modulesHeading": "Individual Service Modules",
+    "modulesAriaLabel": "Individual service modules",
+    "cardMoreInfo": "More Information",
+    "cta": {
+      "heading": "Do You Have Questions About Our Services?",
+      "text": "Let's discuss your project in a non-binding consultation.",
+      "button": "Schedule a consultation now"
     }
   }
 }

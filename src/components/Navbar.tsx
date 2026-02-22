@@ -13,26 +13,48 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-/* Dropdown: Logistikberatung SMART – Übersicht + 5 Module */
-const LOGISTIKBERATUNG_SUB = [
-  { label: "Übersicht SMART", href: "/logistikberatung" },
-  { label: "S – Schulung", href: "/logistikberatung/schulung" },
-  { label: "M – M & A", href: "/logistikberatung/ma" },
-  { label: "A – Entscheidernetzwerke", href: "/logistikberatung/entscheidernetzwerke" },
-  { label: "R – Interim-Lösungen", href: "/logistikberatung/interim" },
-  { label: "T – Transportnetzwerkstrategien", href: "/logistikberatung/transportnetzwerkstrategien" },
+const LOGISTIKBERATUNG_HREFS = [
+  "/logistikberatung",
+  "/logistikberatung/schulung",
+  "/logistikberatung/ma",
+  "/logistikberatung/entscheidernetzwerke",
+  "/logistikberatung/interim",
+  "/logistikberatung/transportnetzwerkstrategien",
 ] as const;
 
-/* Dropdown: Tipp-Prämie */
-const TIPP_PRAEMIE_SUB = [
-  { label: "Tipp geben", href: "/geld-verdienen/tipp-geben" },
-  { label: "Banner werben", href: "/geld-verdienen/banner" },
-  { label: "Aufsteller werben", href: "/geld-verdienen/aufsteller" },
+const TIPP_PRAEMIE_HREFS = [
+  "/geld-verdienen/tipp-geben",
+  "/geld-verdienen/banner",
+  "/geld-verdienen/aufsteller",
 ] as const;
+
+export type NavDict = {
+  sell: string;
+  buy: string;
+  rent: string;
+  service: string;
+  search: string;
+  referralBonus: string;
+  referralSub: { label: string }[];
+  logistics: string;
+  logisticsSub: { label: string }[];
+  aboutMe: string;
+  contactNow: string;
+  menuOpen: string;
+  menuClose: string;
+  ariaLangSwitchDe: string;
+  ariaLangSwitchEn: string;
+  logoAlt: string;
+};
 
 type Locale = "de" | "en";
 
-export default function Navbar({ lang }: { lang: Locale }) {
+interface NavbarProps {
+  lang: Locale;
+  dict: NavDict;
+}
+
+export default function Navbar({ lang, dict }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logistikOpen, setLogistikOpen] = useState(false);
@@ -60,7 +82,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
         <Phone className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">0176 321 98 462</span>
       </a>
-      <span className={`${utilityLinkClass(variant)} flex items-center gap-1.5`} role="group" aria-label={lang === "de" ? "Sprache wechseln (aktuell: Deutsch)" : "Switch language (current: English)"}>
+      <span className={`${utilityLinkClass(variant)} flex items-center gap-1.5`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : dict.ariaLangSwitchEn}>
         <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden />
         <span className="flex items-center gap-1">
           <Link href={switchToDe} title="Deutsch" className="block">
@@ -114,7 +136,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
         >
           <Image
             src="/img/logo.png"
-            alt="HE immologis"
+            alt={dict.logoAlt}
             width={280}
             height={100}
             className="block h-16 w-auto object-contain object-left sm:h-20"
@@ -127,27 +149,27 @@ export default function Navbar({ lang }: { lang: Locale }) {
         <div className="hidden flex-1 justify-center lg:flex">
           <div className="flex flex-nowrap items-center gap-1 xl:gap-2">
             <Link href={`${prefix}/verkaufen`} className={navLinkClass(`${prefix}/verkaufen`)}>
-              Verkaufen
+              {dict.sell}
             </Link>
             <Link href={`${prefix}/kaufen`} className={navLinkClass(`${prefix}/kaufen`)}>
-              Kaufen
+              {dict.buy}
             </Link>
             <Link href={`${prefix}/mieten`} className={navLinkClass(`${prefix}/mieten`)}>
-              Mieten
+              {dict.rent}
             </Link>
             <Link
               href={`${prefix}/immobilien-services`}
               className={navLinkClass(`${prefix}/immobilien-services`)}
             >
-              Service
+              {dict.service}
             </Link>
             <Link
               href={`${prefix}/immobilie-suchen`}
               className={navLinkClass(`${prefix}/immobilie-suchen`)}
             >
-              Suchen
+              {dict.search}
             </Link>
-            {/* Tipp-Prämie mit Dropdown */}
+            {/* Tipp-Prämie / Referral Bonus mit Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setTippPraemieOpen(true)}
@@ -159,7 +181,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   pathname.includes("/geld-verdienen") ? "opacity-100" : "opacity-90"
                 }`}
               >
-                Tipp-Prämie
+                {dict.referralBonus}
                 <ChevronDown
                   className={`h-4 w-4 transition-transform ${
                     tippPraemieOpen ? "rotate-180" : ""
@@ -170,10 +192,10 @@ export default function Navbar({ lang }: { lang: Locale }) {
               {tippPraemieOpen && (
                 <div className="absolute left-0 top-full pt-1">
                   <div className="min-w-[200px] whitespace-nowrap rounded-lg border border-zinc-100 bg-white py-2 shadow-lg">
-                    {TIPP_PRAEMIE_SUB.map((item) => (
+                    {dict.referralSub.map((item, i) => (
                       <Link
                         key={item.label}
-                        href={`${prefix}${item.href}`}
+                        href={`${prefix}${TIPP_PRAEMIE_HREFS[i]}`}
                         className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
                       >
                         {item.label}
@@ -196,7 +218,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   pathname.includes("/logistikberatung") ? "opacity-100" : "opacity-90"
                 }`}
               >
-                Logistikberatung
+                {dict.logistics}
                 <ChevronDown
                   className={`h-4 w-4 transition-transform ${
                     logistikOpen ? "rotate-180" : ""
@@ -207,10 +229,10 @@ export default function Navbar({ lang }: { lang: Locale }) {
               {logistikOpen && (
                 <div className="absolute left-0 top-full pt-1">
                   <div className="min-w-[320px] whitespace-nowrap rounded-lg border border-zinc-100 bg-white py-2 shadow-lg">
-                    {LOGISTIKBERATUNG_SUB.map((item) => (
+                    {dict.logisticsSub.map((item, i) => (
                       <Link
                         key={item.label}
-                        href={`${prefix}${item.href}`}
+                        href={`${prefix}${LOGISTIKBERATUNG_HREFS[i]}`}
                         className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
                       >
                         {item.label}
@@ -222,7 +244,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
             </div>
 
             <Link href={`${prefix}/ueber-mich`} className={navLinkClass(`${prefix}/ueber-mich`)}>
-              Über mich
+              {dict.aboutMe}
             </Link>
           </div>
         </div>
@@ -234,7 +256,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
             className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ backgroundColor: "#4682B4" }}
           >
-            Jetzt kontaktieren
+            {dict.contactNow}
           </Link>
         </div>
 
@@ -242,7 +264,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
           type="button"
           className="rounded-lg p-2 text-zinc-600 transition-colors hover:bg-zinc-100 lg:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
+          aria-label={mobileMenuOpen ? dict.menuClose : dict.menuOpen}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -258,7 +280,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
               className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: "#4682B4" }}
             >
-              Jetzt kontaktieren
+              {dict.contactNow}
             </Link>
 
             <div className="flex flex-col gap-1">
@@ -267,35 +289,35 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   onClick={() => setMobileMenuOpen(false)}
                   className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
                 >
-                  Verkaufen
+                  {dict.sell}
                 </Link>
               <Link
                 href={`${prefix}/kaufen`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
-                Kaufen
+                {dict.buy}
               </Link>
               <Link
                 href={`${prefix}/mieten`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
-                Mieten
+                {dict.rent}
               </Link>
               <Link
                 href={`${prefix}/immobilien-services`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
-                Service
+                {dict.service}
               </Link>
               <Link
                 href={`${prefix}/immobilie-suchen`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
-                Suchen
+                {dict.search}
               </Link>
               <div className="rounded-lg">
                 <button
@@ -304,7 +326,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
                   aria-expanded={mobileTippOpen}
                 >
-                  <span className="font-semibold">Tipp-Prämie</span>
+                  <span className="font-semibold">{dict.referralBonus}</span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 transition-transform ${mobileTippOpen ? "rotate-180" : ""}`}
                     aria-hidden
@@ -312,10 +334,10 @@ export default function Navbar({ lang }: { lang: Locale }) {
                 </button>
                 {mobileTippOpen && (
                   <div className="flex flex-col gap-0 pl-2 pb-2">
-                    {TIPP_PRAEMIE_SUB.map((item) => (
+                    {dict.referralSub.map((item, i) => (
                       <Link
                         key={item.label}
-                        href={`${prefix}${item.href}`}
+                        href={`${prefix}${TIPP_PRAEMIE_HREFS[i]}`}
                         onClick={() => setMobileMenuOpen(false)}
                         className="rounded-lg px-3 py-2 text-base font-normal text-black hover:bg-zinc-50"
                       >
@@ -332,7 +354,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                   className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
                   aria-expanded={mobileLogistikOpen}
                 >
-                  <span className="font-semibold">Logistikberatung</span>
+                  <span className="font-semibold">{dict.logistics}</span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 transition-transform ${mobileLogistikOpen ? "rotate-180" : ""}`}
                     aria-hidden
@@ -340,10 +362,10 @@ export default function Navbar({ lang }: { lang: Locale }) {
                 </button>
                 {mobileLogistikOpen && (
                   <div className="flex flex-col gap-0 pl-2 pb-2">
-                    {LOGISTIKBERATUNG_SUB.map((item) => (
+                    {dict.logisticsSub.map((item, i) => (
                       <Link
                         key={item.label}
-                        href={`${prefix}${item.href}`}
+                        href={`${prefix}${LOGISTIKBERATUNG_HREFS[i]}`}
                         onClick={() => setMobileMenuOpen(false)}
                         className="rounded-lg px-3 py-2 text-base font-normal text-black hover:bg-zinc-50"
                       >
@@ -358,7 +380,7 @@ export default function Navbar({ lang }: { lang: Locale }) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
-                Über mich
+                {dict.aboutMe}
               </Link>
             </div>
           </div>

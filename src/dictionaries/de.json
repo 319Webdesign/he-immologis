@@ -8,6 +8,84 @@
       "discoverMore": "Mehr entdecken"
     }
   },
+  "nav": {
+    "sell": "Verkaufen",
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "service": "Service",
+    "search": "Suchen",
+    "referralBonus": "Tipp-Prämie",
+    "referralSub": [
+      { "label": "Tipp geben" },
+      { "label": "Banner werben" },
+      { "label": "Aufsteller werben" }
+    ],
+    "logistics": "Logistikberatung",
+    "logisticsSub": [
+      { "label": "Übersicht SMART" },
+      { "label": "S – Schulung" },
+      { "label": "M – M & A" },
+      { "label": "A – Entscheidernetzwerke" },
+      { "label": "R – Interim-Lösungen" },
+      { "label": "T – Transportnetzwerkstrategien" }
+    ],
+    "aboutMe": "Über mich",
+    "contactNow": "Jetzt kontaktieren",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "ariaLangSwitchDe": "Sprache wechseln (aktuell: Deutsch)",
+    "ariaLangSwitchEn": "Switch language (current: English)",
+    "logoAlt": "HE immologis"
+  },
+  "contactForm": {
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "nameLabel": "Name *",
+    "emailLabel": "E-Mail *",
+    "phoneLabel": "Telefon",
+    "messageLabel": "Nachricht *",
+    "namePlaceholder": "Ihr Name",
+    "emailPlaceholder": "ihre@email.de",
+    "phonePlaceholder": "+49 123 456789",
+    "messagePlaceholder": "Ihre Nachricht...",
+    "submitButton": "Nachricht senden"
+  },
+  "footer": {
+    "companyLine1": "HE immologis UG",
+    "companyLine2": "(haftungsbeschränkt) i. Gr.",
+    "partnerText": "Ihr Partner für Immobilien- & Logistikberatung in Baden-Württemberg & Hessen.",
+    "contact": "Kontakt",
+    "managingDirector": "Geschäftsführer",
+    "openingHours": "Öffnungszeiten",
+    "openingWeekdays": "Mo. – Fr.",
+    "openingSaturday": "Sa.",
+    "openingTime1": "9:00 Uhr – 18:00 Uhr",
+    "openingTime2": "9:00 Uhr – 12:00 Uhr",
+    "courtInfo": "Amtsgericht Mannheim, HRB 755995",
+    "vatPlaceholder": "USt.-Ident. [Platzhalter]",
+    "quickLinks": "Quick Links",
+    "sell": "Verkaufen",
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "search": "Suchen",
+    "tipGive": "Tipp geben",
+    "bannerAd": "Banner werben",
+    "displayAd": "Aufsteller werben",
+    "logistics": "Logistikberatung",
+    "service": "Service",
+    "contactLink": "Kontakt",
+    "bankDetails": "Bankverbindung",
+    "legalLinksAria": "Rechtliche Links",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "gtc": "AGB",
+    "revocation": "Widerruf",
+    "cookies": "Cookies",
+    "certificates": "Zertifikate",
+    "copyright": "© 2026 HE immologis UG. Alle Rechte vorbehalten.",
+    "designedBy": "Designed by"
+  },
   "localPresence": {
     "heading": "Verkaufen. Kaufen. Mieten. Services. Suchen.",
     "subline": "Ihr neues Zuhause in Weinheim und an der Bergstraße beginnt hier.",
@@ -312,6 +390,82 @@
     "contact": {
       "title": "Immobilien-Anfrage",
       "subtitle": "Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen? Wir beraten Sie gerne und unverbindlich."
+    }
+  },
+  "mieten": {
+    "meta": {
+      "title": "Mietobjekte Weinheim",
+      "description": "Finden Sie Ihr neues Zuhause in Weinheim und der Region Bergstraße. Wohnungen, Häuser und Gewerbe – persönlich betreut von HE immologis.",
+      "keywords": ["Mietwohnung Weinheim", "Haus mieten Bergstraße", "Wohnung zur Miete Weinheim", "HE immologis Mieten"]
+    },
+    "hero": {
+      "title": "Mieten in Weinheim und Umgebung.",
+      "subtitle": "Passend ausgewählt. Transparent vermittelt. Zuhause ankommen.",
+      "ctaText": "Passende Mietimmobilie finden",
+      "ctaAriaLabel": "Zu den Mietobjekten scrollen"
+    },
+    "filters": {
+      "labelPropertyType": "Objekttyp",
+      "propertyTypeOptions": [
+        { "value": "Wohnung", "label": "Wohnung" },
+        { "value": "Haus", "label": "Haus" },
+        { "value": "Gewerbe", "label": "Gewerbe" }
+      ],
+      "allRooms": "Alle Zimmer",
+      "roomOptions": ["1 Zimmer", "2 Zimmer", "3 Zimmer", "4 Zimmer", "5+ Zimmer"],
+      "allPrices": "Alle Preise",
+      "priceOptions": ["bis 800 €", "800 – 1.200 €", "1.200 – 1.800 €", "über 1.800 €"]
+    },
+    "provision": {
+      "headingSrOnly": "Hinweis zur Maklerprovision",
+      "badge": "Hinweis",
+      "paragraph1": "In Baden-Württemberg und Hessen gilt beim Vermieten von Wohnraum das Bestellerprinzip. Das heißt, wer den Makler beauftragt, trägt die Kosten. Die Maklerprovision darf in Baden-Württemberg und Hessen zwei Nettokaltmieten zuzüglich 19 % Umsatzsteuer betragen, die der Makler für seine Tätigkeit erhält.",
+      "paragraph2Prefix": "Hier gelten unsere Allgemeinen Geschäftsbedingungen (",
+      "paragraph2Suffix": ") sowie die gesetzlichen Bestimmungen.",
+      "agbLinkText": "AGB"
+    },
+    "noRentals": {
+      "text": "Aktuell sind alle unsere Objekte vermietet. Lassen Sie sich vormerken!",
+      "buttonText": "Suchauftrag anlegen"
+    },
+    "card": {
+      "viewDetails": "Details ansehen",
+      "netRentSuffix": "Kalt",
+      "roomsLabel": "Zimmer",
+      "statusNew": "Neu",
+      "statusReserved": "Reserviert",
+      "statusAvailable": "Verfügbar"
+    }
+  },
+  "immobilienServices": {
+    "meta": {
+      "title": "Immobilien-Services | HE immologis UG",
+      "description": "Von der Wertermittlung bis zur Schlüsselübergabe: Professionelle Immobilien-Services in Weinheim und an der Bergstraße. Marktwertermittlung, Vermarktung und Abwicklung.",
+      "keywords": ["Immobilien-Services Weinheim", "Marktwertermittlung Bergstraße", "Vermarktung Immobilie", "HE immologis"]
+    },
+    "hero": {
+      "title": "Maßgeschneiderte Verkaufslösungen.",
+      "subtitleLine1": "Komplettverkauf oder Einzelmodule",
+      "subtitleLine2": "– Sie entscheiden.",
+      "ctaText": "Leistungen ansehen",
+      "ctaAriaLabel": "Zu den Leistungen scrollen"
+    },
+    "mainCard": {
+      "badge": "Komplettmandat",
+      "title": "Der komplette Verkaufsprozess",
+      "subtitle": "– von der Bewertung bis zur Übergabe",
+      "stepsIntro": "Ein sicherer Verkauf in 5 klaren Schritten",
+      "features": ["Präzise Wertermittlung", "Hochwertige Aufbereitung", "Gezieltes Marketing & Käuferprüfung", "Finanzierungssicherheit", "Notar & Übergabe"],
+      "priceParagraph": "Für diesen umfassenden Service berechnen wir das ortsübliche Erfolgshonorar von 3,57 % inkl. MwSt., bezogen auf den notariell beurkundeten Kaufpreis.",
+      "moreInfoButton": "Mehr Infos"
+    },
+    "modulesHeading": "Einzelmodule",
+    "modulesAriaLabel": "Einzelmodule",
+    "cardMoreInfo": "Mehr Infos",
+    "cta": {
+      "heading": "Haben Sie Fragen zu unseren Leistungen?",
+      "text": "Lassen Sie uns unverbindlich über Ihr Vorhaben sprechen.",
+      "button": "Jetzt Beratungsgespräch vereinbaren"
     }
   }
 }

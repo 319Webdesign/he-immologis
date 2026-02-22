@@ -39,7 +39,27 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function ServicesPackagesSection() {
+export type ServicesPackagesSectionDict = {
+  mainCard: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    stepsIntro: string;
+    features: string[];
+    priceParagraph: string;
+    moreInfoButton: string;
+  };
+  modulesHeading: string;
+  modulesAriaLabel: string;
+  cardMoreInfo: string;
+};
+
+interface ServicesPackagesSectionProps {
+  dict: ServicesPackagesSectionDict;
+  lang: string;
+}
+
+export default function ServicesPackagesSection({ dict, lang }: ServicesPackagesSectionProps) {
   const zusatzmodule = useMemo(buildZusatzmodule, []);
 
   return (
@@ -48,9 +68,8 @@ export default function ServicesPackagesSection() {
       aria-labelledby="zusatzmodule-heading"
     >
       <div className="mx-auto max-w-7xl">
-        <MainServiceCard />
+        <MainServiceCard dict={dict.mainCard} lang={lang} />
 
-        {/* Verbindung: Verlauf von Karte zu Modulen (Baukasten-Gedanke) */}
         <div
           className="mt-12 h-2 w-full rounded-full opacity-30 sm:mt-16"
           style={{
@@ -64,7 +83,7 @@ export default function ServicesPackagesSection() {
           id="zusatzmodule-heading"
           className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:mt-16 sm:text-3xl"
         >
-          Einzelmodule
+          {dict.modulesHeading}
         </h2>
 
         <motion.div
@@ -73,11 +92,11 @@ export default function ServicesPackagesSection() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          aria-label={`${zusatzmodule.length} Einzelmodule`}
+          aria-label={`${zusatzmodule.length} ${dict.modulesAriaLabel}`}
         >
           {zusatzmodule.map((service) => (
             <motion.div key={service.slug} variants={item}>
-              <ServiceCard service={service} />
+              <ServiceCard service={service} lang={lang} moreInfoText={dict.cardMoreInfo} />
             </motion.div>
           ))}
         </motion.div>

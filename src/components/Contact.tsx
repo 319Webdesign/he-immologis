@@ -5,19 +5,52 @@ import { useState } from "react";
 
 const STEELBLUE = "#4682B4";
 
+export type ContactFormDict = {
+  address: string;
+  phone: string;
+  email: string;
+  nameLabel: string;
+  emailLabel: string;
+  phoneLabel: string;
+  messageLabel: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  phonePlaceholder: string;
+  messagePlaceholder: string;
+  submitButton: string;
+};
+
 interface ContactProps {
   variant?: "default" | "compact" | "dark" | "white";
   title?: string;
   subtitle?: string;
   accentColor?: "amber" | "steelblue";
+  formLabels?: ContactFormDict;
 }
+
+const DEFAULT_FORM_LABELS: ContactFormDict = {
+  address: "Adresse",
+  phone: "Telefon",
+  email: "E-Mail",
+  nameLabel: "Name *",
+  emailLabel: "E-Mail *",
+  phoneLabel: "Telefon",
+  messageLabel: "Nachricht *",
+  namePlaceholder: "Ihr Name",
+  emailPlaceholder: "ihre@email.de",
+  phonePlaceholder: "+49 123 456789",
+  messagePlaceholder: "Ihre Nachricht...",
+  submitButton: "Nachricht senden",
+};
 
 export default function Contact({
   variant = "default",
   title = "Kontaktieren Sie uns",
   subtitle = "Wir freuen uns auf Ihre Nachricht und stehen Ihnen gerne jederzeit zur Verfügung.",
   accentColor = "amber",
+  formLabels,
 }: ContactProps) {
+  const labels = formLabels ?? DEFAULT_FORM_LABELS;
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -106,7 +139,7 @@ export default function Contact({
                   />
                 </div>
                 <div>
-                  <h3 className="font-medium">Adresse</h3>
+                  <h3 className="font-medium">{labels.address}</h3>
                   <p className={isDark ? "text-zinc-400" : "text-zinc-600"}>
                     HE immologis UG
                     <br />
@@ -130,7 +163,7 @@ export default function Contact({
                   />
                 </div>
                 <div>
-                  <h3 className="font-medium">Telefon</h3>
+                  <h3 className="font-medium">{labels.phone}</h3>
                   <a
                     href="tel:+4917632198462"
                     className={`hover:underline ${isDark ? "text-zinc-300" : "text-zinc-600"}`}
@@ -151,7 +184,7 @@ export default function Contact({
                   />
                 </div>
                 <div>
-                  <h3 className="font-medium">E-Mail</h3>
+                  <h3 className="font-medium">{labels.email}</h3>
                   <a
                     href="mailto:info@he-immologis.de"
                     className={`hover:underline ${isDark ? "text-zinc-300" : "text-zinc-600"}`}
@@ -176,7 +209,7 @@ export default function Contact({
                     htmlFor="name"
                     className={`block text-sm font-medium ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
                   >
-                    Name *
+                    {labels.nameLabel}
                   </label>
                   <input
                     type="text"
@@ -190,7 +223,7 @@ export default function Contact({
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
                     }`}
-                    placeholder="Ihr Name"
+                    placeholder={labels.namePlaceholder}
                   />
                 </div>
 
@@ -199,7 +232,7 @@ export default function Contact({
                     htmlFor="email"
                     className={`block text-sm font-medium ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
                   >
-                    E-Mail *
+                    {labels.emailLabel}
                   </label>
                   <input
                     type="email"
@@ -213,7 +246,7 @@ export default function Contact({
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
                     }`}
-                    placeholder="ihre@email.de"
+                    placeholder={labels.emailPlaceholder}
                   />
                 </div>
 
@@ -222,7 +255,7 @@ export default function Contact({
                     htmlFor="phone"
                     className={`block text-sm font-medium ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
                   >
-                    Telefon
+                    {labels.phoneLabel}
                   </label>
                   <input
                     type="tel"
@@ -235,7 +268,7 @@ export default function Contact({
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
                     }`}
-                    placeholder="+49 123 456789"
+                    placeholder={labels.phonePlaceholder}
                   />
                 </div>
 
@@ -244,7 +277,7 @@ export default function Contact({
                     htmlFor="message"
                     className={`block text-sm font-medium ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
                   >
-                    Nachricht *
+                    {labels.messageLabel}
                   </label>
                   <textarea
                     id="message"
@@ -258,7 +291,7 @@ export default function Contact({
                         ? "border-zinc-600 bg-zinc-700 text-white placeholder-zinc-400"
                         : "border-zinc-300 text-zinc-900 placeholder-zinc-400"
                     }`}
-                    placeholder="Ihre Nachricht..."
+                    placeholder={labels.messagePlaceholder}
                   />
                 </div>
 
@@ -268,7 +301,7 @@ export default function Contact({
                   style={btnStyle}
                 >
                   <Send className="h-5 w-5" />
-                  Nachricht senden
+                  {labels.submitButton}
                 </button>
               </form>
             </div>

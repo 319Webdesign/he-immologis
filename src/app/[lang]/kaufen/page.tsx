@@ -106,6 +106,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
         title={k.contact.title}
         subtitle={k.contact.subtitle}
         accentColor="steelblue"
+        formLabels={dict.contactForm}
       />
     </>
   );

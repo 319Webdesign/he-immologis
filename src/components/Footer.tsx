@@ -15,9 +15,50 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
+export type FooterDict = {
+  companyLine1: string;
+  companyLine2: string;
+  partnerText: string;
+  contact: string;
+  managingDirector: string;
+  openingHours: string;
+  openingWeekdays: string;
+  openingSaturday: string;
+  openingTime1: string;
+  openingTime2: string;
+  courtInfo: string;
+  vatPlaceholder: string;
+  quickLinks: string;
+  sell: string;
+  buy: string;
+  rent: string;
+  search: string;
+  tipGive: string;
+  bannerAd: string;
+  displayAd: string;
+  logistics: string;
+  service: string;
+  contactLink: string;
+  bankDetails: string;
+  legalLinksAria: string;
+  imprint: string;
+  privacy: string;
+  gtc: string;
+  revocation: string;
+  cookies: string;
+  certificates: string;
+  copyright: string;
+  designedBy: string;
+};
+
 type Locale = "de" | "en";
 
-export default function Footer({ lang }: { lang: Locale }) {
+interface FooterProps {
+  lang: Locale;
+  dict: FooterDict;
+}
+
+export default function Footer({ lang, dict }: FooterProps) {
   const prefix = `/${lang}`;
   return (
     <footer className="bg-slate-900 text-white" role="contentinfo">
@@ -36,16 +77,12 @@ export default function Footer({ lang }: { lang: Locale }) {
               />
             </Link>
             <p className="font-sans text-lg font-semibold text-white">
-              HE immologis UG
+              {dict.companyLine1}
               <br />
-              (haftungsbeschränkt) i. Gr.
+              {dict.companyLine2}
             </p>
             <p className="mt-2 text-sm text-slate-300">
-              Ihr Partner für
-              <br />
-              Immobilien - & Logistikberatung
-              <br />
-              in Baden-Württemberg & Hessen.
+              {dict.partnerText}
             </p>
             <div className="mt-4 flex gap-4" aria-label="Social Media">
               <a
@@ -81,11 +118,11 @@ export default function Footer({ lang }: { lang: Locale }) {
           {/* Spalte 2: Kontakt & Geschäftsführung */}
           <div>
             <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-white">
-              Kontakt
+              {dict.contact}
             </h3>
             <p className="mt-4 text-sm text-slate-300">
               Holger Eberhard
-              <span className="block text-slate-400">Geschäftsführer</span>
+              <span className="block text-slate-400">{dict.managingDirector}</span>
             </p>
             <ul className="mt-4 space-y-3">
               <li>
@@ -123,23 +160,23 @@ export default function Footer({ lang }: { lang: Locale }) {
           {/* Spalte 3: Öffnungszeiten & Rechtliches */}
           <div>
             <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-white">
-              Öffnungszeiten
+              {dict.openingHours}
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-slate-300">
               <li>
-                <span className="block font-medium text-white">Mo. – Fr.</span>
-                <span className="block pl-0">9:00 Uhr – 18:00 Uhr</span>
+                <span className="block font-medium text-white">{dict.openingWeekdays}</span>
+                <span className="block pl-0">{dict.openingTime1}</span>
               </li>
               <li>
-                <span className="block font-medium text-white">Sa.</span>
-                <span className="block pl-0">9:00 Uhr – 12:00 Uhr</span>
+                <span className="block font-medium text-white">{dict.openingSaturday}</span>
+                <span className="block pl-0">{dict.openingTime2}</span>
               </li>
             </ul>
             <div className="mt-6 border-t border-slate-700 pt-4">
               <p className="text-xs text-slate-400">
-                Amtsgericht Mannheim, HRB 755995
+                {dict.courtInfo}
                 <br />
-                USt.-Ident. [Platzhalter]
+                {dict.vatPlaceholder}
               </p>
             </div>
           </div>
@@ -147,7 +184,7 @@ export default function Footer({ lang }: { lang: Locale }) {
           {/* Spalte 4: Quick Links & Bankverbindung */}
           <div>
             <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-white">
-              Quick Links
+              {dict.quickLinks}
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
@@ -155,7 +192,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/verkaufen`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Verkaufen
+                  {dict.sell}
                 </Link>
               </li>
               <li>
@@ -163,7 +200,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/kaufen`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Kaufen
+                  {dict.buy}
                 </Link>
               </li>
               <li>
@@ -171,7 +208,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/mieten`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Mieten
+                  {dict.rent}
                 </Link>
               </li>
               <li>
@@ -179,7 +216,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/immobilie-suchen`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Suchen
+                  {dict.search}
                 </Link>
               </li>
               <li>
@@ -187,7 +224,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/geld-verdienen/tipp-geben`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Tipp geben
+                  {dict.tipGive}
                 </Link>
               </li>
               <li>
@@ -195,7 +232,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/geld-verdienen/banner`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Banner werben
+                  {dict.bannerAd}
                 </Link>
               </li>
               <li>
@@ -203,7 +240,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/geld-verdienen/aufsteller`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Aufsteller werben
+                  {dict.displayAd}
                 </Link>
               </li>
               <li>
@@ -211,7 +248,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/logistikberatung`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Logistikberatung
+                  {dict.logistics}
                 </Link>
               </li>
               <li>
@@ -219,7 +256,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href={`${prefix}/immobilien-services`}
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Service
+                  {dict.service}
                 </Link>
               </li>
               <li>
@@ -227,13 +264,13 @@ export default function Footer({ lang }: { lang: Locale }) {
                   href="mailto:eberhard@he-immologis.de"
                   className="text-sm text-slate-300 transition-colors hover:text-white"
                 >
-                  Kontakt
+                  {dict.contactLink}
                 </a>
               </li>
             </ul>
             <div className="mt-6 border-t border-slate-700 pt-4">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
-                Bankverbindung
+                {dict.bankDetails}
               </p>
               <p className="mt-2 text-sm text-slate-300">
                 Volksbank Kurpfalz eG
@@ -256,53 +293,53 @@ export default function Footer({ lang }: { lang: Locale }) {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
           <nav
             className="flex flex-wrap items-center justify-center gap-6 text-sm"
-            aria-label="Rechtliche Links"
+            aria-label={dict.legalLinksAria}
           >
             <Link
               href={`${prefix}/impressum`}
               className="text-slate-400 transition-colors hover:text-white"
             >
-              Impressum
+              {dict.imprint}
             </Link>
             <Link
               href={`${prefix}/datenschutz`}
               className="text-slate-400 transition-colors hover:text-white"
             >
-              Datenschutz
+              {dict.privacy}
             </Link>
             <Link
               href={`${prefix}/agb`}
               className="text-slate-400 transition-colors hover:text-white"
             >
-              AGB
+              {dict.gtc}
             </Link>
             <Link
               href={`${prefix}/widerruf`}
               className="text-slate-400 transition-colors hover:text-white"
             >
-              Widerruf
+              {dict.revocation}
             </Link>
             <Link
               href={`${prefix}/cookies`}
               className="text-slate-400 transition-colors hover:text-white"
             >
-              Cookies
+              {dict.cookies}
             </Link>
             <Link
               href={`${prefix}/zertifikate`}
               className="text-slate-400 transition-colors hover:text-white"
             >
-              Zertifikate
+              {dict.certificates}
             </Link>
           </nav>
           <p className="text-center text-xs text-slate-500 sm:text-left">
-            © 2026 HE immologis UG. Alle Rechte vorbehalten.
+            {dict.copyright}
           </p>
         </div>
         <div className="border-t border-slate-800">
           <div className="mx-auto flex max-w-7xl justify-center px-4 py-4 sm:px-6 lg:px-8">
             <p className="text-center text-xs text-slate-500">
-              Designed by{" "}
+              {dict.designedBy}{" "}
               <a
                 href="https://319webdesign.com"
                 target="_blank"

@@ -11,7 +11,21 @@ const BRAND_BLUE = "#4682B4";
 
 export type { ServiceCardItem };
 
-export function ServiceCard({ service }: { service: ServiceCardItem }) {
+interface ServiceCardProps {
+  service: ServiceCardItem;
+  lang?: string;
+  moreInfoText?: string;
+}
+
+export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: ServiceCardProps) {
+  const isEn = lang === "en";
+  const title = (isEn && service.titleEn) ? service.titleEn : service.title;
+  const price = (isEn && service.priceEn) ? service.priceEn : service.price;
+  const subtitle = (isEn && service.subtitleEn) ? service.subtitleEn : service.subtitle;
+  const description = (isEn && service.descriptionEn) ? service.descriptionEn : service.description;
+  const baseHref = lang ? `/${lang}/immobilien-services` : "/immobilien-services";
+  const href = service.href ?? `${baseHref}/${service.slug}`;
+
   return (
     <article
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -31,7 +45,7 @@ export function ServiceCard({ service }: { service: ServiceCardItem }) {
           id={`service-title-${service.id}`}
           className="font-sans text-xl font-semibold tracking-tight text-slate-900"
         >
-          {service.title}
+          {title}
         </h3>
         <span
           className="mt-3 inline-flex w-fit rounded-lg px-3 py-1.5 text-sm font-semibold"
@@ -40,26 +54,26 @@ export function ServiceCard({ service }: { service: ServiceCardItem }) {
             color: BRAND_BLUE,
           }}
         >
-          {service.price}
+          {price}
         </span>
-        {service.subtitle && (
+        {subtitle && (
           <p className="mt-2 text-sm font-medium text-slate-600">
-            {service.subtitle}
+            {subtitle}
           </p>
         )}
-        {service.description ? (
+        {description ? (
           <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
-            {service.description}
+            {description}
           </p>
         ) : (
           <div className="flex-1" />
         )}
         <Link
-          href={service.href ?? `/immobilien-services/${service.slug}`}
+          href={href}
           className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
           style={{ backgroundColor: BRAND_BLUE }}
         >
-          Mehr Infos
+          {moreInfoText}
         </Link>
       </div>
     </article>
