@@ -55,9 +55,8 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
           <h2
             id="kompetenz-heading"
             className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
-          >
-            {heading}
-          </h2>
+            dangerouslySetInnerHTML={{ __html: heading }}
+          />
           <p className="mt-4 text-lg text-slate-600">
             {subline}
           </p>

@@ -57,7 +57,7 @@ export default function BannerPage() {
             diese einfach für ein Immobilien-Werbebanner von HE immologis für einen von Ihnen
             freigegebenen Zeitraum zur Verfügung.
           </p>
-          <p className="mt-4 text-2xl font-bold sm:text-3xl" style={{ color: BRAND_BLUE }}>
+          <p className="mt-4 inline-block animate-breathe text-2xl font-bold sm:text-3xl" style={{ color: BRAND_BLUE }}>
             500 € Prämie bei erfolgreichem Verkauf
           </p>
         </div>

@@ -58,7 +58,7 @@ export default function AufstellerPage() {
             <br />
             Dann stellen Sie einfach einen Immobilien-Aufsteller von HE immologis auf.
           </p>
-          <p className="mt-4 text-2xl font-bold sm:text-3xl" style={{ color: BRAND_BLUE }}>
+          <p className="mt-4 inline-block animate-breathe text-2xl font-bold sm:text-3xl" style={{ color: BRAND_BLUE }}>
             500 € Prämie bei erfolgreichem Verkauf
           </p>
         </div>

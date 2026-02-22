@@ -7,7 +7,7 @@ import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
 const BRAND_BLUE = "#4682B4";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang?: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -176,6 +176,26 @@ function DefaultContent({
               {text}
             </h3>
           );
+        if (text.startsWith("!!! WICHTIG !!! ")) {
+          return (
+            <p key={i} className="text-lg leading-relaxed text-slate-600">
+              <span className="inline-flex items-center rounded-md bg-amber-100 px-2.5 py-1 text-sm font-semibold text-amber-800 ring-1 ring-amber-200">
+                WICHTIG
+              </span>{" "}
+              {text.slice(16)}
+            </p>
+          );
+        }
+        if (text.startsWith("IMPORTANT: ")) {
+          return (
+            <p key={i} className="text-lg leading-relaxed text-slate-600">
+              <span className="inline-flex items-center rounded-md bg-amber-100 px-2.5 py-1 text-sm font-semibold text-amber-800 ring-1 ring-amber-200">
+                IMPORTANT
+              </span>{" "}
+              {text.slice(11)}
+            </p>
+          );
+        }
         return (
           <p key={i} className="text-lg leading-relaxed text-slate-600">
             {text}
@@ -187,17 +207,21 @@ function DefaultContent({
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  const locale = lang === "en" ? "en" : "de";
   const service: ServiceCardItem | undefined = DEFAULT_SERVICES.find(
     (s) => s.slug === slug
   );
 
   if (!service) notFound();
 
+  const sections =
+    locale === "en" && service.detailSectionsEn && service.detailSectionsEn.length > 0
+      ? service.detailSectionsEn
+      : service.detailSections;
   const paragraphs =
-    service.detailSections && service.detailSections.length > 0
-      ? service.detailSections
-      : [service.description];
+    sections && sections.length > 0 ? sections : [service.description];
+  const displayPrice = locale === "en" && service.priceEn ? service.priceEn : service.price;
 
   const isKomplettmandat =
     slug === "immobilienverkauf" && (service.detailSections?.length ?? 0) >= 14;
@@ -238,7 +262,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               color: BRAND_BLUE,
             }}
           >
-            {service.price}
+            {displayPrice}
           </span>
 
           {isKomplettmandat ? (

@@ -2,7 +2,8 @@
   "home": {
     "hero": {
       "line1": "Neues kann endlich beginnen.",
-      "line2": "Verkaufen. Finden. Möglich machen.",
+      "line2": "Verkaufen. Finden.",
+      "line2Next": "Möglich machen.",
       "subline": "Weinheim. Bergstraße.",
       "discoverMore": "Mehr entdecken"
     }
@@ -14,15 +15,15 @@
     "cards": [
       {
         "title": "Verkauf",
-        "description": "Fokus auf lokale Marktwerte und faire Bewertung<br>– <strong>Wir verkaufen Ihre Immobilie.</strong>"
+        "description": "Fokus auf lokale Marktwerte und faire Bewertung.<br><strong>Wir verkaufen Ihre Immobilie.</strong>"
       },
       {
         "title": "Kauf & Suche",
-        "description": "Unterstützung für Suchende in der Region<br>– <strong>Wir finden Ihre Immobilie.</strong>"
+        "description": "Unterstützung für Suchende in der Region.<br><strong>Wir finden Ihre Immobilie.</strong>"
       },
       {
         "title": "Vermietung",
-        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z<br>– <strong>wir vermieten Ihre Immobilie.</strong>"
+        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z.<br><strong>Wir vermieten Ihre Immobilie.</strong>"
       },
       {
         "title": "Logistikberatung",
@@ -36,6 +37,9 @@
         ]
       }
     ]
+  },
+  "logistikberatung": {
+    "introText": "Als strategisch erfahrener Logistikberater in Deutschland unterstütze ich Unternehmen beim Aufbau und der Optimierung europaweiter Transport-, Lagerlogistik – und Vertriebsnetzwerke und Interim-Vertrieb – sowohl für nicht temperaturgeführte Güter als auch für GDP-konforme, temperaturgeführte Strukturen in der Pharma- und Healthcare-Logistik."
   },
   "philosophy": {
     "heading": "Mehr Wert. Ihr Plus.",
@@ -192,7 +196,10 @@
     "hero": {
       "titleLine1": "Verkaufen in Weinheim und Umgebung.",
       "titleLine2": "Keine Burgen – Gerne Ihre Immobilie.",
+      "titleLine1Mobile": "Verkaufen in Weinheim<br>und Umgebung.",
+      "titleLine2Mobile": "Keine Burgen –<br>Gerne Ihre Immobilie.",
       "subtitle": "Klar bewertet. Optimal positioniert. Sicher verkauft.",
+      "subtitleMobile": "Klar bewertet. Optimal positioniert.<br>Sicher verkauft.",
       "ctaText": "Jetzt Verkaufswert ermitteln",
       "ctaAriaLabel": "Zum Verkaufsanfrage-Formular scrollen"
     },
@@ -216,7 +223,7 @@
       "buttonText": "Zu meinen Services",
       "services": [
         {"title": "Professionelle Wertermittlung", "text": "Fundierte Marktanalyse für den optimalen Verkaufspreis."},
-        {"title": "High End Immobilienfotos", "text": "Visuelles Marketing durch Profi-Aufnahmen und Drohnenbilder."},
+        {"title": "High-End Immobilienfotos", "text": "Visuelles Marketing durch Profi-Aufnahmen und Drohnenbilder."},
         {"title": "Dokumentenbeschaffung", "text": "Wir kümmern uns um alle notwendigen gesetzlichen Unterlagen."},
         {"title": "Qualifizierte Interessentenprüfung", "text": "Besichtigungen nur mit geprüften Käufern und Bonitätscheck."},
         {"title": "Notar- & Vertragsmanagement", "text": "Komplette Vorbereitung und Begleitung zum Beurkundungstermin."},

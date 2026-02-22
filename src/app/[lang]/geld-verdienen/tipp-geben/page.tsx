@@ -50,14 +50,15 @@ export default async function TippGebenPage() {
           priority
           quality={90}
         />
+        <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl px-2 text-center">
           <h1
             id="hero-tipp-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-black sm:text-5xl"
+            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
             {t.heroTitle}
           </h1>
-          <p className="mt-8 inline-block animate-breathe text-2xl font-bold text-black sm:text-3xl">
+          <p className="mt-8 inline-block animate-breathe text-2xl font-bold text-white drop-shadow-sm sm:text-3xl">
             {t.heroCta}
           </p>
         </div>
@@ -70,12 +71,12 @@ export default async function TippGebenPage() {
         <div className="mx-auto max-w-4xl">
           <h2
             id="staffel-heading"
-            className="text-center font-sans text-2xl font-semibold tracking-tight text-slate-800 sm:text-3xl"
+            className="text-left font-sans text-2xl font-semibold tracking-tight text-slate-800 sm:text-3xl"
           >
             {t.staffelTitle}
           </h2>
 
-          <div className="mt-16 space-y-4 text-lg leading-relaxed text-slate-600 sm:mt-20">
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-slate-600 sm:mt-8">
             <p className="text-xl font-medium text-slate-800">
               {t.introQuestion}
             </p>

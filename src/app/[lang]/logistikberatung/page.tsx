@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SMART_INTRO, SMART_MODULE } from "@/data/logistikberatung";
 import Contact from "@/components/Contact";
+import { getDictionary } from "@/dictionaries";
+import { getLocaleFromHeaders } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Logistikberatung – SMART | HE immologis UG",
@@ -19,7 +21,11 @@ export const metadata: Metadata = {
 
 const BRAND_BLUE = "#4682B4";
 
-export default function LogistikberatungPage() {
+export default async function LogistikberatungPage() {
+  const locale = await getLocaleFromHeaders();
+  const dict = await getDictionary(locale);
+  const introText = dict.logistikberatung.introText;
+
   return (
     <>
       {/* Hero mit Hintergrundbild – auf Handy mit cover, ab lg volle Breite */}
@@ -66,6 +72,15 @@ export default function LogistikberatungPage() {
                 {i < SMART_INTRO.heroDescription.length - 1 && <br />}
               </span>
             ))}
+          </p>
+        </div>
+      </section>
+
+      {/* Intro-Text zwischen Hero und Karten */}
+      <section className="border-b border-slate-200 bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-center text-lg leading-relaxed text-slate-700">
+            {introText}
           </p>
         </div>
       </section>

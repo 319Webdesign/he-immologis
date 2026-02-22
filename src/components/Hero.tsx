@@ -13,6 +13,7 @@ const POSTER_SRC = "/img/hero-poster.jpg";
 export type HomeHeroDict = {
   line1: string;
   line2: string;
+  line2Next: string;
   subline: string;
   discoverMore: string;
 };
@@ -53,6 +54,8 @@ export default function Hero({ dict }: HeroProps) {
             {dict.line1}
             <br />
             {dict.line2}
+            <br />
+            <span className="whitespace-nowrap">{dict.line2Next}</span>
           </h1>
           <p className="mt-4 text-base font-normal tracking-wide text-white/90 sm:text-lg md:mt-6">
             {dict.subline}

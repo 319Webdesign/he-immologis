@@ -41,7 +41,7 @@ export default function ImmobilienServicesPage() {
             Maßgeschneiderte Verkaufslösungen.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm sm:text-xl">
-            Komplett Verkauf oder Einzelmodule
+            Komplettverkauf oder Einzelmodule
             <br className="sm:hidden" />
             – Sie entscheiden.
           </p>

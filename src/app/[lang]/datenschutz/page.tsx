@@ -28,7 +28,9 @@ export default function DatenschutzPage() {
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:
             </p>
             <p className="mt-2">
-              <strong>HE immologis<br className="sm:hidden" /> UG (haftungsbeschränkt) i. Gr.</strong>
+              <strong>HE immologis UG</strong>
+              <br />
+              <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
               <br />
               Ahornstr. 59, 69469 Weinheim
             </p>

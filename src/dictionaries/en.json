@@ -2,13 +2,14 @@
   "home": {
     "hero": {
       "line1": "Something new can finally begin.",
-      "line2": "Sell. Find. Make it possible.",
+      "line2": "Sell. Find.",
+      "line2Next": "Make it possible.",
       "subline": "Weinheim. Bergstraße.",
       "discoverMore": "Discover more"
     }
   },
   "localPresence": {
-    "heading": "Sell. Buy. Rent. Services. Search.",
+    "heading": "Sell. Buy. Rent.<br> Services. Search.",
     "subline": "Your new home in Weinheim and the Bergstraße starts here.",
     "regionTitle": "Home on the Bergstraße",
     "cards": [
@@ -36,6 +37,9 @@
         ]
       }
     ]
+  },
+  "logistikberatung": {
+    "introText": "As a strategic experienced logistics consultant in Germany, I support companies in building and optimizing Europe-wide transport, warehouse and sales networks and Interim Sales Power – including non-temperature controlled goods and GDP-compliant temperature-controlled structures for pharmaceutical and healthcare logistics."
   },
   "philosophy": {
     "heading": "More value. Your advantage.",
@@ -192,7 +196,10 @@
     "hero": {
       "titleLine1": "Selling in Weinheim and the surrounding area.",
       "titleLine2": "No castles – We'd be glad to have your property.",
+      "titleLine1Mobile": "Selling in Weinheim<br>and the surrounding area.",
+      "titleLine2Mobile": "No castles –<br>We'd be glad to have your property.",
       "subtitle": "Clearly valued. Optimally positioned. Sold with confidence.",
+      "subtitleMobile": "Clearly valued. Optimally positioned.<br>Sold with confidence.",
       "ctaText": "Get your sale value now",
       "ctaAriaLabel": "Scroll to sale enquiry form"
     },

@@ -68,7 +68,7 @@ export default function UeberMichPage() {
               <p className="mt-4 leading-relaxed text-slate-600">
                 Über viele Jahre bin ich in den Bereichen Vertriebs- und Geschäftsentwicklung in der
                 <br />
-                Logistikwelt international tätig. In Großprojekten habe ich die Zusammenarbeit internationaler Vertriebsteams harmoniert, logistisch komplexe Lieferketten über alle Verkehrsträger hinweg integriert, M&A Kaufprozesse von Unternehmen begleitet und komplexe, temperaturgeführte Supply-Chain-Lösungen in Europa mit entwickelt.
+                Logistikwelt international tätig. In Großprojekten habe ich die Zusammenarbeit internationaler Vertriebsteams harmonisiert, logistisch komplexe Lieferketten über alle Verkehrsträger hinweg integriert, M&A Kaufprozesse von Unternehmen begleitet und komplexe, temperaturgeführte Supply-Chain-Lösungen in Europa mit entwickelt.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Dies geht nur mit Struktur, Eigenverantwortung und wirtschaftlicher Tragfähigkeit.

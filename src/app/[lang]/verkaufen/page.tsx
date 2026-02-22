@@ -78,12 +78,20 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
             id="hero-verkaufen-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
-            {v.hero.titleLine1}
-            <br />
-            <span className="text-3xl sm:text-4xl">{v.hero.titleLine2}</span>
+            <span className="sm:hidden">
+              <span dangerouslySetInnerHTML={{ __html: v.hero.titleLine1Mobile }} />
+              <br />
+              <span className="text-2xl" dangerouslySetInnerHTML={{ __html: v.hero.titleLine2Mobile }} />
+            </span>
+            <span className="hidden sm:inline">
+              {v.hero.titleLine1}
+              <br />
+              <span className="text-2xl sm:text-3xl">{v.hero.titleLine2}</span>
+            </span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm">
-            {v.hero.subtitle}
+            <span className="sm:hidden" dangerouslySetInnerHTML={{ __html: v.hero.subtitleMobile }} />
+            <span className="hidden sm:inline">{v.hero.subtitle}</span>
           </p>
         </div>
         <a
