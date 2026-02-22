@@ -80,7 +80,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
       </a>
       <a href="tel:+4917632198462" className={utilityLinkClass(variant)}>
         <Phone className="h-3.5 w-3.5" />
-        <span className="hidden sm:inline">0176 321 98 462</span>
+        <span className="hidden sm:inline">+49 176 321 98 462</span>
       </a>
       <span className={`${utilityLinkClass(variant)} flex items-center gap-1.5`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : dict.ariaLangSwitchEn}>
         <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden />

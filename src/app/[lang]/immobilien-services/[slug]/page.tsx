@@ -337,7 +337,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                   href="tel:+4917632198462"
                   className="font-medium text-slate-900 underline hover:no-underline"
                 >
-                  0176 321 98 462
+                  +49 176 321 98 462
                 </a>
               </p>
             </div>

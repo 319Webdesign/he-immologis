@@ -51,7 +51,7 @@ export default function ImpressumPage() {
             <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
               <span>Telefon:</span>
               <a href="tel:+4917632198462" className="text-[#4682B4] underline hover:no-underline">
-                0176 321 98 462
+                +49 176 321 98 462
               </a>
               <span>E-Mail:</span>
               <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">

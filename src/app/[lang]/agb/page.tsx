@@ -92,7 +92,7 @@ export default function AgbPage() {
               Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.
             </p>
             <p className="mt-2">
-              Um das Widerrufsrecht auszuüben, muss der Auftraggeber der HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, E-Mail info@he-immologis.de, Mobil 0176 321 98 462, mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über seinen Entschluss, diesen Vertrag zu widerrufen, informieren. Der Auftraggeber kann dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
+              Um das Widerrufsrecht auszuüben, muss der Auftraggeber der HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, E-Mail info@he-immologis.de, Mobil +49 176 321 98 462, mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über seinen Entschluss, diesen Vertrag zu widerrufen, informieren. Der Auftraggeber kann dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
             </p>
             <p className="mt-2">
               Zur Wahrung der Widerrufsfrist reicht es aus, dass die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist abgesendet wird.

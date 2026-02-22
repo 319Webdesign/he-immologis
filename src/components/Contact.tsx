@@ -167,7 +167,7 @@ export default function Contact({
                     href="tel:+4917632198462"
                     className={`hover:underline ${isDark ? "text-zinc-300" : "text-zinc-600"}`}
                   >
-                    0176 321 98 462
+                    +49 176 321 98 462
                   </a>
                 </div>
               </div>

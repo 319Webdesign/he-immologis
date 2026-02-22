@@ -296,7 +296,7 @@ export default function BannerPage() {
             <p className="text-slate-600">
               Oder anrufen:{" "}
               <a href="tel:+4917632198462" className="font-medium hover:underline" style={{ color: BRAND_BLUE }}>
-                0176 321 98 462
+                +49 176 321 98 462
               </a>
             </p>
           </div>

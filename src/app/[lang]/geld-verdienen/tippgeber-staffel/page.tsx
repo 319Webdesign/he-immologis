@@ -104,7 +104,7 @@ export default function TippgeberStaffelPage() {
               style={{ color: BRAND_BLUE }}
             >
               <Phone className="h-5 w-5 shrink-0" />
-              0176 321 98 462
+              +49 176 321 98 462
             </a>
           </div>
           <p className="mt-6 text-slate-700">
