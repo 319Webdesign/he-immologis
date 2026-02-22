@@ -219,6 +219,198 @@ const KAUFTIPPS_DE: { title: string; content: string | React.ReactNode }[] = [
   },
 ];
 
+/** Full English content for each buying tip (titles come from dict.tipTitles). */
+const KAUFTIPPS_EN: { content: string | React.ReactNode }[] = [
+  {
+    content: (
+      <div className="space-y-5">
+        <p>
+          Buying a property is one of the most important decisions in life. Alongside emotions, legal, financial and structural aspects play a major role – and that is exactly why this step should be accompanied in a structured way. Especially in the Bergstraße region and the Rhine-Neckar area, locations often differ more than they appear at first glance: between hillside, valley, district and neighbouring town, value development, everyday suitability and quality of life can vary significantly. We therefore see our task not simply as showing you properties. Our aim is to work with you to find out which property really fits your life.
+        </p>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">The foundation: your personal situation</h3>
+          <p className="mt-1 text-zinc-700">Before we search, we clarify together:</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>How do you want to live today – and in five or ten years?</li>
+            <li>What is your realistic financing framework?</li>
+            <li>Which routes need to work in everyday life (work, school, transport)?</li>
+            <li>Should the property be a long-term home or also an investment?</li>
+          </ul>
+          <p className="mt-2 text-zinc-700">Only then does a clear search profile emerge.</p>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">The right location – not just the right address</h3>
+          <p className="mt-1 text-zinc-700">In Weinheim, the Bergstraße and the Rhine-Neckar region, details often make the difference:</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Hillside or flat land</li>
+            <li>Town centre, district or outskirts</li>
+            <li>Transport links towards Mannheim / Heidelberg</li>
+            <li>Infrastructure and local supply</li>
+            <li>Development prospects of individual residential areas</li>
+          </ul>
+          <p className="mt-2 text-zinc-700">
+            We help you find not just a nice house – but a location that fits your life in the long term.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">Our approach</h3>
+          <p className="mt-1 text-zinc-700">
+            Buying a property is not a one-off appointment but a process. We support you in a structured way from the first consideration until after move-in. Our goal is not only a successful conclusion. Our goal is a decision that still feels right years later.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    content: (
+      <div className="space-y-5">
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">1. Financing planning</h3>
+          <p className="mt-2 text-zinc-700 font-medium">Review your own financial situation</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Determine equity and reserves</li>
+            <li>Calculate monthly disposable income</li>
+            <li>Take into account ongoing commitments (loans, leasing, maintenance)</li>
+            <li>Define a personal financial buffer</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Plan purchase costs</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Land transfer tax</li>
+            <li>Notary and land registry costs</li>
+            <li>Broker commission if applicable</li>
+            <li>Insurance</li>
+            <li>Renovation and maintenance reserves</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Compare financing options</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Compare nominal and effective interest rates</li>
+            <li>Choose interest rate fixation (10 / 15 / 20 / 30 years)</li>
+            <li>Set repayment rate</li>
+            <li>Check options for extra repayments</li>
+            <li>Consider subsidy programmes (e.g. KfW)</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Obtain financing certificate</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Determine maximum budget</li>
+            <li>Calculate monthly repayment</li>
+            <li>Act quickly when making an offer</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">2. Property search</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Define location, size and budget</li>
+            <li>Prioritise wish list (must-have / nice-to-have)</li>
+            <li>Check infrastructure and surroundings</li>
+            <li>Consider future plans (family, home office, mobility)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">3. Viewing &amp; property inspection</h3>
+          <p className="mt-2 text-zinc-700 font-medium">First viewing</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>General impression</li>
+            <li>Room layout and light</li>
+            <li>Noise, neighbourhood, traffic</li>
+            <li>Parking</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Second viewing with surveyor</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Building fabric</li>
+            <li>Refurbishment needs</li>
+            <li>Realistic renovation costs</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Technical inspection</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Roof and insulation</li>
+            <li>Facade and cellar (moisture)</li>
+            <li>Electrical and wiring</li>
+            <li>Plumbing</li>
+            <li>Heating and hot water</li>
+            <li>Windows and seals</li>
+            <li>Signs of mould or pest infestation</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Check energy certificate</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Energy efficiency class</li>
+            <li>Type of heating</li>
+            <li>Insulation standard</li>
+            <li>Possible statutory refurbishment obligations</li>
+            <li>Estimate long-term energy costs</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">4. Purchase decision</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Check market price against comparable properties</li>
+            <li>Include renovation costs</li>
+            <li>Finalise financing</li>
+            <li>Formulate purchase offer</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-sans font-semibold text-zinc-900">5. Purchase process</h3>
+          <p className="mt-2 text-zinc-700 font-medium">Before the notary appointment</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Bank financing commitment</li>
+            <li>Check land register</li>
+            <li>Declaration of division &amp; minutes (for condominiums)</li>
+            <li>Review energy certificate and building documents</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">Notary appointment</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Understand and review purchase contract</li>
+            <li>Observe payment deadlines</li>
+            <li>Priority notice of conveyance in land register</li>
+          </ul>
+          <p className="mt-2 text-zinc-700 font-medium">After purchase</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-zinc-700">
+            <li>Purchase price payment</li>
+            <li>Key handover with protocol</li>
+            <li>Document meter readings</li>
+            <li>Take out insurance</li>
+            <li>Register change of address</li>
+          </ul>
+        </div>
+        <div className="rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3">
+          <p className="font-sans font-semibold text-zinc-900">Tip</p>
+          <p className="mt-1 text-zinc-700">
+            Clarify financing first, then search – this way you avoid disappointment and gain confidence in negotiations.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    content:
+      "We continuously monitor the market in Weinheim and the Bergstraße region and will contact you when a property matches your criteria. You receive a clear, understandable property description from us and can decide in peace whether you would like a viewing. This way you do not miss suitable opportunities and save time in your search.",
+  },
+  {
+    content:
+      "During the viewing we jointly check the condition of the property: building fabric, heating, electrics, moisture, defects and possible refurbishment needs. We recommend involving an independent surveyor or building expert if needed. This way you avoid nasty surprises and can assess the purchase price and your planning realistically.",
+  },
+  {
+    content:
+      "Before purchase, the land register extract, floor plan, energy certificate, declaration of division (for condominiums) and – if available – minutes of the owners’ meeting should be reviewed. We support you in identifying discrepancies or encumbrances. This way you know what you are buying and what rights and obligations are associated with the property.",
+  },
+  {
+    content:
+      "Based on market comparison, condition and your financing we develop a realistic price recommendation. We conduct the negotiation with the seller or their agent and work for fair terms. Our goal is a result that works for both sides – transparent and without unnecessary delay.",
+  },
+  {
+    content:
+      "The notarial purchase contract is the legally binding conclusion. We prepare the documents with you and can accompany you to the notary appointment. The notary explains the contract, certifies the transfer and initiates the land register entry. With the conveyance and registration, the property is legally assigned to you.",
+  },
+  {
+    content:
+      "At handover, keys are handed over, meter readings recorded and the condition of the property documented. We coordinate appointments between the seller and you and are available for any questions. This way move-in proceeds in an orderly manner and you start your new home without loose ends.",
+  },
+  {
+    content:
+      "We remain your contact after the purchase. For questions on utilities, insurance, tradespeople recommendations or future sales you can turn to us. We are happy to support you in the long term as your partner for property in Weinheim and the Bergstraße.",
+  },
+];
+
 interface KauftippsProps {
   dict: KaufenKauftippsDict;
   lang: string;
@@ -226,9 +418,9 @@ interface KauftippsProps {
 
 export default function Kauftipps({ dict, lang }: KauftippsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const useEnContent = lang === "en" && Array.isArray(dict.tipContents) && dict.tipContents.length > 0;
+  const useEnContent = lang === "en" && KAUFTIPPS_EN.length >= (dict.tipTitles?.length ?? 0);
   const tips = useEnContent
-    ? dict.tipTitles.map((title, i) => ({ title, content: dict.tipContents![i] ?? "" }))
+    ? dict.tipTitles.map((title, i) => ({ title, content: KAUFTIPPS_EN[i]?.content ?? "" }))
     : KAUFTIPPS_DE.map((tip, i) => ({ title: dict.tipTitles[i] ?? tip.title, content: tip.content }));
 
   return (

@@ -2,22 +2,57 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import SearchRequestForm from "@/components/SearchRequestForm";
 
-export const metadata: Metadata = {
-  title: "Immobilie suchen",
-  description:
-    "Kostenlos Suchauftrag aufgeben – HE immologis unterstützt Sie bei der Suche nach der passenden Immobilie in Weinheim und der Region Bergstraße.",
-  keywords: [
-    "Immobilie suchen Weinheim",
-    "Suchauftrag Immobilie",
-    "Immobilien Bergstraße",
-    "HE immologis",
-  ],
-};
+const LOCALES = ["de", "en"] as const;
+type Locale = (typeof LOCALES)[number];
+function isValidLocale(lang: string): lang is Locale {
+  return LOCALES.includes(lang as Locale);
+}
 
-export default function ImmobilieSuchenPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang: rawLang } = await params;
+  const lang = isValidLocale(rawLang) ? rawLang : "de";
+  if (lang === "en") {
+    return {
+      title: "Search for a property",
+      description:
+        "Submit a free search request – HE immologis supports you in finding the right property in Weinheim and the Bergstraße region.",
+      keywords: [
+        "Search property Weinheim",
+        "Property search request",
+        "Real estate Bergstraße",
+        "HE immologis",
+      ],
+    };
+  }
+  return {
+    title: "Immobilie suchen",
+    description:
+      "Kostenlos Suchauftrag aufgeben – HE immologis unterstützt Sie bei der Suche nach der passenden Immobilie in Weinheim und der Region Bergstraße.",
+    keywords: [
+      "Immobilie suchen Weinheim",
+      "Suchauftrag Immobilie",
+      "Immobilien Bergstraße",
+      "HE immologis",
+    ],
+  };
+}
+
+export default async function ImmobilieSuchenPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang: rawLang } = await params;
+  const lang = isValidLocale(rawLang) ? rawLang : "de";
+  const isEn = lang === "en";
+
   return (
     <>
-      {/* Hero – auf Handy breiter (weniger Padding), Text etwas kleiner */}
+      {/* Hero */}
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 bg-cover bg-center bg-no-repeat px-2 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"
         aria-labelledby="hero-suche-heading"
@@ -32,23 +67,25 @@ export default function ImmobilieSuchenPage() {
             id="hero-suche-heading"
             className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
           >
-            Suche in Weinheim und Umgebung.
+            {isEn ? "Search in Weinheim and the surrounding area." : "Suche in Weinheim und Umgebung."}
           </h1>
           <p className="mt-4 text-base text-white/95 drop-shadow-sm sm:mt-8 sm:text-lg">
-            Ihre Wünsche – Wir suchen gezielt für Sie.
+            {isEn ? "Your requirements – We search specifically for you." : "Ihre Wünsche – Wir suchen gezielt für Sie."}
           </p>
         </div>
         <a
           href="#suchauftrag"
           className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
-          aria-label="Zum Suchauftrag-Formular scrollen"
+          aria-label={isEn ? "Scroll to search request form" : "Zum Suchauftrag-Formular scrollen"}
         >
-          <span className="text-sm font-medium">Jetzt entdecken lassen</span>
+          <span className="text-sm font-medium">
+            {isEn ? "Let us find for you" : "Jetzt entdecken lassen"}
+          </span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
 
-      {/* Formular – breiter damit Lagepräferenz-Labels einzeilig bleiben */}
+      {/* Formular */}
       <section id="suchauftrag" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <SearchRequestForm />
       </section>
