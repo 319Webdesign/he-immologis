@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 
 const BRAND_BLUE = "#4682B4";
 // Zwei PDFs möglich; bei nur einer Datei beide auf denselben Pfad setzen
-const DOWNLOAD_PRIVAT = "/downloads/HE_Immologis_Aufstellervereinbarung.pdf";
-const DOWNLOAD_GEWERBE = "/downloads/HE_Immologis_Aufstellervereinbarung.pdf";
+const DOWNLOAD_PRIVAT = "/downloads/HE_Immologis_Werbepartne_Aufsteller_privat.pdf";
+const DOWNLOAD_GEWERBE = "/downloads/HE_Immologis_Werbepartner_Aufsteller_Gesch.pdf";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
