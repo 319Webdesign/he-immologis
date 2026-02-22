@@ -16,7 +16,7 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/img/Logo.svg",
+    icon: { url: "/img/Logo.svg", type: "image/svg+xml" },
   },
   title: {
     default: "HE immologis UG | Immobilien & Logistik Weinheim",
