@@ -14,15 +14,15 @@
     "cards": [
       {
         "title": "Verkauf",
-        "description": "Fokus auf lokale Marktwerte und faire Bewertung – wir verkaufen Ihre Immobilie."
+        "description": "Fokus auf lokale Marktwerte und faire Bewertung<br>– <strong>Wir verkaufen Ihre Immobilie.</strong>"
       },
       {
         "title": "Kauf & Suche",
-        "description": "Unterstützung für Suchende in der Region. Wir finden die passende Immobilie für Sie."
+        "description": "Unterstützung für Suchende in der Region<br>– <strong>Wir finden Ihre Immobilie.</strong>"
       },
       {
         "title": "Vermietung",
-        "description": "Professionelle Mietersuche und vollständige Abwicklung für Eigentümer und Mieter."
+        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z<br>– <strong>wir vermieten Ihre Immobilie.</strong>"
       },
       {
         "title": "Logistikberatung",
@@ -206,7 +206,7 @@
     },
     "finalCta": {
       "title": "Sie sind sich noch unsicher über den Marktwert?",
-      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen. Holger Eberhard bewertet Ihre Immobilie fachgerecht, diskret und für Sie vollkommen kostenfrei.",
+      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen.<br /><strong>Wir bewerten Ihre Immobilie fachgerecht – selbstverständlich kostenfrei.</strong>",
       "buttonText": "Kostenlose Wertermittlung anfragen",
       "callText": "Lieber direkt anrufen?"
     },

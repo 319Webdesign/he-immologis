@@ -14,15 +14,15 @@
     "cards": [
       {
         "title": "Sell",
-        "description": "Focus on local market values and fair valuation – we sell your property."
+        "description": "Focus on local market values and fair valuation<br>– <strong>We sell your property.</strong>"
       },
       {
         "title": "Buy & Search",
-        "description": "Support for those looking in the region. We find the right property for you."
+        "description": "Support for those looking in the region<br>– <strong>We find your property.</strong>"
       },
       {
         "title": "Rent",
-        "description": "Professional tenant search and full handling for owners and tenants."
+        "description": "We handle professional tenant search and full processing from A to Z<br>– <strong>we rent your property.</strong>"
       },
       {
         "title": "Logistics Consulting",
@@ -206,7 +206,7 @@
     },
     "finalCta": {
       "title": "Still unsure about the market value?",
-      "description": "Let's take the first step together. Holger Eberhard will value your property professionally, discreetly and completely free of charge for you.",
+      "description": "Let's take the first step together.<br /><strong>We value your property professionally – of course free of charge.</strong>",
       "buttonText": "Request free valuation",
       "callText": "Prefer to call directly?"
     },

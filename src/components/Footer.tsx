@@ -36,8 +36,8 @@ export default function Footer({ lang }: { lang: Locale }) {
               />
             </Link>
             <p className="font-sans text-lg font-semibold text-white">
-              HE immologis
-              <br className="sm:hidden" />
+              HE immologis UG
+              <br />
               (haftungsbeschränkt) i. Gr.
             </p>
             <p className="mt-2 text-sm text-slate-300">
@@ -96,7 +96,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                   className="flex items-start gap-3 text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
-                  <span>Ahornstr. 59, 69469 Weinheim</span>
+                  <span>Ahornstr. 59<br />69469 Weinheim</span>
                 </a>
               </li>
               <li>

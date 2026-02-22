@@ -45,68 +45,60 @@ export default function UeberMichPage() {
                 Mein Name ist Holger Eberhard.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah und offiziell geduldeter Mitbewohner
-                <br /> unseres Zwergrauhaardackels Houdini.
+                Verheiratet mit Anni, stolzer Patchwork-Vater von Noah und offiziell geduldeter Mitbewohner unseres Zwergrauhaardackels Houdini.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen, Menschen
-                <br /> und einige Geschichten hinter mancher Immobilie.
+                Seit vielen Jahren leben wir im Herzen von Weinheim. Hier kenne ich die Straßen, etliche Menschen und einige Geschichten hinter mancher Immobilie.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden.             
-                Diese Verbindung zwischen Weinheim und Südafrika prägt mein Denken und Handeln:
+                Gleichzeitig ist Kapstadt für uns zu einem zweiten Zuhause geworden. Diese Verbindung zwischen Weinheim und Südafrika prägt mein Denken und Handeln:
               </p>
               <p className="mt-2 font-semibold text-slate-800">
                 Lokal verwurzelt. Global orientiert.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                „Local roots. Global vision.“ ist für mich kein Slogan – sondern gelebte Realität.
+                „Local roots. Global vision.“
+                <br />
+                Das ist für mich kein Slogan – das ist gelebte Realität.
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
                 Mein beruflicher Weg
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Über viele Jahre bin ich im internationalen Bereich Vertrieb und Entwicklung in der
-                <br /> Logistikwelt tätig. Ich habe die Zusammenarbeit internationaler Vertriebsteams in
-                <br /> Projekten harmoniert, komplexe Großprojekte über alle Verkehrsträger hinweg
-                <br /> verantwortet, M&A Prozesse begleitet und komplexe temperaturgeführte
-                <br /> Supply-Chain-Lösungen entwickelt.
+                Über viele Jahre bin ich in den Bereichen Vertriebs- und Geschäftsentwicklung in der
+                <br />
+                Logistikwelt international tätig. In Großprojekten habe ich die Zusammenarbeit internationaler Vertriebsteams harmoniert, logistisch komplexe Lieferketten über alle Verkehrsträger hinweg integriert, M&A Kaufprozesse von Unternehmen begleitet und komplexe, temperaturgeführte Supply-Chain-Lösungen in Europa mit entwickelt.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Dies geht nur mit Struktur, Eigenverantwortung und wirtschaftlicher Tragfähigkeit.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Diese unternehmerische Erfahrung bringe ich heute in den regionalen Immobilienmarkt
-                <br /> entlang der Bergstraße ein. Denn auch Immobilien erfordern Strategie,
-                <br /> Verhandlungssicherheit, Marktverständnis und klare Entscheidungen.
+                Diese Erfahrungen bringe ich heute in den regionalen Immobilienmarkt ein.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Parallel möchte ich mich künftig in logistischen Hilfsprojekten nach Südfrika engagieren und
-                <br /> branchenbasierte M&A und Schulungsprojekte in Europa begleiten.
+                <strong>Regional?</strong>
+                <br />
+                Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim – entlang der Bergstraße, angrenzender Odenwald und darüber hinaus.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Unternehmertum bedeutet für mich Verantwortung – wirtschaftlich wie gesellschaftlich.
+                Gleiches gilt natürlich für Kapstadt, unser zweites Zuhause. Hier engagiere ich mich für Hilfsprojekte und das Leben rund um Tafelberg, Atlantik und Indischer Ozean.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                Falls Sie Tipps und Informationen zu Auswandern, Leben und Immobilien in Kapstadt wünschen, stehe ich Ihnen ebenfalls mit offenem Herzen zur Verfügung.
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
-                Meine Haltung zu Immobilien
+                Doch warum nun Immobilien?
               </h2>
+              <h3 className="mt-6 font-sans text-xl font-semibold tracking-tight text-slate-900">
+                Meine Haltung zu Immobilien
+              </h3>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Immobilien sind für mich mehr als Objekte.        
-                Sie sind Lebensentscheidungen. Übergänge. Neuanfänge.
+                Immobilien sind für mich mehr als Objekte. Sie stehen für Lebensentscheidungen, Übergänge und Neuanfänge – kaum etwas spiegelt das Leben so sehr wider.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Ob Verkauf, Kauf oder Vermietung – ich begleite meine Kunden persönlich, diskret und
-                <br /> strukturiert durch den gesamten Prozess: von der fundierten Wertermittlung über eine klare
-                <br /> Vermarktungsstrategie bis zum erfolgreichen Abschluss.
-              </p>
-              <p className="mt-4 leading-relaxed text-slate-600">
-                Mein Anspruch:
-              </p>
-              <p className="mt-2 leading-relaxed text-slate-600">
-                wirtschaftlich tragfähige Lösungen zu schaffen – und dabei stets den Menschen hinter der
-                <br /> Immobilie im Blick zu behalten.
+                Mein Anspruch ist es, für Sie wirtschaftlich tragfähige Lösungen zu entwickeln und dabei Ihre Vorstellungen, Wünsche und realistischen Möglichkeiten stets im Blick zu behalten.
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
@@ -114,19 +106,19 @@ export default function UeberMichPage() {
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Aus meiner internationalen Logistik- und Beratungserfahrung und meiner regionalen
-                <br /> Immobilienleidenschaft entstand mein Unternehmensname:
+                <br />
+                Immobilienleidenschaft entstand mein Unternehmensname:
               </p>
               <p className="mt-2 font-semibold text-slate-800">
                 Immo & Logis – HE immologis.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Er verbindet zwei Welten, die auf den ersten Blick gegensätzlich erscheinen:
-                <br /> globale Strukturkompetenz und regionales Vertrauen.
+                <br />
+                globale Strukturkompetenz und regionales Vertrauen.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Heute lebe und arbeite ich genau in dieser Schnittstelle.
-             
-                Ich freue mich darauf, auch Ihre Geschichte ein Stück begleiten zu dürfen.
+                Heute lebe und arbeite ich genau in dieser Schnittstelle. Ich freue mich darauf, auch Ihre Geschichte ein Stück begleiten zu dürfen.
               </p>
               <div
                 className="mt-10 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"

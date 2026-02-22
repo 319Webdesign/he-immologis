@@ -46,9 +46,10 @@ export default function FinalCTA({ dict }: { dict: FinalCTADict }) {
         >
           {dict.title}
         </h2>
-        <p className="mt-5 text-lg leading-relaxed text-white/95 sm:text-xl">
-          {dict.description}
-        </p>
+        <p
+          className="mt-5 text-lg leading-relaxed text-white/95 sm:text-xl"
+          dangerouslySetInnerHTML={{ __html: dict.description }}
+        />
 
         <div className="mt-10 flex flex-col items-center gap-6">
           <button

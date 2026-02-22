@@ -91,9 +91,10 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-                    {description}
-                  </p>
+                  <p
+                    className="mt-2 flex-1 text-sm leading-relaxed text-slate-600"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  />
                 )}
               </article>
             );
