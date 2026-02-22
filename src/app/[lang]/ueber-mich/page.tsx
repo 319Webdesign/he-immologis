@@ -36,8 +36,8 @@ export default function UeberMichPage() {
               />
             </div>
 
-            {/* Rechts: Text */}
-            <div className="min-w-0">
+            {/* Rechts: Text – schmalerer Block für bessere Lesbarkeit */}
+            <div className="min-w-0 max-w-2xl">
               <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
                 Über mich
               </h1>
@@ -79,7 +79,9 @@ export default function UeberMichPage() {
               <p className="mt-4 leading-relaxed text-slate-600">
                 <strong>Regional?</strong>
                 <br />
-                Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim – entlang der Bergstraße, angrenzender Odenwald und darüber hinaus.
+                Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim
+                <br />
+                – entlang der Bergstraße, angrenzender Odenwald und darüber hinaus.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
                 Gleiches gilt natürlich für Kapstadt, unser zweites Zuhause. Hier engagiere ich mich für Hilfsprojekte und das Leben rund um Tafelberg, Atlantik und Indischer Ozean.
