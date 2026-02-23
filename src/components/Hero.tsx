@@ -33,7 +33,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
 
   return (
     <section
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden -mt-[7.5rem]"
+      className={`relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden ${lang === "tr" ? "mt-0" : "-mt-[7.5rem]"}`}
       aria-label="Hero-Bereich"
     >
       {/* Video auf allen Geräten (muted + playsInline für Mobile-Autoplay) */}
