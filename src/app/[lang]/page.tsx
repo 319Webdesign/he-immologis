@@ -20,7 +20,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <Hero dict={dict.home.hero} />
+      <Hero dict={dict.home.hero} lang={locale} />
       <ValueBanner dict={dict.valueBanner} lang={locale} />
       <LocalPresence dict={dict.localPresence} />
       <PhilosophyAlternative dict={dict.philosophy} />
