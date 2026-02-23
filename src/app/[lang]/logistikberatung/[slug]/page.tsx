@@ -102,7 +102,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
       >
         <div className="mx-auto max-w-3xl">
           <Link
-            href={`${prefix}/logistikberatung`}
+            href={`${prefix}/logistikberatung?scroll=module-cards`}
             className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
           >
             {lb.backToSmart}
@@ -189,7 +189,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <Link
-            href={`${prefix}/logistikberatung`}
+            href={`${prefix}/logistikberatung?scroll=module-cards`}
             className="inline-flex items-center text-sm font-semibold"
             style={{ color: BRAND_BLUE }}
           >

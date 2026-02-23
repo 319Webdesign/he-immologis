@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import {
   SMART_INTRO,
   SMART_INTRO_EN,
@@ -9,6 +10,7 @@ import {
 import Contact from "@/components/Contact";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import ScrollToModuleCards from "./ScrollToModuleCards";
 
 const BRAND_BLUE = "#4682B4";
 
@@ -70,6 +72,9 @@ export default async function LogistikberatungPage() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <ScrollToModuleCards />
+      </Suspense>
       <section
         className="relative min-h-[70vh] border-b border-slate-200 bg-cover bg-center bg-no-repeat px-4 py-16 sm:px-6 sm:py-24 lg:bg-[length:100%_auto] lg:px-8"
         aria-labelledby="hero-logistik-heading"
@@ -125,7 +130,7 @@ export default async function LogistikberatungPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section id="module-cards" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 scroll-mt-24">
         <h2 className="sr-only">{lb.srOnlyModules}</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {smartModule.map((modul) => (
