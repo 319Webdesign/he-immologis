@@ -42,8 +42,13 @@ export default function LanguageBanner({
               <circle cx="36" cy="20" r="14" fill="black" />
             </mask>
           </defs>
-          {/* Nur weiße Sichel sichtbar, innen transparent (Banner scheint durch) */}
+          {/* Weiße Sichel (innen transparent) */}
           <circle cx="28" cy="20" r="18" fill="white" mask="url(#crescent-mask)" />
+          {/* Kleiner weißer Stern wie auf der türkischen Flagge (in der Öffnung des Halbmonds) */}
+          <polygon
+            fill="white"
+            points="46,16 47.2,18.4 49.8,18.8 47.9,20.6 48.4,23.2 46,22 43.6,23.2 44.1,20.6 42.2,18.8 44.8,18.4"
+          />
         </svg>
       </div>
 
