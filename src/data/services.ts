@@ -245,6 +245,10 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     priceEn: "3.57% incl. VAT of the property sale price",
     description:
       "Vollständige Vermarktung Ihrer Immobilie – von der Wertermittlung bis zur erfolgreichen Übergabe.",
+    descriptionEn:
+      "Full marketing of your property – from valuation to successful handover.",
+    titleEn: "The holistic sales process – from valuation to handover",
+    subtitleEn: "A secure sale in 5 clear steps",
     image:
       "https://placehold.co/800x450/94a3b8/1e293b?text=Immobilienverkauf&font=source-sans",
     detailSections: [
@@ -262,6 +266,22 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Koordination der Beurkundung, Begleitung zum Notar sowie strukturierte Objektübergabe mit Protokoll.",
       "Transparente Vergütung",
       "Für diesen umfassenden Service berechnen wir das ortsübliche Erfolgshonorar von 3,57 % inkl. MwSt., bezogen auf den notariell beurkundeten Kaufpreis. Kommt es wider Erwarten nicht zum Verkauf, berechnen wir eine Aufwandsentschädigung.",
+    ],
+    detailSectionsEn: [
+      "A successful property sale requires structure, market knowledge and a clear strategy.",
+      "Our 5-step concept guides you safely, transparently and efficiently from the first meeting to handover.",
+      "1. Precise valuation",
+      "After a personal viewing you receive a well-founded market analysis with a realistic price recommendation. No pipe dreams – a price that is achievable on the market.",
+      "2. High-quality preparation",
+      "Professional architectural photography, exposé creation, drone footage on request – your property is positioned optimally.",
+      "3. Targeted marketing & buyer screening",
+      "Individual marketing concept, approach to registered buyers, presentation on relevant platforms and personal viewings. Credit and credibility checks of all prospective buyers are standard.",
+      "4. Financing security",
+      "Preparation of all documents and assurance of a reliable financing confirmation before the notary appointment.",
+      "5. Notary & handover",
+      "Coordination of notarisation, support at the notary and structured property handover with protocol.",
+      "Transparent remuneration",
+      "For this comprehensive service we charge the customary success fee of 3.57% incl. VAT based on the notarially certified purchase price. If the sale does not go through, we charge an expense allowance.",
     ],
   },
 ];

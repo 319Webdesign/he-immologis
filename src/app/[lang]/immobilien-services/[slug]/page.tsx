@@ -38,11 +38,12 @@ export async function generateMetadata({
 }
 
 function KomplettmandatContent({
-  service,
+  sections,
+  locale,
 }: {
-  service: ServiceCardItem;
+  sections: string[];
+  locale: "de" | "en";
 }) {
-  const sections = service.detailSections ?? [];
   const intro = sections.slice(0, 2);
   const steps = [
     sections[2],
@@ -58,6 +59,16 @@ function KomplettmandatContent({
   ];
   const verguetungTitle = sections[12];
   const verguetungBody = sections[13];
+
+  const agbIntro =
+    locale === "en"
+      ? "Our General Terms and Conditions ("
+      : "Hier gelten unsere Allgemeinen Geschäftsbedingungen (";
+  const agbLinkText = locale === "en" ? "GTC" : "AGB";
+  const agbOutro =
+    locale === "en"
+      ? ") as well as statutory provisions apply."
+      : ") sowie die gesetzlichen Bestimmungen.";
 
   return (
     <>
@@ -111,11 +122,11 @@ function KomplettmandatContent({
           {verguetungBody}
         </p>
         <p className="mt-4 text-lg leading-relaxed text-slate-700">
-          Hier gelten unsere Allgemeinen Geschäftsbedingungen (
-          <Link href="/agb" className="text-[#4682B4] underline hover:no-underline">
-            AGB
+          {agbIntro}
+          <Link href={locale === "en" ? "/en/agb" : "/agb"} className="text-[#4682B4] underline hover:no-underline">
+            {agbLinkText}
           </Link>
-          ) sowie die gesetzlichen Bestimmungen.
+          {agbOutro}
         </p>
       </section>
     </>
@@ -235,7 +246,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const displaySubtitle = locale === "en" && service.subtitleEn ? service.subtitleEn : service.subtitle;
 
   const isKomplettmandat =
-    slug === "immobilienverkauf" && (service.detailSections?.length ?? 0) >= 14;
+    slug === "immobilienverkauf" && (paragraphs?.length ?? 0) >= 14;
 
   return (
     <>
@@ -250,22 +261,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         <article>
           <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {slug === "immobilienverkauf" ? (
+            {displaySubtitle ? (
               <>
-                Der ganzheitliche Verkaufsprozess
+                {displayTitle}
                 <span className="mt-1 block text-xl font-semibold text-slate-900 sm:text-2xl">
-                  – von der Bewertung bis zur Übergabe
+                  {displaySubtitle}
                 </span>
               </>
             ) : (
               displayTitle
             )}
           </h1>
-          {(displaySubtitle ?? service.subtitle) && (
-            <p className="mt-2 text-lg font-medium text-slate-600">
-              {displaySubtitle ?? service.subtitle}
-            </p>
-          )}
           <span
             className="mt-4 inline-flex rounded-lg px-3 py-1.5 text-sm font-semibold"
             style={{
@@ -277,7 +283,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </span>
 
           {isKomplettmandat ? (
-            <KomplettmandatContent service={service} />
+            <KomplettmandatContent sections={paragraphs} locale={locale} />
           ) : (
             <DefaultContent paragraphs={paragraphs} slug={slug} />
           )}
@@ -317,22 +323,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               id="anfrage-heading"
               className="font-sans text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl"
             >
-              Anfrage zu diesem Service
+              {locale === "en" ? "Enquiry for this service" : "Anfrage zu diesem Service"}
             </h2>
             <p className="mt-3 text-slate-600">
-              Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot?
-              Schreiben Sie uns – wir melden uns zeitnah bei Ihnen.
+              {locale === "en"
+                ? "Do you have questions or would you like a non-binding quote? Get in touch – we will get back to you promptly."
+                : "Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot? Schreiben Sie uns – wir melden uns zeitnah bei Ihnen."}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
-                href={`mailto:info@he-immologis.de?subject=Anfrage%20–%20${encodeURIComponent(service.title)}`}
+                href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : "Anfrage – " + service.title)}`}
                 className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
                 style={{ backgroundColor: BRAND_BLUE }}
               >
-                E-Mail schreiben
+                {locale === "en" ? "Send email" : "E-Mail schreiben"}
               </a>
               <p className="text-slate-600">
-                Oder anrufen:{" "}
+                {locale === "en" ? "Or call: " : "Oder anrufen: "}
                 <a
                   href="tel:+4917632198462"
                   className="font-medium text-slate-900 underline hover:no-underline"
