@@ -1,1 +1,549 @@
-{}
+{
+  "home": {
+    "hero": {
+      "line1": "Yeni bir başlangıç artık mümkün.",
+      "line2": "Satın. Bulun.",
+      "line2Next": "Gerçekleştirin.",
+      "subline": "Weinheim. Bergstraße.",
+      "ctaBuy": "Gayrimenkul satın alın",
+      "ctaRent": "Gayrimenkul kiralayın"
+    }
+  },
+  "nav": {
+    "sell": "Satış",
+    "buy": "Satın alma",
+    "rent": "Kiralama",
+    "service": "Hizmetler",
+    "search": "Arama",
+    "referralBonus": "Öneri primi",
+    "referralSub": [
+      { "label": "Öneri verin" },
+      { "label": "Banner reklamı" },
+      { "label": "Dikici reklamı" }
+    ],
+    "logistics": "Lojistik danışmanlığı",
+    "logisticsSub": [
+      { "label": "SMART genel bakış" },
+      { "label": "S – Eğitim" },
+      { "label": "M – M & A" },
+      { "label": "A – Karar verici ağları" },
+      { "label": "R – Geçici çözümler" },
+      { "label": "T – Taşıma ağı stratejileri" }
+    ],
+    "aboutMe": "Hakkımda",
+    "contactNow": "İletişime geçin",
+    "menuOpen": "Menüyü aç",
+    "menuClose": "Menüyü kapat",
+    "ariaLangSwitchDe": "Dil değiştir (şu an: Almanca)",
+    "ariaLangSwitchEn": "Dil değiştir (şu an: İngilizce)",
+    "ariaLangSwitchTr": "Dil değiştir (şu an: Türkçe)",
+    "logoAlt": "HE immologis"
+  },
+  "contactForm": {
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "nameLabel": "Ad Soyad *",
+    "emailLabel": "E-posta *",
+    "phoneLabel": "Telefon",
+    "messageLabel": "Mesaj *",
+    "namePlaceholder": "Adınız Soyadınız",
+    "emailPlaceholder": "ornek@email.com",
+    "phonePlaceholder": "+49 123 456789",
+    "messagePlaceholder": "Mesajınız...",
+    "submitButton": "Mesaj gönder"
+  },
+  "footer": {
+    "companyLine1": "HE immologis UG",
+    "companyLine2": "(sorumluluğu sınırlı) i. Gr.",
+    "partnerText": "Baden-Württemberg ve Hessen'de <br> gayrimenkul ve lojistik danışmanlığında <br> güvenilir iş ortağınız.",
+    "contact": "İletişim",
+    "managingDirector": "Yönetici",
+    "openingHours": "Çalışma saatleri",
+    "openingWeekdays": "Pzt. – Cum.",
+    "openingSaturday": "Cumartesi",
+    "openingTime1": "09:00 – 18:00",
+    "openingTime2": "09:00 – 12:00",
+    "courtInfo": "Amtsgericht Mannheim, HRB 755995",
+    "vatPlaceholder": "KDV No. [Placeholder]",
+    "quickLinks": "Hızlı linkler",
+    "sell": "Satış",
+    "buy": "Satın alma",
+    "rent": "Kiralama",
+    "search": "Arama",
+    "tipGive": "Öneri verin",
+    "bannerAd": "Banner reklamı",
+    "displayAd": "Dikici reklamı",
+    "logistics": "Lojistik danışmanlığı",
+    "service": "Hizmetler",
+    "contactLink": "İletişim",
+    "bankDetails": "Banka bilgileri",
+    "legalLinksAria": "Yasal sayfalar",
+    "imprint": "Künye",
+    "privacy": "Gizlilik",
+    "gtc": "Kullanım koşulları",
+    "revocation": "Cayma hakkı",
+    "cookies": "Çerezler",
+    "certificates": "Sertifikalar",
+    "copyright": "© 2026 HE immologis UG. Tüm hakları saklıdır.",
+    "designedBy": "Tasarım"
+  },
+  "localPresence": {
+    "heading": "Satış. Satın alma. Kiralama. Hizmetler. Arama.",
+    "subline": "Weinheim ve Bergstraße'deki yeni yuvanız burada başlıyor.",
+    "regionTitle": "Bergstraße'de ev",
+    "cards": [
+      {
+        "title": "Satış",
+        "description": "Yerel piyasa değerleri ve adil değerleme odaklı hizmet.<br><strong>Gayrimenkul satışınız.</strong>"
+      },
+      {
+        "title": "Satın alma ve arama",
+        "description": "Bölgede arayanlara profesyonel destek.<br><strong>Gayrimenkul aramanız.</strong>"
+      },
+      {
+        "title": "Kiralama",
+        "description": "Profesyonel kiracı arayışı ve baştan sona eksiksiz işlem yönetimi.<br><strong>Gayrimenkul kiralama hizmetiniz.</strong>"
+      },
+      {
+        "title": "Lojistik danışmanlığı",
+        "description": "Güvenilir işlem ve danışmanlık. Taşıma çözümleri tek elden.",
+        "smart": [
+          { "letter": "S", "label": "Eğitim" },
+          { "letter": "M", "label": "M & A" },
+          { "letter": "A", "label": "Karar verici ağları oluşturma" },
+          { "letter": "R", "label": "Bölgesel geçici çözümler" },
+          { "letter": "T", "label": "Taşıma ağı stratejileri" }
+        ]
+      }
+    ]
+  },
+  "logistikberatung": {
+    "introText": "Almanya'da stratejik deneyime sahip bir lojistik danışmanı olarak, işletmeleri Avrupa çapında taşıma, depo lojistiği ve satış ağları ile geçici satışın kurulması ve optimizasyonunda destekliyorum – hem normal sıcaklıkta taşınan yükler hem de ilaç ve sağlık lojistiğinde GDP uyumlu, kontrollü sıcaklık yapıları için.",
+    "moreInfo": "Daha fazla bilgi",
+    "eiswuerfelQuote": "Bir buz küpü nasıl yalnızca doğru koşullarda stabil kalıyorsa, eğitim, strateji, ağ ve geçici çözümlerle – kontrollü ve normal sıcaklık lojistik senaryolarında – stabil yapılar oluşturuyoruz.",
+    "contactTitle": "Lojistik danışmanlığı – Talebiniz",
+    "contactSubtitle": "Bir SMART modülü hakkında daha fazla bilgi almak veya bağlayıcı olmayan bir görüşme ayarlamak ister misiniz? Bizimle iletişime geçin.",
+    "srOnlyModules": "SMART modülleri",
+    "srOnlyEiswuerfel": "Lojistikte stabil yapılar",
+    "moduleLabel": "SMART modül",
+    "backToSmart": "← Lojistik danışmanlığı SMART",
+    "allModules": "Tüm SMART modülleri",
+    "contactTitleSlug": "İletişim – SMART Lojistik danışmanlığı",
+    "contactSubtitleSlug": "Bize ulaşın – talebinizi dinlemek için buradayız."
+  },
+  "ueberMich": {
+    "metaTitle": "Hakkımda",
+    "metaDescription": "Holger Eberhard – Weinheim ve Bergstraße'de gayrimenkul ve lojistik konusunda kişisel, yetkin ve bölgesel uzmanlığa sahip iletişim ortağınız.",
+    "metaKeywords": ["HE immologis", "Holger Eberhard", "Weinheim gayrimenkul", "Bergstraße", "Hakkımda"],
+    "heading": "Hakkımda",
+    "intro": "Adım Holger Eberhard.",
+    "family": "Anni ile evli, Noah'ın gurur duyduğu patchwork babası ve cüce tel tüylü dachshund Houdini'mizin resmi hoşgörülen ev arkadaşı.",
+    "weinheim": "Yıllardır Weinheim'ın kalbinde yaşıyoruz. Burada sokakları, birçok insanı ve birçok gayrimenkulün arkasındaki hikâyeleri biliyorum.",
+    "kapstadt": "Aynı zamanda Cape Town bizim için ikinci bir yuva haline geldi. Weinheim ile Güney Afrika arasındaki bu bağ düşünce ve eylemlerimi şekillendiriyor:",
+    "tagline": "Yerel kökler. Küresel bakış.",
+    "slogan": "„Local roots. Global vision.“",
+    "sloganSub": "Bu benim için bir slogan değil – yaşanan bir gerçeklik.",
+    "careerHeading": "Mesleki yolculuğum",
+    "career1": "Yıllarca lojistik dünyasında satış ve iş geliştirme alanlarında uluslararası çalıştım. Büyük projelerde uluslararası satış ekiplerinin iş birliğini uyumlaştırdım, tüm taşıma türlerinde karmaşık tedarik zincirlerini entegre ettim, şirketlerin M&A satın alma süreçlerine eşlik ettim ve Avrupa'da karmaşık, kontrollü sıcaklık tedarik zinciri çözümlerinin geliştirilmesine katkıda bulundum.",
+    "career2": "Bu ancak yapı, kişisel sorumluluk ve ekonomik sürdürülebilirlikle mümkündür.",
+    "career3": "Bu deneyimleri bugün bölgesel gayrimenkul piyasasına taşıyorum.",
+    "regional": "Bölgesel mi?",
+    "regionalPlaces": "Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim – Bergstraße boyunca, bitişik Odenwald ve ötesi.",
+    "kapstadt2": "Aynısı elbette ikinci yuvamız Cape Town için de geçerli. Burada Table Mountain, Atlas Okyanusu ve Hint Okyanusu çevresindeki yardım projeleri ve yaşam için çalışıyorum.",
+    "kapstadtTip": "Cape Town'da göç, yaşam ve gayrimenkul hakkında ipuçları ve bilgi isterseniz, size de açık yürekle yardımcı olmaya hazırım.",
+    "whyRealEstateHeading": "Peki neden gayrimenkul?",
+    "attitudeHeading": "Gayrimenkule yaklaşımım",
+    "attitude1": "Gayrimenkul benim için nesnelerden fazlası. Yaşam kararlarını, geçişleri ve yeni başlangıçları temsil ediyor – hayatı bu kadar iyi yansıtan çok az şey var.",
+    "attitude2": "Sizin için ekonomik olarak sürdürülebilir çözümler geliştirmek ve bu süreçte beklentilerinizi, isteklerinizi ve gerçekçi imkânlarınızı her zaman göz önünde bulundurmak benim önceliğim.",
+    "whyHeHeading": "Neden HE immologis?",
+    "whyHe1": "Uluslararası lojistik ve danışmanlık deneyimim ile bölgesel gayrimenkul tutkumdan şirket adım doğdu:",
+    "whyHe2": "Immo & Logis – HE immologis.",
+    "whyHe3": "İlk bakışta zıt görünen iki dünyayı bir araya getiriyor: küresel yapı yetkinliği ve bölgesel güven.",
+    "whyHe4": "Bugün tam da bu kesişimde yaşıyor ve çalışıyorum. Hikâyenize bir parça eşlik edebilmeyi dört gözle bekliyorum.",
+    "signoff": "Saygılarımla",
+    "managingDirector": "Yönetici",
+    "signatureAlt": "Holger Eberhard imzası",
+    "companyLine": "HE immologis UG (sorumluluğu sınırlı) i. G.",
+    "companySubline": "Gayrimenkul ve lojistik danışmanlığı · Değerleme (TA)",
+    "contactTitle": "İletişime geçin",
+    "contactSubtitle": "Sorularınız mı var ya da bağlayıcı olmayan bir görüşme mi yapmak istiyorsunuz? Mesajınızı bekliyorum."
+  },
+  "philosophy": {
+    "heading": "Daha fazla değer. Sizin artınız.",
+    "sections": [
+      {
+        "id": "01",
+        "headline": "Özellik",
+        "tagline": "Gayrimenkulünüz. Odak noktada.",
+        "paragraphs": [
+          "Gayrimenkulünüz burada yalnızca diğer birçoklarıyla birlikte vitrinde sunulmaz. Odağımızda.",
+          "İlk görüşmeden başarılı sonuçlanmaya kadar kişisel, doğrudan ve bağlayıcı bir eşlik sunuyorum.",
+          "Bilinçli olarak sınırlı sayıda vekâlet kabul ediyorum. Böylece gayrimenkulünüze hak ettiği ilgiyi, özeni ve özelliği, size de bekleyebileceğiniz desteği sağlıyorum."
+        ],
+        "extra": "Az vekâlet. En yüksek özen."
+      },
+      {
+        "id": "02",
+        "headline": "Esnek iletişim imkânları.",
+        "tagline": "Gayrimenkulünüz. Her zaman ulaşılabilir.",
+        "paragraphs": [
+          "Randevu ne zaman ayarlarsak ayarlayalım esnek ve güvenilir hareket ettiğime güvenebilirsiniz. Dakiklik ve ulaşılabilirlik benim için doğal.",
+          "Klasik çalışma saatleri dışında da ulaşılabilirim – telefon, WhatsApp veya size en uygun yol ne ise."
+        ],
+        "extra": "Bana ihtiyacınız olduğunda: buradayım."
+      },
+      {
+        "id": "03",
+        "headline": "Esneklik",
+        "tagline": "Gayrimenkulünüz. Tam ilgi.",
+        "paragraphs": [
+          "Esneklik bir slogan değil, benim için her zaman çalışma ilkesi oldu.",
+          "Her gayrimenkul, her mal sahibi ve her durum farklıdır — bu yüzden burada standart süreçler yok, size özel çözümler var. Randevular, pazarlama yolları, görüntüleme modelleri ve koordinasyonları tutarlı biçimde ihtiyaçlarınıza ve piyasa koşullarına göre ayarlıyorum.",
+          "Hızlı tepki veriyorum, önceden düşünüyorum ve çerçeve koşullar değiştiğinde stratejileri uyarlıyorum.",
+          "Böylece net hedef ve güvenilir yapıyla hareketli süreçler oluşuyor."
+        ],
+        "extra": "Güvenilir. Düzenli. Şeffaf."
+      }
+    ]
+  },
+  "valueBanner": {
+    "headingLine1": "Ücretsiz",
+    "headingLine2": "gayrimenkul değerlemesi",
+    "subline": "Bölgedeki objeniz için güvenilir bir piyasa değerlendirmesi alın.",
+    "labelObjekttyp": "Obje tipi",
+    "labelZustand": "Gayrimenkul durumu",
+    "labelZustandShort": "Durum",
+    "ctaText": "Değerleme",
+    "objekttypen": [
+      { "value": "Einfamilienhaus", "label": "Müstakil ev" },
+      { "value": "Zweifamilienhaus", "label": "İki ailelik ev" },
+      { "value": "Mehrfamilienhaus", "label": "Çok aileli bina" },
+      { "value": "Reihenhaus", "label": "Sıra ev" },
+      { "value": "Eigentumswohnung", "label": "Satılık daire" },
+      { "value": "Grundstück", "label": "Arsa" },
+      { "value": "Gewerbe- / Wohnimmobilie", "label": "Ticari / konut gayrimenkulu" }
+    ],
+    "zustaende": [
+      { "value": "normal", "label": "normal" },
+      { "value": "modernisiert", "label": "yenilenmiş" },
+      { "value": "kernsaniert", "label": "kapsamlı yenilenmiş" },
+      { "value": "modernisierungsbedürftig", "label": "modernizasyon gerektiren" },
+      { "value": "sanierungsbedürftig", "label": "tadilat gerektiren" },
+      { "value": "sonstiges", "label": "diğer" }
+    ]
+  },
+  "zertifikate": {
+    "metaTitle": "Nitelik ve sertifikalar",
+    "metaDescription": "HE immologis UG sertifika ve nitelikleri – sürekli eğitimle profesyonellik. § 34c GewO izni, gayrimenkul danışmanı, değerleme.",
+    "heroTitle": "Nitelik ve sertifikalar",
+    "heroSubline": "Sürekli eğitimle profesyonellik. Sahibi tarafından yönetilen bir şirket olarak mesleki temel ve yasal güvenceye büyük önem veriyorum.",
+    "ourCertificates": "Sertifikalarımız",
+    "viewPdf": "Sertifikayı görüntüle (PDF)",
+    "wertermittlungExtra": "Uluslararası sürüm (İngilizce)",
+    "weiterbildungTitle": "Eğitim yükümlülüğü",
+    "weiterbildungText": "§ 34c Abs. 2a GewO ve § 15b MaBV uyarınca 3 yıl içinde en az 20 saatlik yasal eğitim yükümlülüğünü düzenli olarak yerine getiriyoruz. Böylece hukuk kararları ve piyasa gelişmeleri konusunda sizin için her zaman güncel kalıyoruz.",
+    "categories": {
+      "legal": "Yasal izin",
+      "training": "Mesleki eğitim",
+      "valuation": "Değerleme"
+    },
+    "certs": [
+      {
+        "title": "§ 34c GewO kapsamında izin",
+        "summary": [
+          "Ticari gayrimenkul danışmanlığı ve aracılığı",
+          "§ 34c GewO kapsamında IHK sınavı geçildi",
+          "Emlakçılık mesleğini icra etmek için resmi izin"
+        ]
+      },
+      {
+        "title": "Gayrimenkul danışmanı 34c sertifikası (Fw2)",
+        "summary": [
+          "Denetlenmiş gayrimenkul danışmanı uzmanlığı",
+          "Hukuki ve ticari temeller",
+          "§ 34c kapsamında danışmanlık ve aracılık"
+        ]
+      },
+      {
+        "title": "34c Gayrimenkul danışmanı sertifikası",
+        "summary": [
+          "§ 34c GewO gayrimenkul danışmanı niteliği",
+          "Uzmanlık ve mesleki uygulama",
+          "Gayrimenkul aracılığı ve danışmanlığı"
+        ]
+      },
+      {
+        "title": "TA 34c Gayrimenkul danışmanı sertifikası",
+        "summary": [
+          "§ 34c GewO (TA) gayrimenkul danışmanı sertifikası",
+          "Uzmanlık ve hukuki temeller",
+          "Gayrimenkul danışmanlığı ve aracılığı"
+        ]
+      },
+      {
+        "title": "TA Değerleme sertifikası",
+        "summary": [
+          "Maliyet yaklaşımı",
+          "Gelir yaklaşımı",
+          "Karşılaştırmalı değer yöntemi ve değerleme temelleri"
+        ]
+      }
+    ]
+  },
+  "tippgeber": {
+    "metaTitle": "Öneri verin – Öneri programı | HE immologis",
+    "metaDescription": "Öneri veren olun ve 5.000 €'ya kadar komisyon kazanın. Satmak isteyen birini tanıyor musunuz? HE immologis UG.",
+    "heroTitle": "Öneri veren olun. Avantajları güvence altına alın.",
+    "heroSubline": "Öneri veren olun ve önerinizden faydalanın.",
+    "heroCta": "5.000 €'ya kadar komisyon",
+    "staffelTitle": "Öneri veren kademesi",
+    "introQuestion": "Gayrimenkulünü satmak isteyen birini tanıyor musunuz?",
+    "introText": "O zaman bize bilgi verin – ve cazip öneri primini güvence altına alın. Hiçbir şey organize etmeniz veya emlakçı olmanız gerekmez. İyi bir temas yeterli – gerisini biz hallederiz.",
+    "howTitle": "Nasıl para kazanırsınız",
+    "howSteps": [
+      "Henüz kamuya açık sunulmayan bir gayrimenkulü bize bildirirsiniz.",
+      "Mal sahibiyle iletişime geçer ve tüm pazarlamayı devralırız.",
+      "Aracılığımızla başarılı satış gerçekleşirse komisyonunuzu alırsınız."
+    ],
+    "premiumTitle": "Satış fiyatına göre priminiz",
+    "hinweis": "Not:",
+    "hinweisText": "Henüz kamuya açık sunulmayan bir gayrimenkulle ilgili öneri verildiğinde, tek emlakçı vekâleti alınır, gayrimenkul pazarlanır ve satılır – ve işlem tamamlandığında öneri veren primi ödenir.",
+    "downloadAgreement": "Öneri veren sözleşmesi",
+    "downloadLetter": "Bilgi yazısı",
+    "afterCheck": "İncelemeden sonra yazılı öneri veren sözleşmesi alırsınız. Başarılı işlemde priminizi doğrudan size öderiz.",
+    "contactTitle": "İletişim kişiniz",
+    "contactName": "Holger Eberhard",
+    "contactRole": "Yönetici, HE immologis UG"
+  },
+  "verkaufen": {
+    "meta": {
+      "title": "Gayrimenkul satışı",
+      "description": "Gayrimenkulünüz güvende – Weinheim ve bölgede gayrimenkul satışında şimdi bağlayıcı olmayan satış talebi oluşturun. HE immologis UG size yetkin danışmanlık sunar.",
+      "keywords": ["Weinheim gayrimenkul satışı", "Gayrimenkul satış talebi", "HE immologis satış", "Bergstraße gayrimenkul satışı"]
+    },
+    "hero": {
+      "titleLine1": "Weinheim ve çevresinde satış.",
+      "titleLine2": "Kale değil – Gayrimenkulünüz memnuniyetle.",
+      "titleLine1Mobile": "Weinheim'da satış<br>ve çevresi.",
+      "titleLine2Mobile": "Kale değil –<br>Gayrimenkulünüz memnuniyetle.",
+      "subtitle": "Net değerleme. Optimal konumlandırma. Güvenli satış.",
+      "subtitleMobile": "Net değerleme. Optimal konumlandırma.<br>Güvenli satış.",
+      "ctaText": "Satış değerini hemen tespit ettirin",
+      "ctaAriaLabel": "Satış talebi formuna kaydır"
+    },
+    "provision": {
+      "headingSrOnly": "Emlakçı komisyonu hakkında bilgi",
+      "badge": "Bilgi",
+      "paragraph1": "Düzen gereği, vekâlet verildiğinde noter tasdikli satış bedelinin her biri %3,57'si oranında emlakçı komisyonu (yasal KDV dahil) tahsil edileceğini bildiririz. Bu komisyon, aksi kararlaştırılmadıkça alıcı ve satıcı tarafından yarı yarıya ödenir. Komisyon hakkı, emlakçı aracılık faaliyetiyle görevlendirildiği ve satış sözleşmesi noter tarafından tasdik edildiği anda doğar.",
+      "paragraph2Prefix": "Burada genel kullanım koşullarımız (",
+      "paragraph2Suffix": ") ve yasal düzenlemeler geçerlidir.",
+      "agbLinkText": "Kullanım koşulları"
+    },
+    "finalCta": {
+      "title": "Piyasa değeri konusunda henüz emin değil misiniz?",
+      "description": "İlk adımı birlikte atalım.<br /><strong>Gayrimenkulünüzü mesleki standartlara uygun değerlendiriyoruz – tabii ki ücretsiz.</strong>",
+      "buttonText": "Ücretsiz değerleme talep edin",
+      "callText": "Doğrudan aramayı mı tercih edersiniz?"
+    },
+    "sellerServices": {
+      "heading": "Sadece aracılık değil – Tam hizmet taahhüdümüz.",
+      "subheading": "Satıcılar için premium hizmetimiz.",
+      "buttonText": "Hizmetlerime",
+      "services": [
+        { "title": "Profesyonel değerleme", "text": "Optimal satış fiyatı için güvenilir piyasa analizi." },
+        { "title": "Yüksek kalite gayrimenkul fotoğrafları", "text": "Profesyonel çekimler ve drone görüntüleriyle görsel pazarlama." },
+        { "title": "Belge temini", "text": "Tüm gerekli yasal belgeleri biz hallederiz." },
+        { "title": "Nitelikli alıcı kontrolü", "text": "Yalnızca kontrol edilmiş alıcılarla ve kredi kontrolüyle görüntülemeler." },
+        { "title": "Noter ve sözleşme yönetimi", "text": "Tasdik randevusuna tam hazırlık ve eşlik." },
+        { "title": "Satış sonrası destek", "text": "Satıştan sonra da teslimatta iletişim ortağınız olmaya devam ediyoruz." }
+      ]
+    },
+    "sellForm": {
+      "sectionPersonal": "Kişisel bilgiler",
+      "sectionObject": "Obje bilgileri (adres)",
+      "sectionProperty": "Gayrimenkul detayları",
+      "sectionAdditional": "Ek bilgiler",
+      "labels": {
+        "vorname": "Ad",
+        "nachname": "Soyad",
+        "email": "E-posta adresi",
+        "telefon": "Telefon numarası",
+        "strasse": "Sokak / Cadde",
+        "hausnummer": "Bina no",
+        "plz": "Posta kodu",
+        "ort": "Şehir",
+        "immobilientyp": "Gayrimenkul tipi",
+        "baujahr": "İnşaat yılı",
+        "zustand": "Gayrimenkulünüzün durumu",
+        "nachricht": "Gayrimenkul hakkında ilk bilgiler / Bize mesajınız"
+      },
+      "placeholders": {
+        "vorname": "Ad",
+        "nachname": "Soyad",
+        "email": "ornek@email.com",
+        "telefon": "+49 123 456789",
+        "strasse": "Bergstraße",
+        "hausnummer": "42",
+        "plz": "69469",
+        "ort": "Weinheim",
+        "pleaseChoose": "Lütfen seçin",
+        "baujahr": "1985",
+        "nachricht": "Gayrimenkulünüzü kısaca tanımlayın veya diğer isteklerinizi paylaşın..."
+      },
+      "immobilienTypen": [
+        "Müstakil ev",
+        "İki ailelik ev",
+        "Sıra ev",
+        "İkiz ev yarısı",
+        "Çok aileli bina",
+        "Satılık daire",
+        "Arsa",
+        "Ticari gayrimenkul",
+        "Ticari / konut",
+        "Ticari / konut gayrimenkulu"
+      ],
+      "zustaende": ["bakımlı", "yenilenmiş / modernize", "kapsamlı yenilenmiş", "yenileme gerektiren", "tadilat gerektiren"],
+      "errors": {
+        "emailRequired": "E-posta adresi zorunludur.",
+        "emailInvalid": "Lütfen geçerli bir e-posta adresi girin.",
+        "agbRequired": "Talebi göndermek için lütfen kullanım koşullarını kabul edin."
+      },
+      "successTitle": "Talebiniz için teşekkür ederiz",
+      "successMessage": "Holger Eberhard en kısa sürede sizinle iletişime geçecektir.",
+      "agbLabelPrefix": "Genel kullanım koşullarını (",
+      "agbLabelSuffix": ") okudum ve kabul ediyorum. *",
+      "agbLinkText": "Kullanım koşulları",
+      "submitButton": "Talep gönder"
+    }
+  },
+  "kaufen": {
+    "meta": {
+      "title": "Weinheim gayrimenkuller",
+      "description": "Weinheim ve Bergstraße'de özel gayrimenkuller. Daireler, evler ve ticari gayrimenkuller – HE immologis tarafından güvenilir ve kaliteli aracılık.",
+      "keywords": ["Weinheim gayrimenkuller", "Bergstraße gayrimenkuller", "Weinheim daire", "Weinheim ev satın alma", "HE immologis"]
+    },
+    "hero": {
+      "title": "Weinheim ve çevresinde satın alma.",
+      "titleMobileLine1": "Weinheim'da satın alma",
+      "titleMobileLine2": "ve çevresi.",
+      "subtitle": "Hedefli seçim. Net kontrol. Güvenli sonuç.",
+      "subtitleMobileLine1": "Hedefli seçim. Net kontrol.",
+      "subtitleMobileLine2": "Güvenli sonuç.",
+      "ctaText": "Gayrimenkulleri inceleyin",
+      "ctaAriaLabel": "Gayrimenkullere kaydır"
+    },
+    "filters": {
+      "labelStatus": "Durum",
+      "labelLocation": "Konum",
+      "allStatus": "Tüm durumlar",
+      "allLocations": "Tüm konumlar",
+      "statusAvailable": "Müsait",
+      "statusReserved": "Rezerve",
+      "statusSold": "Satıldı"
+    },
+    "noResults": "Seçilen filtreye uyan gayrimenkul bulunamadı.",
+    "kauftipps": {
+      "heading": "Gayrimenkul satın alırken ipuçları",
+      "intro": "Gayrimenkul satın almak kapsamlı bir karardır. Doğru hazırlıkla bilinçli ve güvenli kararlar verirsiniz.",
+      "tipTitles": [
+        "İlk görüşme",
+        "Finansman",
+        "Arama ve bulma",
+        "Durum kontrolü",
+        "Belgeleri ve kayıtları kontrol etme",
+        "Fiyat görüşmesi",
+        "Noter tasdiki",
+        "Teslim ve taşınma",
+        "Satış sonrası destek"
+      ],
+      "tipContents": []
+    },
+    "contact": {
+      "title": "Gayrimenkul talebi",
+      "subtitle": "Gayrimenkullerimizden biriyle mi ilgileniyorsunuz ya da gayrimenkulünüzü mü satmak istiyorsunuz?<br /> Size memnuniyetle ve bağlayıcı olmadan danışmanlık sunarız."
+    }
+  },
+  "mieten": {
+    "meta": {
+      "title": "Weinheim kiralık objeler",
+      "description": "Weinheim ve Bergstraße bölgesinde yeni yuvanızı bulun. Daireler, evler ve ticari – HE immologis tarafından kişisel destek.",
+      "keywords": ["Weinheim kiralık daire", "Bergstraße ev kiralama", "Weinheim kiralık daire", "HE immologis kiralama"]
+    },
+    "hero": {
+      "title": "Weinheim ve çevresinde kiralama.",
+      "subtitle": "Size uygun seçim. Şeffaf aracılık. Yuvaya kavuşma.",
+      "ctaText": "Uygun kiralık bulun",
+      "ctaAriaLabel": "Kiralık objelere kaydır"
+    },
+    "filters": {
+      "labelPropertyType": "Obje tipi",
+      "propertyTypeOptions": [
+        { "value": "Wohnung", "label": "Daire" },
+        { "value": "Haus", "label": "Ev" },
+        { "value": "Gewerbe", "label": "Ticari" }
+      ],
+      "allRooms": "Tüm oda sayıları",
+      "roomOptions": ["1 oda", "2 oda", "3 oda", "4 oda", "5+ oda"],
+      "allPrices": "Tüm fiyatlar",
+      "priceOptions": ["800 €'ya kadar", "800 – 1.200 €", "1.200 – 1.800 €", "1.800 € üzeri"]
+    },
+    "provision": {
+      "headingSrOnly": "Emlakçı komisyonu hakkında bilgi",
+      "badge": "Bilgi",
+      "paragraph1": "Baden-Württemberg ve Hessen'de konut kiralanmasında sipariş veren öder ilkesi geçerlidir. Yani emlakçıyı kim görevlendirirse maliyetleri o üstlenir. Baden-Württemberg ve Hessen'de emlakçı komisyonu, emlakçının hizmeti için aldığı iki net soğuk kira artı %19 KDV olabilir.",
+      "paragraph2Prefix": "Burada genel kullanım koşullarımız (",
+      "paragraph2Suffix": ") ve yasal düzenlemeler geçerlidir.",
+      "agbLinkText": "Kullanım koşulları"
+    },
+    "noRentals": {
+      "text": "Şu anda tüm objelerimiz kiralanmış durumda. Ön kayıt yaptırın!",
+      "buttonText": "Arama vekâleti oluştur"
+    },
+    "card": {
+      "viewDetails": "Detayları görüntüle",
+      "netRentSuffix": "Soğuk",
+      "roomsLabel": "Oda",
+      "statusNew": "Yeni",
+      "statusReserved": "Rezerve",
+      "statusAvailable": "Müsait"
+    }
+  },
+  "immobilienServices": {
+    "meta": {
+      "title": "Gayrimenkul hizmetleri | HE immologis UG",
+      "description": "Değerlemeden anahtar teslimine: Weinheim ve Bergstraße'de profesyonel gayrimenkul hizmetleri. Piyasa değeri tespiti, pazarlama ve işlem yönetimi.",
+      "keywords": ["Weinheim gayrimenkul hizmetleri", "Bergstraße piyasa değeri", "Gayrimenkul pazarlama", "HE immologis"]
+    },
+    "hero": {
+      "title": "Size özel satış çözümleri.",
+      "subtitleLine1": "Tam satış veya tek modüller",
+      "subtitleLine2": "– Karar sizin.",
+      "ctaText": "Hizmetleri inceleyin",
+      "ctaAriaLabel": "Hizmetlere kaydır"
+    },
+    "mainCard": {
+      "badge": "Tam vekâlet",
+      "title": "Baştan sona satış süreci",
+      "subtitle": "– değerlemeden teslimata",
+      "stepsIntro": "5 net adımda güvenli satış",
+      "features": [
+        "Hassas değerleme",
+        "Yüksek kalite hazırlık",
+        "Hedefli pazarlama ve alıcı kontrolü",
+        "Finansman güvencesi",
+        "Noter ve teslim"
+      ],
+      "priceParagraph": "Bu kapsamlı hizmet için noter tasdikli satış bedeline göre yürürlükteki başarı komisyonu %3,57 (KDV dahil) uygulanır.",
+      "moreInfoButton": "Daha fazla bilgi"
+    },
+    "modulesHeading": "Tek modüller",
+    "modulesAriaLabel": "Tek modüller",
+    "cardMoreInfo": "Daha fazla bilgi",
+    "cta": {
+      "heading": "Hizmetlerimiz hakkında sorularınız mı var?",
+      "text": "Projeniz hakkında bağlayıcı olmayan bir görüşme yapalım.",
+      "button": "Danışma randevusu alın"
+    }
+  }
+}

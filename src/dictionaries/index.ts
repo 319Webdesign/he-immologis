@@ -12,8 +12,5 @@ const dictionaries: Record<"de" | "en" | "tr", Dictionary> = {
 
 export async function getDictionary(lang: string): Promise<Dictionary> {
   const locale = lang === "en" ? "en" : lang === "tr" ? "tr" : "de";
-  const dict = dictionaries[locale];
-  // Türkisch: Fallback auf Deutsch, bis tr.json gefüllt ist
-  if (locale === "tr" && Object.keys(tr as object).length === 0) return dictionaries.de;
-  return dict;
+  return dictionaries[locale];
 }
