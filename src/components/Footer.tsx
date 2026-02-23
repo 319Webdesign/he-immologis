@@ -51,7 +51,7 @@ export type FooterDict = {
   designedBy: string;
 };
 
-type Locale = "de" | "en";
+type Locale = "de" | "en" | "tr";
 
 interface FooterProps {
   lang: Locale;
