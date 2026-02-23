@@ -95,15 +95,15 @@
     "cards": [
       {
         "title": "Sell",
-        "description": "Focus on local market values and fair valuation<br>– <strong>We sell your property.</strong>"
+        "description": "Focus on local market values and fair valuation.<br><strong>We sell your property.</strong>"
       },
       {
         "title": "Buy & Search",
-        "description": "Support for those looking in the region<br>– <strong>We find your property.</strong>"
+        "description": "Support for those looking in the region.<br><strong>We find your property.</strong>"
       },
       {
         "title": "Rent",
-        "description": "We handle professional tenant search and full processing from A to Z<br>– <strong>we rent your property.</strong>"
+        "description": "We handle professional tenant search and full processing from A to Z.<br><strong>We rent your property.</strong>"
       },
       {
         "title": "Logistics Consulting",
@@ -188,7 +188,8 @@
         "headline": "Flexible ways to get in touch.",
         "tagline": "Your property. Reachable anytime.",
         "paragraphs": [
-          "You can rely on me to act flexibly and reliably whenever we arrange appointments. Punctuality and availability are a matter of course for me. I am also reachable outside standard business hours – whether by phone, WhatsApp or in a way that suits you best."
+          "You can rely on me to act flexibly and reliably whenever we arrange appointments. Punctuality and availability are a matter of course for me.",
+          "I am also reachable outside standard business hours – whether by phone, WhatsApp or in a way that suits you best."
         ],
         "extra": "When you need me: just there."
       },
@@ -328,7 +329,7 @@
       "titleLine2Mobile": "No castles –<br>but gladly your property.",
       "subtitle": "Clearly valued. Optimally positioned. Securely sold.",
       "subtitleMobile": "Clearly valued. Optimally positioned.<br>Securely sold.",
-      "ctaText": "Determine your property value now",
+      "ctaText": "Get your sale value determined now",
       "ctaAriaLabel": "Scroll to sale enquiry form"
     },
     "provision": {
@@ -341,7 +342,7 @@
     },
     "finalCta": {
       "title": "Are you still unsure about the market value?",
-      "description": "Let's take the first step together. Holger Eberhard will evaluate your property professionally, discreetly and completely free of charge.",
+      "description": "Let's take the first step together.<br /><strong>We will professionally assess your property – of course, completely free of charge.</strong>",
       "buttonText": "Request a free valuation",
       "callText": "Prefer to call directly?"
     },
