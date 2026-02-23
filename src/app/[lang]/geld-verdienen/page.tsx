@@ -5,6 +5,8 @@ import { Wallet, MapPin, Camera, Info, FileDown, ArrowRight } from "lucide-react
 import ProvisionsStaffel from "./ProvisionsStaffel";
 import TippgeberForm from "./TippgeberForm";
 import Contact from "@/components/Contact";
+import { getDictionary } from "@/dictionaries";
+import { getLocaleFromHeaders } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Geld verdienen – Tippgeber-Programm | HE immologis",
@@ -28,7 +30,9 @@ const DOWNLOAD_MUSTERVERTRAG_WERBEFLAECHE = "/downloads/HE_Immologis_Mustervertr
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-export default function GeldVerdienenPage() {
+export default async function GeldVerdienenPage() {
+  const locale = await getLocaleFromHeaders();
+  const dict = await getDictionary(locale);
   return (
     <>
       {/* Hero mit Hintergrundbild */}
@@ -242,6 +246,7 @@ export default function GeldVerdienenPage() {
         title="Fragen zum Tippgeber-Programm?"
         subtitle="Wir erklären Ihnen gerne die Details – unverbindlich und diskret."
         accentColor="steelblue"
+        formLabels={dict.contactForm}
       />
     </>
   );

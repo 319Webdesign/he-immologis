@@ -133,20 +133,28 @@ function KomplettmandatContent({
   );
 }
 
-const DOKUMENTMODUL_LIST_INTRO =
+const DOKUMENTMODUL_LIST_INTRO_DE =
   "Hierzu zählen insbesondere, jedoch nicht abschließend:";
+const DOKUMENTMODUL_LIST_INTRO_EN =
+  "This includes in particular, but not exclusively:";
 const DOKUMENTMODUL_LIST_LENGTH = 6;
 
 function DefaultContent({
   paragraphs,
   slug,
+  locale,
 }: {
   paragraphs: string[];
   slug?: string;
+  locale?: "de" | "en";
 }) {
   const isDokumentmodul = slug === "energieausweis";
+  const listIntro =
+    locale === "en" ? DOKUMENTMODUL_LIST_INTRO_EN : DOKUMENTMODUL_LIST_INTRO_DE;
   const listIntroIndex = isDokumentmodul
-    ? paragraphs.findIndex((p) => p === DOKUMENTMODUL_LIST_INTRO)
+    ? paragraphs.findIndex(
+        (p) => p === DOKUMENTMODUL_LIST_INTRO_DE || p === DOKUMENTMODUL_LIST_INTRO_EN
+      )
     : -1;
   const listStart = listIntroIndex >= 0 ? listIntroIndex + 1 : 0;
   const listEnd = listStart + DOKUMENTMODUL_LIST_LENGTH;
@@ -161,7 +169,7 @@ function DefaultContent({
           return (
             <div key="dokumentmodul-list" className="space-y-3">
               <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 pt-4 border-t border-slate-200 mt-8">
-                {DOKUMENTMODUL_LIST_INTRO}
+                {listIntro}
               </h3>
               <ul className="list-disc pl-6 space-y-2 text-lg leading-relaxed text-slate-600">
                 {paragraphs.slice(listStart, listEnd).map((item, j) => (
@@ -285,7 +293,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           {isKomplettmandat ? (
             <KomplettmandatContent sections={paragraphs} locale={locale} />
           ) : (
-            <DefaultContent paragraphs={paragraphs} slug={slug} />
+            <DefaultContent paragraphs={paragraphs} slug={slug} locale={locale} />
           )}
 
           {slug === "high-end-immobilienaufnahmen" && (
@@ -300,7 +308,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 Heinerfilm
               </h2>
               <p className="mt-2 text-sm text-slate-600">
-                Die professionellen Film- und Fotoaufnahmen realisieren wir in Kooperation mit Heinerfilm.
+                {locale === "en"
+                  ? "We produce the professional film and photo shoots in cooperation with Heinerfilm."
+                  : "Die professionellen Film- und Fotoaufnahmen realisieren wir in Kooperation mit Heinerfilm."}
               </p>
               <a
                 href="https://heinerfilm.de"
@@ -309,7 +319,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 className="mt-3 inline-flex items-center text-sm font-medium"
                 style={{ color: BRAND_BLUE }}
               >
-                Mehr erfahren auf heinerfilm.de →
+                {locale === "en" ? "Find out more at heinerfilm.de →" : "Mehr erfahren auf heinerfilm.de →"}
               </a>
             </section>
           )}

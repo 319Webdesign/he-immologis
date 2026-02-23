@@ -1,11 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Printer, PenLine, Mail, ArrowRight } from "lucide-react";
 
 const BRAND_BLUE = "#4682B4";
 
-const STEPS = [
+const STEPS_DE = [
   {
     step: 1,
     icon: Printer,
@@ -23,6 +24,24 @@ const STEPS = [
   },
 ];
 
+const STEPS_EN = [
+  {
+    step: 1,
+    icon: Printer,
+    text: "Download the referrer form and print it at your convenience.",
+  },
+  {
+    step: 2,
+    icon: PenLine,
+    text: "Enter your details and the property information. Discretion is a matter of course for us.",
+  },
+  {
+    step: 3,
+    icon: Mail,
+    text: "Simply send a photo or scan of the form to info@he-immologis.de or via WhatsApp.",
+  },
+];
+
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -36,11 +55,20 @@ const item = {
   visible: { opacity: 1, y: 0 },
 };
 
+const HEADING_DE = "So einfach werden Sie zum Tippgeber";
+const HEADING_EN = "It's that simple to become a referrer";
+
 export default function TippgeberHowTo() {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en");
+  const steps = isEn ? STEPS_EN : STEPS_DE;
+  const heading = isEn ? HEADING_EN : HEADING_DE;
+  const stepCount = steps.length;
+
   return (
     <div className="mt-14">
       <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-        So einfach werden Sie zum Tippgeber
+        {heading}
       </h3>
 
       <motion.div
@@ -50,7 +78,7 @@ export default function TippgeberHowTo() {
         viewport={{ once: true, margin: "-40px" }}
         className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6"
       >
-        {STEPS.map(({ step, icon: Icon, text }, index) => (
+        {steps.map(({ step, icon: Icon, text }, index) => (
           <motion.div
             key={step}
             variants={item}
@@ -70,7 +98,7 @@ export default function TippgeberHowTo() {
               <Icon className="h-7 w-7" style={{ color: BRAND_BLUE }} />
             </div>
             <p className="mt-4 font-sans text-slate-700">{text}</p>
-            {index < STEPS.length - 1 && (
+            {index < stepCount - 1 && (
               <div
                 className="absolute -right-3 top-14 hidden md:block"
                 aria-hidden

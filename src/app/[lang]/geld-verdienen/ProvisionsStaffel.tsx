@@ -1,18 +1,32 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Wallet } from "lucide-react";
 
 const BRAND_BLUE = "#4682B4";
 
-const STAFFEL = [
+const STAFFEL_DE = [
   { range: "Bis 250.000 €", provision: "1.000 €", from: 0, to: 250 },
   { range: "250.000 € – 500.000 €", provision: "1.500 €", from: 250, to: 500 },
   { range: "500.000 € – 1 Mio. €", provision: "2.500 €", from: 500, to: 1000 },
   { range: "Ab 1 Mio. €", provision: "5.000 €", from: 1000, to: 1000 },
 ];
 
+const STAFFEL_EN = [
+  { range: "Up to €250,000", provision: "€1,000", from: 0, to: 250 },
+  { range: "€250,000 – €500,000", provision: "€1,500", from: 250, to: 500 },
+  { range: "€500,000 – €1m", provision: "€2,500", from: 500, to: 1000 },
+  { range: "From €1m", provision: "€5,000", from: 1000, to: 1000 },
+];
+
 export default function ProvisionsStaffel() {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en");
+  const staffel = isEn ? STAFFEL_EN : STAFFEL_DE;
+  const labelKaufpreis = isEn ? "Purchase price" : "Kaufpreis";
+  const labelProvision = isEn ? "Commission" : "Provision";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,13 +37,13 @@ export default function ProvisionsStaffel() {
     >
       {/* Desktop: horizontale Karten mit Fortschritts-Visualisierung */}
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {STAFFEL.map((stufe, i) => (
+        {staffel.map((stufe, i) => (
           <div
             key={stufe.range}
             className="relative flex flex-col rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            style={{ borderColor: i === STAFFEL.length - 1 ? BRAND_BLUE : undefined }}
+            style={{ borderColor: i === staffel.length - 1 ? BRAND_BLUE : undefined }}
           >
-            {i === STAFFEL.length - 1 && (
+            {i === staffel.length - 1 && (
               <div
                 className="absolute -top-2 right-4 rounded-full px-3 py-0.5 text-xs font-semibold text-white"
                 style={{ backgroundColor: BRAND_BLUE }}
@@ -39,13 +53,13 @@ export default function ProvisionsStaffel() {
             )}
             <div className="flex items-center gap-2 text-slate-600">
               <Wallet className="h-5 w-5 shrink-0" style={{ color: BRAND_BLUE }} />
-              <span className="text-sm font-medium">Kaufpreis</span>
+              <span className="text-sm font-medium">{labelKaufpreis}</span>
             </div>
             <p className="mt-2 font-semibold text-slate-800">{stufe.range}</p>
             <p className="mt-3 text-2xl font-bold" style={{ color: BRAND_BLUE }}>
               {stufe.provision}
             </p>
-            <p className="mt-1 text-sm text-slate-500">Provision</p>
+            <p className="mt-1 text-sm text-slate-500">{labelProvision}</p>
           </div>
         ))}
       </div>
@@ -55,12 +69,12 @@ export default function ProvisionsStaffel() {
         <table className="w-full text-left">
           <thead>
             <tr style={{ backgroundColor: `${BRAND_BLUE}12` }}>
-              <th className="px-4 py-3 text-sm font-semibold text-slate-800">Kaufpreis</th>
-              <th className="px-4 py-3 text-sm font-semibold text-slate-800 text-right">Provision</th>
+              <th className="px-4 py-3 text-sm font-semibold text-slate-800">{labelKaufpreis}</th>
+              <th className="px-4 py-3 text-sm font-semibold text-slate-800 text-right">{labelProvision}</th>
             </tr>
           </thead>
           <tbody>
-            {STAFFEL.map((stufe) => (
+            {staffel.map((stufe) => (
               <tr key={stufe.range} className="border-t border-slate-100">
                 <td className="px-4 py-3 text-slate-700">{stufe.range}</td>
                 <td className="px-4 py-3 text-right font-semibold" style={{ color: BRAND_BLUE }}>

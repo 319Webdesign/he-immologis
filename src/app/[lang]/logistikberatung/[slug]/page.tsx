@@ -1,39 +1,64 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SMART_MODULE } from "@/data/logistikberatung";
+import { SMART_MODULE, SMART_MODULE_EN } from "@/data/logistikberatung";
 import Contact from "@/components/Contact";
+import { getDictionary } from "@/dictionaries";
 
 const BRAND_BLUE = "#4682B4";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ lang?: string; slug: string }> };
 
 export async function generateStaticParams() {
-  return SMART_MODULE.map((m) => ({ slug: m.slug }));
+  const slugs = SMART_MODULE.map((m) => m.slug);
+  const params: { lang: string; slug: string }[] = [];
+  for (const lang of ["de", "en"]) {
+    for (const slug of slugs) {
+      params.push({ lang, slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const modul = SMART_MODULE.find((m) => m.slug === slug);
-  if (!modul) return { title: "Logistikberatung | HE immologis UG" };
-  const title = `SMART Modul ${modul.letter} – ${modul.title} | HE immologis UG`;
+  const { lang, slug } = await params;
+  const locale = lang === "en" ? "en" : "de";
+  const modules = locale === "en" ? SMART_MODULE_EN : SMART_MODULE;
+  const modul = modules.find((m) => m.slug === slug);
+  if (!modul)
+    return {
+      title: locale === "en" ? "Logistics consulting | HE immologis UG" : "Logistikberatung | HE immologis UG",
+    };
+  const title =
+    (locale === "en" ? `SMART module ${modul.letter} – ${modul.title}` : `SMART Modul ${modul.letter} – ${modul.title}`) +
+    " | HE immologis UG";
   const description =
     modul.shortDescription.slice(0, 155) + (modul.shortDescription.length > 155 ? "…" : "");
   return {
     title,
     description,
-    keywords: ["Logistikberatung", "SMART", modul.title, "HE immologis"],
+    keywords: [locale === "en" ? "Logistics consulting" : "Logistikberatung", "SMART", modul.title, "HE immologis"],
   };
 }
 
 export default async function LogistikberatungSlugPage({ params }: Props) {
-  const { slug } = await params;
-  const modulIndex = SMART_MODULE.findIndex((m) => m.slug === slug);
-  const modul = modulIndex >= 0 ? SMART_MODULE[modulIndex] : undefined;
+  const { lang, slug } = await params;
+  const locale = lang === "en" ? "en" : "de";
+  const dict = await getDictionary(locale);
+  const lb = dict.logistikberatung as {
+    moduleLabel: string;
+    backToSmart: string;
+    allModules: string;
+    contactTitleSlug: string;
+    contactSubtitleSlug: string;
+  };
+  const modules = locale === "en" ? SMART_MODULE_EN : SMART_MODULE;
+  const modulIndex = modules.findIndex((m) => m.slug === slug);
+  const modul = modulIndex >= 0 ? modules[modulIndex] : undefined;
   if (!modul) notFound();
-  const nextModul = modulIndex >= 0 && modulIndex < SMART_MODULE.length - 1
-    ? SMART_MODULE[modulIndex + 1]
-    : null;
+  const nextModul =
+    modulIndex >= 0 && modulIndex < modules.length - 1 ? modules[modulIndex + 1] : null;
+  const prefix = locale === "en" ? "/en" : "";
 
   type Block =
     | { type: "p"; text: string }
@@ -77,10 +102,10 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
       >
         <div className="mx-auto max-w-3xl">
           <Link
-            href="/logistikberatung"
+            href={`${prefix}/logistikberatung`}
             className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
           >
-            ← Logistikberatung SMART
+            {lb.backToSmart}
           </Link>
           <div
             className="ml-3 mt-4 inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white sm:ml-4"
@@ -89,7 +114,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
             {modul.letter}
           </div>
           <h1 className="mt-4 font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            SMART Modul {modul.letter}
+            {lb.moduleLabel} {modul.letter}
             <br />
             <span className="text-2xl sm:text-3xl">– {modul.title}</span>
           </h1>
@@ -164,19 +189,19 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <Link
-            href="/logistikberatung"
+            href={`${prefix}/logistikberatung`}
             className="inline-flex items-center text-sm font-semibold"
             style={{ color: BRAND_BLUE }}
           >
-            ← Alle SMART Module
+            ← {lb.allModules}
           </Link>
           {nextModul && (
             <Link
-              href={`/logistikberatung/${nextModul.slug}`}
+              href={`${prefix}/logistikberatung/${nextModul.slug}`}
               className="ml-auto inline-flex items-center text-sm font-semibold sm:ml-0"
               style={{ color: BRAND_BLUE }}
             >
-              Modul {nextModul.letter} – {nextModul.title} →
+              {lb.moduleLabel} {nextModul.letter} – {nextModul.title} →
             </Link>
           )}
         </div>
@@ -184,8 +209,9 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
 
       <Contact
         variant="dark"
-        title="Kontakt – SMART Logistikberatung"
-        subtitle="Sprechen Sie uns an – wir freuen uns auf Ihr Anliegen."
+        title={lb.contactTitleSlug}
+        subtitle={lb.contactSubtitleSlug}
+        formLabels={dict.contactForm}
       />
     </>
   );
