@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: m.title,
     description: m.description,
-    keywords: m.keywords,
+    keywords: [...m.keywords],
   };
 }
 
