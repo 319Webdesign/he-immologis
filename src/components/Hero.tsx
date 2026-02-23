@@ -72,7 +72,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
       </div>
 
       {/* CTA-Buttons: auf kleinen Handys deutlich höher, damit vollständig sichtbar */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col items-center px-2 pb-[7rem] min-[480px]:pb-20 sm:px-0 sm:pb-8">
+      <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col items-center px-2 pb-[9rem] min-[480px]:pb-24 sm:px-0 sm:pb-8">
         <div className="rounded-lg bg-black/25 px-3 py-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:px-4 sm:py-2.5">
           <div className="flex flex-row gap-2 sm:gap-3">
             <Link
