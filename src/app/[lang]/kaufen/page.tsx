@@ -7,6 +7,7 @@ import PropertyCard from "./PropertyCard";
 import PropertyFilters from "./PropertyFilters";
 import Kauftipps from "./Kauftipps";
 import Contact from "@/components/Contact";
+import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -101,6 +102,8 @@ export default async function KaufenPage({ searchParams }: PageProps) {
       </section>
 
       <Kauftipps dict={k.kauftipps} lang={locale} />
+
+      <ShareSection dict={dict.shareSection} />
 
       <Contact
         title={k.contact.title}

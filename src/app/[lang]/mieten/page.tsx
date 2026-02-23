@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import MietenContent from "./MietenContent";
 import rentalsData from "@/data/rentals.json";
 import type { Rental } from "@/types";
+import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -93,6 +94,8 @@ export default async function MietenPage() {
           </div>
         </div>
       </section>
+
+      <ShareSection dict={dict.shareSection} />
     </>
   );
 }

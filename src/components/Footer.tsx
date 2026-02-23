@@ -114,6 +114,25 @@ export default function Footer({ lang, dict }: FooterProps) {
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
+            {/* QR-Code & Website-URL: Breite des QR-Codes = Breite des Textes (Grid legt Spalte fest) */}
+            <div className="mt-4 inline-grid max-w-[8.5rem] grid-cols-1 gap-1.5 justify-items-center">
+              <a
+                href="https://www.he-immologis.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full min-w-0 overflow-hidden rounded border border-slate-700 bg-white"
+                aria-label="Website aufrufen (QR-Code)"
+              >
+                <Image
+                  src="/img/qr-he-immologis.png"
+                  alt=""
+                  width={144}
+                  height={144}
+                  className="aspect-square h-auto w-full object-cover"
+                />
+              </a>
+              <span className="text-center text-xs text-slate-300">www.he-immologis.de</span>
+            </div>
           </div>
 
           {/* Spalte 2: Kontakt & Geschäftsführung */}

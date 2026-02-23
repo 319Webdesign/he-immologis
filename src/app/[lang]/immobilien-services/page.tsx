@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import ServicesPackagesSection from "@/components/ServicesPackagesSection";
+import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -91,6 +92,8 @@ export default async function ImmobilienServicesPage() {
           </div>
         </div>
       </section>
+
+      <ShareSection dict={dict.shareSection} />
     </>
   );
 }

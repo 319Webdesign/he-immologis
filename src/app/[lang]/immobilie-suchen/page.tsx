@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import SearchRequestForm from "@/components/SearchRequestForm";
+import ShareSection from "@/components/ShareSection";
+import { getDictionary } from "@/dictionaries";
 
 const LOCALES = ["de", "en", "tr"] as const;
 type Locale = (typeof LOCALES)[number];
@@ -49,6 +51,7 @@ export default async function ImmobilieSuchenPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const dict = await getDictionary(lang);
 
   return (
     <>
@@ -89,6 +92,8 @@ export default async function ImmobilieSuchenPage({
       <section id="suchauftrag" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <SearchRequestForm />
       </section>
+
+      <ShareSection dict={dict.shareSection} />
     </>
   );
 }

@@ -88,6 +88,13 @@
     "copyright": "© 2026 HE immologis UG. Alle Rechte vorbehalten.",
     "designedBy": "Designed by"
   },
+  "shareSection": {
+    "heading": "Teile diese Seite mit einem Klick und hilf anderen,<br> ihr neues Zuhause zu finden!",
+    "subtitle": "QR-Barcode per E-Mail teilen<br>– Weiterempfehlen.",
+    "buttonLabel": "Per E-Mail weiterempfehlen",
+    "mailSubject": "Empfehlung: Immobilien – HE immologis in Weinheim / Holger Eberhard",
+    "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG (haftungsbeschränkt) i. Gr. hinweisen. Weitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 176 321 98 462\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
+  },
   "localPresence": {
     "heading": "Verkaufen. Kaufen. Mieten. Services. Suchen.",
     "subline": "Ihr neues Zuhause in Weinheim und an der Bergstraße beginnt hier.",

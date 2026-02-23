@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import SellForm from "@/components/SellForm";
 import SellerServices from "@/components/SellerServices";
 import FinalCTA from "@/components/FinalCTA";
+import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -148,6 +149,8 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
       </section>
 
       <SellerServices dict={v.sellerServices} lang={locale} />
+
+      <ShareSection dict={dict.shareSection} />
     </>
   );
 }
