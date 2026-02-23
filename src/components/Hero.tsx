@@ -11,7 +11,7 @@ import { Home, Key } from "lucide-react";
  */
 const VIDEO_SRC = "/video/startseitefilm.webm";
 const POSTER_SRC = "/img/hero-poster.jpg";
-const BRAND_BLUE = "#4682B4";
+const MINT = "#D3EFDE";
 
 export type HomeHeroDict = {
   line1: string;
@@ -77,15 +77,16 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
           <div className="flex flex-row gap-2 sm:gap-3">
             <Link
               href={`/${lang}/kaufen`}
-              className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
-              style={{ backgroundColor: BRAND_BLUE }}
+              className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
+              style={{ backgroundColor: MINT, color: "#1e293b" }}
             >
               <Home className="h-4 w-4 shrink-0" aria-hidden />
               {dict.ctaBuy}
             </Link>
             <Link
               href={`/${lang}/mieten`}
-              className="inline-flex items-center justify-center gap-1.5 rounded-md border border-white/90 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] hover:bg-white/20 hover:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
+              className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
+              style={{ backgroundColor: MINT, color: "#1e293b" }}
             >
               <Key className="h-4 w-4 shrink-0" aria-hidden />
               {dict.ctaRent}
