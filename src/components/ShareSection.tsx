@@ -50,12 +50,6 @@ export default function ShareSection({ dict }: ShareSectionProps) {
           className="text-center text-base font-medium leading-relaxed text-slate-800 sm:text-lg"
           dangerouslySetInnerHTML={{ __html: dict.heading }}
         />
-        {dict.subtitle && (
-          <p
-            className="mt-2 text-center text-sm text-slate-600 sm:text-base"
-            dangerouslySetInnerHTML={{ __html: dict.subtitle }}
-          />
-        )}
         <div className="mt-6 flex justify-center">
           <button
             type="button"

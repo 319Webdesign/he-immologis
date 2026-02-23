@@ -93,7 +93,7 @@
     "subtitle": "Share QR barcode by email<br>– Recommend.",
     "buttonLabel": "Share by email",
     "mailSubject": "Recommendation: Real Estate – HE immologis in Weinheim / Holger Eberhard",
-    "mailBody": "Hello,\n\nI would like to point you to Holger Eberhard and HE immologis UG (haftungsbeschränkt) i. Gr. Further information can be found at: {{url}}\n\nFor any questions or requests, Holger Eberhard is personally available in Weinheim:\n+49 176 321 98 462\neberhard@he-immologis.de\n\nIf anyone in the Weinheim region is looking for support with property matters, this could be a helpful contact.\n\nBest regards"
+    "mailBody": "Hello,\n\nI would like to point you to Holger Eberhard and HE immologis UG (haftungsbeschränkt) i. Gr.\n\nFurther information can be found at: {{url}}\n\nFor any questions or requests, Holger Eberhard is personally available in Weinheim:\n+49 176 321 98 462\neberhard@he-immologis.de\n\nIf anyone in the Weinheim region is looking for support with property matters, this could be a helpful contact.\n\nBest regards"
   },
   "localPresence": {
     "heading": "Sell. Buy. Rent.<br> Services. Search.",
