@@ -76,10 +76,10 @@ export default function Footer({ lang, dict }: FooterProps) {
                 className="h-11 w-auto max-w-[150px] object-contain object-left brightness-0 invert"
               />
             </Link>
-            <p className="font-sans text-lg text-white">
+            <p className="font-sans text-lg leading-tight text-white">
               <strong className="font-semibold">{dict.companyLine1}</strong>
               <br />
-              <span className="font-normal">{dict.companyLine2}</span>
+              <span className="text-base font-normal">{dict.companyLine2}</span>
             </p>
             <p
               className="mt-2 text-sm text-slate-300"
