@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Contact from "@/components/Contact";
+import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -138,6 +139,8 @@ export default async function UeberMichPage() {
           </div>
         </div>
       </section>
+
+      <ShareSection dict={dict.shareSection} />
 
       <Contact
         title={t.contactTitle}
