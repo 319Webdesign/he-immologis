@@ -74,7 +74,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
       {/* CTA-Buttons: ganz unten, klein */}
       <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-6 sm:pb-8">
         <div className="rounded-lg bg-black/25 px-3 py-2 shadow-[0_2px_12px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:px-4 sm:py-2.5">
-          <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
+          <div className="flex flex-row gap-2 sm:gap-3">
             <Link
               href={`/${lang}/kaufen`}
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
