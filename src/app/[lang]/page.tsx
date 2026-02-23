@@ -6,7 +6,7 @@ import { getDictionary } from "@/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
 export function generateStaticParams() {
-  return [{ lang: "de" }, { lang: "en" }];
+  return [{ lang: "de" }, { lang: "en" }, { lang: "tr" }];
 }
 
 interface HomePageProps {
@@ -15,7 +15,7 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { lang } = await params;
-  const locale = (lang === "en" ? "en" : "de") as Locale;
+  const locale = (lang === "en" ? "en" : lang === "tr" ? "tr" : "de") as Locale;
   const dict = await getDictionary(locale);
 
   return (

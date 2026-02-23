@@ -4,7 +4,7 @@ import ClientLangSync from "@/components/ClientLangSync";
 import ScrollToTop from "@/components/ScrollToTop";
 import { getDictionary } from "@/dictionaries";
 
-const LOCALES = ["de", "en"] as const;
+const LOCALES = ["de", "en", "tr"] as const;
 type Locale = (typeof LOCALES)[number];
 
 function isValidLocale(lang: string): lang is Locale {

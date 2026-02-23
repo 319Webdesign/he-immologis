@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const LOCALES = ["de", "en"] as const;
+const LOCALES = ["de", "en", "tr"] as const;
 type Locale = (typeof LOCALES)[number];
 
 /**
  * Ermittelt die bevorzugte Sprache aus dem Accept-Language-Header.
- * Einfache Logik: erste passende Sprache (de/en) in der Reihenfolge der Client-Präferenz.
+ * Einfache Logik: erste passende Sprache (de/en/tr) in der Reihenfolge der Client-Präferenz.
  */
 function getPreferredLocale(acceptLanguage: string | null): Locale {
   if (!acceptLanguage) return "de";
@@ -15,6 +15,7 @@ function getPreferredLocale(acceptLanguage: string | null): Locale {
   for (const p of parts) {
     if (p === "de") return "de";
     if (p === "en") return "en";
+    if (p === "tr") return "tr";
   }
   return "de";
 }

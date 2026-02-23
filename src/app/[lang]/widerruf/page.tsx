@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const LEGAL_CONTENT = "mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8";
 
-const LOCALES = ["de", "en"] as const;
+const LOCALES = ["de", "en", "tr"] as const;
 type Locale = (typeof LOCALES)[number];
 function isValidLocale(lang: string): lang is Locale {
   return LOCALES.includes(lang as Locale);

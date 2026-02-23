@@ -44,10 +44,11 @@ export type NavDict = {
   menuClose: string;
   ariaLangSwitchDe: string;
   ariaLangSwitchEn: string;
+  ariaLangSwitchTr: string;
   logoAlt: string;
 };
 
-type Locale = "de" | "en";
+type Locale = "de" | "en" | "tr";
 
 interface NavbarProps {
   lang: Locale;
@@ -63,9 +64,10 @@ export default function Navbar({ lang, dict }: NavbarProps) {
   const [mobileLogistikOpen, setMobileLogistikOpen] = useState(false);
 
   const prefix = `/${lang}`;
-  const pathWithoutLang = pathname.replace(/^\/(de|en)/, "") || "/";
+  const pathWithoutLang = pathname.replace(/^\/(de|en|tr)/, "") || "/";
   const switchToDe = pathWithoutLang === "/" ? "/de" : `/de${pathWithoutLang}`;
   const switchToEn = pathWithoutLang === "/" ? "/en" : `/en${pathWithoutLang}`;
+  const switchToTr = pathWithoutLang === "/" ? "/tr" : `/tr${pathWithoutLang}`;
 
   const utilityLinkClass = (variant: "bar" | "mobile") =>
     variant === "bar"
@@ -82,7 +84,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <Phone className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">+49 176 321 98 462</span>
       </a>
-      <span className={`${utilityLinkClass(variant)} flex items-center gap-1.5`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : dict.ariaLangSwitchEn}>
+      <span className={`${utilityLinkClass(variant)} flex items-center gap-1.5`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : lang === "en" ? dict.ariaLangSwitchEn : dict.ariaLangSwitchTr}>
         <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden />
         <span className="flex items-center gap-1">
           <Link href={switchToDe} title="Deutsch" className="block">
@@ -102,6 +104,16 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               width={24}
               height={12}
               className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "en" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              aria-hidden
+            />
+          </Link>
+          <Link href={switchToTr} title="Türkçe" className="block">
+            <Image
+              src="/img/flags/tr.svg"
+              alt=""
+              width={24}
+              height={16}
+              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "tr" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>

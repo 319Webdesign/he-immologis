@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-const LOCALES = ["de", "en"] as const;
+const LOCALES = ["de", "en", "tr"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export async function getLocaleFromHeaders(): Promise<Locale> {

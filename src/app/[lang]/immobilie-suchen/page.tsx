@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import SearchRequestForm from "@/components/SearchRequestForm";
 
-const LOCALES = ["de", "en"] as const;
+const LOCALES = ["de", "en", "tr"] as const;
 type Locale = (typeof LOCALES)[number];
 function isValidLocale(lang: string): lang is Locale {
   return LOCALES.includes(lang as Locale);
