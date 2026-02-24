@@ -51,6 +51,11 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           {property.titel || "Ohne Titel"}
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-zinc-600">
+          {property.objektart ? (
+            <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700">
+              {property.objektart}
+            </span>
+          ) : null}
           {property.ort ? (
             <span className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />

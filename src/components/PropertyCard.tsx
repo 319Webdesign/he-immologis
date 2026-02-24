@@ -102,6 +102,9 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           <Link href={detailHref}>{property.titel}</Link>
         </h2>
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-zinc-600">
+          <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700">
+            {property.objekttyp}
+          </span>
           <span className="flex items-center gap-1.5">
             <Square className="h-4 w-4 shrink-0" strokeWidth={2} />
             {property.quadratmeter} m²

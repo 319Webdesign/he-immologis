@@ -9,27 +9,20 @@ const RESOURCE_TYPE_ESTATE = "estate";
 export type Vermarktungsart = "Kauf" | "Miete";
 
 /**
- * Liefert die für die Vermarktungsart abzufragenden Felder.
- * Feldnamen aus onOffice-Administration (fields.csv); nur Felder die dort als "objekte" existieren.
- * titelbild ist kein Abfragefeld in der read-Action – Bilder ggf. über separate API (Objektbilder) holen.
+ * Liefert die für die Abfrage genutzten Felder (exakt nach fields.csv).
+ * Nur: objekttitel, kaufpreis, kaltmiete, ort, plz, wohnflaeche, objektart, vermarktungsart.
  */
 function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
-  const base = [
+  return [
     "objekttitel",
     "kaufpreis",
     "kaltmiete",
-    "wohnflaeche",
     "ort",
+    "plz",
+    "wohnflaeche",
     "objektart",
     "vermarktungsart",
   ];
-  if (vermarktungsart === "Kauf") {
-    return [...base];
-  }
-  if (vermarktungsart === "Miete") {
-    return [...base, "anzahl_zimmer"];
-  }
-  return [...base];
 }
 
 /** Immobilie, wie sie in der App verwendet wird (typisierte Felder) */
@@ -40,10 +33,24 @@ export interface Property {
   kaltmiete: number | null;
   wohnflaeche: number | null;
   ort: string | null;
+  plz: string | null;
   titelbild: string | null;
-  /** Für Anzeige auf den Karten (wird in dataFields mit abgefragt) */
+  /** Für Anzeige (objektart, z.B. Wohnung) */
   objektart?: string | null;
-  /** Nur bei Vermarktungsart Miete abgefragt */
+  /** Betreuer-ID aus API (für Filterung); kann Zahl oder String sein */
+  betreuer?: number | string | null;
+  /** Ansprechpartner-ID aus API (für Filterung); kann Zahl oder String sein */
+  ansprechpartner?: number | string | null;
+  /** Benutzername / Anzeigename (z. B. für Filter nach HE / Eberhard) */
+  user_name?: string | null;
+  /** Firma (z. B. für Filter nach Holger) */
+  firma?: string | null;
+  /** Alternative Feldnamen aus API (für fehlertoleranten Filter) */
+  top_betreuer_id?: number | string | null;
+  persid?: number | string | null;
+  /** Nicht mehr in dataFields; nur für Abwärtskompatibilität (Fallback in UI) */
+  nutzungsart?: string | null;
+  /** Nicht mehr in dataFields; nur für Abwärtskompatibilität (z.B. MietenData) */
   anzahl_zimmer?: number | null;
 }
 
@@ -113,27 +120,26 @@ function readString(value: unknown): string | null {
 }
 
 /**
- * Mappt einen onOffice-Record auf unser Property-Interface.
- * Liest Titel aus objekttitel (onOffice-Feldname).
+ * Mappt einen onOffice-Record auf unser Property-Interface (nur Felder aus dataFields).
  */
 function mapRecordToProperty(record: OnOfficeRecord): Property {
   const e = record.elements ?? {};
   return {
     id: record.id,
-    titel: readString(e.objekttitel ?? e.titel) ?? "",
+    titel: readString(e.objekttitel) ?? "",
     kaufpreis: readNumber(e.kaufpreis),
     kaltmiete: readNumber(e.kaltmiete),
     wohnflaeche: readNumber(e.wohnflaeche),
     ort: readString(e.ort),
+    plz: readString(e.plz),
     titelbild: readString(e.titelbild),
     objektart: readString(e.objektart),
-    anzahl_zimmer: readNumber(e.anzahl_zimmer),
   };
 }
 
 /**
  * Ruft Immobilien von der onOffice-API ab.
- * Optional nach Vermarktungsart (kauf / miete) und status "1" (aktiv) gefiltert.
+ * Filter nur: status = "1" (Aktiv) und vermarktungsart (kauf/miete). Alle Objekte im Account werden geladen.
  */
 export async function fetchProperties(options?: {
   listlimit?: number;
@@ -150,67 +156,60 @@ export async function fetchProperties(options?: {
     );
   }
 
-  const timestamp = String(Math.floor(Date.now() / 1000));
-  const actionid = READ_ACTION_ID;
-  const resourcetype = RESOURCE_TYPE_ESTATE;
-  const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
-
   const dataFields = getDataFields(options?.vermarktungsart);
-  const parameters: Record<string, unknown> = {
-    data: dataFields,
-    listlimit: options?.listlimit ?? 500,
+  const listlimit = options?.listlimit ?? 500;
+
+  /** Filter nur status "1" (Aktiv) und vermarktungsart – keine weiteren Filter (Error 141 vermeiden). */
+  const buildFilter = (): Record<string, Array<{ op: string; val: unknown }>> => {
+    const filter: Record<string, Array<{ op: string; val: unknown }>> = {
+      ...options?.filter,
+      status: [{ op: "=", val: "1" }],
+    };
+    if (options?.vermarktungsart === "Kauf") {
+      filter.vermarktungsart = [{ op: "=", val: "kauf" }];
+    } else if (options?.vermarktungsart === "Miete") {
+      filter.vermarktungsart = [{ op: "=", val: "miete" }];
+    }
+    return filter;
   };
 
-  const filter: Record<string, Array<{ op: string; val: unknown }>> = {
-    ...options?.filter,
-  };
-  if (options?.vermarktungsart === "Kauf") {
-    filter.vermarktungsart = [{ op: "=", val: "kauf" }];
-    filter.status = [{ op: "=", val: "1" }];
-  } else if (options?.vermarktungsart === "Miete") {
-    filter.vermarktungsart = [{ op: "=", val: "miete" }];
-    filter.status = [{ op: "=", val: "1" }];
-  }
-  if (Object.keys(filter).length > 0) {
-    parameters.filter = filter;
-  }
-
-  const body = {
-    token,
-    request: {
-      actions: [
-        {
-          actionid,
-          resourceid: "",
-          resourcetype,
-          identifier: "",
-          timestamp,
-          hmac,
-          hmac_version: "2",
-          parameters: parameters,
+  const doRequest = async (
+    fields: string[]
+  ): Promise<{ ok: true; records: OnOfficeRecord[] } | { ok: false; errorcode?: number; message: string }> => {
+    const timestamp = String(Math.floor(Date.now() / 1000));
+    const actionid = READ_ACTION_ID;
+    const resourcetype = RESOURCE_TYPE_ESTATE;
+    const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
+    const res = await fetch(ONOFFICE_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token,
+        request: {
+          actions: [
+            {
+              actionid,
+              resourceid: "",
+              resourcetype,
+              identifier: "",
+              timestamp,
+              hmac,
+              hmac_version: "2",
+              parameters: {
+                data: fields,
+                listlimit,
+                filter: buildFilter(),
+              },
+            },
+          ],
         },
-      ],
-    },
-  };
-
-  const res = await fetch(ONOFFICE_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    throw new Error(
-      `onOffice API Fehler: ${res.status} ${res.statusText}`
-    );
-  }
-
-  const json = (await res.json()) as OnOfficeReadResponse;
-
-  const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
-  if (statusCode !== 200) {
+      }),
+    });
+    if (!res.ok) {
+      return { ok: false, message: `HTTP ${res.status} ${res.statusText}` };
+    }
+    const json = (await res.json()) as OnOfficeReadResponse;
+    const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
     const resultStatus = json.response?.results?.[0]?.status;
     const errorcode = resultStatus?.errorcode ?? json.status?.errorcode;
     const msg =
@@ -219,18 +218,30 @@ export async function fetchProperties(options?: {
       (resultStatus && "message" in resultStatus
         ? String((resultStatus as { message?: string }).message)
         : "Unbekannter API-Fehler");
-    const fullErrorString = JSON.stringify(json, null, 2);
-    console.error("[onOffice API] --- Vollständige Fehler-Antwort (kompletter Fehler-String) ---");
-    console.error(fullErrorString);
-    console.error("[onOffice API] --- Ende ---");
-    console.error("[onOffice API] errorcode:", errorcode);
-    console.error("[onOffice API] message:", msg);
-    throw new Error(`onOffice API: ${msg} (Code: ${statusCode}${errorcode != null ? `, ErrorCode: ${errorcode}` : ""})`);
+    if (statusCode !== 200) {
+      return { ok: false, errorcode, message: msg };
+    }
+    const records = json.response?.results?.[0]?.data?.records ?? [];
+    return { ok: true, records };
+  };
+
+  let result = await doRequest(dataFields);
+
+  if (!result.ok) {
+    console.error("[onOffice API] --- Vollständige Fehler-Antwort ---");
+    console.error(
+      "message:",
+      result.message,
+      result.errorcode != null ? "| errorcode:" + result.errorcode : ""
+    );
+    throw new Error(
+      `onOffice API: ${result.message}${result.errorcode != null ? ` (ErrorCode: ${result.errorcode})` : ""}`
+    );
   }
 
-  const records =
-    json.response?.results?.[0]?.data?.records ?? ([] as OnOfficeRecord[]);
-  return records.map(mapRecordToProperty);
+  const allProperties = result.records.map(mapRecordToProperty);
+
+  return allProperties;
 }
 
 /**
