@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 const TURKISH_FLAG = " 🇹🇷 ";
 
 export default function LanguageBanner({
@@ -23,47 +24,36 @@ export default function LanguageBanner({
       role="marquee"
       aria-live="polite"
     >
-      {/* Weißer Halbmond links (wie in der türkischen Flagge) */}
-      <div
-        className="absolute left-0 top-1/2 z-10 -translate-y-[20%] shrink-0"
-        aria-hidden
-      >
-        <svg
-          width="56"
-          height="40"
-          viewBox="0 0 56 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-11 md:h-10 md:w-14"
+      {/* Flagge und Text vertikal mittig */}
+      <div className="relative mx-auto flex min-h-[4.5rem] items-center max-w-7xl pl-6 pr-4 sm:pl-8 sm:pr-6 lg:pl-10 lg:pr-8 md:min-h-[5rem]">
+        {/* Flagge (Bild, vertikal mittig, rechter Rand abgeschnitten) */}
+        <div
+          className="absolute left-4 top-1/2 z-10 w-9 -translate-y-1/2 shrink-0 overflow-hidden sm:left-6 sm:w-10 lg:left-8 md:w-11"
+          aria-hidden
         >
-          <defs>
-            <mask id="crescent-mask">
-              <circle cx="28" cy="20" r="18" fill="white" />
-              <circle cx="36" cy="20" r="14" fill="black" />
-            </mask>
-          </defs>
-          {/* Weiße Sichel (innen transparent) */}
-          <circle cx="28" cy="20" r="18" fill="white" mask="url(#crescent-mask)" />
-          {/* Kleiner weißer Stern wie auf der türkischen Flagge (in der Öffnung des Halbmonds) */}
-          <polygon
-            fill="white"
-            points="46,16 47.2,18.4 49.8,18.8 47.9,20.6 48.4,23.2 46,22 43.6,23.2 44.1,20.6 42.2,18.8 44.8,18.4"
+          <Image
+            src="/img/flagge.png"
+            alt=""
+            width={56}
+            height={40}
+            className="h-8 w-auto object-left object-contain md:h-10"
+            aria-hidden
           />
-        </svg>
-      </div>
+        </div>
 
-      {/* Laufband: Text endet am Halbmond (wird links abgeschnitten) */}
-      <div className="flex min-h-[4.5rem] items-center px-2 pt-4 pb-2 pl-14 md:min-h-[5rem] md:px-4 md:pl-20 md:pt-5 md:pb-2.5">
-        <div className="min-w-0 flex-1 overflow-x-hidden">
-          <div className="flex w-max animate-marquee shrink-0 items-center pt-3 md:pt-4">
-            <span className="flex shrink-0 items-center whitespace-nowrap px-4 text-sm font-bold leading-[1.5] text-white md:text-base">
-              {stripContent}
-              {stripContent}
-            </span>
-            <span className="flex shrink-0 items-center whitespace-nowrap px-4 text-sm font-bold leading-[1.5] text-white md:text-base">
-              {stripContent}
-              {stripContent}
-            </span>
+        {/* Laufband: Text bis zur Flagge, vertikal mittig */}
+        <div className="flex min-h-[4.5rem] flex-1 items-center py-4 px-2 pl-12 md:min-h-[5rem] md:py-5 md:pl-16">
+          <div className="min-w-0 flex-1 overflow-x-hidden">
+            <div className="flex w-max animate-marquee shrink-0 items-center">
+              <span className="flex shrink-0 items-center whitespace-nowrap px-4 text-sm font-bold leading-[1.5] text-white md:text-base">
+                {stripContent}
+                {stripContent}
+              </span>
+              <span className="flex shrink-0 items-center whitespace-nowrap px-4 text-sm font-bold leading-[1.5] text-white md:text-base">
+                {stripContent}
+                {stripContent}
+              </span>
+            </div>
           </div>
         </div>
       </div>
