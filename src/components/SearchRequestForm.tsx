@@ -91,6 +91,7 @@ export default function SearchRequestForm() {
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const toggleLage = (value: string) => {
     setLagePraef((prev) => {
@@ -109,26 +110,44 @@ export default function SearchRequestForm() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    console.log("Suchauftrag:", {
-      objekttyp,
-      lagePraef: Array.from(lagePraef),
-      wohnflaeche,
-      zimmeranzahl,
-      lageRegion,
-      weitereWuensche,
-      anrede,
-      vorname,
-      nachname,
-      strasse,
-      plz,
-      ort,
-      telefon,
-      email,
-    });
-    setIsSubmitted(true);
+    setIsSending(true);
+    try {
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "search",
+          objekttyp,
+          lagePraef: Array.from(lagePraef),
+          wohnflaeche,
+          zimmeranzahl,
+          lageRegion,
+          weitereWuensche,
+          anrede,
+          vorname,
+          nachname,
+          strasse,
+          plz,
+          ort,
+          telefon,
+          email,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setErrors({ email: data.error ?? (isEn ? "Sending failed." : "Senden fehlgeschlagen.") });
+        setIsSending(false);
+        return;
+      }
+      setIsSubmitted(true);
+    } catch {
+      setErrors({ email: isEn ? "Connection error. Please try again later." : "Verbindungsfehler. Bitte später erneut versuchen." });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const inputBase =
@@ -366,10 +385,11 @@ export default function SearchRequestForm() {
       <div className="mt-10 flex flex-col items-center">
         <button
           type="submit"
-          className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 sm:w-auto sm:min-w-[220px]"
+          disabled={isSending}
+          className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 disabled:opacity-70 sm:w-auto sm:min-w-[220px]"
           style={{ backgroundColor: BRAND_BLUE }}
         >
-          {isEn ? "Submit search request" : "Suchauftrag absenden"}
+          {isSending ? (isEn ? "Sending…" : "Wird gesendet…") : (isEn ? "Submit search request" : "Suchauftrag absenden")}
         </button>
         <p className="mt-3 text-center text-sm text-slate-500">
           {isEn ? "We will treat your details in strict confidence." : "Wir behandeln Ihre Angaben selbstverständlich vertraulich."}

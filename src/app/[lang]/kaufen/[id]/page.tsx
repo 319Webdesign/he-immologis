@@ -5,10 +5,11 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin, Home } from "lucide-react";
 import propertiesData from "@/data/properties.json";
 import type { PropertyWithDetails } from "@/types";
+import { fetchPropertyById, type Property } from "@/lib/onoffice";
 import { PropertyActionIcons, ExposeForm } from "./PropertyDetailActions";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
-const properties = propertiesData as PropertyWithDetails[];
+const staticProperties = propertiesData as PropertyWithDetails[];
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
 interface PageProps {
@@ -49,15 +50,108 @@ function DataRow({
   );
 }
 
-export async function generateStaticParams() {
-  return properties.map((p) => ({ id: p.id }));
+function OnOfficePropertyDetail({
+  property: p,
+  locale,
+}: {
+  property: Property;
+  locale: string;
+}) {
+  const imageSrc =
+    p.titelbild?.startsWith("http") || p.titelbild?.startsWith("/")
+      ? p.titelbild
+      : PLACEHOLDER_IMG;
+  const price = p.kaufpreis ?? p.kaltmiete;
+  const priceLabel = p.kaufpreis != null ? "Kaufpreis" : "Kaltmiete";
+
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <Link
+        href={`/${locale}/kaufen`}
+        className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Zurück zur Übersicht
+      </Link>
+      <div className="space-y-4">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-zinc-200">
+          <Image
+            src={imageSrc}
+            alt={p.titel || "Immobilie"}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 896px"
+            priority
+          />
+        </div>
+        <PropertyActionIcons
+          propertyId={String(p.id)}
+          propertyTitle={p.titel || "Immobilie"}
+        />
+      </div>
+      <div className="mt-8 flex flex-wrap items-center gap-4 text-zinc-600">
+        {p.ort && (
+          <span className="flex items-center gap-2">
+            <MapPin className="h-5 w-5" />
+            {p.ort}
+          </span>
+        )}
+        {p.wohnflaeche != null && (
+          <span className="flex items-center gap-2">
+            <Home className="h-5 w-5" />
+            {p.wohnflaeche} m²
+          </span>
+        )}
+      </div>
+      <h1 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+        {p.titel || "Ohne Titel"}
+      </h1>
+      {price != null && price > 0 && (
+        <p className="mt-4 text-xl font-semibold text-amber-800">
+          {priceLabel}: {formatPrice(price)}
+        </p>
+      )}
+      <section className="mt-10 overflow-hidden rounded-xl border border-zinc-200">
+        <table className="w-full min-w-[280px]">
+          <tbody>
+            <DataRow label="Ort" value={p.ort} />
+            <DataRow
+              label="Wohnfläche"
+              value={p.wohnflaeche != null ? `${p.wohnflaeche} m²` : null}
+            />
+            <DataRow label="Kaufpreis" value={p.kaufpreis != null ? formatPrice(p.kaufpreis) : null} />
+            <DataRow label="Kaltmiete" value={p.kaltmiete != null ? formatPrice(p.kaltmiete) : null} />
+          </tbody>
+        </table>
+      </section>
+      <section className="mt-12 rounded-2xl border border-zinc-200 bg-zinc-50/50 p-8">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900">
+          Exposé anfordern
+        </h2>
+        <p className="mt-2 text-zinc-600">
+          Kontaktdaten angeben – wir senden Ihnen das Exposé und stehen für
+          Rückfragen zur Verfügung.
+        </p>
+        <div className="mt-8">
+          <ExposeForm propertyTitle={p.titel || "Immobilie"} />
+        </div>
+      </section>
+    </div>
+  );
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const property = properties.find((p) => p.id === id);
+  const numId = Number(id);
+  if (!Number.isNaN(numId)) {
+    const onOfficeProp = await fetchPropertyById(numId).catch(() => null);
+    if (onOfficeProp) {
+      return { title: onOfficeProp.titel || "Immobilie" };
+    }
+  }
+  const property = staticProperties.find((p) => p.id === id);
   if (!property) return { title: "Immobilie nicht gefunden" };
   return {
     title: property.titel,
@@ -68,7 +162,18 @@ export async function generateMetadata({
 export default async function PropertyDetailPage({ params }: PageProps) {
   const { id } = await params;
   const locale = await getLocaleFromHeaders();
-  const p = properties.find((prop) => prop.id === id);
+  const numId = Number(id);
+
+  if (!Number.isNaN(numId)) {
+    const onOfficeProp = await fetchPropertyById(numId).catch(() => null);
+    if (onOfficeProp) {
+      return (
+        <OnOfficePropertyDetail property={onOfficeProp} locale={locale} />
+      );
+    }
+  }
+
+  const p = staticProperties.find((prop) => prop.id === id);
 
   if (!p) notFound();
 

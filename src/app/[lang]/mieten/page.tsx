@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ChevronDown } from "lucide-react";
-import MietenContent from "./MietenContent";
-import rentalsData from "@/data/rentals.json";
-import type { Rental } from "@/types";
+import MietenData from "./MietenData";
+import MietenGridSkeleton from "./MietenGridSkeleton";
 import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
-
-const allRentals = rentalsData as Rental[];
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
@@ -63,8 +60,8 @@ export default async function MietenPage() {
 
       {/* Filter + Grid */}
       <section id="mietobjekte" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100" />}>
-          <MietenContent rentals={allRentals} dict={m} lang={locale} />
+        <Suspense fallback={<MietenGridSkeleton />}>
+          <MietenData dict={m} lang={locale} />
         </Suspense>
       </section>
 

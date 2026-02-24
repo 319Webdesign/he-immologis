@@ -84,6 +84,7 @@ export default function SellForm({
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -118,11 +119,33 @@ export default function SellForm({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    console.log("Verkaufsanfrage:", formData);
-    setIsSubmitted(true);
+    setIsSending(true);
+    try {
+      const payload = {
+        type: "sell" as const,
+        name: [formData.vorname, formData.nachname].filter(Boolean).join(" ").trim() || formData.email,
+        ...formData,
+      };
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setErrors({ email: data.error ?? dict.errors.emailRequired });
+        setIsSending(false);
+        return;
+      }
+      setIsSubmitted(true);
+    } catch {
+      setErrors({ email: "Verbindungsfehler. Bitte später erneut versuchen." });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const inputBase =
@@ -406,10 +429,11 @@ export default function SellForm({
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2 sm:w-auto sm:min-w-[200px]"
+            disabled={isSending}
+            className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2 disabled:opacity-70 sm:w-auto sm:min-w-[200px]"
             style={{ backgroundColor: "#3d6d99" }}
           >
-            {dict.submitButton}
+            {isSending ? "Wird gesendet…" : dict.submitButton}
           </button>
         </div>
       </form>

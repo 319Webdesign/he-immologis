@@ -487,6 +487,7 @@
       "buttonText": "Suchauftrag anlegen"
     },
     "card": {
+      "badgeLabel": "Mieten",
       "viewDetails": "Details ansehen",
       "netRentSuffix": "Kalt",
       "roomsLabel": "Zimmer",

@@ -509,6 +509,7 @@
       "buttonText": "Arama vekâleti oluştur"
     },
     "card": {
+      "badgeLabel": "Kiralık",
       "viewDetails": "Detayları görüntüle",
       "netRentSuffix": "Soğuk",
       "roomsLabel": "Oda",

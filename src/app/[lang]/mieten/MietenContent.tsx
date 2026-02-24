@@ -18,6 +18,7 @@ export type MietenDict = {
   };
   noRentals: { text: string; buttonText: string };
   card: {
+    badgeLabel?: string;
     viewDetails: string;
     netRentSuffix: string;
     roomsLabel: string;

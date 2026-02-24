@@ -57,11 +57,31 @@ export default function Contact({
     phone: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Hier würde die Formularverarbeitung erfolgen
-    console.log("Form submitted:", formState);
+    setStatus("sending");
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contact", ...formState }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setStatus("error");
+        setErrorMessage(data.error ?? "Beim Senden ist ein Fehler aufgetreten.");
+        return;
+      }
+      setStatus("success");
+      setFormState({ name: "", email: "", phone: "", message: "" });
+    } catch {
+      setStatus("error");
+      setErrorMessage("Verbindungsfehler. Bitte später erneut versuchen.");
+    }
   };
 
   const handleChange = (
@@ -294,13 +314,24 @@ export default function Contact({
                   />
                 </div>
 
+                {status === "success" && (
+                  <p className={`rounded-lg p-4 text-sm ${isDark ? "bg-green-900/30 text-green-300" : "bg-green-50 text-green-800"}`}>
+                    Vielen Dank. Ihre Nachricht wurde gesendet. Wir melden uns zeitnah.
+                  </p>
+                )}
+                {status === "error" && errorMessage && (
+                  <p className={`rounded-lg p-4 text-sm ${isDark ? "bg-red-900/30 text-red-300" : "bg-red-50 text-red-800"}`}>
+                    {errorMessage}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${useSteelblue ? "focus:ring-[#4682B4]" : "focus:ring-amber-500"} ${btnClass}`}
+                  disabled={status === "sending"}
+                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-70 ${useSteelblue ? "focus:ring-[#4682B4]" : "focus:ring-amber-500"} ${btnClass}`}
                   style={btnStyle}
                 >
                   <Send className="h-5 w-5" />
-                  {labels.submitButton}
+                  {status === "sending" ? "Wird gesendet…" : labels.submitButton}
                 </button>
               </form>
             </div>

@@ -8,6 +8,7 @@ import type { Rental } from "@/types";
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
 export type RentalCardLabels = {
+  badgeLabel?: string;
   viewDetails: string;
   netRentSuffix: string;
   roomsLabel: string;
@@ -74,13 +75,23 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          <span
-            className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-medium ${
-              statusStyles[property.status] ?? "bg-zinc-100 text-zinc-600"
-            }`}
-          >
-            {statusLabel}
-          </span>
+          {cardLabels?.badgeLabel && (
+            <span
+              className="absolute right-3 top-3 rounded-full bg-slate-600 px-3 py-1 text-xs font-medium text-white shadow-sm"
+              aria-hidden
+            >
+              {cardLabels.badgeLabel}
+            </span>
+          )}
+          {!cardLabels?.badgeLabel && (
+            <span
+              className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-medium ${
+                statusStyles[property.status] ?? "bg-zinc-100 text-zinc-600"
+              }`}
+            >
+              {statusLabel}
+            </span>
+          )}
         </div>
       </Link>
       <div className="flex flex-col p-6">

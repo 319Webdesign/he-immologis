@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ChevronDown } from "lucide-react";
-import propertiesData from "@/data/properties.json";
-import type { Property } from "@/types";
-import PropertyCard from "./PropertyCard";
 import PropertyFilters from "./PropertyFilters";
+import PropertiesGrid from "./PropertiesGrid";
+import PropertyGridSkeleton from "./PropertyGridSkeleton";
 import Kauftipps from "./Kauftipps";
 import Contact from "@/components/Contact";
 import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
-
-const allProperties = propertiesData as Property[];
 
 interface PageProps {
   searchParams: Promise<{ status?: string; ort?: string }>;
@@ -32,15 +29,9 @@ export default async function KaufenPage({ searchParams }: PageProps) {
   const locale = await getLocaleFromHeaders();
   const dict = await getDictionary(locale);
   const params = await searchParams;
-  const statusFilter = params.status ?? "alle";
   const ortFilter = params.ort ?? "alle";
   const k = dict.kaufen;
 
-  const properties = allProperties.filter((p) => {
-    if (statusFilter !== "alle" && p.status !== statusFilter) return false;
-    if (ortFilter !== "alle" && p.ort !== ortFilter) return false;
-    return true;
-  });
   return (
     <>
       <section
@@ -87,18 +78,12 @@ export default async function KaufenPage({ searchParams }: PageProps) {
       </section>
 
       <section id="immobilien" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100" />}>
+        <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100 animate-pulse" />}>
           <PropertyFilters dict={k.filters} lang={locale} />
         </Suspense>
-        {properties.length > 0 ? (
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {properties.map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
-        ) : (
-          <p className="mt-10 text-center text-zinc-500">{k.noResults}</p>
-        )}
+        <Suspense fallback={<PropertyGridSkeleton />}>
+          <PropertiesGrid ortFilter={ortFilter} noResultsText={k.noResults} />
+        </Suspense>
       </section>
 
       <Kauftipps dict={k.kauftipps} lang={locale} />

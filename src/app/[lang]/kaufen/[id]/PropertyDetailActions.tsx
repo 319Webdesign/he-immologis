@@ -102,7 +102,46 @@ export function ExposeForm({ propertyTitle }: ExposeFormProps) {
     agb: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: Record<string, string> = {};
+    if (!formState.datenschutz)
+      newErrors.datenschutz =
+        "Bitte akzeptieren Sie die Datenschutzbedingungen.";
+    if (!formState.agb) newErrors.agb = "Bitte akzeptieren Sie die AGB.";
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
+    setStatus("sending");
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "expose",
+          propertyTitle,
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          nachricht: formState.nachricht,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setStatus("error");
+        setErrorMessage(data.error ?? "Beim Senden ist ein Fehler aufgetreten.");
+        return;
+      }
+      setStatus("success");
+      setFormState({ name: "", email: "", phone: "", nachricht: "", datenschutz: false, agb: false });
+    } catch {
+      setStatus("error");
+      setErrorMessage("Verbindungsfehler. Bitte später erneut versuchen.");
+    }
+  };
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -115,17 +154,14 @@ export function ExposeForm({ propertyTitle }: ExposeFormProps) {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: Record<string, string> = {};
-    if (!formState.datenschutz)
-      newErrors.datenschutz =
-        "Bitte akzeptieren Sie die Datenschutzbedingungen.";
-    if (!formState.agb) newErrors.agb = "Bitte akzeptieren Sie die AGB.";
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) return;
-    console.log("Exposé anfordern:", { ...formState, propertyTitle });
-  };
+  if (status === "success") {
+    return (
+      <div className="rounded-lg border border-zinc-200 bg-green-50 p-6 text-center text-green-800">
+        <p className="font-medium">Vielen Dank.</p>
+        <p className="mt-1 text-sm">Ihre Anfrage wurde gesendet. Wir melden uns zeitnah.</p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -228,13 +264,16 @@ export function ExposeForm({ propertyTitle }: ExposeFormProps) {
         </label>
         {errors.agb && <p className="text-sm text-red-600">{errors.agb}</p>}
       </div>
-
+      {status === "error" && errorMessage && (
+        <p className="rounded-lg bg-red-50 p-3 text-sm text-red-800">{errorMessage}</p>
+      )}
       <button
         type="submit"
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 font-medium text-white transition-colors hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 sm:w-auto"
+        disabled={status === "sending"}
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 font-medium text-white transition-colors hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-70 sm:w-auto"
       >
         <Send className="h-5 w-5" />
-        Absenden
+        {status === "sending" ? "Wird gesendet…" : "Absenden"}
       </button>
     </form>
   );

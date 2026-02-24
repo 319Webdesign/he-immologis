@@ -15,10 +15,39 @@ export default function TippgeberForm() {
     lage: "",
     sonstiges: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Tippgeber-Formular:", formState);
+    setStatus("sending");
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "tippgeber", ...formState }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setStatus("error");
+        setErrorMessage(data.error ?? "Beim Senden ist ein Fehler aufgetreten.");
+        return;
+      }
+      setStatus("success");
+      setFormState({
+        nameTippgeber: "",
+        email: "",
+        phone: "",
+        nameEmpfohlen: "",
+        immobilienArt: "",
+        lage: "",
+        sonstiges: "",
+      });
+    } catch {
+      setStatus("error");
+      setErrorMessage("Verbindungsfehler. Bitte später erneut versuchen.");
+    }
   };
 
   const handleChange = (
@@ -161,14 +190,23 @@ export default function TippgeberForm() {
             Diskretion garantiert. Wir prüfen Ihren Tipp innerhalb von 24 Stunden.
           </p>
         </div>
-
+        {status === "success" && (
+          <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800">
+            <p className="font-medium">Vielen Dank für Ihren Tipp.</p>
+            <p className="mt-1 text-sm">Wir prüfen Ihre Angaben und melden uns bei Ihnen.</p>
+          </div>
+        )}
+        {status === "error" && errorMessage && (
+          <p className="rounded-xl bg-red-50 p-3 text-sm text-red-800">{errorMessage}</p>
+        )}
         <button
           type="submit"
-          className="flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+          disabled={status === "sending"}
+          className="flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 disabled:opacity-70"
           style={{ backgroundColor: BRAND_BLUE }}
         >
           <Send className="h-5 w-5" />
-          Tipp jetzt sicher einreichen
+          {status === "sending" ? "Wird gesendet…" : "Tipp jetzt sicher einreichen"}
         </button>
         <p className="text-center text-sm text-slate-600">
           Mit dem Absenden bestätigen Sie, dass Sie die Tippgeber-Bedingungen (siehe Download oben)
