@@ -25,6 +25,30 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
   ];
 }
 
+/** Felder für die Detailansicht (Liste + Zusatzfelder aus fields.csv). */
+function getDetailDataFields(): string[] {
+  return [
+    "objekttitel",
+    "dreizeiler",
+    "objektbeschreibung",
+    "lage",
+    "sonstige_angaben",
+    "kaufpreis",
+    "kaltmiete",
+    "nebenkosten",
+    "heizkosten",
+    "kaution",
+    "anzahl_zimmer",
+    "etage",
+    "anzahl_badezimmer",
+    "ort",
+    "plz",
+    "wohnflaeche",
+    "objektart",
+    "vermarktungsart",
+  ];
+}
+
 /** Immobilie, wie sie in der App verwendet wird (typisierte Felder) */
 export interface Property {
   id: number;
@@ -37,6 +61,24 @@ export interface Property {
   titelbild: string | null;
   /** Für Anzeige (objektart, z.B. Wohnung) */
   objektart?: string | null;
+  /** Detailseite: Kurzbeschreibung (Dreizeiler) */
+  dreizeiler?: string | null;
+  /** Detailseite: Objektbeschreibung */
+  objektbeschreibung?: string | null;
+  /** Detailseite: Lage */
+  lage?: string | null;
+  /** Detailseite: Sonstige Angaben */
+  sonstige_angaben?: string | null;
+  /** Detailseite: Nebenkosten, Heizkosten, Kaution */
+  nebenkosten?: number | null;
+  heizkosten?: number | null;
+  kaution?: number | null;
+  /** Detailseite: Zimmer, Etage, Badezimmer */
+  anzahl_zimmer?: number | null;
+  etage?: number | string | null;
+  anzahl_badezimmer?: number | null;
+  /** Liste zusätzlicher Bild-URLs (falls API liefert) */
+  galerie?: string[] | null;
   /** Betreuer-ID aus API (für Filterung); kann Zahl oder String sein */
   betreuer?: number | string | null;
   /** Ansprechpartner-ID aus API (für Filterung); kann Zahl oder String sein */
@@ -50,8 +92,6 @@ export interface Property {
   persid?: number | string | null;
   /** Nicht mehr in dataFields; nur für Abwärtskompatibilität (Fallback in UI) */
   nutzungsart?: string | null;
-  /** Nicht mehr in dataFields; nur für Abwärtskompatibilität (z.B. MietenData) */
-  anzahl_zimmer?: number | null;
 }
 
 /** Rohe Elemente eines Records aus der onOffice-API (Feldname → Wert) */
@@ -134,6 +174,31 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
     plz: readString(e.plz),
     titelbild: readString(e.titelbild),
     objektart: readString(e.objektart),
+  };
+}
+
+/** Mappt einen onOffice-Record inkl. Detailfelder für die Detailseite. */
+function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
+  const e = record.elements ?? {};
+  const base = mapRecordToProperty(record);
+  const readEtage = (): number | string | null => {
+    const v = e.etage;
+    if (v === undefined || v === null) return null;
+    if (typeof v === "number") return v;
+    return String(v);
+  };
+  return {
+    ...base,
+    dreizeiler: readString(e.dreizeiler),
+    objektbeschreibung: readString(e.objektbeschreibung),
+    lage: readString(e.lage),
+    sonstige_angaben: readString(e.sonstige_angaben),
+    nebenkosten: readNumber(e.nebenkosten),
+    heizkosten: readNumber(e.heizkosten),
+    kaution: readNumber(e.kaution),
+    anzahl_zimmer: readNumber(e.anzahl_zimmer),
+    etage: readEtage(),
+    anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
   };
 }
 
@@ -276,7 +341,7 @@ export async function fetchPropertyById(id: number): Promise<Property | null> {
           hmac,
           hmac_version: "2",
           parameters: {
-            data: getDataFields(),
+            data: getDetailDataFields(),
           },
         },
       ],
@@ -310,5 +375,5 @@ export async function fetchPropertyById(id: number): Promise<Property | null> {
   const records = json.response?.results?.[0]?.data?.records ?? [];
   const record = records[0];
   if (!record) return null;
-  return mapRecordToProperty(record);
+  return mapRecordToPropertyDetail(record);
 }

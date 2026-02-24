@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, MapPin, Home } from "lucide-react";
+import { ArrowLeft, MapPin, Home, BedDouble, Bath } from "lucide-react";
 import propertiesData from "@/data/properties.json";
 import type { PropertyWithDetails } from "@/types";
 import { fetchPropertyById, type Property } from "@/lib/onoffice";
@@ -12,8 +12,17 @@ import { getLocaleFromHeaders } from "@/lib/i18n";
 const staticProperties = propertiesData as PropertyWithDetails[];
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
+/** Sektion „Ihr persönlicher Ansprechpartner“ (Holger Eberhard / HE Immologis). */
+const ANSPRECHPARTNER = {
+  name: "Holger Eberhard",
+  role: "Ihr persönlicher Ansprechpartner",
+  firm: "HE Immologis",
+  mail: "info@he-immologis.de",
+  text: "Gerne stehe ich Ihnen für alle Fragen zu dieser Immobilie zur Verfügung. Kontaktieren Sie mich für eine Besichtigung oder ein unverbindliches Beratungsgespräch.",
+};
+
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ lang?: string; id: string }>;
 }
 
 function formatPrice(price: number): string {
@@ -50,6 +59,24 @@ function DataRow({
   );
 }
 
+function TextBlock({
+  title,
+  content,
+}: {
+  title: string;
+  content: string | null | undefined;
+}) {
+  if (!content?.trim()) return null;
+  return (
+    <section className="mt-8">
+      <h2 className="font-sans text-lg font-semibold text-zinc-900">{title}</h2>
+      <div className="mt-2 whitespace-pre-line text-zinc-600 leading-relaxed">
+        {content.trim()}
+      </div>
+    </section>
+  );
+}
+
 function OnOfficePropertyDetail({
   property: p,
   locale,
@@ -57,10 +84,13 @@ function OnOfficePropertyDetail({
   property: Property;
   locale: string;
 }) {
-  const imageSrc =
-    p.titelbild?.startsWith("http") || p.titelbild?.startsWith("/")
-      ? p.titelbild
-      : PLACEHOLDER_IMG;
+  const imageUrls = [
+    ...(p.titelbild ? [p.titelbild] : []),
+    ...(p.galerie ?? []),
+  ].filter((src) => src && (src.startsWith("http") || src.startsWith("/")));
+  const images = imageUrls.length > 0 ? imageUrls : [PLACEHOLDER_IMG];
+  const firstImg = images[0] === PLACEHOLDER_IMG ? PLACEHOLDER_IMG : images[0];
+
   const price = p.kaufpreis ?? p.kaltmiete;
   const priceLabel = p.kaufpreis != null ? "Kaufpreis" : "Kaltmiete";
 
@@ -73,10 +103,12 @@ function OnOfficePropertyDetail({
         <ArrowLeft className="h-4 w-4" />
         Zurück zur Übersicht
       </Link>
+
+      {/* Bildergalerie */}
       <div className="space-y-4">
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-zinc-200">
           <Image
-            src={imageSrc}
+            src={firstImg.startsWith("http") || firstImg.startsWith("/") ? firstImg : PLACEHOLDER_IMG}
             alt={p.titel || "Immobilie"}
             fill
             className="object-cover"
@@ -84,46 +116,101 @@ function OnOfficePropertyDetail({
             priority
           />
         </div>
+        {images.length > 1 && (
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {images.slice(1, 5).map((src, i) => (
+              <div
+                key={i}
+                className="relative aspect-video overflow-hidden rounded-lg bg-zinc-200"
+              >
+                <Image
+                  src={src.startsWith("http") || src.startsWith("/") ? src : PLACEHOLDER_IMG}
+                  alt={`${p.titel || "Immobilie"} ${i + 2}`}
+                  fill
+                  className="object-cover"
+                  sizes="200px"
+                />
+              </div>
+            ))}
+          </div>
+        )}
         <PropertyActionIcons
           propertyId={String(p.id)}
           propertyTitle={p.titel || "Immobilie"}
         />
       </div>
-      <div className="mt-8 flex flex-wrap items-center gap-4 text-zinc-600">
+
+      {/* Key-Facts mit Icons */}
+      <div className="mt-8 flex flex-wrap items-center gap-6 text-zinc-600">
         {p.ort && (
           <span className="flex items-center gap-2">
-            <MapPin className="h-5 w-5" />
-            {p.ort}
+            <MapPin className="h-5 w-5 shrink-0" />
+            {p.plz && `${p.plz} `}{p.ort}
           </span>
         )}
         {p.wohnflaeche != null && (
           <span className="flex items-center gap-2">
-            <Home className="h-5 w-5" />
+            <Home className="h-5 w-5 shrink-0" />
             {p.wohnflaeche} m²
           </span>
         )}
+        {(p.anzahl_zimmer != null && p.anzahl_zimmer > 0) && (
+          <span className="flex items-center gap-2">
+            <BedDouble className="h-5 w-5 shrink-0" />
+            {p.anzahl_zimmer} Zimmer
+          </span>
+        )}
+        {(p.anzahl_badezimmer != null && p.anzahl_badezimmer > 0) && (
+          <span className="flex items-center gap-2">
+            <Bath className="h-5 w-5 shrink-0" />
+            {p.anzahl_badezimmer} Bad/Bäder
+          </span>
+        )}
+        {price != null && price > 0 && (
+          <span className="font-semibold text-zinc-900">
+            {priceLabel}: {formatPrice(price)}
+          </span>
+        )}
       </div>
+
       <h1 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
         {p.titel || "Ohne Titel"}
       </h1>
-      {price != null && price > 0 && (
-        <p className="mt-4 text-xl font-semibold text-amber-800">
-          {priceLabel}: {formatPrice(price)}
+      {p.dreizeiler?.trim() && (
+        <p className="mt-4 text-lg text-zinc-600 leading-relaxed">
+          {p.dreizeiler.trim()}
         </p>
       )}
+
+      {/* Beschreibungs-Texte */}
+      <TextBlock title="Objektbeschreibung" content={p.objektbeschreibung} />
+      <TextBlock title="Lage" content={p.lage} />
+      <TextBlock title="Sonstige Angaben" content={p.sonstige_angaben} />
+
+      {/* Objektdaten-Tabelle */}
       <section className="mt-10 overflow-hidden rounded-xl border border-zinc-200">
         <table className="w-full min-w-[280px]">
           <tbody>
             <DataRow label="Ort" value={p.ort} />
+            <DataRow label="PLZ" value={p.plz} />
             <DataRow
               label="Wohnfläche"
               value={p.wohnflaeche != null ? `${p.wohnflaeche} m²` : null}
             />
+            <DataRow label="Objektart" value={p.objektart} />
+            <DataRow label="Zimmer" value={p.anzahl_zimmer} />
+            <DataRow label="Etage" value={p.etage != null ? String(p.etage) : null} />
+            <DataRow label="Badezimmer" value={p.anzahl_badezimmer} />
             <DataRow label="Kaufpreis" value={p.kaufpreis != null ? formatPrice(p.kaufpreis) : null} />
             <DataRow label="Kaltmiete" value={p.kaltmiete != null ? formatPrice(p.kaltmiete) : null} />
+            <DataRow label="Nebenkosten" value={p.nebenkosten != null ? formatPrice(p.nebenkosten) : null} />
+            <DataRow label="Heizkosten" value={p.heizkosten != null ? formatPrice(p.heizkosten) : null} />
+            <DataRow label="Kaution" value={p.kaution != null ? formatPrice(p.kaution) : null} />
           </tbody>
         </table>
       </section>
+
+      {/* CTA: Exposé anfordern */}
       <section className="mt-12 rounded-2xl border border-zinc-200 bg-zinc-50/50 p-8">
         <h2 className="font-sans text-xl font-semibold text-zinc-900">
           Exposé anfordern
@@ -135,6 +222,24 @@ function OnOfficePropertyDetail({
         <div className="mt-8">
           <ExposeForm propertyTitle={p.titel || "Immobilie"} />
         </div>
+      </section>
+
+      {/* Ihr persönlicher Ansprechpartner */}
+      <section className="mt-12 rounded-2xl border border-zinc-200 bg-zinc-50/50 p-8">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900">
+          {ANSPRECHPARTNER.role}
+        </h2>
+        <p className="mt-2 font-medium text-zinc-800">{ANSPRECHPARTNER.name}</p>
+        <p className="text-zinc-600">{ANSPRECHPARTNER.firm}</p>
+        <p className="mt-4 text-zinc-600 leading-relaxed">
+          {ANSPRECHPARTNER.text}
+        </p>
+        <a
+          href={`mailto:${ANSPRECHPARTNER.mail}?subject=Anfrage Immobilie: ${encodeURIComponent(p.titel || "")}`}
+          className="mt-6 inline-flex items-center justify-center rounded-lg bg-zinc-900 px-8 py-3 font-medium text-white transition-colors hover:bg-zinc-800"
+        >
+          E-Mail an {ANSPRECHPARTNER.name}
+        </a>
       </section>
     </div>
   );
@@ -150,6 +255,7 @@ export async function generateMetadata({
     if (onOfficeProp) {
       return { title: onOfficeProp.titel || "Immobilie" };
     }
+    return { title: "Immobilie nicht gefunden" };
   }
   const property = staticProperties.find((p) => p.id === id);
   if (!property) return { title: "Immobilie nicht gefunden" };
@@ -160,8 +266,8 @@ export async function generateMetadata({
 }
 
 export default async function PropertyDetailPage({ params }: PageProps) {
-  const { id } = await params;
-  const locale = await getLocaleFromHeaders();
+  const { id, lang: langParam } = await params;
+  const locale = langParam ?? (await getLocaleFromHeaders());
   const numId = Number(id);
 
   if (!Number.isNaN(numId)) {
@@ -171,6 +277,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
         <OnOfficePropertyDetail property={onOfficeProp} locale={locale} />
       );
     }
+    notFound();
   }
 
   const p = staticProperties.find((prop) => prop.id === id);
