@@ -19,7 +19,7 @@ function mapOnOfficeToRental(p: {
   kaltmiete: number | null;
   wohnflaeche: number | null;
   ort: string | null;
-  titelbild: string | null;
+  galerie?: string[] | null;
   anzahl_zimmer?: number | null;
   objektart?: string | null;
 }): Rental {
@@ -35,7 +35,7 @@ function mapOnOfficeToRental(p: {
     zimmer: p.anzahl_zimmer ?? 0,
     objekttyp,
     status: "Verfügbar",
-    vorschaubild: p.titelbild ?? "",
+    vorschaubild: p.galerie?.[0] ?? "",
   };
 }
 

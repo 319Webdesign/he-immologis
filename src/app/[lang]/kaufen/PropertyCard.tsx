@@ -23,9 +23,10 @@ function formatPrice(price: number): string {
 export default function PropertyCard({ property }: PropertyCardProps) {
   const pathname = usePathname();
   const lang = (pathname?.split("/")[1] ?? "de") as string;
+  const firstImg = property.galerie?.[0];
   const imageSrc =
-    property.titelbild?.startsWith("http") || property.titelbild?.startsWith("/")
-      ? property.titelbild
+    firstImg?.startsWith("http") || firstImg?.startsWith("/")
+      ? firstImg
       : PLACEHOLDER_IMG;
 
   const price = property.kaufpreis ?? property.kaltmiete;
