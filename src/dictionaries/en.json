@@ -497,7 +497,7 @@
       "buttonText": "Register search request"
     },
     "card": {
-      "badgeLabel": "Rent",
+      "badgeLabel": "For Rent",
       "viewDetails": "View details",
       "netRentSuffix": "net rent",
       "roomsLabel": "rooms",

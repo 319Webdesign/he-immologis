@@ -62,6 +62,8 @@ async function fetchOneWithBetreuerFields(): Promise<unknown> {
     "ort",
     "objektart",
     "vermarktungsart",
+    "endenergiebedarf",
+    "energieverbrauchskennwert",
     "betreuer",
     "bearbeiter",
     "redakteur",
@@ -137,6 +139,11 @@ async function main(): Promise<void> {
 
   console.log("=== Komplettes JSON des einen Objekts ===\n");
   console.log(JSON.stringify(record, null, 2));
+
+  const el = (record as { elements?: Record<string, unknown> }).elements ?? {};
+  console.log("\n=== Energie-Felder (Raw) ===");
+  console.log("endenergiebedarf:", el.endenergiebedarf, typeof el.endenergiebedarf);
+  console.log("energieverbrauchskennwert:", el.energieverbrauchskennwert, typeof el.energieverbrauchskennwert);
 }
 
 main().catch((err) => {

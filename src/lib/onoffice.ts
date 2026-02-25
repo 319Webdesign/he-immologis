@@ -26,6 +26,9 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "wohnflaeche",
     "objektart",
     "vermarktungsart",
+    "anzahl_schlafzimmer",
+    "anzahl_badezimmer",
+    "grundstuecksflaeche",
   ];
 }
 
@@ -51,7 +54,11 @@ function getDetailDataFields(): string[] {
     "nutzflaeche",
     "grundstuecksflaeche",
     "anzahl_zimmer",
+    "anzahl_schlafzimmer",
     "anzahl_badezimmer",
+    "anzahl_sep_wc",
+    "anzahl_balkone",
+    "anzahl_terrassen",
     "etage",
     "baujahr",
     "zustand",
@@ -70,6 +77,11 @@ function getDetailDataFields(): string[] {
     "plz",
     "objektart",
     "vermarktungsart",
+    "energieausweistyp",
+    "energyClass",
+    "energietraeger",
+    "energieverbrauchskennwert",
+    "endenergiebedarf",
   ];
 }
 
@@ -105,8 +117,12 @@ export interface Property {
   hausgeld?: number | null;
   /** Detailseite: Zimmer, Etage, Badezimmer */
   anzahl_zimmer?: number | null;
-  etage?: number | string | null;
+  anzahl_schlafzimmer?: number | null;
   anzahl_badezimmer?: number | null;
+  anzahl_sep_wc?: number | null;
+  anzahl_balkone?: number | null;
+  anzahl_terrassen?: number | null;
+  etage?: number | string | null;
   nutzflaeche?: number | null;
   grundstuecksflaeche?: number | null;
   baujahr?: number | null;
@@ -142,6 +158,12 @@ export interface Property {
   displayId?: string | null;
   /** Bei statischen Objekten: kein onOffice-Anfrage */
   estateIdForContact?: number | null;
+  /** Energieausweis */
+  energieausweistyp?: string | null;
+  energyClass?: string | null;
+  energietraeger?: string | null;
+  energieverbrauchskennwert?: number | null;
+  endenergiebedarf?: number | null;
 }
 
 /** Rohe Elemente eines Records aus der onOffice-API (Feldname → Wert) */
@@ -187,16 +209,36 @@ function buildHmac(
 }
 
 /**
- * Liest eine Zahl aus den API-Elementen (kann als String kommen).
+ * Liest eine Zahl aus den API-Elementen.
+ * Unterstützt: number, String (z. B. "60" oder "60,00"), Objekte mit .value oder .raw.
+ * Gibt null zurück bei fehlendem/ungültigem Wert – niemals 0 als Fallback.
  */
 function readNumber(value: unknown): number | null {
   if (value === null || value === undefined) return null;
   if (typeof value === "number" && !Number.isNaN(value)) return value;
   if (typeof value === "string") {
-    const n = parseFloat(value.replace(/\s/g, "").replace(",", "."));
+    const trimmed = value.replace(/\s/g, "").replace(",", ".");
+    const n = parseFloat(trimmed);
     return Number.isNaN(n) ? null : n;
   }
+  if (typeof value === "object" && value !== null) {
+    const obj = value as Record<string, unknown>;
+    const v = obj.value ?? obj.raw ?? obj.amount;
+    if (v !== undefined && v !== null) return readNumber(v);
+  }
   return null;
+}
+
+/**
+ * Liest einen Energie-Kennwert (Endenergiebedarf / -verbrauch) aus den API-Elementen.
+ * Prüft mehrere Feldnamen (onOffice kann unterschiedliche Keys nutzen) und
+ * leitet niemals 0 als Fallback zurück.
+ */
+function readEnergyValue(e: Record<string, unknown>): number | null {
+  return (
+    readNumber(e.endenergiebedarf) ??
+    readNumber(e.energieverbrauchskennwert)
+  );
 }
 
 /**
@@ -249,6 +291,9 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
     ort: readString(e.ort),
     plz: readString(e.plz),
     objektart: readString(e.objektart),
+    anzahl_schlafzimmer: readNumber(e.anzahl_schlafzimmer),
+    anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
+    grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
   };
 }
 
@@ -279,8 +324,12 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     innen_courtage: readNumber(e.innen_courtage) ?? readString(e.innen_courtage),
     hausgeld: readNumber(e.hausgeld),
     anzahl_zimmer: readNumber(e.anzahl_zimmer),
-    etage: readEtage(),
+    anzahl_schlafzimmer: readNumber(e.anzahl_schlafzimmer),
     anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
+    anzahl_sep_wc: readNumber(e.anzahl_sep_wc),
+    anzahl_balkone: readNumber(e.anzahl_balkone),
+    anzahl_terrassen: readNumber(e.anzahl_terrassen),
+    etage: readEtage(),
     nutzflaeche: readNumber(e.nutzflaeche),
     grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
     baujahr: readNumber(e.baujahr),
@@ -297,6 +346,11 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     breitengrad: readNumber(e.breitengrad),
     laengengrad: readNumber(e.laengengrad),
     galerie: galerie.length > 0 ? galerie : base.galerie,
+    energieausweistyp: readString(e.energieausweistyp),
+    energyClass: readString(e.energyClass),
+    energietraeger: readString(e.energietraeger),
+    energieverbrauchskennwert: readNumber(e.energieverbrauchskennwert),
+    endenergiebedarf: readEnergyValue(e),
   };
 }
 

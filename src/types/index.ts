@@ -62,7 +62,11 @@ export interface Rental {
   kaltmiete: number;
   quadratmeter: number;
   ort: string;
+  plz?: string;
   zimmer: number;
+  schlafzimmer?: number;
+  badezimmer?: number;
+  grundstuecksflaeche?: number;
   objekttyp: "Wohnung" | "Haus" | "Gewerbe";
   status: "Neu" | "Reserviert" | "Verfügbar";
   vorschaubild: string;

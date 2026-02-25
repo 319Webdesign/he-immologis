@@ -19,8 +19,12 @@ function mapOnOfficeToRental(p: {
   kaltmiete: number | null;
   wohnflaeche: number | null;
   ort: string | null;
+  plz?: string | null;
   galerie?: string[] | null;
   anzahl_zimmer?: number | null;
+  anzahl_schlafzimmer?: number | null;
+  anzahl_badezimmer?: number | null;
+  grundstuecksflaeche?: number | null;
   objektart?: string | null;
 }): Rental {
   const ot = (p.objektart ?? "").toLowerCase();
@@ -32,7 +36,11 @@ function mapOnOfficeToRental(p: {
     kaltmiete: p.kaltmiete ?? 0,
     quadratmeter: p.wohnflaeche ?? 0,
     ort: p.ort ?? "",
+    plz: p.plz ?? undefined,
     zimmer: p.anzahl_zimmer ?? 0,
+    schlafzimmer: p.anzahl_schlafzimmer ?? undefined,
+    badezimmer: p.anzahl_badezimmer ?? undefined,
+    grundstuecksflaeche: p.grundstuecksflaeche ?? undefined,
     objekttyp,
     status: "Verfügbar",
     vorschaubild: p.galerie?.[0] ?? "",

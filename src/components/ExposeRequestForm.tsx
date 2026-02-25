@@ -19,6 +19,8 @@ interface ExposeRequestFormProps {
   estateId?: number | string;
   /** Objekttitel für E-Mail/Anfrage */
   propertyTitle?: string;
+  /** Intro-Text nicht anzeigen, wenn die Sektion ihn bereits rendert */
+  hideIntro?: boolean;
 }
 
 function validateEmail(email: string): boolean {
@@ -33,6 +35,7 @@ export function ExposeRequestForm({
   objectNumber,
   estateId,
   propertyTitle,
+  hideIntro = false,
 }: ExposeRequestFormProps) {
   const [formState, setFormState] = useState({
     vorname: "",
@@ -178,9 +181,9 @@ export function ExposeRequestForm({
   };
 
   const inputBase =
-    "mt-1 block w-full rounded-lg border px-4 py-2.5 text-zinc-900 focus:outline-none focus:ring-2 focus:ring-amber-500/50";
+    "mt-1 block w-full rounded-lg border px-4 py-2.5 text-zinc-900 focus:outline-none focus:ring-2 focus:ring-teal-500/50";
   const inputError = "border-red-500 bg-red-50/50 focus:border-red-500";
-  const inputNormal = "border-zinc-300 focus:border-amber-500";
+  const inputNormal = "border-zinc-300 focus:border-teal-500";
 
   if (status === "success") {
     return (
@@ -196,12 +199,14 @@ export function ExposeRequestForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <p className="text-zinc-600 leading-relaxed">
-        Um Ihr Exposé zu Immobilie {objectNumber} zu erhalten, bestätigen Sie
-        bitte kurz den Verzicht auf Widerspruch und tragen Sie Ihre
-        Kontaktdaten ein. Dann senden wir Ihnen das Exposé direkt per E-Mail
-        zu.
-      </p>
+      {!hideIntro && (
+        <p className="text-zinc-600 leading-relaxed">
+          Um Ihr Exposé zu Immobilie {objectNumber} zu erhalten, bestätigen Sie
+          bitte kurz den Verzicht auf Widerspruch und tragen Sie Ihre
+          Kontaktdaten ein. Dann senden wir Ihnen das Exposé direkt per E-Mail
+          zu.
+        </p>
+      )}
 
       <div className="space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -387,7 +392,7 @@ export function ExposeRequestForm({
               checked={formState[name]}
               onChange={handleChange}
               onBlur={() => handleBlur(name)}
-              className="mt-1 h-4 w-4 rounded border-zinc-300 text-amber-600 focus:ring-amber-500"
+              className="mt-1 h-4 w-4 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
               aria-invalid={!!err}
             />
             <span className="text-sm text-zinc-700">{label}</span>
@@ -404,7 +409,7 @@ export function ExposeRequestForm({
       <button
         type="submit"
         disabled={status === "sending" || !isValid()}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 font-medium text-white transition-colors hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 font-medium text-white transition-colors hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
       >
         <FileText className="h-5 w-5" />
         {status === "sending"

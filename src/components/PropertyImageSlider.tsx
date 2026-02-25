@@ -45,7 +45,7 @@ export function PropertyImageSlider({
 
   return (
     <div className="relative w-full overflow-hidden rounded-2xl bg-zinc-200">
-      <div className="relative aspect-[16/10] w-full">
+      <div className={`relative w-full ${showPlaceholder ? "aspect-[3/1] max-h-48" : "aspect-[16/10]"}`}>
         {showPlaceholder ? (
           <div className="flex h-full w-full flex-col items-center justify-center bg-zinc-100 px-6 text-zinc-500">
             <div className="mb-4 text-2xl font-semibold tracking-tight text-zinc-700">

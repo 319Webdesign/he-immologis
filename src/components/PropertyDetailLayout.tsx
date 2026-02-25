@@ -1,13 +1,19 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import {
+  ArrowLeft,
+  BedDouble,
+  Bath,
+  LayoutGrid,
+  TreeDeciduous,
+  DoorOpen,
+  Info,
+} from "lucide-react";
 import type { Property } from "@/lib/onoffice";
 import { PropertyImageSlider } from "./PropertyImageSlider";
-import { PropertyQuickFactsBar } from "./PropertyQuickFactsBar";
-import { PropertyTextSections } from "./PropertyTextSections";
 import { PropertyMap } from "./PropertyMap";
 import { PropertyContactWidget } from "./PropertyContactWidget";
 import { ExposeRequestForm } from "./ExposeRequestForm";
-import { PropertyActionIcons } from "@/app/[lang]/kaufen/[id]/PropertyDetailActions";
+import { PropertyDetailStickyBar } from "./PropertyDetailStickyBar";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("de-DE", {
@@ -26,15 +32,86 @@ function formatNumber(value: number | undefined | null): string {
   }).format(value);
 }
 
-interface KeyFact {
+function capitalizeObjektart(s?: string | null): string | null {
+  if (!s) return null;
+  const t = s.trim().toLowerCase();
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : s;
+}
+
+/** Energieeffizienz-Balken A+ bis H zur Veranschaulichung */
+const ENERGY_CLASSES = [
+  { id: "A+", color: "bg-emerald-500" },
+  { id: "A", color: "bg-emerald-400" },
+  { id: "B", color: "bg-green-400" },
+  { id: "C", color: "bg-lime-400" },
+  { id: "D", color: "bg-yellow-400" },
+  { id: "E", color: "bg-amber-400" },
+  { id: "F", color: "bg-orange-400" },
+  { id: "G", color: "bg-orange-500" },
+  { id: "H", color: "bg-red-500" },
+] as const;
+
+function EnergieSkala({
+  currentClass,
+  kennwert,
+}: {
+  currentClass: string | null | undefined;
+  kennwert: number | null | undefined;
+}) {
+  const normalized = (currentClass ?? "")
+    .toUpperCase()
+    .replace(/[^A-H+]/g, "");
+  const activeId =
+    ENERGY_CLASSES.find((c) => normalized.startsWith(c.id))?.id ?? null;
+
+  return (
+    <div className="mt-8 space-y-3">
+      <div className="flex gap-0.5">
+        {ENERGY_CLASSES.map((c) => (
+          <div
+            key={c.id}
+            className={`h-8 flex-1 rounded-sm ${c.color} ${
+              activeId === c.id ? "ring-2 ring-zinc-900 ring-offset-1" : ""
+            }`}
+            title={c.id}
+          />
+        ))}
+      </div>
+      {activeId && (kennwert != null || currentClass) && (
+        <div className="flex items-center justify-center gap-2">
+          <span className="rounded bg-zinc-900 px-3 py-1 text-sm font-medium text-white">
+            {kennwert != null
+              ? `${formatNumber(kennwert)} kWh/(m²a)`
+              : currentClass ?? activeId}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Tabellenzeile: Label links, Wert rechts (Parent nutzt divide-y für Trennlinien) */
+function DataRow({
+  label,
+  value,
+  children,
+}: {
   label: string;
-  value: string | number | null | undefined;
+  value?: string | number | null;
+  children?: React.ReactNode;
+}) {
+  const display = value != null && value !== "" ? String(value) : "—";
+  return (
+    <div className="flex items-center justify-between gap-4 py-3">
+      <span className="text-sm text-zinc-600">{label}</span>
+      {children ?? <span className="text-right text-sm font-medium text-zinc-900">{display}</span>}
+    </div>
+  );
 }
 
 interface PropertyDetailLayoutProps {
   property: Property;
   locale: string;
-  /** "kaufen" | "mieten" – für Navigation und Labels */
   section: "kaufen" | "mieten";
   backHref: string;
 }
@@ -48,49 +125,74 @@ export function PropertyDetailLayout({
   const isKaufen = section === "kaufen";
   const price = isKaufen ? p.kaufpreis : p.kaltmiete;
   const priceLabel = isKaufen ? "Kaufpreis" : "Kaltmiete";
+  const objectNumber = p.displayId ?? String(p.id);
 
   const images = [...(p.galerie ?? [])].filter(
     (src) => src && typeof src === "string"
   );
 
-  const keyFacts: KeyFact[] = [
-    {
-      label: priceLabel,
-      value:
-        price != null && price > 0
-          ? formatPrice(price)
-          : null,
-    },
-    { label: "Wohnfläche", value: p.wohnflaeche != null ? `${formatNumber(p.wohnflaeche)} m²` : null },
-    { label: "Zimmer", value: p.anzahl_zimmer },
-    { label: "Baujahr", value: p.baujahr },
-    { label: "Verfügbar ab", value: p.verfuegbar_ab },
-    { label: "Provision", value: p.aussen_courtage ?? p.innen_courtage },
-  ].filter((f) => f.value != null && f.value !== "");
+  const energieKennwert =
+    p.endenergiebedarf ?? p.energieverbrauchskennwert ?? null;
 
-  const textSections = [
-    {
-      id: "beschreibung",
-      title: "Objektbeschreibung",
-      content: p.objektbeschreibung,
-    },
-    {
-      id: "ausstattung",
-      title: "Ausstattung",
-      content: p.ausstatt_beschr,
-    },
-    {
-      id: "lage",
-      title: "Lage",
-      content: p.lage,
-      hint: "Optimale Anbindung in der Region Rhein-Main",
-    },
-    {
-      id: "sonstiges",
-      title: "Sonstiges",
-      content: p.sonstige_angaben,
-    },
-  ];
+  const hasPrice = price != null && price > 0;
+  const priceDisplay = hasPrice
+    ? formatPrice(price)
+    : isKaufen
+      ? "Preis auf Anfrage"
+      : "Miete auf Anfrage";
+
+  const gesamtflaeche =
+    p.wohnflaeche != null && p.nutzflaeche != null
+      ? p.wohnflaeche + p.nutzflaeche
+      : p.wohnflaeche ?? p.nutzflaeche;
+
+  const breadcrumbParts = ["Deutschland"];
+  if (p.ort) breadcrumbParts.push(p.ort);
+  else if (p.plz) breadcrumbParts.push(p.plz);
+
+  const heroFacts: { icon: typeof DoorOpen; value: number; fmt: (v: number) => string }[] = [];
+  if (p.anzahl_zimmer != null && p.anzahl_zimmer > 0) {
+    heroFacts.push({
+      icon: DoorOpen,
+      value: p.anzahl_zimmer,
+      fmt: (v) => `${formatNumber(v)} Zimmer`,
+    });
+  }
+  if (p.anzahl_schlafzimmer != null && p.anzahl_schlafzimmer > 0) {
+    heroFacts.push({
+      icon: BedDouble,
+      value: p.anzahl_schlafzimmer,
+      fmt: (v) => `${formatNumber(v)} Schlafzimmer`,
+    });
+  }
+  if (p.anzahl_badezimmer != null && p.anzahl_badezimmer > 0) {
+    heroFacts.push({
+      icon: Bath,
+      value: p.anzahl_badezimmer,
+      fmt: (v) => `${formatNumber(v)} Badezimmer`,
+    });
+  }
+  if (gesamtflaeche != null && gesamtflaeche > 0 && gesamtflaeche !== p.wohnflaeche) {
+    heroFacts.push({
+      icon: LayoutGrid,
+      value: gesamtflaeche,
+      fmt: (v) => `~${formatNumber(v)} m² Gesamtfläche`,
+    });
+  }
+  if (p.wohnflaeche != null && p.wohnflaeche > 0) {
+    heroFacts.push({
+      icon: LayoutGrid,
+      value: p.wohnflaeche,
+      fmt: (v) => `~${formatNumber(v)} m² Wohnfläche`,
+    });
+  }
+  if (p.grundstuecksflaeche != null && p.grundstuecksflaeche > 0) {
+    heroFacts.push({
+      icon: TreeDeciduous,
+      value: p.grundstuecksflaeche,
+      fmt: (v) => `~${formatNumber(v)} m² Grundstücksfläche`,
+    });
+  }
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -103,101 +205,262 @@ export function PropertyDetailLayout({
           Zurück zur Übersicht
         </Link>
 
-        {/* Hero: Slider + Titel */}
-        <header className="mb-6">
+        {/* Bildergalerie (über dem Hero) */}
+        <div className="mb-8">
           <PropertyImageSlider
             images={images}
             alt={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
             usePlaceholder
           />
-          <h1 className="mt-6 font-sans text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
-            {p.titel || "Ohne Titel"}
-          </h1>
-          {(p.ort || p.plz) && (
-            <h2 className="mt-2 text-lg text-zinc-600">
-              {[p.ort, p.plz].filter(Boolean).join(", ")}
-            </h2>
-          )}
-          <div className="mt-4">
-            <PropertyActionIcons
-              propertyId={String(p.id)}
-              propertyTitle={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
-            />
-          </div>
-        </header>
+        </div>
 
-        <PropertyQuickFactsBar
-          price={price}
-          priceLabel={priceLabel}
-          wohnflaeche={p.wohnflaeche}
-          anzahlZimmer={p.anzahl_zimmer}
-        />
-
-        {/* 2-Spalten-Layout */}
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_380px]">
-          {/* Linke Spalte */}
-          <main className="space-y-8">
-            {/* Key-Facts Box */}
-            {keyFacts.length > 0 && (
-              <section className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
-                <h2 className="mb-4 font-sans text-lg font-semibold text-zinc-900">
-                  Übersicht
-                </h2>
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-                  {keyFacts.map((fact, i) => (
-                    <div key={i}>
-                      <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                        {fact.label}
-                      </p>
-                      <p className="mt-1 font-medium text-zinc-900">
-                        {typeof fact.value === "number"
-                          ? formatNumber(fact.value)
-                          : String(fact.value)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+        {/* Hero: Titel + wichtigste Infos links, Kontakt rechts */}
+        <header className="mb-6 grid gap-8 lg:grid-cols-[1fr_400px] lg:items-start">
+          <div className="min-w-0">
+            {/* Breadcrumbs */}
+            {breadcrumbParts.length > 1 && (
+              <nav
+                className="mb-4 text-sm text-zinc-600"
+                aria-label="Breadcrumb"
+              >
+                {breadcrumbParts.map((part, i) => (
+                  <span key={i}>
+                    {i > 0 && <span className="mx-1.5">&gt;</span>}
+                    <span>{part}</span>
+                  </span>
+                ))}
+              </nav>
             )}
 
-            {/* Text-Sektionen (Akkordeon) */}
-            <PropertyTextSections sections={textSections} />
+            <h1 className="font-sans text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl lg:text-4xl">
+              {p.titel || "Ohne Titel"}
+            </h1>
 
-            {/* Lagekarte */}
-            <section>
-              <h2 className="mb-4 font-sans text-lg font-semibold text-zinc-900">
-                Lage
-              </h2>
-              <PropertyMap
-                lat={p.breitengrad ?? null}
-                lng={p.laengengrad ?? null}
-                address={
-                  [p.strasse, p.plz, p.ort].filter(Boolean).join(", ") || undefined
-                }
-              />
-            </section>
-          </main>
+            <p className="mt-4 text-xl font-semibold text-zinc-800">
+              {priceDisplay}
+            </p>
 
-          {/* Rechte Spalte (sticky) */}
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
-              <h2 className="font-sans text-lg font-semibold text-zinc-900">
-                {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
-              </h2>
-              <div className="mt-6">
-                <ExposeRequestForm
-                  objectNumber={p.displayId ?? String(p.id)}
-                  estateId={p.estateIdForContact === null ? undefined : (p.estateIdForContact ?? p.id)}
-                  propertyTitle={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
-                />
-              </div>
+            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-600">
+              {heroFacts.map(({ icon: Icon, value, fmt }, i) => (
+                <span key={i} className="flex items-center gap-2">
+                  <Icon className="h-4 w-4 shrink-0 text-zinc-500" />
+                  {fmt(value)}
+                </span>
+              ))}
             </div>
 
+          </div>
+
+          <aside className="lg:sticky lg:top-24">
             <PropertyContactWidget
               propertyTitle={p.titel || undefined}
               subjectPrefix={isKaufen ? "Kaufanfrage" : "Mietanfrage"}
             />
           </aside>
+        </header>
+
+        <PropertyDetailStickyBar
+          title={p.titel || "Ohne Titel"}
+          location={[p.plz, p.ort].filter(Boolean).join(" ") || null}
+          priceDisplay={priceDisplay}
+          facts={heroFacts.map(({ value, fmt }) => fmt(value))}
+        />
+
+        <div className="my-8 border-b border-zinc-400" aria-hidden />
+
+        {p.objektbeschreibung?.trim() && (
+          <section className="mt-12">
+            <h2 className="mb-4 font-sans text-xl font-semibold text-zinc-900">
+              Beschreibung
+            </h2>
+            <div className="whitespace-pre-line text-zinc-600 leading-relaxed [&>p]:mb-4">
+              {p.objektbeschreibung.trim()}
+            </div>
+          </section>
+        )}
+
+        <div className="mt-8">
+          <div className="min-w-0 space-y-8">
+        {/* Sektion: Objektdetails */}
+        <section>
+          <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
+            Objektdetails
+          </h2>
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+              <DataRow label="Objektart" value={capitalizeObjektart(p.objektart)} />
+              <DataRow
+                label="Zimmer"
+                value={p.anzahl_zimmer != null ? formatNumber(p.anzahl_zimmer) : null}
+              />
+              <DataRow
+                label="Schlafzimmer"
+                value={p.anzahl_schlafzimmer != null ? formatNumber(p.anzahl_schlafzimmer) : null}
+              />
+              <DataRow
+                label="Badezimmer"
+                value={p.anzahl_badezimmer != null ? formatNumber(p.anzahl_badezimmer) : null}
+              />
+            </div>
+            <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+              <DataRow
+                label="Gesamtfläche"
+                value={gesamtflaeche != null ? `~${formatNumber(gesamtflaeche)} m²` : null}
+              />
+              <DataRow
+                label="Wohnfläche"
+                value={p.wohnflaeche != null ? `~${formatNumber(p.wohnflaeche)} m²` : null}
+              />
+              <DataRow
+                label="Grundstücksfläche"
+                value={
+                  p.grundstuecksflaeche != null
+                    ? `~${formatNumber(p.grundstuecksflaeche)} m²`
+                    : null
+                }
+              />
+              <DataRow
+                label="Nutzfläche"
+                value={p.nutzflaeche != null ? `~${formatNumber(p.nutzflaeche)} m²` : null}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Sektion: Energieausweis */}
+        {(p.energyClass ?? p.energieausweistyp ?? p.energietraeger ?? p.baujahr ?? energieKennwert != null) && (
+          <section>
+            <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
+              Energieausweis
+            </h2>
+            <div className="grid gap-8 sm:grid-cols-2">
+              <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+                <DataRow
+                  label="Baujahr"
+                  value={p.baujahr != null ? formatNumber(p.baujahr) : null}
+                />
+                <DataRow label="Energieeffizienzklasse">
+                  {p.energyClass ? (
+                    <span className="flex items-center gap-2">
+                      <span className="inline-flex items-center rounded bg-green-500/20 px-2 py-0.5 text-sm font-medium text-green-800">
+                        {p.energyClass}
+                      </span>
+                      <Info className="h-4 w-4 shrink-0 text-zinc-400" aria-hidden />
+                    </span>
+                  ) : (
+                    <span>—</span>
+                  )}
+                </DataRow>
+                <DataRow
+                  label="Energieausweis vorhanden"
+                  value={
+                    p.energyClass ?? p.energieausweistyp ?? energieKennwert != null
+                      ? "Ja"
+                      : null
+                  }
+                />
+              </div>
+              <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+                <DataRow label="Art des Energieausweises" value={p.energieausweistyp} />
+                <DataRow
+                  label="Endenergieverbrauch"
+                  value={
+                    energieKennwert != null
+                      ? `${formatNumber(energieKennwert)} kWh/m²a`
+                      : null
+                  }
+                />
+                <DataRow
+                  label="Energieträger"
+                  value={p.energietraeger ?? p.befeuerung}
+                />
+              </div>
+            </div>
+            {(p.energyClass ?? energieKennwert != null) && (
+              <EnergieSkala
+                currentClass={p.energyClass}
+                kennwert={energieKennwert}
+              />
+            )}
+          </section>
+        )}
+
+        {/* Ausstattung, Lage, Sonstiges */}
+        {(p.ausstatt_beschr?.trim() || p.lage?.trim() || p.sonstige_angaben?.trim()) && (
+        <section className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-3 sm:px-5">
+          {p.ausstatt_beschr?.trim() && (
+            <div className="py-3 first:pt-0">
+              <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
+                Ausstattung
+              </h2>
+              <div className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 [&>p]:mb-1.5 last:[&>p]:mb-0">
+                {p.ausstatt_beschr.trim()}
+              </div>
+            </div>
+          )}
+          {p.lage?.trim() && (
+            <div className="py-3">
+              <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
+                Lage
+              </h2>
+              <div className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 [&>p]:mb-1.5 last:[&>p]:mb-0">
+                {p.lage.trim()}
+              </div>
+            </div>
+          )}
+          {p.sonstige_angaben?.trim() && (
+            <div className="py-3 last:pb-0">
+              <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
+                Sonstiges
+              </h2>
+              <div className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 [&>p]:mb-1.5 last:[&>p]:mb-0">
+                {p.sonstige_angaben.trim()}
+              </div>
+            </div>
+          )}
+        </section>
+        )}
+
+        {/* Lagekarte */}
+        <section>
+          <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
+            Lage
+          </h2>
+          <div className="max-w-xl">
+          <PropertyMap
+            lat={p.breitengrad ?? null}
+            lng={p.laengengrad ?? null}
+            address={
+              [p.strasse, p.plz, p.ort].filter(Boolean).join(", ") || undefined
+            }
+          />
+          </div>
+        </section>
+
+        {/* Exposé anfordern */}
+        <section id="expose-anfordern" className="scroll-mt-20 rounded-xl border-2 border-teal-200 bg-teal-50/50 p-5 shadow-sm">
+          <h2 className="font-sans text-lg font-semibold text-zinc-900">
+            {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
+          </h2>
+          <p className="mt-2 text-sm text-zinc-600">
+            Um Ihr Exposé zu Immobilie {objectNumber} zu erhalten, bestätigen
+            Sie bitte kurz den Verzicht auf Widerspruch und tragen Sie Ihre
+            Kontaktdaten ein.
+          </p>
+          <div className="mt-6">
+            <ExposeRequestForm
+              objectNumber={objectNumber}
+              estateId={
+                p.estateIdForContact === null
+                  ? undefined
+                  : (p.estateIdForContact ?? p.id)
+              }
+              propertyTitle={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
+              hideIntro
+            />
+          </div>
+        </section>
+          </div>
         </div>
       </div>
     </div>

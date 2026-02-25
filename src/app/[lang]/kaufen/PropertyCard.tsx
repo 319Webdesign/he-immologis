@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MapPin } from "lucide-react";
+import { BedDouble, Bath, LayoutGrid, MapPin } from "lucide-react";
 import type { Property } from "@/lib/onoffice";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
@@ -20,6 +20,17 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
+function isHaus(objektart?: string | null): boolean {
+  const ot = (objektart ?? "").toLowerCase();
+  return ot.includes("haus") || ot.includes("einfamilien") || ot.includes("mehrfamilien");
+}
+
+function capitalizeObjektart(s?: string | null): string {
+  if (!s) return "";
+  const t = s.trim().toLowerCase();
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : s;
+}
+
 export default function PropertyCard({ property }: PropertyCardProps) {
   const pathname = usePathname();
   const lang = (pathname?.split("/")[1] ?? "de") as string;
@@ -32,6 +43,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   const price = property.kaufpreis ?? property.kaltmiete;
   const priceLabel =
     property.kaufpreis != null ? "" : property.kaltmiete != null ? "Kaltmiete " : "";
+  const showGrundstueck = isHaus(property.objektart) && (property.grundstuecksflaeche ?? 0) > 0;
 
   return (
     <Link
@@ -46,31 +58,62 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
+        <span
+          className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
+          style={{ backgroundColor: "#ea580c" }}
+          aria-hidden
+        >
+          Zum Verkauf
+        </span>
       </div>
       <div className="p-6">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-amber-800">
           {property.titel || "Ohne Titel"}
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-zinc-600">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
           {property.objektart ? (
             <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700">
-              {property.objektart}
+              {capitalizeObjektart(property.objektart)}
             </span>
           ) : null}
-          {property.ort ? (
-            <span className="flex items-center gap-1">
-              <MapPin className="h-4 w-4" />
-              {property.ort}
+          {property.anzahl_schlafzimmer != null && property.anzahl_schlafzimmer > 0 && (
+            <span className="flex items-center gap-1.5">
+              <BedDouble className="h-4 w-4 shrink-0" />
+              {property.anzahl_schlafzimmer} Schlafzimmer
             </span>
-          ) : null}
-          {property.wohnflaeche != null && (
-            <span>{property.wohnflaeche} m²</span>
+          )}
+          {property.anzahl_badezimmer != null && property.anzahl_badezimmer > 0 && (
+            <span className="flex items-center gap-1.5">
+              <Bath className="h-4 w-4 shrink-0" />
+              {property.anzahl_badezimmer} Badezimmer
+            </span>
+          )}
+          {property.wohnflaeche != null && property.wohnflaeche > 0 && (
+            <span className="flex items-center gap-1.5">
+              <LayoutGrid className="h-4 w-4 shrink-0" />
+              {property.wohnflaeche} m²
+            </span>
+          )}
+          {showGrundstueck && (
+            <span className="flex items-center gap-1.5">
+              {property.grundstuecksflaeche} m² Grundstück
+            </span>
           )}
         </div>
         {(price != null && price > 0) && (
-          <p className="mt-4 text-lg font-semibold text-amber-800">
-            {priceLabel}{formatPrice(price)}
-          </p>
+          <>
+            <hr className="mt-3 border-t border-zinc-300" />
+            <div className="mt-3 flex items-center justify-between gap-4">
+              <span className="flex items-center gap-1.5 text-sm text-zinc-600">
+                <MapPin className="h-4 w-4 shrink-0" />
+                {[property.plz, property.ort].filter(Boolean).join(" ")}
+              </span>
+              <p className="text-lg font-semibold text-amber-800">
+                {priceLabel}
+                {formatPrice(price)}
+              </p>
+            </div>
+          </>
         )}
       </div>
     </Link>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, BedDouble, Square } from "lucide-react";
+import { MapPin, BedDouble, Bath, LayoutGrid } from "lucide-react";
 import type { Rental } from "@/types";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
@@ -54,6 +54,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
     Verfügbar: "bg-zinc-100 text-zinc-600",
   };
 
+  const badgeLabel = cardLabels?.badgeLabel ?? "Zur Vermietung";
   const statusLabel =
     cardLabels && STATUS_MAP[property.status]
       ? cardLabels[STATUS_MAP[property.status]]
@@ -63,6 +64,9 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   const viewDetails = cardLabels?.viewDetails ?? "Details ansehen";
   const baseHref = lang ? `/${lang}/mieten` : "/mieten";
   const detailHref = `${baseHref}/${property.id}`;
+
+  const showGrundstueck =
+    property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;
 
   return (
     <article className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md">
@@ -75,51 +79,61 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          {cardLabels?.badgeLabel && (
-            <span
-              className="absolute right-3 top-3 rounded-full bg-slate-600 px-3 py-1 text-xs font-medium text-white shadow-sm"
-              aria-hidden
-            >
-              {cardLabels.badgeLabel}
-            </span>
-          )}
-          {!cardLabels?.badgeLabel && (
-            <span
-              className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-medium ${
-                statusStyles[property.status] ?? "bg-zinc-100 text-zinc-600"
-              }`}
-            >
-              {statusLabel}
-            </span>
-          )}
+          <span
+            className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
+            style={{ backgroundColor: "#ea580c" }}
+            aria-hidden
+          >
+            {badgeLabel}
+          </span>
         </div>
       </Link>
       <div className="flex flex-col p-6">
-        <p className="text-xl font-bold text-zinc-900">
-          {formatRent(property.kaltmiete, netRentSuffix)}
-        </p>
-        <h2 className="mt-2 font-sans text-lg font-semibold text-zinc-800 group-hover:text-amber-800">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-amber-800">
           <Link href={detailHref}>{property.titel}</Link>
         </h2>
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-zinc-600">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
           <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700">
             {property.objekttyp}
           </span>
-          <span className="flex items-center gap-1.5">
-            <Square className="h-4 w-4 shrink-0" strokeWidth={2} />
-            {property.quadratmeter} m²
-          </span>
-          {property.zimmer > 0 && (
+          {property.schlafzimmer != null && property.schlafzimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <BedDouble className="h-4 w-4 shrink-0" />
-              {property.zimmer} {roomsLabel}
+              {property.schlafzimmer} Schlafzimmer
             </span>
           )}
-          <span className="flex items-center gap-1.5">
-            <MapPin className="h-4 w-4 shrink-0" />
-            {property.ort}
-          </span>
+          {property.badezimmer != null && property.badezimmer > 0 && (
+            <span className="flex items-center gap-1.5">
+              <Bath className="h-4 w-4 shrink-0" />
+              {property.badezimmer} Badezimmer
+            </span>
+          )}
+          {property.quadratmeter > 0 && (
+            <span className="flex items-center gap-1.5">
+              <LayoutGrid className="h-4 w-4 shrink-0" />
+              {property.quadratmeter} m²
+            </span>
+          )}
+          {showGrundstueck && (
+            <span className="flex items-center gap-1.5">
+              {property.grundstuecksflaeche} m² Grundstück
+            </span>
+          )}
         </div>
+        {property.kaltmiete > 0 && (
+          <>
+            <hr className="mt-3 border-t border-zinc-300" />
+            <div className="mt-3 flex items-center justify-between gap-4">
+              <span className="flex items-center gap-1.5 text-sm text-zinc-600">
+                <MapPin className="h-4 w-4 shrink-0" />
+                {[property.plz, property.ort].filter(Boolean).join(" ")}
+              </span>
+              <p className="text-lg font-semibold text-amber-800">
+                {formatRent(property.kaltmiete, netRentSuffix)}
+              </p>
+            </div>
+          </>
+        )}
         <Link
           href={detailHref}
           className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-white sm:w-auto"
