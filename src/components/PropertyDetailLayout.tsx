@@ -13,8 +13,6 @@ import { PropertyImageSlider } from "./PropertyImageSlider";
 import { PropertyMap } from "./PropertyMap";
 import { PropertyContactWidget } from "./PropertyContactWidget";
 import { ExposeRequestForm } from "./ExposeRequestForm";
-import { PropertyDetailStickyBar } from "./PropertyDetailStickyBar";
-
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("de-DE", {
     style: "currency",
@@ -259,13 +257,6 @@ export function PropertyDetailLayout({
           </aside>
         </header>
 
-        <PropertyDetailStickyBar
-          title={p.titel || "Ohne Titel"}
-          location={[p.plz, p.ort].filter(Boolean).join(" ") || null}
-          priceDisplay={priceDisplay}
-          facts={heroFacts.map(({ value, fmt }) => fmt(value))}
-        />
-
         <div className="my-8 border-b border-zinc-400" aria-hidden />
 
         {p.objektbeschreibung?.trim() && (
@@ -438,8 +429,8 @@ export function PropertyDetailLayout({
         </section>
 
         {/* Exposé anfordern */}
-        <section id="expose-anfordern" className="scroll-mt-20 flex justify-center">
-          <div className="w-full max-w-2xl rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <section id="expose-anfordern" className="mt-32 scroll-mt-20 flex flex-col items-center">
+          <div className="w-full max-w-xl rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
           <h2 className="font-sans text-lg font-semibold text-zinc-900">
             {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
           </h2>
@@ -461,6 +452,80 @@ export function PropertyDetailLayout({
               locale={locale}
             />
           </div>
+          </div>
+
+          {/* Rechtliche und konditionale Hinweise */}
+          <div className="mt-12 w-full max-w-xl space-y-8 text-sm text-zinc-600">
+            <div>
+              <h3 className="mb-2 font-sans font-semibold text-zinc-900">Geldwäschegesetz (GwG)</h3>
+              <p className="mb-2 leading-relaxed">
+                Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.
+              </p>
+              <p className="mb-2 leading-relaxed">
+                Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.
+              </p>
+              <p className="mb-2 leading-relaxed">
+                Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.
+              </p>
+              <p className="leading-relaxed">
+                Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.
+              </p>
+            </div>
+
+            {isKaufen && (
+              <div>
+                <h3 className="mb-2 font-sans font-semibold text-zinc-900">Kaufnebenkosten</h3>
+                <p className="mb-2 leading-relaxed">
+                  Die Kosten für den notariellen Kaufvertrag, dessen Abwicklung im Grundbuch sowie die Grunderwerbsteuer trägt der Käufer.
+                </p>
+                <p className="leading-relaxed">
+                  Die Grunderwerbsteuer beträgt derzeit:
+                </p>
+                <ul className="mt-1 list-inside list-disc space-y-0.5 pl-1">
+                  <li>5 % in Baden-Württemberg und 6 % in Hessen.</li>
+                </ul>
+              </div>
+            )}
+
+            <div>
+              <h3 className="mb-2 font-sans font-semibold text-zinc-900">Angebotsbedingungen</h3>
+              <p className="mb-2 leading-relaxed">
+                Unsere Immobilienangebote sind freibleibend und basieren auf den ortsüblichen Maklerkonditionen.
+              </p>
+              <p className="mb-2 leading-relaxed">
+                Für die Richtigkeit der Angaben übernehmen wir keine Gewähr. Die Informationen wurden uns vom Eigentümer bzw. Auftraggeber zur Verfügung gestellt und ohne Haftung für Vollständigkeit und Richtigkeit weitergegeben.
+              </p>
+              <p className="mb-2 leading-relaxed">
+                Dieses Exposé ist ausschließlich für den vorgesehenen Empfänger bestimmt. Eine Weitergabe an Dritte kann Schadenersatzansprüche auslösen.
+              </p>
+              <p className="leading-relaxed">
+                Die Immobilie wird im Kundenauftrag und auf Grundlage unserer Geschäftsbedingungen freibleibend zur Vermietung angeboten.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="mb-2 font-sans font-semibold text-zinc-900">Provision</h3>
+              {isKaufen ? (
+                <>
+                  <p className="mb-2 leading-relaxed">
+                    Die Käuferprovision beträgt 3,57 % inklusive gesetzlicher Mehrwertsteuer.
+                  </p>
+                  <p className="leading-relaxed">
+                    Gemäß den seit dem 23.12.2020 geltenden gesetzlichen Regelungen zur Aufteilung der Maklerprovision wird diese in der Regel hälftig zwischen Verkäufer und Käufer geteilt.
+                    Somit beträgt die Provision für beide Parteien jeweils 3 % zzgl. der jeweils gültigen Mehrwertsteuer – derzeit insgesamt 3,57 % des Kaufpreises – und ist mit notariellem Vertragsabschluss verdient und fällig.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="mb-2 leading-relaxed">
+                    Die Provision für die Maklertätigkeit beträgt 2 Netto-Kaltmieten zzgl. MwSt.
+                  </p>
+                  <p className="leading-relaxed">
+                    Gemäß den seit dem 1.6.2015 geltenden gesetzlichen Regelungen – Bestellerprinzip – trägt derjenige die Provision, der den Makler beauftragt hat.
+                  </p>
+                </>
+              )}
+            </div>
           </div>
         </section>
           </div>

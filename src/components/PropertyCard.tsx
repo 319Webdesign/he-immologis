@@ -89,7 +89,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         </div>
       </Link>
       <div className="flex flex-col p-6">
-        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-amber-800">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-[#FF6600]">
           <Link href={detailHref}>{property.titel}</Link>
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600">

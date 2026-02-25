@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { Mail } from "lucide-react";
+import { FileText } from "lucide-react";
 
 const CONTACT = {
   name: "Holger Eberhard",
   role: "Ihr persönlicher Immobilienexperte in Hessen",
-  mail: "h.eberhard@immologis.de",
   imageSrc: "/img/holger.jpeg",
 };
 
@@ -15,11 +14,6 @@ export function PropertyContactWidget({
   propertyTitle?: string;
   subjectPrefix?: string;
 }) {
-  const subject = propertyTitle
-    ? `${subjectPrefix}: ${propertyTitle}`
-    : "Immobilienanfrage";
-  const mailto = `mailto:${CONTACT.mail}?subject=${encodeURIComponent(subject)}`;
-
   return (
     <div className="p-6">
       <div className="flex items-start gap-5">
@@ -36,11 +30,11 @@ export function PropertyContactWidget({
           <p className="text-lg font-semibold text-zinc-900">{CONTACT.name}</p>
           <p className="mt-1 text-base text-zinc-600">{CONTACT.role}</p>
           <a
-            href={mailto}
-            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2.5 text-base font-medium text-white transition hover:bg-zinc-800"
+            href="#expose-anfordern"
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#FF6600] px-5 py-2.5 text-base font-medium text-white transition hover:bg-[#e55a00]"
           >
-            <Mail className="h-4 w-4" />
-            E-Mail schreiben
+            <FileText className="h-4 w-4" />
+            Details anfordern
           </a>
         </div>
       </div>
