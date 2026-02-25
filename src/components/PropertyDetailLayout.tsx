@@ -438,7 +438,8 @@ export function PropertyDetailLayout({
         </section>
 
         {/* Exposé anfordern */}
-        <section id="expose-anfordern" className="scroll-mt-20 rounded-xl border-2 border-teal-200 bg-teal-50/50 p-5 shadow-sm">
+        <section id="expose-anfordern" className="scroll-mt-20 flex justify-center">
+          <div className="w-full max-w-2xl rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
           <h2 className="font-sans text-lg font-semibold text-zinc-900">
             {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
           </h2>
@@ -457,7 +458,9 @@ export function PropertyDetailLayout({
               }
               propertyTitle={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
               hideIntro
+              locale={locale}
             />
+          </div>
           </div>
         </section>
           </div>

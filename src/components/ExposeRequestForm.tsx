@@ -1,16 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { FileText } from "lucide-react";
-
-const CHECKBOX_LABELS = {
-  widerrufsbelehrung:
-    "Ich habe die Widerrufsbelehrung gelesen und verstanden.",
-  ausfuehrungVorWiderrufsfrist:
-    "Ich verlange ausdrücklich, dass Sie vor Ende der Widerrufsfrist mit der Ausführung der Dienstleistung beginnen.",
-  widerrufsrechtVerlust:
-    "Mir ist bekannt, dass ich bei vollständiger Vertragserfüllung durch Sie mein Widerrufsrecht verliere.",
-};
+import Link from "next/link";
+import { FileText, X } from "lucide-react";
 
 interface ExposeRequestFormProps {
   /** Objekt-Nr oder ID für die Anzeige (z. B. onOffice-Id oder statische ImmoNr) */
@@ -21,6 +13,8 @@ interface ExposeRequestFormProps {
   propertyTitle?: string;
   /** Intro-Text nicht anzeigen, wenn die Sektion ihn bereits rendert */
   hideIntro?: boolean;
+  /** Sprachcode für Links (z. B. datenschutz) */
+  locale?: string;
 }
 
 function validateEmail(email: string): boolean {
@@ -36,6 +30,7 @@ export function ExposeRequestForm({
   estateId,
   propertyTitle,
   hideIntro = false,
+  locale = "de",
 }: ExposeRequestFormProps) {
   const [formState, setFormState] = useState({
     vorname: "",
@@ -45,10 +40,13 @@ export function ExposeRequestForm({
     ort: "",
     email: "",
     telefon: "",
+    datenschutz: false,
     widerrufsbelehrung: false,
     ausfuehrungVorWiderrufsfrist: false,
     widerrufsrechtVerlust: false,
   });
+
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -67,9 +65,15 @@ export function ExposeRequestForm({
       v.ort.trim() !== "" &&
       validateEmail(v.email) &&
       validatePhone(v.telefon) &&
-      v.widerrufsbelehrung &&
-      v.ausfuehrungVorWiderrufsfrist &&
-      v.widerrufsrechtVerlust
+      v.datenschutz
+    );
+  }, [formState]);
+
+  const isPopupValid = useCallback(() => {
+    return (
+      formState.widerrufsbelehrung &&
+      formState.ausfuehrungVorWiderrufsfrist &&
+      formState.widerrufsrechtVerlust
     );
   }, [formState]);
 
@@ -93,16 +97,9 @@ export function ExposeRequestForm({
     else if (!validatePhone(v.telefon))
       newErrors.telefon =
         "Bitte geben Sie eine gültige Telefonnummer ein (mind. 5 Zeichen).";
-
-    if (!v.widerrufsbelehrung)
-      newErrors.widerrufsbelehrung =
-        "Bitte bestätigen Sie die Widerrufsbelehrung.";
-    if (!v.ausfuehrungVorWiderrufsfrist)
-      newErrors.ausfuehrungVorWiderrufsfrist =
-        "Bitte bestätigen Sie den Beginn vor Ende der Widerrufsfrist.";
-    if (!v.widerrufsrechtVerlust)
-      newErrors.widerrufsrechtVerlust =
-        "Bitte bestätigen Sie die Kenntnis über den Verlust des Widerrufsrechts.";
+    if (!v.datenschutz)
+      newErrors.datenschutz =
+        "Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -126,9 +123,7 @@ export function ExposeRequestForm({
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!runValidation()) return;
+  const doSubmit = useCallback(async () => {
     setStatus("sending");
     setErrorMessage("");
     try {
@@ -167,10 +162,12 @@ export function ExposeRequestForm({
         ort: "",
         email: "",
         telefon: "",
+        datenschutz: false,
         widerrufsbelehrung: false,
         ausfuehrungVorWiderrufsfrist: false,
         widerrufsrechtVerlust: false,
       });
+      setPopupOpen(false);
       setTouched({});
     } catch {
       setStatus("error");
@@ -178,6 +175,28 @@ export function ExposeRequestForm({
         "Verbindungsfehler. Bitte später erneut versuchen."
       );
     }
+  }, [formState, objectNumber, estateId, propertyTitle]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!runValidation()) return;
+    setPopupOpen(true);
+  };
+
+  const handlePopupConfirm = () => {
+    const popupErrors: Record<string, string> = {};
+    if (!formState.widerrufsbelehrung)
+      popupErrors.widerrufsbelehrung =
+        "Bitte bestätigen Sie die Widerrufsbelehrung.";
+    if (!formState.ausfuehrungVorWiderrufsfrist)
+      popupErrors.ausfuehrungVorWiderrufsfrist =
+        "Bitte bestätigen Sie den Beginn vor Ende der Widerrufsfrist.";
+    if (!formState.widerrufsrechtVerlust)
+      popupErrors.widerrufsrechtVerlust =
+        "Bitte bestätigen Sie die Kenntnis über den Verlust des Widerrufsrechts.";
+    setErrors((prev) => ({ ...prev, ...popupErrors }));
+    if (Object.keys(popupErrors).length > 0) return;
+    doSubmit();
   };
 
   const inputBase =
@@ -369,35 +388,37 @@ export function ExposeRequestForm({
         </div>
       </div>
 
-      <div className="space-y-4 border-t border-zinc-200 pt-6">
-        <p className="text-sm font-medium text-zinc-700">
-          Bestätigungen zum Widerrufsverzicht (alle erforderlich):
-        </p>
-        {(
-          [
-            ["widerrufsbelehrung", CHECKBOX_LABELS.widerrufsbelehrung, errors.widerrufsbelehrung],
-            ["ausfuehrungVorWiderrufsfrist", CHECKBOX_LABELS.ausfuehrungVorWiderrufsfrist, errors.ausfuehrungVorWiderrufsfrist],
-            ["widerrufsrechtVerlust", CHECKBOX_LABELS.widerrufsrechtVerlust, errors.widerrufsrechtVerlust],
-          ] as const
-        ).map(([name, label, err]) => (
-          <label
-            key={name}
-            className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
-              err ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-white"
-            }`}
+      <div className="border-t border-zinc-200 pt-6">
+      <label
+        className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
+          errors.datenschutz ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-white"
+        }`}
+      >
+        <input
+          type="checkbox"
+          name="datenschutz"
+          checked={formState.datenschutz}
+          onChange={handleChange}
+          onBlur={() => handleBlur("datenschutz")}
+          className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
+          aria-invalid={!!errors.datenschutz}
+        />
+        <span className="text-sm text-zinc-700">
+          Mit diesem Haken bestätigen Sie, dass Sie die{" "}
+          <Link
+            href={`/${locale}/datenschutz`}
+            className="text-teal-600 underline hover:text-teal-700"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <input
-              type="checkbox"
-              name={name}
-              checked={formState[name]}
-              onChange={handleChange}
-              onBlur={() => handleBlur(name)}
-              className="mt-1 h-4 w-4 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
-              aria-invalid={!!err}
-            />
-            <span className="text-sm text-zinc-700">{label}</span>
-          </label>
-        ))}
+            Datenschutzerklärung
+          </Link>{" "}
+          zur Kenntnis genommen haben.
+        </span>
+      </label>
+      {errors.datenschutz && (
+        <p className="mt-1 text-sm text-red-600">{errors.datenschutz}</p>
+      )}
       </div>
 
       {status === "error" && errorMessage && (
@@ -416,6 +437,155 @@ export function ExposeRequestForm({
           ? "Wird gesendet…"
           : "Exposé jetzt anfordern"}
       </button>
+
+      {popupOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="popup-title"
+        >
+          <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-zinc-200 bg-white p-6 shadow-xl">
+            <div className="flex items-center justify-between">
+              <h3 id="popup-title" className="font-sans text-lg font-semibold text-zinc-900">
+                Bestätigungen zum{" "}
+                <Link
+                  href={`/${locale}/widerruf`}
+                  className="text-teal-600 underline hover:text-teal-700"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Widerrufsverzicht
+                </Link>
+              </h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setPopupOpen(false);
+                  setErrors((prev) => ({
+                    ...prev,
+                    widerrufsbelehrung: "",
+                    ausfuehrungVorWiderrufsfrist: "",
+                    widerrufsrechtVerlust: "",
+                  }));
+                }}
+                className="rounded p-1 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700"
+                aria-label="Schließen"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <p className="mt-2 text-sm text-zinc-600">
+              Bitte bestätigen Sie alle folgenden Bedingungen:
+            </p>
+            <div className="mt-4 space-y-3">
+              <label
+                className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
+                  errors.widerrufsbelehrung ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-zinc-50/50"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  name="widerrufsbelehrung"
+                  checked={formState.widerrufsbelehrung}
+                  onChange={handleChange}
+                  className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
+                  aria-invalid={!!errors.widerrufsbelehrung}
+                />
+                <span className="text-sm text-zinc-700">
+                  Ich habe die{" "}
+                  <Link
+                    href={`/${locale}/widerruf`}
+                    className="text-teal-600 underline hover:text-teal-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Widerrufsbelehrung
+                  </Link>{" "}
+                  gelesen und verstanden.
+                </span>
+              </label>
+              <label
+                className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
+                  errors.ausfuehrungVorWiderrufsfrist ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-zinc-50/50"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  name="ausfuehrungVorWiderrufsfrist"
+                  checked={formState.ausfuehrungVorWiderrufsfrist}
+                  onChange={handleChange}
+                  className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
+                  aria-invalid={!!errors.ausfuehrungVorWiderrufsfrist}
+                />
+                <span className="text-sm text-zinc-700">
+                  Ich verlange ausdrücklich, dass Sie vor Ende der{" "}
+                  <Link
+                    href={`/${locale}/widerruf`}
+                    className="text-teal-600 underline hover:text-teal-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Widerrufsfrist
+                  </Link>{" "}
+                  mit der Ausführung der Dienstleistung beginnen.
+                </span>
+              </label>
+              <label
+                className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
+                  errors.widerrufsrechtVerlust ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-zinc-50/50"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  name="widerrufsrechtVerlust"
+                  checked={formState.widerrufsrechtVerlust}
+                  onChange={handleChange}
+                  className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
+                  aria-invalid={!!errors.widerrufsrechtVerlust}
+                />
+                <span className="text-sm text-zinc-700">
+                  Mir ist bekannt, dass ich bei vollständiger Vertragserfüllung durch Sie mein{" "}
+                  <Link
+                    href={`/${locale}/widerruf`}
+                    className="text-teal-600 underline hover:text-teal-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Widerrufsrecht
+                  </Link>{" "}
+                  verliere.
+                </span>
+              </label>
+            </div>
+            <div className="mt-6 flex gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setPopupOpen(false);
+                  setErrors((prev) => ({
+                    ...prev,
+                    widerrufsbelehrung: "",
+                    ausfuehrungVorWiderrufsfrist: "",
+                    widerrufsrechtVerlust: "",
+                  }));
+                }}
+                className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
+              >
+                Abbrechen
+              </button>
+              <button
+                type="button"
+                onClick={handlePopupConfirm}
+                disabled={status === "sending" || !isPopupValid()}
+                className="flex-1 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {status === "sending" ? "Wird gesendet…" : "Bestätigen & Senden"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </form>
   );
 }
