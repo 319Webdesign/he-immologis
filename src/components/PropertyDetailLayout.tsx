@@ -435,9 +435,9 @@ export function PropertyDetailLayout({
             {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
           </h2>
           <p className="mt-2 text-sm text-zinc-600">
-            Um Ihr Exposé zu Immobilie {objectNumber} zu erhalten, bestätigen
-            Sie bitte kurz den Verzicht auf Widerspruch und tragen Sie Ihre
-            Kontaktdaten ein.
+            Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
+            Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
+            einzutragen.
           </p>
           <div className="mt-6">
             <ExposeRequestForm

@@ -220,10 +220,9 @@ export function ExposeRequestForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       {!hideIntro && (
         <p className="text-zinc-600 leading-relaxed">
-          Um Ihr Exposé zu Immobilie {objectNumber} zu erhalten, bestätigen Sie
-          bitte kurz den Verzicht auf Widerspruch und tragen Sie Ihre
-          Kontaktdaten ein. Dann senden wir Ihnen das Exposé direkt per E-Mail
-          zu.
+          Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
+          Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
+          einzutragen.
         </p>
       )}
 

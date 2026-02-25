@@ -60,14 +60,14 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         />
         <span
           className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-          style={{ backgroundColor: "#FF6600" }}
+          style={{ backgroundColor: "#E30A17" }}
           aria-hidden
         >
           Zum Verkauf
         </span>
       </div>
       <div className="p-6">
-        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-[#FF6600]">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-[#E30A17]">
           {property.titel || "Ohne Titel"}
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
