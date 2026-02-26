@@ -485,8 +485,16 @@
       "priceOptions": ["up to 800 €", "800 – 1,200 €", "1,200 – 1,800 €", "over 1,800 €"]
     },
     "provision": {
-      "headingSrOnly": "Brokerage Commission Notice",
+      "headingSrOnly": "Terms of Offer and Brokerage Commission Notice",
       "badge": "Note",
+      "angebotsbedingungen": {
+        "heading": "Terms of Offer",
+        "paragraph1": "Our property offers are subject to change and based on the customary local brokerage conditions.",
+        "paragraph2": "We do not guarantee the accuracy of the information provided. The information was made available to us by the owner or principal and is passed on without liability for completeness and accuracy.",
+        "paragraph3": "This property brochure is intended solely for the intended recipient. Disclosure to third parties may give rise to claims for damages.",
+        "paragraph4": "The property is offered for rent on behalf of the client and on the basis of our general terms and conditions, subject to change."
+      },
+      "provisionHeading": "Commission",
       "paragraph1": "In Baden-Württemberg and Hesse, the \"commissioning principle\" (Bestellerprinzip) applies to residential rentals. This means that the party who commissions the real estate agent bears the costs. The brokerage commission in these federal states may amount to a maximum of two net monthly rents plus 19% VAT for the services rendered by the agent.",
       "paragraph2Prefix": "Our General Terms and Conditions (",
       "paragraph2Suffix": ") and statutory regulations apply.",

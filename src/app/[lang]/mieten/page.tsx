@@ -78,6 +78,26 @@ export default async function MietenPage() {
             <span className="mb-4 inline-block rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-medium uppercase tracking-wider text-zinc-500">
               {m.provision.badge}
             </span>
+
+            <h3 className="mb-2 font-semibold text-zinc-800">
+              {m.provision.angebotsbedingungen.heading}
+            </h3>
+            <p className="font-medium text-zinc-800">
+              {m.provision.angebotsbedingungen.paragraph1}
+            </p>
+            <p className="mt-3 font-medium text-zinc-800">
+              {m.provision.angebotsbedingungen.paragraph2}
+            </p>
+            <p className="mt-3 font-medium text-zinc-800">
+              {m.provision.angebotsbedingungen.paragraph3}
+            </p>
+            <p className="mt-3 font-medium text-zinc-800">
+              {m.provision.angebotsbedingungen.paragraph4}
+            </p>
+
+            <h3 className="mt-6 mb-2 font-semibold text-zinc-800">
+              {m.provision.provisionHeading}
+            </h3>
             <p className="font-medium text-zinc-800">
               {m.provision.paragraph1}
             </p>

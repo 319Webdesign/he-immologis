@@ -475,8 +475,16 @@
       "priceOptions": ["bis 800 €", "800 – 1.200 €", "1.200 – 1.800 €", "über 1.800 €"]
     },
     "provision": {
-      "headingSrOnly": "Hinweis zur Maklerprovision",
+      "headingSrOnly": "Hinweis zu Angebotsbedingungen und Maklerprovision",
       "badge": "Hinweis",
+      "angebotsbedingungen": {
+        "heading": "Angebotsbedingungen",
+        "paragraph1": "Unsere Immobilienangebote sind freibleibend und basieren auf den ortsüblichen Maklerkonditionen.",
+        "paragraph2": "Für die Richtigkeit der Angaben übernehmen wir keine Gewähr. Die Informationen wurden uns vom Eigentümer bzw. Auftraggeber zur Verfügung gestellt und ohne Haftung für Vollständigkeit und Richtigkeit weitergegeben.",
+        "paragraph3": "Dieses Exposé ist ausschließlich für den vorgesehenen Empfänger bestimmt. Eine Weitergabe an Dritte kann Schadenersatzansprüche auslösen.",
+        "paragraph4": "Die Immobilie wird im Kundenauftrag und auf Grundlage unserer Geschäftsbedingungen freibleibend zur Vermietung angeboten."
+      },
+      "provisionHeading": "Provision",
       "paragraph1": "In Baden-Württemberg und Hessen gilt beim Vermieten von Wohnraum das Bestellerprinzip. Das heißt, wer den Makler beauftragt, trägt die Kosten. Die Maklerprovision darf in Baden-Württemberg und Hessen zwei Nettokaltmieten zuzüglich 19 % Umsatzsteuer betragen, die der Makler für seine Tätigkeit erhält.",
       "paragraph2Prefix": "Hier gelten unsere Allgemeinen Geschäftsbedingungen (",
       "paragraph2Suffix": ") sowie die gesetzlichen Bestimmungen.",

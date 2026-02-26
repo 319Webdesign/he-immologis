@@ -500,7 +500,7 @@ export function PropertyDetailLayout({
         </section>
 
         {/* Exposé anfordern */}
-        <section id="expose-anfordern" className="mt-32 scroll-mt-20 flex flex-col items-center">
+        <section id="expose-anfordern" className="mt-8 scroll-mt-20 flex flex-col items-center">
           <div className="w-full max-w-xl rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
           <h2 className="font-sans text-lg font-semibold text-zinc-900">
             {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
@@ -527,21 +527,23 @@ export function PropertyDetailLayout({
 
           {/* Rechtliche und konditionale Hinweise */}
           <div className="mt-12 w-full max-w-xl space-y-8 text-sm text-zinc-600">
-            <div>
-              <h3 className="mb-2 font-sans font-semibold text-zinc-900">Geldwäschegesetz (GwG)</h3>
-              <p className="mb-2 leading-relaxed">
-                Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.
-              </p>
-              <p className="mb-2 leading-relaxed">
-                Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.
-              </p>
-              <p className="mb-2 leading-relaxed">
-                Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.
-              </p>
-              <p className="leading-relaxed">
-                Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.
-              </p>
-            </div>
+            {isKaufen && (
+              <div>
+                <h3 className="mb-2 font-sans font-semibold text-zinc-900">Geldwäschegesetz (GwG)</h3>
+                <p className="mb-2 leading-relaxed">
+                  Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.
+                </p>
+                <p className="mb-2 leading-relaxed">
+                  Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.
+                </p>
+                <p className="mb-2 leading-relaxed">
+                  Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.
+                </p>
+                <p className="leading-relaxed">
+                  Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.
+                </p>
+              </div>
+            )}
 
             {isKaufen && (
               <div>
