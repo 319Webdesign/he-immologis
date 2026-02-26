@@ -29,6 +29,7 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "anzahl_schlafzimmer",
     "anzahl_badezimmer",
     "grundstuecksflaeche",
+    "nebenkosten",
   ];
 }
 
@@ -294,6 +295,7 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
     anzahl_schlafzimmer: readNumber(e.anzahl_schlafzimmer),
     anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
     grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
+    nebenkosten: readNumber(e.nebenkosten),
   };
 }
 

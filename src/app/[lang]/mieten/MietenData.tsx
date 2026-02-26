@@ -25,6 +25,7 @@ function mapOnOfficeToRental(p: {
   anzahl_schlafzimmer?: number | null;
   anzahl_badezimmer?: number | null;
   grundstuecksflaeche?: number | null;
+  nebenkosten?: number | null;
   objektart?: string | null;
 }): Rental {
   const ot = (p.objektart ?? "").toLowerCase();
@@ -41,6 +42,7 @@ function mapOnOfficeToRental(p: {
     schlafzimmer: p.anzahl_schlafzimmer ?? undefined,
     badezimmer: p.anzahl_badezimmer ?? undefined,
     grundstuecksflaeche: p.grundstuecksflaeche ?? undefined,
+    nebenkosten: p.nebenkosten ?? undefined,
     objekttyp,
     status: "Verfügbar",
     vorschaubild: p.galerie?.[0] ?? "",

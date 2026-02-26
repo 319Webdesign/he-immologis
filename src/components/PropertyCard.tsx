@@ -120,7 +120,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
             </span>
           )}
         </div>
-        {property.kaltmiete > 0 && (
+        {(property.kaltmiete > 0 || property.nebenkosten != null) && (
           <>
             <hr className="mt-3 border-t border-zinc-300" />
             <div className="mt-3 flex items-center justify-between gap-4">
@@ -128,9 +128,17 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <p className="text-lg font-semibold text-amber-800">
-                {formatRent(property.kaltmiete, netRentSuffix)}
-              </p>
+              <div className="text-right text-sm font-semibold text-zinc-900">
+                {property.kaltmiete > 0 && (
+                  <span>Kaltmiete {formatRent(property.kaltmiete, "")}</span>
+                )}
+                {property.kaltmiete > 0 && property.nebenkosten != null && property.nebenkosten > 0 && (
+                  <span className="mx-2">·</span>
+                )}
+                {property.nebenkosten != null && property.nebenkosten > 0 && (
+                  <span>Nebenkosten {formatRent(property.nebenkosten, "")}</span>
+                )}
+              </div>
             </div>
           </>
         )}

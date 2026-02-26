@@ -108,7 +108,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <p className="text-lg font-semibold text-amber-800">
+              <p className="text-lg font-semibold text-zinc-900">
                 {priceLabel}
                 {formatPrice(price)}
               </p>

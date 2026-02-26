@@ -30,6 +30,15 @@ function formatNumber(value: number | undefined | null): string {
   }).format(value);
 }
 
+function formatArea(value: number | undefined | null): string {
+  if (value == null) return "—";
+  const formatted = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+  return `ca. ${formatted} m²`;
+}
+
 function capitalizeObjektart(s?: string | null): string | null {
   if (!s) return null;
   const t = s.trim().toLowerCase();
@@ -63,7 +72,7 @@ function EnergieSkala({
     ENERGY_CLASSES.find((c) => normalized.startsWith(c.id))?.id ?? null;
 
   return (
-    <div className="mt-8 space-y-3">
+    <div className="mt-8 w-full max-w-3xl space-y-3">
       <div className="flex gap-0.5">
         {ENERGY_CLASSES.map((c) => (
           <div
@@ -100,7 +109,7 @@ function DataRow({
 }) {
   const display = value != null && value !== "" ? String(value) : "—";
   return (
-    <div className="flex items-center justify-between gap-4 py-3">
+    <div className="flex items-center justify-between gap-3 py-2">
       <span className="text-sm text-zinc-600">{label}</span>
       {children ?? <span className="text-right text-sm font-medium text-zinc-900">{display}</span>}
     </div>
@@ -139,6 +148,9 @@ export function PropertyDetailLayout({
       ? "Preis auf Anfrage"
       : "Miete auf Anfrage";
 
+  const hasKaltmiete = !isKaufen && p.kaltmiete != null && p.kaltmiete > 0;
+  const hasNebenkosten = !isKaufen && p.nebenkosten != null && p.nebenkosten > 0;
+
   const gesamtflaeche =
     p.wohnflaeche != null && p.nutzflaeche != null
       ? p.wohnflaeche + p.nutzflaeche
@@ -174,21 +186,21 @@ export function PropertyDetailLayout({
     heroFacts.push({
       icon: LayoutGrid,
       value: gesamtflaeche,
-      fmt: (v) => `~${formatNumber(v)} m² Gesamtfläche`,
+      fmt: (v) => `${formatArea(v)} Gesamtfläche`,
     });
   }
   if (p.wohnflaeche != null && p.wohnflaeche > 0) {
     heroFacts.push({
       icon: LayoutGrid,
       value: p.wohnflaeche,
-      fmt: (v) => `~${formatNumber(v)} m² Wohnfläche`,
+      fmt: (v) => `${formatArea(v)} Wohnfläche`,
     });
   }
   if (p.grundstuecksflaeche != null && p.grundstuecksflaeche > 0) {
     heroFacts.push({
       icon: TreeDeciduous,
       value: p.grundstuecksflaeche,
-      fmt: (v) => `~${formatNumber(v)} m² Grundstücksfläche`,
+      fmt: (v) => `${formatArea(v)} Grundstücksfläche`,
     });
   }
 
@@ -234,9 +246,20 @@ export function PropertyDetailLayout({
               {p.titel || "Ohne Titel"}
             </h1>
 
-            <p className="mt-4 text-xl font-semibold text-zinc-800">
-              {priceDisplay}
-            </p>
+            {isKaufen ? (
+              <p className="mt-4 text-xl font-semibold text-zinc-800">
+                {priceDisplay}
+              </p>
+            ) : (
+              <div className="mt-4 space-y-1">
+                <p className="text-xl font-semibold text-zinc-800">
+                  Kaltmiete {hasKaltmiete ? formatPrice(p.kaltmiete!) : "auf Anfrage"}
+                </p>
+                <p className="text-base font-medium text-zinc-700">
+                  Nebenkosten {hasNebenkosten ? formatPrice(p.nebenkosten!) : "auf Anfrage"}
+                </p>
+              </div>
+            )}
 
             <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-600">
               {heroFacts.map(({ icon: Icon, value, fmt }, i) => (
@@ -260,7 +283,7 @@ export function PropertyDetailLayout({
         <div className="my-8 border-b border-zinc-400" aria-hidden />
 
         {p.objektbeschreibung?.trim() && (
-          <section className="mt-12">
+          <section className="mx-auto mt-12 w-full max-w-3xl">
             <h2 className="mb-4 font-sans text-xl font-semibold text-zinc-900">
               Beschreibung
             </h2>
@@ -270,15 +293,15 @@ export function PropertyDetailLayout({
           </section>
         )}
 
-        <div className="mt-8">
-          <div className="min-w-0 space-y-8">
+        <div className="mt-8 flex flex-col items-center">
+          <div className="flex min-w-0 flex-col items-center space-y-8">
         {/* Sektion: Objektdetails */}
-        <section>
+        <section className="w-full max-w-3xl">
           <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
             Objektdetails
           </h2>
-          <div className="grid gap-8 sm:grid-cols-2">
-            <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
               <DataRow label="Objektart" value={capitalizeObjektart(p.objektart)} />
               <DataRow
                 label="Zimmer"
@@ -293,26 +316,26 @@ export function PropertyDetailLayout({
                 value={p.anzahl_badezimmer != null ? formatNumber(p.anzahl_badezimmer) : null}
               />
             </div>
-            <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+            <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
               <DataRow
                 label="Gesamtfläche"
-                value={gesamtflaeche != null ? `~${formatNumber(gesamtflaeche)} m²` : null}
+                value={gesamtflaeche != null ? formatArea(gesamtflaeche) : null}
               />
               <DataRow
                 label="Wohnfläche"
-                value={p.wohnflaeche != null ? `~${formatNumber(p.wohnflaeche)} m²` : null}
+                value={p.wohnflaeche != null ? formatArea(p.wohnflaeche) : null}
               />
               <DataRow
                 label="Grundstücksfläche"
                 value={
                   p.grundstuecksflaeche != null
-                    ? `~${formatNumber(p.grundstuecksflaeche)} m²`
+                    ? formatArea(p.grundstuecksflaeche)
                     : null
                 }
               />
               <DataRow
                 label="Nutzfläche"
-                value={p.nutzflaeche != null ? `~${formatNumber(p.nutzflaeche)} m²` : null}
+                value={p.nutzflaeche != null ? formatArea(p.nutzflaeche) : null}
               />
             </div>
           </div>
@@ -320,12 +343,12 @@ export function PropertyDetailLayout({
 
         {/* Sektion: Energieausweis */}
         {(p.energyClass ?? p.energieausweistyp ?? p.energietraeger ?? p.baujahr ?? energieKennwert != null) && (
-          <section>
+          <section className="w-full max-w-3xl">
             <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
               Energieausweis
             </h2>
-            <div className="grid gap-8 sm:grid-cols-2">
-              <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
                 <DataRow
                   label="Baujahr"
                   value={p.baujahr != null ? formatNumber(p.baujahr) : null}
@@ -351,7 +374,7 @@ export function PropertyDetailLayout({
                   }
                 />
               </div>
-              <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-1 sm:px-5">
+              <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
                 <DataRow label="Art des Energieausweises" value={p.energieausweistyp} />
                 <DataRow
                   label="Endenergieverbrauch"
@@ -378,7 +401,7 @@ export function PropertyDetailLayout({
 
         {/* Ausstattung, Lage, Sonstiges */}
         {(p.ausstatt_beschr?.trim() || p.lage?.trim() || p.sonstige_angaben?.trim()) && (
-        <section className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-3 sm:px-5">
+        <section className="w-full max-w-3xl divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-4 py-3 sm:px-5">
           {p.ausstatt_beschr?.trim() && (
             <div className="py-3 first:pt-0">
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
@@ -413,11 +436,11 @@ export function PropertyDetailLayout({
         )}
 
         {/* Lagekarte */}
-        <section>
+        <section className="w-full max-w-3xl">
           <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
             Lage
           </h2>
-          <div className="max-w-xl">
+          <div>
           <PropertyMap
             lat={p.breitengrad ?? null}
             lng={p.laengengrad ?? null}

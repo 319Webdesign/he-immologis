@@ -67,6 +67,7 @@ export interface Rental {
   schlafzimmer?: number;
   badezimmer?: number;
   grundstuecksflaeche?: number;
+  nebenkosten?: number;
   objekttyp: "Wohnung" | "Haus" | "Gewerbe";
   status: "Neu" | "Reserviert" | "Verfügbar";
   vorschaubild: string;

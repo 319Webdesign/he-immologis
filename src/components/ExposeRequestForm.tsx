@@ -429,7 +429,11 @@ export function ExposeRequestForm({
       <button
         type="submit"
         disabled={status === "sending" || !isValid()}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 font-medium text-white transition-colors hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+        className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:cursor-not-allowed sm:w-auto ${
+          isValid()
+            ? "bg-[#E30A17] hover:bg-[#c40814]"
+            : "bg-[#e85c66] hover:bg-[#e04752]"
+        } ${status === "sending" ? "opacity-70" : ""}`}
       >
         <FileText className="h-5 w-5" />
         {status === "sending"
@@ -577,7 +581,11 @@ export function ExposeRequestForm({
                 type="button"
                 onClick={handlePopupConfirm}
                 disabled={status === "sending" || !isPopupValid()}
-                className="flex-1 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
+                className={`flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed ${
+                  isPopupValid()
+                    ? "bg-[#E30A17] hover:bg-[#c40814]"
+                    : "bg-[#e85c66] hover:bg-[#e04752] opacity-90"
+                } ${status === "sending" ? "opacity-70" : ""}`}
               >
                 {status === "sending" ? "Wird gesendet…" : "Bestätigen & Senden"}
               </button>
