@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         hostname: "api.onoffice.de",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "image.onoffice.de",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "smart.onoffice.de",
+        pathname: "/**",
+      },
     ],
   },
   async redirects() {

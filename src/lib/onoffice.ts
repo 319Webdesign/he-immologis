@@ -3,8 +3,10 @@ import crypto from "node:crypto";
 const ONOFFICE_API_URL = "https://api.onoffice.de/api/stable/api.php";
 
 const READ_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:read";
+const GET_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:get";
 const CREATE_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:create";
 const RESOURCE_TYPE_ESTATE = "estate";
+const RESOURCE_TYPE_ESTATE_PICTURES = "estatepictures";
 const RESOURCE_TYPE_ADDRESS = "address";
 const RELATION_INTERESTED =
   "urn:onoffice-de-ns:smart:2.5:relationTypes:estate:address:interested";
@@ -529,7 +531,93 @@ export async function fetchPropertyById(id: number): Promise<Property | null> {
   const records = json.response?.results?.[0]?.data?.records ?? [];
   const record = records[0];
   if (!record) return null;
-  return mapRecordToPropertyDetail(record);
+  const property = mapRecordToPropertyDetail(record);
+
+  // Bilder via estatepictures-API laden (hochauflösend)
+  const pictureUrls = await fetchEstatePictures(id, token, secret);
+  if (pictureUrls.length > 0) {
+    property.galerie = pictureUrls;
+  }
+
+  return property;
+}
+
+/** Response-Struktur für estatepictures get-Action */
+interface EstatePicturesResponse {
+  status?: { code?: number; message?: string };
+  response?: {
+    results?: Array<{
+      status?: { code?: number };
+      data?: { records?: Array<{ id: number; type: string; elements: unknown }> };
+    }>;
+  };
+}
+
+/**
+ * Ruft die Bilder einer Immobilie von der estatepictures-API ab.
+ * Liefert hochauflösende URLs (size: original).
+ */
+async function fetchEstatePictures(
+  estateId: number,
+  token: string,
+  secret: string
+): Promise<string[]> {
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const actionid = GET_ACTION_ID;
+  const resourcetype = RESOURCE_TYPE_ESTATE_PICTURES;
+  const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
+
+  const body = {
+    token,
+    request: {
+      actions: [
+        {
+          actionid,
+          resourceid: "",
+          resourcetype,
+          identifier: "",
+          timestamp,
+          hmac,
+          hmac_version: "2",
+          parameters: {
+            estateids: [estateId],
+            categories: ["Foto", "Titelbild", "Foto_gross", "Grundriss", "Lageplan", "Panorama"],
+            size: "800x600",
+          },
+        },
+      ],
+    },
+  };
+
+  const res = await fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) return [];
+
+  const json = (await res.json()) as EstatePicturesResponse;
+  const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
+  if (statusCode !== 200) return [];
+
+  const records = json.response?.results?.[0]?.data?.records ?? [];
+  const urls: string[] = [];
+
+  for (const rec of records) {
+    const elements = rec.elements;
+    if (!elements) continue;
+    const arr = Array.isArray(elements) ? elements : [elements];
+    for (const el of arr) {
+      const obj = el as Record<string, unknown>;
+      const url = obj?.url;
+      if (typeof url === "string" && url.startsWith("http")) {
+        urls.push(url);
+      }
+    }
+  }
+
+  return urls;
 }
 
 /** Daten für eine Exposé-/Kontaktanfrage (doContactRequest) */
