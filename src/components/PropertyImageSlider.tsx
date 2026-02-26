@@ -28,11 +28,25 @@ export function PropertyImageSlider({
   const showPlaceholder = !hasRealImages && usePlaceholder;
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [aspectRatio, setAspectRatio] = useState<number>(16 / 10);
   const displayImages = hasRealImages ? validImages : [];
 
   useEffect(() => {
     setCurrentIndex(0);
   }, [images]);
+
+  useEffect(() => {
+    setAspectRatio(16 / 10);
+  }, [currentIndex]);
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    if (w > 0 && h > 0) {
+      setAspectRatio(w / h);
+    }
+  };
 
   const goNext = () => {
     setCurrentIndex((i) => (i + 1) % displayImages.length);
@@ -63,66 +77,72 @@ export function PropertyImageSlider({
 
   const currentSrc = displayImages[currentIndex];
   const isExternalUrl = currentSrc.startsWith("http");
+  const isPortrait = aspectRatio < 1;
 
   return (
     <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-zinc-200 mx-auto">
-      {/* Hauptbild mit Lazy Loading (nur erstes Bild mit priority) */}
-      <div className="relative aspect-[16/10] w-full">
+      {/* Hauptbild – Hochformat deutlich kleiner, Querformat volle Breite */}
+      <div
+        className={`relative w-full min-h-[200px] ${isPortrait ? "max-w-[280px] mx-auto" : ""}`}
+        style={{ aspectRatio }}
+      >
         <Image
           src={currentSrc}
           alt={hasRealImages ? `${alt} – Bild ${currentIndex + 1}` : alt}
           fill
-          className="object-cover"
+          className="object-contain"
           sizes="(max-width: 1024px) 100vw, 960px"
           priority={currentIndex === 0}
           loading={currentIndex === 0 ? undefined : "lazy"}
           unoptimized={isExternalUrl}
+          onLoad={handleImageLoad}
         />
-        {displayImages.length > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={goPrev}
-              className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-zinc-800 shadow-lg transition hover:bg-white"
-              aria-label="Vorheriges Bild"
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={goNext}
-              className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-zinc-800 shadow-lg transition hover:bg-white"
-              aria-label="Nächstes Bild"
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </>
-        )}
       </div>
+      {/* Pfeile immer am linken und rechten Rand des gesamten Bereichs */}
+      {displayImages.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={goPrev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-zinc-800 shadow-lg transition hover:bg-white"
+            aria-label="Vorheriges Bild"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-zinc-800 shadow-lg transition hover:bg-white"
+            aria-label="Nächstes Bild"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </>
+      )}
 
       {/* Thumbnails bei mehreren Bildern */}
       {displayImages.length > 1 && (
