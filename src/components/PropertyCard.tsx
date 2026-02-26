@@ -82,7 +82,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           />
           <span
             className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-            style={{ backgroundColor: "#E30A17" }}
+            style={{ backgroundColor: "#4682b4" }}
             aria-hidden
           >
             {badgeLabel}
