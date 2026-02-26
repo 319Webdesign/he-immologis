@@ -58,6 +58,7 @@ export type PropertyWithDetails = Property & PropertyDetails;
 
 export interface Rental {
   id: string;
+  objektnr_extern?: string;
   titel: string;
   kaltmiete: number;
   quadratmeter: number;

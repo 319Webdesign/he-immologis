@@ -63,7 +63,8 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   const roomsLabel = cardLabels?.roomsLabel ?? "Zimmer";
   const viewDetails = cardLabels?.viewDetails ?? "Details ansehen";
   const baseHref = lang ? `/${lang}/mieten` : "/mieten";
-  const detailHref = `${baseHref}/${property.id}`;
+  const detailSlug = property.objektnr_extern || property.id;
+  const detailHref = `${baseHref}/${encodeURIComponent(detailSlug)}`;
 
   const showGrundstueck =
     property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;

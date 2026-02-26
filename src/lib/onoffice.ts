@@ -32,6 +32,7 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "anzahl_badezimmer",
     "grundstuecksflaeche",
     "nebenkosten",
+    "objektnr_extern",
   ];
 }
 
@@ -85,6 +86,7 @@ function getDetailDataFields(): string[] {
     "energietraeger",
     "energieverbrauchskennwert",
     "endenergiebedarf",
+    "objektnr_extern",
   ];
 }
 
@@ -157,6 +159,8 @@ export interface Property {
   persid?: number | string | null;
   /** Nicht mehr in dataFields; nur für Abwärtskompatibilität (Fallback in UI) */
   nutzungsart?: string | null;
+  /** Externe Objektnummer für URLs (z. B. EFH-K-26-002) */
+  objektnr_extern?: string | null;
   /** Für statische Objekte: Anzeige-ID (z. B. immoNr) statt numerischer id */
   displayId?: string | null;
   /** Bei statischen Objekten: kein onOffice-Anfrage */
@@ -298,6 +302,7 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
     anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
     grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
     nebenkosten: readNumber(e.nebenkosten),
+    objektnr_extern: readString(e.objektnr_extern ?? e.externalestateno) || null,
   };
 }
 
@@ -350,6 +355,7 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     breitengrad: readNumber(e.breitengrad),
     laengengrad: readNumber(e.laengengrad),
     galerie: galerie.length > 0 ? galerie : base.galerie,
+    objektnr_extern: readString(e.objektnr_extern ?? e.externalestateno) || base.objektnr_extern || null,
     energieausweistyp: readString(e.energieausweistyp),
     energyClass: readString(e.energyClass),
     energietraeger: readString(e.energietraeger),
@@ -462,14 +468,25 @@ export async function fetchProperties(options?: {
 
   const allProperties = result.records.map(mapRecordToProperty);
 
+  // Titelbilder für die Vorschaukarten laden (Verkaufen/Mieten)
+  const estateIds = allProperties.map((p) => p.id);
+  if (estateIds.length > 0) {
+    const titelbildMap = await fetchEstatePicturesForList(estateIds, token, secret);
+    for (const p of allProperties) {
+      const url = titelbildMap.get(p.id);
+      if (url) p.galerie = [url];
+    }
+  }
+
   return allProperties;
 }
 
 /**
- * Ruft eine einzelne Immobilie anhand der ID von der onOffice-API ab.
- * Gibt null zurück, wenn die Immobilie nicht gefunden wird.
+ * Ruft eine einzelne Immobilie anhand der ID oder objektnr_extern (Slug) von der onOffice-API ab.
+ * Slug kann sein: numerische ID (z. B. "57") oder objektnr_extern (z. B. "EFH-K-26-002").
+ * Fallback: Wenn objektnr_extern fehlt, funktioniert die numerische ID weiterhin.
  */
-export async function fetchPropertyById(id: number): Promise<Property | null> {
+export async function fetchPropertyById(slug: string | number): Promise<Property | null> {
   const token = process.env.ONOFFICE_API_KEY;
   const secret = process.env.ONOFFICE_API_SECRET;
 
@@ -479,10 +496,26 @@ export async function fetchPropertyById(id: number): Promise<Property | null> {
     );
   }
 
+  const slugStr = String(slug).trim();
+  const useNumericId = /^\d+$/.test(slugStr);
+  const numericId = useNumericId ? parseInt(slugStr, 10) : null;
+
   const timestamp = String(Math.floor(Date.now() / 1000));
   const actionid = READ_ACTION_ID;
   const resourcetype = RESOURCE_TYPE_ESTATE;
   const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
+
+  const parameters: Record<string, unknown> = {
+    data: getDetailDataFields(),
+  };
+
+  if (!useNumericId) {
+    parameters.filter = {
+      objektnr_extern: [{ op: "=", val: slugStr }],
+      status: [{ op: "=", val: "1" }],
+    };
+    parameters.listlimit = 1;
+  }
 
   const body = {
     token,
@@ -490,15 +523,13 @@ export async function fetchPropertyById(id: number): Promise<Property | null> {
       actions: [
         {
           actionid,
-          resourceid: String(id),
+          resourceid: useNumericId && numericId != null ? String(numericId) : "",
           resourcetype,
           identifier: "",
           timestamp,
           hmac,
           hmac_version: "2",
-          parameters: {
-            data: getDetailDataFields(),
-          },
+          parameters,
         },
       ],
     },
@@ -533,8 +564,9 @@ export async function fetchPropertyById(id: number): Promise<Property | null> {
   if (!record) return null;
   const property = mapRecordToPropertyDetail(record);
 
-  // Bilder via estatepictures-API laden (hochauflösend)
-  const pictureUrls = await fetchEstatePictures(id, token, secret);
+  // Bilder via estatepictures-API laden (hochauflösend) – braucht die numerische Estate-ID
+  const estateId = record.id;
+  const pictureUrls = await fetchEstatePictures(estateId, token, secret);
   if (pictureUrls.length > 0) {
     property.galerie = pictureUrls;
   }
@@ -618,6 +650,100 @@ async function fetchEstatePictures(
   }
 
   return urls;
+}
+
+/**
+ * Ruft das Titelbild (oder Fallback: erstes Foto) einer Immobilie für die Listen-Vorschau ab.
+ * Kleinere Größe (400x300) für Karten.
+ */
+async function fetchEstateTitelbild(
+  estateId: number,
+  token: string,
+  secret: string
+): Promise<string | null> {
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const actionid = GET_ACTION_ID;
+  const resourcetype = RESOURCE_TYPE_ESTATE_PICTURES;
+  const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
+
+  const res = await fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      token,
+      request: {
+        actions: [
+          {
+            actionid,
+            resourceid: "",
+            resourcetype,
+            identifier: "",
+            timestamp,
+            hmac,
+            hmac_version: "2",
+            parameters: {
+              estateids: [estateId],
+              categories: ["Titelbild", "Foto", "Foto_gross"],
+              size: "400x300",
+            },
+          },
+        ],
+      },
+    }),
+  });
+
+  if (!res.ok) return null;
+
+  const json = (await res.json()) as EstatePicturesResponse;
+  const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
+  if (statusCode !== 200) return null;
+
+  const records = json.response?.results?.[0]?.data?.records ?? [];
+  let titelbildUrl: string | null = null;
+  let fallbackUrl: string | null = null;
+
+  for (const rec of records) {
+    const elements = rec.elements;
+    if (!elements) continue;
+    const arr = Array.isArray(elements) ? elements : [elements];
+    for (const el of arr) {
+      const obj = el as Record<string, unknown>;
+      const url = obj?.url;
+      if (typeof url !== "string" || !url.startsWith("http")) continue;
+      const type = String(rec.type ?? "").toLowerCase();
+      if (type === "titelbild") {
+        titelbildUrl = url;
+        break;
+      }
+      if (!fallbackUrl) fallbackUrl = url;
+    }
+    if (titelbildUrl) break;
+  }
+
+  return titelbildUrl ?? fallbackUrl;
+}
+
+/** Lädt Titelbilder für mehrere Estates (für Listen-Vorschau). Nutzt Chunks, um API nicht zu überlasten. */
+async function fetchEstatePicturesForList(
+  estateIds: number[],
+  token: string,
+  secret: string
+): Promise<Map<number, string>> {
+  const map = new Map<number, string>();
+  const CHUNK = 10;
+  for (let i = 0; i < estateIds.length; i += CHUNK) {
+    const chunk = estateIds.slice(i, i + CHUNK);
+    const results = await Promise.all(
+      chunk.map(async (id) => {
+        const url = await fetchEstateTitelbild(id, token, secret);
+        return [id, url] as const;
+      })
+    );
+    for (const [id, url] of results) {
+      if (url) map.set(id, url);
+    }
+  }
+  return map;
 }
 
 /** Daten für eine Exposé-/Kontaktanfrage (doContactRequest) */

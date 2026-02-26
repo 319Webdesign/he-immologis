@@ -15,6 +15,7 @@ interface MietenDataProps {
 /** Mappt onOffice Property (Miete) auf Rental für die bestehende Grid-/Filter-Struktur. */
 function mapOnOfficeToRental(p: {
   id: number;
+  objektnr_extern?: string | null;
   titel: string;
   kaltmiete: number | null;
   wohnflaeche: number | null;
@@ -33,6 +34,7 @@ function mapOnOfficeToRental(p: {
     ot.includes("haus") ? "Haus" : ot.includes("gewerbe") ? "Gewerbe" : "Wohnung";
   return {
     id: String(p.id),
+    objektnr_extern: p.objektnr_extern ?? undefined,
     titel: p.titel || "Ohne Titel",
     kaltmiete: p.kaltmiete ?? 0,
     quadratmeter: p.wohnflaeche ?? 0,

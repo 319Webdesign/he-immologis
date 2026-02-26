@@ -79,6 +79,20 @@ function formatEnergietraeger(s?: string | null): string | null {
   return ENERGIE_MAP[lower] ?? t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
 }
 
+/** Mappt API-Wert für Art des Energieausweises: Endenergiebedarf → Bedarfsausweis, etc. */
+function formatEnergieausweistyp(s?: string | null): string | null {
+  if (!s) return null;
+  const t = s.trim();
+  if (!t) return null;
+  const lower = t.toLowerCase();
+  if (lower === "endenergiebedarf") return "Bedarfsausweis";
+  if (lower === "energieverbrauchskennwert" || lower === "verbrauch") return "Verbrauchsausweis";
+  if (lower === "bedarfsausweis" || lower === "verbrauchsausweis" || lower === "gebrauchsausweis") {
+    return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+  }
+  return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+}
+
 /** Energieeffizienz-Balken A+ bis H zur Veranschaulichung */
 const ENERGY_CLASSES = [
   { id: "A+", color: "bg-emerald-500" },
@@ -166,7 +180,7 @@ export function PropertyDetailLayout({
   const isKaufen = section === "kaufen";
   const price = isKaufen ? p.kaufpreis : p.kaltmiete;
   const priceLabel = isKaufen ? "Kaufpreis" : "Kaltmiete";
-  const objectNumber = p.displayId ?? String(p.id);
+  const objectNumber = p.objektnr_extern ?? p.displayId ?? String(p.id);
 
   const images = [...(p.galerie ?? [])].filter(
     (src) => src && typeof src === "string"
@@ -409,7 +423,7 @@ export function PropertyDetailLayout({
                 />
               </div>
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
-                <DataRow label="Art des Energieausweises" value={p.energieausweistyp} />
+                <DataRow label="Art des Energieausweises" value={formatEnergieausweistyp(p.energieausweistyp)} />
                 <DataRow
                   label="Endenergieverbrauch"
                   value={
