@@ -39,10 +39,44 @@ function formatArea(value: number | undefined | null): string {
   return `ca. ${formatted} m²`;
 }
 
+function formatYear(value: number | undefined | null): string {
+  if (value == null) return "—";
+  return new Intl.NumberFormat("de-DE", {
+    useGrouping: false,
+    maximumFractionDigits: 0,
+  }).format(Math.round(value));
+}
+
 function capitalizeObjektart(s?: string | null): string | null {
   if (!s) return null;
   const t = s.trim().toLowerCase();
   return t ? t.charAt(0).toUpperCase() + t.slice(1) : s;
+}
+
+/** Mappt API-Werte (z. B. erdwaerme) auf lesbare deutsche Bezeichnungen (Erdwärme) */
+const ENERGIE_MAP: Record<string, string> = {
+  erdwaerme: "Erdwärme",
+  erdwärme: "Erdwärme",
+  gas: "Gas",
+  oel: "Öl",
+  öl: "Öl",
+  strom: "Strom",
+  holz: "Holz",
+  fernwaerme: "Fernwärme",
+  fernwärme: "Fernwärme",
+  luftwaerme: "Luftwärme",
+  luftwärme: "Luftwärme",
+  solar: "Solar",
+  waermepumpe: "Wärmepumpe",
+  wärmepumpe: "Wärmepumpe",
+};
+
+function formatEnergietraeger(s?: string | null): string | null {
+  if (!s) return null;
+  const t = s.trim();
+  if (!t) return null;
+  const lower = t.toLowerCase();
+  return ENERGIE_MAP[lower] ?? t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
 }
 
 /** Energieeffizienz-Balken A+ bis H zur Veranschaulichung */
@@ -351,7 +385,7 @@ export function PropertyDetailLayout({
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
                 <DataRow
                   label="Baujahr"
-                  value={p.baujahr != null ? formatNumber(p.baujahr) : null}
+                  value={p.baujahr != null ? formatYear(p.baujahr) : null}
                 />
                 <DataRow label="Energieeffizienzklasse">
                   {p.energyClass ? (
@@ -386,7 +420,7 @@ export function PropertyDetailLayout({
                 />
                 <DataRow
                   label="Energieträger"
-                  value={p.energietraeger ?? p.befeuerung}
+                  value={formatEnergietraeger(p.energietraeger ?? p.befeuerung)}
                 />
               </div>
             </div>
