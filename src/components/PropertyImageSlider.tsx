@@ -28,25 +28,11 @@ export function PropertyImageSlider({
   const showPlaceholder = !hasRealImages && usePlaceholder;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [aspectRatio, setAspectRatio] = useState<number>(16 / 10);
   const displayImages = hasRealImages ? validImages : [];
 
   useEffect(() => {
     setCurrentIndex(0);
   }, [images]);
-
-  useEffect(() => {
-    setAspectRatio(16 / 10);
-  }, [currentIndex]);
-
-  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    const w = img.naturalWidth;
-    const h = img.naturalHeight;
-    if (w > 0 && h > 0) {
-      setAspectRatio(w / h);
-    }
-  };
 
   const goNext = () => {
     setCurrentIndex((i) => (i + 1) % displayImages.length);
@@ -77,15 +63,11 @@ export function PropertyImageSlider({
 
   const currentSrc = displayImages[currentIndex];
   const isExternalUrl = currentSrc.startsWith("http");
-  const isPortrait = aspectRatio < 1;
 
   return (
     <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-zinc-200 mx-auto">
-      {/* Hauptbild – Hochformat deutlich kleiner, Querformat volle Breite */}
-      <div
-        className={`relative w-full min-h-[200px] ${isPortrait ? "max-w-[280px] mx-auto" : ""}`}
-        style={{ aspectRatio }}
-      >
+      {/* Feste Höhe (16:10) – alle Bilder gleiche Anzeigefläche, kein Layout-Sprung beim Durchklicken */}
+      <div className="relative aspect-[16/10] w-full">
         <Image
           src={currentSrc}
           alt={hasRealImages ? `${alt} – Bild ${currentIndex + 1}` : alt}
@@ -95,7 +77,6 @@ export function PropertyImageSlider({
           priority={currentIndex === 0}
           loading={currentIndex === 0 ? undefined : "lazy"}
           unoptimized={isExternalUrl}
-          onLoad={handleImageLoad}
         />
       </div>
       {/* Pfeile immer am linken und rechten Rand des gesamten Bereichs */}
