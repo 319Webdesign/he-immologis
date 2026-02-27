@@ -30,7 +30,10 @@ export function PropertyContactWidget({
         <div className="min-w-0 flex-1">
           <p className="text-lg font-semibold text-zinc-900">{CONTACT.name}</p>
           <p className="mt-1 text-base text-zinc-600">{CONTACT.role}</p>
-          <p className="mt-0.5 text-base text-zinc-600">{CONTACT.tagline}</p>
+          <p className="mt-0.5 text-base text-zinc-600">
+            <span className="sm:hidden">Verlässlich<br />- an Ihrer Seite.</span>
+            <span className="hidden sm:inline">{CONTACT.tagline}</span>
+          </p>
           <a
             href="#expose-anfordern"
             className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#E30A17] px-5 py-2.5 text-base font-medium text-white transition hover:bg-[#c40814]"

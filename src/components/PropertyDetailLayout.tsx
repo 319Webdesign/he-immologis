@@ -7,6 +7,7 @@ import {
   TreeDeciduous,
   DoorOpen,
   Info,
+  Check,
 } from "lucide-react";
 import type { Property } from "@/lib/onoffice";
 import { PropertyImageSlider } from "./PropertyImageSlider";
@@ -45,6 +46,81 @@ function formatYear(value: number | undefined | null): string {
     useGrouping: false,
     maximumFractionDigits: 0,
   }).format(Math.round(value));
+}
+
+/** Boolean → "Ja" / "Nein" */
+function formatBoolean(value: boolean | null | undefined): string | null {
+  if (value === null || value === undefined) return null;
+  return value ? "Ja" : "Nein";
+}
+
+/** Provision/Courtage: Prozent oder Euro */
+function formatCourtage(value: string | number | undefined | null): string | null {
+  if (value == null || value === "") return null;
+  if (typeof value === "string") return value.trim() || null;
+  if (typeof value === "number") {
+    if (value >= 100) {
+      return new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(value);
+    }
+    return new Intl.NumberFormat("de-DE", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value) + " %";
+  }
+  return null;
+}
+
+/** Haustiere: Text/Zahl normalisieren (ja/nein/nach Vereinbarung) */
+function formatHaustiere(value: string | number | null | undefined): string | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "number") {
+    if (value === 1) return "Ja";
+    if (value === 0) return "Nein";
+    return null;
+  }
+  const t = value.trim().toLowerCase();
+  if (!t) return null;
+  if (/^ja$|^yes$|^1$/.test(t)) return "Ja";
+  if (/^nein$|^no$|^0$/.test(t)) return "Nein";
+  if (/nach\s*vereinbarung|vereinbarung/i.test(t)) return "Nach Vereinbarung";
+  return value.trim();
+}
+
+/** Balkon/Terrassen: Boolean → Ja/Nein, Zahl → Anzahl */
+function formatBalkonTerrassen(value: boolean | number | null | undefined): string | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "boolean") return value ? "Ja" : "Nein";
+  if (typeof value === "number" && value >= 0) return String(value);
+  return null;
+}
+
+/** Datum parsen und formatiert anzeigen (nur wenn gültiges Datum) */
+function formatDateDE(value: string | null | undefined): string | null {
+  if (!value || typeof value !== "string") return null;
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  const d = new Date(trimmed);
+  if (Number.isNaN(d.getTime())) return null;
+  return new Intl.DateTimeFormat("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(d);
+}
+
+/** Distanz mit 2 Nachkommastellen + km (z. B. 0,80 km) */
+function formatDistance(value: number | null | undefined): string | null {
+  if (value == null) return null;
+  const formatted = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+  return `${formatted} km`;
 }
 
 function capitalizeObjektart(s?: string | null): string | null {
@@ -186,8 +262,12 @@ export function PropertyDetailLayout({
     (src) => src && typeof src === "string"
   );
 
-  const energieKennwert =
-    p.endenergiebedarf ?? p.energieverbrauchskennwert ?? null;
+  const rawEnergyValue = p.endenergiebedarf ?? p.energieverbrauchskennwert ?? null;
+  const displayEnergyValue =
+    rawEnergyValue != null
+      ? `${new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(rawEnergyValue)} kWh/(m²·a)`
+      : null;
+  const energieKennwert = rawEnergyValue;
 
   const hasPrice = price != null && price > 0;
   const priceDisplay = hasPrice
@@ -251,6 +331,15 @@ export function PropertyDetailLayout({
       fmt: (v) => `${formatArea(v)} Grundstücksfläche`,
     });
   }
+
+  const infrastrukturRows = [
+    { key: "distanz_kindergarten", label: "Dist. Kindergarten", value: formatDistance(p.distanz_kindergarten) },
+    { key: "distanz_grundschule", label: "Dist. Grundschule", value: formatDistance(p.distanz_grundschule) },
+    { key: "distanz_realschule", label: "Dist. Realschule", value: formatDistance(p.distanz_realschule) },
+    { key: "distanz_gymnasium", label: "Dist. Gymnasium", value: formatDistance(p.distanz_gymnasium) },
+    { key: "distanz_autobahn", label: "Dist. Autobahn", value: formatDistance(p.distanz_autobahn) },
+    { key: "distanz_zentrum", label: "Dist. Zentrum", value: formatDistance(p.distanz_zentrum) },
+  ].filter((row) => row.value != null);
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -350,7 +439,10 @@ export function PropertyDetailLayout({
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
+              <DataRow label="Objektnummer" value={p.objektnr_extern || objectNumber} />
               <DataRow label="Objektart" value={capitalizeObjektart(p.objektart)} />
+              <DataRow label="Zustand" value={p.zustand?.trim() || null} />
+              <DataRow label="Ort" value={p.ort?.trim() || null} />
               <DataRow
                 label="Zimmer"
                 value={p.anzahl_zimmer != null ? formatNumber(p.anzahl_zimmer) : null}
@@ -363,6 +455,33 @@ export function PropertyDetailLayout({
                 label="Badezimmer"
                 value={p.anzahl_badezimmer != null ? formatNumber(p.anzahl_badezimmer) : null}
               />
+              <DataRow label="Verfügbar ab" value={p.verfuegbar_ab?.trim() || null} />
+              <DataRow label="Terrassen" value={formatBalkonTerrassen(p.terrassen) ?? formatBalkonTerrassen(p.anzahl_terrassen) ?? "Nein"} />
+              <DataRow label="Balkon" value={formatBalkonTerrassen(p.balkon) ?? formatBalkonTerrassen(p.anzahl_balkone) ?? "Nein"} />
+              <DataRow label="Barrierefrei" value={formatBoolean(p.barrierefrei) ?? "Nein"} />
+              <DataRow label="Denkmalschutz" value={formatBoolean(p.denkmalschutzobjekt) ?? "Nein"} />
+              <DataRow label="Haustiere" value={formatHaustiere(p.haustiere)} />
+              <DataRow
+                label="Stellplätze"
+                value={p.anzahl_stellplaetze != null ? (p.anzahl_stellplaetze === 0 ? "Nein" : formatNumber(p.anzahl_stellplaetze)) : null}
+              />
+              {!isKaufen && (
+                <>
+                  <DataRow label="Gewerbliche Nutzung">
+                    {p.gewerbliche_nutzung === true || p.gewerbliche_nutzung === 1 ? (
+                      <span className="inline-flex items-center gap-1.5 text-right text-sm font-medium text-green-700">
+                        <Check className="h-5 w-5 shrink-0 text-green-600" aria-hidden />
+                        Ja
+                      </span>
+                    ) : p.gewerbliche_nutzung === false || p.gewerbliche_nutzung === 0 ? (
+                      <span className="text-right text-sm font-medium text-zinc-900">Nein</span>
+                    ) : (
+                      <span className="text-right text-sm font-medium text-zinc-500">—</span>
+                    )}
+                  </DataRow>
+                  <DataRow label="Aktuell vermietet" value={formatBoolean(p.vermietet) ?? "—"} />
+                </>
+              )}
             </div>
             <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
               <DataRow
@@ -384,6 +503,16 @@ export function PropertyDetailLayout({
               <DataRow
                 label="Nutzfläche"
                 value={p.nutzflaeche != null ? formatArea(p.nutzflaeche) : null}
+              />
+              {isKaufen && (
+                <DataRow
+                  label="Kaufpreis"
+                  value={p.kaufpreis != null && p.kaufpreis > 0 ? formatPrice(p.kaufpreis) : "auf Anfrage"}
+                />
+              )}
+              <DataRow
+                label="Provision"
+                value={formatCourtage(p.aussen_courtage)}
               />
             </div>
           </div>
@@ -425,17 +554,19 @@ export function PropertyDetailLayout({
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
                 <DataRow label="Art des Energieausweises" value={formatEnergieausweistyp(p.energieausweistyp)} />
                 <DataRow
-                  label="Endenergieverbrauch"
-                  value={
-                    energieKennwert != null
-                      ? `${formatNumber(energieKennwert)} kWh/m²a`
-                      : null
-                  }
+                  label={p.endenergiebedarf != null ? "Endenergiebedarf" : p.energieverbrauchskennwert != null ? "Energieverbrauchskennwert" : "Energiekennwert"}
+                  value={displayEnergyValue ?? "Nicht angegeben"}
                 />
                 <DataRow
                   label="Energieträger"
                   value={formatEnergietraeger(p.energietraeger ?? p.befeuerung)}
                 />
+                {formatDateDE(p.ev71_pass_valid_until) != null && (
+                  <DataRow
+                    label="Energieausweis gültig bis"
+                    value={formatDateDE(p.ev71_pass_valid_until)}
+                  />
+                )}
               </div>
             </div>
             {(p.energyClass ?? energieKennwert != null) && (
@@ -499,19 +630,40 @@ export function PropertyDetailLayout({
           </div>
         </section>
 
+        {/* Infrastruktur */}
+        {infrastrukturRows.length > 0 && (
+          <section className="w-full max-w-3xl">
+            <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
+              Infrastruktur
+            </h2>
+            <div className="overflow-hidden rounded-lg border border-zinc-200/80 bg-white">
+              {infrastrukturRows.map((row, index) => (
+                <div
+                  key={row.key}
+                  className={`flex items-center justify-between px-4 py-3 sm:px-5 ${index % 2 === 0 ? "bg-white" : "bg-zinc-50/80"}`}
+                >
+                  <span className="text-sm text-zinc-600">{row.label}</span>
+                  <span className="text-sm font-medium text-zinc-900">{row.value}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Exposé anfordern */}
         <section id="expose-anfordern" className="mt-8 scroll-mt-20 flex flex-col items-center">
-          <div className="w-full max-w-xl rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-          <h2 className="font-sans text-lg font-semibold text-zinc-900">
-            {isKaufen ? "Exposé anfordern" : "Unterlagen anfordern"}
+          <div className="w-full max-w-xl rounded-xl border border-zinc-200 bg-[#4682B4] p-5 shadow-sm">
+          <h2 className="font-sans text-lg font-semibold text-white">
+            Exposé anfordern
           </h2>
-          <p className="mt-2 text-sm text-zinc-600">
+          <p className="mt-2 text-sm text-white/90">
             Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
             Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
             einzutragen.
           </p>
           <div className="mt-6">
             <ExposeRequestForm
+              lightLabels
               objectNumber={objectNumber}
               estateId={
                 p.estateIdForContact === null

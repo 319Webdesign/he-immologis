@@ -36,7 +36,31 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
   ];
 }
 
-/** Felder für die Detailansicht (fields.csv). */
+/**
+ * Core-Liste: Minimale Pflichtfelder (Titel, Preis, Ort).
+ * Wird immer angefordert und als Fallback bei wiederholten Error 141 genutzt.
+ */
+function getDetailDataFieldsCore(): string[] {
+  return [
+    "objekttitel",
+    "kaufpreis",
+    "kaltmiete",
+    "ort",
+    "plz",
+    "wohnflaeche",
+    "objektart",
+    "objektnr_extern",
+    "dreizeiler",
+    "objektbeschreibung",
+  ];
+}
+
+/**
+ * Felder für die Detailansicht mit präventiven Korrekturen bekannter Problemfelder:
+ * denkmalschutzobjekt -> denkmalschutz
+ * barrierefrei -> barrierefrei_id
+ * anzahl_terrassen -> terrassen
+ */
 function getDetailDataFields(): string[] {
   return [
     "objekttitel",
@@ -62,7 +86,7 @@ function getDetailDataFields(): string[] {
     "anzahl_badezimmer",
     "anzahl_sep_wc",
     "anzahl_balkone",
-    "anzahl_terrassen",
+    "terrassen", // API: terrassen (Fallback: anzahl_terrassen bei Auto-Remove)
     "etage",
     "baujahr",
     "zustand",
@@ -87,6 +111,18 @@ function getDetailDataFields(): string[] {
     "energieverbrauchskennwert",
     "endenergiebedarf",
     "objektnr_extern",
+    "barrierefrei_id", // API: barrierefrei_id statt barrierefrei
+    "denkmalschutz", // API: denkmalschutz statt denkmalschutzobjekt
+    "anzahl_stellplaetze",
+    "ev71_pass_valid_until",
+    "distanz_kindergarten",
+    "distanz_grundschule",
+    "distanz_realschule",
+    "distanz_gymnasium",
+    "distanz_autobahn",
+    "distanz_zentrum",
+    "gewerblichenutzung", // Alternativ zu gewerbliche_nutzung
+    "vermietet",
   ];
 }
 
@@ -171,6 +207,27 @@ export interface Property {
   energietraeger?: string | null;
   energieverbrauchskennwert?: number | null;
   endenergiebedarf?: number | null;
+  /** Balkon (Boolean oder Anzahl) */
+  balkon?: boolean | number | null;
+  /** Terrasse(n) (Boolean oder Anzahl) */
+  terrassen?: boolean | number | null;
+  /** Barrierefrei */
+  barrierefrei?: boolean | null;
+  /** Denkmalschutzobjekt */
+  denkmalschutzobjekt?: boolean | null;
+  /** Anzahl Stellplätze */
+  anzahl_stellplaetze?: number | null;
+  /** Energieausweis gültig bis (Datum) */
+  ev71_pass_valid_until?: string | null;
+  /** Infrastruktur: Distanzen in km */
+  distanz_kindergarten?: number | null;
+  distanz_grundschule?: number | null;
+  distanz_realschule?: number | null;
+  distanz_gymnasium?: number | null;
+  distanz_autobahn?: number | null;
+  distanz_zentrum?: number | null;
+  /** Aktuell vermietet */
+  vermietet?: boolean | null;
 }
 
 /** Rohe Elemente eines Records aus der onOffice-API (Feldname → Wert) */
@@ -349,7 +406,7 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     fahrstuhl: readString(e.fahrstuhl),
     kabel_sat_tv: readBoolean(e.kabel_sat_tv) ?? readString(e.kabel_sat_tv),
     verfuegbar_ab: readString(e.verfuegbar_ab),
-    gewerbliche_nutzung: readBoolean(e.gewerbliche_nutzung) ?? readNumber(e.gewerbliche_nutzung),
+    gewerbliche_nutzung: readBoolean(e.gewerbliche_nutzung) ?? readBoolean(e.gewerblichenutzung) ?? readNumber(e.gewerbliche_nutzung) ?? readNumber(e.gewerblichenutzung),
     haustiere: readString(e.haustiere),
     strasse: readString(e.strasse),
     breitengrad: readNumber(e.breitengrad),
@@ -360,7 +417,21 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     energyClass: readString(e.energyClass),
     energietraeger: readString(e.energietraeger),
     energieverbrauchskennwert: readNumber(e.energieverbrauchskennwert),
-    endenergiebedarf: readEnergyValue(e),
+    endenergiebedarf: readNumber(e.endenergiebedarf),
+    balkon: readBoolean(e.balkon) ?? readNumber(e.balkon),
+    terrassen: readBoolean(e.terrassen) ?? readNumber(e.terrassen) ?? readNumber(e.anzahl_terrassen),
+    anzahl_terrassen: readNumber(e.anzahl_terrassen) ?? readNumber(e.terrassen),
+    barrierefrei: readBoolean(e.barrierefrei_id) ?? readBoolean(e.barrierefrei),
+    denkmalschutzobjekt: readBoolean(e.denkmalschutz) ?? readBoolean(e.denkmalschutzobjekt),
+    anzahl_stellplaetze: readNumber(e.anzahl_stellplaetze),
+    ev71_pass_valid_until: readString(e.ev71_pass_valid_until) || null,
+    distanz_kindergarten: readNumber(e.distanz_kindergarten),
+    distanz_grundschule: readNumber(e.distanz_grundschule),
+    distanz_realschule: readNumber(e.distanz_realschule),
+    distanz_gymnasium: readNumber(e.distanz_gymnasium),
+    distanz_autobahn: readNumber(e.distanz_autobahn),
+    distanz_zentrum: readNumber(e.distanz_zentrum),
+    vermietet: readBoolean(e.vermietet),
   };
 }
 
@@ -484,94 +555,153 @@ export async function fetchProperties(options?: {
 /**
  * Ruft eine einzelne Immobilie anhand der ID oder objektnr_extern (Slug) von der onOffice-API ab.
  * Slug kann sein: numerische ID (z. B. "57") oder objektnr_extern (z. B. "EFH-K-26-002").
- * Fallback: Wenn objektnr_extern fehlt, funktioniert die numerische ID weiterhin.
+ * Fallback: Bei Fehler 141 (unbekanntes Feld) wird mit reduzierter Feldliste erneut versucht.
  */
 export async function fetchPropertyById(slug: string | number): Promise<Property | null> {
-  const token = process.env.ONOFFICE_API_KEY;
-  const secret = process.env.ONOFFICE_API_SECRET;
+  try {
+    const token = process.env.ONOFFICE_API_KEY;
+    const secret = process.env.ONOFFICE_API_SECRET;
 
-  if (!token || !secret) {
-    throw new Error(
-      "Fehlende onOffice-Zugangsdaten: ONOFFICE_API_KEY und ONOFFICE_API_SECRET müssen in .env.local gesetzt sein."
-    );
-  }
+    if (!token || !secret) {
+      throw new Error(
+        "Fehlende onOffice-Zugangsdaten: ONOFFICE_API_KEY und ONOFFICE_API_SECRET müssen in .env.local gesetzt sein."
+      );
+    }
 
-  const slugStr = String(slug).trim();
-  const useNumericId = /^\d+$/.test(slugStr);
-  const numericId = useNumericId ? parseInt(slugStr, 10) : null;
+    const slugStr = String(slug).trim();
+    const useNumericId = /^\d+$/.test(slugStr);
+    const numericId = useNumericId ? parseInt(slugStr, 10) : null;
 
-  const timestamp = String(Math.floor(Date.now() / 1000));
-  const actionid = READ_ACTION_ID;
-  const resourcetype = RESOURCE_TYPE_ESTATE;
-  const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
+    const doFetch = async (dataFields: string[]): Promise<{ ok: true; record: OnOfficeRecord } | { ok: false; errorcode?: number; json: OnOfficeReadResponse }> => {
+      const timestamp = String(Math.floor(Date.now() / 1000));
+      const actionid = READ_ACTION_ID;
+      const resourcetype = RESOURCE_TYPE_ESTATE;
+      const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
 
-  const parameters: Record<string, unknown> = {
-    data: getDetailDataFields(),
-  };
+      const parameters: Record<string, unknown> = { data: dataFields };
+      if (!useNumericId) {
+        parameters.filter = {
+          objektnr_extern: [{ op: "=", val: slugStr }],
+          status: [{ op: "=", val: "1" }],
+        };
+        parameters.listlimit = 1;
+      }
 
-  if (!useNumericId) {
-    parameters.filter = {
-      objektnr_extern: [{ op: "=", val: slugStr }],
-      status: [{ op: "=", val: "1" }],
+      const res = await fetch(ONOFFICE_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token,
+          request: {
+            actions: [
+              {
+                actionid,
+                resourceid: useNumericId && numericId != null ? String(numericId) : "",
+                resourcetype,
+                identifier: "",
+                timestamp,
+                hmac,
+                hmac_version: "2",
+                parameters,
+              },
+            ],
+          },
+        }),
+      });
+
+      if (!res.ok) {
+        return {
+          ok: false,
+          errorcode: undefined,
+          json: { status: { code: res.status, message: res.statusText } } as OnOfficeReadResponse,
+        };
+      }
+
+      const json = (await res.json()) as OnOfficeReadResponse;
+      const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
+      const resultStatus = json.response?.results?.[0]?.status;
+      const errorcode = resultStatus?.errorcode ?? json.status?.errorcode;
+
+      if (statusCode !== 200) {
+        return { ok: false, errorcode, json };
+      }
+
+      const records = json.response?.results?.[0]?.data?.records ?? [];
+      const record = records[0];
+      if (!record) return { ok: false, errorcode: undefined, json };
+
+      return { ok: true, record };
     };
-    parameters.listlimit = 1;
-  }
 
-  const body = {
-    token,
-    request: {
-      actions: [
-        {
-          actionid,
-          resourceid: useNumericId && numericId != null ? String(numericId) : "",
-          resourcetype,
-          identifier: "",
-          timestamp,
-          hmac,
-          hmac_version: "2",
-          parameters,
-        },
-      ],
-    },
-  };
+    /** Extrahiert Feldnamen aus API-Fehlermeldung (z. B. "Unknown field: denkmalschutzobjekt"). */
+    const parseFieldFrom141Message = (message: string): string | null => {
+      if (!message || typeof message !== "string") return null;
+      const m = message.trim();
+      const patterns = [
+        /Unknown field:\s*['"]?(\w+)['"]?/i,
+        /Feld\s+['"]?(\w+)['"]?\s+(?:ist )?unbekannt/i,
+        /unknown field:\s*(\w+)/i,
+        /field\s+['"]?(\w+)['"]?\s+not found/i,
+        /(?:invalid|invalid field)\s+['"]?(\w+)['"]?/i,
+      ];
+      for (const re of patterns) {
+        const match = m.match(re);
+        if (match?.[1]) return match[1];
+      }
+      return null;
+    };
 
-  const res = await fetch(ONOFFICE_API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+    let fields = [...getDetailDataFields()];
+    const coreFields = getDetailDataFieldsCore();
+    const maxRetries = 25;
+    let retryCount = 0;
+    let result = await doFetch(fields);
 
-  if (!res.ok) {
-    throw new Error(`onOffice API Fehler: ${res.status} ${res.statusText}`);
-  }
+    while (!result.ok && result.errorcode === 141 && retryCount < maxRetries) {
+      const msg =
+        result.json.response?.results?.[0]?.status?.message ??
+        result.json.status?.message ??
+        "";
+      const fieldName = parseFieldFrom141Message(String(msg));
 
-  const json = (await res.json()) as OnOfficeReadResponse;
-  const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
-  if (statusCode !== 200) {
-    const resultStatus = json.response?.results?.[0]?.status;
-    const errorcode = resultStatus?.errorcode ?? json.status?.errorcode;
-    const msg = resultStatus?.message ?? json.status?.message ?? "Unbekannter API-Fehler";
-    const fullErrorString = JSON.stringify(json, null, 2);
-    console.error("[onOffice API fetchPropertyById] --- Vollständige Fehler-Antwort ---");
-    console.error(fullErrorString);
-    console.error("[onOffice API fetchPropertyById] errorcode:", errorcode);
-    console.error("[onOffice API fetchPropertyById] message:", msg);
+      if (fieldName && fields.includes(fieldName)) {
+        console.warn(`Entferne Feld [${fieldName}] wegen API-Error 141.`);
+        fields = fields.filter((f) => f !== fieldName);
+        retryCount++;
+        result = await doFetch(fields);
+      } else {
+        console.warn("[onOffice API fetchPropertyById] Error 141: Feldname aus Meldung nicht extrahierbar oder bereits entfernt. Fallback auf Core-Liste.");
+        result = await doFetch(coreFields);
+        break;
+      }
+    }
+
+    if (!result.ok) {
+      const { json, errorcode } = result;
+      const msg =
+        json.response?.results?.[0]?.status?.message ??
+        json.status?.message ??
+        "Unbekannter API-Fehler";
+      console.error("[onOffice API fetchPropertyById] --- Fehler-Antwort ---");
+      console.error("[onOffice API fetchPropertyById] errorcode:", errorcode);
+      console.error("[onOffice API fetchPropertyById] message:", msg);
+      return null;
+    }
+
+    const { record } = result;
+    const property = mapRecordToPropertyDetail(record);
+
+    const estateId = record.id;
+    const pictureUrls = await fetchEstatePictures(estateId, token, secret);
+    if (pictureUrls.length > 0) {
+      property.galerie = pictureUrls;
+    }
+
+    return property;
+  } catch (err) {
+    console.error("[onOffice API fetchPropertyById] Unerwarteter Fehler:", err);
     return null;
   }
-
-  const records = json.response?.results?.[0]?.data?.records ?? [];
-  const record = records[0];
-  if (!record) return null;
-  const property = mapRecordToPropertyDetail(record);
-
-  // Bilder via estatepictures-API laden (hochauflösend) – braucht die numerische Estate-ID
-  const estateId = record.id;
-  const pictureUrls = await fetchEstatePictures(estateId, token, secret);
-  if (pictureUrls.length > 0) {
-    property.galerie = pictureUrls;
-  }
-
-  return property;
 }
 
 /** Response-Struktur für estatepictures get-Action */

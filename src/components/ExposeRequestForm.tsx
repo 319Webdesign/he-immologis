@@ -15,6 +15,8 @@ interface ExposeRequestFormProps {
   hideIntro?: boolean;
   /** Sprachcode für Links (z. B. datenschutz) */
   locale?: string;
+  /** Weiße Labels für dunklen Hintergrund (z. B. Steel Blue) */
+  lightLabels?: boolean;
 }
 
 function validateEmail(email: string): boolean {
@@ -31,6 +33,7 @@ export function ExposeRequestForm({
   propertyTitle,
   hideIntro = false,
   locale = "de",
+  lightLabels = false,
 }: ExposeRequestFormProps) {
   const [formState, setFormState] = useState({
     vorname: "",
@@ -231,7 +234,7 @@ export function ExposeRequestForm({
           <div>
             <label
               htmlFor="expose-req-vorname"
-              className="block text-sm font-medium text-zinc-700"
+              className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
               Vorname *
             </label>
@@ -255,7 +258,7 @@ export function ExposeRequestForm({
           <div>
             <label
               htmlFor="expose-req-name"
-              className="block text-sm font-medium text-zinc-700"
+              className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
               Name *
             </label>
@@ -278,7 +281,7 @@ export function ExposeRequestForm({
         <div>
           <label
             htmlFor="expose-req-strasse"
-            className="block text-sm font-medium text-zinc-700"
+            className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
           >
             Straße *
           </label>
@@ -301,7 +304,7 @@ export function ExposeRequestForm({
           <div>
             <label
               htmlFor="expose-req-plz"
-              className="block text-sm font-medium text-zinc-700"
+              className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
               PLZ *
             </label>
@@ -322,7 +325,7 @@ export function ExposeRequestForm({
           <div>
             <label
               htmlFor="expose-req-ort"
-              className="block text-sm font-medium text-zinc-700"
+              className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
               Ort *
             </label>
@@ -345,7 +348,7 @@ export function ExposeRequestForm({
         <div>
           <label
             htmlFor="expose-req-email"
-            className="block text-sm font-medium text-zinc-700"
+            className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
           >
             E-Mail-Adresse *
           </label>
@@ -367,7 +370,7 @@ export function ExposeRequestForm({
         <div>
           <label
             htmlFor="expose-req-telefon"
-            className="block text-sm font-medium text-zinc-700"
+            className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
           >
             Telefonnummer *
           </label>
@@ -387,10 +390,14 @@ export function ExposeRequestForm({
         </div>
       </div>
 
-      <div className="border-t border-zinc-200 pt-6">
+      <div className={`border-t pt-6 ${lightLabels ? "border-white/30" : "border-zinc-200"}`}>
       <label
         className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
-          errors.datenschutz ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-white"
+          errors.datenschutz
+            ? "border-red-500 bg-red-50/50"
+            : lightLabels
+              ? "border-white/40 bg-[#4682B4]"
+              : "border-zinc-200 bg-white"
         }`}
       >
         <input
@@ -402,11 +409,11 @@ export function ExposeRequestForm({
           className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
           aria-invalid={!!errors.datenschutz}
         />
-        <span className="text-sm text-zinc-700">
+        <span className={`text-sm ${lightLabels ? "text-white" : "text-zinc-700"}`}>
           Mit diesem Haken bestätigen Sie, dass Sie die{" "}
           <Link
             href={`/${locale}/datenschutz`}
-            className="text-teal-600 underline hover:text-teal-700"
+            className="text-[#E30A17] underline hover:text-[#c40814]"
             target="_blank"
             rel="noopener noreferrer"
           >
