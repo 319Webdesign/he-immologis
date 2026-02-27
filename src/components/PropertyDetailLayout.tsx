@@ -54,6 +54,13 @@ function formatBoolean(value: boolean | null | undefined): string | null {
   return value ? "Ja" : "Nein";
 }
 
+/** TINYINT (0/1) → "Ja" / "Nein" – zeigt immer einen Wert an (auch bei 0). */
+function formatTinyIntJaNein(value: boolean | number | null | undefined): string {
+  if (value === 1 || value === true) return "Ja";
+  if (value === 0 || value === false) return "Nein";
+  return "—";
+}
+
 /** Provision/Courtage: Prozent oder Euro */
 function formatCourtage(value: string | number | undefined | null): string | null {
   if (value == null || value === "") return null;
@@ -129,8 +136,10 @@ function capitalizeObjektart(s?: string | null): string | null {
   return t ? t.charAt(0).toUpperCase() + t.slice(1) : s;
 }
 
-/** Mappt API-Werte (z. B. erdwaerme) auf lesbare deutsche Bezeichnungen (Erdwärme) */
+/** Mappt API-Werte (z. B. Sourgas) auf lesbare deutsche Bezeichnungen */
 const ENERGIE_MAP: Record<string, string> = {
+  sourgas: "Erdgas",
+  erdgas: "Erdgas",
   erdwaerme: "Erdwärme",
   erdwärme: "Erdwärme",
   gas: "Gas",
@@ -145,6 +154,12 @@ const ENERGIE_MAP: Record<string, string> = {
   solar: "Solar",
   waermepumpe: "Wärmepumpe",
   wärmepumpe: "Wärmepumpe",
+  "heat pump": "Luft-/Wasser-Wärmepumpe",
+  heatpump: "Luft-/Wasser-Wärmepumpe",
+  luftwasserwaermepumpe: "Luft-/Wasser-Wärmepumpe",
+  pellet: "Pellets",
+  pellets: "Pellets",
+  flüssiggas: "Flüssiggas",
 };
 
 function formatEnergietraeger(s?: string | null): string | null {
@@ -184,10 +199,10 @@ const ENERGY_CLASSES = [
 
 function EnergieSkala({
   currentClass,
-  kennwert,
+  displayValue,
 }: {
   currentClass: string | null | undefined;
-  kennwert: number | null | undefined;
+  displayValue: string | null;
 }) {
   const normalized = (currentClass ?? "")
     .toUpperCase()
@@ -208,11 +223,11 @@ function EnergieSkala({
           />
         ))}
       </div>
-      {activeId && (kennwert != null || currentClass) && (
+      {activeId && (displayValue != null && displayValue !== "Nicht angegeben" || currentClass) && (
         <div className="flex items-center justify-center gap-2">
           <span className="rounded bg-zinc-900 px-3 py-1 text-sm font-medium text-white">
-            {kennwert != null
-              ? `${formatNumber(kennwert)} kWh/(m²a)`
+            {displayValue != null && displayValue !== "Nicht angegeben"
+              ? displayValue
               : currentClass ?? activeId}
           </span>
         </div>
@@ -264,7 +279,10 @@ export function PropertyDetailLayout({
 
   const verbrauch = typeof p.energieverbrauchskennwert === "number" ? p.energieverbrauchskennwert : null;
   const bedarf = typeof p.endenergiebedarf === "number" ? p.endenergiebedarf : null;
-  const finalEnergyValue = (verbrauch != null && verbrauch > 0) ? verbrauch : bedarf;
+  const finalEnergyValue =
+    (verbrauch != null && verbrauch > 0) ? verbrauch
+    : (bedarf != null && bedarf > 0) ? bedarf
+    : (verbrauch != null ? verbrauch : bedarf);
   const finalEnergyValueNum = finalEnergyValue != null && finalEnergyValue > 0 ? Number(finalEnergyValue) : null;
   const displayEnergyValue =
     finalEnergyValueNum != null
@@ -445,7 +463,6 @@ export function PropertyDetailLayout({
             <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
               <DataRow label="Objektnummer" value={p.objektnr_extern || objectNumber} />
               <DataRow label="Objektart" value={capitalizeObjektart(p.objektart)} />
-              <DataRow label="Zustand" value={p.zustand?.trim() || null} />
               <DataRow label="Ort" value={p.ort?.trim() || null} />
               <DataRow
                 label="Zimmer"
@@ -462,8 +479,8 @@ export function PropertyDetailLayout({
               <DataRow label="Verfügbar ab" value={p.verfuegbar_ab?.trim() || null} />
               <DataRow label="Terrassen" value={formatBalkonTerrassen(p.terrassen) ?? formatBalkonTerrassen(p.anzahl_terrassen) ?? "Nein"} />
               <DataRow label="Balkon" value={formatBalkonTerrassen(p.balkon) ?? formatBalkonTerrassen(p.anzahl_balkone) ?? "Nein"} />
-              <DataRow label="Barrierefrei" value={formatBoolean(p.barrierefrei) ?? "Nein"} />
-              <DataRow label="Denkmalschutz" value={formatBoolean(p.denkmalschutzobjekt) ?? "Nein"} />
+              <DataRow label="Barrierefrei" value={formatTinyIntJaNein(p.barrierefrei)} />
+              <DataRow label="Denkmalschutz" value={formatTinyIntJaNein(p.denkmalschutzobjekt)} />
               <DataRow label="Haustiere" value={formatHaustiere(p.haustiere)} />
               <DataRow
                 label="Stellplätze"
@@ -480,7 +497,7 @@ export function PropertyDetailLayout({
                     ) : p.gewerbliche_nutzung === false || p.gewerbliche_nutzung === 0 ? (
                       <span className="text-right text-sm font-medium text-zinc-900">Nein</span>
                     ) : (
-                      <span className="text-right text-sm font-medium text-zinc-500">—</span>
+                      <span className="text-right text-sm font-medium text-zinc-500">{formatTinyIntJaNein(p.gewerbliche_nutzung)}</span>
                     )}
                   </DataRow>
                   <DataRow label="Aktuell vermietet" value={formatBoolean(p.vermietet) ?? "—"} />
@@ -514,6 +531,18 @@ export function PropertyDetailLayout({
                   value={p.kaufpreis != null && p.kaufpreis > 0 ? formatPrice(p.kaufpreis) : "auf Anfrage"}
                 />
               )}
+              {!isKaufen && (
+                <>
+                  <DataRow
+                    label="Kaltmiete"
+                    value={p.kaltmiete != null && p.kaltmiete > 0 ? formatPrice(p.kaltmiete) : "auf Anfrage"}
+                  />
+                  <DataRow
+                    label="Nebenkosten"
+                    value={p.nebenkosten != null && p.nebenkosten > 0 ? formatPrice(p.nebenkosten) : "auf Anfrage"}
+                  />
+                </>
+              )}
               <DataRow
                 label="Provision"
                 value={formatCourtage(p.aussen_courtage)}
@@ -522,14 +551,15 @@ export function PropertyDetailLayout({
           </div>
         </section>
 
-        {/* Sektion: Energieausweis */}
-        {(p.energyClass ?? p.energieausweistyp ?? p.energietraeger ?? p.baujahr ?? energieKennwert != null) && (
+        {/* Sektion: Zustand & Energie */}
+        {(p.zustand || p.energyClass || p.energieausweistyp || p.energietraeger || p.baujahr != null || energieKennwert != null || formatDateDE(p.energieausweis_gueltig_bis)) && (
           <section className="w-full max-w-3xl">
             <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
-              Energieausweis
+              Zustand & Energie
             </h2>
             <div className="grid gap-6 sm:grid-cols-2">
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
+                <DataRow label="Zustand" value={p.zustand?.trim() || null} />
                 <DataRow
                   label="Baujahr"
                   value={p.baujahr != null ? formatYear(p.baujahr) : null}
@@ -565,10 +595,10 @@ export function PropertyDetailLayout({
                   label="Energieträger"
                   value={formatEnergietraeger(p.energietraeger ?? p.befeuerung)}
                 />
-                {formatDateDE(p.ev71_pass_valid_until) != null && (
+                {formatDateDE(p.energieausweis_gueltig_bis) != null && (
                   <DataRow
                     label="Energieausweis gültig bis"
-                    value={formatDateDE(p.ev71_pass_valid_until)}
+                    value={formatDateDE(p.energieausweis_gueltig_bis)}
                   />
                 )}
               </div>
@@ -576,7 +606,7 @@ export function PropertyDetailLayout({
             {(p.energyClass ?? energieKennwert != null) && (
               <EnergieSkala
                 currentClass={p.energyClass}
-                kennwert={energieKennwert}
+                displayValue={displayEnergyValue}
               />
             )}
           </section>

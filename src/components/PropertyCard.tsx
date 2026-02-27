@@ -89,12 +89,12 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           </span>
         </div>
       </Link>
-      <div className="flex flex-col p-6">
-        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-[#E30A17]">
+      <div className="flex flex-col p-6 transition-colors duration-200 group-hover:bg-[#4682b4]">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-white">
           <Link href={detailHref}>{property.titel}</Link>
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
-          <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 group-hover:text-white/90">
+          <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 group-hover:bg-white/20 group-hover:text-white">
             {property.objekttyp}
           </span>
           {property.schlafzimmer != null && property.schlafzimmer > 0 && (
@@ -123,13 +123,13 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         </div>
         {(property.kaltmiete > 0 || property.nebenkosten != null) && (
           <>
-            <hr className="mt-3 border-t border-zinc-300" />
+            <hr className="mt-3 border-t border-zinc-300 group-hover:border-white/40" />
             <div className="mt-3 flex items-center justify-between gap-4">
-              <span className="flex items-center gap-1.5 text-sm text-zinc-600">
+              <span className="flex items-center gap-1.5 text-sm text-zinc-600 group-hover:text-white/90">
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <div className="text-right text-sm font-semibold text-zinc-900">
+              <div className="text-right text-sm font-semibold text-zinc-900 group-hover:text-white">
                 {property.kaltmiete > 0 && (
                   <span>Kaltmiete {formatRent(property.kaltmiete, "")}</span>
                 )}
@@ -145,7 +145,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         )}
         <Link
           href={detailHref}
-          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-white sm:w-auto"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors group-hover:border-white group-hover:text-white hover:bg-white hover:text-[#4682b4] sm:w-auto"
         >
           {viewDetails}
         </Link>

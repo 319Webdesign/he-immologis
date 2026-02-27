@@ -66,13 +66,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           Zum Verkauf
         </span>
       </div>
-      <div className="p-6">
-        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-[#E30A17]">
+      <div className="p-6 transition-colors duration-200 group-hover:bg-[#4682b4]">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-white">
           {property.titel || "Ohne Titel"}
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 group-hover:text-white/90">
           {property.objektart ? (
-            <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700">
+            <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 group-hover:bg-white/20 group-hover:text-white">
               {capitalizeObjektart(property.objektart)}
             </span>
           ) : null}
@@ -102,13 +102,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         </div>
         {(price != null && price > 0) && (
           <>
-            <hr className="mt-3 border-t border-zinc-300" />
+            <hr className="mt-3 border-t border-zinc-300 group-hover:border-white/40" />
             <div className="mt-3 flex items-center justify-between gap-4">
-              <span className="flex items-center gap-1.5 text-sm text-zinc-600">
+              <span className="flex items-center gap-1.5 text-sm text-zinc-600 group-hover:text-white/90">
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <p className="text-lg font-semibold text-zinc-900">
+              <p className="text-lg font-semibold text-zinc-900 group-hover:text-white">
                 {priceLabel}
                 {formatPrice(price)}
               </p>

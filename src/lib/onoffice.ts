@@ -59,7 +59,7 @@ function getDetailDataFieldsCore(): string[] {
  * Felder für die Detailansicht mit präventiven Korrekturen bekannter Problemfelder:
  * denkmalschutzobjekt -> denkmalschutz
  * barrierefrei -> barrierefrei_id
- * anzahl_terrassen -> terrassen
+ * terrassen entfernt – anzahl_terrassen nutzen (oder ausstatt_beschr)
  */
 function getDetailDataFields(): string[] {
   return [
@@ -86,7 +86,7 @@ function getDetailDataFields(): string[] {
     "anzahl_badezimmer",
     "anzahl_sep_wc",
     "anzahl_balkone",
-    "terrassen", // API: terrassen (Fallback: anzahl_terrassen bei Auto-Remove)
+    "anzahl_terrassen",
     "etage",
     "baujahr",
     "zustand",
@@ -111,17 +111,16 @@ function getDetailDataFields(): string[] {
     "energieverbrauchskennwert",
     "endenergiebedarf",
     "objektnr_extern",
-    "barrierefrei_id", // API: barrierefrei_id statt barrierefrei
-    "denkmalschutz", // API: denkmalschutz statt denkmalschutzobjekt
+    "barrierefrei",
+    "denkmalgeschuetzt",
     "anzahl_stellplaetze",
-    "ev71_pass_valid_until",
+    "energieausweis_gueltig_bis",
     "distanz_kindergarten",
     "distanz_grundschule",
     "distanz_realschule",
     "distanz_gymnasium",
     "distanz_autobahn",
     "distanz_zentrum",
-    "gewerblichenutzung", // Alternativ zu gewerbliche_nutzung
     "vermietet",
   ];
 }
@@ -212,13 +211,13 @@ export interface Property {
   /** Terrasse(n) (Boolean oder Anzahl) */
   terrassen?: boolean | number | null;
   /** Barrierefrei */
-  barrierefrei?: boolean | null;
+  barrierefrei?: boolean | number | null;
   /** Denkmalschutzobjekt */
-  denkmalschutzobjekt?: boolean | null;
+  denkmalschutzobjekt?: boolean | number | null;
   /** Anzahl Stellplätze */
   anzahl_stellplaetze?: number | null;
   /** Energieausweis gültig bis (Datum) */
-  ev71_pass_valid_until?: string | null;
+  energieausweis_gueltig_bis?: string | null;
   /** Infrastruktur: Distanzen in km */
   distanz_kindergarten?: number | null;
   distanz_grundschule?: number | null;
@@ -405,7 +404,7 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     fahrstuhl: readString(e.fahrstuhl),
     kabel_sat_tv: readBoolean(e.kabel_sat_tv) ?? readString(e.kabel_sat_tv),
     verfuegbar_ab: readString(e.verfuegbar_ab),
-    gewerbliche_nutzung: readBoolean(e.gewerbliche_nutzung) ?? readBoolean(e.gewerblichenutzung) ?? readNumber(e.gewerbliche_nutzung) ?? readNumber(e.gewerblichenutzung),
+    gewerbliche_nutzung: readBoolean(e.gewerbliche_nutzung) ?? readNumber(e.gewerbliche_nutzung),
     haustiere: readString(e.haustiere),
     strasse: readString(e.strasse),
     breitengrad: readNumber(e.breitengrad),
@@ -418,12 +417,12 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     energieverbrauchskennwert: readNumber(e.energieverbrauchskennwert),
     endenergiebedarf: readNumber(e.endenergiebedarf),
     balkon: readBoolean(e.balkon) ?? readNumber(e.balkon),
-    terrassen: readBoolean(e.terrassen) ?? readNumber(e.terrassen) ?? readNumber(e.anzahl_terrassen),
-    anzahl_terrassen: readNumber(e.anzahl_terrassen) ?? readNumber(e.terrassen),
-    barrierefrei: readBoolean(e.barrierefrei_id) ?? readBoolean(e.barrierefrei),
-    denkmalschutzobjekt: readBoolean(e.denkmalschutz) ?? readBoolean(e.denkmalschutzobjekt),
+    terrassen: readNumber(e.anzahl_terrassen),
+    anzahl_terrassen: readNumber(e.anzahl_terrassen),
+    barrierefrei: readBoolean(e.barrierefrei) ?? readNumber(e.barrierefrei),
+    denkmalschutzobjekt: readBoolean(e.denkmalgeschuetzt) ?? readNumber(e.denkmalgeschuetzt),
     anzahl_stellplaetze: readNumber(e.anzahl_stellplaetze),
-    ev71_pass_valid_until: readString(e.ev71_pass_valid_until) || null,
+    energieausweis_gueltig_bis: readString(e.energieausweis_gueltig_bis) || null,
     distanz_kindergarten: readNumber(e.distanz_kindergarten),
     distanz_grundschule: readNumber(e.distanz_grundschule),
     distanz_realschule: readNumber(e.distanz_realschule),

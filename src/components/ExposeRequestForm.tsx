@@ -504,14 +504,14 @@ export function ExposeRequestForm({
                 />
                 <span className="text-sm text-zinc-700">
                   Ich habe die{" "}
-                  <Link
-                    href={`/${locale}/widerruf`}
-                    className="text-teal-600 underline hover:text-teal-700"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Widerrufsbelehrung
-                  </Link>{" "}
+                <Link
+                  href={`/${locale}/agb#widerruf`}
+                  className="text-[#E30A17] underline hover:text-[#c40814]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Widerrufsbelehrung
+                </Link>{" "}
                   gelesen und verstanden.
                 </span>
               </label>
