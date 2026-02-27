@@ -262,12 +262,16 @@ export function PropertyDetailLayout({
     (src) => src && typeof src === "string"
   );
 
-  const rawEnergyValue = p.endenergiebedarf ?? p.energieverbrauchskennwert ?? null;
+  const verbrauch = typeof p.energieverbrauchskennwert === "number" ? p.energieverbrauchskennwert : null;
+  const bedarf = typeof p.endenergiebedarf === "number" ? p.endenergiebedarf : null;
+  const finalEnergyValue = (verbrauch != null && verbrauch > 0) ? verbrauch : bedarf;
+  const finalEnergyValueNum = finalEnergyValue != null && finalEnergyValue > 0 ? Number(finalEnergyValue) : null;
   const displayEnergyValue =
-    rawEnergyValue != null
-      ? `${new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(rawEnergyValue)} kWh/(m²·a)`
-      : null;
-  const energieKennwert = rawEnergyValue;
+    finalEnergyValueNum != null
+      ? `${new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(finalEnergyValueNum)} kWh/(m²·a)`
+      : "Nicht angegeben";
+  const energieKennwert = finalEnergyValueNum;
+  const energyValueFromVerbrauch = (verbrauch != null && verbrauch > 0);
 
   const hasPrice = price != null && price > 0;
   const priceDisplay = hasPrice
@@ -554,8 +558,8 @@ export function PropertyDetailLayout({
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
                 <DataRow label="Art des Energieausweises" value={formatEnergieausweistyp(p.energieausweistyp)} />
                 <DataRow
-                  label={p.endenergiebedarf != null ? "Endenergiebedarf" : p.energieverbrauchskennwert != null ? "Energieverbrauchskennwert" : "Energiekennwert"}
-                  value={displayEnergyValue ?? "Nicht angegeben"}
+                  label={energyValueFromVerbrauch ? "Energieverbrauchskennwert" : finalEnergyValueNum != null ? "Endenergiebedarf" : "Energiekennwert"}
+                  value={displayEnergyValue}
                 />
                 <DataRow
                   label="Energieträger"

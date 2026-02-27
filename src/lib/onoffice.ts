@@ -394,7 +394,6 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
     anzahl_sep_wc: readNumber(e.anzahl_sep_wc),
     anzahl_balkone: readNumber(e.anzahl_balkone),
-    anzahl_terrassen: readNumber(e.anzahl_terrassen),
     etage: readEtage(),
     nutzflaeche: readNumber(e.nutzflaeche),
     grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
