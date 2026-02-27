@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -34,6 +35,20 @@ function capitalizeObjektart(s?: string | null): string {
 export default function PropertyCard({ property }: PropertyCardProps) {
   const pathname = usePathname();
   const lang = (pathname?.split("/")[1] ?? "de") as string;
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const [isInCenter, setIsInCenter] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInCenter(entry.isIntersecting),
+      { rootMargin: "0px -15% 0px -15%", threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const firstImg = property.galerie?.[0];
   const imageSrc =
     firstImg?.startsWith("http") || firstImg?.startsWith("/")
@@ -45,10 +60,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
     property.kaufpreis != null ? "" : property.kaltmiete != null ? "Kaltmiete " : "";
   const showGrundstueck = isHaus(property.objektart) && (property.grundstuecksflaeche ?? 0) > 0;
 
+  const isHighlighted = isInCenter;
   return (
     <Link
+      ref={cardRef}
       href={`/${lang}/kaufen/${encodeURIComponent(property.objektnr_extern || String(property.id))}`}
-      className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
+      className={`group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg ${isHighlighted ? "ring-2 ring-[#4682b4] ring-offset-2" : ""}`}
+      data-incenter={isHighlighted}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
         <Image
@@ -66,13 +84,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           Zum Verkauf
         </span>
       </div>
-      <div className="p-6 transition-colors duration-200 group-hover:bg-[#4682b4]">
-        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-white">
+      <div className="p-6 transition-colors duration-200 group-hover:bg-[#4682b4] group-data-[incenter=true]:bg-[#4682b4]">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-white group-data-[incenter=true]:text-white">
           {property.titel || "Ohne Titel"}
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 group-hover:text-white/90">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 group-hover:text-white/90 group-data-[incenter=true]:text-white/90">
           {property.objektart ? (
-            <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 group-hover:bg-white/20 group-hover:text-white">
+            <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 group-hover:bg-white/20 group-hover:text-white group-data-[incenter=true]:bg-white/20 group-data-[incenter=true]:text-white">
               {capitalizeObjektart(property.objektart)}
             </span>
           ) : null}
@@ -102,13 +120,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         </div>
         {(price != null && price > 0) && (
           <>
-            <hr className="mt-3 border-t border-zinc-300 group-hover:border-white/40" />
+            <hr className="mt-3 border-t border-zinc-300 group-hover:border-white/40 group-data-[incenter=true]:border-white/40" />
             <div className="mt-3 flex items-center justify-between gap-4">
-              <span className="flex items-center gap-1.5 text-sm text-zinc-600 group-hover:text-white/90">
+              <span className="flex items-center gap-1.5 text-sm text-zinc-600 group-hover:text-white/90 group-data-[incenter=true]:text-white/90">
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <p className="text-lg font-semibold text-zinc-900 group-hover:text-white">
+              <p className="text-lg font-semibold text-zinc-900 group-hover:text-white group-data-[incenter=true]:text-white">
                 {priceLabel}
                 {formatPrice(price)}
               </p>

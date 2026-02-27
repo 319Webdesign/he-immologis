@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, BedDouble, Bath, LayoutGrid } from "lucide-react";
@@ -42,6 +43,20 @@ function formatRent(amount: number, suffix: string): string {
 }
 
 export default function PropertyCard({ property, lang = "de", cardLabels }: PropertyCardProps) {
+  const cardRef = useRef<HTMLElement>(null);
+  const [isInCenter, setIsInCenter] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInCenter(entry.isIntersecting),
+      { rootMargin: "0px -15% 0px -15%", threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const imageSrc =
     property.vorschaubild?.startsWith("http") ||
     property.vorschaubild?.startsWith("/")
@@ -69,8 +84,13 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   const showGrundstueck =
     property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;
 
+  const isHighlighted = isInCenter;
   return (
-    <article className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md">
+    <article
+      ref={cardRef}
+      className={`group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md ${isHighlighted ? "ring-2 ring-[#4682b4] ring-offset-2" : ""}`}
+      data-incenter={isHighlighted}
+    >
       <Link href={detailHref} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
           <Image
@@ -89,12 +109,12 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           </span>
         </div>
       </Link>
-      <div className="flex flex-col p-6 transition-colors duration-200 group-hover:bg-[#4682b4]">
-        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-white">
+      <div className="flex flex-col p-6 transition-colors duration-200 group-hover:bg-[#4682b4] group-data-[incenter=true]:bg-[#4682b4]">
+        <h2 className="font-sans text-xl font-semibold text-zinc-900 group-hover:text-white group-data-[incenter=true]:text-white">
           <Link href={detailHref}>{property.titel}</Link>
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 group-hover:text-white/90">
-          <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 group-hover:bg-white/20 group-hover:text-white">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 group-hover:text-white/90 group-data-[incenter=true]:text-white/90">
+          <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 group-hover:bg-white/20 group-hover:text-white group-data-[incenter=true]:bg-white/20 group-data-[incenter=true]:text-white">
             {property.objekttyp}
           </span>
           {property.schlafzimmer != null && property.schlafzimmer > 0 && (
@@ -123,13 +143,13 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         </div>
         {(property.kaltmiete > 0 || property.nebenkosten != null) && (
           <>
-            <hr className="mt-3 border-t border-zinc-300 group-hover:border-white/40" />
+            <hr className="mt-3 border-t border-zinc-300 group-hover:border-white/40 group-data-[incenter=true]:border-white/40" />
             <div className="mt-3 flex items-center justify-between gap-4">
-              <span className="flex items-center gap-1.5 text-sm text-zinc-600 group-hover:text-white/90">
+              <span className="flex items-center gap-1.5 text-sm text-zinc-600 group-hover:text-white/90 group-data-[incenter=true]:text-white/90">
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <div className="text-right text-sm font-semibold text-zinc-900 group-hover:text-white">
+              <div className="text-right text-sm font-semibold text-zinc-900 group-hover:text-white group-data-[incenter=true]:text-white">
                 {property.kaltmiete > 0 && (
                   <span>Kaltmiete {formatRent(property.kaltmiete, "")}</span>
                 )}
@@ -145,7 +165,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         )}
         <Link
           href={detailHref}
-          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors group-hover:border-white group-hover:text-white hover:bg-white hover:text-[#4682b4] sm:w-auto"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors group-hover:border-white group-hover:text-white group-data-[incenter=true]:border-white group-data-[incenter=true]:text-white hover:bg-white hover:text-[#4682b4] sm:w-auto"
         >
           {viewDetails}
         </Link>
