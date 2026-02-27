@@ -497,8 +497,16 @@
       "priceOptions": ["800 €'ya kadar", "800 – 1.200 €", "1.200 – 1.800 €", "1.800 € üzeri"]
     },
     "provision": {
-      "headingSrOnly": "Emlakçı komisyonu hakkında bilgi",
+      "headingSrOnly": "Teklif koşulları ve emlakçı komisyonu hakkında bilgi",
       "badge": "Bilgi",
+      "angebotsbedingungen": {
+        "heading": "Teklif koşulları",
+        "paragraph1": "Gayrimenkul tekliflerimiz değişikliğe tabidir ve yerel makler koşullarına dayanmaktadır.",
+        "paragraph2": "Verdiğimiz bilgilerin doğruluğu için garanti vermiyoruz. Bilgiler bize mal sahibi veya müvekkil tarafından sağlanmış olup, eksiksizlik ve doğruluk konusunda herhangi bir sorumluluk üstlenmeden iletilmiştir.",
+        "paragraph3": "Bu emlak broşürü yalnızca hedeflenen alıcı içindir. Üçüncü taraflarla paylaşılması tazminat taleplerine yol açabilir.",
+        "paragraph4": "Gayrimenkul, müşteri adına ve işletme koşullarımıza dayalı olarak değişikliğe tabi olarak kiralanmak üzere sunulmaktadır."
+      },
+      "provisionHeading": "Komisyon",
       "paragraph1": "Baden-Württemberg ve Hessen'de konut kiralanmasında sipariş veren öder ilkesi geçerlidir. Yani emlakçıyı kim görevlendirirse maliyetleri o üstlenir. Baden-Württemberg ve Hessen'de emlakçı komisyonu, emlakçının hizmeti için aldığı iki net soğuk kira artı %19 KDV olabilir.",
       "paragraph2Prefix": "Burada genel kullanım koşullarımız (",
       "paragraph2Suffix": ") ve yasal düzenlemeler geçerlidir.",
