@@ -31,8 +31,7 @@ export function PropertyContactWidget({
           <p className="text-lg font-semibold text-zinc-900">{CONTACT.name}</p>
           <p className="mt-1 text-base text-zinc-600">{CONTACT.role}</p>
           <p className="mt-0.5 text-base text-zinc-600">
-            <span className="sm:hidden">Verlässlich<br />- an Ihrer Seite.</span>
-            <span className="hidden sm:inline">{CONTACT.tagline}</span>
+            Verlässlich<br />an Ihrer Seite.
           </p>
           <a
             href="#expose-anfordern"

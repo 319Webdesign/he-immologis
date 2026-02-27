@@ -656,18 +656,19 @@ export function PropertyDetailLayout({
 
         {/* Exposé anfordern */}
         <section id="expose-anfordern" className="mt-8 scroll-mt-20 flex flex-col items-center">
-          <div className="w-full max-w-xl rounded-xl border border-zinc-200 bg-[#4682B4] p-5 shadow-sm">
-          <h2 className="font-sans text-lg font-semibold text-white">
-            Exposé anfordern
-          </h2>
-          <p className="mt-2 text-sm text-white/90">
-            Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
-            Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
-            einzutragen.
-          </p>
-          <div className="mt-6">
+          <div className="w-full max-w-xl overflow-hidden rounded-xl border border-zinc-200 shadow-sm">
+            <div className="bg-[#4682B4] px-5 py-5">
+              <h2 className="font-sans text-lg font-semibold text-white">
+                Exposé anfordern
+              </h2>
+              <p className="mt-2 text-sm text-white/90">
+                Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
+                Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
+                einzutragen.
+              </p>
+            </div>
+            <div className="bg-white px-5 py-5">
             <ExposeRequestForm
-              lightLabels
               objectNumber={objectNumber}
               estateId={
                 p.estateIdForContact === null
@@ -678,7 +679,7 @@ export function PropertyDetailLayout({
               hideIntro
               locale={locale}
             />
-          </div>
+            </div>
           </div>
 
           {/* Rechtliche und konditionale Hinweise */}
