@@ -88,7 +88,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   return (
     <article
       ref={cardRef}
-      className={`group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md ${isHighlighted ? "ring-2 ring-[#4682b4] ring-offset-2" : ""}`}
+      className={`group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md ${isHighlighted ? "sm:ring-2 sm:ring-[#4682b4] sm:ring-offset-2 max-sm:ring-0 max-sm:ring-offset-0" : ""}`}
       data-incenter={isHighlighted}
     >
       <Link href={detailHref} className="block">
