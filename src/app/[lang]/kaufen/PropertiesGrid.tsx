@@ -37,8 +37,12 @@ export default async function PropertiesGrid({
 
   return (
     <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {properties.map((property) => (
-        <PropertyCard key={property.id} property={property} />
+      {properties.map((property, index) => (
+        <PropertyCard
+          key={property.id}
+          property={property}
+          previewImageOverride={index === 1 ? "/img/verkaufen-test-vorschau.png" : undefined}
+        />
       ))}
     </div>
   );
