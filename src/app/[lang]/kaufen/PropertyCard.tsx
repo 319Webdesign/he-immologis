@@ -66,7 +66,7 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
     <Link
       ref={cardRef}
       href={`/${lang}/kaufen/${encodeURIComponent(property.objektnr_extern || String(property.id))}`}
-      className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
       data-incenter={isInCenter}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
@@ -79,13 +79,13 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
         />
         <span
           className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-          style={{ backgroundColor: "#E30A17" }}
+          style={{ backgroundColor: "#BCB88A" }}
           aria-hidden
         >
           Zum Verkauf
         </span>
       </div>
-      <div className="p-6 transition-colors duration-200 sm:group-hover:bg-[#4682b4] max-sm:group-data-[incenter=true]:bg-[#4682b4]">
+      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#BCB88A] max-sm:group-data-[incenter=true]:bg-[#BCB88A]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
           {property.titel || "Ohne Titel"}
         </h2>
