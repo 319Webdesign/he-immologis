@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import SocialIcons from "./SocialIcons";
 import {
   Menu,
   X,
@@ -134,7 +135,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         className="border-b border-slate-300/50"
         style={{ backgroundColor: "#D3EFDE" }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-end px-4 py-2.5 text-sm sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 text-sm sm:px-6 lg:px-8">
+          <SocialIcons iconClassName="h-4 w-4" iconSize={16} />
           {utilityLinks("bar")}
         </div>
       </div>
