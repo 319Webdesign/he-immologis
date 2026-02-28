@@ -129,29 +129,36 @@ export default async function BannerPage() {
   return (
     <>
       <section
-        className="relative border-b border-slate-200 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        className="relative flex min-h-[400px] items-center overflow-hidden border-b border-slate-200 px-4 py-12 sm:min-h-[480px] sm:px-6 sm:py-16 lg:px-8"
         aria-labelledby="banner-hero-heading"
+        style={{
+          backgroundImage: "url(/img/hero-banner.jpeg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center 85%",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        <div className="mx-auto max-w-4xl">
+        <div className="absolute inset-0 bg-slate-900/75" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-4xl">
           <Link
             href={`${prefix}/geld-verdienen`}
-            className="mb-8 inline-flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-900"
+            className="mb-8 inline-flex items-center gap-2 text-white/90 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.backLink}
           </Link>
           <h1
             id="banner-hero-heading"
-            className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl"
+            className="font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl"
           >
             {t.heroTitle}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-white/95 drop-shadow-sm">
             {t.heroIntro}
           </p>
           <p
-            className="mt-4 inline-block animate-breathe text-2xl font-bold sm:text-3xl"
-            style={{ color: BRAND_BLUE }}
+            className="mt-4 inline-block animate-breathe text-2xl font-bold text-white drop-shadow-sm sm:text-3xl"
+            style={{ color: "#93c5fd" }}
           >
             {t.heroCta}
           </p>

@@ -14,14 +14,7 @@ import { PropertyImageSlider } from "./PropertyImageSlider";
 import { PropertyMap } from "./PropertyMap";
 import { PropertyContactWidget } from "./PropertyContactWidget";
 import { ExposeRequestForm } from "./ExposeRequestForm";
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(price);
-}
+import { formatCurrency } from "@/lib/format";
 
 function formatNumber(value: number | undefined | null): string {
   if (value == null) return "—";
@@ -67,12 +60,7 @@ function formatCourtage(value: string | number | undefined | null): string | nul
   if (typeof value === "string") return value.trim() || null;
   if (typeof value === "number") {
     if (value >= 100) {
-      return new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(value);
+      return formatCurrency(value, { decimals: 0 });
     }
     return new Intl.NumberFormat("de-DE", {
       minimumFractionDigits: 2,
@@ -293,7 +281,7 @@ export function PropertyDetailLayout({
 
   const hasPrice = price != null && price > 0;
   const priceDisplay = hasPrice
-    ? formatPrice(price)
+    ? formatCurrency(price, { decimals: 0 })
     : isKaufen
       ? "Preis auf Anfrage"
       : "Miete auf Anfrage";
@@ -412,10 +400,10 @@ export function PropertyDetailLayout({
             ) : (
               <div className="mt-4 space-y-1">
                 <p className="text-xl font-semibold text-zinc-800">
-                  Kaltmiete {hasKaltmiete ? formatPrice(p.kaltmiete!) : "auf Anfrage"}
+                  Kaltmiete {hasKaltmiete ? formatCurrency(p.kaltmiete!, { decimals: 0 }) : "auf Anfrage"}
                 </p>
                 <p className="text-base font-medium text-zinc-700">
-                  Nebenkosten {hasNebenkosten ? formatPrice(p.nebenkosten!) : "auf Anfrage"}
+                  Nebenkosten {hasNebenkosten ? formatCurrency(p.nebenkosten!, { decimals: 0 }) : "auf Anfrage"}
                 </p>
               </div>
             )}
@@ -482,10 +470,33 @@ export function PropertyDetailLayout({
               <DataRow label="Barrierefrei" value={formatTinyIntJaNein(p.barrierefrei)} />
               <DataRow label="Denkmalschutz" value={formatTinyIntJaNein(p.denkmalschutzobjekt)} />
               <DataRow label="Haustiere" value={formatHaustiere(p.haustiere)} />
-              <DataRow
-                label="Stellplätze"
-                value={p.anzahl_stellplaetze != null ? (p.anzahl_stellplaetze === 0 ? "Nein" : formatNumber(p.anzahl_stellplaetze)) : null}
-              />
+              {((p.stp_anzahl ?? 0) > 0 || (p.stellplatzkaufpreis ?? 0) > 0 || (Array.isArray(p.stellplatzart) && p.stellplatzart.length > 0)) && (
+                <DataRow label="Stellplätze">
+                  <div className="flex flex-col items-end gap-1 text-right">
+                    {Array.isArray(p.stellplatzart) && p.stellplatzart.length > 0 ? (
+                      <span className="max-w-full break-words text-right text-sm font-medium text-zinc-900">
+                        {p.stellplatzart.join(", ")}
+                      </span>
+                    ) : (
+                      <>
+                        <span className="text-sm font-medium text-zinc-900">
+                          Stellplätze: {formatNumber(p.stp_anzahl)}
+                        </span>
+                        {isKaufen && (p.stellplatzkaufpreis ?? 0) > 0 && (
+                          <span className="text-xs text-zinc-500">
+                            Kaufpreis: {formatCurrency(p.stellplatzkaufpreis!)}
+                          </span>
+                        )}
+                        {!isKaufen && (p.stellplatzmiete ?? 0) > 0 && (
+                          <span className="text-xs text-zinc-500">
+                            Miete: {formatCurrency(p.stellplatzmiete!)}/Monat
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </DataRow>
+              )}
               {!isKaufen && (
                 <>
                   <DataRow label="Gewerbliche Nutzung">
@@ -528,18 +539,18 @@ export function PropertyDetailLayout({
               {isKaufen && (
                 <DataRow
                   label="Kaufpreis"
-                  value={p.kaufpreis != null && p.kaufpreis > 0 ? formatPrice(p.kaufpreis) : "auf Anfrage"}
+                  value={p.kaufpreis != null && p.kaufpreis > 0 ? formatCurrency(p.kaufpreis, { decimals: 0 }) : "auf Anfrage"}
                 />
               )}
               {!isKaufen && (
                 <>
                   <DataRow
                     label="Kaltmiete"
-                    value={p.kaltmiete != null && p.kaltmiete > 0 ? formatPrice(p.kaltmiete) : "auf Anfrage"}
+                    value={p.kaltmiete != null && p.kaltmiete > 0 ? formatCurrency(p.kaltmiete, { decimals: 0 }) : "auf Anfrage"}
                   />
                   <DataRow
                     label="Nebenkosten"
-                    value={p.nebenkosten != null && p.nebenkosten > 0 ? formatPrice(p.nebenkosten) : "auf Anfrage"}
+                    value={p.nebenkosten != null && p.nebenkosten > 0 ? formatCurrency(p.nebenkosten, { decimals: 0 }) : "auf Anfrage"}
                   />
                 </>
               )}
@@ -620,9 +631,10 @@ export function PropertyDetailLayout({
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
                 Ausstattung
               </h2>
-              <div className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 [&>p]:mb-1.5 last:[&>p]:mb-0">
-                {p.ausstatt_beschr.trim()}
-              </div>
+              <div
+                className="prose prose-sm max-w-none text-zinc-600 prose-p:mb-1.5 prose-p:last:mb-0 prose-ul:my-2 prose-li:my-0"
+                dangerouslySetInnerHTML={{ __html: p.ausstatt_beschr.trim() }}
+              />
             </div>
           )}
           {p.lage?.trim() && (
@@ -630,9 +642,10 @@ export function PropertyDetailLayout({
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
                 Lage
               </h2>
-              <div className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 [&>p]:mb-1.5 last:[&>p]:mb-0">
-                {p.lage.trim()}
-              </div>
+              <div
+                className="prose prose-sm max-w-none text-zinc-600 prose-p:mb-1.5 prose-p:last:mb-0 prose-ul:my-2 prose-li:my-0"
+                dangerouslySetInnerHTML={{ __html: p.lage.trim() }}
+              />
             </div>
           )}
           {p.sonstige_angaben?.trim() && (
@@ -640,9 +653,10 @@ export function PropertyDetailLayout({
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
                 Sonstiges
               </h2>
-              <div className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 [&>p]:mb-1.5 last:[&>p]:mb-0">
-                {p.sonstige_angaben.trim()}
-              </div>
+              <div
+                className="prose prose-sm max-w-none text-zinc-600 prose-p:mb-1.5 prose-p:last:mb-0 prose-ul:my-2 prose-li:my-0"
+                dangerouslySetInnerHTML={{ __html: p.sonstige_angaben.trim() }}
+              />
             </div>
           )}
         </section>

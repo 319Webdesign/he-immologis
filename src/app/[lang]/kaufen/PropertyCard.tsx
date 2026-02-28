@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BedDouble, Bath, LayoutGrid, MapPin } from "lucide-react";
+import { BedDouble, Bath, LayoutGrid, MapPin, DoorOpen } from "lucide-react";
 import type { Property } from "@/lib/onoffice";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
@@ -74,7 +74,7 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
           src={imageSrc}
           alt={property.titel || "Immobilie"}
           fill
-          className="object-contain transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <span
@@ -95,6 +95,12 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
               {capitalizeObjektart(property.objektart)}
             </span>
           ) : null}
+          {property.anzahl_zimmer != null && property.anzahl_zimmer > 0 && (
+            <span className="flex items-center gap-1.5">
+              <DoorOpen className="h-4 w-4 shrink-0" />
+              {property.anzahl_zimmer} Zimmer
+            </span>
+          )}
           {property.anzahl_schlafzimmer != null && property.anzahl_schlafzimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <BedDouble className="h-4 w-4 shrink-0" />
@@ -107,12 +113,17 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
               {property.anzahl_badezimmer} Badezimmer
             </span>
           )}
-          {property.wohnflaeche != null && property.wohnflaeche > 0 && (
-            <span className="flex items-center gap-1.5">
-              <LayoutGrid className="h-4 w-4 shrink-0" />
-              {property.wohnflaeche} m²
-            </span>
-          )}
+          {(() => {
+            const wohn = property.wohnflaeche ?? 0;
+            const nutz = property.nutzflaeche ?? 0;
+            const gesamt = wohn > 0 && nutz > 0 ? wohn + nutz : wohn || nutz;
+            return gesamt > 0 ? (
+              <span className="flex items-center gap-1.5">
+                <LayoutGrid className="h-4 w-4 shrink-0" />
+                {wohn > 0 && nutz > 0 ? `ca. ${gesamt} m²` : `${gesamt} m²`}
+              </span>
+            ) : null;
+          })()}
           {showGrundstueck && (
             <span className="flex items-center gap-1.5">
               {property.grundstuecksflaeche} m² Grundstück

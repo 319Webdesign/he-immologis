@@ -26,8 +26,10 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "ort",
     "plz",
     "wohnflaeche",
+    "nutzflaeche",
     "objektart",
     "vermarktungsart",
+    "anzahl_zimmer",
     "anzahl_schlafzimmer",
     "anzahl_badezimmer",
     "grundstuecksflaeche",
@@ -113,7 +115,13 @@ function getDetailDataFields(): string[] {
     "objektnr_extern",
     "barrierefrei",
     "denkmalgeschuetzt",
+    "stp_anzahl",
+    "stellplatzart",
+    "stellplatzkaufpreis",
+    "stellplatzmiete",
     "anzahl_stellplaetze",
+    "bemerkung",
+    "ausstattung",
     "energieausweis_gueltig_bis",
     "distanz_kindergarten",
     "distanz_grundschule",
@@ -214,8 +222,11 @@ export interface Property {
   barrierefrei?: boolean | number | null;
   /** Denkmalschutzobjekt */
   denkmalschutzobjekt?: boolean | number | null;
-  /** Anzahl Stellplätze */
-  anzahl_stellplaetze?: number | null;
+  /** Stellplätze: Anzahl, Art (Array, z. B. ["2 Carports à 20.000,00 €"]), Kaufpreis, Miete */
+  stp_anzahl?: number | null;
+  stellplatzart?: string[] | null;
+  stellplatzkaufpreis?: number | null;
+  stellplatzmiete?: number | null;
   /** Energieausweis gültig bis (Datum) */
   energieausweis_gueltig_bis?: string | null;
   /** Infrastruktur: Distanzen in km */
@@ -351,9 +362,11 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
     kaufpreis: readNumber(e.kaufpreis),
     kaltmiete: readNumber(e.kaltmiete),
     wohnflaeche: readNumber(e.wohnflaeche),
+    nutzflaeche: readNumber(e.nutzflaeche),
     ort: readString(e.ort),
     plz: readString(e.plz),
     objektart: readString(e.objektart),
+    anzahl_zimmer: readNumber(e.anzahl_zimmer),
     anzahl_schlafzimmer: readNumber(e.anzahl_schlafzimmer),
     anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
     grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
@@ -365,6 +378,9 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
 /** Mappt einen onOffice-Record inkl. Detailfelder für die Detailseite. */
 function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
   const e = record.elements ?? {};
+  const stpAnzahl = readNumber(e.stp_anzahl);
+  const stpPreis = readNumber(e.stellplatzkaufpreis);
+  console.log("Stellplatz-Check:", { anzahl: stpAnzahl, preis: stpPreis });
   const base = mapRecordToProperty(record);
   const readEtage = (): number | string | null => {
     const v = e.etage;
@@ -421,7 +437,13 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     anzahl_terrassen: readNumber(e.anzahl_terrassen),
     barrierefrei: readBoolean(e.barrierefrei) ?? readNumber(e.barrierefrei),
     denkmalschutzobjekt: readBoolean(e.denkmalgeschuetzt) ?? readNumber(e.denkmalgeschuetzt),
-    anzahl_stellplaetze: readNumber(e.anzahl_stellplaetze),
+    stp_anzahl: stpAnzahl,
+    stellplatzart: (() => {
+      const arr = readStringArray(e.stellplatzart);
+      return arr.length > 0 ? arr : null;
+    })(),
+    stellplatzkaufpreis: stpPreis,
+    stellplatzmiete: readNumber(e.stellplatzmiete),
     energieausweis_gueltig_bis: readString(e.energieausweis_gueltig_bis) || null,
     distanz_kindergarten: readNumber(e.distanz_kindergarten),
     distanz_grundschule: readNumber(e.distanz_grundschule),
