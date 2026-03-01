@@ -18,21 +18,21 @@ function getLangFromPathname(pathname: string): Locale {
 const copy = {
   de: {
     title: "Cookie-Einstellungen",
-    text: "Wir verwenden Cookies, um Ihre Erfahrung auf HE-immologis zu verbessern und unseren Service in ganz Hessen zu optimieren.",
+    text: "Wir verwenden Cookies, um Ihre Erfahrung auf HE-immologis zu verbessern und unseren Service in ganz Baden-Württemberg und Hessen zu optimieren.",
     learnMore: "Mehr erfahren in unseren Cookie-Richtlinien",
     necessary: "Nur notwendige",
     acceptAll: "Alle akzeptieren",
   },
   en: {
     title: "Cookie settings",
-    text: "We use cookies to improve your experience on HE-immologis and to optimize our service throughout Hesse.",
+    text: "We use cookies to improve your experience on HE-immologis and to optimize our service throughout Baden-Württemberg and Hesse.",
     learnMore: "Learn more in our Cookie Policy",
     necessary: "Essential only",
     acceptAll: "Accept all",
   },
   tr: {
     title: "Çerez ayarları",
-    text: "HE-immologis deneyiminizi iyileştirmek ve Hessen genelinde hizmetimizi optimize etmek için çerezler kullanıyoruz.",
+    text: "HE-immologis deneyiminizi iyileştirmek ve Baden-Württemberg ve Hessen genelinde hizmetimizi optimize etmek için çerezler kullanıyoruz.",
     learnMore: "Çerez politikamızda daha fazla bilgi edinin",
     necessary: "Sadece gerekli",
     acceptAll: "Tümünü kabul et",
