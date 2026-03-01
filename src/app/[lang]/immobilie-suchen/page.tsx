@@ -30,6 +30,19 @@ export async function generateMetadata({
       ],
     };
   }
+  if (lang === "tr") {
+    return {
+      title: "Gayrimenkul arayın | HE immologis",
+      description:
+        "Ücretsiz arama talebi verin – HE immologis, Weinheim ve Bergstraße bölgesinde size uygun gayrimenkulü bulmanızda size yardımcı olur.",
+      keywords: [
+        "Weinheim gayrimenkul arama",
+        "Gayrimenkul arama talebi",
+        "Bergstraße gayrimenkul",
+        "HE immologis",
+      ],
+    };
+  }
   return {
     title: "Immobilie suchen",
     description:
@@ -51,7 +64,29 @@ export default async function ImmobilieSuchenPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const isTr = lang === "tr";
   const dict = await getDictionary(lang);
+
+  const heroHeading = isEn
+    ? "Search in Weinheim and the surrounding area."
+    : isTr
+      ? "Weinheim ve çevresinde arayın."
+      : "Suche in Weinheim und Umgebung.";
+  const heroSubline = isEn
+    ? "Your requirements – We search specifically for you."
+    : isTr
+      ? "İstekleriniz – Sizin için hedefli arama yapıyoruz."
+      : "Ihre Wünsche – Wir suchen gezielt für Sie.";
+  const ctaLabel = isEn
+    ? "Let us find for you"
+    : isTr
+      ? "Sizin için bulalım"
+      : "Jetzt entdecken lassen";
+  const ctaAria = isEn
+    ? "Scroll to search request form"
+    : isTr
+      ? "Arama talebi formuna kaydır"
+      : "Zum Suchauftrag-Formular scrollen";
 
   return (
     <>
@@ -70,10 +105,10 @@ export default async function ImmobilieSuchenPage({
             id="hero-suche-heading"
             className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
           >
-            {isEn ? "Search in Weinheim and the surrounding area." : "Suche in Weinheim und Umgebung."}
+            {heroHeading}
           </h1>
           <p className="mt-4 text-base text-white/95 drop-shadow-sm sm:mt-8 sm:text-lg">
-            {isEn ? "Your requirements – We search specifically for you." : "Ihre Wünsche – Wir suchen gezielt für Sie."}
+            {heroSubline}
           </p>
         </div>
         <a
@@ -82,7 +117,7 @@ export default async function ImmobilieSuchenPage({
           aria-label={isEn ? "Scroll to search request form" : "Zum Suchauftrag-Formular scrollen"}
         >
           <span className="text-sm font-medium">
-            {isEn ? "Let us find for you" : "Jetzt entdecken lassen"}
+            {ctaLabel}
           </span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
@@ -90,7 +125,7 @@ export default async function ImmobilieSuchenPage({
 
       {/* Formular */}
       <section id="suchauftrag" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <SearchRequestForm />
+        <SearchRequestForm lang={lang} />
       </section>
 
       <ShareSection dict={dict.shareSection} />

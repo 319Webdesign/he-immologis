@@ -72,7 +72,7 @@ const TEXTS = {
     backLink: "Back to Earn money",
     heroTitle: "Earn money with banner space",
     heroIntro:
-      "Do you have a fence, a plot of land or a well visible area? Then simply make it available for a HE immologis property advertising banner for a period you choose.",
+      "Do you have a fence, a plot of land or a clearly visible area? Then simply make it available for a HE immologis property advertising banner for a period you choose.",
     heroCta: "€500 bonus on successful sale",
     vorteileTitle: "Your benefits",
     v1: "No commitment",
@@ -82,17 +82,17 @@ const TEXTS = {
       " – The banner is displayed permanently and takes up no space. Installation and material are provided by HE immologis.",
     v3: "Legally independent",
     v3b:
-      " – You don't have to approach or refer anyone. Your space becomes a source of income.",
+      " – You don't have to approach or refer to anyone. Your space becomes a source of income.",
     ablaufTitle: "How it works",
     step1Title: "Offer space",
     step1Text: "You let us know about your space – fence, garage or land.",
     step2Title: "Banner is placed",
     step2Text: "HE immologis installs the banner. It stays up permanently and takes up no space.",
     step3Title: "Receive your bonus",
-    step3Text: "On successful sale via your banner you receive a €500 bonus.",
+    step3Text: "If a customer comes to us as a result of this banner and the property sale is completed successfully, you receive your banner bonus of €500.",
     content1: "You don't have to maintain or set up anything – the banner is permanently visible.",
     content2:
-      "If a customer comes to us via this banner and a successful property sale results, you receive your banner bonus of ",
+      "If a customer comes to us as a result of this banner and the property sale is completed successfully, you receive your banner bonus of ",
     content2b:
       ". Payment is made after completion of the notarial purchase contract and receipt of the commission.",
     content3:
@@ -100,20 +100,65 @@ const TEXTS = {
     content4: "On successful completion we pay your bonus directly to you.",
     vereinbarungenTitle: "Agreements & documents",
     privatTitle: "Private individuals",
-    privatDesc: "Sample agreement for advertising space on private land, fences, garages.",
+    privatDesc: "Model agreement for advertising space on private land, fences, garages.",
     downloadPrivat: "Download private agreement (PDF)",
     gewerbeTitle: "Business & shop owners",
-    gewerbeDesc: "Sample agreement for advertising space on commercial premises.",
+    gewerbeDesc: "Model agreement for advertising space on commercial premises.",
     downloadGewerbe: "Download commercial agreement (PDF)",
     ctaTitle: "Do you have suitable space?",
     ctaSub: "Send us a photo or give us a call.",
     orCall: "Or call:",
   },
+  tr: {
+    metaTitle: "Banner reklamı – Özel arsa ve çitler için 500 € prim | HE immologis",
+    metaDescription:
+      "Reklam alanı kiralayın: HE immologis bannerı çit, garaj veya arsada. Kalıcı görünür, yer kaplamaz. Satışta 500 € prim.",
+    metaKeywords: ["Banner reklamı gayrimenkul", "Reklam alanı kirala", "500 € prim banner", "HE immologis"],
+    backLink: "Para kazanmaya geri dön",
+    heroTitle: "Banner alanıyla para kazanın",
+    heroIntro:
+      "Çitiniz, arsanız veya iyi görünen bir alanınız mı var? O halde bu alanı, sizin belirlediğiniz bir süre için HE immologis gayrimenkul reklam bannerı için kullanıma sunun.",
+    heroCta: "Başarılı satışta 500 € prim",
+    vorteileTitle: "Avantajlarınız",
+    v1: "Taahhüt yok",
+    v1b: " – Uzun vadeli sözleşmelere girmiyorsunuz.",
+    v2: "Kalıcı görünür, emek gerektirmez",
+    v2b:
+      " – Banner kalıcı olarak asılı ve yer kaplamıyor. Montaj ve malzeme HE immologis tarafından sağlanıyor.",
+    v3: "Hukuken bağımsız",
+    v3b:
+      " – Kimseye hitap etmeniz veya aracılık yapmanız gerekmiyor. Alanınız gelir kaynağına dönüşüyor.",
+    ablaufTitle: "Nasıl çalışır",
+    step1Title: "Alan teklif edin",
+    step1Text: "Alanınızı bize bildirin – çit, garaj veya arsa.",
+    step2Title: "Banner yerleştirilir",
+    step2Text: "HE immologis bannerı yerleştirir. Kalıcı olarak asılı ve yer kaplamaz.",
+    step3Title: "Priminizi alın",
+    step3Text: "Bannerınız üzerinden başarılı satış gerçekleşirse 500 € prim alırsınız.",
+    content1: "Hiçbir şeyi yönetmeniz veya kurup kaldırmanız gerekmiyor – banner kalıcı olarak görünür durumda.",
+    content2:
+      "Bir müşteri bu banner üzerinden bize gelir ve bundan başarılı bir gayrimenkul satışı gerçekleşirse ",
+    content2b:
+      " banner priminizi alırsınız. Ödeme, noter satış sözleşmesinin tamamlanması ve emlakçı komisyonunun alınmasından sonra yapılır.",
+    content3:
+      "Hiçbir taahhüde girmiyorsunuz ve hukuken bağımsız hareket ediyorsunuz. Basit bir alan böylece yan gelir sağlayabilir.",
+    content4: "Başarılı tamamlamada priminizi doğrudan size öderiz.",
+    vereinbarungenTitle: "Sözleşmeler ve belgeler",
+    privatTitle: "Bireyler",
+    privatDesc: "Özel arsa, çit ve garajlar için örnek reklam alanı sözleşmesi.",
+    downloadPrivat: "Özel sözleşme (PDF) indir",
+    gewerbeTitle: "Ticaret ve dükkan sahipleri",
+    gewerbeDesc: "Ticari alanlar için örnek reklam alanı sözleşmesi.",
+    downloadGewerbe: "Ticari sözleşme (PDF) indir",
+    ctaTitle: "Uygun bir alanınız var mı?",
+    ctaSub: "Bize bir fotoğraf gönderin veya arayın.",
+    orCall: "Veya arayın:",
+  },
 } as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
-  const t = TEXTS[locale === "en" ? "en" : "de"];
+  const t = TEXTS[locale === "tr" ? "tr" : locale === "en" ? "en" : "de"];
   return {
     title: t.metaTitle,
     description: t.metaDescription,
@@ -123,8 +168,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function BannerPage() {
   const locale = await getLocaleFromHeaders();
-  const t = TEXTS[locale === "en" ? "en" : "de"];
-  const prefix = locale === "en" ? "/en" : "";
+  const t = TEXTS[locale === "tr" ? "tr" : locale === "en" ? "en" : "de"];
+  const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
 
   return (
     <>

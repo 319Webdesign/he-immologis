@@ -19,6 +19,16 @@ export interface ServiceCardItem {
   descriptionEn?: string;
   /** Preis-Anzeige auf Englisch (z. B. für Karten auf /en/immobilien-services). */
   priceEn?: string;
+  /** Titel auf Türkisch. */
+  titleTr?: string;
+  /** Untertitel auf Türkisch. */
+  subtitleTr?: string;
+  /** Kurzbeschreibung auf Türkisch. */
+  descriptionTr?: string;
+  /** Preis auf Türkisch. */
+  priceTr?: string;
+  /** Türkische Absätze für die Service-Detailseite. */
+  detailSectionsTr?: string[];
 }
 
 export const DEFAULT_SERVICES: ServiceCardItem[] = [
@@ -75,6 +85,29 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     titleEn: "Valuation Module",
     descriptionEn: "Precise property valuation & market analysis",
     priceEn: "From €599.00 per individual assignment",
+    titleTr: "Değerleme modülü",
+    descriptionTr: "Hassas değerleme ve piyasa analizi",
+    priceTr: "Tekil vekâlet olarak 599,00 €'dan itibaren",
+    detailSectionsTr: [
+      "Değeri tanıyın. Değerleri anlayın. Güvenle karar verin.",
+      "Önemli olandan başlıyoruz – gayrimenkulünüzden.",
+      "Kişisel yerinde randevuda tüm ilgili özellikleri kaydediyor, görünür güçlü ve zayıf yönleri inceliyor ve objenizin gerçek piyasa konumunu analiz ediyoruz. Sadece durum değil, potansiyel, lokasyon kalitesi ve stratejik sınıflandırma da önemli.",
+      "Sonuç olarak sadece bir rakam değil, sağlam ve izlenebilir bir piyasa değeri değerlendirmesi alırsınız.",
+      "Yerleşik değerleme yazılımı, güncel karşılaştırma verileri, hassas lokasyon analizleri ve obje özel faktörlere dayanarak ulaşılabilir satış fiyatının gerçekçi tahmini ile şeffaf bir piyasa fiyat raporu oluşturuyoruz.",
+      "Sonuçlar yüksek kalitede belgelenir ve sizinle kişisel olarak görüşülür – Weinheim'daki ofisimizde, yerinde veya dijital olarak. Net. Yapılandırılmış. Anlaşılır.",
+      "Şeffaf çerçeve",
+      "Değerlememiz, kamuya atanmış veya yeminli bir uzmanın raporu değildir ve yapısal veya hukuki bir değerlendirmenin yerini almaz.",
+      "Bölgesel piyasa deneyimimiz ve dijital değerleme modellerimize dayanan nitelikli bir piyasa değeri tahminidir. Mahkemeler, yetkili makamlar veya vergi daireleri karşısında hukuki güvenli kullanım garantisi veremiyoruz. İsteğe bağlı olarak sizi mimarlar, uzmanlar veya ağımızdan bağımsız değerleme uzmanlarıyla tanıştırabiliriz.",
+      "Fiyatlandırma",
+      "Fiyatlandırmada obje türü ve mesafeye göre ayrım yapıyoruz. Hizmet kapsamı her durumda aynıdır.",
+      "Değerlendirilecek objeye gidiş-dönüş Weinheim'dan kilometre başı 0,70 € hesaplanır. Weinheim içinde ve 5 km yarıçapında seyahat masrafları fiyata dahildir.",
+      "ÖNEMLİ: Weinheim'daki ofisimizden 30 dakikadan fazla uzaklıktaki gayrimenkuller için zaman harcaması da faturalandırılır. Bu konuda talep üzerine ayrı bir teklif alırsınız.",
+      "Belirtilen fiyatlar her zaman tek bir gayrimenkul değerlemesi için geçerlidir:",
+      "Satılık daire: 599,00 € KDV dahil",
+      "Müstakil ev: 699,00 € KDV dahil",
+      "İki ailelik ev: 799,00 € KDV dahil",
+      "Çok aileli bina: 899,00 € KDV dahil",
+    ],
   },
   {
     id: "2",
@@ -96,6 +129,14 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "You don't need full marketing, but targeted advice or support in certain phases? We support you on an hourly basis with our expertise – whether for property assessments, bank negotiations or coordinating trades.",
       "Consulting can take place on site, by video or by phone. You stay flexible and only pay for what you actually need.",
       "Price: €149 per hour incl. VAT. Get in touch – we will find the right package for you.",
+    ],
+    titleTr: "Danışma modülü",
+    descriptionTr: "Gayrimenkul projenizde bireysel danışmanlık ve kişisel eşlik.",
+    priceTr: "149 € / saat",
+    detailSectionsTr: [
+      "Tam pazarlama değil, belirli aşamalarda hedefli danışmanlık veya destek mi istiyorsunuz? Uzmanlığımızla saat bazında size destek oluyoruz – obje değerlendirmesi, banka müzakereleri veya esnaf koordinasyonu için.",
+      "Danışmanlık yerinde, video veya telefonla yapılabilir. Esnek kalırsınız ve gerçekten ihtiyacınız olan için ödersiniz.",
+      "Fiyat: Saat başı 149 € KDV dahil. Bize ulaşın – sizin için doğru paketi bulalım.",
     ],
   },
   {
@@ -144,6 +185,26 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "High-end property photography",
       "Premium drone and camera production for luxury properties: €600 incl. VAT flat rate.",
     ],
+    titleTr: "High-End sunum modülü",
+    subtitleTr: "Lüks gayrimenkuller için yüksek kaliteli drone ve kamera prodüksiyonu",
+    descriptionTr: "Exposé, fotoğrafçılık, drone çekimi, obje hazırlığı",
+    priceTr: "600 € sabit",
+    detailSectionsTr: [
+      "Obje sunumları, imaj içeriği ve lüks gayrimenkul pazarlaması için premium görselleştirme",
+      "Profesyonel hava ve zemin çekimleriyle gayrimenkulünüzün algısını yeni bir seviyeye taşıyın. Çekimlerimiz estetik netlik, duygusal etki ve potansiyel alıcıları hemen etkileyen ve uzun süre hafızada kalan görsel bir dil sunar – teknik olarak hassas, görsel olarak etkileyici ve marka odaklı.",
+      "Elde edecekleriniz",
+      "🎥 Yüksek kaliteli drone hava çekimleri",
+      "Lokasyonu, çevreyi ve mimarinizi tam etkisiyle gösteren çarpıcı kuş bakışı perspektifler – exposé, web siteleri ve sosyal medya için ideal.",
+      "📸 4K'ya kadar profesyonel kamera fotoğrafçılığı",
+      "Malzemeleri, mekân etkisini ve ışık yönetimini mükemmel yakalayan detaylı iç ve dış çekimler.",
+      "🎬 İleri post prodüksiyon",
+      "Görüntü optimizasyonu, renk düzeltme ve şık sıralama – her fotoğraf ve video sadece belgelenmez, sahnelenir.",
+      "📐 Hikâye anlatımı ve sunum kalitesi",
+      "Sadece belgeleme yerine görsel hikâye anlatımı – gayrimenkulünüz içerik ve duygu açısından sahneye konur.",
+      "Fiyat",
+      "High-end gayrimenkul çekimleri",
+      "Lüks gayrimenkuller için yüksek kaliteli drone ve kamera prodüksiyonu: 600 € sabit.",
+    ],
   },
   {
     id: "4",
@@ -153,7 +214,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     description:
       "Qualifizierte Interessentenprüfung & Bonität",
     titleEn: "Seller Protection Module",
-    descriptionEn: "Qualified buyer screening & creditworthiness verification",
+    descriptionEn: "Qualified screening of interested parties & creditworthiness verification",
     priceEn: "€149 incl. VAT per commenced hour",
     image: "/img/service/verkaeuferschutzmodul.jpeg",
     detailSections: [
@@ -196,6 +257,29 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "€149 incl. VAT per hour.",
       "Billed according to actual time spent.",
     ],
+    titleTr: "Satıcı koruma modülü",
+    descriptionTr: "Nitelikli alıcı incelemesi ve kredi itibarı kontrolü",
+    priceTr: "149 € KDV dahil / saat",
+    detailSectionsTr: [
+      "Exposé ve kontrol edilmiş alıcı adayları",
+      "Güvenlik ilk görüntülemeden önce başlar.",
+      "Bir gayrimenkul satışı görüntüleme turizmi değildir.",
+      "Yapı, ciddiyet ve finansal netlik gerektirir.",
+      "Satıcı koruma modülümüzle gayrimenkulünüzün profesyonel sunulduğunu ve sadece kontrol edilmiş alıcı adaylarının erişim sağladığını garanti ediyoruz.",
+      "Sizin için yaptıklarımız",
+      "Yüksek kaliteli exposé",
+      "Gayrimenkulünüz net, eksiksiz ve piyasaya uygun konumlandırılır.",
+      "Profesyonel hazırlık, şeffaf obje bilgileri ve ikna edici sunum güven oluşturur – baştan itibaren.",
+      "Kontrol edilmiş alıcı adayları",
+      "Görüntüleme veya fiyat görüşmesi öncesi kontrol ediyoruz: Gerçek satın alma niyeti var mı? Finansman güvenilir şekilde gösterilebilir mi? Sağlam finansman onayı mevcut mu? Finansman ortağımız üzerinden kredi kontrolü yapılıyor mu?",
+      "Gereksiz randevulardan kaçınır, riskinizi azaltır ve pazarlık konumunuzu korursunuz.",
+      "İlkemiz:",
+      "Meraklılar yok. Zaman kaybı yok.",
+      "Sadece ciddi satın alma niyeti olan kontrol edilmiş adaylar.",
+      "Ücret",
+      "Saat başı 149 € KDV dahil.",
+      "Gerçek harcanan zamana göre faturalandırma.",
+    ],
   },
   {
     id: "5",
@@ -205,7 +289,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     description:
       "Notarvorbereitung & Kaufvertragsabwicklung",
     titleEn: "Notary Contract Module",
-    descriptionEn: "Notary preparation & purchase contract coordination",
+    descriptionEn: "Preparation of notarial documents & purchase contract coordination",
     priceEn: "1.19% commission based on the sale price",
     image: "/img/service/Notarvertragsmodul.jpeg",
     detailSections: [
@@ -217,6 +301,14 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "The purchase contract is signed – that marks the start of the completion phase: monitoring deadlines, obtaining documents, coordinating the notary appointment and financing, preparing for handover. We take care of the coordination and ensure nothing falls by the wayside.",
       "Our completion service relieves both sellers and buyers and reduces the risk of delays or errors.",
       "Fee: 1.19% of the purchase price. We will be happy to explain the process in detail.",
+    ],
+    titleTr: "Noter sözleşme modülü",
+    descriptionTr: "Noter hazırlığı ve satış sözleşmesi koordinasyonu",
+    priceTr: "Satış fiyatının %1,19'u",
+    detailSectionsTr: [
+      "Satış sözleşmesi imzalandı – bu, tamamlanma aşamasının başlangıcıdır: süreleri takip, belgeleri temin, noter randevusu ve finansmanı koordine etme, teslimata hazırlanma. Koordinasyonu üstleniyoruz ve hiçbir şeyin arada kalmamasını sağlıyoruz.",
+      "Tamamlanma hizmetimiz hem satıcıyı hem alıcıyı rahatlatır ve gecikme veya hata riskini azaltır.",
+      "Ücret: Satış fiyatının %1,19'u. Süreci detaylı açıklamaktan memnuniyet duyarız.",
     ],
   },
   {
@@ -262,6 +354,25 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Liability",
       "We do not accept liability for the accuracy, completeness or up-to-dateness of documents provided by third parties. Legal or structural review of the documents is not part of this order unless expressly agreed separately.",
     ],
+    titleTr: "Belge modülü",
+    descriptionTr: "Enerji kimlik belgesi talebi ve gayrimenkul satışı için gerekli tüm belgelerin tam temini.",
+    priceTr: "149 € KDV dahil / saat",
+    detailSectionsTr: [
+      "Obje odaklı belgelerin temini yalnızca ayrı, yazılı veya metin formunda verilen tekil sipariş ve mal sahibinin açık onayına dayanarak yapılır.",
+      "Bu sipariş kapsamında yetkili makamlardan, noterlerden, yönetim şirketlerinden, enerji danışmanlarından veya diğer üçüncü taraflardan gerekli belgelerin organizasyonel koordinasyonunu ve talebini üstleniyoruz.",
+      "Buna özellikle ancak kapsamlı olmamak üzere şunlar dahildir:",
+      "Enerji kimlik belgesi (tüketim veya talep bazlı)",
+      "Kat planları / zemin alanı hesaplamaları",
+      "Kadastro veya tapu haritaları",
+      "Tapu senedi özetleri",
+      "Kat mülkiyeti beyanları ve bölüm planları",
+      "Yetkili veya yönetici bilgileri",
+      "Belirli belgelerin temini hakkı yalnızca fiilen hukuken ve pratikte mevcut olanla sınırlıdır.",
+      "Ücret",
+      "Ücret saat bazında saat başı 149 € KDV dahil, fiilen harcanan zamana göre faturalandırılır. Ayrıca belgelerin düzenlenmesi veya sağlanması için yetkili makamlar, noterler, yönetim şirketleri veya diğer kurumlar tarafından alınan tüm giderler ve harçlar maliyet üzerinden aktarılır.",
+      "Sorumluluk",
+      "Üçüncü taraflar tarafından sağlanan belgelerin doğruluğu, eksiksizliği veya güncelliği için sorumluluk kabul etmiyoruz. Belgelerin hukuki veya yapısal incelenmesi, aksi açıkça ayrıca kararlaştırılmadıkça bu siparişin parçası değildir.",
+    ],
   },
   {
     id: "7",
@@ -288,6 +399,16 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "I do not conclude contracts myself – these are agreed directly between you and the service providers, so liability remains with the respective companies. My role is smooth coordination.",
       "For €149 per hour you get a trusted contact who ensures transparency and peace of mind in all organisational matters.",
     ],
+    titleTr: "Teslim modülü",
+    descriptionTr: "Obje teslimi ve satış sonrası koordinasyon",
+    priceTr: "149 € KDV dahil / saat",
+    detailSectionsTr: [
+      "Teslim sonrası özel obje koordinasyonu ve satış sonrası destek",
+      "Anahtar teslimiyle hizmetim bitmez – tam tersine: Özellikle zamanınız kısıtlıysa, yurt içinde veya dışında daha uzakta yaşıyorsanız veya destek değer veriyorsanız, güvenilir bir koordinatör olarak yanınızdayım.",
+      "Elektrikçi, boyacı, dış veya iç yapımcı, halıcı, mutfakçı, bahçe bakımı veya diğer zanaatler – bölgesel ağımı doğru profesyonellerle sizi buluşturmak için kullanıyorum. İlerlemeyi izliyor, tüm işlerin güvenilir tamamlanmasını sağlıyor ve sizi sürekli bilgilendiriyorum.",
+      "Ben kendim sözleşme yapmıyorum – bunlar sizin ile hizmet sağlayıcılar arasında doğrudan kararlaştırılır, böylece sorumluluk ilgili firmalarda kalır. Benim rolüm sorunsuz koordinasyondur.",
+      "Saat başı 149 € ile organizasyonel tüm konularda şeffaflık ve huzur sağlayan güvenilir bir iletişim kişisi edinirsiniz.",
+    ],
   },
   {
     id: "8",
@@ -309,6 +430,14 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "The Aftercare Module provides you with a reliable contact for all steps after the sale or during ongoing projects.",
       "Whether handover coordination, trade coordination or point of contact for tenants and buyers – we ensure transparency and smooth processes.",
       "We will agree price and scope individually with you. Get in touch.",
+    ],
+    titleTr: "Satış sonrası modül",
+    descriptionTr: "Satıştan sonra veya devam eden projelerde kişisel eşlik ve koordinasyon.",
+    priceTr: "Talep üzerine",
+    detailSectionsTr: [
+      "Satış sonrası modül, satıştan sonraki tüm adımlar veya devam eden projeler için güvenilir bir iletişim kişisi sunar.",
+      "Teslim koordinasyonu, esnaf koordinasyonu veya kiracı ve alıcılar için iletişim noktası – şeffaflık ve sorunsuz süreçler sağlıyoruz.",
+      "Fiyat ve kapsamı sizinle bireysel olarak kararlaştırıyoruz. Bize ulaşın.",
     ],
   },
   {
@@ -349,14 +478,34 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "After a personal viewing you receive a well-founded market analysis with a realistic price recommendation. No pipe dreams – a price that is achievable on the market.",
       "2. High-quality preparation",
       "Professional architectural photography, exposé creation, drone footage on request – your property is positioned optimally.",
-      "3. Targeted marketing & buyer screening",
-      "Individual marketing concept, approach to registered buyers, presentation on relevant platforms and personal viewings. Credit and credibility checks of all prospective buyers are standard.",
+      "3. Targeted marketing & screening of prospective customers",
+      "Individual marketing concept, notification of registered buyers, presentation on relevant platforms and personal viewings. Credit and credibility checks of all prospective buyers are standard.",
       "4. Financing security",
       "Preparation of all documents and assurance of a reliable financing confirmation before the notary appointment.",
       "5. Notary & handover",
       "Coordination of notarisation, support at the notary and structured property handover with protocol.",
       "Transparent remuneration",
-      "For this comprehensive service we charge the customary success fee of 3.57% incl. VAT based on the notarially certified purchase price. If the sale does not go through, we charge an expense allowance.",
+      "For this comprehensive service we charge you the customary success fee of 3.57% incl. VAT based on the notarially certified purchase price. If the transaction could not be concluded, we charge an expense allowance.",
+    ],
+    titleTr: "Bütüncül satış süreci – değerlemeden teslimata",
+    subtitleTr: "5 net adımda güvenli satış",
+    descriptionTr: "Gayrimenkulünüzün tam pazarlaması – değerlemeden başarılı teslimata.",
+    priceTr: "Gayrimenkul satış fiyatının %3,57 KDV dahil",
+    detailSectionsTr: [
+      "Başarılı bir gayrimenkul satışı yapı, piyasa bilgisi ve net bir strateji gerektirir.",
+      "5 adımlı kavramımız sizi ilk görüşmeden teslimata güvenli, şeffaf ve verimli şekilde yönlendirir.",
+      "1. Hassas değerleme",
+      "Kişisel görüntülemeden sonra gerçekçi fiyat önerisi ile sağlam piyasa analizi alırsınız. Hayal değil – piyasada ulaşılabilir bir fiyat.",
+      "2. Yüksek kalite hazırlık",
+      "Profesyonel mimari fotoğrafçılık, exposé hazırlığı, isteğe bağlı drone çekimleri – gayrimenkulünüz optimal konumlandırılır.",
+      "3. Hedefli pazarlama ve alıcı incelemesi",
+      "Bireysel pazarlama kavramı, kayıtlı alıcılara bildirim, ilgili platformlarda sunum ve kişisel görüntülemeler. Tüm alıcı adaylarının kredi ve güvenilirlik kontrolü standarttır.",
+      "4. Finansman güvencesi",
+      "Noter randevusundan önce tüm belgelerin hazırlanması ve güvenilir finansman onayının sağlanması.",
+      "5. Noter ve teslim",
+      "Tasdik koordinasyonu, notere eşlik ve protokollü yapılandırılmış obje teslimi.",
+      "Şeffaf ücretlendirme",
+      "Bu kapsamlı hizmet için size noter tasdikli satış bedeline göre yürürlükteki başarı ücreti %3,57 KDV dahil uygulanır. Satış gerçekleşmezse, bir gider karşılığı alırız.",
     ],
   },
 ];

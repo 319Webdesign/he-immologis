@@ -307,7 +307,7 @@
     "heroCta": "5.000 €'ya kadar komisyon",
     "staffelTitle": "Öneri veren kademesi",
     "introQuestion": "Gayrimenkulünü satmak isteyen birini tanıyor musunuz?",
-    "introText": "O zaman bize bilgi verin – ve cazip öneri primini güvence altına alın. Hiçbir şey organize etmeniz veya emlakçı olmanız gerekmez. İyi bir temas yeterli – gerisini biz hallederiz.",
+    "introText": "O zaman bize bilgi verin – ve cazip öneri primini elde edin. Hiçbir şey organize etmeniz veya emlakçı olmanız gerekmez. İyi bir temas yeterli – gerisini biz hallederiz.",
     "howTitle": "Nasıl para kazanırsınız",
     "howSteps": [
       "Henüz kamuya açık sunulmayan bir gayrimenkulü bize bildirirsiniz.",
@@ -362,8 +362,8 @@
         { "title": "Profesyonel değerleme", "text": "Optimal satış fiyatı için güvenilir piyasa analizi." },
         { "title": "Yüksek kalite gayrimenkul fotoğrafları", "text": "Profesyonel çekimler ve drone görüntüleriyle görsel pazarlama." },
         { "title": "Belge temini", "text": "Tüm gerekli yasal belgeleri biz hallederiz." },
-        { "title": "Nitelikli alıcı kontrolü", "text": "Yalnızca kontrol edilmiş alıcılarla ve kredi kontrolüyle görüntülemeler." },
-        { "title": "Noter ve sözleşme yönetimi", "text": "Tasdik randevusuna tam hazırlık ve eşlik." },
+        { "title": "İlgi duyan tarafların nitelikli incelenmesi ve kredi itibarı kontrolü", "text": "Yalnızca kontrol edilmiş alıcılarla ve kredi kontrolüyle görüntülemeler." },
+        { "title": "Noter belgelerinin hazırlanması ve satış sözleşmesi koordinasyonu", "text": "Tasdik randevusuna tam hazırlık ve eşlik." },
         { "title": "Satış sonrası destek", "text": "Satıştan sonra da teslimatta iletişim ortağınız olmaya devam ediyoruz." }
       ]
     },
@@ -465,7 +465,17 @@
         "Teslim ve taşınma",
         "Satış sonrası destek"
       ],
-      "tipContents": []
+      "tipContents": [
+        "Aramaya başlamadan önce kişisel durumunuzu, bütçenizi ve lokasyon tercihlerinizi netleştiriyoruz. Amacımız Weinheim, Bergstraße ve Rhein-Neckar bölgesinde hayatınıza gerçekten uyan bir gayrimenkul bulmak.",
+        "Finansmanı erkenden planlayın: öz sermaye, işletme maliyetleri, noter ve tapu harçları ile emlakçı komisyonu. Finansman seçeneklerini karşılaştırın ve doğru gayrimenkulu bulduğunuzda hızlı hareket edebilmek için finansman belgesi alın.",
+        "Weinheim ve Bergstraße bölgesindeki pazarı sürekli takip ediyoruz ve kriterlerinize uyan bir gayrimenkul olduğunda sizinle iletişime geçiyoruz. Net açıklamalar alırsınız ve görüntüleme yapıp yapmamaya sakin karar verebilirsiniz.",
+        "Görüntülemelerde gayrimenkulün durumunu birlikte kontrol ediyoruz: yapı, ısıtma, elektrik tesisatı, nem, kusurlar ve yenileme ihtiyaçları. Gerekirse bağımsız bir eksper veya yapı uzmanı tavsiye ediyoruz. Böylece sürprizlerden kaçınır ve satın alma fiyatını ile planlamanızı gerçekçi değerlendirebilirsiniz.",
+        "Satın almadan önce tapu senedi özeti, kat planı, enerji kimlik belgesi, kat mülkiyeti beyanı (daireler için) ve varsa ortaklık toplantı tutanakları incelenmelidir. Tutarsızlıkları veya yükümlülükleri tespit etmenizde size yardımcı oluyoruz. Böylece ne satın aldığınızı ve gayrimenkulle ilişkili hak ve yükümlülükleri bilirsiniz.",
+        "Piyasa karşılaştırması, gayrimenkulün durumu ve finansmanınıza dayanarak gerçekçi bir fiyat önerisi sunuyoruz. Satıcı veya temsilcisiyle müzakereyi yürütüyor ve adil koşullar ile şeffaf, gecikmesiz bir sonuç hedefliyoruz.",
+        "Noter satış sözleşmesi hukuken bağlayıcı adımdır. Belgeleri sizinle birlikte hazırlıyoruz ve isterseniz noter randevusunda size eşlik edebiliriz. Noter sözleşmeyi açıklar, devri tasdik eder ve tapu siciline kaydı başlatır. Teslim ve kayıtla gayrimenkul size hukuken devredilir.",
+        "Teslimde anahtarlar verilir, sayaç okumaları kaydedilir ve gayrimenkulün durumu belgelenir. Satıcı ile sizin aranızda randevuları koordine ediyoruz ve tüm sorularınız için yanınızdayız. Böylece taşınma sorunsuz ilerler ve yeni evinize eksiksiz başlarsınız.",
+        "Satın alma işlemi tamamlandıktan sonra da iletişim ortağınız olmaya devam edeceğiz. Faturalandırma, sigorta, mahallenizdeki sertifikalı zanaatkârlar hakkında bilgi veya gelecekteki satışların yönetimi konusunda bize başvurabilirsiniz. Weinheim ve Bergstraße'deki tüm gayrimenkul sorularınızda size uzun vadeli ortağınız olarak destek olmaktan mutluluk duyarız."
+      ]
     },
     "contact": {
       "title": "Gayrimenkul talebi",
@@ -547,11 +557,11 @@
       "features": [
         "Hassas değerleme",
         "Yüksek kalite hazırlık",
-        "Hedefli pazarlama ve alıcı kontrolü",
+        "Hedefli pazarlama ve potansiyel alıcıların incelenmesi",
         "Finansman güvencesi",
         "Noter ve teslim"
       ],
-      "priceParagraph": "Bu kapsamlı hizmet için noter tasdikli satış bedeline göre yürürlükteki başarı komisyonu %3,57 (KDV dahil) uygulanır.",
+      "priceParagraph": "Bu kapsamlı hizmet için size noter tasdikli satış bedeline göre yürürlükteki başarı komisyonu %3,57 (KDV dahil) uygulanır.",
       "moreInfoButton": "Daha fazla bilgi"
     },
     "modulesHeading": "Tek modüller",

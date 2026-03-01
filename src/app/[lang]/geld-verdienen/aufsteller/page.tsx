@@ -76,7 +76,7 @@ const TEXTS = {
     backLink: "Back to Earn money",
     heroTitle: "Earn money with a display stand",
     heroIntro:
-      "Do you have a shop, office or a well visible area in your entrance? Then simply display a HE immologis property stand.",
+      "Do you have a shop, office or a clearly visible area in your entrance? Then simply display a HE immologis property stand.",
     heroCta: "€500 bonus on successful sale",
     vorteileTitle: "Your benefits",
     v1: "No commitment",
@@ -86,19 +86,19 @@ const TEXTS = {
       " – HE immologis sets up and takes down the display. The stand is only outside during opening hours and is brought back in afterwards.",
     v3: "Legally independent",
     v3b:
-      " – You don't have to approach or refer anyone. A small display area can earn you money on the side.",
+      " – You don't have to approach or refer to anyone. A small display area can earn you money on the side.",
     ablaufTitle: "How it works",
     step1Title: "Offer space",
-    step1Text: "You let us know about your well visible area in the entrance.",
+    step1Text: "You let us know about your clearly visible area in the entrance.",
     step2Title: "Display is placed",
     step2Text: "HE immologis sets up the display and removes it when needed – no effort on your part.",
     step3Title: "Receive your bonus",
-    step3Text: "On successful sale via your display you receive a €500 bonus.",
+    step3Text: "If a customer comes to us as a result of this display and the property sale is completed successfully, you receive your display bonus of €500.",
     content1:
       "The display is placed visibly during opening hours and brought back in afterwards – that's all you need to do.",
-    content2: "You don't have to approach or refer anyone.",
+    content2: "You don't have to approach or refer to anyone.",
     content3:
-      "If a customer comes to us via this display and a successful property sale results, you receive your display bonus of ",
+      "If a customer comes to us as a result of this display and the property sale is completed successfully, you receive your display bonus of ",
     content3b:
       ". Payment is made after completion of the notarial purchase contract and receipt of the commission.",
     content4:
@@ -116,11 +116,59 @@ const TEXTS = {
     ctaSub: "Send us a photo or give us a call.",
     orCall: "Or call:",
   },
+  tr: {
+    metaTitle: "Werbe-Aufsteller – Mağaza ve bürolar için 500 € prim | HE immologis",
+    metaDescription:
+      "HE immologis gayrimenkul pano sunucusu yerleştirin – taahhüt yok. Kurulum ve kaldırma bizim tarafımızdan. Başarılı satışta 500 € prim.",
+    metaKeywords: ["Pano reklamı", "Gayrimenkul reklam alanı", "500 € prim pano", "HE immologis"],
+    backLink: "Para kazanmaya geri dön",
+    heroTitle: "Reklam panosuyla para kazanın",
+    heroIntro:
+      "Dükkanınız, büronuz veya girişte iyi görünen bir alanınız mı var? O halde basitçe bir HE immologis gayrimenkul panosu yerleştirin.",
+    heroCta: "Başarılı satışta 500 € prim",
+    vorteileTitle: "Avantajlarınız",
+    v1: "Taahhüt yok",
+    v1b: " – Uzun vadeli sözleşmelere girmiyorsunuz.",
+    v2: "Efor gerektirmez",
+    v2b:
+      " – Kurulum ve kaldırma HE immologis tarafından yapılır. Pano yalnızca çalışma saatlerinde dışarıda durur ve sonra tekrar içeri alınır.",
+    v3: "Hukuken bağımsız",
+    v3b:
+      " – Kimseye hitap etmeniz veya aracılık yapmanız gerekmiyor. Küçük bir sergi alanı böylece yan gelir sağlayabilir.",
+    ablaufTitle: "Nasıl çalışır",
+    step1Title: "Alan teklif edin",
+    step1Text: "Girişteki iyi görünen alanınızı bize bildirin.",
+    step2Title: "Pano yerleştirilir",
+    step2Text: "HE immologis panoyu kurar ve gerektiğinde kaldırır – sizin katkınız olmadan.",
+    step3Title: "Priminizi alın",
+    step3Text: "Panonuz üzerinden başarılı satış gerçekleşirse 500 € prim alırsınız.",
+    content1:
+      "Pano çalışma saatlerinde görünür şekilde yerleştirilir ve sonra tekrar içeri alınır – fazlasını yapmanız gerekmez.",
+    content2: "Kimseye hitap etmeniz veya aracılık yapmanız gerekmiyor.",
+    content3:
+      "Bir müşteri bu pano üzerinden bize gelir ve bundan başarılı bir gayrimenkul satışı gerçekleşirse pano priminizi ",
+    content3b:
+      " alırsınız. Ödeme, noter satış sözleşmesinin tamamlanması ve emlakçı komisyonunun alınmasından sonra yapılır.",
+    content4:
+      "Hiçbir taahhüde girmiyorsunuz ve hukuken bağımsız hareket ediyorsunuz. Küçük bir sergi alanı böylece yan gelir sağlayabilir.",
+    content5:
+      "Ek'te ticari ve özel pano sözleşmelerini bulabilirsiniz. Başarılı tamamlamada priminizi doğrudan size öderiz.",
+    vereinbarungenTitle: "Sözleşmeler ve belgeler",
+    privatTitle: "Bireyler",
+    privatDesc: "Özel sergi alanları için sözleşme (örn. kendi dükkanınızda veya büronuzda).",
+    downloadPrivat: "Özel sözleşme (PDF) indir",
+    gewerbeTitle: "Ticaret ve dükkan sahipleri",
+    gewerbeDesc: "Ticari alanlar için sözleşme (dükkan, büro, muayenehane).",
+    downloadGewerbe: "Ticari sözleşme (PDF) indir",
+    ctaTitle: "Uygun bir alanınız var mı?",
+    ctaSub: "Bize bir fotoğraf gönderin veya arayın.",
+    orCall: "Veya arayın:",
+  },
 } as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
-  const t = TEXTS[locale === "en" ? "en" : "de"];
+  const t = TEXTS[locale === "tr" ? "tr" : locale === "en" ? "en" : "de"];
   return {
     title: t.metaTitle,
     description: t.metaDescription,
@@ -130,8 +178,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AufstellerPage() {
   const locale = await getLocaleFromHeaders();
-  const t = TEXTS[locale === "en" ? "en" : "de"];
-  const prefix = locale === "en" ? "/en" : "";
+  const t = TEXTS[locale === "tr" ? "tr" : locale === "en" ? "en" : "de"];
+  const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
 
   return (
     <>

@@ -395,19 +395,19 @@ const KAUFTIPPS_EN: { content: string | React.ReactNode }[] = [
   },
   {
     content:
-      "Based on market comparison, condition and your financing we develop a realistic price recommendation. We conduct the negotiation with the seller or their agent and work for fair terms. Our goal is a result that works for both sides – transparent and without unnecessary delay.",
+      "Based on market comparison, the condition of the property and your financing, we develop a realistic price recommendation. We conduct the negotiations with the seller or their agent and work toward fair terms. Our goal is a result that works for both sides – transparent and without unnecessary delay.",
   },
   {
     content:
-      "The notarial purchase contract is the legally binding conclusion. We prepare the documents with you and can accompany you to the notary appointment. The notary explains the contract, certifies the transfer and initiates the land register entry. With the conveyance and registration, the property is legally assigned to you.",
+      "The notarial purchase contract is the legally binding completion of the purchase. We prepare the documents together with you and can, if you wish, accompany you to the notary appointment. The notary explains the contract, certifies the transfer and initiates the land register entry. With the conveyance and registration, the property is legally assigned to you.",
   },
   {
     content:
-      "At handover, keys are handed over, meter readings recorded and the condition of the property documented. We coordinate appointments between the seller and you and are available for any questions. This way move-in proceeds in an orderly manner and you start your new home without loose ends.",
+      "At handover, keys are handed over, meter readings are recorded and the condition of the property is documented. We coordinate appointments between the seller and you and are available for any questions. This way move-in proceeds in an orderly manner and you start your new home without any open issues.",
   },
   {
     content:
-      "We remain your contact after the purchase. For questions on utilities, insurance, tradespeople recommendations or future sales you can turn to us. We are happy to support you in the long term as your partner for property in Weinheim and the Bergstraße.",
+      "We will remain your contact partner also beyond the completion of the purchase. You can turn to us with queries regarding billing, questions on insurance, requests for information on certified craftsmen in your neighborhood, or the handling of future sales. We are happy to support you in the long term as your partner for all property questions in Weinheim and the Bergstraße.",
   },
 ];
 
@@ -419,9 +419,12 @@ interface KauftippsProps {
 export default function Kauftipps({ dict, lang }: KauftippsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const useEnContent = lang === "en" && KAUFTIPPS_EN.length >= (dict.tipTitles?.length ?? 0);
+  const useTrContent = lang === "tr" && dict.tipContents && dict.tipContents.length >= (dict.tipTitles?.length ?? 0);
   const tips = useEnContent
     ? dict.tipTitles.map((title, i) => ({ title, content: KAUFTIPPS_EN[i]?.content ?? "" }))
-    : KAUFTIPPS_DE.map((tip, i) => ({ title: dict.tipTitles[i] ?? tip.title, content: tip.content }));
+    : useTrContent
+      ? dict.tipTitles!.map((title, i) => ({ title, content: dict.tipContents![i] ?? "" }))
+      : KAUFTIPPS_DE.map((tip, i) => ({ title: dict.tipTitles[i] ?? tip.title, content: tip.content }));
 
   return (
     <section

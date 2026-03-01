@@ -19,10 +19,11 @@ interface ServiceCardProps {
 
 export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: ServiceCardProps) {
   const isEn = lang === "en";
-  const title = (isEn && service.titleEn) ? service.titleEn : service.title;
-  const price = (isEn && service.priceEn) ? service.priceEn : service.price;
-  const subtitle = (isEn && service.subtitleEn) ? service.subtitleEn : service.subtitle;
-  const description = (isEn && service.descriptionEn) ? service.descriptionEn : service.description;
+  const isTr = lang === "tr";
+  const title = (isTr && service.titleTr) ? service.titleTr : (isEn && service.titleEn) ? service.titleEn : service.title;
+  const price = (isTr && service.priceTr) ? service.priceTr : (isEn && service.priceEn) ? service.priceEn : service.price;
+  const subtitle = (isTr && service.subtitleTr) ? service.subtitleTr : (isEn && service.subtitleEn) ? service.subtitleEn : service.subtitle;
+  const description = (isTr && service.descriptionTr) ? service.descriptionTr : (isEn && service.descriptionEn) ? service.descriptionEn : service.description;
   const baseHref = lang ? `/${lang}/immobilien-services` : "/immobilien-services";
   const href = service.href ?? `${baseHref}/${service.slug}`;
 

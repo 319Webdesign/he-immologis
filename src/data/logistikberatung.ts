@@ -16,7 +16,7 @@ export const SMART_INTRO = {
 } as const;
 
 export const SMART_INTRO_EN = {
-  title: ["“We turn your performance", "controlled upward.”"],
+  title: ["“We will increase", "your performance in a controlled manner.”"],
   subtitle: "People. Structure. Strategy. Network.",
   acronym: [
     { letter: "S", label: "Training" },

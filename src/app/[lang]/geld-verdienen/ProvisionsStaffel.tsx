@@ -20,12 +20,20 @@ const STAFFEL_EN = [
   { range: "From €1m", provision: "€5,000", from: 1000, to: 1000 },
 ];
 
+const STAFFEL_TR = [
+  { range: "250.000 €'ye kadar", provision: "1.000 €", from: 0, to: 250 },
+  { range: "250.000 € – 500.000 €", provision: "1.500 €", from: 250, to: 500 },
+  { range: "500.000 € – 1 Milyon €", provision: "2.500 €", from: 500, to: 1000 },
+  { range: "1 Milyon € ve üzeri", provision: "5.000 €", from: 1000, to: 1000 },
+];
+
 export default function ProvisionsStaffel() {
   const pathname = usePathname();
   const isEn = pathname?.startsWith("/en");
-  const staffel = isEn ? STAFFEL_EN : STAFFEL_DE;
-  const labelKaufpreis = isEn ? "Purchase price" : "Kaufpreis";
-  const labelProvision = isEn ? "Commission" : "Provision";
+  const isTr = pathname?.startsWith("/tr");
+  const staffel = isTr ? STAFFEL_TR : isEn ? STAFFEL_EN : STAFFEL_DE;
+  const labelKaufpreis = isTr ? "Satış fiyatı" : isEn ? "Purchase price" : "Kaufpreis";
+  const labelProvision = isTr ? "Komisyon" : isEn ? "Commission" : "Provision";
 
   return (
     <motion.div
@@ -48,7 +56,7 @@ export default function ProvisionsStaffel() {
                 className="absolute -top-2 right-4 rounded-full px-3 py-0.5 text-xs font-semibold text-white"
                 style={{ backgroundColor: BRAND_BLUE }}
               >
-                Max.
+                {isTr ? "Maks." : "Max."}
               </div>
             )}
             <div className="flex items-center gap-2 text-slate-600">

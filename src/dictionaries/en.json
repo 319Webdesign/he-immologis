@@ -306,7 +306,7 @@
     "heroCta": "Commission up to €5,000",
     "staffelTitle": "The referrer commission tiers",
     "introQuestion": "Do you know someone who wants to sell their property?",
-    "introText": "Then simply pass on the lead – and secure an attractive referrer bonus. You don’t need to organise anything or be an agent. A good contact is enough – we take care of the rest.",
+    "introText": "Then simply pass on the lead – and get an attractive referrer bonus. You don’t need to organise anything or be an agent. A good contact is enough – we take care of the rest.",
     "howTitle": "How you earn",
     "howSteps": [
       "You tell us about a property that is not yet publicly listed.",
@@ -361,8 +361,8 @@
         {"title": "Professional Valuation", "text": "In-depth market analysis to determine the optimal sales price."},
         {"title": "High-End Property Photography", "text": "Visual marketing through professional photography and drone footage."},
         {"title": "Document Procurement", "text": "We obtain all legally required documents for the sale."},
-        {"title": "Qualified Buyer Screening", "text": "Viewings only with verified buyers and credit checks."},
-        {"title": "Notary & Contract Management", "text": "Complete preparation and support throughout the notarization process."},
+        {"title": "Qualified Screening of Interested Parties & Creditworthiness Verification", "text": "Viewings only with verified buyers and credit checks."},
+        {"title": "Preparation of Notarial Documents & Purchase Contract Coordination", "text": "Complete preparation and support throughout the notarization process."},
         {"title": "Aftercare", "text": "We remain your trusted contact even after the sale and during handover."}
       ]
     },
@@ -532,8 +532,8 @@
       "title": "The Complete Sales Process",
       "subtitle": "—from valuation to handover",
       "stepsIntro": "A secure sale in 5 clearly defined steps:",
-      "features": ["Precise Property Valuation", "High-Quality Property Presentation", "Targeted Marketing & Buyer Qualification", "Financing Verification", "Notary Coordination & Handover"],
-      "priceParagraph": "For this comprehensive service, we charge the standard local success fee of 3.57% incl. VAT, calculated on the notarized purchase price.",
+      "features": ["Precise Property Valuation", "High-Quality Property Presentation", "Targeted Marketing & Screening of Prospective Customers", "Financing Verification", "Notary Coordination & Handover"],
+      "priceParagraph": "For this comprehensive service, we charge you the standard local success fee of 3.57% incl. VAT, calculated on the notarized purchase price.",
       "moreInfoButton": "More Information"
     },
     "modulesHeading": "Individual Service Modules",

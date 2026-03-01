@@ -42,6 +42,24 @@ const STEPS_EN = [
   },
 ];
 
+const STEPS_TR = [
+  {
+    step: 1,
+    icon: Printer,
+    text: "Öneri veren formunu indirin ve yazdırın.",
+  },
+  {
+    step: 2,
+    icon: PenLine,
+    text: "Bilgilerinizi ve gayrimenkul bilgilerini girin. Gizlilik bizim için doğaldır.",
+  },
+  {
+    step: 3,
+    icon: Mail,
+    text: "Formun fotoğrafını veya taramasını info@he-immologis.de adresine veya WhatsApp ile gönderin.",
+  },
+];
+
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -57,12 +75,14 @@ const item = {
 
 const HEADING_DE = "So einfach werden Sie zum Tippgeber";
 const HEADING_EN = "It's that simple to become a referrer";
+const HEADING_TR = "Öneri veren olmak bu kadar kolay";
 
 export default function TippgeberHowTo() {
   const pathname = usePathname();
   const isEn = pathname?.startsWith("/en");
-  const steps = isEn ? STEPS_EN : STEPS_DE;
-  const heading = isEn ? HEADING_EN : HEADING_DE;
+  const isTr = pathname?.startsWith("/tr");
+  const steps = isTr ? STEPS_TR : isEn ? STEPS_EN : STEPS_DE;
+  const heading = isTr ? HEADING_TR : isEn ? HEADING_EN : HEADING_DE;
   const stepCount = steps.length;
 
   return (

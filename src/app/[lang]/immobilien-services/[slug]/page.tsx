@@ -13,7 +13,7 @@ interface PageProps {
 export async function generateStaticParams() {
   const slugs = DEFAULT_SERVICES.map((s) => s.slug);
   const params: { lang: string; slug: string }[] = [];
-  for (const lang of ["de", "en"]) {
+  for (const lang of ["de", "en", "tr"]) {
     for (const slug of slugs) {
       params.push({ lang, slug });
     }
@@ -26,9 +26,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { lang, slug } = await params;
   const service = DEFAULT_SERVICES.find((s) => s.slug === slug);
-  if (!service) return { title: lang === "en" ? "Service not found" : "Service nicht gefunden" };
-  const title = lang === "en" && service.titleEn ? service.titleEn : service.title;
-  const description = lang === "en" && service.descriptionEn ? service.descriptionEn : service.description;
+  if (!service) return { title: lang === "en" ? "Service not found" : lang === "tr" ? "Hizmet bulunamadı" : "Service nicht gefunden" };
+  const title = (lang === "tr" && service.titleTr) ? service.titleTr : (lang === "en" && service.titleEn) ? service.titleEn : service.title;
+  const description = (lang === "tr" && service.descriptionTr) ? service.descriptionTr : (lang === "en" && service.descriptionEn) ? service.descriptionEn : service.description;
   return {
     title: `${title} | HE immologis UG`,
     description:
@@ -37,12 +37,15 @@ export async function generateMetadata({
   };
 }
 
+const DOKUMENTMODUL_LIST_INTRO_TR =
+  "Buna özellikle ancak kapsamlı olmamak üzere şunlar dahildir:";
+
 function KomplettmandatContent({
   sections,
   locale,
 }: {
   sections: string[];
-  locale: "de" | "en";
+  locale: "de" | "en" | "tr";
 }) {
   const intro = sections.slice(0, 2);
   const steps = [
@@ -63,12 +66,16 @@ function KomplettmandatContent({
   const agbIntro =
     locale === "en"
       ? "Our General Terms and Conditions ("
-      : "Hier gelten unsere Allgemeinen Geschäftsbedingungen (";
-  const agbLinkText = locale === "en" ? "GTC" : "AGB";
+      : locale === "tr"
+        ? "Genel kullanım koşullarımız ("
+        : "Hier gelten unsere Allgemeinen Geschäftsbedingungen (";
+  const agbLinkText = locale === "en" ? "GTC" : locale === "tr" ? "Kullanım koşulları" : "AGB";
   const agbOutro =
     locale === "en"
       ? ") as well as statutory provisions apply."
-      : ") sowie die gesetzlichen Bestimmungen.";
+      : locale === "tr"
+        ? ") ve yasal düzenlemeler geçerlidir."
+        : ") sowie die gesetzlichen Bestimmungen.";
 
   return (
     <>
@@ -123,7 +130,7 @@ function KomplettmandatContent({
         </p>
         <p className="mt-4 text-lg leading-relaxed text-slate-700">
           {agbIntro}
-          <Link href={locale === "en" ? "/en/agb" : "/agb"} className="text-[#4682B4] underline hover:no-underline">
+          <Link href={locale === "en" ? "/en/agb" : locale === "tr" ? "/tr/agb" : "/agb"} className="text-[#4682B4] underline hover:no-underline">
             {agbLinkText}
           </Link>
           {agbOutro}
@@ -146,14 +153,14 @@ function DefaultContent({
 }: {
   paragraphs: string[];
   slug?: string;
-  locale?: "de" | "en";
+  locale?: "de" | "en" | "tr";
 }) {
   const isDokumentmodul = slug === "energieausweis";
   const listIntro =
-    locale === "en" ? DOKUMENTMODUL_LIST_INTRO_EN : DOKUMENTMODUL_LIST_INTRO_DE;
+    locale === "en" ? DOKUMENTMODUL_LIST_INTRO_EN : locale === "tr" ? DOKUMENTMODUL_LIST_INTRO_TR : DOKUMENTMODUL_LIST_INTRO_DE;
   const listIntroIndex = isDokumentmodul
     ? paragraphs.findIndex(
-        (p) => p === DOKUMENTMODUL_LIST_INTRO_DE || p === DOKUMENTMODUL_LIST_INTRO_EN
+        (p) => p === DOKUMENTMODUL_LIST_INTRO_DE || p === DOKUMENTMODUL_LIST_INTRO_EN || p === DOKUMENTMODUL_LIST_INTRO_TR
       )
     : -1;
   const listStart = listIntroIndex >= 0 ? listIntroIndex + 1 : 0;
@@ -224,6 +231,16 @@ function DefaultContent({
             </p>
           );
         }
+        if (text.startsWith("ÖNEMLİ: ")) {
+          return (
+            <p key={i} className="text-lg leading-relaxed text-slate-600">
+              <span className="inline-flex items-center rounded-md bg-amber-100 px-2.5 py-1 text-sm font-semibold text-amber-800 ring-1 ring-amber-200">
+                ÖNEMLİ
+              </span>{" "}
+              {text.slice(8)}
+            </p>
+          );
+        }
         return (
           <p key={i} className="text-lg leading-relaxed text-slate-600">
             {text}
@@ -236,7 +253,7 @@ function DefaultContent({
 
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { lang, slug } = await params;
-  const locale = lang === "en" ? "en" : "de";
+  const locale = lang === "en" ? "en" : lang === "tr" ? "tr" : "de";
   const service: ServiceCardItem | undefined = DEFAULT_SERVICES.find(
     (s) => s.slug === slug
   );
@@ -244,14 +261,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   if (!service) notFound();
 
   const sections =
-    locale === "en" && service.detailSectionsEn && service.detailSectionsEn.length > 0
-      ? service.detailSectionsEn
-      : service.detailSections;
+    locale === "tr" && service.detailSectionsTr && service.detailSectionsTr.length > 0
+      ? service.detailSectionsTr
+      : locale === "en" && service.detailSectionsEn && service.detailSectionsEn.length > 0
+        ? service.detailSectionsEn
+        : service.detailSections;
   const paragraphs =
     sections && sections.length > 0 ? sections : [service.description];
-  const displayPrice = locale === "en" && service.priceEn ? service.priceEn : service.price;
-  const displayTitle = locale === "en" && service.titleEn ? service.titleEn : service.title;
-  const displaySubtitle = locale === "en" && service.subtitleEn ? service.subtitleEn : service.subtitle;
+  const displayPrice = (locale === "tr" && service.priceTr) ? service.priceTr : (locale === "en" && service.priceEn) ? service.priceEn : service.price;
+  const displayTitle = (locale === "tr" && service.titleTr) ? service.titleTr : (locale === "en" && service.titleEn) ? service.titleEn : service.title;
+  const displaySubtitle = (locale === "tr" && service.subtitleTr) ? service.subtitleTr : (locale === "en" && service.subtitleEn) ? service.subtitleEn : service.subtitle;
 
   const isKomplettmandat =
     slug === "immobilienverkauf" && (paragraphs?.length ?? 0) >= 14;
@@ -264,7 +283,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900"
         >
           <ArrowLeft className="h-4 w-4" />
-          {locale === "en" ? "Back to all services" : "Zurück zu allen Services"}
+          {locale === "en" ? "Back to all services" : locale === "tr" ? "Tüm hizmetlere dön" : "Zurück zu allen Services"}
         </Link>
 
         <article>
@@ -310,7 +329,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="mt-2 text-sm text-slate-600">
                 {locale === "en"
                   ? "We produce the professional film and photo shoots in cooperation with Heinerfilm."
-                  : "Die professionellen Film- und Fotoaufnahmen realisieren wir in Kooperation mit Heinerfilm."}
+                  : locale === "tr"
+                    ? "Profesyonel film ve fotoğraf çekimlerini Heinerfilm ile iş birliğinde gerçekleştiriyoruz."
+                    : "Die professionellen Film- und Fotoaufnahmen realisieren wir in Kooperation mit Heinerfilm."}
               </p>
               <a
                 href="https://heinerfilm.de"
@@ -319,7 +340,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 className="mt-3 inline-flex items-center text-sm font-medium"
                 style={{ color: BRAND_BLUE }}
               >
-                {locale === "en" ? "Find out more at heinerfilm.de →" : "Mehr erfahren auf heinerfilm.de →"}
+                {locale === "en" ? "Find out more at heinerfilm.de →" : locale === "tr" ? "Daha fazlası heinerfilm.de'de →" : "Mehr erfahren auf heinerfilm.de →"}
               </a>
             </section>
           )}
@@ -333,23 +354,25 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               id="anfrage-heading"
               className="font-sans text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl"
             >
-              {locale === "en" ? "Enquiry for this service" : "Anfrage zu diesem Service"}
+              {locale === "en" ? "Enquiry for this service" : locale === "tr" ? "Bu hizmet için talepte bulunun" : "Anfrage zu diesem Service"}
             </h2>
             <p className="mt-3 text-slate-600">
               {locale === "en"
                 ? "Do you have questions or would you like a non-binding quote? Get in touch – we will get back to you promptly."
-                : "Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot? Schreiben Sie uns – wir melden uns zeitnah bei Ihnen."}
+                : locale === "tr"
+                  ? "Sorularınız mı var veya bağlayıcı olmayan bir teklif mi istiyorsunuz? Bize ulaşın – size en kısa sürede geri dönelim."
+                  : "Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot? Schreiben Sie uns – wir melden uns zeitnah bei Ihnen."}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
-                href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : "Anfrage – " + service.title)}`}
+                href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : locale === "tr" ? "Talep – " + displayTitle : "Anfrage – " + service.title)}`}
                 className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
                 style={{ backgroundColor: BRAND_BLUE }}
               >
-                {locale === "en" ? "Send email" : "E-Mail schreiben"}
+                {locale === "en" ? "Send email" : locale === "tr" ? "E-posta gönder" : "E-Mail schreiben"}
               </a>
               <p className="text-slate-600">
-                {locale === "en" ? "Or call: " : "Oder anrufen: "}
+                {locale === "en" ? "Or call: " : locale === "tr" ? "Veya arayın: " : "Oder anrufen: "}
                 <a
                   href="tel:+4917632198462"
                   className="font-medium text-slate-900 underline hover:no-underline"

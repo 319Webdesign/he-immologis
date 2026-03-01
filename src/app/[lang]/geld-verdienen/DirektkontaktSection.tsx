@@ -42,12 +42,28 @@ const TEXTS = {
       "https://wa.me/4917632198462?text=Hi%20Holger,%20I%20have%20a%20tip/interest%20in%20a%20partnership.",
     mailtoSubject: "Enquiry%20Referrer/Location%20partner",
   },
+  tr: {
+    guarantee: "24 saat içinde yanıt garantisi",
+    heading: "Öneri veren | Banner & Dikici reklam alanı ortağı",
+    subheading:
+      "Şimdi doğrudan iletişim talep edin – 24 saat içinde size kişisel olarak geri dönüş yapacağız.",
+    body: "Önerinizi bizimle paylaşın veya reklam ortaklığı konusundaki ilginizi bildirin. Gizli. Bağlayıcı değil. Adil ücretlendirme.",
+    whatsapp: "Öneriyi WhatsApp ile gönder",
+    email: "E-posta ile talepte bulun",
+    orCall: "Veya arayın:",
+    disclaimer:
+      "Verileriniz kesinlikle gizli tutulacaktır. Öneri veren ücreti anlaşmamızın koşullarına göre ödenir (İndirmeler bölümüne bakın).",
+    whatsappHref:
+      "https://wa.me/4917632198462?text=Merhaba%20Holger,%20bir%20önerim/ortaklık%20ilgim%20var.",
+    mailtoSubject: "Talep%20Öneri%20veren/Alan%20ortaklığı",
+  },
 } as const;
 
 export default function DirektkontaktSection() {
   const pathname = usePathname();
   const isEn = pathname?.startsWith("/en");
-  const t = isEn ? TEXTS.en : TEXTS.de;
+  const isTr = pathname?.startsWith("/tr");
+  const t = isTr ? TEXTS.tr : isEn ? TEXTS.en : TEXTS.de;
 
   return (
     <motion.section
