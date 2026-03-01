@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
 
 const playfair = Playfair_Display({
   variable: "--font-display",
@@ -53,6 +54,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${geistSans.variable} font-sans antialiased`}
       >
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
