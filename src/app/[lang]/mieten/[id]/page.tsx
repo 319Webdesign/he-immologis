@@ -11,8 +11,10 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const prop = await fetchPropertyById(id).catch(() => null);
+  const { id, lang } = await params;
+  const locale = lang ?? (await getLocaleFromHeaders());
+
+  const prop = await fetchPropertyById(id, locale).catch(() => null);
   if (!prop) {
     return { title: "Mietobjekt nicht gefunden" };
   }
@@ -33,7 +35,7 @@ export default async function MietenDetailPage({ params }: PageProps) {
   const { id, lang: langParam } = await params;
   const locale = langParam ?? (await getLocaleFromHeaders());
 
-  const property = await fetchPropertyById(id).catch(() => null);
+  const property = await fetchPropertyById(id, locale).catch(() => null);
   if (!property) notFound();
 
   return (

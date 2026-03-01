@@ -16,9 +16,10 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { id, lang } = await params;
+  const locale = lang ?? (await getLocaleFromHeaders());
 
-  const prop = await fetchPropertyById(id).catch(() => null);
+  const prop = await fetchPropertyById(id, locale).catch(() => null);
   if (prop) {
     const immoNr = prop.objektnr_extern || String(prop.id);
     const baseTitle = prop.titel || "Immobilie";
@@ -46,7 +47,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
   const locale = langParam ?? (await getLocaleFromHeaders());
 
   // Pfad 1: onOffice (Slug oder numerische ID)
-  const property = await fetchPropertyById(id).catch(() => null);
+  const property = await fetchPropertyById(id, locale).catch(() => null);
   if (property) {
     return (
       <PropertyDetailLayout

@@ -468,8 +468,12 @@ export function PropertyDetailLayout({
               <DataRow label="Terrassen" value={formatBalkonTerrassen(p.terrassen) ?? formatBalkonTerrassen(p.anzahl_terrassen) ?? "Nein"} />
               <DataRow label="Balkon" value={formatBalkonTerrassen(p.balkon) ?? formatBalkonTerrassen(p.anzahl_balkone) ?? "Nein"} />
               <DataRow label="Barrierefrei" value={formatTinyIntJaNein(p.barrierefrei)} />
-              <DataRow label="Denkmalschutz" value={formatTinyIntJaNein(p.denkmalschutzobjekt)} />
-              <DataRow label="Haustiere" value={formatHaustiere(p.haustiere)} />
+              {(p.denkmalschutzobjekt === 1 || p.denkmalschutzobjekt === true) && (
+                <DataRow label="Denkmalschutz" value="Ja" />
+              )}
+              {!isKaufen && (
+                <DataRow label="Haustiere" value={formatHaustiere(p.haustiere)} />
+              )}
               {((p.stp_anzahl ?? 0) > 0 || (p.stellplatzkaufpreis ?? 0) > 0 || (Array.isArray(p.stellplatzart) && p.stellplatzart.length > 0)) && (
                 <DataRow label="Stellplätze">
                   <div className="flex flex-col items-end gap-1 text-right">
@@ -556,7 +560,7 @@ export function PropertyDetailLayout({
               )}
               <DataRow
                 label="Provision"
-                value={formatCourtage(p.aussen_courtage)}
+                value={isKaufen ? formatCourtage(p.aussen_courtage) : "2 Nettokaltmieten zzgl. MwSt."}
               />
             </div>
           </div>

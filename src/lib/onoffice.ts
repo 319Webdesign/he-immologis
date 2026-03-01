@@ -572,12 +572,24 @@ export async function fetchProperties(options?: {
   return allProperties;
 }
 
+/** Sprachcode-Mapping für onOffice API (ISO 639-2, 3 Zeichen, Großschreibung) */
+const LANG_TO_ISO: Record<string, string> = {
+  de: "DEU",
+  en: "ENG",
+  tr: "TUR",
+};
+
 /**
  * Ruft eine einzelne Immobilie anhand der ID oder objektnr_extern (Slug) von der onOffice-API ab.
  * Slug kann sein: numerische ID (z. B. "57") oder objektnr_extern (z. B. "EFH-K-26-002").
  * Fallback: Bei Fehler 141 (unbekanntes Feld) wird mit reduzierter Feldliste erneut versucht.
+ * @param slug - ID oder objektnr_extern
+ * @param lang - Sprachcode (de, en, tr), wird an onOffice als estatelanguage (DEU/ENG/TUR) übergeben
  */
-export async function fetchPropertyById(slug: string | number): Promise<Property | null> {
+export async function fetchPropertyById(
+  slug: string | number,
+  lang: string = "de"
+): Promise<Property | null> {
   try {
     const token = process.env.ONOFFICE_API_KEY;
     const secret = process.env.ONOFFICE_API_SECRET;
@@ -599,6 +611,8 @@ export async function fetchPropertyById(slug: string | number): Promise<Property
       const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
 
       const parameters: Record<string, unknown> = { data: dataFields };
+      const isoLang = LANG_TO_ISO[lang.toLowerCase()] ?? LANG_TO_ISO.de;
+      parameters.estatelanguage = isoLang;
       if (!useNumericId) {
         parameters.filter = {
           objektnr_extern: [{ op: "=", val: slugStr }],
