@@ -5,9 +5,9 @@ import tr from "./tr.json";
 export type Dictionary = typeof de;
 
 const dictionaries: Record<"de" | "en" | "tr", Dictionary> = {
-  de: de as Dictionary,
-  en: en as Dictionary,
-  tr: tr as Dictionary,
+  de,
+  en: en as unknown as Dictionary,
+  tr: tr as unknown as Dictionary,
 };
 
 export async function getDictionary(lang: string): Promise<Dictionary> {
