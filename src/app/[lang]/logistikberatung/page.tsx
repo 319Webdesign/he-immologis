@@ -4,8 +4,10 @@ import { Suspense } from "react";
 import {
   SMART_INTRO,
   SMART_INTRO_EN,
+  SMART_INTRO_TR,
   SMART_MODULE,
   SMART_MODULE_EN,
+  SMART_MODULE_TR,
 } from "@/data/logistikberatung";
 import Contact from "@/components/Contact";
 import { getDictionary } from "@/dictionaries";
@@ -28,6 +30,19 @@ const META = {
       "Weinheim",
     ],
   },
+  tr: {
+    title: "Lojistik danışmanlığı – SMART | HE immologis UG",
+    description:
+      "SMART – Tedarik zinciri ve kontrol edilmiş sıcaklık lojistiğinde danışmanlık ve satış desteği. Eğitim, M&A, karar verici ağları, geçici çözümler, taşıma ağı stratejileri.",
+    keywords: [
+      "Lojistik danışmanlığı",
+      "SMART",
+      "Tedarik zinciri",
+      "Kontrol edilmiş sıcaklık lojistiği",
+      "HE immologis",
+      "Weinheim",
+    ],
+  },
   en: {
     title: "Logistics consulting – SMART | HE immologis UG",
     description:
@@ -45,7 +60,7 @@ const META = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
-  const m = META[locale === "en" ? "en" : "de"];
+  const m = META[locale === "en" ? "en" : locale === "tr" ? "tr" : "de"];
   return {
     title: m.title,
     description: m.description,
@@ -66,9 +81,9 @@ export default async function LogistikberatungPage() {
     srOnlyEiswuerfel: string;
     moduleLabel: string;
   };
-  const smartIntro = locale === "en" ? SMART_INTRO_EN : SMART_INTRO;
-  const smartModule = locale === "en" ? SMART_MODULE_EN : SMART_MODULE;
-  const prefix = locale === "en" ? "/en" : "";
+  const smartIntro = locale === "en" ? SMART_INTRO_EN : locale === "tr" ? SMART_INTRO_TR : SMART_INTRO;
+  const smartModule = locale === "en" ? SMART_MODULE_EN : locale === "tr" ? SMART_MODULE_TR : SMART_MODULE;
+  const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
 
   return (
     <>
@@ -189,7 +204,9 @@ export default async function LogistikberatungPage() {
               >
                 {locale === "en"
                   ? "Your browser does not support playback of this video."
-                  : "Ihr Browser unterstützt die Wiedergabe dieses Videos nicht."}
+                  : locale === "tr"
+                    ? "Tarayıcınız bu videonun oynatılmasını desteklemiyor."
+                    : "Ihr Browser unterstützt die Wiedergabe dieses Videos nicht."}
               </video>
             </div>
             <p className="text-lg leading-relaxed text-slate-700">

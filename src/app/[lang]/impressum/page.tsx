@@ -22,6 +22,13 @@ export async function generateMetadata({
         "Imprint and provider identification of HE immologis UG – Real estate and logistics consulting in Weinheim.",
     };
   }
+  if (lang === "tr") {
+    return {
+      title: "Künye",
+      description:
+        "HE immologis UG künye ve sağlayıcı bilgileri – Weinheim'da gayrimenkul ve lojistik danışmanlığı.",
+    };
+  }
   return {
     title: "Impressum",
     description:
@@ -37,6 +44,7 @@ export default async function ImpressumPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const isTr = lang === "tr";
 
   if (isEn) {
     return (
@@ -184,7 +192,99 @@ export default async function ImpressumPage({
     );
   }
 
-  // German version (unchanged)
+  if (isTr) {
+    return (
+      <article className="bg-white">
+        <div className={LEGAL_CONTENT}>
+          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900">
+            Künye
+          </h1>
+          <p className="mt-2 text-sm text-slate-500">
+            § 5 TMG (Alman Teleservis Yasası) kapsamında bilgiler
+          </p>
+          <div className="mt-10 space-y-8 text-slate-700">
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Sağlayıcı</h2>
+              <p className="mt-2">
+                <strong>HE immologis UG</strong>
+                <br />
+                <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
+                <br />
+                Ahornstr. 59<br />
+                69469 Weinheim
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Temsil eden</h2>
+              <p className="mt-2">Holger Eberhard (Yönetici)</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">İletişim</h2>
+              <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
+                <span>Telefon:</span>
+                <a href="tel:+4917632198462" className="text-[#4682B4] underline hover:no-underline">+49 176 321 98 462</a>
+                <span>E-posta:</span>
+                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">info@he-immologis.de</a>
+              </div>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Ticaret Sicili</h2>
+              <p className="mt-2">
+                Sicil mahkemesi: Amtsgericht Mannheim<br />
+                Sicil no: HRB 755995
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">KDV Kimlik Numarası</h2>
+              <p className="mt-2">
+                § 27a UStG kapsamında KDV kimlik numarası:<br />
+                [Gerekirse KDV No. eklenir]
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Mesleki unvan ve mesleki düzenlemeler</h2>
+              <p className="mt-2">
+                Mesleki unvan: Emlakçı / Gayrimenkul aracısı<br />
+                Denetim kurulu: [Örn. Sanayi ve Ticaret Odası – gerekirse eklenir]
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§ 55 Abs. 2 RStV kapsamında içerikten sorumlu</h2>
+              <p className="mt-2">Holger Eberhard<br />Ahornstr. 59, 69469 Weinheim</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">AB Uyuşmazlık Çözümü</h2>
+              <p className="mt-2">
+                Avrupa Komisyonu çevrimiçi uyuşmazlık çözümü (ODR) platformu sunar:{" "}
+                <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-[#4682B4] underline hover:no-underline">https://ec.europa.eu/consumers/odr</a>.
+                Tüketici hakem heyeti önünde uyuşmazlık çözümüne katılmak zorunda veya istekli değiliz.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">İçerik sorumluluğu</h2>
+              <p className="mt-2">
+                Hizmet sağlayıcı olarak § 7 Abs. 1 TMG ve genel yasalara göre kendi içeriklerimizden sorumluyuz. § 8–10 TMG uyarınca iletilen veya saklanan üçüncü taraf bilgilerini izlemek veya yasadışı faaliyeti gösteren durumları araştırmak zorunda değiliz. Yasal ihlaller tespit edildiğinde ilgili içerikleri derhal kaldıracağız.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Bağlantı sorumluluğu</h2>
+              <p className="mt-2">
+                Sitemiz üçüncü tarafların harici web sitelerine bağlantılar içerir; bu sitelerin içeriği üzerinde etkimiz yoktur. Bu harici içerikten sorumluluk kabul etmiyoruz. Bağlantı verilen sayfaların içeriğinden ilgili sağlayıcı veya işletmeci sorumludur. Yasal ihlaller tespit edildiğinde bu bağlantıları derhal kaldıracağız.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Telif hakkı</h2>
+              <p className="mt-2">
+                Site operatörleri tarafından oluşturulan içerik ve eserler Alman telif hakkı yasasına tabidir. Çoğaltma, düzenleme, dağıtım ve telif hakkı sınırları dışında her türlü kullanım ilgili yazarın/yaratıcının yazılı onayını gerektirir. Bu sitenin indirilmesi ve kopyalanması yalnızca özel, ticari olmayan kullanım için izinlidir. Yasal ihlaller tespit edildiğinde ilgili içerikleri derhal kaldıracağız.
+              </p>
+            </section>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // German version
   return (
     <article className="bg-white">
       <div className={LEGAL_CONTENT}>

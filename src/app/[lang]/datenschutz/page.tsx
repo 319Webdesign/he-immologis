@@ -23,6 +23,13 @@ export async function generateMetadata({
         "Privacy policy of HE immologis UG – Information on the processing of your personal data.",
     };
   }
+  if (lang === "tr") {
+    return {
+      title: "Gizlilik Politikası",
+      description:
+        "HE immologis UG gizlilik politikası – Kişisel verilerinizin işlenmesi hakkında bilgiler.",
+    };
+  }
   return {
     title: "Datenschutz",
     description:
@@ -38,6 +45,7 @@ export default async function DatenschutzPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const isTr = lang === "tr";
   const prefix = lang ? `/${lang}` : "";
 
   if (isEn) {
@@ -181,7 +189,68 @@ export default async function DatenschutzPage({
     );
   }
 
-  // German version (unchanged)
+  if (isTr) {
+    return (
+      <article className="bg-white">
+        <div className={LEGAL_CONTENT}>
+          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900">
+            Gizlilik Politikası
+          </h1>
+          <p className="mt-2 text-sm text-slate-500">Son güncelleme: Şubat 2026</p>
+          <div className="mt-10 space-y-8 text-slate-700">
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">1. Veri Sorumlusu</h2>
+              <p className="mt-2">Bu web sitesindeki veri işlemeden sorumlu:</p>
+              <p className="mt-2"><strong>HE immologis UG</strong><br /><span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span><br />Ahornstr. 59, 69469 Weinheim</p>
+              <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
+                <span>Telefon:</span>
+                <a href="tel:+4917632198462" className="text-[#4682B4] underline hover:no-underline">+49 176 321 98 462</a>
+                <span>E-posta:</span>
+                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">info@he-immologis.de</a>
+              </div>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">2. Kişisel Verilerin Toplanması ve Saklanması</h2>
+              <p className="mt-2">Web sitemize eriştiğinizde tarayıcınız otomatik olarak sunucumuza bilgi gönderir. Bu bilgiler geçici olarak bir log dosyasında saklanır. Toplanan veriler arasında: IP adresi, erişim tarihi/saati, talep edilen dosya adı/URL, referrer URL, tarayıcı ve işletim sistemi. Bu veriler bağlantı güvenliği, sistem güvenliği ve web sitesi kullanım değerlendirmesi için işlenir.</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">3. İletişim ve Talep Formları</h2>
+              <p className="mt-2">Kontakt formu, e-posta veya telefon ile iletişime geçtiğinizde, verdiğiniz veriler (ad, e-posta, telefon, adres, obje bilgileri) talebinizi işlemek ve ön sözleşme/contract ifası (gayrimenkul aracılığı, değerleme, lojistik danışmanlığı) için işlenir. Yasal dayanak: KVKK Mad. 6(1)(b) ve (f).</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">4. Gayrimenkul Talepleri ve Müvekkil İlişkisi</h2>
+              <p className="mt-2">Satış, alım veya kiralama talepleri ve emlakçı vekâleti kapsamında kişisel verileriniz (iletişim, obje bilgileri, finansman verileri) sözleşme ifası ve yasal yükümlülükler için işlenir. Veriler yalnızca sözleşme ifası için gerekli üçüncü taraflara (iş ortakları, noterler, bankalar) aktarılır.</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">5. Çerezler ve Yerel Depolama</h2>
+              <p className="mt-2">
+                Web sitemizde çerezler ve benzeri teknolojiler kullanıyoruz. Detaylar için{" "}
+                <Link href={`${prefix}/cookies`} className="text-[#4682B4] underline hover:no-underline">Çerez Politikamıza</Link> bakınız.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">6. Veri Aktarımı</h2>
+              <p className="mt-2">Verileriniz belirtilen amaçlar dışında üçüncü taraflara aktarılmaz. Yasal zorunluluk (yetkililere) veya hakların savunulması durumları istisnadır.</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">7. Haklarınız</h2>
+              <p className="mt-2">KVKK kapsamında bilgi talep etme, düzeltme, silme, işleme kısıtlama, veri taşınabilirliği, itiraz ve onay geri çekme haklarına sahipsiniz. Ayrıca veri koruma denetim mercisine şikayette bulunabilirsiniz (örn. Baden-Württemberg Veri Koruma Dairesi).</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">8. Veri Güvenliği</h2>
+              <p className="mt-2">Verilerinizi korumak için teknik ve organizasyonel önlemler alıyoruz. Web sitemiz TLS ile şifrelenebilir (https://). Tüm risklere karşı kesintisiz güvenlik garanti edilemez.</p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">9. Değişiklikler</h2>
+              <p className="mt-2">Bu gizlilik politikasını yasal değişiklikler veya hizmet değişikliklerine uyarlama hakkını saklı tutarız. Güncel sürüm bu sayfada yer almaktadır.</p>
+            </section>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // German version
   return (
     <article className="bg-white">
       <div className={LEGAL_CONTENT}>

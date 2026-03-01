@@ -32,6 +32,23 @@ export const SMART_INTRO_EN = {
   ],
 } as const;
 
+export const SMART_INTRO_TR = {
+  title: ["„Performansınızı kontrollü", "şekilde artırıyoruz.“"],
+  subtitle: "İnsanlar. Yapı. Strateji. Ağ.",
+  acronym: [
+    { letter: "S", label: "Eğitim" },
+    { letter: "M", label: "M & A" },
+    { letter: "A", label: "Karar verici ağları kurma" },
+    { letter: "R", label: "Bölgesel geçici çözümler" },
+    { letter: "T", label: "Taşıma ağı stratejileri" },
+  ],
+  heroDescription: [
+    "-SMART-",
+    "Tedarik zinciri çözümleri için danışmanlık ve satış desteği",
+    "kontrol edilmiş ve normal sıcaklık lojistik ağlarında",
+  ],
+} as const;
+
 export interface SmartModul {
   slug: string;
   letter: string;
@@ -227,6 +244,101 @@ export const SMART_MODULE_EN: SmartModul[] = [
           "For air and sea freight I integrate suitable carriers and structures into your network. Air freight for time-critical shipments, sea freight for cost-optimised volumes – aligned with your supply chain strategy.",
           "Warehouse",
           "From temperature-controlled storage to port or airport connection: I design storage and handling structures so that storage, handling and redistribution dovetail seamlessly.",
+        ],
+      },
+    ],
+  },
+];
+
+export const SMART_MODULE_TR: SmartModul[] = [
+  {
+    slug: "schulung",
+    letter: "S",
+    title: "Eğitim ve danışmanlık",
+    shortDescription:
+      "Kontrol edilmiş sıcaklıkta ve multimodal tedarik zincirleri boyunca temel ve ileri eğitimler.",
+    paragraphs: [
+      "Personeliniz ve yöneticileriniz için kontrol edilmiş sıcaklıkta ve multimodal tedarik zincirleri boyunca temel ve ileri eğitimler sunuyorum.",
+      "Uygulamada çok farklı deneyim ve bilgi seviyeleri bir araya gelir. Tam burada devreye giriyorum: anlaşılır, yapılandırılmış ve her zaman gerçek uygulamaya referansla.",
+      "Katılımcılar, ilaç ve sağlık lojistiğinden uluslararası taşıma ve depo işlemlerine kadar tüm tedarik zinciri boyunca net bir pazar ve süreç anlayışı kazanır. Teorik aşırı yükleme olmadan, her zaman operatif gerçekliğe yakın.",
+      "Eğitimlerim klasik slayt sunumları değildir.",
+      "İlk alışverişten itibaren katılımcıların somut sorularını ve durumlarını ele alıyor ve içerikleri ihtiyaca yönelik, somut ve doğrudan pratikten aktarıyorum.",
+      "Böylece iş birliğini kolaylaştıran, ara yüzleri stabilize eden ve işletmede operatif güvenliği artıran ortak bir bilgi temeli oluşur.",
+    ],
+  },
+  {
+    slug: "ma",
+    letter: "M",
+    title: "Lojistik şirketlerinde M & A",
+    shortDescription:
+      "Aile işletmesi taşıma ve lojistik şirketlerinin satın alınmasında destek – kontrol edilmiş sıcaklıkta veya normal.",
+    paragraphs: [
+      "Yatırımcıları ve lojistik şirketlerini aile işletmesi taşıma ve lojistik şirketlerinin satın alınmasında destekliyorum – kontrol edilmiş sıcaklıkta veya normal.",
+      "Ulusal ve Avrupa satın alma projeleri için üstleniyorum:",
+      "Uygun hedef şirketlerin tespiti",
+      "İlk analizler ve yapılandırılmış ön niteliklendirme",
+      "Öncelikli hedef sıralaması oluşturma",
+      "Vekâlet altında ilk temas ve görüşme yönetimi",
+      "Devam eden raporlama ve karar verici hazırlığı",
+      "Müzakerelerin somutlaşmasına kadar tüm başlatma sürecini eşlik ediyor ve sahada tüm yerel faaliyetleri koordine ediyorum. Böylece süreci sürekli fiziksel olarak orada olmadan verimli yönetebilirsiniz.",
+      "Şeffaf yönetilen bir süreç, kısa karar yolları ve alıcı ile hedef şirket arasında profesyonel bir ara yüz elde edersiniz.",
+    ],
+  },
+  {
+    slug: "entscheidernetzwerke",
+    letter: "A",
+    title: "Karar verici ağları kurma",
+    shortDescription:
+      "Lojistik ve ilaç lojistiği sektöründen karar vericilerden oluşan Avrupa ağı – yapılandırılmış şekilde bir araya getirildi.",
+    paragraphs: [
+      "Lojistik ve ilaç lojistiği sektöründen karar vericilerden oluşan köklü bir Avrupa ağına sahibim.",
+      "Doğru ortakları yapılandırılmış şekilde bir araya getiriyorum ve tüm taşıma türleri boyunca – kara, hava, deniz, demiryolu ve depo – ortak stratejik ağ kurulumunu mümkün kılıyorum.",
+      "20 yıldan fazla uluslararası operasyonel ve satış deneyimi – ana hesap yönetimi, iş geliştirme ve küresel lojistik organizasyonlarında birleşme sonrası entegrasyonda – doğrudan uygulamaya yansıyor.",
+      "Şirketinizi Avrupa'da uygun lojistik ortaklarıyla hedefli olarak bağlıyorum – paket hizmetinden konteyner tabanlı dağıtıma kadar.",
+      "Böylece mal akışları verimli bir şekilde Avrupa ağlarına entegre edilir ve uluslararası pazarlara güvenilir şekilde bağlanır.",
+      "Özellikle ilaç ve sağlık lojistiğinde ürünlerin tüm tedarik zinciri boyunca kontrollü, uyumlu ve operatif olarak stabil taşınabileceğini sağlıyorum.",
+    ],
+  },
+  {
+    slug: "interim",
+    letter: "R",
+    title: "Bölgesel geçici çözümler",
+    shortDescription:
+      "Satış, kurulum ve dönüşüm aşamalarında geçici operatif ve stratejik sorumluluk.",
+    paragraphs: [
+      "Şirket durumuna bağlı olarak deneyimli bir geçici yönetici, değişiklikleri hızlı ve güvenli uygulamak için en etkili çözüm olabilir.",
+      "Satış, kurulum ve dönüşüm aşamalarında – özellikle kontrol edilmiş sıcaklıkta ve multimodal lojistikte – geçici operatif ve stratejik sorumluluk üstleniyorum.",
+      "İster pazar girişi, yeni iş alanları kurma ya da mevcut yapıları yeniden düzenleme:",
+      "Strateji, organizasyon, personel, süreçler ve implementasyondan stabil operatif uygulamaya kadar size eşlik ediyorum.",
+      "Almanya'da tam varlığı olmayan uluslararası şirketler için müşterilere ve ortaklara karşı bölgesel veya ulusal sorumluluk üstleniyorum, yerel varlığı sağlıyorum ve iş ilişkilerini sürdürülebilir şekilde geliştiriyorum.",
+      "Satışta ana hesap yönetimi ve iş geliştirmede şirketinize geçici ortak olarak destek veriyorum – tek müşteriler, ürün alanları veya tam segmentler için. Zorlu müzakereler, fiyat turları ve kritik müşteri durumları da dahildir.",
+      "Ayrıca boş kadrolar veya uzun süreli devamsızlıklar gibi geçici kapasite boşluklarını dolduruyor ve müşteri bakımınızı kalite kaybı olmadan sürdürüyorum.",
+    ],
+  },
+  {
+    slug: "transportnetzwerkstrategien",
+    letter: "T",
+    title: "Taşıma ağı stratejileri",
+    subtitle: "kontrol edilmiş sıcaklık / normal sıcaklık",
+    shortDescription:
+      "Avrupa çapında taşıma ve depo ortak ağlarının kurulması ve geliştirilmesi, özellikle kontrol edilmiş sıcaklıkta.",
+    paragraphs: [
+      "Şirketinizi Avrupa çapında taşıma ve depo ortak ağlarının kurulması ve geliştirilmesinde destekliyorum. Bu özellikle nitelikli kontrol edilmiş sıcaklıkta taşıma ve ortak ağlarının kurulması için geçerlidir.",
+      "İster uluslararası holding ister derinlemesine pazar bilgisi olmayan KOBİ: Uygun lojistik ortaklarını tespit ediyorum, alternatifleri objektif değerlendiriyorum ve doğru karar vericileri yapılandırılmış şekilde bir araya getiriyorum.",
+      "Sonuç operatif çalışan ve stratejik olarak sizi destekleyen dayanıklı bir ağdır.",
+    ],
+    subsections: [
+      {
+        heading: "Taşıma modları ve depolama",
+        paragraphs: [
+          "Kara",
+          "Paketten palete LTL ve FTL'ye – kontrol edilmiş sıcaklıkta veya konvansiyonel. Avrupa içinde tüm karayolu taşıma türlerinin mantıklı birleştirildiğini ve teslimat sürecinin uçtan uca çalıştığını sağlıyorum.",
+          "Demiryolu",
+          "Demiryolu çözümlerini de stratejik entegre ediyorum, örn. Yeni İpek Yolu güzergâhında Çin'e doğru. Demiryolu hava ile deniz arasında konumlanır: denizden hızlı, havadan ekonomik – planlanabilir uluslararası mal akışları için ideal.",
+          "Hava ve Deniz",
+          "Hava ve deniz taşımacılığı için uygun taşıyıcıları ve yapıları ağınıza entegre ediyorum. Zaman kritik gönderiler için hava taşımacılığı, maliyet optimize hacimler için deniz taşımacılığı – tedarik zinciri stratejinize uyumlu.",
+          "Depo",
+          "Kontrol edilmiş sıcaklıkta depodan liman veya havalimanı bağlantısına kadar: Depolama ve aktarma yapılarını depolama, elleçleme ve yeniden dağıtımın sorunsuz birleşeceği şekilde tasarlıyorum.",
         ],
       },
     ],

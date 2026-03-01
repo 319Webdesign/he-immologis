@@ -23,6 +23,13 @@ export async function generateMetadata({
         "Information on the use of cookies and similar technologies on the website of HE immologis UG.",
     };
   }
+  if (lang === "tr") {
+    return {
+      title: "Çerez Politikası",
+      description:
+        "HE immologis UG web sitesinde çerezlerin ve benzeri teknolojilerin kullanımı hakkında bilgiler.",
+    };
+  }
   return {
     title: "Cookie-Richtlinie",
     description:
@@ -38,6 +45,7 @@ export default async function CookiesPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const isTr = lang === "tr";
   const prefix = lang ? `/${lang}` : "";
 
   if (isEn) {
@@ -121,7 +129,66 @@ export default async function CookiesPage({
     );
   }
 
-  // German version (with locale-prefixed link)
+  if (isTr) {
+    return (
+      <article className="bg-white">
+        <div className={LEGAL_CONTENT}>
+          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900">
+            Çerez Politikası
+          </h1>
+          <p className="mt-2 text-sm text-slate-500">
+            Son güncelleme: Şubat 2026
+          </p>
+          <div className="mt-10 space-y-8 text-slate-700">
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">1. Çerezler nedir?</h2>
+              <p className="mt-2">
+                Çerezler, web sitelerinin cihazınıza (bilgisayar, tablet, akıllı telefon) kaydettiği küçük metin dosyalarıdır. Web sitesinin kullanımını sağlamak veya kolaylaştırmak, ayarları kaydetmek veya kullanıcı davranışını analiz etmek için kullanılır. Teknik olarak gerekli çerezler, işlevsel çerezler ve analiz veya pazarlama amaçlı çerezler arasında ayrım yapılır.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">2. Hangi çerezleri kullanıyoruz?</h2>
+              <p className="mt-2">
+                Web sitemizde yalnızca sitenin işleyişi için gerekli olan veya onay aldığımız çerezleri kullanıyoruz:
+              </p>
+              <ul className="mt-2 list-inside list-disc space-y-1">
+                <li><strong>Teknik olarak gerekli çerezler:</strong> Web sitesinin temel işlevleri (oturum, güvenlik, yük dağılımı) için gereklidir. Bunlar olmadan yapamayız. Yasal dayanak: KVKK Mad. 6(1)(f) (meşru menfaat) veya Mad. 6(1)(b) (sözleşme ifası).</li>
+                <li><strong>İşlevsel çerezler:</strong> Dil tercihiniz veya diğer ayarları saklar ve kullanıcı deneyimini iyileştirir. Yalnızca onayınızla (KVKK Mad. 6(1)(a)) ayarlanır.</li>
+                <li><strong>Analiz çerezleri:</strong> Kullanım davranışını analiz etmek (ziyaretçi sayısı, köken vb.) için hizmet kullanırsak, bu yalnızca onayınıza dayanır. Yasal dayanak: KVKK Mad. 6(1)(a).</li>
+              </ul>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">3. Saklama süresi</h2>
+              <p className="mt-2">
+                Saklama süresi ilgili çereze bağlıdır. Oturum çerezleri tarayıcıyı kapattığınızda silinir. Kalıcı çerezler amaca göre günlerden aylara veya yıllara kadar saklanabilir; tarayıcı ayarlarınızda daha önce silmediğiniz sürece.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">4. Tercihleriniz</h2>
+              <p className="mt-2">
+                Tarayıcınızı çerezler ayarlandığında sizi bilgilendirecek ve bunları tek tek veya genel olarak kabul veya reddedecek şekilde ayarlayabilirsiniz. Çerezleri devre dışı bırakmak web sitemizin işlevselliğini sınırlayabilir. Zaten kaydedilmiş çerezleri tarayıcı ayarlarınızdan silebilirsiniz.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">5. Daha fazla bilgi</h2>
+              <p className="mt-2">
+                Kişisel verilerin işlenmesi hakkında daha fazla bilgi için{" "}
+                <Link href={`${prefix}/datenschutz`} className="text-[#4682B4] underline hover:no-underline">
+                  Gizlilik Politikamıza
+                </Link>
+                {" "}bakınız. Sorularınız için:{" "}
+                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+                  info@he-immologis.de
+                </a>.
+              </p>
+            </section>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // German version
   return (
     <article className="bg-white">
       <div className={LEGAL_CONTENT}>

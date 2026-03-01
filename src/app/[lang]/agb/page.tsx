@@ -23,6 +23,13 @@ export async function generateMetadata({
         "General Terms and Conditions and right of withdrawal of HE immologis UG – Real estate brokerage and logistics consulting.",
     };
   }
+  if (lang === "tr") {
+    return {
+      title: "Kullanım Koşulları ve Cayma Hakkı",
+      description:
+        "HE immologis UG genel kullanım koşulları ve cayma hakkı – Gayrimenkul aracılığı ve lojistik danışmanlığı.",
+    };
+  }
   return {
     title: "AGB & Widerrufsrecht",
     description:
@@ -38,6 +45,7 @@ export default async function AgbPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const isTr = lang === "tr";
   const prefix = lang ? `/${lang}` : "";
 
   if (isEn) {
@@ -311,7 +319,98 @@ export default async function AgbPage({
     );
   }
 
-  // German version (unchanged structure, fix Link to use prefix)
+  if (isTr) {
+    return (
+      <article className="bg-white">
+        <div className={LEGAL_CONTENT}>
+          <p className="text-sm text-slate-600">
+            HE immologis UG (haftungsbeschränkt) i. Gr. · Ahornstr. 59 · 69469 Weinheim
+          </p>
+          <h1 className="mt-4 font-sans text-3xl font-semibold tracking-tight text-slate-900">
+            Genel Kullanım Koşulları
+          </h1>
+          <p className="mt-1 font-sans text-lg text-slate-700">
+            HE immologis UG (haftungsbeschränkt) i. Gr.
+          </p>
+          <div className="mt-10 space-y-8 text-slate-700">
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Ön Not</h2>
+              <p className="mt-2">
+                Bu Genel Kullanım Koşulları, HE immologis UG'nin müşterileriyle ticari ilişkilerinde temel oluşturur. Önceden formüle edilmiş kurallar setiyle sözleşme akdini basitleştirir, hızlandırır ve standartlaştırır. HGB kapsamındaki tüccarlar için gelecekteki iş ilişkilerine de açık anlaşma olmaksızın uygulanır.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§1 Gizlilik ve Üçüncü Taraflara İfşa</h2>
+              <p className="mt-2">
+                HE immologis UG tarafından sağlanan tüm bilgi ve belgeler (gayrimenkul detayları dahil) yalnızca müvekkilimize yöneliktir ve yazılı onay olmaksızın üçüncü taraflara iletilemez. Ana sözleşme (kira veya satış sözleşmesi) akdedilirse, bu yükümlülüğün ihlali zarar sorumluluğu doğurabilir.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§2 Veri Koruma</h2>
+              <p className="mt-2">
+                Müvekkil, HE immologis UG'nin yükümlülüklerini ifa etmek için geçerli yasal hükümlere uygun olarak kişisel verileri işleme yetkisine sahip olduğunu açıkça kabul eder. Detaylar için{" "}
+                <Link href={`${prefix}/datenschutz`} className="text-[#4682B4] underline hover:no-underline">Gizlilik Politikamıza</Link> bakınız.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§3 Sorumluluk Sınırlaması</h2>
+              <p className="mt-2">
+                Gayrimenkul bilgileri, belgeler, planlar vb. satıcı veya ev sahibinden gelmektedir. HE immologis UG doğruluk veya eksiksizlik için sorumluluk veya garanti üstlenmez. HE immologis UG yalnızca kast, ağır ihmal, garanti edilen özelliklerin yokluğu veya temel sözleşme yükümlülüğünün ihlali durumunda sorumludur.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§4 Çift Vekâlet</h2>
+              <p className="mt-2">
+                Sözleşmenin her iki tarafı adına ücret karşılığı hareket etmek açıkça izinlidir. Satış sözleşmesi akdine yönelik işlemlerde HE immologis UG diğer taraf adına da komisyon bazlı hareket edebilir.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§5 Ek Emlakçıların Görevlendirilmesi</h2>
+              <p className="mt-2">
+                HE immologis UG vekâleti yerine getirmek için bir veya daha fazla ek emlakçı görevlendirme hakkına sahiptir.
+              </p>
+            </section>
+            <section id="widerruf">
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§6 Cayma Hakkı</h2>
+              <p className="mt-2">
+                Müvekkil BGB § 13 kapsamında tüketici ise ve vekâlet sözleşmesi işyeri dışında veya uzaktan iletişim (e-posta, telefon, çevrimiçi form) ile akdedilmişse, müvekkilin yasal cayma hakkı vardır.
+              </p>
+              <p className="mt-2">
+                Cayma süresi sözleşme tarihinden itibaren 14 gündür. Cayma için bize (HE immologis UG, Ahornstr. 59, 69469 Weinheim, info@he-immologis.de, +49 176 321 98 462) net bir bildirim (mektup veya e-posta) yeterlidir.
+              </p>
+              <p className="mt-2">
+                Tam cayma bildirimi ve örnek form için{" "}
+                <Link href={`${prefix}/widerruf`} className="text-[#4682B4] underline hover:no-underline">Cayma Hakkı</Link> sayfamıza bakınız.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§7 Mal Sahibi ile İletişim</h2>
+              <p className="mt-2">
+                Mal sahibi ile iletişim her zaman HE immologis UG üzerinden başlatılmalıdır.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">§8 Objekt Bilgileri / Exposé</h2>
+              <p className="mt-2">
+                Objekt bilgileri ve exposéler mal sahibi veya müvekkilden alınan bilgilere dayanır. Sadece bilgi sağlayan taraf sorumludur. HE immologis UG doğruluk ve eksiksizlik için sorumluluk veya garanti üstlenmez.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Provizyon ve Diğer Koşullar</h2>
+              <p className="mt-2">
+                Satış için alıcı provizyonu 3,57% KDV dahil. Kiralama için 2 net kira artı KDV. Detaylar ve tam metin için Almanca sürüme bakınız. İletişim:{" "}
+                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">info@he-immologis.de</a>,{" "}
+                <a href="tel:+4917632198462" className="text-[#4682B4] underline hover:no-underline">+49 176 321 98 462</a>.{" "}
+                <Link href={`${prefix}/impressum`} className="text-[#4682B4] underline hover:no-underline">Künye</Link>.
+              </p>
+            </section>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // German version
   return (
     <article className="bg-white">
       <div className={LEGAL_CONTENT}>

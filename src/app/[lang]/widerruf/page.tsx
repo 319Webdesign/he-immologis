@@ -23,6 +23,13 @@ export async function generateMetadata({
         "Right of withdrawal notice and withdrawal form of HE immologis UG – Information for consumers.",
     };
   }
+  if (lang === "tr") {
+    return {
+      title: "Cayma Hakkı",
+      description:
+        "HE immologis UG cayma bildirimi ve cayma formu – Tüketiciler için bilgiler.",
+    };
+  }
   return {
     title: "Widerrufsrecht",
     description:
@@ -38,6 +45,7 @@ export default async function WiderrufPage({
   const { lang: rawLang } = await params;
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   const isEn = lang === "en";
+  const isTr = lang === "tr";
   const prefix = lang ? `/${lang}` : "";
 
   if (isEn) {
@@ -75,7 +83,41 @@ export default async function WiderrufPage({
     );
   }
 
-  // German version (with locale-prefixed links)
+  if (isTr) {
+    return (
+      <article className="bg-white">
+        <div className={LEGAL_CONTENT}>
+          <h1 className="font-sans text-3xl font-semibold tracking-tight text-slate-900">
+            Cayma Hakkı
+          </h1>
+          <p className="mt-2 text-sm text-slate-500">
+            Tüketiciler, yasal koşullar altında sözleşmeden cayma hakkına sahiptir.
+          </p>
+          <div className="mt-10 space-y-6 text-slate-700">
+            <p>
+              Tam cayma bildirimi ve örnek cayma formu{" "}
+              <Link href={`${prefix}/agb#widerruf`} className="text-[#4682B4] underline hover:no-underline">
+                Kullanım Koşullarımızda (§ 6 Cayma bildirimi)
+              </Link>
+              yer almaktadır.
+            </p>
+            <p>
+              <strong>Kısa özet:</strong> Cayma süresi sözleşme tarihinden itibaren 14 gündür. Cayma hakkını kullanmak için bize net bir bildirim (örn. e-posta veya posta ile) yeterlidir. İletişim bilgilerimiz{" "}
+              <Link href={`${prefix}/impressum`} className="text-[#4682B4] underline hover:no-underline">
+                Künye
+              </Link>
+              sayfasındadır.
+            </p>
+            <p className="text-sm text-slate-600">
+              Not: Gayrimenkul aracılığında, cayma hakkı yasada öngörülen durumlarda (örn. satış veya kira sözleşmesi imzalandıktan sonra) sona erer. Detaylar için Kullanım Koşullarına bakınız.
+            </p>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // German version
   return (
     <article className="bg-white">
       <div className={LEGAL_CONTENT}>

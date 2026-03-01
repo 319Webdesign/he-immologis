@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SMART_MODULE, SMART_MODULE_EN } from "@/data/logistikberatung";
+import { SMART_MODULE, SMART_MODULE_EN, SMART_MODULE_TR } from "@/data/logistikberatung";
 import Contact from "@/components/Contact";
 import { getDictionary } from "@/dictionaries";
 
@@ -12,7 +12,7 @@ type Props = { params: Promise<{ lang?: string; slug: string }> };
 export async function generateStaticParams() {
   const slugs = SMART_MODULE.map((m) => m.slug);
   const params: { lang: string; slug: string }[] = [];
-  for (const lang of ["de", "en"]) {
+  for (const lang of ["de", "en", "tr"]) {
     for (const slug of slugs) {
       params.push({ lang, slug });
     }
@@ -22,28 +22,28 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
-  const locale = lang === "en" ? "en" : "de";
-  const modules = locale === "en" ? SMART_MODULE_EN : SMART_MODULE;
+  const locale = lang === "en" ? "en" : lang === "tr" ? "tr" : "de";
+  const modules = locale === "en" ? SMART_MODULE_EN : locale === "tr" ? SMART_MODULE_TR : SMART_MODULE;
   const modul = modules.find((m) => m.slug === slug);
   if (!modul)
     return {
-      title: locale === "en" ? "Logistics consulting | HE immologis UG" : "Logistikberatung | HE immologis UG",
+      title: locale === "en" ? "Logistics consulting | HE immologis UG" : locale === "tr" ? "Lojistik danışmanlığı | HE immologis UG" : "Logistikberatung | HE immologis UG",
     };
   const title =
-    (locale === "en" ? `SMART module ${modul.letter} – ${modul.title}` : `SMART Modul ${modul.letter} – ${modul.title}`) +
+    (locale === "en" ? `SMART module ${modul.letter} – ${modul.title}` : locale === "tr" ? `SMART modül ${modul.letter} – ${modul.title}` : `SMART Modul ${modul.letter} – ${modul.title}`) +
     " | HE immologis UG";
   const description =
     modul.shortDescription.slice(0, 155) + (modul.shortDescription.length > 155 ? "…" : "");
   return {
     title,
     description,
-    keywords: [locale === "en" ? "Logistics consulting" : "Logistikberatung", "SMART", modul.title, "HE immologis"],
+    keywords: [locale === "en" ? "Logistics consulting" : locale === "tr" ? "Lojistik danışmanlığı" : "Logistikberatung", "SMART", modul.title, "HE immologis"],
   };
 }
 
 export default async function LogistikberatungSlugPage({ params }: Props) {
   const { lang, slug } = await params;
-  const locale = lang === "en" ? "en" : "de";
+  const locale = lang === "en" ? "en" : lang === "tr" ? "tr" : "de";
   const dict = await getDictionary(locale);
   const lb = dict.logistikberatung as {
     moduleLabel: string;
@@ -52,13 +52,13 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
     contactTitleSlug: string;
     contactSubtitleSlug: string;
   };
-  const modules = locale === "en" ? SMART_MODULE_EN : SMART_MODULE;
+  const modules = locale === "en" ? SMART_MODULE_EN : locale === "tr" ? SMART_MODULE_TR : SMART_MODULE;
   const modulIndex = modules.findIndex((m) => m.slug === slug);
   const modul = modulIndex >= 0 ? modules[modulIndex] : undefined;
   if (!modul) notFound();
   const nextModul =
     modulIndex >= 0 && modulIndex < modules.length - 1 ? modules[modulIndex + 1] : null;
-  const prefix = locale === "en" ? "/en" : "";
+  const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
 
   type Block =
     | { type: "p"; text: string }
