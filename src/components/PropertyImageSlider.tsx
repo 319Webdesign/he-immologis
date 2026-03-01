@@ -49,7 +49,7 @@ export function PropertyImageSlider({
           <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-zinc-50 to-zinc-100 px-6">
             <Image
               src={LOGO_PLACEHOLDER}
-              alt="HE immologis"
+              alt="Immobilie - Bild folgt - HE-immologis"
               width={180}
               height={60}
               className="mb-4 opacity-80"
@@ -140,7 +140,7 @@ export function PropertyImageSlider({
             >
               <Image
                 src={src}
-                alt=""
+                alt={`${alt} - Vorschau ${i + 1}`}
                 fill
                 className="object-cover"
                 sizes="80px"

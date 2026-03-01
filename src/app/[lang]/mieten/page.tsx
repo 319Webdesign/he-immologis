@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import MietenData from "./MietenData";
 import MietenGridSkeleton from "./MietenGridSkeleton";
 import ShareSection from "@/components/ShareSection";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -27,6 +28,7 @@ export default async function MietenPage() {
 
   return (
     <>
+      <LocalBusinessSchema />
       {/* Hero mit Hintergrundbild */}
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-zinc-100 bg-cover bg-center bg-no-repeat px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"

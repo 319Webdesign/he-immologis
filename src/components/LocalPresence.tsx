@@ -46,7 +46,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
 
   return (
     <section
-      className="w-full max-w-full overflow-x-hidden bg-white py-16 sm:py-20 lg:py-24"
+      className="w-full max-w-full overflow-x-hidden bg-white pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24"
       aria-labelledby="kompetenz-heading"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -135,7 +135,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                     <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#4682B4" }} />
                     <img
                       src={city.image}
-                      alt={city.name}
+                      alt={`Immobilien in ${city.name} - HE-immologis`}
                       className="rounded-md object-cover"
                       style={
                         city.aspect === "9:16"

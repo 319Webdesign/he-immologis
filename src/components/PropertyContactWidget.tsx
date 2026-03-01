@@ -30,7 +30,7 @@ export function PropertyContactWidget({
         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-zinc-100">
           <Image
             src={CONTACT.imageSrc}
-            alt={CONTACT.name}
+            alt="Holger Eberhard, Immobilienmakler Weinheim - HE-immologis"
             fill
             className="object-cover"
             sizes="80px"

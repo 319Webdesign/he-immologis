@@ -10,6 +10,7 @@ import {
   SMART_MODULE_TR,
 } from "@/data/logistikberatung";
 import Contact from "@/components/Contact";
+import ServiceSchema from "@/components/seo/ServiceSchema";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import ScrollToModuleCards from "./ScrollToModuleCards";
@@ -18,42 +19,49 @@ const BRAND_BLUE = "#4682B4";
 
 const META = {
   de: {
-    title: "Logistikberatung – SMART | HE immologis UG",
+    title: "Logistikberatung Deutschland",
     description:
-      "SMART – Beratung und Vertriebsunterstützung in Supply Chain und temperaturgeführter Logistik. Schulung, M&A, Entscheidernetzwerke, Interim-Lösungen, Transportnetzwerkstrategien.",
+      "Logistikberatung Deutschland – Pharmaceutical & Healthcare Logistics, GDP-compliant transport networks, Logistics M&A advisory, Interim Management Logistik. Supply Chain Beratung Europa. HE immologis SMART.",
     keywords: [
-      "Logistikberatung",
-      "SMART",
+      "Logistikberatung Deutschland",
+      "Pharmaceutical & Healthcare Logistics",
+      "GDP-compliant transport networks",
+      "Logistics M&A advisory",
+      "Interim Management Logistik",
+      "Supply Chain Beratung Europa",
       "Supply Chain",
       "temperaturgeführte Logistik",
-      "HE immologis",
-      "Weinheim",
+      "HE-immologis",
     ],
   },
   tr: {
-    title: "Lojistik danışmanlığı – SMART | HE immologis UG",
+    title: "Almanya lojistik danışmanlığı",
     description:
-      "SMART – Tedarik zinciri ve kontrol edilmiş sıcaklık lojistiğinde danışmanlık ve satış desteği. Eğitim, M&A, karar verici ağları, geçici çözümler, taşıma ağı stratejileri.",
+      "Almanya lojistik danışmanlığı – Pharmaceutical & Healthcare Logistics, GDP-compliant transport networks, Logistics M&A advisory, Interim Management. Supply Chain Beratung Europa. HE immologis SMART.",
     keywords: [
-      "Lojistik danışmanlığı",
-      "SMART",
-      "Tedarik zinciri",
-      "Kontrol edilmiş sıcaklık lojistiği",
-      "HE immologis",
-      "Weinheim",
+      "Almanya lojistik danışmanlığı",
+      "Pharmaceutical & Healthcare Logistics",
+      "GDP-compliant transport networks",
+      "Logistics M&A advisory",
+      "Interim Management Logistik",
+      "Supply Chain",
+      "HE-immologis",
     ],
   },
   en: {
-    title: "Logistics consulting – SMART | HE immologis UG",
+    title: "Logistics consulting Germany",
     description:
-      "SMART – Consulting and sales support in supply chain and temperature-controlled logistics. Training, M&A, decision-maker networks, interim solutions, transport network strategies.",
+      "Logistics consulting Germany – Pharmaceutical & Healthcare Logistics, GDP-compliant transport networks, Logistics M&A advisory, Interim Management Logistik. Supply Chain consulting Europe. HE immologis SMART.",
     keywords: [
-      "Logistics consulting",
-      "SMART",
+      "Logistics consulting Germany",
+      "Pharmaceutical & Healthcare Logistics",
+      "GDP-compliant transport networks",
+      "Logistics M&A advisory",
+      "Interim Management Logistik",
+      "Supply Chain Beratung Europa",
       "Supply chain",
       "Temperature-controlled logistics",
-      "HE immologis",
-      "Weinheim",
+      "HE-immologis",
     ],
   },
 } as const;
@@ -87,6 +95,7 @@ export default async function LogistikberatungPage() {
 
   return (
     <>
+      <ServiceSchema />
       <Suspense fallback={null}>
         <ScrollToModuleCards />
       </Suspense>
@@ -201,6 +210,7 @@ export default async function LogistikberatungPage() {
                 playsInline
                 className="h-auto w-full"
                 preload="auto"
+                title="GDP Logistik Beratung für Pharma und Healthcare Unternehmen"
               >
                 {locale === "en"
                   ? "Your browser does not support playback of this video."

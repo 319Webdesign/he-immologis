@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Contact from "@/components/Contact";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
@@ -58,13 +59,14 @@ export default async function UeberMichPage() {
 
   return (
     <>
+      <LocalBusinessSchema />
       <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[30%_1fr] lg:gap-12">
             <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl bg-slate-100 lg:max-w-none">
               <Image
                 src="/img/holger.jpeg"
-                alt="Holger Eberhard"
+                alt="Holger Eberhard, Immobilienmakler und Logistikberater Weinheim - HE-immologis"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1023px) 100vw, 30vw"
@@ -127,7 +129,7 @@ export default async function UeberMichPage() {
                 <p className="mt-1 text-slate-600">{t.managingDirector}</p>
                 <Image
                   src="/img/unterschrift.png"
-                  alt={t.signatureAlt}
+                  alt="Unterschrift Holger Eberhard - HE-immologis"
                   width={200}
                   height={80}
                   className="mt-4 object-contain object-left"

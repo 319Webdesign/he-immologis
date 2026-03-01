@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { fetchPropertyById } from "@/lib/onoffice";
 import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/PropertyDetailLayout";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 
@@ -21,7 +22,7 @@ export async function generateMetadata({
   }
   const immoNr = prop.objektnr_extern || String(prop.id);
   const baseTitle = prop.titel || "Mietobjekt";
-  const title = `${baseTitle} | Exposé ${immoNr} | HE immologis`;
+  const title = `${baseTitle} | Exposé ${immoNr}`;
   const description =
     prop.dreizeiler?.slice(0, 160) ??
     prop.objektbeschreibung?.slice(0, 160) ??
@@ -42,12 +43,15 @@ export default async function MietenDetailPage({ params }: PageProps) {
   if (!property) notFound();
 
   return (
-    <PropertyDetailLayout
+    <>
+      <LocalBusinessSchema />
+      <PropertyDetailLayout
       property={property}
       locale={locale}
       section="mieten"
       backHref={`/${locale}/mieten`}
       dict={dict}
     />
+    </>
   );
 }

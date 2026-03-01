@@ -7,6 +7,7 @@ import PropertyGridSkeleton from "./PropertyGridSkeleton";
 import Kauftipps from "./Kauftipps";
 import Contact from "@/components/Contact";
 import ShareSection from "@/components/ShareSection";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -34,6 +35,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
 
   return (
     <>
+      <LocalBusinessSchema />
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="hero-kaufen-heading"

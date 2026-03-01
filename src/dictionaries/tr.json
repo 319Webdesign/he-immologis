@@ -141,9 +141,9 @@
     "contactSubtitleSlug": "Bize ulaşın – talebinizi dinlemek için buradayız."
   },
   "ueberMich": {
-    "metaTitle": "Hakkımda",
-    "metaDescription": "Holger Eberhard – Weinheim ve Bergstraße'de gayrimenkul ve lojistik konusunda kişisel, yetkin ve bölgesel uzmanlığa sahip iletişim ortağınız.",
-    "metaKeywords": ["HE immologis", "Holger Eberhard", "Weinheim gayrimenkul", "Bergstraße", "Hakkımda"],
+    "metaTitle": "Holger Eberhard Weinheim",
+    "metaDescription": "Holger Eberhard Weinheim – Bergstraße'de emlak danışmanınız ve lojistik danışmanınız. Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta kişisel danışmanlık.",
+    "metaKeywords": ["Holger Eberhard Weinheim", "Weinheim emlak danışmanı", "HE immologis", "Bergstraße gayrimenkul", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach"],
     "heading": "Hakkımda",
     "intro": "Adım Holger Eberhard.",
     "family": "Anni ile evli, Noah'ın gurur duyduğu patchwork babası ve cüce tel tüylü dachshund Houdini'mizin resmi hoşgörülen ev arkadaşı.",
@@ -326,9 +326,9 @@
   },
   "verkaufen": {
     "meta": {
-      "title": "Gayrimenkul satışı",
-      "description": "Gayrimenkulünüz güvende – Weinheim ve bölgede gayrimenkul satışında şimdi bağlayıcı olmayan satış talebi oluşturun. HE immologis UG size yetkin danışmanlık sunar.",
-      "keywords": ["Weinheim gayrimenkul satışı", "Gayrimenkul satış talebi", "HE immologis satış", "Bergstraße gayrimenkul satışı"]
+      "title": "Bergstraße gayrimenkul değerleme",
+      "description": "Bergstraße gayrimenkul değerleme – Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta profesyonel değerleme ve satış. Holger Eberhard, HE immologis.",
+      "keywords": ["Bergstraße gayrimenkul değerleme", "Weinheim gayrimenkul satışı", "Weinheim emlak danışmanı", "Holger Eberhard Weinheim", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach"]
     },
     "hero": {
       "titleLine1": "Weinheim ve çevresinde satış.",
@@ -427,9 +427,9 @@
   },
   "kaufen": {
     "meta": {
-      "title": "Weinheim gayrimenkuller",
-      "description": "Weinheim ve Bergstraße'de özel gayrimenkuller. Daireler, evler ve ticari gayrimenkuller – HE immologis tarafından güvenilir ve kaliteli aracılık.",
-      "keywords": ["Weinheim gayrimenkuller", "Bergstraße gayrimenkuller", "Weinheim daire", "Weinheim ev satın alma", "HE immologis"]
+      "title": "Weinheim ev satın alma",
+      "description": "Weinheim ev satın alma – Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta gayrimenkuller. Daire, ev, ticari. HE immologis, Holger Eberhard.",
+      "keywords": ["Weinheim ev satın alma", "Weinheim emlak danışmanı", "Weinheim gayrimenkuller", "Bergstraße gayrimenkuller", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach", "Holger Eberhard Weinheim"]
     },
     "hero": {
       "title": "Weinheim ve çevresinde satın alma.",
@@ -484,9 +484,9 @@
   },
   "mieten": {
     "meta": {
-      "title": "Weinheim kiralık objeler",
-      "description": "Weinheim ve Bergstraße bölgesinde yeni yuvanızı bulun. Daireler, evler ve ticari – HE immologis tarafından kişisel destek.",
-      "keywords": ["Weinheim kiralık daire", "Bergstraße ev kiralama", "Weinheim kiralık daire", "HE immologis kiralama"]
+      "title": "Weinheim kiralık daire",
+      "description": "Weinheim kiralık daire – Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta yeni eviniz. HE immologis.",
+      "keywords": ["Weinheim kiralık daire", "Bergstraße ev kiralama", "Weinheim emlak danışmanı", "Weinheim kiralık objeler", "Bensheim", "Heppenheim", "Viernheim", "Holger Eberhard Weinheim"]
     },
     "hero": {
       "title": "Weinheim ve çevresinde kiralama.",
@@ -538,9 +538,9 @@
   },
   "immobilienServices": {
     "meta": {
-      "title": "Gayrimenkul hizmetleri | HE immologis UG",
-      "description": "Değerlemeden anahtar teslimine: Weinheim ve Bergstraße'de profesyonel gayrimenkul hizmetleri. Piyasa değeri tespiti, pazarlama ve işlem yönetimi.",
-      "keywords": ["Weinheim gayrimenkul hizmetleri", "Bergstraße piyasa değeri", "Gayrimenkul pazarlama", "HE immologis"]
+      "title": "Bergstraße gayrimenkul değerleme",
+      "description": "Bergstraße gayrimenkul değerleme – Değerlemeden anahtar teslimine. Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta profesyonel hizmetler. HE immologis.",
+      "keywords": ["Bergstraße gayrimenkul değerleme", "Weinheim emlak danışmanı", "Bergstraße piyasa değeri", "Weinheim gayrimenkul hizmetleri", "Holger Eberhard Weinheim", "Bensheim", "Heppenheim"]
     },
     "hero": {
       "title": "Size özel satış çözümleri.",

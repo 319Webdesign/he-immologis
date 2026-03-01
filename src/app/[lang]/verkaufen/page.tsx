@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import SellForm from "@/components/SellForm";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import SellerServices from "@/components/SellerServices";
 import FinalCTA from "@/components/FinalCTA";
 import ShareSection from "@/components/ShareSection";
@@ -62,6 +63,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
 
   return (
     <>
+      <LocalBusinessSchema />
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="hero-verkaufen-heading"

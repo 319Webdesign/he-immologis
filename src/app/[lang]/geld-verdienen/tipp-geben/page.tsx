@@ -43,7 +43,7 @@ export default async function TippGebenPage() {
       >
         <Image
           src="/img/dartscheibe.jpeg"
-          alt=""
+          alt="Tippgeber-Programm Immobilien - HE-immologis"
           fill
           className="object-cover object-center scale-105"
           sizes="100vw"
@@ -142,7 +142,7 @@ export default async function TippGebenPage() {
             <p className="mt-1 text-slate-600">{t.contactRole}</p>
             <Image
               src="/img/unterschrift.png"
-              alt="Unterschrift Holger Eberhard"
+              alt="Unterschrift Holger Eberhard - HE-immologis"
               width={200}
               height={80}
               className="mt-4 max-h-16 w-auto object-contain object-left"

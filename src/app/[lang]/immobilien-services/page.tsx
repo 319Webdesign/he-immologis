@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import ServicesPackagesSection from "@/components/ServicesPackagesSection";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
@@ -27,6 +28,7 @@ export default async function ImmobilienServicesPage() {
 
   return (
     <>
+      <LocalBusinessSchema />
       {/* Hero */}
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"

@@ -5,6 +5,7 @@ import type { PropertyWithDetails } from "@/types";
 import { fetchPropertyById } from "@/lib/onoffice";
 import { staticPropertyToProperty } from "@/lib/propertyMapper";
 import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/PropertyDetailLayout";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 
@@ -24,7 +25,7 @@ export async function generateMetadata({
   if (prop) {
     const immoNr = prop.objektnr_extern || String(prop.id);
     const baseTitle = prop.titel || "Immobilie";
-    const title = `${baseTitle} | Exposé ${immoNr} | HE immologis`;
+    const title = `${baseTitle} | Exposé ${immoNr}`;
     const description =
       prop.dreizeiler?.slice(0, 160) ??
       prop.objektbeschreibung?.slice(0, 160) ??
@@ -53,13 +54,16 @@ export default async function KaufenDetailPage({ params }: PageProps) {
   const property = await fetchPropertyById(id, locale).catch(() => null);
   if (property) {
     return (
-      <PropertyDetailLayout
-        property={property}
-        locale={locale}
-        section="kaufen"
-        backHref={`/${locale}/kaufen`}
-        dict={dict}
-      />
+      <>
+        <LocalBusinessSchema />
+        <PropertyDetailLayout
+          property={property}
+          locale={locale}
+          section="kaufen"
+          backHref={`/${locale}/kaufen`}
+          dict={dict}
+        />
+      </>
     );
   }
 
@@ -70,12 +74,15 @@ export default async function KaufenDetailPage({ params }: PageProps) {
   const staticProperty = staticPropertyToProperty(staticProp);
 
   return (
-    <PropertyDetailLayout
-      property={staticProperty}
-      locale={locale}
-      section="kaufen"
-      backHref={`/${locale}/kaufen`}
-      dict={dict}
-    />
+    <>
+      <LocalBusinessSchema />
+      <PropertyDetailLayout
+        property={staticProperty}
+        locale={locale}
+        section="kaufen"
+        backHref={`/${locale}/kaufen`}
+        dict={dict}
+      />
+    </>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SMART_MODULE, SMART_MODULE_EN, SMART_MODULE_TR } from "@/data/logistikberatung";
 import Contact from "@/components/Contact";
+import ServiceSchema from "@/components/seo/ServiceSchema";
 import { getDictionary } from "@/dictionaries";
 
 const BRAND_BLUE = "#4682B4";
@@ -27,17 +28,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const modul = modules.find((m) => m.slug === slug);
   if (!modul)
     return {
-      title: locale === "en" ? "Logistics consulting | HE immologis UG" : locale === "tr" ? "Lojistik danışmanlığı | HE immologis UG" : "Logistikberatung | HE immologis UG",
+      title: locale === "en" ? "Logistics consulting" : locale === "tr" ? "Lojistik danışmanlığı" : "Logistikberatung",
     };
+  const slugKeywords: Record<string, { de: string; en: string }> = {
+    schulung: { de: "Supply Chain Schulung", en: "Supply chain training" },
+    ma: { de: "Logistik M&A Beratung", en: "Logistics M&A advisory" },
+    entscheidernetzwerke: { de: "Pharmaceutical & Healthcare Logistics", en: "Pharmaceutical & Healthcare Logistics" },
+    interim: { de: "Interim Management Logistik", en: "Interim Management Logistik" },
+    transportnetzwerkstrategien: { de: "GDP-compliant transport networks", en: "GDP-compliant transport networks" },
+  };
+  const kw = slugKeywords[modul.slug] ?? { de: "Logistikberatung Deutschland", en: "Logistics consulting Germany" };
+  const titleKw = locale === "en" ? kw.en : kw.de;
   const title =
     (locale === "en" ? `SMART module ${modul.letter} – ${modul.title}` : locale === "tr" ? `SMART modül ${modul.letter} – ${modul.title}` : `SMART Modul ${modul.letter} – ${modul.title}`) +
-    " | HE immologis UG";
+    " | HE-immologis";
   const description =
     modul.shortDescription.slice(0, 155) + (modul.shortDescription.length > 155 ? "…" : "");
   return {
     title,
     description,
-    keywords: [locale === "en" ? "Logistics consulting" : locale === "tr" ? "Lojistik danışmanlığı" : "Logistikberatung", "SMART", modul.title, "HE immologis"],
+    keywords: [
+      titleKw,
+      locale === "en" ? "Logistics consulting Germany" : locale === "tr" ? "Lojistik danışmanlığı" : "Logistikberatung Deutschland",
+      "Pharmaceutical & Healthcare Logistics",
+      "Supply Chain Beratung Europa",
+      "HE-immologis",
+    ],
   };
 }
 
@@ -95,6 +111,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
 
   return (
     <>
+      <ServiceSchema />
       {/* Hero / Breadcrumb */}
       <section
         className="border-b border-slate-200 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"

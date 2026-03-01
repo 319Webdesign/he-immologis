@@ -400,7 +400,15 @@ export function PropertyDetailLayout({
         <div className="mb-8">
           <PropertyImageSlider
             images={images}
-            alt={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
+            alt={
+              (() => {
+                const objType = p.objektart?.trim() || (isKaufen ? "Immobilie" : "Mietobjekt");
+                const ort = p.ort?.trim() || "Weinheim";
+                return isKaufen
+                  ? `${objType} zum Kauf in ${ort} - HE-immologis`
+                  : `${objType} zur Miete in ${ort} - HE-immologis`;
+              })()
+            }
             usePlaceholder
           />
         </div>

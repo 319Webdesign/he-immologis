@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { ChevronDown } from "lucide-react";
 import SearchRequestForm from "@/components/SearchRequestForm";
 import ShareSection from "@/components/ShareSection";
@@ -19,39 +20,51 @@ export async function generateMetadata({
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   if (lang === "en") {
     return {
-      title: "Search for a property",
+      title: "Property search Weinheim",
       description:
-        "Submit a free search request – HE immologis supports you in finding the right property in Weinheim and the Bergstraße region.",
+        "Property search Weinheim – Free search request. HE immologis finds the right property for you in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach.",
       keywords: [
-        "Search property Weinheim",
-        "Property search request",
-        "Real estate Bergstraße",
-        "HE immologis",
+        "Property search Weinheim",
+        "Real estate agent Weinheim",
+        "Buy house Weinheim",
+        "Bensheim",
+        "Heppenheim",
+        "Viernheim",
+        "HE-immologis",
       ],
     };
   }
   if (lang === "tr") {
     return {
-      title: "Gayrimenkul arayın | HE immologis",
+      title: "Weinheim gayrimenkul arama",
       description:
-        "Ücretsiz arama talebi verin – HE immologis, Weinheim ve Bergstraße bölgesinde size uygun gayrimenkulü bulmanızda size yardımcı olur.",
+        "Weinheim gayrimenkul arama – Ücretsiz arama talebi. HE immologis, Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta size uygun gayrimenkulu bulur.",
       keywords: [
         "Weinheim gayrimenkul arama",
-        "Gayrimenkul arama talebi",
+        "Weinheim emlak danışmanı",
         "Bergstraße gayrimenkul",
-        "HE immologis",
+        "Bensheim",
+        "Heppenheim",
+        "Viernheim",
+        "HE-immologis",
       ],
     };
   }
   return {
-    title: "Immobilie suchen",
+    title: "Immobilie suchen Weinheim",
     description:
-      "Kostenlos Suchauftrag aufgeben – HE immologis unterstützt Sie bei der Suche nach der passenden Immobilie in Weinheim und der Region Bergstraße.",
+      "Immobilie suchen Weinheim – Kostenloser Suchauftrag. HE immologis findet Ihre passende Immobilie in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach.",
     keywords: [
       "Immobilie suchen Weinheim",
-      "Suchauftrag Immobilie",
-      "Immobilien Bergstraße",
-      "HE immologis",
+      "Immobilienmakler Weinheim",
+      "Haus kaufen Weinheim",
+      "Bensheim",
+      "Heppenheim",
+      "Viernheim",
+      "Lampertheim",
+      "Lorsch",
+      "Hemsbach",
+      "HE-immologis",
     ],
   };
 }
@@ -90,6 +103,7 @@ export default async function ImmobilieSuchenPage({
 
   return (
     <>
+      <LocalBusinessSchema />
       {/* Hero */}
       <section
         className="relative flex min-h-[70vh] flex-col overflow-hidden border-b border-slate-200 bg-cover bg-center bg-no-repeat px-2 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:bg-[length:100%_auto] lg:px-8"

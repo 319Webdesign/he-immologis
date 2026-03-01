@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
 const BRAND_BLUE = "#4682B4";
 
@@ -30,7 +31,7 @@ export async function generateMetadata({
   const title = (lang === "tr" && service.titleTr) ? service.titleTr : (lang === "en" && service.titleEn) ? service.titleEn : service.title;
   const description = (lang === "tr" && service.descriptionTr) ? service.descriptionTr : (lang === "en" && service.descriptionEn) ? service.descriptionEn : service.description;
   return {
-    title: `${title} | HE immologis UG`,
+    title: `${title}`,
     description:
       description ||
       (lang === "en" ? `${title} – Professional service from HE immologis in Weinheim.` : `${title} – Professioneller Service von HE immologis in Weinheim.`),
@@ -277,6 +278,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <LocalBusinessSchema />
       <div className="mx-auto max-w-3xl px-4 pt-16 pb-8 sm:px-6 sm:pt-20 lg:px-8">
         <Link
           href={locale ? `/${locale}/immobilien-services` : "/immobilien-services"}
