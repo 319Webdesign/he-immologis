@@ -20,9 +20,9 @@ export async function generateMetadata({
   const lang = isValidLocale(rawLang) ? rawLang : "de";
   if (lang === "en") {
     return {
-      title: "Property search Weinheim",
+      title: "Property search Weinheim & Bergstraße",
       description:
-        "Property search Weinheim – Free search request. HE immologis finds the right property for you in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach.",
+        "Free property search Weinheim & Bergstraße. HE immologis finds your ideal property in Bensheim, Heppenheim, Viernheim, Lampertheim. Holger Eberhard advises you.",
       keywords: [
         "Property search Weinheim",
         "Real estate agent Weinheim",
@@ -36,9 +36,9 @@ export async function generateMetadata({
   }
   if (lang === "tr") {
     return {
-      title: "Weinheim gayrimenkul arama",
+      title: "Weinheim & Bergstraße gayrimenkul arama",
       description:
-        "Weinheim gayrimenkul arama – Ücretsiz arama talebi. HE immologis, Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach'ta size uygun gayrimenkulu bulur.",
+        "Weinheim ve Bergstraße'de ücretsiz gayrimenkul arama. HE immologis Bensheim, Heppenheim, Viernheim, Lampertheim'de size uygun gayrimenkulu bulur. Holger Eberhard.",
       keywords: [
         "Weinheim gayrimenkul arama",
         "Weinheim emlak danışmanı",
@@ -51,9 +51,9 @@ export async function generateMetadata({
     };
   }
   return {
-    title: "Immobilie suchen Weinheim",
+    title: "Immobilie suchen Weinheim & Bergstraße",
     description:
-      "Immobilie suchen Weinheim – Kostenloser Suchauftrag. HE immologis findet Ihre passende Immobilie in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach.",
+      "Kostenloser Suchauftrag Weinheim & Bergstraße. HE immologis findet Ihre passende Immobilie in Bensheim, Heppenheim, Viernheim, Lampertheim. Holger Eberhard berät Sie.",
     keywords: [
       "Immobilie suchen Weinheim",
       "Immobilienmakler Weinheim",

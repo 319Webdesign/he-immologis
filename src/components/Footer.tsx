@@ -65,7 +65,7 @@ export default function Footer({ lang, dict }: FooterProps) {
               />
             </Link>
             <p className="font-sans text-lg leading-tight text-white">
-              <strong className="font-semibold">{dict.companyLine1}</strong>
+              <span className="font-semibold">{dict.companyLine1}</span>
               <br />
               <span className="text-base font-normal">{dict.companyLine2}</span>
             </p>
@@ -87,7 +87,7 @@ export default function Footer({ lang, dict }: FooterProps) {
               >
                 <Image
                   src="/img/qr-he-immologis.png"
-                  alt=""
+                  alt="QR-Code Website HE-immologis"
                   width={144}
                   height={144}
                   className="aspect-square h-auto w-full object-cover"

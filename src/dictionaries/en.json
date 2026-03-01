@@ -102,15 +102,15 @@
     "cards": [
       {
         "title": "Sell",
-        "description": "Focus on local market values and fair valuation.<br><strong>We sell your property.</strong>"
+        "description": "Focus on local market values and fair valuation.<br><span class=\"font-semibold\">We sell your property.</span>"
       },
       {
         "title": "Buy & Search",
-        "description": "Support for those looking in the region.<br><strong>We find your property.</strong>"
+        "description": "Support for those looking in the region.<br><span class="font-semibold">We find your property.</span>"
       },
       {
         "title": "Rent",
-        "description": "We handle professional tenant search and full processing from A to Z.<br><strong>We rent your property.</strong>"
+        "description": "We handle professional tenant search and full processing from A to Z.<br><span class=\"font-semibold\">We rent your property.</span>"
       },
       {
         "title": "Logistics Consulting",
@@ -325,9 +325,9 @@
   },
   "verkaufen": {
     "meta": {
-      "title": "Property valuation Bergstraße",
-      "description": "Property valuation Bergstraße – Professional valuation and sale in Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. Holger Eberhard, HE immologis.",
-      "keywords": ["Property valuation Bergstraße", "Sell property Weinheim", "Real estate agent Weinheim", "Holger Eberhard Weinheim", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach"]
+      "title": "Sell property Weinheim & Bergstraße",
+      "description": "Sell your property in Weinheim & Bergstraße. Professional valuation, optimal marketing. Holger Eberhard advises you personally. Bensheim, Heppenheim, Viernheim.",
+      "keywords": ["Real estate agent Weinheim", "Sell property Bergstraße", "Buy house Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
       "titleLine1": "Sell in Weinheim and Surroundings",
@@ -349,7 +349,7 @@
     },
     "finalCta": {
       "title": "Are you still unsure about the market value?",
-      "description": "Let's take the first step together.<br /><strong>We will professionally assess your property – of course, completely free of charge.</strong>",
+      "description": "Let's take the first step together.<br /><span class=\"font-semibold\">We will professionally assess your property – of course, completely free of charge.</span>",
       "buttonText": "Request a free valuation",
       "callText": "Prefer to call directly?"
     },
@@ -415,9 +415,9 @@
   },
   "kaufen": {
     "meta": {
-      "title": "Buy house Weinheim",
-      "description": "Buy house Weinheim – Properties in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. Apartment, house, commercial. HE immologis, Holger Eberhard.",
-      "keywords": ["Buy house Weinheim", "Real estate agent Weinheim", "Properties Weinheim", "Properties Bergstraße", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach", "Holger Eberhard Weinheim"]
+      "title": "Buy house Weinheim & Bergstraße",
+      "description": "Buy house Weinheim & Bergstraße. Properties in Bensheim, Heppenheim, Viernheim, Lampertheim. Apartment, house, commercial. Holger Eberhard advises you. HE immologis.",
+      "keywords": ["Real estate agent Weinheim", "Buy house Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
       "title": "Buy in Weinheim and Surroundings",
@@ -462,8 +462,8 @@
   },
   "mieten": {
     "meta": {
-      "title": "Rental apartment Weinheim",
-      "description": "Rental apartment Weinheim – Your new home in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. HE immologis.",
+      "title": "Rental apartment Weinheim & Bergstraße",
+      "description": "Rental apartment Weinheim & Bergstraße. Your new home in Bensheim, Heppenheim, Viernheim, Lampertheim. Personally supported by Holger Eberhard, HE immologis.",
       "keywords": ["Rental apartment Weinheim", "Rent house Bergstraße", "Real estate agent Weinheim", "Rental properties Weinheim", "Bensheim", "Heppenheim", "Viernheim", "Holger Eberhard Weinheim"]
     },
     "hero": {
@@ -517,8 +517,8 @@
   "immobilienServices": {
     "meta": {
       "title": "Property valuation Bergstraße",
-      "description": "Property valuation Bergstraße – From valuation to key handover. Professional services in Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. HE immologis.",
-      "keywords": ["Property valuation Bergstraße", "Real estate agent Weinheim", "Market valuation Bergstraße", "Real estate services Weinheim", "Holger Eberhard Weinheim", "Bensheim", "Heppenheim"]
+      "description": "Property valuation Bergstraße – From valuation to key handover. Services in Weinheim, Bensheim, Heppenheim, Viernheim. Holger Eberhard. HE immologis.",
+      "keywords": ["Real estate agent Weinheim", "Buy house Bergstraße", "Property valuation Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
       "title": "Tailored Sales Solutions.",

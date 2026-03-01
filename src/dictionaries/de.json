@@ -102,15 +102,15 @@
     "cards": [
       {
         "title": "Verkauf",
-        "description": "Fokus auf lokale Marktwerte und faire Bewertung.<br><strong>Ihr Immobilienverkauf.</strong>"
+        "description": "Fokus auf lokale Marktwerte und faire Bewertung.<br><span class=\"font-semibold\">Ihr Immobilienverkauf.</span>"
       },
       {
         "title": "Kauf & Suche",
-        "description": "Unterstützung für Suchende in der Region.<br><strong>Ihre Immobiliensuche.</strong>"
+        "description": "Unterstützung für Suchende in der Region.<br><span class=\"font-semibold\">Ihre Immobiliensuche.</span>"
       },
       {
         "title": "Vermietung",
-        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z.<br><strong>Ihre Immobilienvermietung.</strong>"
+        "description": "Wir übernehmen die professionelle Mietersuche und die vollständige Abwicklung von A bis Z.<br><span class=\"font-semibold\">Ihre Immobilienvermietung.</span>"
       },
       {
         "title": "Logistikberatung",
@@ -325,9 +325,9 @@
   },
   "verkaufen": {
     "meta": {
-      "title": "Immobilienbewertung Bergstraße",
-      "description": "Immobilienbewertung Bergstraße – Professionelle Wertermittlung und Verkauf in Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. Holger Eberhard, HE immologis.",
-      "keywords": ["Immobilienbewertung Bergstraße", "Immobilie verkaufen Weinheim", "Immobilienmakler Weinheim", "Holger Eberhard Weinheim", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach"]
+      "title": "Immobilie verkaufen Weinheim & Bergstraße",
+      "description": "Immobilie verkaufen in Weinheim & Bergstraße. Professionelle Wertermittlung, optimale Vermarktung. Holger Eberhard berät Sie persönlich. Bensheim, Heppenheim, Viernheim.",
+      "keywords": ["Immobilienmakler Weinheim", "Immobilie verkaufen Bergstraße", "Haus kaufen Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
       "titleLine1": "Verkaufen in Weinheim und Umgebung.",
@@ -349,7 +349,7 @@
     },
     "finalCta": {
       "title": "Sie sind sich noch unsicher über den Marktwert?",
-      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen.<br /><strong>Wir bewerten Ihre Immobilie fachgerecht – selbstverständlich kostenfrei.</strong>",
+      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen.<br /><span class=\"font-semibold\">Wir bewerten Ihre Immobilie fachgerecht – selbstverständlich kostenfrei.</span>",
       "buttonText": "Kostenlose Wertermittlung anfragen",
       "callText": "Lieber direkt anrufen?"
     },
@@ -415,9 +415,9 @@
   },
   "kaufen": {
     "meta": {
-      "title": "Haus kaufen Weinheim",
-      "description": "Haus kaufen Weinheim – Immobilien in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. Wohnung, Haus, Gewerbeimmobilie. HE immologis, Holger Eberhard.",
-      "keywords": ["Haus kaufen Weinheim", "Immobilienmakler Weinheim", "Immobilien Weinheim", "Immobilien Bergstraße", "Bensheim", "Heppenheim", "Viernheim", "Lampertheim", "Lorsch", "Hemsbach", "Holger Eberhard Weinheim"]
+      "title": "Haus kaufen Weinheim & Bergstraße",
+      "description": "Haus kaufen Weinheim & Bergstraße. Immobilien in Bensheim, Heppenheim, Viernheim, Lampertheim. Wohnung, Haus, Gewerbe. Holger Eberhard berät Sie. HE immologis.",
+      "keywords": ["Immobilienmakler Weinheim", "Haus kaufen Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
       "title": "Kaufen in Weinheim und Umgebung.",
@@ -452,8 +452,8 @@
   },
   "mieten": {
     "meta": {
-      "title": "Mietwohnung Weinheim",
-      "description": "Mietwohnung Weinheim – Ihr neues Zuhause in Weinheim, Bergstraße, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. Persönlich betreut von HE immologis.",
+      "title": "Mietwohnung Weinheim & Bergstraße",
+      "description": "Mietwohnung Weinheim & Bergstraße. Ihr neues Zuhause in Bensheim, Heppenheim, Viernheim, Lampertheim. Persönlich betreut von Holger Eberhard, HE immologis.",
       "keywords": ["Mietwohnung Weinheim", "Haus mieten Bergstraße", "Immobilienmakler Weinheim", "Mietobjekte Weinheim", "Bensheim", "Heppenheim", "Viernheim", "Holger Eberhard Weinheim"]
     },
     "hero": {
@@ -507,8 +507,8 @@
   "immobilienServices": {
     "meta": {
       "title": "Immobilienbewertung Bergstraße",
-      "description": "Immobilienbewertung Bergstraße – Von Wertermittlung bis Schlüsselübergabe. Professionelle Services in Weinheim, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch, Hemsbach. HE immologis.",
-      "keywords": ["Immobilienbewertung Bergstraße", "Immobilienmakler Weinheim", "Marktwertermittlung Bergstraße", "Immobilien-Services Weinheim", "Holger Eberhard Weinheim", "Bensheim", "Heppenheim"]
+      "description": "Immobilienbewertung Bergstraße – Von Wertermittlung bis Schlüsselübergabe. Services in Weinheim, Bensheim, Heppenheim, Viernheim. Holger Eberhard. HE immologis.",
+      "keywords": ["Immobilienmakler Weinheim", "Haus kaufen Bergstraße", "Immobilienbewertung Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
       "title": "Maßgeschneiderte Verkaufslösungen.",

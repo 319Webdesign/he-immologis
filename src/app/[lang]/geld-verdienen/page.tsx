@@ -42,7 +42,7 @@ export default async function GeldVerdienenPage() {
       >
         <Image
           src="/img/geld-verdienen.jpeg"
-          alt="Tippgeber-Programm Immobilien Weinheim - HE-immologis"
+          alt="Haus kaufen Weinheim - Tippgeber-Programm Immobilien - HE-immologis"
           fill
           className="object-cover object-center blur-md scale-105"
           sizes="100vw"

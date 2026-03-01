@@ -10,44 +10,41 @@ import type { Locale } from "@/lib/i18n";
 
 const HOME_META = {
   de: {
-    title: "Immobilienmakler Weinheim",
+    title: "Immobilienmakler Weinheim & Bergstraße",
     description:
-      "HE immologis – Ihr Partner für Immobilien in Weinheim und Logistik in Deutschland. Immobilienmakler, Immobilienbewertung Bergstraße, Haus kaufen Weinheim. Holger Eberhard. Logistikberatung, Pharmaceutical & Healthcare Logistics.",
+      "Ihr Experte für Immobilien in Weinheim. Haus kaufen, Wohnung verkaufen oder professionelle Immobilienbewertung an der Bergstraße. Holger Eberhard berät Sie persönlich.",
     keywords: [
       "Immobilienmakler Weinheim",
-      "Haus kaufen Weinheim",
-      "Immobilienbewertung Bergstraße",
-      "Holger Eberhard Weinheim",
+      "Haus kaufen Bergstraße",
       "Bensheim",
       "Heppenheim",
-      "Viernheim",
-      "Logistikberatung Deutschland",
+      "Lampertheim",
       "HE-immologis",
     ],
   },
   en: {
-    title: "Real Estate Agent Weinheim",
+    title: "Real Estate Agent Weinheim & Bergstraße",
     description:
-      "HE immologis – Your partner for real estate in Weinheim and logistics in Germany. Real estate agent, property valuation Bergstraße, buy house Weinheim. Holger Eberhard. Logistics consulting, Pharmaceutical & Healthcare Logistics.",
+      "Your expert for real estate in Weinheim. Buy a house, sell an apartment or professional property valuation at the Bergstraße. Holger Eberhard advises you personally.",
     keywords: [
       "Real estate agent Weinheim",
-      "Buy house Weinheim",
-      "Property valuation Bergstraße",
-      "Holger Eberhard Weinheim",
-      "Logistics consulting Germany",
-      "Pharmaceutical & Healthcare Logistics",
+      "Buy house Bergstraße",
+      "Bensheim",
+      "Heppenheim",
+      "Lampertheim",
       "HE-immologis",
     ],
   },
   tr: {
-    title: "Weinheim Emlak Danışmanı",
+    title: "Weinheim & Bergstraße Emlak Danışmanı",
     description:
-      "HE immologis – Weinheim'da gayrimenkul ve Almanya'da lojistik için iş ortağınız. Emlak danışmanı, Bergstraße değerleme, Weinheim ev satın alma. Holger Eberhard. Lojistik danışmanlığı.",
+      "Weinheim'da gayrimenkul uzmanınız. Ev satın alma, daire satışı veya Bergstraße'de profesyonel değerleme. Holger Eberhard size kişisel danışmanlık sunar.",
     keywords: [
       "Weinheim emlak danışmanı",
-      "Weinheim ev satın alma",
-      "Bergstraße gayrimenkul değerleme",
-      "Holger Eberhard Weinheim",
+      "Bergstraße ev satın alma",
+      "Bensheim",
+      "Heppenheim",
+      "Lampertheim",
       "HE-immologis",
     ],
   },

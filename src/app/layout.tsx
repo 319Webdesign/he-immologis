@@ -18,26 +18,24 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   icons: {
     icon: { url: "/img/Logo.svg", type: "image/svg+xml" },
+    apple: "/apple-touch-icon.png",
   },
   title: {
-    default: "Immobilienmakler Weinheim | HE-immologis",
+    default: "Immobilienmakler Weinheim & Bergstraße | HE-immologis",
     template: "%s | HE-immologis",
   },
   description:
-    "HE immologis UG – Immobilienmakler Weinheim & Logistikberatung Deutschland. Immobilienbewertung Bergstraße, Haus kaufen Weinheim, Holger Eberhard. Pharmaceutical & Healthcare Logistics, Logistik M&A advisory.",
+    "Ihr Experte für Immobilien in Weinheim. Haus kaufen, Wohnung verkaufen oder professionelle Immobilienbewertung an der Bergstraße. Holger Eberhard berät Sie persönlich.",
   keywords: [
     "Immobilienmakler Weinheim",
-    "Haus kaufen Weinheim",
-    "Immobilienbewertung Bergstraße",
-    "Holger Eberhard Weinheim",
-    "Logistikberatung Deutschland",
-    "Pharmaceutical & Healthcare Logistics",
-    "Logistics M&A advisory",
-    "Supply Chain Beratung Europa",
-    "HE-immologis",
+    "Haus kaufen Bergstraße",
     "Bensheim",
     "Heppenheim",
-    "Viernheim",
+    "Lampertheim",
+    "GDP-compliant transport networks",
+    "Pharmaceutical & Healthcare Logistics",
+    "M&A advisory Europe",
+    "HE-immologis",
   ],
   openGraph: {
     locale: "de_DE",

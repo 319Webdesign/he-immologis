@@ -66,7 +66,7 @@ export default async function UeberMichPage() {
             <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl bg-slate-100 lg:max-w-none">
               <Image
                 src="/img/holger.jpeg"
-                alt="Holger Eberhard, Immobilienmakler und Logistikberater Weinheim - HE-immologis"
+                alt="Holger Eberhard - Immobilienmakler Weinheim und Pharmalogistik Beratung - HE-immologis"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1023px) 100vw, 30vw"
@@ -96,7 +96,7 @@ export default async function UeberMichPage() {
               <p className="mt-4 leading-relaxed text-slate-600">{t.career2}</p>
               <p className="mt-4 leading-relaxed text-slate-600">{t.career3}</p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                <strong>{t.regional}</strong>
+                <span className="font-semibold">{t.regional}</span>
                 <br />
                 {t.regionalPlaces}
               </p>
@@ -129,7 +129,7 @@ export default async function UeberMichPage() {
                 <p className="mt-1 text-slate-600">{t.managingDirector}</p>
                 <Image
                   src="/img/unterschrift.png"
-                  alt="Unterschrift Holger Eberhard - HE-immologis"
+                  alt="Unterschrift Holger Eberhard Immobilienmakler - HE-immologis"
                   width={200}
                   height={80}
                   className="mt-4 object-contain object-left"

@@ -19,48 +19,43 @@ const BRAND_BLUE = "#4682B4";
 
 const META = {
   de: {
-    title: "Logistikberatung Deutschland",
+    title: "Logistikberatung & Pharma Logistics",
     description:
-      "Logistikberatung Deutschland – Pharmaceutical & Healthcare Logistics, GDP-compliant transport networks, Logistics M&A advisory, Interim Management Logistik. Supply Chain Beratung Europa. HE immologis SMART.",
+      "Strategische Logistikberatung für Deutschland & Europa. Spezialisiert auf GDP-konforme Netzwerke, Pharmalogistik & Interim Management. Pharma & Healthcare Logistics.",
     keywords: [
-      "Logistikberatung Deutschland",
-      "Pharmaceutical & Healthcare Logistics",
       "GDP-compliant transport networks",
-      "Logistics M&A advisory",
+      "Pharmaceutical & Healthcare Logistics",
+      "M&A advisory Europe",
+      "Logistikberatung Deutschland",
       "Interim Management Logistik",
-      "Supply Chain Beratung Europa",
-      "Supply Chain",
-      "temperaturgeführte Logistik",
+      "Pharmalogistik",
       "HE-immologis",
     ],
   },
   tr: {
-    title: "Almanya lojistik danışmanlığı",
+    title: "Lojistik Danışmanlığı & Pharma Logistics",
     description:
-      "Almanya lojistik danışmanlığı – Pharmaceutical & Healthcare Logistics, GDP-compliant transport networks, Logistics M&A advisory, Interim Management. Supply Chain Beratung Europa. HE immologis SMART.",
+      "Almanya ve Avrupa için stratejik lojistik danışmanlığı. GDP uyumlu ağlar, farma lojistiği ve interim management konusunda uzman. Pharma & Healthcare Logistics.",
     keywords: [
-      "Almanya lojistik danışmanlığı",
-      "Pharmaceutical & Healthcare Logistics",
       "GDP-compliant transport networks",
-      "Logistics M&A advisory",
-      "Interim Management Logistik",
-      "Supply Chain",
+      "Pharmaceutical & Healthcare Logistics",
+      "M&A advisory Europe",
+      "Almanya lojistik danışmanlığı",
+      "Interim Management",
       "HE-immologis",
     ],
   },
   en: {
-    title: "Logistics consulting Germany",
+    title: "Logistics Consulting & Pharma Logistics",
     description:
-      "Logistics consulting Germany – Pharmaceutical & Healthcare Logistics, GDP-compliant transport networks, Logistics M&A advisory, Interim Management Logistik. Supply Chain consulting Europe. HE immologis SMART.",
+      "Strategic logistics consulting for Germany & Europe. Specialized in GDP-compliant networks, pharmaceutical logistics & interim management. Pharma & Healthcare Logistics.",
     keywords: [
-      "Logistics consulting Germany",
-      "Pharmaceutical & Healthcare Logistics",
       "GDP-compliant transport networks",
-      "Logistics M&A advisory",
-      "Interim Management Logistik",
-      "Supply Chain Beratung Europa",
-      "Supply chain",
-      "Temperature-controlled logistics",
+      "Pharmaceutical & Healthcare Logistics",
+      "M&A advisory Europe",
+      "Logistics consulting Germany",
+      "Interim management",
+      "Pharma logistics",
       "HE-immologis",
     ],
   },
@@ -131,7 +126,7 @@ export default async function LogistikberatungPage() {
                 style={{ backgroundColor: BRAND_BLUE }}
                 title={label}
               >
-                <strong>{letter}</strong> – {label}
+                <span className="font-semibold">{letter}</span> – {label}
               </span>
             ))}
           </div>

@@ -85,7 +85,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                   <ul className="mt-2 flex-1 space-y-1.5 text-sm leading-relaxed text-slate-600">
                     {smart.map(({ letter, label }) => (
                       <li key={letter}>
-                        <strong className="font-semibold text-slate-800">{letter}</strong> – {label}
+                        <span className="font-semibold text-slate-800">{letter}</span> – {label}
                       </li>
                     ))}
                   </ul>
@@ -135,7 +135,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                     <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#4682B4" }} />
                     <img
                       src={city.image}
-                      alt={`Immobilien in ${city.name} - HE-immologis`}
+                      alt={`Haus kaufen ${city.name} - Immobilien Bergstraße - HE-immologis`}
                       className="rounded-md object-cover"
                       style={
                         city.aspect === "9:16"
