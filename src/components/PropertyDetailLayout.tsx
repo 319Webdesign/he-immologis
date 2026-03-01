@@ -243,11 +243,42 @@ function DataRow({
   );
 }
 
+export type PropertyDetailDict = {
+  contact?: { managingDirector: string; tagline: string; requestDetails: string };
+  expose?: {
+    heading?: string;
+    intro?: string;
+    [key: string]: string | undefined;
+  };
+  hints?: {
+    gwgHeading?: string;
+    gwgP1?: string;
+    gwgP2?: string;
+    gwgP3?: string;
+    gwgP4?: string;
+    purchaseCostsHeading?: string;
+    purchaseCostsP1?: string;
+    purchaseCostsP2?: string;
+    purchaseCostsList?: string;
+    offerTermsHeading?: string;
+    offerTermsP1?: string;
+    offerTermsP2?: string;
+    offerTermsP3?: string;
+    offerTermsP4Rent?: string;
+    provisionHeading?: string;
+    provisionBuyP1?: string;
+    provisionBuyP2?: string;
+    provisionRentP1?: string;
+    provisionRentP2?: string;
+  };
+};
+
 interface PropertyDetailLayoutProps {
   property: Property;
   locale: string;
   section: "kaufen" | "mieten";
   backHref: string;
+  dict?: PropertyDetailDict;
 }
 
 export function PropertyDetailLayout({
@@ -255,7 +286,10 @@ export function PropertyDetailLayout({
   locale,
   section,
   backHref,
+  dict,
 }: PropertyDetailLayoutProps) {
+  const h = (key: keyof NonNullable<PropertyDetailDict["hints"]>, fallback: string) =>
+    dict?.hints?.[key] ?? fallback;
   const isKaufen = section === "kaufen";
   const price = isKaufen ? p.kaufpreis : p.kaltmiete;
   const priceLabel = isKaufen ? "Kaufpreis" : "Kaltmiete";
@@ -423,6 +457,7 @@ export function PropertyDetailLayout({
             <PropertyContactWidget
               propertyTitle={p.titel || undefined}
               subjectPrefix={isKaufen ? "Kaufanfrage" : "Mietanfrage"}
+              dict={dict?.contact}
             />
           </aside>
         </header>
@@ -707,12 +742,10 @@ export function PropertyDetailLayout({
           <div className="w-full max-w-xl overflow-hidden rounded-xl border border-zinc-200 shadow-sm">
             <div className="bg-[#4682B4] px-5 py-5">
               <h2 className="font-sans text-lg font-semibold text-white">
-                Exposé anfordern
+                {dict?.expose?.heading ?? "Exposé anfordern"}
               </h2>
               <p className="mt-2 text-sm text-white/90">
-                Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
-                Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
-                einzutragen.
+                {(dict?.expose?.intro ?? "Für den Erhalt des Exposés zur Immobilie {{objectNumber}} bitten wir Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten einzutragen.").replace("{{objectNumber}}", objectNumber)}
               </p>
             </div>
             <div className="bg-white px-5 py-5">
@@ -726,6 +759,7 @@ export function PropertyDetailLayout({
               propertyTitle={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
               hideIntro
               locale={locale}
+              dict={dict?.expose}
             />
             </div>
           </div>
@@ -734,73 +768,44 @@ export function PropertyDetailLayout({
           <div className="mt-12 w-full max-w-xl space-y-8 text-sm text-zinc-600">
             {isKaufen && (
               <div>
-                <h3 className="mb-2 font-sans font-semibold text-zinc-900">Geldwäschegesetz (GwG)</h3>
-                <p className="mb-2 leading-relaxed">
-                  Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.
-                </p>
-                <p className="mb-2 leading-relaxed">
-                  Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.
-                </p>
-                <p className="mb-2 leading-relaxed">
-                  Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.
-                </p>
-                <p className="leading-relaxed">
-                  Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.
-                </p>
+                <h3 className="mb-2 font-sans font-semibold text-zinc-900">{h("gwgHeading", "Geldwäschegesetz (GwG)")}</h3>
+                <p className="mb-2 leading-relaxed">{h("gwgP1", "Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.")}</p>
+                <p className="mb-2 leading-relaxed">{h("gwgP2", "Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.")}</p>
+                <p className="mb-2 leading-relaxed">{h("gwgP3", "Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.")}</p>
+                <p className="leading-relaxed">{h("gwgP4", "Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.")}</p>
               </div>
             )}
 
             {isKaufen && (
               <div>
-                <h3 className="mb-2 font-sans font-semibold text-zinc-900">Kaufnebenkosten</h3>
-                <p className="mb-2 leading-relaxed">
-                  Die Kosten für den notariellen Kaufvertrag, dessen Abwicklung im Grundbuch sowie die Grunderwerbsteuer trägt der Käufer.
-                </p>
-                <p className="leading-relaxed">
-                  Die Grunderwerbsteuer beträgt derzeit:
-                </p>
+                <h3 className="mb-2 font-sans font-semibold text-zinc-900">{h("purchaseCostsHeading", "Kaufnebenkosten")}</h3>
+                <p className="mb-2 leading-relaxed">{h("purchaseCostsP1", "Die Kosten für den notariellen Kaufvertrag, dessen Abwicklung im Grundbuch sowie die Grunderwerbsteuer trägt der Käufer.")}</p>
+                <p className="leading-relaxed">{h("purchaseCostsP2", "Die Grunderwerbsteuer beträgt derzeit:")}</p>
                 <ul className="mt-1 list-inside list-disc space-y-0.5 pl-1">
-                  <li>5 % in Baden-Württemberg und 6 % in Hessen.</li>
+                  <li>{h("purchaseCostsList", "5 % in Baden-Württemberg und 6 % in Hessen.")}</li>
                 </ul>
               </div>
             )}
 
             <div>
-              <h3 className="mb-2 font-sans font-semibold text-zinc-900">Angebotsbedingungen</h3>
-              <p className="mb-2 leading-relaxed">
-                Unsere Immobilienangebote sind freibleibend und basieren auf den ortsüblichen Maklerkonditionen.
-              </p>
-              <p className="mb-2 leading-relaxed">
-                Für die Richtigkeit der Angaben übernehmen wir keine Gewähr. Die Informationen wurden uns vom Eigentümer bzw. Auftraggeber zur Verfügung gestellt und ohne Haftung für Vollständigkeit und Richtigkeit weitergegeben.
-              </p>
-              <p className="mb-2 leading-relaxed">
-                Dieses Exposé ist ausschließlich für den vorgesehenen Empfänger bestimmt. Eine Weitergabe an Dritte kann Schadenersatzansprüche auslösen.
-              </p>
-              <p className="leading-relaxed">
-                Die Immobilie wird im Kundenauftrag und auf Grundlage unserer Geschäftsbedingungen freibleibend zur Vermietung angeboten.
-              </p>
+              <h3 className="mb-2 font-sans font-semibold text-zinc-900">{h("offerTermsHeading", "Angebotsbedingungen")}</h3>
+              <p className="mb-2 leading-relaxed">{h("offerTermsP1", "Unsere Immobilienangebote sind freibleibend und basieren auf den ortsüblichen Maklerkonditionen.")}</p>
+              <p className="mb-2 leading-relaxed">{h("offerTermsP2", "Für die Richtigkeit der Angaben übernehmen wir keine Gewähr. Die Informationen wurden uns vom Eigentümer bzw. Auftraggeber zur Verfügung gestellt und ohne Haftung für Vollständigkeit und Richtigkeit weitergegeben.")}</p>
+              <p className="mb-2 leading-relaxed">{h("offerTermsP3", "Dieses Exposé ist ausschließlich für den vorgesehenen Empfänger bestimmt. Eine Weitergabe an Dritte kann Schadenersatzansprüche auslösen.")}</p>
+              <p className="leading-relaxed">{h("offerTermsP4Rent", "Die Immobilie wird im Kundenauftrag und auf Grundlage unserer Geschäftsbedingungen freibleibend zur Vermietung angeboten.")}</p>
             </div>
 
             <div>
-              <h3 className="mb-2 font-sans font-semibold text-zinc-900">Provision</h3>
+              <h3 className="mb-2 font-sans font-semibold text-zinc-900">{h("provisionHeading", "Provision")}</h3>
               {isKaufen ? (
                 <>
-                  <p className="mb-2 leading-relaxed">
-                    Die Käuferprovision beträgt 3,57 % inklusive gesetzlicher Mehrwertsteuer.
-                  </p>
-                  <p className="leading-relaxed">
-                    Gemäß den seit dem 23.12.2020 geltenden gesetzlichen Regelungen zur Aufteilung der Maklerprovision wird diese in der Regel hälftig zwischen Verkäufer und Käufer geteilt.
-                    Somit beträgt die Provision für beide Parteien jeweils 3 % zzgl. der jeweils gültigen Mehrwertsteuer – derzeit insgesamt 3,57 % des Kaufpreises – und ist mit notariellem Vertragsabschluss verdient und fällig.
-                  </p>
+                  <p className="mb-2 leading-relaxed">{h("provisionBuyP1", "Die Käuferprovision beträgt 3,57 % inklusive gesetzlicher Mehrwertsteuer.")}</p>
+                  <p className="leading-relaxed">{h("provisionBuyP2", "Gemäß den seit dem 23.12.2020 geltenden gesetzlichen Regelungen zur Aufteilung der Maklerprovision wird diese in der Regel hälftig zwischen Verkäufer und Käufer geteilt. Somit beträgt die Provision für beide Parteien jeweils 3 % zzgl. der jeweils gültigen Mehrwertsteuer – derzeit insgesamt 3,57 % des Kaufpreises – und ist mit notariellem Vertragsabschluss verdient und fällig.")}</p>
                 </>
               ) : (
                 <>
-                  <p className="mb-2 leading-relaxed">
-                    Die Provision für die Maklertätigkeit beträgt 2 Netto-Kaltmieten zzgl. MwSt.
-                  </p>
-                  <p className="leading-relaxed">
-                    Gemäß den seit dem 1.6.2015 geltenden gesetzlichen Regelungen – Bestellerprinzip – trägt derjenige die Provision, der den Makler beauftragt hat.
-                  </p>
+                  <p className="mb-2 leading-relaxed">{h("provisionRentP1", "Die Provision für die Maklertätigkeit beträgt 2 Netto-Kaltmieten zzgl. MwSt.")}</p>
+                  <p className="leading-relaxed">{h("provisionRentP2", "Gemäß den seit dem 1.6.2015 geltenden gesetzlichen Regelungen – Bestellerprinzip – trägt derjenige die Provision, der den Makler beauftragt hat.")}</p>
                 </>
               )}
             </div>

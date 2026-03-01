@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { fetchPropertyById } from "@/lib/onoffice";
-import { PropertyDetailLayout } from "@/components/PropertyDetailLayout";
+import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/PropertyDetailLayout";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import { getDictionary } from "@/dictionaries";
 
 interface PageProps {
   params: Promise<{ lang?: string; id: string }>;
@@ -34,6 +35,8 @@ export async function generateMetadata({
 export default async function MietenDetailPage({ params }: PageProps) {
   const { id, lang: langParam } = await params;
   const locale = langParam ?? (await getLocaleFromHeaders());
+  const fullDict = await getDictionary(locale);
+  const dict = fullDict.propertyDetail as PropertyDetailDict | undefined;
 
   const property = await fetchPropertyById(id, locale).catch(() => null);
   if (!property) notFound();
@@ -44,6 +47,7 @@ export default async function MietenDetailPage({ params }: PageProps) {
       locale={locale}
       section="mieten"
       backHref={`/${locale}/mieten`}
+      dict={dict}
     />
   );
 }

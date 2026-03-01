@@ -4,8 +4,9 @@ import propertiesData from "@/data/properties.json";
 import type { PropertyWithDetails } from "@/types";
 import { fetchPropertyById } from "@/lib/onoffice";
 import { staticPropertyToProperty } from "@/lib/propertyMapper";
-import { PropertyDetailLayout } from "@/components/PropertyDetailLayout";
+import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/PropertyDetailLayout";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import { getDictionary } from "@/dictionaries";
 
 const staticProperties = propertiesData as PropertyWithDetails[];
 
@@ -45,6 +46,8 @@ export async function generateMetadata({
 export default async function KaufenDetailPage({ params }: PageProps) {
   const { id, lang: langParam } = await params;
   const locale = langParam ?? (await getLocaleFromHeaders());
+  const fullDict = await getDictionary(locale);
+  const dict = fullDict.propertyDetail as PropertyDetailDict | undefined;
 
   // Pfad 1: onOffice (Slug oder numerische ID)
   const property = await fetchPropertyById(id, locale).catch(() => null);
@@ -55,6 +58,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
         locale={locale}
         section="kaufen"
         backHref={`/${locale}/kaufen`}
+        dict={dict}
       />
     );
   }
@@ -71,6 +75,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
       locale={locale}
       section="kaufen"
       backHref={`/${locale}/kaufen`}
+      dict={dict}
     />
   );
 }

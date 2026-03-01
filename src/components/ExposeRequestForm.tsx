@@ -4,6 +4,54 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { FileText, X } from "lucide-react";
 
+export type ExposeRequestDict = {
+  intro?: string;
+  successTitle?: string;
+  successMessage?: string;
+  firstName?: string;
+  lastName?: string;
+  street?: string;
+  zip?: string;
+  city?: string;
+  email?: string;
+  phone?: string;
+  privacyPrefix?: string;
+  privacyLink?: string;
+  privacySuffix?: string;
+  submitButton?: string;
+  sending?: string;
+  popupTitle?: string;
+  widerrufsverzicht?: string;
+  popupIntro?: string;
+  popupWiderrufsbelehrung?: string;
+  widerrufsbelehrung?: string;
+  popupWiderrufsbelehrungSuffix?: string;
+  popupAusfuehrungPrefix?: string;
+  widerrufsfrist?: string;
+  popupAusfuehrungSuffix?: string;
+  popupVerlustPrefix?: string;
+  widerrufsrecht?: string;
+  popupVerlustSuffix?: string;
+  cancel?: string;
+  confirmSend?: string;
+  close?: string;
+  errFirstName?: string;
+  errLastName?: string;
+  errStreet?: string;
+  errZip?: string;
+  errCity?: string;
+  errEmail?: string;
+  errEmailInvalid?: string;
+  errPhone?: string;
+  errPhoneInvalid?: string;
+  errPrivacy?: string;
+  errWiderrufsbelehrung?: string;
+  errAusfuehrung?: string;
+  errVerlust?: string;
+  errSend?: string;
+  errConnection?: string;
+};
+
 interface ExposeRequestFormProps {
   /** Objekt-Nr oder ID für die Anzeige (z. B. onOffice-Id oder statische ImmoNr) */
   objectNumber: string;
@@ -17,6 +65,8 @@ interface ExposeRequestFormProps {
   locale?: string;
   /** Weiße Labels für dunklen Hintergrund (z. B. Steel Blue) */
   lightLabels?: boolean;
+  /** Übersetzungen für EN/TR */
+  dict?: ExposeRequestDict;
 }
 
 function validateEmail(email: string): boolean {
@@ -34,7 +84,9 @@ export function ExposeRequestForm({
   hideIntro = false,
   locale = "de",
   lightLabels = false,
+  dict,
 }: ExposeRequestFormProps) {
+  const t = (key: keyof ExposeRequestDict, fallback: string) => dict?.[key] ?? fallback;
   const [formState, setFormState] = useState({
     vorname: "",
     name: "",
@@ -85,28 +137,26 @@ export function ExposeRequestForm({
     const v = formState;
 
     if (!v.vorname.trim())
-      newErrors.vorname = "Vorname ist ein Pflichtfeld.";
-    if (!v.name.trim()) newErrors.name = "Name ist ein Pflichtfeld.";
+      newErrors.vorname = t("errFirstName", "Vorname ist ein Pflichtfeld.");
+    if (!v.name.trim()) newErrors.name = t("errLastName", "Name ist ein Pflichtfeld.");
     if (!v.strasse.trim())
-      newErrors.strasse = "Straße ist ein Pflichtfeld.";
-    if (!v.plz.trim()) newErrors.plz = "PLZ ist ein Pflichtfeld.";
-    if (!v.ort.trim()) newErrors.ort = "Ort ist ein Pflichtfeld.";
+      newErrors.strasse = t("errStreet", "Straße ist ein Pflichtfeld.");
+    if (!v.plz.trim()) newErrors.plz = t("errZip", "PLZ ist ein Pflichtfeld.");
+    if (!v.ort.trim()) newErrors.ort = t("errCity", "Ort ist ein Pflichtfeld.");
     if (!v.email.trim())
-      newErrors.email = "E-Mail-Adresse ist ein Pflichtfeld.";
+      newErrors.email = t("errEmail", "E-Mail-Adresse ist ein Pflichtfeld.");
     else if (!validateEmail(v.email))
-      newErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
+      newErrors.email = t("errEmailInvalid", "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
     if (!v.telefon.trim())
-      newErrors.telefon = "Telefonnummer ist ein Pflichtfeld.";
+      newErrors.telefon = t("errPhone", "Telefonnummer ist ein Pflichtfeld.");
     else if (!validatePhone(v.telefon))
-      newErrors.telefon =
-        "Bitte geben Sie eine gültige Telefonnummer ein (mind. 5 Zeichen).";
+      newErrors.telefon = t("errPhoneInvalid", "Bitte geben Sie eine gültige Telefonnummer ein (mind. 5 Zeichen).");
     if (!v.datenschutz)
-      newErrors.datenschutz =
-        "Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.";
+      newErrors.datenschutz = t("errPrivacy", "Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.");
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [formState]);
+  }, [formState, dict]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -153,7 +203,7 @@ export function ExposeRequestForm({
       const data = await res.json();
       if (!res.ok || !data.success) {
         setStatus("error");
-        setErrorMessage(data.error ?? "Beim Senden ist ein Fehler aufgetreten.");
+        setErrorMessage(data.error ?? t("errSend", "Beim Senden ist ein Fehler aufgetreten."));
         return;
       }
       setStatus("success");
@@ -174,11 +224,9 @@ export function ExposeRequestForm({
       setTouched({});
     } catch {
       setStatus("error");
-      setErrorMessage(
-        "Verbindungsfehler. Bitte später erneut versuchen."
-      );
+      setErrorMessage(t("errConnection", "Verbindungsfehler. Bitte später erneut versuchen."));
     }
-  }, [formState, objectNumber, estateId, propertyTitle]);
+  }, [formState, objectNumber, estateId, propertyTitle, dict]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -189,14 +237,11 @@ export function ExposeRequestForm({
   const handlePopupConfirm = () => {
     const popupErrors: Record<string, string> = {};
     if (!formState.widerrufsbelehrung)
-      popupErrors.widerrufsbelehrung =
-        "Bitte bestätigen Sie die Widerrufsbelehrung.";
+      popupErrors.widerrufsbelehrung = t("errWiderrufsbelehrung", "Bitte bestätigen Sie die Widerrufsbelehrung.");
     if (!formState.ausfuehrungVorWiderrufsfrist)
-      popupErrors.ausfuehrungVorWiderrufsfrist =
-        "Bitte bestätigen Sie den Beginn vor Ende der Widerrufsfrist.";
+      popupErrors.ausfuehrungVorWiderrufsfrist = t("errAusfuehrung", "Bitte bestätigen Sie den Beginn vor Ende der Widerrufsfrist.");
     if (!formState.widerrufsrechtVerlust)
-      popupErrors.widerrufsrechtVerlust =
-        "Bitte bestätigen Sie die Kenntnis über den Verlust des Widerrufsrechts.";
+      popupErrors.widerrufsrechtVerlust = t("errVerlust", "Bitte bestätigen Sie die Kenntnis über den Verlust des Widerrufsrechts.");
     setErrors((prev) => ({ ...prev, ...popupErrors }));
     if (Object.keys(popupErrors).length > 0) return;
     doSubmit();
@@ -210,11 +255,8 @@ export function ExposeRequestForm({
   if (status === "success") {
     return (
       <div className="rounded-lg border border-zinc-200 bg-green-50 p-6 text-center text-green-800">
-        <p className="font-medium">Vielen Dank.</p>
-        <p className="mt-1 text-sm">
-          Ihre Anfrage wurde gesendet. Sie erhalten das Exposé in Kürze per
-          E-Mail.
-        </p>
+        <p className="font-medium">{t("successTitle", "Vielen Dank.")}</p>
+        <p className="mt-1 text-sm">{t("successMessage", "Ihre Anfrage wurde gesendet. Sie erhalten das Exposé in Kürze per E-Mail.")}</p>
       </div>
     );
   }
@@ -223,9 +265,7 @@ export function ExposeRequestForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       {!hideIntro && (
         <p className="text-zinc-600 leading-relaxed">
-          Für den Erhalt des Exposés zur Immobilie {objectNumber} bitten wir
-          Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten
-          einzutragen.
+          {(dict?.intro ?? "Für den Erhalt des Exposés zur Immobilie {{objectNumber}} bitten wir Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten einzutragen.").replace("{{objectNumber}}", objectNumber)}
         </p>
       )}
 
@@ -236,7 +276,7 @@ export function ExposeRequestForm({
               htmlFor="expose-req-vorname"
               className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
-              Vorname *
+              {t("firstName", "Vorname *")}
             </label>
             <input
               type="text"
@@ -260,7 +300,7 @@ export function ExposeRequestForm({
               htmlFor="expose-req-name"
               className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
-              Name *
+              {t("lastName", "Name *")}
             </label>
             <input
               type="text"
@@ -283,7 +323,7 @@ export function ExposeRequestForm({
             htmlFor="expose-req-strasse"
             className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
           >
-            Straße *
+            {t("street", "Straße *")}
           </label>
           <input
             type="text"
@@ -306,7 +346,7 @@ export function ExposeRequestForm({
               htmlFor="expose-req-plz"
               className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
-              PLZ *
+              {t("zip", "PLZ *")}
             </label>
             <input
               type="text"
@@ -327,7 +367,7 @@ export function ExposeRequestForm({
               htmlFor="expose-req-ort"
               className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
             >
-              Ort *
+              {t("city", "Ort *")}
             </label>
             <input
               type="text"
@@ -350,7 +390,7 @@ export function ExposeRequestForm({
             htmlFor="expose-req-email"
             className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
           >
-            E-Mail-Adresse *
+            {t("email", "E-Mail-Adresse *")}
           </label>
           <input
             type="email"
@@ -372,7 +412,7 @@ export function ExposeRequestForm({
             htmlFor="expose-req-telefon"
             className={`block text-sm font-medium ${lightLabels ? "text-white" : "text-zinc-700"}`}
           >
-            Telefonnummer *
+            {t("phone", "Telefonnummer *")}
           </label>
           <input
             type="tel"
@@ -410,7 +450,7 @@ export function ExposeRequestForm({
           aria-invalid={!!errors.datenschutz}
         />
         <span className={`text-sm ${lightLabels ? "text-white" : "text-zinc-700"}`}>
-          Mit diesem Haken bestätigen Sie, dass Sie die{" "}
+          {t("privacyPrefix", "Mit diesem Haken bestätigen Sie, dass Sie die ")}
           <Link
             href={`/${locale}/datenschutz`}
             className="underline hover:opacity-80"
@@ -418,9 +458,9 @@ export function ExposeRequestForm({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Datenschutzerklärung
-          </Link>{" "}
-          zur Kenntnis genommen haben.
+            {t("privacyLink", "Datenschutzerklärung")}
+          </Link>
+          {" "}{t("privacySuffix", "zur Kenntnis genommen haben.")}
         </span>
       </label>
       {errors.datenschutz && (
@@ -442,8 +482,8 @@ export function ExposeRequestForm({
       >
         <FileText className="h-5 w-5" />
         {status === "sending"
-          ? "Wird gesendet…"
-          : "Exposé jetzt anfordern"}
+          ? t("sending", "Wird gesendet…")
+          : t("submitButton", "Exposé jetzt anfordern")}
       </button>
 
       {popupOpen && (
@@ -456,14 +496,14 @@ export function ExposeRequestForm({
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-zinc-200 bg-white p-6 shadow-xl">
             <div className="flex items-center justify-between">
               <h3 id="popup-title" className="font-sans text-lg font-semibold text-zinc-900">
-                Bestätigungen zum{" "}
+                {t("popupTitle", "Bestätigungen zum ")}
                 <Link
                   href={`/${locale}/widerruf`}
                   className="text-teal-600 underline hover:text-teal-700"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Widerrufsverzicht
+                  {t("widerrufsverzicht", "Widerrufsverzicht")}
                 </Link>
               </h3>
               <button
@@ -478,13 +518,13 @@ export function ExposeRequestForm({
                   }));
                 }}
                 className="rounded p-1 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700"
-                aria-label="Schließen"
+                aria-label={t("close", "Schließen")}
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
             <p className="mt-2 text-sm text-zinc-600">
-              Bitte bestätigen Sie alle folgenden Bedingungen:
+              {t("popupIntro", "Bitte bestätigen Sie alle folgenden Bedingungen:")}
             </p>
             <div className="mt-4 space-y-3">
               <label
@@ -501,7 +541,7 @@ export function ExposeRequestForm({
                   aria-invalid={!!errors.widerrufsbelehrung}
                 />
                 <span className="text-sm text-zinc-700">
-                  Ich habe die{" "}
+                  {t("popupWiderrufsbelehrung", "Ich habe die ")}
                 <Link
                   href={`/${locale}/agb#widerruf`}
                   className="underline hover:opacity-80"
@@ -509,9 +549,9 @@ export function ExposeRequestForm({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Widerrufsbelehrung
-                </Link>{" "}
-                  gelesen und verstanden.
+                  {t("widerrufsbelehrung", "Widerrufsbelehrung")}
+                </Link>
+                  {" "}{t("popupWiderrufsbelehrungSuffix", "gelesen und verstanden.")}
                 </span>
               </label>
               <label
@@ -528,16 +568,16 @@ export function ExposeRequestForm({
                   aria-invalid={!!errors.ausfuehrungVorWiderrufsfrist}
                 />
                 <span className="text-sm text-zinc-700">
-                  Ich verlange ausdrücklich, dass Sie vor Ende der{" "}
+                  {t("popupAusfuehrungPrefix", "Ich verlange ausdrücklich, dass Sie vor Ende der ")}
                   <Link
                     href={`/${locale}/widerruf`}
                     className="text-teal-600 underline hover:text-teal-700"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Widerrufsfrist
-                  </Link>{" "}
-                  mit der Ausführung der Dienstleistung beginnen.
+                    {t("widerrufsfrist", "Widerrufsfrist")}
+                  </Link>
+                  {" "}{t("popupAusfuehrungSuffix", "mit der Ausführung der Dienstleistung beginnen.")}
                 </span>
               </label>
               <label
@@ -554,16 +594,16 @@ export function ExposeRequestForm({
                   aria-invalid={!!errors.widerrufsrechtVerlust}
                 />
                 <span className="text-sm text-zinc-700">
-                  Mir ist bekannt, dass ich bei vollständiger Vertragserfüllung durch Sie mein{" "}
+                  {t("popupVerlustPrefix", "Mir ist bekannt, dass ich bei vollständiger Vertragserfüllung durch Sie mein ")}
                   <Link
                     href={`/${locale}/widerruf`}
                     className="text-teal-600 underline hover:text-teal-700"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Widerrufsrecht
-                  </Link>{" "}
-                  verliere.
+                    {t("widerrufsrecht", "Widerrufsrecht")}
+                  </Link>
+                  {" "}{t("popupVerlustSuffix", "verliere.")}
                 </span>
               </label>
             </div>
@@ -581,7 +621,7 @@ export function ExposeRequestForm({
                 }}
                 className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
               >
-                Abbrechen
+                {t("cancel", "Abbrechen")}
               </button>
               <button
                 type="button"
@@ -590,7 +630,7 @@ export function ExposeRequestForm({
                 className="flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed hover:opacity-90 disabled:hover:opacity-100 disabled:opacity-70"
                 style={{ backgroundColor: "#BCB88A" }}
               >
-                {status === "sending" ? "Wird gesendet…" : "Bestätigen & Senden"}
+                {status === "sending" ? t("sending", "Wird gesendet…") : t("confirmSend", "Bestätigen & Senden")}
               </button>
             </div>
           </div>
