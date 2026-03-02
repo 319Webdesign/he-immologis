@@ -18,11 +18,11 @@ const TEXTS = {
     intro1:
       "Kommt es durch Ihren Tipp oder Werbung zu einem Haus- oder Wohnungsverkauf, steht Ihnen eine Prämie zu.",
     intro2:
-      "Verzichten Sie auf die Tippgeber- (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
+      "Verzichten Sie auf die Tippgeberprämie (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
     intro3:
       "Ob Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
     intro4:
-      "Teilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen. Gemeinsam bewirken wir mehr.",
+      "Teilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen. <br>Gemeinsam bewirken wir mehr.",
     ctaButton: "Jetzt Tipp einreichen",
     disclaimer:
       "Bitte beachten Sie, dass die Spende der HE immologis pro erfolgreich vermittelten Immobilienverkauf auf die Höhe der aufgeführten Prämienregelung begrenzt ist.",
@@ -30,35 +30,35 @@ const TEXTS = {
       {
         title: "Tafel",
         description:
-          'Auf Wunsch spenden wir 500 € an die Tafel in Ihrer Stadt – beispielsweise an die Tafel Weinheim „Appel + Ei“.',
+          'Auf Wunsch spenden wir an die Tafel Weinheim „Appel + Ei“.',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
         image: "/img/spenden/tafel.jpg",
       },
       {
         title: "Tierheim",
         description:
-          "Auf Wunsch spenden wir 500 € an ein Tierheim in Ihrer Nähe – zum Beispiel an das Tierheim Weinheim.",
+          "Auf Wunsch spenden wir an das Tierheim Weinheim.",
         url: "https://www.tierheim-weinheim.de/",
         image: "/img/spenden/tierheim.jpg",
       },
       {
         title: "Kinder- und Bildungseinrichtung",
         description:
-          'Auf Wunsch spenden wir 500 € an die Kinder- oder Bildungseinrichtung in Weinheim. Wir unterstützen die Maria-Montessori-Schulkindergarten „Sternschnuppe“.',
+          "Auf Wunsch spenden wir an die Kinder- und Bildungseinrichtung Maria-Montessori-Schulkindergarten Sternschnuppe in Weinheim.",
         url: "https://kindergarten.montessori-weinheim.de/",
         image: "/img/spenden/sternschnuppe.jpg",
       },
       {
         title: "DKFZ Heidelberg",
         description:
-          "Auf Wunsch spenden wir 500 € an die Einrichtung der medizinischen Forschung – das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg.",
+          "Auf Wunsch spenden wir an die Einrichtung der medizinischen Forschung – das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg.",
         url: "https://www.dkfz.de/spenden",
         image: "/img/spenden/dkfz.jpg",
       },
       {
         title: "DHPV Berlin",
         description:
-          "Auf Wunsch spenden wir 500 € an die Organisation der Hospiz- und Palliativarbeit – Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
+          "Auf Wunsch spenden wir an die Organisation der Hospiz- und Palliativarbeit – Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
         url: "https://www.dhpv.de/engagement_geldspenden.html",
         image: "/img/spenden/dhpv.jpg",
       },
@@ -85,35 +85,35 @@ const TEXTS = {
       {
         title: "Food bank",
         description:
-          'On request we donate €500 to the food bank in your town – for example Tafel Weinheim "Appel + Ei".',
+          'On request we donate to Tafel Weinheim "Appel + Ei".',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
         image: "/img/spenden/tafel.jpg",
       },
       {
         title: "Animal shelter",
         description:
-          "On request we donate €500 to an animal shelter near you – for example Tierheim Weinheim.",
+          "On request we donate to Tierheim Weinheim.",
         url: "https://www.tierheim-weinheim.de/",
         image: "/img/spenden/tierheim.jpg",
       },
       {
         title: "Children's and education",
         description:
-          'On request we donate €500 to a children\'s or education facility in Weinheim. We support the Maria-Montessori school kindergarten "Sternschnuppe".',
+          "On request we donate to the children's and education facility Maria-Montessori school kindergarten Sternschnuppe in Weinheim.",
         url: "https://kindergarten.montessori-weinheim.de/",
         image: "/img/spenden/sternschnuppe.jpg",
       },
       {
         title: "DKFZ Heidelberg",
         description:
-          "On request we donate €500 to medical research – the German Cancer Research Center (DKFZ) in Heidelberg.",
+          "On request we donate to the medical research institution – the German Cancer Research Center (DKFZ) in Heidelberg.",
         url: "https://www.dkfz.de/spenden",
         image: "/img/spenden/dkfz.jpg",
       },
       {
         title: "DHPV Berlin",
         description:
-          "On request we donate €500 to hospice and palliative care – the German Hospice and Palliative Association (DHPV) in Berlin.",
+          "On request we donate to the hospice and palliative care organization – the German Hospice and Palliative Association (DHPV) in Berlin.",
         url: "https://www.dhpv.de/engagement_geldspenden.html",
         image: "/img/spenden/dhpv.jpg",
       },
@@ -140,35 +140,35 @@ const TEXTS = {
       {
         title: "Gıda bankası",
         description:
-          'Talep üzerine 500 €\'yu şehrinizdeki gıda bankasına bağışlıyoruz – örn. Tafel Weinheim "Appel + Ei".',
+          'Talep üzerine Tafel Weinheim "Appel + Ei"e bağışlıyoruz.',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
         image: "/img/spenden/tafel.jpg",
       },
       {
         title: "Hayvan barınağı",
         description:
-          "Talep üzerine 500 €'yu yakınınızdaki bir hayvan barınağına bağışlıyoruz – örn. Tierheim Weinheim.",
+          "Talep üzerine Tierheim Weinheim'a bağışlıyoruz.",
         url: "https://www.tierheim-weinheim.de/",
         image: "/img/spenden/tierheim.jpg",
       },
       {
         title: "Çocuk ve eğitim",
         description:
-          'Talep üzerine 500 €\'yu Weinheim\'daki bir çocuk veya eğitim kurumuna bağışlıyoruz. Maria-Montessori okul anaokulu "Sternschnuppe"yi destekliyoruz.',
+          "Talep üzerine Weinheim'daki çocuk ve eğitim kurumu Maria-Montessori okul anaokulu Sternschnuppe'ye bağışlıyoruz.",
         url: "https://kindergarten.montessori-weinheim.de/",
         image: "/img/spenden/sternschnuppe.jpg",
       },
       {
         title: "DKFZ Heidelberg",
         description:
-          "Talep üzerine 500 €'yu tıbbi araştırma kurumuna – Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) – bağışlıyoruz.",
+          "Talep üzerine tıbbi araştırma kurumuna – Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) – bağışlıyoruz.",
         url: "https://www.dkfz.de/spenden",
         image: "/img/spenden/dkfz.jpg",
       },
       {
         title: "DHPV Berlin",
         description:
-          "Talep üzerine 500 €'yu hospice ve palyatif bakım organizasyonuna – Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) – bağışlıyoruz.",
+          "Talep üzerine hospice ve palyatif bakım organizasyonuna – Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) – bağışlıyoruz.",
         url: "https://www.dhpv.de/engagement_geldspenden.html",
         image: "/img/spenden/dhpv.jpg",
       },
@@ -249,9 +249,10 @@ export default async function SpendenPage() {
           <p className="mt-4 text-lg leading-relaxed text-slate-700">
             {t.intro3}
           </p>
-          <p className="mt-4 text-lg font-medium leading-relaxed text-slate-800">
-            {t.intro4}
-          </p>
+          <p
+            className="mt-4 text-lg font-medium leading-relaxed text-slate-800"
+            dangerouslySetInnerHTML={{ __html: t.intro4 }}
+          />
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
