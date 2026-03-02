@@ -45,13 +45,22 @@ export default function SocialIcons({
   return (
     <div className="flex items-center gap-4" aria-label="Social Media">
       <a
-        href="https://www.instagram.com/heimmologis/"
+        href="https://www.instagram.com/he_immologis_ug/"
         target="_blank"
         rel="noopener noreferrer"
         className={linkClassName}
         aria-label="Instagram"
       >
         <InstagramIcon className={iconClassName} gradientId={gradientId} />
+      </a>
+      <a
+        href="https://www.facebook.com/heimmologis"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClassName}
+        aria-label="Facebook"
+      >
+        <Icon name="facebook" size={iconSize} fill="#1877F2" />
       </a>
       <a
         href="https://wa.me/4917632198462"
