@@ -131,14 +131,46 @@ export default async function TippGebenPage() {
           </div>
 
           <p className="mt-6 text-center text-slate-700">{t.afterCheck}</p>
+        </div>
+      </section>
 
+      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <DonationOption
+            lang={locale as "de" | "en" | "tr"}
+            customDescription={
+              locale === "de"
+                ? "Verzichten Sie auf die Tippgeber- (siehe Staffel), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.\n\nOb Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.\n\nTeilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen.\n\nGemeinsam bewirken wir mehr."
+                : undefined
+            }
+          />
+        </div>
+      </section>
+
+      <section
+        id="formular-heading"
+        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      >
+        <div className="mx-auto max-w-4xl">
+          <DirektkontaktSection />
+        </div>
+      </section>
+
+      <section
+        className="border-b border-slate-200 bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        aria-labelledby="ansprechpartner-heading"
+      >
+        <div className="mx-auto max-w-4xl">
           <div
-            className="mt-16 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
+            className="rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
             style={{ borderColor: BRAND_BLUE, backgroundColor: `${BRAND_BLUE}08` }}
           >
-            <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900">
+            <h2
+              id="ansprechpartner-heading"
+              className="font-sans text-xl font-semibold tracking-tight text-slate-900"
+            >
               {t.contactTitle}
-            </h3>
+            </h2>
             <p className="mt-2 text-2xl font-semibold text-slate-900">{t.contactName}</p>
             <p className="mt-1 text-slate-600">{t.contactRole}</p>
             <Image
@@ -149,21 +181,6 @@ export default async function TippGebenPage() {
               className="mt-4 max-h-16 w-auto object-contain object-left"
             />
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <DonationOption lang={locale as "de" | "en" | "tr"} />
-        </div>
-      </section>
-
-      <section
-        id="formular-heading"
-        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
-      >
-        <div className="mx-auto max-w-4xl">
-          <DirektkontaktSection />
         </div>
       </section>
     </>

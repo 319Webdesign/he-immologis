@@ -33,11 +33,15 @@ const TEXTS: Record<
 
 interface DonationOptionProps {
   lang: Locale;
+  /** Überschreibt die Standard-Beschreibung (z. B. für Tippgeber-Seite). Bei mehreren Absätzen mit \n\n trennen. */
+  customDescription?: string;
 }
 
-export default function DonationOption({ lang }: DonationOptionProps) {
+export default function DonationOption({ lang, customDescription }: DonationOptionProps) {
   const locale = lang in TEXTS ? (lang as Locale) : "de";
   const t = TEXTS[locale];
+  const description = customDescription ?? t.description;
+  const paragraphs = description.split(/\n\n+/).filter(Boolean);
 
   return (
     <section
@@ -74,9 +78,11 @@ export default function DonationOption({ lang }: DonationOptionProps) {
             {t.headline}
           </h2>
         </div>
-        <p className="mt-4 text-white leading-relaxed sm:text-lg">
-          {t.description}
-        </p>
+        <div className="mt-4 space-y-3 text-white leading-relaxed sm:text-lg">
+          {paragraphs.map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </div>
         <Link
           href={`/${lang}/spenden`}
           className="mt-6 inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4682B4]"
