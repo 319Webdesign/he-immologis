@@ -9,6 +9,7 @@ import {
   Mail,
   MessageCircle,
 } from "lucide-react";
+import DonationOption from "@/components/DonationOption";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
 const BRAND_BLUE = "#4682B4";
@@ -374,6 +375,12 @@ export default async function BannerPage() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <DonationOption lang={locale as "de" | "en" | "tr"} />
         </div>
       </section>
 

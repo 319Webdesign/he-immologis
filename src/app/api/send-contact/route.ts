@@ -79,6 +79,7 @@ export async function POST(request: NextRequest) {
       }
       case "tippgeber": {
         subject = `[Tippgeber] ${body.nameTippgeber ?? body.email}`;
+        const donateLabel = body.donatePremium ? "Ja, Prämie spenden" : "Nein";
         text = formatBody({
           "Name Tippgeber": body.nameTippgeber,
           "E-Mail": body.email,
@@ -87,6 +88,7 @@ export async function POST(request: NextRequest) {
           "Art Immobilie": body.immobilienArt,
           "Lage/Ort": body.lage,
           "Weitere Infos": body.sonstiges,
+          "Prämie für regionales Projekt spenden": donateLabel,
         });
         break;
       }

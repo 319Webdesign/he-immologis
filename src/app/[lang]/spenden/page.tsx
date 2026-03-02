@@ -1,0 +1,326 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { getLocaleFromHeaders } from "@/lib/i18n";
+
+const STEEL_BLUE = "#4682B4";
+
+type ProjectItem = { title: string; description: string; url: string; image: string };
+
+const TEXTS = {
+  de: {
+    metaTitle: "Spenden & Soziales Engagement Weinheim | HE immologis spendet",
+    metaDescription:
+      "HE-immologis spendet: Tippgeber-Prämie spenden Bergstraße. Soziales Engagement Weinheim – Ihr Verzicht auf die Prämie wird zu regionalen Projekten. Transparent. Gemeinsam Gutes bewirken.",
+    heroTitle: "Ihre Empfehlung. Unsere Spende.",
+    heroSubline: "Gemeinsam Gutes bewirken.",
+    intro1:
+      "Kommt es durch Ihren Tipp oder Werbung zu einem Haus- oder Wohnungsverkauf, steht Ihnen eine Prämie zu.",
+    intro2:
+      "Verzichten Sie auf die Tippgeber- (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
+    intro3:
+      "Ob Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
+    intro4:
+      "Teilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen. Gemeinsam bewirken wir mehr.",
+    ctaButton: "Jetzt Tipp einreichen",
+    disclaimer:
+      "Bitte beachten Sie, dass die Spende der HE immologis pro erfolgreich vermittelten Immobilienverkauf auf die Höhe der aufgeführten Prämienregelung begrenzt ist.",
+    projects: [
+      {
+        title: "Tafel",
+        description:
+          'Auf Wunsch spenden wir 500 € an die Tafel in Ihrer Stadt – beispielsweise an die Tafel Weinheim „Appel + Ei“.',
+        url: "https://www.caritas-hdrn.de/tafel-weinheim/",
+        image: "/img/spenden/tafel.jpg",
+      },
+      {
+        title: "Tierheim",
+        description:
+          "Auf Wunsch spenden wir 500 € an ein Tierheim in Ihrer Nähe – zum Beispiel an das Tierheim Weinheim.",
+        url: "https://www.tierheim-weinheim.de/",
+        image: "/img/spenden/tierheim.jpg",
+      },
+      {
+        title: "Kinder- und Bildungseinrichtung",
+        description:
+          'Auf Wunsch spenden wir 500 € an die Kinder- oder Bildungseinrichtung in Weinheim. Wir unterstützen die Maria-Montessori-Schulkindergarten „Sternschnuppe“.',
+        url: "https://kindergarten.montessori-weinheim.de/",
+        image: "/img/spenden/sternschnuppe.jpg",
+      },
+      {
+        title: "DKFZ Heidelberg",
+        description:
+          "Auf Wunsch spenden wir 500 € an die Einrichtung der medizinischen Forschung – das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg.",
+        url: "https://www.dkfz.de/spenden",
+        image: "/img/spenden/dkfz.jpg",
+      },
+      {
+        title: "DHPV Berlin",
+        description:
+          "Auf Wunsch spenden wir 500 € an die Organisation der Hospiz- und Palliativarbeit – Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
+        url: "https://www.dhpv.de/engagement_geldspenden.html",
+        image: "/img/spenden/dhpv.jpg",
+      },
+    ] as ProjectItem[],
+  },
+  en: {
+    metaTitle: "Donations & Social Commitment Weinheim | HE immologis donates",
+    metaDescription:
+      "HE immologis donates: donate referrer bonus Bergstraße. Social commitment Weinheim – your waiver of the bonus goes to regional projects. Transparent. Doing good together.",
+    heroTitle: "Your recommendation. Our donation.",
+    heroSubline: "Doing good together.",
+    intro1:
+      "If a house or apartment sale results from your tip or advertising, you are entitled to a bonus.",
+    intro2:
+      "If you waive the referrer (see scale), banner or display bonus (€500 each), HE immologis will donate your full commission to a charitable organization of your choice.",
+    intro3:
+      "Whether food bank, animal shelter or children's charity in Weinheim – we also support the German Cancer Research Center (DKFZ) in Heidelberg or the German Hospice and Palliative Association (DHPV) in Berlin.",
+    intro4:
+      "Let us know in the event of success which organization we may support. Together we achieve more.",
+    ctaButton: "Submit tip now",
+    disclaimer:
+      "Please note that HE immologis's donation per successfully brokered property sale is limited to the amount of the stated bonus scheme.",
+    projects: [
+      {
+        title: "Food bank",
+        description:
+          'On request we donate €500 to the food bank in your town – for example Tafel Weinheim "Appel + Ei".',
+        url: "https://www.caritas-hdrn.de/tafel-weinheim/",
+        image: "/img/spenden/tafel.jpg",
+      },
+      {
+        title: "Animal shelter",
+        description:
+          "On request we donate €500 to an animal shelter near you – for example Tierheim Weinheim.",
+        url: "https://www.tierheim-weinheim.de/",
+        image: "/img/spenden/tierheim.jpg",
+      },
+      {
+        title: "Children's and education",
+        description:
+          'On request we donate €500 to a children\'s or education facility in Weinheim. We support the Maria-Montessori school kindergarten "Sternschnuppe".',
+        url: "https://kindergarten.montessori-weinheim.de/",
+        image: "/img/spenden/sternschnuppe.jpg",
+      },
+      {
+        title: "DKFZ Heidelberg",
+        description:
+          "On request we donate €500 to medical research – the German Cancer Research Center (DKFZ) in Heidelberg.",
+        url: "https://www.dkfz.de/spenden",
+        image: "/img/spenden/dkfz.jpg",
+      },
+      {
+        title: "DHPV Berlin",
+        description:
+          "On request we donate €500 to hospice and palliative care – the German Hospice and Palliative Association (DHPV) in Berlin.",
+        url: "https://www.dhpv.de/engagement_geldspenden.html",
+        image: "/img/spenden/dhpv.jpg",
+      },
+    ] as ProjectItem[],
+  },
+  tr: {
+    metaTitle: "Bağış & Sosyal Sorumluluk Weinheim | HE immologis bağışlıyor",
+    metaDescription:
+      "HE immologis bağışlıyor: Tavsiyeci primi Bergstraße'da bağış. Weinheim'da sosyal sorumluluk – priminiz bölgesel projelere gidiyor. Şeffaf. Birlikte iyilik.",
+    heroTitle: "Sizin tavsiyeniz. Bizim bağışımız.",
+    heroSubline: "Birlikte iyilik.",
+    intro1:
+      "Tavsiyeniz veya reklam sayesinde bir ev veya daire satışı gerçekleşirse, size bir prim hak edersiniz.",
+    intro2:
+      "Tavsiyeci (kademeye bakın), banner veya pano priminden (her biri 500 €) vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.",
+    intro3:
+      "İster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – ayrıca Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) destekliyoruz.",
+    intro4:
+      "Başarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin. Birlikte daha fazlasını başarırız.",
+    ctaButton: "Şimdi tavsiye gönder",
+    disclaimer:
+      "HE immologis'in başarıyla aracılık edilen her gayrimenkul satışı için bağışı, belirtilen prim düzenlemesinin tutarıyla sınırlıdır.",
+    projects: [
+      {
+        title: "Gıda bankası",
+        description:
+          'Talep üzerine 500 €\'yu şehrinizdeki gıda bankasına bağışlıyoruz – örn. Tafel Weinheim "Appel + Ei".',
+        url: "https://www.caritas-hdrn.de/tafel-weinheim/",
+        image: "/img/spenden/tafel.jpg",
+      },
+      {
+        title: "Hayvan barınağı",
+        description:
+          "Talep üzerine 500 €'yu yakınınızdaki bir hayvan barınağına bağışlıyoruz – örn. Tierheim Weinheim.",
+        url: "https://www.tierheim-weinheim.de/",
+        image: "/img/spenden/tierheim.jpg",
+      },
+      {
+        title: "Çocuk ve eğitim",
+        description:
+          'Talep üzerine 500 €\'yu Weinheim\'daki bir çocuk veya eğitim kurumuna bağışlıyoruz. Maria-Montessori okul anaokulu "Sternschnuppe"yi destekliyoruz.',
+        url: "https://kindergarten.montessori-weinheim.de/",
+        image: "/img/spenden/sternschnuppe.jpg",
+      },
+      {
+        title: "DKFZ Heidelberg",
+        description:
+          "Talep üzerine 500 €'yu tıbbi araştırma kurumuna – Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) – bağışlıyoruz.",
+        url: "https://www.dkfz.de/spenden",
+        image: "/img/spenden/dkfz.jpg",
+      },
+      {
+        title: "DHPV Berlin",
+        description:
+          "Talep üzerine 500 €'yu hospice ve palyatif bakım organizasyonuna – Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) – bağışlıyoruz.",
+        url: "https://www.dhpv.de/engagement_geldspenden.html",
+        image: "/img/spenden/dhpv.jpg",
+      },
+    ] as ProjectItem[],
+  },
+};
+
+type Locale = keyof typeof TEXTS;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocaleFromHeaders();
+  const t = TEXTS[locale in TEXTS ? (locale as Locale) : "de"];
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    keywords: [
+      "Soziales Engagement Weinheim",
+      "HE-immologis spendet",
+      "Tippgeber Prämie spenden Bergstraße",
+      "Spenden Weinheim",
+      "regionale Projekte Bergstraße",
+    ],
+  };
+}
+
+export default async function SpendenPage() {
+  const locale = await getLocaleFromHeaders();
+  const lang = (locale in TEXTS ? locale : "de") as Locale;
+  const t = TEXTS[lang];
+  return (
+    <>
+      {/* Emotionale Hero-Sektion */}
+      <section
+        className="relative flex min-h-[360px] items-center justify-center overflow-hidden border-b border-slate-200 px-4 py-20 sm:min-h-[420px] sm:px-6 sm:py-28 lg:px-8"
+        aria-labelledby="spenden-hero-heading"
+      >
+        <video
+          src="/video/spenden.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-4xl px-2 text-center">
+          <h1
+            id="spenden-hero-heading"
+            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+          >
+            {t.heroTitle}
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-sm sm:text-xl">
+            {t.heroSubline}
+          </p>
+        </div>
+      </section>
+
+      <section
+        className="border-b border-slate-200 bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        aria-labelledby="spenden-intro-heading"
+      >
+        <div className="mx-auto max-w-3xl">
+          <h2 id="spenden-intro-heading" className="sr-only">
+            {t.heroSubline}
+          </h2>
+          <p className="text-lg leading-relaxed text-slate-700">{t.intro1}</p>
+          <p className="mt-4 text-lg leading-relaxed text-slate-700">
+            {t.intro2}
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-slate-700">
+            {t.intro3}
+          </p>
+          <p className="mt-4 text-lg font-medium leading-relaxed text-slate-800">
+            {t.intro4}
+          </p>
+
+          <div className="mt-10">
+            <Link
+              href={`/${lang}/geld-verdienen#formular-heading`}
+              className="inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+              style={{ backgroundColor: STEEL_BLUE }}
+            >
+              {t.ctaButton}
+              <ArrowRight className="h-5 w-5" aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        aria-labelledby="spenden-projects-heading"
+      >
+        <div className="mx-auto max-w-6xl">
+          <h2
+            id="spenden-projects-heading"
+            className="text-center font-sans text-2xl font-semibold tracking-tight text-slate-800 sm:text-3xl"
+          >
+            {lang === "de"
+              ? "Unterstützte Einrichtungen"
+              : lang === "en"
+                ? "Supported organizations"
+                : "Desteklenen kurumlar"}
+          </h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {t.projects.map((project, index) => (
+              <article
+                key={index}
+                className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="relative aspect-[4/3] w-full shrink-0 bg-slate-100">
+                  <Image
+                    src={project.image}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h3 className="font-sans text-lg font-semibold text-slate-800">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-slate-600 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:underline"
+                    style={{ color: STEEL_BLUE }}
+                  >
+                    {lang === "de"
+                      ? "Zur Website"
+                      : lang === "en"
+                        ? "Visit website"
+                        : "Web sitesine git"}
+                    <ExternalLink className="h-4 w-4 shrink-0" aria-hidden />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-12 text-sm leading-relaxed text-slate-600">
+            {t.disclaimer}
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}

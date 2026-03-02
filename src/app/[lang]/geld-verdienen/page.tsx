@@ -5,6 +5,7 @@ import { Wallet, MapPin, Camera, Info, FileDown, ArrowRight } from "lucide-react
 import ProvisionsStaffel from "./ProvisionsStaffel";
 import TippgeberForm from "./TippgeberForm";
 import Contact from "@/components/Contact";
+import DonationOption from "@/components/DonationOption";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -210,6 +211,12 @@ export default async function GeldVerdienenPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <DonationOption lang={locale as "de" | "en" | "tr"} />
         </div>
       </section>
 

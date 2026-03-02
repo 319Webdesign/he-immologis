@@ -14,6 +14,7 @@ export default function TippgeberForm() {
     immobilienArt: "",
     lage: "",
     sonstiges: "",
+    donatePremium: false,
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,6 +44,7 @@ export default function TippgeberForm() {
         immobilienArt: "",
         lage: "",
         sonstiges: "",
+        donatePremium: false,
       });
     } catch {
       setStatus("error");
@@ -53,7 +55,9 @@ export default function TippgeberForm() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const target = e.target;
+    const value = target.type === "checkbox" ? (target as HTMLInputElement).checked : target.value;
+    setFormState((prev) => ({ ...prev, [target.name]: value }));
   };
 
   const inputClass =
@@ -179,6 +183,20 @@ export default function TippgeberForm() {
               />
             </div>
           </div>
+        </div>
+
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="donatePremium"
+            name="donatePremium"
+            checked={formState.donatePremium}
+            onChange={handleChange}
+            className="mt-1 h-4 w-4 rounded border-slate-300 text-[#4682B4] focus:ring-[#4682B4]"
+          />
+          <label htmlFor="donatePremium" className="text-sm text-slate-700">
+            Ich möchte auf meine Prämie verzichten und den Betrag für ein regionales Projekt spenden.
+          </label>
         </div>
 
         <div
