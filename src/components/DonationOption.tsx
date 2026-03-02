@@ -14,7 +14,7 @@ const TEXTS: Record<
   de: {
     headline: "Spenden statt Prämie",
     description:
-      "Verzichten Sie auf die Tippgeber- (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
+      "Verzichten Sie auf die Tippgeberprämie- (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
     cta: "Mehr zu unseren Projekten erfahren",
   },
   en: {
@@ -69,13 +69,19 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
             style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
             aria-hidden
           >
-            <Heart className="h-6 w-6 text-white" />
+            <Heart className="h-6 w-6 text-red-500" />
           </div>
           <h2
             id="donation-option-heading"
             className="font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl"
           >
-            {t.headline}
+            {locale === "de" ? (
+              <>
+                <span className="text-red-500">Spenden</span> statt Prämie
+              </>
+            ) : (
+              t.headline
+            )}
           </h2>
         </div>
         <div className="mt-4 space-y-3 text-white leading-relaxed sm:text-lg">
