@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
 const STEEL_BLUE = "#4682B4";
@@ -253,37 +252,26 @@ export default async function SpendenPage() {
             className="mt-4 text-lg font-medium leading-relaxed text-slate-800"
             dangerouslySetInnerHTML={{ __html: t.intro4 }}
           />
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#einrichtungen"
-              className="inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
-              style={{ backgroundColor: STEEL_BLUE }}
-            >
-              {t.ctaButton}
-              <ArrowRight className="h-5 w-5" aria-hidden />
-            </a>
-            <span
-              className="inline-flex items-center rounded-lg px-6 py-3.5 text-lg font-semibold text-slate-800"
-              style={{ backgroundColor: "#D3EFDE" }}
-            >
-              {lang === "de"
-                ? "Unterstützte Einrichtungen"
-                : lang === "en"
-                  ? "Supported organizations"
-                  : "Desteklenen kurumlar"}
-            </span>
-          </div>
         </div>
       </section>
 
       <section
         id="einrichtungen"
         className="scroll-mt-4 border-b border-slate-200 bg-white px-4 pt-4 pb-16 sm:px-6 sm:pb-20 lg:px-8"
-        aria-label={lang === "de" ? "Unterstützte Einrichtungen" : lang === "en" ? "Supported organizations" : "Desteklenen kurumlar"}
+        aria-labelledby="spenden-projects-heading"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <h2
+            id="spenden-projects-heading"
+            className="text-center font-sans text-2xl font-semibold tracking-tight text-slate-800 sm:text-3xl"
+          >
+            {lang === "de"
+              ? "Unterstützte Einrichtungen"
+              : lang === "en"
+                ? "Supported organizations"
+                : "Desteklenen kurumlar"}
+          </h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.projects.map((project, index) => (
               <article
                 key={index}
