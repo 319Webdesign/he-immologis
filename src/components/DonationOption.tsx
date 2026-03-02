@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
 
 const STEEL_BLUE = "#4682B4";
-const LIGHT_BG = "#faf8f5";
 
 type Locale = "de" | "en" | "tr";
 
@@ -15,19 +14,19 @@ const TEXTS: Record<
   de: {
     headline: "Spenden statt Prämie",
     description:
-      "Verzichten Sie auf Ihre Tippgeber- oder Werbeprämie und lassen Sie stattdessen 500 € in ein regionales Projekt fließen. HE immologis leitet den Betrag transparent an ausgewählte soziale oder gemeinnützige Vorhaben in der Region weiter.",
+      "Verzichten Sie auf die Tippgeber- (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
     cta: "Mehr zu unseren Projekten erfahren",
   },
   en: {
     headline: "Donate instead of bonus",
     description:
-      "Waive your referrer or advertising bonus and let €500 go to a regional project instead. HE immologis forwards the amount transparently to selected social or charitable initiatives in the region.",
+      "If you waive the referrer (see scale), banner or display bonus (€500 each), HE immologis will donate your full commission to a charitable organization of your choice.",
     cta: "Learn more about our projects",
   },
   tr: {
     headline: "Ödül yerine bağış",
     description:
-      "Tavsiye veya reklam ödülünüzden vazgeçin ve 500 €'yu bölgesel bir projeye aktarın. HE immologis tutarı bölgede seçilmiş sosyal veya hayır kurumlarına şeffaf bir şekilde iletir.",
+      "Tavsiyeci (kademeye bakın), banner veya pano priminden (her biri 500 €) vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.",
     cta: "Projelerimiz hakkında daha fazla bilgi",
   },
 };
@@ -42,27 +41,40 @@ export default function DonationOption({ lang }: DonationOptionProps) {
 
   return (
     <section
-      className="rounded-2xl px-6 py-10 sm:px-8 sm:py-12"
-      style={{ backgroundColor: LIGHT_BG }}
+      className="relative overflow-hidden rounded-2xl px-6 py-10 sm:px-8 sm:py-12"
       aria-labelledby="donation-option-heading"
     >
-      <div className="mx-auto max-w-3xl">
+      <video
+        src="/video/spenden.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "rgba(70, 130, 180, 0.45)" }}
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto max-w-3xl">
         <div className="flex items-center gap-3">
           <div
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-            style={{ backgroundColor: `${STEEL_BLUE}22` }}
+            style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
             aria-hidden
           >
-            <Heart className="h-6 w-6" style={{ color: STEEL_BLUE }} />
+            <Heart className="h-6 w-6 text-white" />
           </div>
           <h2
             id="donation-option-heading"
-            className="font-sans text-2xl font-semibold tracking-tight text-slate-800 sm:text-3xl"
+            className="font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl"
           >
             {t.headline}
           </h2>
         </div>
-        <p className="mt-4 text-slate-700 leading-relaxed sm:text-lg">
+        <p className="mt-4 text-white leading-relaxed sm:text-lg">
           {t.description}
         </p>
         <Link
