@@ -18,7 +18,7 @@ const TEXTS = {
     intro1:
       "Kommt es durch Ihren Tipp oder Werbung zu einem Haus- oder Wohnungsverkauf, steht Ihnen eine Prämie zu.",
     intro2:
-      "Verzichten Sie auf die Tippgeberprämie (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
+      "Verzichten Sie auf die Tippgeberprämie, Banner- oder Aufstellerprämie, spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
     intro3:
       "Ob Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
     intro4:
