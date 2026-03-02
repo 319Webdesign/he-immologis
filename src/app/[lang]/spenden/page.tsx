@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowDown, ExternalLink } from "lucide-react";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
 const STEEL_BLUE = "#4682B4";
@@ -220,7 +220,13 @@ export default async function SpendenPage() {
             id="spenden-hero-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
-            {t.heroTitle}
+            {lang === "de" ? (
+              <>
+                Ihre Empfehlung. Unsere <span className="text-red-800">Spende.</span>
+              </>
+            ) : (
+              t.heroTitle
+            )}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-sm sm:text-xl">
             {t.heroSubline}
@@ -229,7 +235,7 @@ export default async function SpendenPage() {
       </section>
 
       <section
-        className="border-b border-slate-200 bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        className="border-b border-slate-200 bg-slate-50/50 px-4 pb-10 pt-16 sm:px-6 sm:pb-12 sm:pt-20 lg:px-8"
         aria-labelledby="spenden-intro-heading"
       >
         <div className="mx-auto max-w-3xl">
@@ -248,20 +254,21 @@ export default async function SpendenPage() {
           </p>
 
           <div className="mt-10">
-            <Link
-              href={`/${lang}/geld-verdienen#formular-heading`}
+            <a
+              href="#einrichtungen"
               className="inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
               style={{ backgroundColor: STEEL_BLUE }}
             >
               {t.ctaButton}
-              <ArrowRight className="h-5 w-5" aria-hidden />
-            </Link>
+              <ArrowDown className="h-5 w-5" aria-hidden />
+            </a>
           </div>
         </div>
       </section>
 
       <section
-        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        id="einrichtungen"
+        className="scroll-mt-4 border-b border-slate-200 bg-white px-4 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20 lg:px-8"
         aria-labelledby="spenden-projects-heading"
       >
         <div className="mx-auto max-w-6xl">
