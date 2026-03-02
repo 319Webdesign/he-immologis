@@ -31,14 +31,14 @@ const TEXTS = {
         description:
           'Auf Wunsch spenden wir an die Tafel Weinheim „Appel + Ei“.',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
-        image: "/img/spenden/tafel.jpg",
+        image: "/tafel.jpeg",
       },
       {
         title: "Tierheim",
         description:
           "Auf Wunsch spenden wir an das Tierheim Weinheim.",
         url: "https://www.tierheim-weinheim.de/",
-        image: "/img/spenden/tierheim.jpg",
+        image: "/tierheim.jpeg",
       },
       {
         title: "Kinder- und Bildungseinrichtung",
@@ -86,14 +86,14 @@ const TEXTS = {
         description:
           'On request we donate to Tafel Weinheim "Appel + Ei".',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
-        image: "/img/spenden/tafel.jpg",
+        image: "/tafel.jpeg",
       },
       {
         title: "Animal shelter",
         description:
           "On request we donate to Tierheim Weinheim.",
         url: "https://www.tierheim-weinheim.de/",
-        image: "/img/spenden/tierheim.jpg",
+        image: "/tierheim.jpeg",
       },
       {
         title: "Children's and education",
@@ -141,14 +141,14 @@ const TEXTS = {
         description:
           'Talep üzerine Tafel Weinheim "Appel + Ei"e bağışlıyoruz.',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
-        image: "/img/spenden/tafel.jpg",
+        image: "/tafel.jpeg",
       },
       {
         title: "Hayvan barınağı",
         description:
           "Talep üzerine Tierheim Weinheim'a bağışlıyoruz.",
         url: "https://www.tierheim-weinheim.de/",
-        image: "/img/spenden/tierheim.jpg",
+        image: "/tierheim.jpeg",
       },
       {
         title: "Çocuk ve eğitim",
@@ -278,12 +278,12 @@ export default async function SpendenPage() {
                 key={index}
                 className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="relative aspect-[4/3] w-full shrink-0 bg-slate-100">
+                <div className="relative aspect-[4/3] w-full shrink-0 bg-white">
                   <Image
                     src={project.image}
                     alt=""
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>

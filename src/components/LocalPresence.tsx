@@ -46,7 +46,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
 
   return (
     <section
-      className="w-full max-w-full overflow-x-hidden bg-white pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24"
+      className="w-full max-w-full overflow-x-hidden bg-white pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-12"
       aria-labelledby="kompetenz-heading"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

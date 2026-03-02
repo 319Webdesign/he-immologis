@@ -38,7 +38,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
 
   return (
     <section
-      className="relative pt-10 pb-6 sm:pt-12 sm:pb-8"
+      className="relative pt-10 pb-3 sm:pt-12 sm:pb-4"
       style={{ backgroundColor: "#D3EFDE" }}
       aria-labelledby="wertermittlung-heading"
     >

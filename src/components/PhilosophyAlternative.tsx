@@ -28,7 +28,7 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
   const { heading, sections } = dict;
   return (
     <section
-      className="bg-white py-20 sm:py-24 lg:py-32"
+      className="bg-white pt-8 pb-20 sm:pt-10 sm:pb-24 lg:pt-12 lg:pb-32"
       aria-labelledby="philosophy-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
