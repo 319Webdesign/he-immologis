@@ -14,7 +14,7 @@ const TEXTS: Record<
   de: {
     headline: "Spenden statt Prämie",
     description:
-      "Verzichten Sie auf die Tippgeberprämie (siehe Staffel), Banner- oder Aufstellerprämie (je 500,- €), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
+      "Verzichten Sie auf die Tippgeber-, Banner- oder Aufstellerprämie, spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.",
     cta: "Mehr zu unseren Projekten erfahren",
   },
   en: {
