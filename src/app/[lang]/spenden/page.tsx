@@ -21,7 +21,7 @@ const TEXTS = {
     intro3:
       "Ob Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
     intro4:
-      "Teilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen. <br><span class=\"text-xl text-red-800 font-medium\">Gemeinsam bewirken wir mehr.</span>",
+      "Teilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen. <br><span class=\"mt-3 block text-xl text-red-800 font-medium\">Gemeinsam bewirken wir mehr.</span>",
     ctaButton: "Jetzt Tipp einreichen",
     disclaimer:
       "Bitte beachten Sie, dass die Spende der HE immologis pro erfolgreich vermittelten Immobilienverkauf auf die Höhe der aufgeführten Prämienregelung begrenzt ist.",
@@ -76,7 +76,7 @@ const TEXTS = {
     intro3:
       "Whether food bank, animal shelter or children's charity in Weinheim – we also support the German Cancer Research Center (DKFZ) in Heidelberg or the German Hospice and Palliative Association (DHPV) in Berlin.",
     intro4:
-      "Let us know in the event of success which organization we may support. <br><span class=\"text-xl text-red-800 font-medium\">Together we achieve more.</span>",
+      "Let us know in the event of success which organization we may support. <br><span class=\"mt-3 block text-xl text-red-800 font-medium\">Together we achieve more.</span>",
     ctaButton: "Submit tip now",
     disclaimer:
       "Please note that HE immologis's donation per successfully brokered property sale is limited to the amount of the stated bonus scheme.",
@@ -131,7 +131,7 @@ const TEXTS = {
     intro3:
       "İster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – ayrıca Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) destekliyoruz.",
     intro4:
-      "Başarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin. <br><span class=\"text-xl text-red-800 font-medium\">Birlikte daha fazlasını başarırız.</span>",
+      "Başarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin. <br><span class=\"mt-3 block text-xl text-red-800 font-medium\">Birlikte daha fazlasını başarırız.</span>",
     ctaButton: "Şimdi tavsiye gönder",
     disclaimer:
       "HE immologis'in başarıyla aracılık edilen her gayrimenkul satışı için bağışı, belirtilen prim düzenlemesinin tutarıyla sınırlıdır.",
