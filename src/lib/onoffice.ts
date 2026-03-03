@@ -1463,10 +1463,10 @@ export async function createSearchRequestInterested(
   let lastError: string = "";
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     const criteriaResult = await createSearchCriteria(token, secret, addressId, searchData);
-    if (criteriaResult.success) {
+    if ("success" in criteriaResult && criteriaResult.success) {
       return { success: true, addressId };
     }
-    lastError = criteriaResult.error;
+    lastError = "error" in criteriaResult ? criteriaResult.error : "";
     const unknownField = parseUnknownFieldFromError(lastError);
     if (!unknownField) break;
     if (unknownField in searchData) {
