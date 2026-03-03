@@ -1073,9 +1073,15 @@ export function mapFormBodyToSearchRequestData(
     price_max,
     price_min,
     wohnflaeche: (body.wohnflaeche as string)?.trim() || undefined,
-    wohnflaeche_min: body.wohnflaeche_min != null ? body.wohnflaeche_min : undefined,
+    wohnflaeche_min:
+      body.wohnflaeche_min != null && body.wohnflaeche_min !== ""
+        ? (typeof body.wohnflaeche_min === "number" ? body.wohnflaeche_min : String(body.wohnflaeche_min))
+        : undefined,
     zimmeranzahl: (body.zimmeranzahl as string)?.trim() || undefined,
-    anzahl_zimmer_min: body.anzahl_zimmer_min != null ? body.anzahl_zimmer_min : undefined,
+    anzahl_zimmer_min:
+      body.anzahl_zimmer_min != null && body.anzahl_zimmer_min !== ""
+        ? (typeof body.anzahl_zimmer_min === "number" ? body.anzahl_zimmer_min : String(body.anzahl_zimmer_min))
+        : undefined,
     vermarktungsart: (body.vermarktungsart as "kauf" | "miete") ?? "kauf",
     bemerkung:
       (body.weitereWuensche as string)?.trim() ||
