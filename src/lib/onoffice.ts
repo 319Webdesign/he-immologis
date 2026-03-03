@@ -8,8 +8,47 @@ const CREATE_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:create";
 const RESOURCE_TYPE_ESTATE = "estate";
 const RESOURCE_TYPE_ESTATE_PICTURES = "estatepictures";
 const RESOURCE_TYPE_ADDRESS = "address";
+const RESOURCE_TYPE_SEARCHCRITERIA = "searchcriteria";
 const RELATION_INTERESTED =
   "urn:onoffice-de-ns:smart:2.5:relationTypes:estate:address:interested";
+
+/** Mapping Form-Label → onOffice objektart (Objektklasse, z. B. haus, wohnung) */
+const OBJEKTTYP_TO_ONOFFICE: Record<string, string> = {
+  Einfamilienhaus: "haus",
+  Zweifamilienhaus: "haus",
+  Reihenhaus: "haus",
+  Mehrfamilienhaus: "haus",
+  Wohnung: "wohnung",
+  Grundstück: "grundstueck",
+  Gewerbeimmobilie: "gewerbe",
+  Gewerbewohnung: "wohnung",
+  Gewerbefläche: "gewerbe",
+};
+
+/** Mapping Form-Label → onOffice objekttyp (spezifischer Typ für Array, z. B. einfamilienhaus) */
+const OBJEKTTYP_TO_TYP_VALUE: Record<string, string> = {
+  Einfamilienhaus: "einfamilienhaus",
+  Zweifamilienhaus: "zweifamilienhaus",
+  Reihenhaus: "reihenhaus",
+  Mehrfamilienhaus: "mehrfamilienhaus",
+  Wohnung: "wohnung",
+  Grundstück: "grundstueck",
+  Gewerbeimmobilie: "gewerbe",
+  Gewerbewohnung: "gewerbewohnung",
+  Gewerbefläche: "gewerbeflaeche",
+};
+
+/** Parst Preis-Strings (DE: 500.000 oder 100.000,50; EN: 500000) → Zahl. Entfernt Tausendertrennzeichen. */
+function parsePrice(value: unknown): number | undefined {
+  if (value === null || value === undefined || value === "") return undefined;
+  if (typeof value === "number" && !Number.isNaN(value)) return value;
+  const s = String(value).trim().replace(/\s/g, "");
+  if (!s) return undefined;
+  const withoutThousands = s.replace(/\./g, "");
+  const withDecimal = withoutThousands.replace(",", ".");
+  const n = parseFloat(withDecimal);
+  return Number.isNaN(n) ? undefined : n;
+}
 
 /** Vermarktungsart für die Filterung (Kauf- oder Mietobjekte) */
 export type Vermarktungsart = "Kauf" | "Miete";
@@ -923,6 +962,133 @@ export interface ContactRequestData {
   bemerkung?: string;
 }
 
+/** Daten für Suchauftrag-Interessent (Adresse + Suchkriterien) */
+export interface SearchRequestInterestedData {
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  /** Objekttyp z. B. "Einfamilienhaus", "Wohnung" → wird auf onOffice objektart gemappt */
+  objekttyp?: string;
+  /** Regionale Keywords (z. B. Weinheim, Bensheim) → regionaler_zusatz */
+  regionaler_fokus?: string[] | string;
+  /** Umkreis in km → range (Suchkriterium) */
+  range?: number | string;
+  /** Max. Preis → kaufpreis__bis */
+  price_max?: number | string;
+  /** Weitere Suchkriterien (z. B. wohnflaeche__bis, anzahl_zimmer) – nur wenn in onOffice als Suchkriterium aktiv */
+  wohnflaeche?: number | string;
+  zimmeranzahl?: string;
+  /** Mindest-Wohnfläche (m²) → wohnflaeche__von */
+  wohnflaeche_min?: number | string;
+  /** Mindest-Zimmeranzahl → anzahl_zimmer__von */
+  anzahl_zimmer_min?: number | string;
+  /** Vermarktungsart: kauf (default) oder miete */
+  vermarktungsart?: "kauf" | "miete";
+  /** Freitext für Bemerkung (krit_bemerkung_oeffentlich) */
+  bemerkung?: string;
+  /** Umkreis-Suche: Straße (für Suchzentrum) */
+  range_strasse?: string;
+  /** Umkreis-Suche: Hausnummer */
+  range_hausnummer?: string;
+  /** Umkreis-Suche: PLZ */
+  range_plz?: string;
+  /** Umkreis-Suche: Ort */
+  range_ort?: string;
+  /** Umkreis-Suche: Land (z. B. Deutschland) */
+  range_land?: string;
+  /** Kaufpreis mindestens → kaufpreis__von */
+  price_min?: number | string;
+}
+
+/**
+ * Mappt Formular-Body (z. B. von SearchRequestForm / send-contact) auf SearchRequestInterestedData.
+ */
+export function mapFormBodyToSearchRequestData(
+  body: Record<string, unknown>
+): SearchRequestInterestedData {
+  const firstname =
+    (body.firstname as string)?.trim() ?? (body.vorname as string)?.trim() ?? "";
+  const lastname =
+    (body.lastname as string)?.trim() ?? (body.nachname as string)?.trim() ?? "";
+  const email = (body.email as string)?.trim() ?? "";
+  const phone =
+    (body.phone as string)?.trim() ?? (body.telefon as string)?.trim() ?? "";
+
+  let regionaler_fokus: string[] | string | undefined;
+  if (body.regionaler_fokus != null) {
+    if (Array.isArray(body.regionaler_fokus)) {
+      regionaler_fokus = (body.regionaler_fokus as string[]).map((s) =>
+        String(s).trim()
+      ).filter(Boolean);
+    } else {
+      regionaler_fokus = String(body.regionaler_fokus).trim();
+    }
+  } else if (body.lageRegion != null && String(body.lageRegion).trim()) {
+    const lageRegion = String(body.lageRegion).trim();
+    regionaler_fokus = lageRegion
+      .split(/[,;/\n]+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (regionaler_fokus.length === 1) regionaler_fokus = regionaler_fokus[0];
+    else if (regionaler_fokus.length === 0) regionaler_fokus = undefined;
+  }
+
+  const rangeRaw =
+    body.range != null && body.range !== ""
+      ? typeof body.range === "number"
+        ? body.range
+        : Number(String(body.range).replace(",", "."))
+      : undefined;
+  const umkreisRaw =
+    body.umkreis != null && body.umkreis !== ""
+      ? typeof body.umkreis === "number"
+        ? body.umkreis
+        : Number(String(body.umkreis).replace(",", "."))
+      : undefined;
+  const range =
+    rangeRaw != null && !Number.isNaN(rangeRaw)
+      ? rangeRaw
+      : umkreisRaw != null && !Number.isNaN(umkreisRaw)
+        ? umkreisRaw
+        : undefined;
+  const price_max = parsePrice(body.price_max ?? body.preisMax);
+  const price_minRaw = body.price_min ?? body.preisMin;
+  const price_min = parsePrice(price_minRaw);
+
+  const range_plz = (body.range_plz as string)?.trim() ?? (body.plz as string)?.trim() ?? undefined;
+  const range_ort = (body.range_ort as string)?.trim() ?? (body.ort as string)?.trim() ?? undefined;
+  const range_strasse = (body.range_strasse as string)?.trim() ?? (body.strasse as string)?.trim() ?? undefined;
+  const range_hausnummer = (body.range_hausnummer as string)?.trim() ?? undefined;
+  const range_land = (body.range_land as string)?.trim() || "Deutschland";
+
+  return {
+    firstname,
+    lastname,
+    email,
+    phone,
+    objekttyp: (body.objekttyp as string)?.trim() || undefined,
+    regionaler_fokus,
+    range,
+    price_max,
+    price_min,
+    wohnflaeche: (body.wohnflaeche as string)?.trim() || undefined,
+    wohnflaeche_min: body.wohnflaeche_min != null ? body.wohnflaeche_min : undefined,
+    zimmeranzahl: (body.zimmeranzahl as string)?.trim() || undefined,
+    anzahl_zimmer_min: body.anzahl_zimmer_min != null ? body.anzahl_zimmer_min : undefined,
+    vermarktungsart: (body.vermarktungsart as "kauf" | "miete") ?? "kauf",
+    bemerkung:
+      (body.weitereWuensche as string)?.trim() ||
+      (body.bemerkung as string)?.trim() ||
+      undefined,
+    range_plz: range_plz || undefined,
+    range_ort: range_ort || undefined,
+    range_strasse: range_strasse || undefined,
+    range_hausnummer: range_hausnummer || undefined,
+    range_land: range_land || undefined,
+  };
+}
+
 /** Response-Interface für Create */
 interface OnOfficeCreateResponse {
   status?: { code?: number; message?: string; errorcode?: number };
@@ -932,6 +1098,379 @@ interface OnOfficeCreateResponse {
       data?: { records?: Array<{ id: number }> };
     }>;
   };
+}
+
+/**
+ * Liest Adressen mit Filter (z. B. E-Mail). Gibt die ersten gefundenen Records zurück.
+ * Bei Fehler oder fehlenden Zugangsdaten: leeres Array.
+ */
+async function readAddresses(
+  token: string,
+  secret: string,
+  filter: Record<string, Array<{ op: string; val: unknown }>>,
+  dataFields: string[] = ["Id", "email", "Vorname", "Name"]
+): Promise<OnOfficeRecord[]> {
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const hmac = buildHmac(secret, timestamp, token, RESOURCE_TYPE_ADDRESS, READ_ACTION_ID);
+  const res = await fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      token,
+      request: {
+        actions: [
+          {
+            actionid: READ_ACTION_ID,
+            resourceid: "",
+            resourcetype: RESOURCE_TYPE_ADDRESS,
+            identifier: "",
+            timestamp,
+            hmac,
+            hmac_version: "2",
+            parameters: { data: dataFields, listlimit: 10, filter },
+          },
+        ],
+      },
+    }),
+  });
+  if (!res.ok) return [];
+  const json = (await res.json()) as OnOfficeReadResponse;
+  const code = json.status?.code ?? json.response?.results?.[0]?.status?.code;
+  if (code !== 200) return [];
+  return json.response?.results?.[0]?.data?.records ?? [];
+}
+
+/**
+ * Sucht eine Adresse anhand der E-Mail. Gibt die erste gefundene Adress-ID zurück oder null.
+ * Nutzt defaultemail bzw. email-Felder (onOffice kann je Konfiguration variieren).
+ */
+async function findAddressIdByEmail(
+  token: string,
+  secret: string,
+  email: string
+): Promise<number | null> {
+  const trimmed = email.trim().toLowerCase();
+  if (!trimmed) return null;
+  const records = await readAddresses(token, secret, {
+    defaultemail: [{ op: "=", val: trimmed }],
+  });
+  if (records.length > 0) return records[0].id;
+  const recordsByEmail = await readAddresses(token, secret, {
+    email: [{ op: "like", val: `%${trimmed}%` }],
+  });
+  return recordsByEmail.length > 0 ? recordsByEmail[0].id : null;
+}
+
+/**
+ * Erstellt einen minimalen Adressdatensatz (firstname, lastname, email, phone).
+ * Gibt die neue Adress-ID zurück.
+ */
+async function createAddressMinimal(
+  token: string,
+  secret: string,
+  data: { firstname: string; lastname: string; email: string; phone: string }
+): Promise<{ addressId: number } | { error: string }> {
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const hmac = buildHmac(secret, timestamp, token, RESOURCE_TYPE_ADDRESS, CREATE_ACTION_ID);
+  const createParams: Record<string, unknown> = {
+    Vorname: data.firstname.trim(),
+    Name: data.lastname.trim(),
+    email: data.email.trim(),
+    phone: data.phone.trim(),
+    default_phone: data.phone.trim(),
+    Land: "Deutschland",
+  };
+  const createRes = await fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      token,
+      request: {
+        actions: [
+          {
+            actionid: CREATE_ACTION_ID,
+            resourceid: "",
+            resourcetype: RESOURCE_TYPE_ADDRESS,
+            identifier: "",
+            timestamp,
+            hmac,
+            hmac_version: "2",
+            parameters: createParams,
+          },
+        ],
+      },
+    }),
+  });
+  if (!createRes.ok) {
+    const errBody = await createRes.text();
+    console.error("[onOffice createAddress] HTTP nicht OK:", createRes.status, createRes.statusText);
+    console.error("[onOffice createAddress] Response-Body:", errBody);
+    return { error: `onOffice Adresse: HTTP ${createRes.status}` };
+  }
+  const createJson = (await createRes.json()) as OnOfficeCreateResponse;
+  const status = createJson.status?.code ?? createJson.response?.results?.[0]?.status?.code;
+  if (status !== 200) {
+    const msg =
+      createJson.response?.results?.[0]?.status?.message ??
+      createJson.status?.message ??
+      "onOffice Adresse anlegen fehlgeschlagen";
+    console.error("[onOffice createAddress] Status nicht 200:", status);
+    console.error("[onOffice createAddress] Fehlermeldung:", msg);
+    console.error("[onOffice createAddress] Vollständige Server-Antwort:", JSON.stringify(createJson, null, 2));
+    return { error: msg };
+  }
+  const newRecords = createJson.response?.results?.[0]?.data?.records ?? [];
+  const id = newRecords[0]?.id;
+  if (id == null) {
+    console.error("[onOffice createAddress] Keine Adress-ID in Response. Vollständige Antwort:", JSON.stringify(createJson, null, 2));
+    return { error: "onOffice: Keine Adress-ID in Response" };
+  }
+  console.log("[onOffice createAddress] Adresse erfolgreich angelegt, addressId:", id);
+  return { addressId: id };
+}
+
+/**
+ * Erstellt einen Suchauftrag (searchcriteria) für eine Adress-ID.
+ * data: objektart (als string oder string[]), vermarktungsart, range, kaufpreis__bis, regionaler_zusatz, etc.
+ * onOffice erwartet objektart oft als Array (z. B. ['Haus']).
+ */
+async function createSearchCriteria(
+  token: string,
+  secret: string,
+  addressId: number,
+  data: Record<string, string | number | string[] | number[]>
+): Promise<{ success: true } | { error: string }> {
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const hmac = buildHmac(
+    secret,
+    timestamp,
+    token,
+    RESOURCE_TYPE_SEARCHCRITERIA,
+    CREATE_ACTION_ID
+  );
+  const params: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(data)) {
+    if (v === undefined || v === null || v === "") continue;
+    if (Array.isArray(v)) {
+      params[k] = v;
+    } else if (typeof v === "number") {
+      params[k] = v;
+    } else {
+      params[k] = v;
+    }
+  }
+  const body = {
+    token,
+    request: {
+      actions: [
+        {
+          actionid: CREATE_ACTION_ID,
+          resourceid: "",
+          resourcetype: RESOURCE_TYPE_SEARCHCRITERIA,
+          identifier: "",
+          timestamp,
+          hmac,
+          hmac_version: "2",
+          parameters: {
+            addressid: String(addressId),
+            data: params,
+          },
+        },
+      ],
+    },
+  };
+  console.log("[onOffice createSearchCriteria] addressId:", addressId, "data-Parameter:", JSON.stringify(params));
+  const res = await fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const errBody = await res.text();
+    console.error("[onOffice createSearchCriteria] HTTP nicht OK:", res.status, res.statusText);
+    console.error("[onOffice createSearchCriteria] Response-Body:", errBody);
+    return { error: `onOffice Suchkriterien: HTTP ${res.status}` };
+  }
+  const json = (await res.json()) as OnOfficeCreateResponse;
+  const status = json.status?.code ?? json.response?.results?.[0]?.status?.code;
+  if (status !== 200) {
+    const msg =
+      json.response?.results?.[0]?.status?.message ??
+      json.status?.message ??
+      "onOffice Suchkriterien anlegen fehlgeschlagen";
+    console.error("[onOffice createSearchCriteria] Status nicht 200:", status);
+    console.error("[onOffice createSearchCriteria] Fehlermeldung:", msg);
+    console.error("[onOffice createSearchCriteria] Vollständige Server-Antwort:", JSON.stringify(json, null, 2));
+    return { error: msg };
+  }
+  console.log("[onOffice createSearchCriteria] Suchauftrag erfolgreich angelegt für addressId:", addressId);
+  return { success: true };
+}
+
+/**
+ * Liest aus einer onOffice-Fehlermeldung den Namen eines unbekannten Feldes (Unknown field).
+ * Gibt den Feldnamen zurück oder null, wenn nicht erkennbar.
+ */
+function parseUnknownFieldFromError(message: string): string | null {
+  if (!message || typeof message !== "string") return null;
+  const m = message.trim();
+  const patterns = [
+    /Unknown field:\s*['"]?(\w+)['"]?/i,
+    /Feld\s+['"]?(\w+)['"]?\s+(?:ist )?unbekannt/i,
+    /unknown field:\s*(\w+)/i,
+    /field\s+['"]?(\w+)['"]?\s+not found/i,
+    /(?:invalid|ungültig).*?field\s+['"]?(\w+)['"]?/i,
+    /Error \d+.*?['"]?(\w+)['"]?/i,
+  ];
+  for (const re of patterns) {
+    const match = m.match(re);
+    if (match?.[1]) return match[1];
+  }
+  return null;
+}
+
+/**
+ * Legt einen Interessenten für einen Suchauftrag in onOffice an:
+ * 1. Adresse ermitteln oder anlegen (Suche per E-Mail; bei Treffer bestehende Adress-ID nutzen, sonst neue Adresse mit firstname, lastname, email, phone).
+ * 2. Suchauftrag (searchcriteria) für diese Adress-ID anlegen mit gemappten Suchkriterien.
+ *
+ * Mapping: objekttyp → objektart (Array), wohnflaeche → wohnflaeche__von, zimmer → anzahl_zimmer__von, price_max → kaufpreis__bis.
+ * Region in Bemerkung. Bei Unknown-field-Fehler wird das betroffene Feld entfernt und erneut gesendet.
+ */
+export async function createSearchRequestInterested(
+  data: SearchRequestInterestedData
+): Promise<{ success: true; addressId: number } | { success: false; error: string }> {
+  const token = process.env.ONOFFICE_API_KEY;
+  const secret = process.env.ONOFFICE_API_SECRET;
+
+  if (!token || !secret) {
+    return { success: false, error: "Fehlende onOffice-Zugangsdaten" };
+  }
+
+  const email = data.email?.trim();
+  if (!email) {
+    return { success: false, error: "E-Mail-Adresse ist erforderlich" };
+  }
+
+  let addressId: number;
+
+  const existingId = await findAddressIdByEmail(token, secret, email);
+  if (existingId != null) {
+    addressId = existingId;
+    console.log("[onOffice createSearchRequestInterested] Bestehende Adresse verwendet, addressId:", addressId);
+  } else {
+    const created = await createAddressMinimal(token, secret, {
+      firstname: data.firstname?.trim() ?? "",
+      lastname: data.lastname?.trim() ?? "",
+      email,
+      phone: data.phone?.trim() ?? "",
+    });
+    if ("error" in created) {
+      return { success: false, error: created.error };
+    }
+    addressId = created.addressId;
+    console.log("[onOffice createSearchRequestInterested] Neue Adresse angelegt, addressId:", addressId);
+  }
+
+  console.log("[onOffice createSearchRequestInterested] addressId erfolgreich:", addressId, "- rufe jetzt createSearchCriteria auf.");
+
+  const formObjekttyp = data.objekttyp?.trim();
+  const objektart =
+    formObjekttyp
+      ? OBJEKTTYP_TO_ONOFFICE[formObjekttyp] ?? formObjekttyp.toLowerCase().replace(/\s+/g, "_")
+      : undefined;
+  const objekttypValue =
+    formObjekttyp
+      ? OBJEKTTYP_TO_TYP_VALUE[formObjekttyp] ?? formObjekttyp.toLowerCase().replace(/\s+/g, "_")
+      : undefined;
+
+  const regionalerZusatz = Array.isArray(data.regionaler_fokus)
+    ? data.regionaler_fokus.filter(Boolean).join(", ")
+    : typeof data.regionaler_fokus === "string"
+      ? data.regionaler_fokus.trim()
+      : undefined;
+  const bemerkungParts: string[] = [];
+  if (data.bemerkung?.trim()) bemerkungParts.push(data.bemerkung.trim());
+  if (regionalerZusatz) bemerkungParts.push(`Region: ${regionalerZusatz}`);
+  if (formObjekttyp) bemerkungParts.push(`Objektart/Objekttyp: ${formObjekttyp}`);
+  const bemerkungMitRegion = bemerkungParts.length > 0 ? bemerkungParts.join("\n") : undefined;
+
+  const rangeVal =
+    data.range != null && data.range !== ""
+      ? typeof data.range === "number"
+        ? data.range
+        : parseInt(String(data.range).replace(/\D/g, ""), 10)
+      : undefined;
+  const rangeStr = rangeVal != null && !Number.isNaN(rangeVal) ? String(rangeVal) : undefined;
+
+  const priceMaxNum = parsePrice(data.price_max);
+  const priceMinNum = parsePrice(data.price_min);
+
+  const searchData: Record<string, string | number | string[] | number[]> = {
+    vermarktungsart: data.vermarktungsart ?? "kauf",
+  };
+  if (objektart) {
+    searchData.objektart = objektart;
+  }
+  if (objekttypValue) {
+    searchData.objekttyp = [objekttypValue];
+  }
+  if (rangeStr) searchData.range = rangeStr;
+  if (priceMaxNum != null) searchData.kaufpreis__bis = String(Math.round(priceMaxNum));
+  if (priceMinNum != null) searchData.kaufpreis__von = String(Math.round(priceMinNum));
+  if (bemerkungMitRegion) searchData.krit_bemerkung_oeffentlich = bemerkungMitRegion;
+  // Umkreis: Adresse für Suchzentrum (vermeidet "Adresse ungültig" in onOffice)
+  if (data.range_plz?.trim()) searchData.range_plz = data.range_plz.trim();
+  if (data.range_ort?.trim()) searchData.range_ort = data.range_ort.trim();
+  if (data.range_strasse?.trim()) searchData.range_strasse = data.range_strasse.trim();
+  if (data.range_hausnummer?.trim()) searchData.range_hausnummer = data.range_hausnummer.trim();
+  if (data.range_land?.trim()) searchData.range_land = data.range_land.trim();
+  // Standard-Feldnamen für Suchkriterien: zwei Unterstriche __von / __bis (laut onOffice-Doku)
+  const wohnflaecheVon =
+    data.wohnflaeche_min != null && data.wohnflaeche_min !== ""
+      ? typeof data.wohnflaeche_min === "number"
+        ? data.wohnflaeche_min
+        : parseFloat(String(data.wohnflaeche_min))
+      : data.wohnflaeche != null && data.wohnflaeche !== ""
+        ? typeof data.wohnflaeche === "number"
+          ? data.wohnflaeche
+          : parseFloat(String(data.wohnflaeche))
+        : undefined;
+  if (wohnflaecheVon != null && !Number.isNaN(wohnflaecheVon)) {
+    searchData.wohnflaeche__von = String(Math.round(wohnflaecheVon));
+  }
+  const zimmerVon =
+    data.anzahl_zimmer_min != null && data.anzahl_zimmer_min !== ""
+      ? typeof data.anzahl_zimmer_min === "number"
+        ? data.anzahl_zimmer_min
+        : parseFloat(String(data.anzahl_zimmer_min))
+      : data.zimmeranzahl?.trim()
+        ? parseFloat(String(data.zimmeranzahl).replace(/\D/g, "")) || undefined
+        : undefined;
+  if (zimmerVon != null && !Number.isNaN(zimmerVon)) {
+    searchData.anzahl_zimmer__von = String(Math.round(zimmerVon));
+  }
+  // kaufpreis__bis bleibt gesetzt, falls priceMax vorhanden (siehe oben)
+  // objektart bleibt Array ["haus"]
+
+  const maxRetries = 5;
+  let lastError: string = "";
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    const criteriaResult = await createSearchCriteria(token, secret, addressId, searchData);
+    if (criteriaResult.success) {
+      return { success: true, addressId };
+    }
+    lastError = criteriaResult.error;
+    const unknownField = parseUnknownFieldFromError(lastError);
+    if (!unknownField) break;
+    if (unknownField in searchData) {
+      console.warn("[onOffice createSearchRequestInterested] Unknown field entfernt, erneuter Versuch:", unknownField);
+      delete searchData[unknownField];
+    } else {
+      break;
+    }
+  }
+  return { success: false, error: lastError };
 }
 
 /**

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import dns from "dns";
 import nodemailer from "nodemailer";
+import {
+  createSearchRequestInterested,
+  mapFormBodyToSearchRequestData,
+} from "@/lib/onoffice";
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@he-immologis.de";
 const SMTP_HOST = "smtp.strato.de";
@@ -128,6 +132,21 @@ export async function POST(request: NextRequest) {
       subject,
       text,
     });
+
+    // Suchauftrag: Interessent in onOffice anlegen (Adresse + Suchkriterien)
+    if (type === "search" && body.email) {
+      try {
+        const searchData = mapFormBodyToSearchRequestData(
+          body as Record<string, unknown>
+        );
+        const onOfficeResult = await createSearchRequestInterested(searchData);
+        if (!onOfficeResult.success) {
+          console.warn("[send-contact] onOffice Suchauftrag:", onOfficeResult.error);
+        }
+      } catch (err) {
+        console.warn("[send-contact] onOffice Suchauftrag Fehler:", err);
+      }
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

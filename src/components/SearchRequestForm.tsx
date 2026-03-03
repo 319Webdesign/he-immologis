@@ -113,10 +113,14 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
   const objekttypLabels = isTr ? OBJEKTTYPEN_TR : isEn ? OBJEKTTYPEN_EN : OBJEKTTYPEN;
   const lageLabels = isTr ? LAGEPRAEFERENZEN_TR : isEn ? LAGEPRAEFERENZEN_EN : LAGEPRAEFERENZEN;
   const anredeLabels = isTr ? ANREDEN_TR : isEn ? ANREDEN_EN : ANREDEN;
+  const [vermarktungsart, setVermarktungsart] = useState<"Kauf" | "Miete">("Kauf");
   const [objekttyp, setObjekttyp] = useState("");
   const [lagePraef, setLagePraef] = useState<Set<string>>(new Set());
   const [wohnflaeche, setWohnflaeche] = useState("");
   const [zimmeranzahl, setZimmeranzahl] = useState("");
+  const [preisMin, setPreisMin] = useState("");
+  const [preisMax, setPreisMax] = useState("");
+  const [umkreis, setUmkreis] = useState("");
   const [lageRegion, setLageRegion] = useState("");
   const [weitereWuensche, setWeitereWuensche] = useState("");
   const [anrede, setAnrede] = useState("");
@@ -158,10 +162,14 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "search",
+          vermarktungsart: vermarktungsart === "Miete" ? "miete" : "kauf",
           objekttyp,
           lagePraef: Array.from(lagePraef),
           wohnflaeche,
           zimmeranzahl,
+          preisMin: preisMin.trim() || undefined,
+          price_max: preisMax.trim() || undefined,
+          umkreis: umkreis.trim() ? umkreis.replace(",", ".").replace(/\D/g, "") : undefined,
           lageRegion,
           weitereWuensche,
           anrede,
@@ -222,6 +230,20 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
         </h3>
 
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          <div>
+            <label htmlFor="vermarktungsart" className={labelBase}>
+              {isEn ? "Marketing type" : isTr ? "Pazarlama türü" : "Vermarktungsart"}
+            </label>
+            <select
+              id="vermarktungsart"
+              value={vermarktungsart}
+              onChange={(e) => setVermarktungsart(e.target.value as "Kauf" | "Miete")}
+              className={inputBase}
+            >
+              <option value="Kauf">{isEn ? "Purchase" : isTr ? "Satın alma" : "Kauf"}</option>
+              <option value="Miete">{isEn ? "Rent" : isTr ? "Kiralama" : "Miete"}</option>
+            </select>
+          </div>
           <div>
             <label htmlFor="objekttyp" className={labelBase}>
               {isEn ? "What are you looking for?" : isTr ? "Ne arıyorsunuz?" : "Was suchen Sie?"}
@@ -289,6 +311,51 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
               className={inputBase}
               placeholder={isEn ? "e.g. 3–4" : isTr ? "ör. 3–4" : "z. B. 3–4"}
             />
+          </div>
+          <div>
+            <label htmlFor="preisMin" className={labelBase}>
+              {isEn ? "Price from (€)" : isTr ? "Fiyat (€) itibaren" : "Kaufpreis von (€)"}
+            </label>
+            <input
+              id="preisMin"
+              type="text"
+              inputMode="numeric"
+              value={preisMin}
+              onChange={(e) => setPreisMin(e.target.value)}
+              className={inputBase}
+              placeholder={isEn ? "e.g. 200000" : isTr ? "ör. 200000" : "z. B. 200.000"}
+            />
+          </div>
+          <div>
+            <label htmlFor="preisMax" className={labelBase}>
+              {isEn ? "Price up to (€)" : isTr ? "Fiyat (€) kadar" : "Kaufpreis bis (€)"}
+            </label>
+            <input
+              id="preisMax"
+              type="text"
+              inputMode="numeric"
+              value={preisMax}
+              onChange={(e) => setPreisMax(e.target.value)}
+              className={inputBase}
+              placeholder={isEn ? "e.g. 500000" : isTr ? "ör. 500000" : "z. B. 500.000"}
+            />
+          </div>
+          <div>
+            <label htmlFor="umkreis" className={labelBase}>
+              {isEn ? "Radius (km)" : isTr ? "Yarıçap (km)" : "Umkreis (km)"}
+            </label>
+            <input
+              id="umkreis"
+              type="text"
+              inputMode="numeric"
+              value={umkreis}
+              onChange={(e) => setUmkreis(e.target.value)}
+              className={inputBase}
+              placeholder={isEn ? "e.g. 10" : isTr ? "ör. 10" : "z. B. 10"}
+            />
+            <p className="mt-1 text-xs text-slate-500">
+              {isEn ? "Around your specified address (street, ZIP, city below)." : isTr ? "Aşağıdaki adresiniz etrafında." : "Um Ihr angegebenes Suchgebiet (Straße, PLZ, Ort unten)."}
+            </p>
           </div>
         </div>
 
