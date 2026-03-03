@@ -13,10 +13,17 @@ function buildTransporter() {
     );
   }
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST ?? "smtp.strato.de",
-    port: Number(process.env.SMTP_PORT) || 465,
+    host: "smtp.strato.de",
+    port: 465,
     secure: true,
-    auth: { user, pass },
+    auth: {
+      user,
+      pass,
+      method: "PLAIN",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 }
 
