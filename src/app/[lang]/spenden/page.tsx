@@ -31,7 +31,7 @@ const TEXTS = {
         description:
           'Auf Wunsch spenden wir an die Tafel Weinheim „Appel + Ei“.',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
-        image: "/tafel.jpeg",
+        image: "/img/caritas.jpeg",
       },
       {
         title: "Tierheim",
@@ -45,21 +45,21 @@ const TEXTS = {
         description:
           "Auf Wunsch spenden wir an die Kinder- und Bildungseinrichtung Maria-Montessori-Schulkindergarten Sternschnuppe in Weinheim.",
         url: "https://kindergarten.montessori-weinheim.de/",
-        image: "/img/spenden/sternschnuppe.jpg",
+        image: "/img/sternschnuppe.jpeg",
       },
       {
         title: "DKFZ Heidelberg",
         description:
           "Auf Wunsch spenden wir an die Einrichtung der medizinischen Forschung – das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg.",
         url: "https://www.dkfz.de/spenden",
-        image: "/img/spenden/dkfz.jpg",
+        image: "/img/dkfz.jpeg",
       },
       {
         title: "DHPV Berlin",
         description:
           "Auf Wunsch spenden wir an die Organisation der Hospiz- und Palliativarbeit – Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.",
         url: "https://www.dhpv.de/engagement_geldspenden.html",
-        image: "/img/spenden/dhpv.jpg",
+        image: "/img/palliativ.jpeg",
       },
     ] as ProjectItem[],
   },
@@ -72,7 +72,7 @@ const TEXTS = {
     intro1:
       "If a house or apartment sale results from your tip or advertising, you are entitled to a bonus.",
     intro2:
-      "If you waive the referrer (see scale), banner or display bonus (€500 each), HE immologis will donate your full commission to a charitable organization of your choice.",
+      "If you waive the referrer, banner or display bonus, HE immologis will donate your full commission to a charitable organization of your choice.",
     intro3:
       "Whether food bank, animal shelter or children's charity in Weinheim – we also support the German Cancer Research Center (DKFZ) in Heidelberg or the German Hospice and Palliative Association (DHPV) in Berlin.",
     intro4:
@@ -86,7 +86,7 @@ const TEXTS = {
         description:
           'On request we donate to Tafel Weinheim "Appel + Ei".',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
-        image: "/tafel.jpeg",
+        image: "/img/caritas.jpeg",
       },
       {
         title: "Animal shelter",
@@ -100,21 +100,21 @@ const TEXTS = {
         description:
           "On request we donate to the children's and education facility Maria-Montessori school kindergarten Sternschnuppe in Weinheim.",
         url: "https://kindergarten.montessori-weinheim.de/",
-        image: "/img/spenden/sternschnuppe.jpg",
+        image: "/img/sternschnuppe.jpeg",
       },
       {
         title: "DKFZ Heidelberg",
         description:
           "On request we donate to the medical research institution – the German Cancer Research Center (DKFZ) in Heidelberg.",
         url: "https://www.dkfz.de/spenden",
-        image: "/img/spenden/dkfz.jpg",
+        image: "/img/dkfz.jpeg",
       },
       {
         title: "DHPV Berlin",
         description:
           "On request we donate to the hospice and palliative care organization – the German Hospice and Palliative Association (DHPV) in Berlin.",
         url: "https://www.dhpv.de/engagement_geldspenden.html",
-        image: "/img/spenden/dhpv.jpg",
+        image: "/img/palliativ.jpeg",
       },
     ] as ProjectItem[],
   },
@@ -127,7 +127,7 @@ const TEXTS = {
     intro1:
       "Tavsiyeniz veya reklam sayesinde bir ev veya daire satışı gerçekleşirse, size bir prim hak edersiniz.",
     intro2:
-      "Tavsiyeci (kademeye bakın), banner veya pano priminden (her biri 500 €) vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.",
+      "Tavsiyeci, banner veya pano priminden vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.",
     intro3:
       "İster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – ayrıca Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) destekliyoruz.",
     intro4:
@@ -141,7 +141,7 @@ const TEXTS = {
         description:
           'Talep üzerine Tafel Weinheim "Appel + Ei"e bağışlıyoruz.',
         url: "https://www.caritas-hdrn.de/tafel-weinheim/",
-        image: "/tafel.jpeg",
+        image: "/img/caritas.jpeg",
       },
       {
         title: "Hayvan barınağı",
@@ -155,21 +155,21 @@ const TEXTS = {
         description:
           "Talep üzerine Weinheim'daki çocuk ve eğitim kurumu Maria-Montessori okul anaokulu Sternschnuppe'ye bağışlıyoruz.",
         url: "https://kindergarten.montessori-weinheim.de/",
-        image: "/img/spenden/sternschnuppe.jpg",
+        image: "/img/sternschnuppe.jpeg",
       },
       {
         title: "DKFZ Heidelberg",
         description:
           "Talep üzerine tıbbi araştırma kurumuna – Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) – bağışlıyoruz.",
         url: "https://www.dkfz.de/spenden",
-        image: "/img/spenden/dkfz.jpg",
+        image: "/img/dkfz.jpeg",
       },
       {
         title: "DHPV Berlin",
         description:
           "Talep üzerine hospice ve palyatif bakım organizasyonuna – Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) – bağışlıyoruz.",
         url: "https://www.dhpv.de/engagement_geldspenden.html",
-        image: "/img/spenden/dhpv.jpg",
+        image: "/img/palliativ.jpeg",
       },
     ] as ProjectItem[],
   },

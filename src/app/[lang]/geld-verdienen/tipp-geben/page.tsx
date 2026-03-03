@@ -141,7 +141,9 @@ export default async function TippGebenPage() {
             customDescription={
               locale === "de"
                 ? "Verzichten Sie auf die Tippgeberprämie (siehe Staffel), spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.\n\nOb Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.\n\nTeilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen.\n\nGemeinsam bewirken wir mehr."
-                : undefined
+                : locale === "en"
+                  ? "If you waive the referrer bonus (see scale), HE immologis will donate your full commission to a charitable organization of your choice.\n\nWhether food bank, animal shelter or children's charity in Weinheim – we also support the German Cancer Research Center (DKFZ) in Heidelberg or the German Hospice and Palliative Association (DHPV) in Berlin.\n\nLet us know in the event of success which organization we may support.\n\nTogether we achieve more."
+                  : "Tavsiyeci priminden (kademeye bakın) vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.\n\nİster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – ayrıca Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) destekliyoruz.\n\nBaşarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin.\n\nBirlikte daha fazlasını başarırız."
             }
           />
         </div>
