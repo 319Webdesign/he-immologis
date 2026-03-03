@@ -14,16 +14,19 @@ function buildTransporter() {
   }
   return nodemailer.createTransport({
     host: "smtp.strato.de",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
+    requireTLS: true,
     auth: {
       user,
       pass,
-      method: "PLAIN",
+      method: "LOGIN",
     },
     tls: {
       rejectUnauthorized: false,
     },
+    debug: true,
+    logger: true,
   });
 }
 

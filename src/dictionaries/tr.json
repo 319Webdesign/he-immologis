@@ -335,8 +335,8 @@
       "titleLine2": "Kale değil – Gayrimenkulünüz memnuniyetle.",
       "titleLine1Mobile": "Weinheim'da satış<br>ve çevresi.",
       "titleLine2Mobile": "Kale değil –<br>Gayrimenkulünüz memnuniyetle.",
-      "subtitle": "Net değerleme. Optimal konumlandırma. Güvenli satış.",
-      "subtitleMobile": "Net değerleme. Optimal konumlandırma.<br>Güvenli satış.",
+      "subtitle": "Net değerleme. Güçlü yayın. Güvenli satış.",
+      "subtitleMobile": "Net değerleme. Güçlü yayın.<br>Güvenli satış.",
       "ctaText": "Satış değerini hemen tespit ettirin",
       "ctaAriaLabel": "Satış talebi formuna kaydır"
     },
@@ -452,7 +452,7 @@
     },
     "noResults": "Seçilen filtreye uyan gayrimenkul bulunamadı.",
     "kauftipps": {
-      "heading": "Gayrimenkul satın alırken ipuçları",
+      "heading": "Gayrimenkul satın alırken Öneriler",
       "intro": "Gayrimenkul satın almak kapsamlı bir karardır. Doğru hazırlıkla bilinçli ve güvenli kararlar verirsiniz.",
       "tipTitles": [
         "İlk görüşme",
@@ -466,13 +466,13 @@
         "Satış sonrası destek"
       ],
       "tipContents": [
-        "Aramaya başlamadan önce kişisel durumunuzu, bütçenizi ve lokasyon tercihlerinizi netleştiriyoruz. Amacımız Weinheim, Bergstraße ve Rhein-Neckar bölgesinde hayatınıza gerçekten uyan bir gayrimenkul bulmak.",
-        "Finansmanı erkenden planlayın: öz sermaye, işletme maliyetleri, noter ve tapu harçları ile emlakçı komisyonu. Finansman seçeneklerini karşılaştırın ve doğru gayrimenkulu bulduğunuzda hızlı hareket edebilmek için finansman belgesi alın.",
+        "Aramaya başlamadan önce kişisel durumunuzu, bütçenizi ve lokasyon tercihlerinizi netleştiriyoruz. Amacımız Weinheim, Bergstraße ve Rhein-Neckar bölgesinde hayatınıza gerçekten uyan bir ev bulmak.",
+        "Finansmanı erkenden planlayın: öz sermaye, işletme maliyetleri, noter ve tapu harçları ile emlakçı komisyonu. Finansman seçeneklerini karşılaştırın ve doğru evinizi bulduğunuzda hızlı hareket edebilmek için finansman belgesi alın.",
         "Weinheim ve Bergstraße bölgesindeki pazarı sürekli takip ediyoruz ve kriterlerinize uyan bir gayrimenkul olduğunda sizinle iletişime geçiyoruz. Net açıklamalar alırsınız ve görüntüleme yapıp yapmamaya sakin karar verebilirsiniz.",
         "Görüntülemelerde gayrimenkulün durumunu birlikte kontrol ediyoruz: yapı, ısıtma, elektrik tesisatı, nem, kusurlar ve yenileme ihtiyaçları. Gerekirse bağımsız bir eksper veya yapı uzmanı tavsiye ediyoruz. Böylece sürprizlerden kaçınır ve satın alma fiyatını ile planlamanızı gerçekçi değerlendirebilirsiniz.",
         "Satın almadan önce tapu senedi özeti, kat planı, enerji kimlik belgesi, kat mülkiyeti beyanı (daireler için) ve varsa ortaklık toplantı tutanakları incelenmelidir. Tutarsızlıkları veya yükümlülükleri tespit etmenizde size yardımcı oluyoruz. Böylece ne satın aldığınızı ve gayrimenkulle ilişkili hak ve yükümlülükleri bilirsiniz.",
         "Piyasa karşılaştırması, gayrimenkulün durumu ve finansmanınıza dayanarak gerçekçi bir fiyat önerisi sunuyoruz. Satıcı veya temsilcisiyle müzakereyi yürütüyor ve adil koşullar ile şeffaf, gecikmesiz bir sonuç hedefliyoruz.",
-        "Noter satış sözleşmesi hukuken bağlayıcı adımdır. Belgeleri sizinle birlikte hazırlıyoruz ve isterseniz noter randevusunda size eşlik edebiliriz. Noter sözleşmeyi açıklar, devri tasdik eder ve tapu siciline kaydı başlatır. Teslim ve kayıtla gayrimenkul size hukuken devredilir.",
+        "Noter satış sözleşmesi hukuken bağlayıcı adımdır. Belgeleri sizinle birlikte hazırlıyoruz ve isterseniz noter randevusunda size eşlik edebiliriz. Noter sözleşmeyi açıklar, devri tasdik eder ve tapu siciline kaydı başlatır. Teslim ve kayıtla ev size hukuken devredilir.",
         "Teslimde anahtarlar verilir, sayaç okumaları kaydedilir ve gayrimenkulün durumu belgelenir. Satıcı ile sizin aranızda randevuları koordine ediyoruz ve tüm sorularınız için yanınızdayız. Böylece taşınma sorunsuz ilerler ve yeni evinize eksiksiz başlarsınız.",
         "Satın alma işlemi tamamlandıktan sonra da iletişim ortağınız olmaya devam edeceğiz. Faturalandırma, sigorta, mahallenizdeki sertifikalı zanaatkârlar hakkında bilgi veya gelecekteki satışların yönetimi konusunda bize başvurabilirsiniz. Weinheim ve Bergstraße'deki tüm gayrimenkul sorularınızda size uzun vadeli ortağınız olarak destek olmaktan mutluluk duyarız."
       ]

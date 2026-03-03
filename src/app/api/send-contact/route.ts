@@ -1,26 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
+import dns from "dns";
 import nodemailer from "nodemailer";
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@he-immologis.de";
+const SMTP_HOST = "smtp.strato.de";
 
-function buildTransporter() {
+function buildTransporter(host: string) {
   const user = process.env.SMTP_USER ?? CONTACT_EMAIL;
   const pass = process.env.SMTP_PASS;
   if (!pass) {
     throw new Error("SMTP_PASS is not set. Bitte in .env.local setzen (Strato-E-Mail-Passwort).");
   }
+  const isIp = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host);
   return nodemailer.createTransport({
-    host: "smtp.strato.de",
-    port: 465,
-    secure: true,
+    host,
+    port: 587,
+    secure: false,
+    requireTLS: true,
+    ...(isIp && { servername: SMTP_HOST }),
     auth: {
       user,
       pass,
-      method: "PLAIN",
+      method: "LOGIN",
     },
     tls: {
       rejectUnauthorized: false,
     },
+    debug: true,
+    logger: true,
   });
 }
 
@@ -36,7 +43,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { type } = body as { type: string; [key: string]: unknown };
 
-    const transporter = buildTransporter();
+    const ipv4Addresses = await dns.promises.resolve4(SMTP_HOST);
+    const host = ipv4Addresses[0] ?? SMTP_HOST;
+    const transporter = buildTransporter(host);
     const replyTo = (body.email as string)?.trim() || undefined;
 
     let subject: string;

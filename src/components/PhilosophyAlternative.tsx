@@ -39,7 +39,7 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
           {heading}
         </h2>
 
-        <div className="space-y-24 sm:space-y-32 lg:space-y-40">
+        <div className="space-y-12 sm:space-y-16 lg:space-y-20">
           {sections.map(({ id, headline, paragraphs, tagline, extra }, index) => {
             const Icon = SECTION_ICONS[index];
             const order = SECTION_ORDERS[index];
