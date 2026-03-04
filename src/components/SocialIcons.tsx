@@ -54,7 +54,7 @@ export default function SocialIcons({
         <InstagramIcon className={iconClassName} gradientId={gradientId} />
       </a>
       <a
-        href="https://www.facebook.com/heimmologis"
+        href="https://www.facebook.com/people/HE-immologis-UG/61584411683113/"
         target="_blank"
         rel="noopener noreferrer"
         className={linkClassName}
