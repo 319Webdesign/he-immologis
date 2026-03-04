@@ -184,10 +184,10 @@ export default function Contact({
                 <div>
                   <h3 className="font-medium">{labels.phone}</h3>
                   <a
-                    href="tel:+4917632198462"
+                    href="tel:+491776361394"
                     className={`hover:underline ${isDark ? "text-zinc-300" : "text-zinc-600"}`}
                   >
-                    +49 176 321 98 462
+                    +49 1776361394
                   </a>
                 </div>
               </div>

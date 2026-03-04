@@ -24,7 +24,7 @@ const TEXTS = {
     disclaimer:
       "Ihre Daten werden absolut diskret behandelt. Eine Tippgebervergütung erfolgt nach den Bedingungen unserer Vereinbarung (siehe Downloads).",
     whatsappHref:
-      "https://wa.me/4917632198462?text=Hallo%20Holger,%20ich%20habe%20einen%20Tipp/Interesse%20an%20einer%20Partnerschaft.",
+      "https://wa.me/491776361394?text=Hallo%20Holger,%20ich%20habe%20einen%20Tipp/Interesse%20an%20einer%20Partnerschaft.",
     mailtoSubject: "Anfrage%20Tippgeber/Standortpartner",
   },
   en: {
@@ -39,7 +39,7 @@ const TEXTS = {
     disclaimer:
       "Your data will be treated in strict confidence. Referrer fees are paid according to the terms of our agreement (see Downloads).",
     whatsappHref:
-      "https://wa.me/4917632198462?text=Hi%20Holger,%20I%20have%20a%20tip/interest%20in%20a%20partnership.",
+      "https://wa.me/491776361394?text=Hi%20Holger,%20I%20have%20a%20tip/interest%20in%20a%20partnership.",
     mailtoSubject: "Enquiry%20Referrer/Location%20partner",
   },
   tr: {
@@ -54,7 +54,7 @@ const TEXTS = {
     disclaimer:
       "Verileriniz kesinlikle gizli tutulacaktır. Öneri veren ücreti anlaşmamızın koşullarına göre ödenir (İndirmeler bölümüne bakın).",
     whatsappHref:
-      "https://wa.me/4917632198462?text=Merhaba%20Holger,%20bir%20önerim/ortaklık%20ilgim%20var.",
+      "https://wa.me/491776361394?text=Merhaba%20Holger,%20bir%20önerim/ortaklık%20ilgim%20var.",
     mailtoSubject: "Talep%20Öneri%20veren/Alan%20ortaklığı",
   },
 } as const;
@@ -115,8 +115,8 @@ export default function DirektkontaktSection() {
 
         <p className="mt-4 text-center text-slate-600">
           {t.orCall}{" "}
-          <a href="tel:+4917632198462" className="font-medium underline hover:no-underline">
-            +49 176 321 98 462
+          <a href="tel:+491776361394" className="font-medium underline hover:no-underline">
+            +49 1776361394
           </a>
         </p>
 

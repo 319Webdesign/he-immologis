@@ -63,7 +63,7 @@ export default function SocialIcons({
         <Icon name="facebook" size={iconSize} fill="#1877F2" />
       </a>
       <a
-        href="https://wa.me/4917632198462"
+        href="https://wa.me/491776361394"
         target="_blank"
         rel="noopener noreferrer"
         className={linkClassName}

@@ -64,10 +64,10 @@ export default function FinalCTA({ dict }: { dict: FinalCTADict }) {
           <p className="text-sm text-white/90">
             {dict.callText}{" "}
             <a
-              href="tel:+4917632198462"
+              href="tel:+491776361394"
               className="font-medium text-white underline decoration-white/60 underline-offset-2 hover:decoration-white"
             >
-              +49 176 321 98 462
+              +49 1776361394
             </a>
           </p>
         </div>

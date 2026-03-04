@@ -376,10 +376,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="text-slate-600">
                 {locale === "en" ? "Or call: " : locale === "tr" ? "Veya arayın: " : "Oder anrufen: "}
                 <a
-                  href="tel:+4917632198462"
+                  href="tel:+491776361394"
                   className="font-medium text-slate-900 underline hover:no-underline"
                 >
-                  +49 176 321 98 462
+                  +49 1776361394
                 </a>
               </p>
             </div>

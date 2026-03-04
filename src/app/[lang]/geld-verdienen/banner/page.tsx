@@ -408,7 +408,7 @@ export default async function BannerPage() {
           <div className="mt-8 flex flex-col items-center gap-4">
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://wa.me/4917632198462"
+                href="https://wa.me/491776361394"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-2 ${outlineButtonClass} focus:ring-[#4682B4]`}
@@ -428,8 +428,8 @@ export default async function BannerPage() {
             </div>
             <p className="text-slate-600">
               {t.orCall}{" "}
-              <a href="tel:+4917632198462" className="font-medium hover:underline" style={{ color: BRAND_BLUE }}>
-                +49 176 321 98 462
+              <a href="tel:+491776361394" className="font-medium hover:underline" style={{ color: BRAND_BLUE }}>
+                +49 1776361394
               </a>
             </p>
           </div>

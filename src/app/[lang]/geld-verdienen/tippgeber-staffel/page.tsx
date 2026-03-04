@@ -99,12 +99,12 @@ export default function TippgeberStaffelPage() {
               info@he-immologis.de
             </a>
             <a
-              href="tel:+4917632198462"
+              href="tel:+491776361394"
               className="inline-flex items-center gap-2 font-medium transition-colors hover:opacity-80"
               style={{ color: BRAND_BLUE }}
             >
               <Phone className="h-5 w-5 shrink-0" />
-              +49 176 321 98 462
+              +49 1776361394
             </a>
           </div>
           <p className="mt-6 text-slate-700">

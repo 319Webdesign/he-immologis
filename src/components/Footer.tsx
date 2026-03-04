@@ -120,11 +120,11 @@ export default function Footer({ lang, dict }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="tel:+4917632198462"
+                  href="tel:+491776361394"
                   className="flex items-center gap-3 text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-slate-400" />
-                  <span>+49 176 321 98 462</span>
+                  <span>+49 1776361394</span>
                 </a>
               </li>
               <li>
