@@ -124,7 +124,7 @@ export default function Footer({ lang, dict }: FooterProps) {
                   className="flex items-center gap-3 text-sm text-slate-300 transition-colors hover:text-white"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-slate-400" />
-                  <span>+49 1776361394</span>
+                  <span>+49 177 6361 394</span>
                 </a>
               </li>
               <li>

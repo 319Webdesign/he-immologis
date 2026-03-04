@@ -104,7 +104,7 @@ export default function TippgeberStaffelPage() {
               style={{ color: BRAND_BLUE }}
             >
               <Phone className="h-5 w-5 shrink-0" />
-              +49 1776361394
+              +49 177 6361 394
             </a>
           </div>
           <p className="mt-6 text-slate-700">

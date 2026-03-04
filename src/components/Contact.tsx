@@ -187,7 +187,7 @@ export default function Contact({
                     href="tel:+491776361394"
                     className={`hover:underline ${isDark ? "text-zinc-300" : "text-zinc-600"}`}
                   >
-                    +49 1776361394
+                    +49 177 6361 394
                   </a>
                 </div>
               </div>

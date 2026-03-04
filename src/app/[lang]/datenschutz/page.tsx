@@ -77,7 +77,7 @@ export default async function DatenschutzPage({
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Phone:</span>
                 <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">
-                  +49 1776361394
+                  +49 177 6361 394
                 </a>
                 <span>Email:</span>
                 <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
@@ -204,7 +204,7 @@ export default async function DatenschutzPage({
               <p className="mt-2"><strong>HE immologis UG</strong><br /><span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span><br />Ahornstr. 59, 69469 Weinheim</p>
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Telefon:</span>
-                <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">+49 1776361394</a>
+                <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">+49 177 6361 394</a>
                 <span>E-posta:</span>
                 <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">info@he-immologis.de</a>
               </div>
@@ -279,7 +279,7 @@ export default async function DatenschutzPage({
             <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
               <span>Telefon:</span>
               <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">
-                +49 1776361394
+                +49 177 6361 394
               </a>
               <span>E-Mail:</span>
               <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">

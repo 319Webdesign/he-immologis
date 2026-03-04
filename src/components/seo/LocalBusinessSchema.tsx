@@ -22,7 +22,7 @@ export default function LocalBusinessSchema() {
     description:
       "Immobilienmakler in Weinheim, Pfungstadt und der Bergstraße. Immobilienbewertung, Verkauf, Kauf und Vermietung in Weinheim, Pfungstadt, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch und Hemsbach.",
     url: "https://www.he-immologis.de",
-    telephone: "+49 1776361394",
+    telephone: "+49 177 6361 394",
     email: "info@he-immologis.de",
     address: {
       "@type": "PostalAddress",
