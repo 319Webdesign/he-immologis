@@ -194,7 +194,7 @@ export default async function AufstellerPage() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/75" aria-hidden />
+        <div className="absolute inset-0 bg-slate-900/55" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl">
           <Link
             href={`${prefix}/geld-verdienen`}
