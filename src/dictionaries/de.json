@@ -51,7 +51,8 @@
     "emailPlaceholder": "ihre@email.de",
     "phonePlaceholder": "+49 123 456789",
     "messagePlaceholder": "Ihre Nachricht...",
-    "submitButton": "Nachricht senden"
+    "submitButton": "Nachricht senden",
+    "successMessage": "Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard"
   },
   "footer": {
     "companyLine1": "HE immologis UG",
@@ -405,8 +406,8 @@
         "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
         "agbRequired": "Bitte akzeptieren Sie die AGB, um die Anfrage zu senden."
       },
-      "successTitle": "Vielen Dank für Ihre Anfrage",
-      "successMessage": "Holger Eberhard wird sich zeitnah bei Ihnen melden.",
+      "successTitle": "Vielen Dank für Ihre Nachricht.",
+      "successMessage": "Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
       "agbLabelPrefix": "Ich habe die ",
       "agbLabelSuffix": " gelesen und akzeptiere diese. *",
       "agbLinkText": "AGB",
@@ -544,8 +545,8 @@
     "expose": {
       "heading": "Exposé anfordern",
       "intro": "Für den Erhalt des Exposés zur Immobilie {{objectNumber}} bitten wir Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten einzutragen.",
-      "successTitle": "Vielen Dank.",
-      "successMessage": "Ihre Anfrage wurde gesendet. Sie erhalten das Exposé in Kürze per E-Mail.",
+      "successTitle": "Vielen Dank für Ihre Nachricht.",
+      "successMessage": "Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
       "firstName": "Vorname *",
       "lastName": "Name *",
       "street": "Straße *",

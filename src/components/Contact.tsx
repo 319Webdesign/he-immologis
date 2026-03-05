@@ -18,6 +18,7 @@ export type ContactFormDict = {
   phonePlaceholder: string;
   messagePlaceholder: string;
   submitButton: string;
+  successMessage?: string;
 };
 
 interface ContactProps {
@@ -41,6 +42,7 @@ const DEFAULT_FORM_LABELS: ContactFormDict = {
   phonePlaceholder: "+49 123 456789",
   messagePlaceholder: "Ihre Nachricht...",
   submitButton: "Nachricht senden",
+  successMessage: "Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
 };
 
 export default function Contact({
@@ -315,9 +317,12 @@ export default function Contact({
                 </div>
 
                 {status === "success" && (
-                  <p className={`rounded-lg p-4 text-sm ${isDark ? "bg-green-900/30 text-green-300" : "bg-green-50 text-green-800"}`}>
-                    Vielen Dank. Ihre Nachricht wurde gesendet. Wir melden uns zeitnah.
-                  </p>
+                  <p
+                    className={`rounded-lg p-4 text-sm ${isDark ? "bg-green-900/30 text-green-300" : "bg-green-50 text-green-800"}`}
+                    dangerouslySetInnerHTML={{
+                      __html: labels.successMessage ?? "Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
+                    }}
+                  />
                 )}
                 {status === "error" && errorMessage && (
                   <p className={`rounded-lg p-4 text-sm ${isDark ? "bg-red-900/30 text-red-300" : "bg-red-50 text-red-800"}`}>

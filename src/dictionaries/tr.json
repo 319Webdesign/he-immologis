@@ -52,7 +52,8 @@
     "emailPlaceholder": "ornek@email.com",
     "phonePlaceholder": "+49 123 456789",
     "messagePlaceholder": "Mesajınız...",
-    "submitButton": "Mesaj gönder"
+    "submitButton": "Mesaj gönder",
+    "successMessage": "Mesajınız için teşekkür ederiz. Önümüzdeki 24 saat içinde sizinle iletişime geçeceğiz.<br>Saygılarımızla<br>Holger Eberhard"
   },
   "footer": {
     "companyLine1": "HE immologis UG",
@@ -417,8 +418,8 @@
         "emailInvalid": "Lütfen geçerli bir e-posta adresi girin.",
         "agbRequired": "Talebi göndermek için lütfen kullanım koşullarını kabul edin."
       },
-      "successTitle": "Talebiniz için teşekkür ederiz",
-      "successMessage": "Holger Eberhard en kısa sürede sizinle iletişime geçecektir.",
+      "successTitle": "Mesajınız için teşekkür ederiz.",
+      "successMessage": "Önümüzdeki 24 saat içinde sizinle iletişime geçeceğiz.<br>Saygılarımızla<br>Holger Eberhard",
       "agbLabelPrefix": "Genel kullanım koşullarını (",
       "agbLabelSuffix": ") okudum ve kabul ediyorum. *",
       "agbLinkText": "Kullanım koşulları",
@@ -582,8 +583,8 @@
     "expose": {
       "heading": "Emlak broşürü talep et",
       "intro": "{{objectNumber}} numaralı emlak broşürünü almak için lütfen ilginizi onaylayın ve iletişim bilgilerinizi girin.",
-      "successTitle": "Teşekkür ederiz.",
-      "successMessage": "Talebiniz gönderildi. Emlak broşürünü kısa süre içinde e-posta ile alacaksınız.",
+      "successTitle": "Mesajınız için teşekkür ederiz.",
+      "successMessage": "Önümüzdeki 24 saat içinde sizinle iletişime geçeceğiz.<br>Saygılarımızla<br>Holger Eberhard",
       "firstName": "Ad *",
       "lastName": "Soyad *",
       "street": "Sokak *",

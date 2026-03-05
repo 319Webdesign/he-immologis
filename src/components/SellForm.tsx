@@ -24,6 +24,39 @@ function isValidEmail(email: string): boolean {
   return emailRegex.test(email.trim());
 }
 
+/** Außerhalb von SellForm definiert, damit React bei Re-Renders die Komponente nicht neu erstellt
+ * und der Fokus beim Tippen nicht zum nächsten Feld springt. */
+const Field = ({
+  id,
+  name,
+  label,
+  required,
+  error,
+  children,
+  className = "",
+}: {
+  id: string;
+  name: string;
+  label: string;
+  required?: boolean;
+  error?: string;
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <div className={className}>
+    <label htmlFor={id} className="block text-sm font-medium text-slate-700">
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </label>
+    {children}
+    {error && (
+      <p className="mt-1 text-sm text-red-500" role="alert">
+        {error}
+      </p>
+    )}
+  </div>
+);
+
 export type SellFormDict = {
   sectionPersonal: string;
   sectionObject: string;
@@ -152,37 +185,6 @@ export default function SellForm({
     "mt-2 block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-[#3d6d99] focus:ring-1 focus:ring-[#3d6d99]/30";
   const inputError = "border-red-400 focus:border-red-500 focus:ring-red-500/30";
 
-  const Field = ({
-    id,
-    name,
-    label,
-    required,
-    error,
-    children,
-    className = "",
-  }: {
-    id: string;
-    name: string;
-    label: string;
-    required?: boolean;
-    error?: string;
-    children: React.ReactNode;
-    className?: string;
-  }) => (
-    <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium text-slate-700">
-        {label}
-        {required && <span className="text-red-500"> *</span>}
-      </label>
-      {children}
-      {error && (
-        <p className="mt-1 text-sm text-red-500" role="alert">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-
   const p = dict.placeholders;
   const l = dict.labels;
   const prefix = `/${lang}`;
@@ -208,9 +210,10 @@ export default function SellForm({
         <h3 className="mt-6 font-sans text-xl font-semibold text-slate-800">
           {dict.successTitle}
         </h3>
-        <p className="mx-auto mt-3 max-w-md text-slate-600">
-          {dict.successMessage}
-        </p>
+        <p
+          className="mx-auto mt-3 max-w-md text-slate-600"
+          dangerouslySetInnerHTML={{ __html: dict.successMessage }}
+        />
       </div>
     );
   }

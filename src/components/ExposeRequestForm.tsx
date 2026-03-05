@@ -255,8 +255,13 @@ export function ExposeRequestForm({
   if (status === "success") {
     return (
       <div className="rounded-lg border border-zinc-200 bg-green-50 p-6 text-center text-green-800">
-        <p className="font-medium">{t("successTitle", "Vielen Dank.")}</p>
-        <p className="mt-1 text-sm">{t("successMessage", "Ihre Anfrage wurde gesendet. Sie erhalten das Exposé in Kürze per E-Mail.")}</p>
+        <p className="font-medium">{t("successTitle", "Vielen Dank für Ihre Nachricht.")}</p>
+        <p
+          className="mt-1 text-sm"
+          dangerouslySetInnerHTML={{
+            __html: t("successMessage", "Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard"),
+          }}
+        />
       </div>
     );
   }

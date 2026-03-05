@@ -27,6 +27,13 @@ const TEXTS = {
       "Bitte beachten Sie, dass die Spende der HE immologis pro erfolgreich vermittelten Immobilienverkauf auf die Höhe der aufgeführten Prämienregelung begrenzt ist.",
     projects: [
       {
+        title: "Kinder- und Bildungseinrichtung",
+        description:
+          "Auf Wunsch spenden wir an die Kinder- und Bildungseinrichtung Maria-Montessori-Schulkindergarten Sternschnuppe in Weinheim.",
+        url: "https://www.pilgerhaus.de/spenden",
+        image: "/img/sternschnuppe.jpeg",
+      },
+      {
         title: "Tafel",
         description:
           'Auf Wunsch spenden wir an die Tafel Weinheim „Appel + Ei“.',
@@ -39,13 +46,6 @@ const TEXTS = {
           "Auf Wunsch spenden wir an das Tierheim Weinheim.",
         url: "https://www.tierheim-weinheim.de/",
         image: "/tierheim.jpeg",
-      },
-      {
-        title: "Kinder- und Bildungseinrichtung",
-        description:
-          "Auf Wunsch spenden wir an die Kinder- und Bildungseinrichtung Maria-Montessori-Schulkindergarten Sternschnuppe in Weinheim.",
-        url: "https://kindergarten.montessori-weinheim.de/",
-        image: "/img/sternschnuppe.jpeg",
       },
       {
         title: "DKFZ Heidelberg",
@@ -82,6 +82,13 @@ const TEXTS = {
       "Please note that HE immologis's donation per successfully brokered property sale is limited to the amount of the stated bonus scheme.",
     projects: [
       {
+        title: "Children's and education",
+        description:
+          "On request we donate to the children's and education facility Maria-Montessori school kindergarten Sternschnuppe in Weinheim.",
+        url: "https://www.pilgerhaus.de/spenden",
+        image: "/img/sternschnuppe.jpeg",
+      },
+      {
         title: "Food bank",
         description:
           'On request we donate to Tafel Weinheim "Appel + Ei".',
@@ -94,13 +101,6 @@ const TEXTS = {
           "On request we donate to Tierheim Weinheim.",
         url: "https://www.tierheim-weinheim.de/",
         image: "/tierheim.jpeg",
-      },
-      {
-        title: "Children's and education",
-        description:
-          "On request we donate to the children's and education facility Maria-Montessori school kindergarten Sternschnuppe in Weinheim.",
-        url: "https://kindergarten.montessori-weinheim.de/",
-        image: "/img/sternschnuppe.jpeg",
       },
       {
         title: "DKFZ Heidelberg",
@@ -137,6 +137,13 @@ const TEXTS = {
       "HE immologis'in başarıyla aracılık edilen her gayrimenkul satışı için bağışı, belirtilen prim düzenlemesinin tutarıyla sınırlıdır.",
     projects: [
       {
+        title: "Çocuk ve eğitim",
+        description:
+          "Talep üzerine Weinheim'daki çocuk ve eğitim kurumu Maria-Montessori okul anaokulu Sternschnuppe'ye bağışlıyoruz.",
+        url: "https://www.pilgerhaus.de/spenden",
+        image: "/img/sternschnuppe.jpeg",
+      },
+      {
         title: "Gıda bankası",
         description:
           'Talep üzerine Tafel Weinheim "Appel + Ei"e bağışlıyoruz.',
@@ -149,13 +156,6 @@ const TEXTS = {
           "Talep üzerine Tierheim Weinheim'a bağışlıyoruz.",
         url: "https://www.tierheim-weinheim.de/",
         image: "/tierheim.jpeg",
-      },
-      {
-        title: "Çocuk ve eğitim",
-        description:
-          "Talep üzerine Weinheim'daki çocuk ve eğitim kurumu Maria-Montessori okul anaokulu Sternschnuppe'ye bağışlıyoruz.",
-        url: "https://kindergarten.montessori-weinheim.de/",
-        image: "/img/sternschnuppe.jpeg",
       },
       {
         title: "DKFZ Heidelberg",

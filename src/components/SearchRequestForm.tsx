@@ -212,11 +212,18 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
           </svg>
         </div>
         <h3 className="mt-6 font-sans text-xl font-semibold text-slate-800">
-          {isEn ? "Search request received" : isTr ? "Arama talebiniz alındı" : "Suchauftrag erhalten"}
+          {isEn ? "Thank you for your message." : isTr ? "Mesajınız için teşekkür ederiz." : "Vielen Dank für Ihre Nachricht."}
         </h3>
-        <p className="mx-auto mt-3 max-w-md text-slate-600">
-          {isEn ? "We will get in touch as soon as a property matches your criteria." : isTr ? "Kriterlerinize uyan bir gayrimenkul olduğunda sizinle derhal iletişime geçeceğiz." : "Wir melden uns umgehend, sobald ein Objekt zu Ihren Kriterien passt."}
-        </p>
+        <p
+          className="mx-auto mt-3 max-w-md text-slate-600"
+          dangerouslySetInnerHTML={{
+            __html: isEn
+              ? "We will get back to you within the next 24 hours.<br>Yours sincerely<br>Holger Eberhard"
+              : isTr
+                ? "Önümüzdeki 24 saat içinde sizinle iletişime geçeceğiz.<br>Saygılarımızla<br>Holger Eberhard"
+                : "Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
+          }}
+        />
       </div>
     );
   }

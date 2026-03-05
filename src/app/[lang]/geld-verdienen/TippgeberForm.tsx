@@ -209,10 +209,12 @@ export default function TippgeberForm() {
           </p>
         </div>
         {status === "success" && (
-          <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800">
-            <p className="font-medium">Vielen Dank für Ihren Tipp.</p>
-            <p className="mt-1 text-sm">Wir prüfen Ihre Angaben und melden uns bei Ihnen.</p>
-          </div>
+          <div
+            className="rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800"
+            dangerouslySetInnerHTML={{
+              __html: "Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
+            }}
+          />
         )}
         {status === "error" && errorMessage && (
           <p className="rounded-xl bg-red-50 p-3 text-sm text-red-800">{errorMessage}</p>
