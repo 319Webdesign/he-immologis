@@ -8,10 +8,9 @@ import DirektkontaktSection from "../DirektkontaktSection";
 import DonationOption from "@/components/DonationOption";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import { TIPPGEBER_DOCS } from "@/lib/documents";
 
 const BRAND_BLUE = "#4682B4";
-const DOWNLOAD_TIPPGEBERVEREINBARUNG = "/downloads/HE_Immologis_Tippgebervereinbarung.pdf";
-const DOWNLOAD_HINWEISSCHREIBEN = "/downloads/HE_Immologis_Tippgeberhinweis.pdf";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -32,9 +31,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function TippGebenPage() {
-  const locale = await getLocaleFromHeaders();
+  const locale = (await getLocaleFromHeaders()) as "de" | "en" | "tr";
   const dict = await getDictionary(locale);
   const t = dict.tippgeber;
+  const localeKey = locale === "tr" ? "tr" : locale === "en" ? "en" : "de";
 
   return (
     <>
@@ -109,7 +109,7 @@ export default async function TippGebenPage() {
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href={DOWNLOAD_TIPPGEBERVEREINBARUNG}
+              href={TIPPGEBER_DOCS.vereinbarung[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
               className={`${outlineButtonClass} focus:ring-[#4682B4]`}
@@ -119,7 +119,7 @@ export default async function TippGebenPage() {
               {t.downloadAgreement}
             </Link>
             <Link
-              href={DOWNLOAD_HINWEISSCHREIBEN}
+              href={TIPPGEBER_DOCS.hinweis[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
               className={`${outlineButtonClass} focus:ring-[#4682B4]`}

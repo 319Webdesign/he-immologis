@@ -8,6 +8,7 @@ import Contact from "@/components/Contact";
 import DonationOption from "@/components/DonationOption";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import { TIPPGEBER_DOCS, MUSTERVERTRAG_WERBEFLAECHE } from "@/lib/documents";
 
 export const metadata: Metadata = {
   title: "Geld verdienen – Tippgeber-Programm | HE immologis",
@@ -24,15 +25,12 @@ export const metadata: Metadata = {
 
 const BRAND_BLUE = "#4682B4";
 
-// Platzhalter-Pfade – später durch finale PDF-Dateien ersetzen
-const DOWNLOAD_TIPPGEBERVEREINBARUNG = "/downloads/HE_Immologis_Tippgebervereinbarung.pdf";
-const DOWNLOAD_MUSTERVERTRAG_WERBEFLAECHE = "/downloads/HE_Immologis_Mustervertrag_Werbeflaeche.pdf";
-
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
 export default async function GeldVerdienenPage() {
   const locale = await getLocaleFromHeaders();
+  const localeKey = (locale === "tr" ? "tr" : locale === "en" ? "en" : "de") as "de" | "en" | "tr";
   const dict = await getDictionary(locale);
   return (
     <>
@@ -93,7 +91,7 @@ export default async function GeldVerdienenPage() {
           <ProvisionsStaffel />
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href={DOWNLOAD_TIPPGEBERVEREINBARUNG}
+              href={TIPPGEBER_DOCS.vereinbarung[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
               className={`${outlineButtonClass} focus:ring-[#4682B4]`}
@@ -163,7 +161,7 @@ export default async function GeldVerdienenPage() {
                   <ArrowRight className="h-5 w-5 shrink-0" />
                 </Link>
                 <Link
-                  href={DOWNLOAD_MUSTERVERTRAG_WERBEFLAECHE}
+                  href={MUSTERVERTRAG_WERBEFLAECHE}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${outlineButtonClass} focus:ring-[#4682B4]`}
@@ -199,7 +197,7 @@ export default async function GeldVerdienenPage() {
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
                 <Link
-                  href={DOWNLOAD_MUSTERVERTRAG_WERBEFLAECHE}
+                  href={MUSTERVERTRAG_WERBEFLAECHE}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${outlineButtonClass} focus:ring-[#4682B4]`}

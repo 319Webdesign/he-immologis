@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, FileDown, Mail, Phone } from "lucide-react";
 import ProvisionsStaffel from "../ProvisionsStaffel";
+import { TIPPGEBER_DOCS } from "@/lib/documents";
+import { getLocaleFromHeaders } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Tippgeber-Staffel – Geld verdienen mit einem guten Kontakt | HE immologis",
@@ -16,12 +18,16 @@ export const metadata: Metadata = {
 };
 
 const BRAND_BLUE = "#4682B4";
-const DOWNLOAD_TIPPGEBERVEREINBARUNG = "/downloads/HE_Immologis_Tippgebervereinbarung.pdf";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-export default function TippgeberStaffelPage() {
+export default async function TippgeberStaffelPage() {
+  const locale = (await getLocaleFromHeaders()) as "de" | "en" | "tr";
+  const localeKey = locale === "tr" ? "tr" : locale === "en" ? "en" : "de";
+  const hrefVereinbarung = TIPPGEBER_DOCS.vereinbarung[localeKey];
+  const hrefHinweis = TIPPGEBER_DOCS.hinweis[localeKey];
+
   return (
     <>
       <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -114,14 +120,24 @@ export default function TippgeberStaffelPage() {
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
-              href={DOWNLOAD_TIPPGEBERVEREINBARUNG}
+              href={hrefVereinbarung}
               target="_blank"
               rel="noopener noreferrer"
               className={`${outlineButtonClass} focus:ring-[#4682B4]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
-              Hinweisschreiben / Tippgebervereinbarung herunterladen
+              Tippgebervereinbarung herunterladen
+            </Link>
+            <Link
+              href={hrefHinweis}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${outlineButtonClass} focus:ring-[#4682B4]`}
+              style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+            >
+              <FileDown className="h-5 w-5 shrink-0" />
+              Hinweisschreiben herunterladen
             </Link>
             <Link
               href="/geld-verdienen#formular-heading"

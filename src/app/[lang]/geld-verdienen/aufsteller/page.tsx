@@ -12,10 +12,9 @@ import {
 } from "lucide-react";
 import DonationOption from "@/components/DonationOption";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import { AUFSTELLER_DOCS } from "@/lib/documents";
 
 const BRAND_BLUE = "#4682B4";
-const DOWNLOAD_PRIVAT = "/downloads/HE_Immologis_Werbepartne_Aufsteller_privat.pdf";
-const DOWNLOAD_GEWERBE = "/downloads/HE_Immologis_Werbepartner_Aufsteller_Gesch.pdf";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -179,7 +178,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AufstellerPage() {
   const locale = await getLocaleFromHeaders();
-  const t = TEXTS[locale === "tr" ? "tr" : locale === "en" ? "en" : "de"];
+  const localeKey = locale === "tr" ? "tr" : locale === "en" ? "en" : "de";
+  const t = TEXTS[localeKey];
   const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
 
   return (
@@ -359,7 +359,7 @@ export default async function AufstellerPage() {
               <h3 className="mt-4 font-sans text-xl font-semibold text-slate-900">{t.privatTitle}</h3>
               <p className="mt-2 text-slate-600">{t.privatDesc}</p>
               <Link
-                href={DOWNLOAD_PRIVAT}
+                href={AUFSTELLER_DOCS.privat[localeKey]}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#4682B4]`}
@@ -379,7 +379,7 @@ export default async function AufstellerPage() {
               <h3 className="mt-4 font-sans text-xl font-semibold text-slate-900">{t.gewerbeTitle}</h3>
               <p className="mt-2 text-slate-600">{t.gewerbeDesc}</p>
               <Link
-                href={DOWNLOAD_GEWERBE}
+                href={AUFSTELLER_DOCS.gewerbe[localeKey]}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#4682B4]`}
