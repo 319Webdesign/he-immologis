@@ -660,7 +660,8 @@
       "provisionHeading": "Commission",
       "provisionBuyP1": "The buyer's commission is 3.57% including statutory VAT.",
       "provisionBuyP2": "According to the legal regulations in force since 23.12.2020 on the division of brokerage commission, this is generally split equally between seller and buyer. Thus, the commission for both parties is 3% plus the applicable VAT – currently 3.57% of the purchase price in total – and is earned and due upon notarial contract conclusion.",
-      "provisionRentP1": "The commission for brokerage services is 2 net cold rents plus VAT.",
+      "provisionRentValue": "2 net cold rents plus VAT",
+    "provisionRentP1": "The commission for brokerage services is 2 net cold rents plus VAT.",
       "provisionRentP2": "According to the legal regulations in force since 1.6.2015 – the commissioning principle – the party who commissions the broker bears the commission."
     }
   }

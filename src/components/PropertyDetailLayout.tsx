@@ -297,6 +297,7 @@ export type PropertyDetailDict = {
     offerTermsP3?: string;
     offerTermsP4Rent?: string;
     provisionHeading?: string;
+    provisionRentValue?: string;
     provisionBuyP1?: string;
     provisionBuyP2?: string;
     provisionRentP1?: string;
@@ -695,7 +696,7 @@ export function PropertyDetailLayout({
               )}
               <DataRow
                 label={lbl("aussen_courtage", "Provision")}
-                value={isKaufen ? formatCourtage(p.aussen_courtage, locale) : "2 Nettokaltmieten zzgl. MwSt."}
+                value={isKaufen ? formatCourtage(p.aussen_courtage, locale) : (dict?.hints?.provisionRentValue ?? "2 Nettokaltmieten zzgl. MwSt.")}
               />
             </div>
           </div>

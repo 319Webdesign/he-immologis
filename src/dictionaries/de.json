@@ -650,7 +650,8 @@
       "provisionHeading": "Provision",
       "provisionBuyP1": "Die Käuferprovision beträgt 3,57 % inklusive gesetzlicher Mehrwertsteuer.",
       "provisionBuyP2": "Gemäß den seit dem 23.12.2020 geltenden gesetzlichen Regelungen zur Aufteilung der Maklerprovision wird diese in der Regel hälftig zwischen Verkäufer und Käufer geteilt. Somit beträgt die Provision für beide Parteien jeweils 3 % zzgl. der jeweils gültigen Mehrwertsteuer – derzeit insgesamt 3,57 % des Kaufpreises – und ist mit notariellem Vertragsabschluss verdient und fällig.",
-      "provisionRentP1": "Die Provision für die Maklertätigkeit beträgt 2 Netto-Kaltmieten zzgl. MwSt.",
+      "provisionRentValue": "2 Nettokaltmieten zzgl. MwSt.",
+    "provisionRentP1": "Die Provision für die Maklertätigkeit beträgt 2 Netto-Kaltmieten zzgl. MwSt.",
       "provisionRentP2": "Gemäß den seit dem 1.6.2015 geltenden gesetzlichen Regelungen – Bestellerprinzip – trägt derjenige die Provision, der den Makler beauftragt hat."
     }
   }

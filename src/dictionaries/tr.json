@@ -688,7 +688,8 @@
       "provisionHeading": "Komisyon",
       "provisionBuyP1": "Alıcı komisyonu yasal KDV dahil %3,57'dir.",
       "provisionBuyP2": "23.12.2020 tarihinden itibaren geçerli emlakçı komisyonu bölünmesi yasal düzenlemelerine göre bu genellikle satıcı ile alıcı arasında eşit paylaşılır. Böylece her iki taraf için komisyon %3 artı geçerli KDV – şu anda satış fiyatının toplamda %3,57'si – olup noter sözleşmesi imzalandığında hak edilir ve ödenir.",
-      "provisionRentP1": "Maklerlik hizmeti komisyonu KDV hariç 2 net soğuk kira artı KDV'dir.",
+      "provisionRentValue": "KDV dahil 2 net soğuk kira",
+    "provisionRentP1": "Maklerlik hizmeti komisyonu KDV hariç 2 net soğuk kira artı KDV'dir.",
       "provisionRentP2": "1.6.2015 tarihinden itibaren geçerli yasal düzenlemelere göre – sipariş veren öder ilkesi – emlakçıyı kim görevlendirirse komisyonu o üstlenir."
     }
   }
