@@ -80,12 +80,12 @@ export default function PropertyCard({
       ? firstImg
       : PLACEHOLDER_IMG;
 
+  const l = cardLabels;
+  const coldRentLabel = l?.coldRent ?? "Kaltmiete ";
   const price = property.kaufpreis ?? property.kaltmiete;
   const priceLabel =
     property.kaufpreis != null ? "" : property.kaltmiete != null ? coldRentLabel : "";
   const showGrundstueck = isHaus(property.objektart) && (property.grundstuecksflaeche ?? 0) > 0;
-  const l = cardLabels;
-  const coldRentLabel = l?.coldRent ?? "Kaltmiete ";
   const forSale = l?.forSale ?? "Zum Verkauf";
   const noTitle = l?.noTitle ?? "Ohne Titel";
   const roomsLabel = l?.rooms ?? "Zimmer";
