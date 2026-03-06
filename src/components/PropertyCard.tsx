@@ -154,7 +154,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
               </span>
               <div className="text-right text-sm font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
                 {property.kaltmiete > 0 && (
-                  <span>{coldRentLabel} {formatRent(property.kaltmiete, "")}</span>
+                  <span>{coldRentLabel} {formatPrice(property.kaltmiete, lang)}</span>
                 )}
                 {property.kaltmiete > 0 && property.nebenkosten != null && property.nebenkosten > 0 && (
                   <span className="mx-2">·</span>
