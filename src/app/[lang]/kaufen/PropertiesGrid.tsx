@@ -1,10 +1,23 @@
-import { fetchProperties } from "@/lib/onoffice";
+import { fetchProperties, fetchEstateFieldMetadata } from "@/lib/onoffice";
 import PropertyCard from "./PropertyCard";
 import PropertyGridSkeleton from "./PropertyGridSkeleton";
+
+export type KaufenCardLabels = {
+  forSale?: string;
+  noTitle?: string;
+  rooms?: string;
+  bedrooms?: string;
+  bathrooms?: string;
+  livingArea?: string;
+  plot?: string;
+  coldRent?: string;
+};
 
 interface PropertiesGridProps {
   ortFilter: string;
   noResultsText: string;
+  lang?: string;
+  cardLabels?: KaufenCardLabels;
 }
 
 /** Platzhalter, wenn keine Immobilien vorhanden sind (z. B. Expansion Hessen). */
@@ -14,11 +27,16 @@ const EMPTY_STATE_MESSAGE =
 export default async function PropertiesGrid({
   ortFilter,
   noResultsText,
+  lang,
+  cardLabels,
 }: PropertiesGridProps) {
-  const allProperties = await fetchProperties({
-    vermarktungsart: "Kauf",
-    listlimit: 500,
-  }).catch(() => []);
+  const [allProperties, fieldMeta] = await Promise.all([
+    fetchProperties({ vermarktungsart: "Kauf", listlimit: 500, lang }).catch(() => []),
+    lang ? fetchEstateFieldMetadata(lang) : Promise.resolve({ labels: {}, permittedValues: {} }),
+  ]);
+
+  const permittedValues =
+    Object.keys(fieldMeta.permittedValues).length > 0 ? fieldMeta.permittedValues : undefined;
 
   const properties =
     ortFilter === "alle" ? allProperties : allProperties.filter((p) => p.ort === ortFilter);
@@ -37,8 +55,13 @@ export default async function PropertiesGrid({
 
   return (
     <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {properties.map((property, index) => (
-        <PropertyCard key={property.id} property={property} />
+      {properties.map((property) => (
+        <PropertyCard
+          key={property.id}
+          property={property}
+          permittedValues={permittedValues}
+          cardLabels={cardLabels}
+        />
       ))}
     </div>
   );

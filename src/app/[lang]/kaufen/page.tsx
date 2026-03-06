@@ -84,7 +84,12 @@ export default async function KaufenPage({ searchParams }: PageProps) {
           <PropertyFilters dict={k.filters} lang={locale} />
         </Suspense>
         <Suspense fallback={<PropertyGridSkeleton />}>
-          <PropertiesGrid ortFilter={ortFilter} noResultsText={k.noResults} />
+          <PropertiesGrid
+            ortFilter={ortFilter}
+            noResultsText={k.noResults}
+            lang={locale}
+            cardLabels={k.card}
+          />
         </Suspense>
       </section>
 

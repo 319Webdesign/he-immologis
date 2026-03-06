@@ -322,16 +322,37 @@ function buildHmac(
 }
 
 /**
+ * Parst deutsche Zahlen (720.000 oder 720.000,50) und englische (720000.00).
+ * onOffice liefert Preise oft als "720.000" (Punkt = Tausendertrennzeichen).
+ */
+function parseApiNumber(s: string): number {
+  const trimmed = s.replace(/\s/g, "");
+  const hasComma = trimmed.includes(",");
+  if (hasComma) {
+    const withoutThousands = trimmed.replace(/\./g, "");
+    const withDecimal = withoutThousands.replace(",", ".");
+    return parseFloat(withDecimal);
+  }
+  if (trimmed.includes(".")) {
+    const parts = trimmed.split(".");
+    const afterLast = parts[parts.length - 1] ?? "";
+    if (afterLast.length === 3 && parts.length >= 2) {
+      return parseFloat(trimmed.replace(/\./g, ""));
+    }
+  }
+  return parseFloat(trimmed.replace(",", "."));
+}
+
+/**
  * Liest eine Zahl aus den API-Elementen.
- * Unterstützt: number, String (z. B. "60" oder "60,00"), Objekte mit .value oder .raw.
+ * Unterstützt: number, String (z. B. "60", "60,00", "720.000"), Objekte mit .value oder .raw.
  * Gibt null zurück bei fehlendem/ungültigem Wert – niemals 0 als Fallback.
  */
 function readNumber(value: unknown): number | null {
   if (value === null || value === undefined) return null;
   if (typeof value === "number" && !Number.isNaN(value)) return value;
   if (typeof value === "string") {
-    const trimmed = value.replace(/\s/g, "").replace(",", ".");
-    const n = parseFloat(trimmed);
+    const n = parseApiNumber(value);
     return Number.isNaN(n) ? null : n;
   }
   if (typeof value === "object" && value !== null) {
@@ -503,6 +524,8 @@ export async function fetchProperties(options?: {
   /** Nur Objekte zum Kauf ("kauf") oder zur Miete ("miete") */
   vermarktungsart?: Vermarktungsart;
   filter?: Record<string, Array<{ op: string; val: unknown }>>;
+  /** Website-Sprache (de, en, tr) für übersetzte Singleselect-Werte. de->DEU, en->ENG, tr->TUR */
+  lang?: string;
 }): Promise<Property[]> {
   const token = process.env.ONOFFICE_API_KEY;
   const secret = process.env.ONOFFICE_API_SECRET;
@@ -515,6 +538,10 @@ export async function fetchProperties(options?: {
 
   const dataFields = getDataFields(options?.vermarktungsart);
   const listlimit = options?.listlimit ?? 500;
+  const isoLang = options?.lang
+    ? (LANG_TO_ISO[options.lang.toLowerCase()] ?? LANG_TO_ISO.de)
+    : LANG_TO_ISO.de;
+  const outputLang = isoLang;
 
   /** Filter nur status "1" (Aktiv) und vermarktungsart – keine weiteren Filter (Error 141 vermeiden). */
   const buildFilter = (): Record<string, Array<{ op: string; val: unknown }>> => {
@@ -556,6 +583,9 @@ export async function fetchProperties(options?: {
                 data: fields,
                 listlimit,
                 filter: buildFilter(),
+                outputlanguage: outputLang,
+                formatoutput: true,
+                estatelanguage: outputLang,
               },
             },
           ],
@@ -612,11 +642,169 @@ export async function fetchProperties(options?: {
 }
 
 /** Sprachcode-Mapping für onOffice API (ISO 639-2, 3 Zeichen, Großschreibung) */
-const LANG_TO_ISO: Record<string, string> = {
+export const LANG_TO_ISO: Record<string, string> = {
   de: "DEU",
   en: "ENG",
   tr: "TUR",
 };
+
+/** Response-Struktur für fields get-Action */
+interface OnOfficeFieldDef {
+  label?: string;
+  type?: string;
+  permittedvalues?: Record<string, string> | Array<{ value: string; label: string }>;
+  [k: string]: unknown;
+}
+
+interface OnOfficeFieldsResponse {
+  status?: { code?: number; message?: string };
+  response?: {
+    results?: Array<{
+      status?: { code?: number };
+      data?: {
+        records?: Array<{
+          id: string;
+          type?: string;
+          elements?: Record<string, OnOfficeFieldDef>;
+        }>;
+      };
+    }>;
+  };
+}
+
+export type EstateFieldMetadata = {
+  labels: Record<string, string>;
+  permittedValues: Record<string, Record<string, string>>;
+};
+
+/**
+ * Ruft ein Feld von der onOffice fields-API ab.
+ * @internal
+ */
+async function fetchFieldsForLanguage(
+  token: string,
+  secret: string,
+  isoLang: string
+): Promise<{ labels: Record<string, string>; permittedValues: Record<string, Record<string, string>> }> {
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const resourcetype = "fields";
+  const actionid = GET_ACTION_ID;
+  const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
+
+  const res = await fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      token,
+      request: {
+        actions: [
+          {
+            actionid,
+            resourceid: "",
+            resourcetype,
+            identifier: "",
+            timestamp,
+            hmac,
+            hmac_version: "2",
+            parameters: {
+              labels: true,
+              language: isoLang,
+              modules: ["estate"],
+            },
+          },
+        ],
+      },
+    }),
+  });
+
+  if (!res.ok) return { labels: {}, permittedValues: {} };
+
+  const json = (await res.json()) as OnOfficeFieldsResponse;
+  const statusCode = json.status?.code ?? json.response?.results?.[0]?.status?.code;
+  if (statusCode !== 200) return { labels: {}, permittedValues: {} };
+
+  const records = json.response?.results?.[0]?.data?.records ?? [];
+  const estateRecord = records.find((r) => r.id === "estate");
+  if (!estateRecord?.elements) return { labels: {}, permittedValues: {} };
+
+  const labels: Record<string, string> = {};
+  const permittedValues: Record<string, Record<string, string>> = {};
+
+  for (const [fieldName, fieldDef] of Object.entries(estateRecord.elements)) {
+    const label = fieldDef?.label;
+    if (typeof label === "string" && label.trim()) {
+      labels[fieldName] = label.trim();
+    }
+    const pv = fieldDef?.permittedvalues;
+    const fieldType = String(fieldDef?.type ?? "").toLowerCase();
+    if ((fieldType === "singleselect" || fieldType === "multiselect") && pv && typeof pv === "object") {
+      const valueToLabel: Record<string, string> = {};
+      if (Array.isArray(pv)) {
+        for (const item of pv) {
+          if (item?.value != null && typeof item.label === "string") {
+            valueToLabel[String(item.value)] = item.label.trim();
+          }
+        }
+      } else {
+        for (const [rawVal, displayLabel] of Object.entries(pv)) {
+          if (typeof displayLabel === "string" && displayLabel.trim()) {
+            valueToLabel[rawVal] = displayLabel.trim();
+          }
+        }
+      }
+      if (Object.keys(valueToLabel).length > 0) {
+        permittedValues[fieldName] = valueToLabel;
+      }
+    }
+  }
+  return { labels, permittedValues };
+}
+
+/**
+ * Ruft die Feldbeschreibungen (Labels) und permittedValues für Estate-Felder von der onOffice-API ab.
+ * Bei Türkisch: Fallback auf Englisch für fehlende permittedValues.
+ * @param lang - Sprachcode der Website: de, en, tr → wird auf DEU, ENG, TUR gemappt
+ */
+export async function fetchEstateFieldMetadata(
+  lang: string = "de"
+): Promise<EstateFieldMetadata> {
+  const token = process.env.ONOFFICE_API_KEY;
+  const secret = process.env.ONOFFICE_API_SECRET;
+
+  if (!token || !secret) {
+    return { labels: {}, permittedValues: {} };
+  }
+
+  const langLower = lang.toLowerCase();
+  const isoLang = LANG_TO_ISO[langLower] ?? LANG_TO_ISO.de;
+
+  const primary = await fetchFieldsForLanguage(token, secret, isoLang);
+
+  if (langLower === "tr") {
+    const fallback = await fetchFieldsForLanguage(token, secret, "ENG");
+    const mergedPermitted: Record<string, Record<string, string>> = { ...fallback.permittedValues };
+    for (const [fieldName, valueMap] of Object.entries(primary.permittedValues)) {
+      mergedPermitted[fieldName] = { ...fallback.permittedValues[fieldName], ...valueMap };
+    }
+    return {
+      labels: primary.labels,
+      permittedValues: mergedPermitted,
+    };
+  }
+
+  return primary;
+}
+
+/**
+ * Ruft die Feldbeschreibungen (Labels) für Estate-Felder von der onOffice-API ab.
+ * @deprecated Nutze fetchEstateFieldMetadata für Labels und permittedValues.
+ */
+export async function fetchEstateFieldLabels(
+  lang: string = "de"
+): Promise<Record<string, string>> {
+  const meta = await fetchEstateFieldMetadata(lang);
+  return meta.labels;
+}
 
 /**
  * Ruft eine einzelne Immobilie anhand der ID oder objektnr_extern (Slug) von der onOffice-API ab.

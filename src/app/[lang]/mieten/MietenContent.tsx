@@ -115,7 +115,7 @@ export default function MietenContent({ rentals, dict, lang }: MietenContentProp
         lang={lang}
         noRentalsText={dict.noRentals.text}
         noRentalsButtonText={dict.noRentals.buttonText}
-        cardLabels={dict.card}
+        cardLabels={{ ...dict.card, propertyTypeOptions: dict.filters.propertyTypeOptions }}
       />
     </div>
   );

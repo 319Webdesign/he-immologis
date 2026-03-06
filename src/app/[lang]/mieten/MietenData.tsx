@@ -31,7 +31,11 @@ function mapOnOfficeToRental(p: {
 }): Rental {
   const ot = (p.objektart ?? "").toLowerCase();
   const objekttyp: Rental["objekttyp"] =
-    ot.includes("haus") ? "Haus" : ot.includes("gewerbe") ? "Gewerbe" : "Wohnung";
+    ot.includes("haus") || ot.includes("house") || ot.includes("ev") || ot.includes("villa")
+      ? "Haus"
+      : ot.includes("gewerbe") || ot.includes("commercial") || ot.includes("ticari")
+        ? "Gewerbe"
+        : "Wohnung";
   return {
     id: String(p.id),
     objektnr_extern: p.objektnr_extern ?? undefined,
@@ -55,6 +59,7 @@ export default async function MietenData({ dict, lang }: MietenDataProps) {
   const allProperties = await fetchProperties({
     vermarktungsart: "Miete",
     listlimit: 500,
+    lang,
   }).catch(() => []);
 
   if (allProperties.length === 0) {

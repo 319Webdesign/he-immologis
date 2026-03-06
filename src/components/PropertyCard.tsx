@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, BedDouble, Bath, LayoutGrid } from "lucide-react";
 import type { Rental } from "@/types";
+import { formatPrice } from "@/lib/format";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
@@ -13,9 +14,16 @@ export type RentalCardLabels = {
   viewDetails: string;
   netRentSuffix: string;
   roomsLabel: string;
+  bedroomsLabel?: string;
+  bathroomsLabel?: string;
+  plotLabel?: string;
+  coldRent?: string;
+  ancillaryCosts?: string;
   statusNew: string;
   statusReserved: string;
   statusAvailable: string;
+  /** Optionen für Objekttyp-Übersetzung (value: Haus/Wohnung/Gewerbe → label) */
+  propertyTypeOptions?: { value: string; label: string }[];
 };
 
 const STATUS_MAP: Record<string, keyof RentalCardLabels> = {
@@ -28,18 +36,6 @@ interface PropertyCardProps {
   property: Rental;
   lang?: string;
   cardLabels?: RentalCardLabels | null;
-}
-
-function formatRent(amount: number, suffix: string): string {
-  return (
-    new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-      maximumFractionDigits: 0,
-    }).format(amount) +
-    " " +
-    suffix
-  );
 }
 
 export default function PropertyCard({ property, lang = "de", cardLabels }: PropertyCardProps) {
@@ -70,6 +66,11 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   };
 
   const badgeLabel = cardLabels?.badgeLabel ?? "Zur Vermietung";
+  const bedroomsLabel = cardLabels?.bedroomsLabel ?? "Schlafzimmer";
+  const bathroomsLabel = cardLabels?.bathroomsLabel ?? "Badezimmer";
+  const plotLabel = cardLabels?.plotLabel ?? "Grundstück";
+  const coldRentLabel = cardLabels?.coldRent ?? "Kaltmiete";
+  const ancillaryCostsLabel = cardLabels?.ancillaryCosts ?? "Nebenkosten";
   const statusLabel =
     cardLabels && STATUS_MAP[property.status]
       ? cardLabels[STATUS_MAP[property.status]]
@@ -80,6 +81,9 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   const baseHref = lang ? `/${lang}/mieten` : "/mieten";
   const detailSlug = property.objektnr_extern || property.id;
   const detailHref = `${baseHref}/${encodeURIComponent(detailSlug)}`;
+  const objekttypLabel =
+    cardLabels?.propertyTypeOptions?.find((o) => o.value === property.objekttyp)?.label ??
+    property.objekttyp;
 
   const showGrundstueck =
     property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;
@@ -94,7 +98,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
           <Image
             src={imageSrc}
-            alt={`${property.objekttyp || "Mietobjekt"} zur Miete in ${property.ort?.trim() || "Weinheim"} - HE-immologis`}
+            alt={`${objekttypLabel || "Mietobjekt"} zur Miete in ${property.ort?.trim() || "Weinheim"} - HE-immologis`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -114,18 +118,18 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 sm:group-hover:text-white/90 max-sm:group-data-[incenter=true]:text-white/90">
           <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 sm:group-hover:bg-white/20 sm:group-hover:text-white max-sm:group-data-[incenter=true]:bg-white/20 max-sm:group-data-[incenter=true]:text-white">
-            {property.objekttyp}
+            {objekttypLabel}
           </span>
           {property.schlafzimmer != null && property.schlafzimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <BedDouble className="h-4 w-4 shrink-0" />
-              {property.schlafzimmer} Schlafzimmer
+              {property.schlafzimmer} {bedroomsLabel}
             </span>
           )}
           {property.badezimmer != null && property.badezimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <Bath className="h-4 w-4 shrink-0" />
-              {property.badezimmer} Badezimmer
+              {property.badezimmer} {bathroomsLabel}
             </span>
           )}
           {property.quadratmeter > 0 && (
@@ -136,7 +140,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           )}
           {showGrundstueck && (
             <span className="flex items-center gap-1.5">
-              {property.grundstuecksflaeche} m² Grundstück
+              {property.grundstuecksflaeche} m² {plotLabel}
             </span>
           )}
         </div>
@@ -150,13 +154,13 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
               </span>
               <div className="text-right text-sm font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
                 {property.kaltmiete > 0 && (
-                  <span>Kaltmiete {formatRent(property.kaltmiete, "")}</span>
+                  <span>{coldRentLabel} {formatRent(property.kaltmiete, "")}</span>
                 )}
                 {property.kaltmiete > 0 && property.nebenkosten != null && property.nebenkosten > 0 && (
                   <span className="mx-2">·</span>
                 )}
                 {property.nebenkosten != null && property.nebenkosten > 0 && (
-                  <span>Nebenkosten {formatRent(property.nebenkosten, "")}</span>
+                  <span>{ancillaryCostsLabel} {formatPrice(property.nebenkosten, lang)}</span>
                 )}
               </div>
             </div>

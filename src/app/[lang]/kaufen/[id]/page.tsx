@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import propertiesData from "@/data/properties.json";
 import type { PropertyWithDetails } from "@/types";
-import { fetchPropertyById } from "@/lib/onoffice";
+import { fetchPropertyById, fetchEstateFieldMetadata } from "@/lib/onoffice";
 import { staticPropertyToProperty } from "@/lib/propertyMapper";
 import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/PropertyDetailLayout";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
@@ -51,7 +51,10 @@ export default async function KaufenDetailPage({ params }: PageProps) {
   const dict = fullDict.propertyDetail as PropertyDetailDict | undefined;
 
   // Pfad 1: onOffice (Slug oder numerische ID)
-  const property = await fetchPropertyById(id, locale).catch(() => null);
+  const [property, fieldMeta] = await Promise.all([
+    fetchPropertyById(id, locale).catch(() => null),
+    fetchEstateFieldMetadata(locale),
+  ]);
   if (property) {
     return (
       <>
@@ -62,6 +65,8 @@ export default async function KaufenDetailPage({ params }: PageProps) {
           section="kaufen"
           backHref={`/${locale}/kaufen`}
           dict={dict}
+          fieldLabels={Object.keys(fieldMeta.labels).length > 0 ? fieldMeta.labels : undefined}
+          permittedValues={Object.keys(fieldMeta.permittedValues).length > 0 ? fieldMeta.permittedValues : undefined}
         />
       </>
     );
@@ -72,6 +77,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
   if (!staticProp) notFound();
 
   const staticProperty = staticPropertyToProperty(staticProp);
+  const staticFieldMeta = await fetchEstateFieldMetadata(locale);
 
   return (
     <>
@@ -82,6 +88,8 @@ export default async function KaufenDetailPage({ params }: PageProps) {
         section="kaufen"
         backHref={`/${locale}/kaufen`}
         dict={dict}
+        fieldLabels={Object.keys(staticFieldMeta.labels).length > 0 ? staticFieldMeta.labels : undefined}
+        permittedValues={Object.keys(staticFieldMeta.permittedValues).length > 0 ? staticFieldMeta.permittedValues : undefined}
       />
     </>
   );

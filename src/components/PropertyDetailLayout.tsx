@@ -55,14 +55,18 @@ function formatTinyIntJaNein(value: boolean | number | null | undefined): string
 }
 
 /** Provision/Courtage: Prozent oder Euro */
-function formatCourtage(value: string | number | undefined | null): string | null {
+function formatCourtage(
+  value: string | number | undefined | null,
+  locale?: string | null
+): string | null {
   if (value == null || value === "") return null;
   if (typeof value === "string") return value.trim() || null;
   if (typeof value === "number") {
     if (value >= 100) {
-      return formatCurrency(value, { decimals: 0 });
+      return formatCurrency(value, { decimals: 0, locale });
     }
-    return new Intl.NumberFormat("de-DE", {
+    const loc = locale === "en" ? "en-GB" : locale === "tr" ? "tr-TR" : "de-DE";
+    return new Intl.NumberFormat(loc, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value) + " %";
@@ -244,6 +248,33 @@ function DataRow({
 }
 
 export type PropertyDetailDict = {
+  backToOverview?: string;
+  heroRooms?: string;
+  heroBedrooms?: string;
+  heroBathrooms?: string;
+  heroTotalArea?: string;
+  heroLivingArea?: string;
+  heroPlotArea?: string;
+  areaApprox?: string;
+  noTitle?: string;
+  coldRent?: string;
+  ancillaryCosts?: string;
+  onRequest?: string;
+  priceOnRequest?: string;
+  rentOnRequest?: string;
+  inquiryBuy?: string;
+  inquiryRent?: string;
+  headingDescription?: string;
+  headingObjectDetails?: string;
+  headingConditionEnergy?: string;
+  headingEquipment?: string;
+  headingLocation?: string;
+  headingInfrastructure?: string;
+  headingSonstiges?: string;
+  valueJa?: string;
+  valueNein?: string;
+  valueSofort?: string;
+  valueNachVereinbarung?: string;
   contact?: { managingDirector: string; tagline: string; requestDetails: string };
   expose?: {
     heading?: string;
@@ -279,6 +310,34 @@ interface PropertyDetailLayoutProps {
   section: "kaufen" | "mieten";
   backHref: string;
   dict?: PropertyDetailDict;
+  /** Dynamische Feld-Labels von onOffice (Sprache abhängig). */
+  fieldLabels?: Record<string, string>;
+  /** Übersetzte Singleselect/Multiselect-Werte: Feldname → { rawValue → displayLabel } */
+  permittedValues?: Record<string, Record<string, string>>;
+}
+
+/** Gibt das Label für ein onOffice-Feld zurück (dynamisch oder Fallback). */
+function getFieldLabel(
+  fieldLabels: Record<string, string> | undefined,
+  fieldName: string,
+  fallback: string
+): string {
+  return fieldLabels?.[fieldName] ?? fallback;
+}
+
+/** Gibt das übersetzte Label für einen Singleselect/Multiselect-Wert zurück. */
+function translateSelectValue(
+  permittedValues: Record<string, Record<string, string>> | undefined,
+  fieldName: string,
+  rawValue: string | null | undefined,
+  fallback: string | null
+): string | null {
+  if (rawValue == null || rawValue === "") return fallback;
+  const valueMap = permittedValues?.[fieldName];
+  if (!valueMap) return fallback ?? rawValue.trim();
+  const key = rawValue.trim();
+  const translated = valueMap[key] ?? valueMap[key.toLowerCase()];
+  return translated ?? fallback ?? rawValue.trim();
 }
 
 export function PropertyDetailLayout({
@@ -287,9 +346,26 @@ export function PropertyDetailLayout({
   section,
   backHref,
   dict,
+  fieldLabels,
+  permittedValues,
 }: PropertyDetailLayoutProps) {
   const h = (key: keyof NonNullable<PropertyDetailDict["hints"]>, fallback: string) =>
     dict?.hints?.[key] ?? fallback;
+  const lbl = (fieldName: string, fallback: string) =>
+    getFieldLabel(fieldLabels, fieldName, fallback);
+  const tsv = (fieldName: string, rawValue: string | null | undefined, fallback: string | null) =>
+    translateSelectValue(permittedValues, fieldName, rawValue, fallback);
+  const v = (key: "valueJa" | "valueNein" | "valueSofort" | "valueNachVereinbarung", fallback: string) =>
+    dict?.[key] ?? fallback;
+  const trVal = (val: string | null | undefined): string | null => {
+    if (val == null || val === "") return null;
+    const t = val.trim();
+    if (/^ja$/i.test(t)) return v("valueJa", "Ja");
+    if (/^nein$/i.test(t)) return v("valueNein", "Nein");
+    if (/^sofort$/i.test(t)) return v("valueSofort", "sofort");
+    if (/nach\s*vereinbarung|vereinbarung/i.test(t)) return v("valueNachVereinbarung", "Nach Vereinbarung");
+    return t || null;
+  };
   const isKaufen = section === "kaufen";
   const price = isKaufen ? p.kaufpreis : p.kaltmiete;
   const priceLabel = isKaufen ? "Kaufpreis" : "Kaltmiete";
@@ -317,8 +393,8 @@ export function PropertyDetailLayout({
   const priceDisplay = hasPrice
     ? formatCurrency(price, { decimals: 0 })
     : isKaufen
-      ? "Preis auf Anfrage"
-      : "Miete auf Anfrage";
+      ? (dict?.priceOnRequest ?? "Preis auf Anfrage")
+      : (dict?.rentOnRequest ?? "Miete auf Anfrage");
 
   const hasKaltmiete = !isKaufen && p.kaltmiete != null && p.kaltmiete > 0;
   const hasNebenkosten = !isKaufen && p.nebenkosten != null && p.nebenkosten > 0;
@@ -332,57 +408,73 @@ export function PropertyDetailLayout({
   if (p.ort) breadcrumbParts.push(p.ort);
   else if (p.plz) breadcrumbParts.push(p.plz);
 
+  const heroRooms = dict?.heroRooms ?? "Zimmer";
+  const heroBedrooms = dict?.heroBedrooms ?? "Schlafzimmer";
+  const heroBathrooms = dict?.heroBathrooms ?? "Badezimmer";
+  const heroTotalArea = dict?.heroTotalArea ?? "Gesamtfläche";
+  const heroLivingArea = dict?.heroLivingArea ?? "Wohnfläche";
+  const heroPlotArea = dict?.heroPlotArea ?? "Grundstücksfläche";
+  const areaApprox = dict?.areaApprox ?? "ca.";
+  const heroLoc = locale === "en" ? "en-GB" : locale === "tr" ? "tr-TR" : "de-DE";
+  const formatHeroArea = (val: number) => {
+    const fmt = new Intl.NumberFormat(heroLoc, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(val);
+    return `${areaApprox} ${fmt} m²`;
+  };
+
   const heroFacts: { icon: typeof DoorOpen; value: number; fmt: (v: number) => string }[] = [];
   if (p.anzahl_zimmer != null && p.anzahl_zimmer > 0) {
     heroFacts.push({
       icon: DoorOpen,
       value: p.anzahl_zimmer,
-      fmt: (v) => `${formatNumber(v)} Zimmer`,
+      fmt: (v) => `${formatNumber(v)} ${heroRooms}`,
     });
   }
   if (p.anzahl_schlafzimmer != null && p.anzahl_schlafzimmer > 0) {
     heroFacts.push({
       icon: BedDouble,
       value: p.anzahl_schlafzimmer,
-      fmt: (v) => `${formatNumber(v)} Schlafzimmer`,
+      fmt: (v) => `${formatNumber(v)} ${heroBedrooms}`,
     });
   }
   if (p.anzahl_badezimmer != null && p.anzahl_badezimmer > 0) {
     heroFacts.push({
       icon: Bath,
       value: p.anzahl_badezimmer,
-      fmt: (v) => `${formatNumber(v)} Badezimmer`,
+      fmt: (v) => `${formatNumber(v)} ${heroBathrooms}`,
     });
   }
   if (gesamtflaeche != null && gesamtflaeche > 0 && gesamtflaeche !== p.wohnflaeche) {
     heroFacts.push({
       icon: LayoutGrid,
       value: gesamtflaeche,
-      fmt: (v) => `${formatArea(v)} Gesamtfläche`,
+      fmt: (v) => `${formatHeroArea(v)} ${heroTotalArea}`,
     });
   }
   if (p.wohnflaeche != null && p.wohnflaeche > 0) {
     heroFacts.push({
       icon: LayoutGrid,
       value: p.wohnflaeche,
-      fmt: (v) => `${formatArea(v)} Wohnfläche`,
+      fmt: (v) => `${formatHeroArea(v)} ${heroLivingArea}`,
     });
   }
   if (p.grundstuecksflaeche != null && p.grundstuecksflaeche > 0) {
     heroFacts.push({
       icon: TreeDeciduous,
       value: p.grundstuecksflaeche,
-      fmt: (v) => `${formatArea(v)} Grundstücksfläche`,
+      fmt: (v) => `${formatHeroArea(v)} ${heroPlotArea}`,
     });
   }
 
+  const terrassenDisplay = formatBalkonTerrassen(p.terrassen) ?? formatBalkonTerrassen(p.anzahl_terrassen) ?? "Nein";
+  const balkonDisplay = formatBalkonTerrassen(p.balkon) ?? formatBalkonTerrassen(p.anzahl_balkone) ?? "Nein";
+
   const infrastrukturRows = [
-    { key: "distanz_kindergarten", label: "Dist. Kindergarten", value: formatDistance(p.distanz_kindergarten) },
-    { key: "distanz_grundschule", label: "Dist. Grundschule", value: formatDistance(p.distanz_grundschule) },
-    { key: "distanz_realschule", label: "Dist. Realschule", value: formatDistance(p.distanz_realschule) },
-    { key: "distanz_gymnasium", label: "Dist. Gymnasium", value: formatDistance(p.distanz_gymnasium) },
-    { key: "distanz_autobahn", label: "Dist. Autobahn", value: formatDistance(p.distanz_autobahn) },
-    { key: "distanz_zentrum", label: "Dist. Zentrum", value: formatDistance(p.distanz_zentrum) },
+    { key: "distanz_kindergarten", label: lbl("distanz_kindergarten", "Dist. Kindergarten"), value: formatDistance(p.distanz_kindergarten) },
+    { key: "distanz_grundschule", label: lbl("distanz_grundschule", "Dist. Grundschule"), value: formatDistance(p.distanz_grundschule) },
+    { key: "distanz_realschule", label: lbl("distanz_realschule", "Dist. Realschule"), value: formatDistance(p.distanz_realschule) },
+    { key: "distanz_gymnasium", label: lbl("distanz_gymnasium", "Dist. Gymnasium"), value: formatDistance(p.distanz_gymnasium) },
+    { key: "distanz_autobahn", label: lbl("distanz_autobahn", "Dist. Autobahn"), value: formatDistance(p.distanz_autobahn) },
+    { key: "distanz_zentrum", label: lbl("distanz_zentrum", "Dist. Zentrum"), value: formatDistance(p.distanz_zentrum) },
   ].filter((row) => row.value != null);
 
   return (
@@ -393,7 +485,7 @@ export function PropertyDetailLayout({
           className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
         >
           <ArrowLeft className="h-4 w-4" />
-          Zurück zur Übersicht
+          {dict?.backToOverview ?? "← Zurück zur Übersicht"}
         </Link>
 
         {/* Bildergalerie (über dem Hero) */}
@@ -432,7 +524,7 @@ export function PropertyDetailLayout({
             )}
 
             <h1 className="font-sans text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl lg:text-4xl">
-              {p.titel || "Ohne Titel"}
+              {p.titel || (dict?.noTitle ?? "Ohne Titel")}
             </h1>
 
             {isKaufen ? (
@@ -442,10 +534,10 @@ export function PropertyDetailLayout({
             ) : (
               <div className="mt-4 space-y-1">
                 <p className="text-xl font-semibold text-zinc-800">
-                  Kaltmiete {hasKaltmiete ? formatCurrency(p.kaltmiete!, { decimals: 0 }) : "auf Anfrage"}
+                  {dict?.coldRent ?? "Kaltmiete"} {hasKaltmiete ? formatCurrency(p.kaltmiete!, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                 </p>
                 <p className="text-base font-medium text-zinc-700">
-                  Nebenkosten {hasNebenkosten ? formatCurrency(p.nebenkosten!, { decimals: 0 }) : "auf Anfrage"}
+                  {dict?.ancillaryCosts ?? "Nebenkosten"} {hasNebenkosten ? formatCurrency(p.nebenkosten!, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                 </p>
               </div>
             )}
@@ -464,7 +556,7 @@ export function PropertyDetailLayout({
           <aside className="lg:sticky lg:top-24">
             <PropertyContactWidget
               propertyTitle={p.titel || undefined}
-              subjectPrefix={isKaufen ? "Kaufanfrage" : "Mietanfrage"}
+              subjectPrefix={isKaufen ? (dict?.inquiryBuy ?? "Kaufanfrage") : (dict?.inquiryRent ?? "Mietanfrage")}
               dict={dict?.contact}
             />
           </aside>
@@ -475,7 +567,7 @@ export function PropertyDetailLayout({
         {p.objektbeschreibung?.trim() && (
           <section className="mx-auto mt-12 w-full max-w-3xl">
             <h2 className="mb-4 font-sans text-xl font-semibold text-zinc-900">
-              Beschreibung
+              {dict?.headingDescription ?? "Beschreibung"}
             </h2>
             <div className="whitespace-pre-line text-zinc-600 leading-relaxed [&>p]:mb-4">
               {p.objektbeschreibung.trim()}
@@ -488,37 +580,37 @@ export function PropertyDetailLayout({
         {/* Sektion: Objektdetails */}
         <section className="w-full max-w-3xl">
           <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
-            Objektdetails
+            {dict?.headingObjectDetails ?? "Objektdetails"}
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
-              <DataRow label="Objektnummer" value={p.objektnr_extern || objectNumber} />
-              <DataRow label="Objektart" value={capitalizeObjektart(p.objektart)} />
-              <DataRow label="Ort" value={p.ort?.trim() || null} />
+              <DataRow label={lbl("objektnr_extern", "Objektnummer")} value={p.objektnr_extern || objectNumber} />
+              <DataRow label={lbl("objektart", "Objektart")} value={tsv("objektart", p.objektart, null) ?? capitalizeObjektart(p.objektart)} />
+              <DataRow label={lbl("ort", "Ort")} value={p.ort?.trim() || null} />
               <DataRow
-                label="Zimmer"
+                label={lbl("anzahl_zimmer", "Zimmer")}
                 value={p.anzahl_zimmer != null ? formatNumber(p.anzahl_zimmer) : null}
               />
               <DataRow
-                label="Schlafzimmer"
+                label={lbl("anzahl_schlafzimmer", "Schlafzimmer")}
                 value={p.anzahl_schlafzimmer != null ? formatNumber(p.anzahl_schlafzimmer) : null}
               />
               <DataRow
-                label="Badezimmer"
+                label={lbl("anzahl_badezimmer", "Badezimmer")}
                 value={p.anzahl_badezimmer != null ? formatNumber(p.anzahl_badezimmer) : null}
               />
-              <DataRow label="Verfügbar ab" value={p.verfuegbar_ab?.trim() || null} />
-              <DataRow label="Terrassen" value={formatBalkonTerrassen(p.terrassen) ?? formatBalkonTerrassen(p.anzahl_terrassen) ?? "Nein"} />
-              <DataRow label="Balkon" value={formatBalkonTerrassen(p.balkon) ?? formatBalkonTerrassen(p.anzahl_balkone) ?? "Nein"} />
-              <DataRow label="Barrierefrei" value={formatTinyIntJaNein(p.barrierefrei)} />
+              <DataRow label={lbl("verfuegbar_ab", "Verfügbar ab")} value={trVal(tsv("verfuegbar_ab", p.verfuegbar_ab, null) ?? p.verfuegbar_ab) ?? (p.verfuegbar_ab?.trim() || null)} />
+              <DataRow label={lbl("anzahl_terrassen", "Terrassen")} value={trVal(terrassenDisplay) ?? terrassenDisplay} />
+              <DataRow label={lbl("anzahl_balkone", "Balkon")} value={trVal(balkonDisplay) ?? balkonDisplay} />
+              <DataRow label={lbl("barrierefrei", "Barrierefrei")} value={trVal(formatTinyIntJaNein(p.barrierefrei)) ?? formatTinyIntJaNein(p.barrierefrei)} />
               {(p.denkmalschutzobjekt === 1 || p.denkmalschutzobjekt === true) && (
-                <DataRow label="Denkmalschutz" value="Ja" />
+                <DataRow label={lbl("denkmalgeschuetzt", "Denkmalschutz")} value={v("valueJa", "Ja")} />
               )}
               {!isKaufen && (
-                <DataRow label="Haustiere" value={formatHaustiere(p.haustiere)} />
+                <DataRow label={lbl("haustiere", "Haustiere")} value={trVal(tsv("haustiere", p.haustiere, null) ?? formatHaustiere(p.haustiere)) ?? tsv("haustiere", p.haustiere, null) ?? formatHaustiere(p.haustiere)} />
               )}
               {((p.stp_anzahl ?? 0) > 0 || (p.stellplatzkaufpreis ?? 0) > 0 || (Array.isArray(p.stellplatzart) && p.stellplatzart.length > 0)) && (
-                <DataRow label="Stellplätze">
+                <DataRow label={lbl("stp_anzahl", "Stellplätze")}>
                   <div className="flex flex-col items-end gap-1 text-right">
                     {Array.isArray(p.stellplatzart) && p.stellplatzart.length > 0 ? (
                       <span className="max-w-full break-words text-right text-sm font-medium text-zinc-900">
@@ -531,12 +623,12 @@ export function PropertyDetailLayout({
                         </span>
                         {isKaufen && (p.stellplatzkaufpreis ?? 0) > 0 && (
                           <span className="text-xs text-zinc-500">
-                            Kaufpreis: {formatCurrency(p.stellplatzkaufpreis!)}
+                            Kaufpreis: {formatCurrency(p.stellplatzkaufpreis!, { decimals: 0, locale })}
                           </span>
                         )}
                         {!isKaufen && (p.stellplatzmiete ?? 0) > 0 && (
                           <span className="text-xs text-zinc-500">
-                            Miete: {formatCurrency(p.stellplatzmiete!)}/Monat
+                            Miete: {formatCurrency(p.stellplatzmiete!, { decimals: 0, locale })}/Monat
                           </span>
                         )}
                       </>
@@ -546,33 +638,33 @@ export function PropertyDetailLayout({
               )}
               {!isKaufen && (
                 <>
-                  <DataRow label="Gewerbliche Nutzung">
+                  <DataRow label={lbl("gewerbliche_nutzung", "Gewerbliche Nutzung")}>
                     {p.gewerbliche_nutzung === true || p.gewerbliche_nutzung === 1 ? (
                       <span className="inline-flex items-center gap-1.5 text-right text-sm font-medium text-green-700">
                         <Check className="h-5 w-5 shrink-0 text-green-600" aria-hidden />
-                        Ja
+                        {v("valueJa", "Ja")}
                       </span>
                     ) : p.gewerbliche_nutzung === false || p.gewerbliche_nutzung === 0 ? (
-                      <span className="text-right text-sm font-medium text-zinc-900">Nein</span>
+                      <span className="text-right text-sm font-medium text-zinc-900">{v("valueNein", "Nein")}</span>
                     ) : (
-                      <span className="text-right text-sm font-medium text-zinc-500">{formatTinyIntJaNein(p.gewerbliche_nutzung)}</span>
+                      <span className="text-right text-sm font-medium text-zinc-500">{trVal(formatTinyIntJaNein(p.gewerbliche_nutzung)) ?? formatTinyIntJaNein(p.gewerbliche_nutzung)}</span>
                     )}
                   </DataRow>
-                  <DataRow label="Aktuell vermietet" value={formatBoolean(p.vermietet) ?? "—"} />
+                  <DataRow label={lbl("vermietet", "Aktuell vermietet")} value={trVal(formatBoolean(p.vermietet) ?? undefined) ?? formatBoolean(p.vermietet) ?? "—"} />
                 </>
               )}
             </div>
             <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
               <DataRow
-                label="Gesamtfläche"
+                label={lbl("gesamtflaeche", "Gesamtfläche")}
                 value={gesamtflaeche != null ? formatArea(gesamtflaeche) : null}
               />
               <DataRow
-                label="Wohnfläche"
+                label={lbl("wohnflaeche", "Wohnfläche")}
                 value={p.wohnflaeche != null ? formatArea(p.wohnflaeche) : null}
               />
               <DataRow
-                label="Grundstücksfläche"
+                label={lbl("grundstuecksflaeche", "Grundstücksfläche")}
                 value={
                   p.grundstuecksflaeche != null
                     ? formatArea(p.grundstuecksflaeche)
@@ -580,30 +672,30 @@ export function PropertyDetailLayout({
                 }
               />
               <DataRow
-                label="Nutzfläche"
+                label={lbl("nutzflaeche", "Nutzfläche")}
                 value={p.nutzflaeche != null ? formatArea(p.nutzflaeche) : null}
               />
               {isKaufen && (
                 <DataRow
-                  label="Kaufpreis"
-                  value={p.kaufpreis != null && p.kaufpreis > 0 ? formatCurrency(p.kaufpreis, { decimals: 0 }) : "auf Anfrage"}
+                  label={lbl("kaufpreis", "Kaufpreis")}
+                  value={p.kaufpreis != null && p.kaufpreis > 0 ? formatCurrency(p.kaufpreis, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                 />
               )}
               {!isKaufen && (
                 <>
                   <DataRow
-                    label="Kaltmiete"
-                    value={p.kaltmiete != null && p.kaltmiete > 0 ? formatCurrency(p.kaltmiete, { decimals: 0 }) : "auf Anfrage"}
+                    label={lbl("kaltmiete", "Kaltmiete")}
+                    value={p.kaltmiete != null && p.kaltmiete > 0 ? formatCurrency(p.kaltmiete, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                   />
                   <DataRow
-                    label="Nebenkosten"
-                    value={p.nebenkosten != null && p.nebenkosten > 0 ? formatCurrency(p.nebenkosten, { decimals: 0 }) : "auf Anfrage"}
+                    label={lbl("nebenkosten", "Nebenkosten")}
+                    value={p.nebenkosten != null && p.nebenkosten > 0 ? formatCurrency(p.nebenkosten, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                   />
                 </>
               )}
               <DataRow
-                label="Provision"
-                value={isKaufen ? formatCourtage(p.aussen_courtage) : "2 Nettokaltmieten zzgl. MwSt."}
+                label={lbl("aussen_courtage", "Provision")}
+                value={isKaufen ? formatCourtage(p.aussen_courtage, locale) : "2 Nettokaltmieten zzgl. MwSt."}
               />
             </div>
           </div>
@@ -613,16 +705,16 @@ export function PropertyDetailLayout({
         {(p.zustand || p.energyClass || p.energieausweistyp || p.energietraeger || p.baujahr != null || energieKennwert != null || formatDateDE(p.energieausweis_gueltig_bis)) && (
           <section className="w-full max-w-3xl">
             <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
-              Zustand & Energie
+              {dict?.headingConditionEnergy ?? "Zustand & Energie"}
             </h2>
             <div className="grid gap-6 sm:grid-cols-2">
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
-                <DataRow label="Zustand" value={p.zustand?.trim() || null} />
+                <DataRow label={lbl("zustand", "Zustand")} value={tsv("zustand", p.zustand, null) ?? p.zustand?.trim() ?? null} />
                 <DataRow
-                  label="Baujahr"
+                  label={lbl("baujahr", "Baujahr")}
                   value={p.baujahr != null ? formatYear(p.baujahr) : null}
                 />
-                <DataRow label="Energieeffizienzklasse">
+                <DataRow label={lbl("energyClass", "Energieeffizienzklasse")}>
                   {p.energyClass ? (
                     <span className="flex items-center gap-2">
                       <span className="inline-flex items-center rounded bg-green-500/20 px-2 py-0.5 text-sm font-medium text-green-800">
@@ -635,27 +727,33 @@ export function PropertyDetailLayout({
                   )}
                 </DataRow>
                 <DataRow
-                  label="Energieausweis vorhanden"
+                  label={lbl("energieausweistyp", "Energieausweis vorhanden")}
                   value={
                     p.energyClass ?? p.energieausweistyp ?? energieKennwert != null
-                      ? "Ja"
+                      ? v("valueJa", "Ja")
                       : null
                   }
                 />
               </div>
               <div className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/80 bg-white px-3 py-1 sm:px-4">
-                <DataRow label="Art des Energieausweises" value={formatEnergieausweistyp(p.energieausweistyp)} />
+                <DataRow label={lbl("energieausweistyp", "Art des Energieausweises")} value={tsv("energieausweistyp", p.energieausweistyp, null) ?? formatEnergieausweistyp(p.energieausweistyp)} />
                 <DataRow
-                  label={energyValueFromVerbrauch ? "Energieverbrauchskennwert" : finalEnergyValueNum != null ? "Endenergiebedarf" : "Energiekennwert"}
+                  label={
+                    energyValueFromVerbrauch
+                      ? lbl("energieverbrauchskennwert", "Energieverbrauchskennwert")
+                      : finalEnergyValueNum != null
+                        ? lbl("endenergiebedarf", "Endenergiebedarf")
+                        : lbl("energieverbrauchskennwert", "Energiekennwert")
+                  }
                   value={displayEnergyValue}
                 />
                 <DataRow
-                  label="Energieträger"
-                  value={formatEnergietraeger(p.energietraeger ?? p.befeuerung)}
+                  label={lbl("energietraeger", "Energieträger")}
+                  value={tsv("energietraeger", p.energietraeger ?? p.befeuerung, null) ?? formatEnergietraeger(p.energietraeger ?? p.befeuerung)}
                 />
                 {formatDateDE(p.energieausweis_gueltig_bis) != null && (
                   <DataRow
-                    label="Energieausweis gültig bis"
+                    label={lbl("energieausweis_gueltig_bis", "Energieausweis gültig bis")}
                     value={formatDateDE(p.energieausweis_gueltig_bis)}
                   />
                 )}
@@ -676,7 +774,7 @@ export function PropertyDetailLayout({
           {p.ausstatt_beschr?.trim() && (
             <div className="py-3 first:pt-0">
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
-                Ausstattung
+                {dict?.headingEquipment ?? "Ausstattung"}
               </h2>
               <div
                 className="prose prose-sm max-w-none text-zinc-600 prose-p:mb-1.5 prose-p:last:mb-0 prose-ul:my-2 prose-li:my-0"
@@ -687,7 +785,7 @@ export function PropertyDetailLayout({
           {p.lage?.trim() && (
             <div className="py-3">
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
-                Lage
+                {dict?.headingLocation ?? "Lage"}
               </h2>
               <div
                 className="prose prose-sm max-w-none text-zinc-600 prose-p:mb-1.5 prose-p:last:mb-0 prose-ul:my-2 prose-li:my-0"
@@ -698,7 +796,7 @@ export function PropertyDetailLayout({
           {p.sonstige_angaben?.trim() && (
             <div className="py-3 last:pb-0">
               <h2 className="mb-2 font-sans text-lg font-semibold text-zinc-900">
-                Sonstiges
+                {dict?.headingSonstiges ?? "Sonstiges"}
               </h2>
               <div
                 className="prose prose-sm max-w-none text-zinc-600 prose-p:mb-1.5 prose-p:last:mb-0 prose-ul:my-2 prose-li:my-0"
@@ -712,7 +810,7 @@ export function PropertyDetailLayout({
         {/* Lagekarte */}
         <section className="w-full max-w-3xl">
           <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
-            Lage
+            {dict?.headingLocation ?? "Lage"}
           </h2>
           <div>
           <PropertyMap
@@ -729,7 +827,7 @@ export function PropertyDetailLayout({
         {infrastrukturRows.length > 0 && (
           <section className="w-full max-w-3xl">
             <h2 className="mb-5 font-sans text-xl font-semibold text-zinc-900">
-              Infrastruktur
+              {dict?.headingInfrastructure ?? "Infrastruktur"}
             </h2>
             <div className="overflow-hidden rounded-lg border border-zinc-200/80 bg-white">
               {infrastrukturRows.map((row, index) => (

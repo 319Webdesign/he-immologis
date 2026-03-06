@@ -6,21 +6,29 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BedDouble, Bath, LayoutGrid, MapPin, DoorOpen } from "lucide-react";
 import type { Property } from "@/lib/onoffice";
+import { formatPrice } from "@/lib/format";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
+
+export type KaufenCardLabels = {
+  forSale?: string;
+  noTitle?: string;
+  rooms?: string;
+  bedrooms?: string;
+  bathrooms?: string;
+  livingArea?: string;
+  plot?: string;
+  coldRent?: string;
+};
 
 interface PropertyCardProps {
   property: Property;
   /** Zum Testen: Vorschau-Bild überschreiben (z.B. zweite Karte) */
   previewImageOverride?: string;
-}
-
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(price);
+  /** Fallback-Übersetzungen für Singleselect-Werte (Feldname → { rawValue → label }) */
+  permittedValues?: Record<string, Record<string, string>>;
+  /** Übersetzte Label für Zimmer, Badezimmer, Grundstück etc. */
+  cardLabels?: KaufenCardLabels | null;
 }
 
 function isHaus(objektart?: string | null): boolean {
@@ -34,7 +42,22 @@ function capitalizeObjektart(s?: string | null): string {
   return t ? t.charAt(0).toUpperCase() + t.slice(1) : s;
 }
 
-export default function PropertyCard({ property, previewImageOverride }: PropertyCardProps) {
+function translateObjektart(
+  objektart: string | null | undefined,
+  permittedValues?: Record<string, Record<string, string>>
+): string {
+  if (!objektart?.trim()) return "";
+  const raw = objektart.trim();
+  const translated = permittedValues?.objektart?.[raw] ?? permittedValues?.objektart?.[raw.toLowerCase()];
+  return translated ?? capitalizeObjektart(objektart);
+}
+
+export default function PropertyCard({
+  property,
+  previewImageOverride,
+  permittedValues,
+  cardLabels,
+}: PropertyCardProps) {
   const pathname = usePathname();
   const lang = (pathname?.split("/")[1] ?? "de") as string;
   const cardRef = useRef<HTMLAnchorElement>(null);
@@ -59,8 +82,16 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
 
   const price = property.kaufpreis ?? property.kaltmiete;
   const priceLabel =
-    property.kaufpreis != null ? "" : property.kaltmiete != null ? "Kaltmiete " : "";
+    property.kaufpreis != null ? "" : property.kaltmiete != null ? coldRentLabel : "";
   const showGrundstueck = isHaus(property.objektart) && (property.grundstuecksflaeche ?? 0) > 0;
+  const l = cardLabels;
+  const coldRentLabel = l?.coldRent ?? "Kaltmiete ";
+  const forSale = l?.forSale ?? "Zum Verkauf";
+  const noTitle = l?.noTitle ?? "Ohne Titel";
+  const roomsLabel = l?.rooms ?? "Zimmer";
+  const bedroomsLabel = l?.bedrooms ?? "Schlafzimmer";
+  const bathroomsLabel = l?.bathrooms ?? "Badezimmer";
+  const plotLabel = l?.plot ?? "Grundstück";
 
   return (
     <Link
@@ -72,7 +103,7 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
         <Image
           src={imageSrc}
-          alt={`Haus kaufen Weinheim - ${property.objektart?.trim() || "Immobilie"} in ${property.ort?.trim() || "Bergstraße"} - HE-immologis`}
+          alt={`Haus kaufen Weinheim - ${translateObjektart(property.objektart, permittedValues) || "Immobilie"} in ${property.ort?.trim() || "Bergstraße"} - HE-immologis`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -82,35 +113,35 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
           style={{ backgroundColor: "#BCB88A" }}
           aria-hidden
         >
-          Zum Verkauf
+          {forSale}
         </span>
       </div>
       <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#BCB88A] max-sm:group-data-[incenter=true]:bg-[#BCB88A]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
-          {property.titel || "Ohne Titel"}
+          {property.titel || noTitle}
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 sm:group-hover:text-white/90 max-sm:group-data-[incenter=true]:text-white/90">
           {property.objektart ? (
             <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 sm:group-hover:bg-white/20 sm:group-hover:text-white max-sm:group-data-[incenter=true]:bg-white/20 max-sm:group-data-[incenter=true]:text-white">
-              {capitalizeObjektart(property.objektart)}
+              {translateObjektart(property.objektart, permittedValues)}
             </span>
           ) : null}
           {property.anzahl_zimmer != null && property.anzahl_zimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <DoorOpen className="h-4 w-4 shrink-0" />
-              {property.anzahl_zimmer} Zimmer
+              {property.anzahl_zimmer} {roomsLabel}
             </span>
           )}
           {property.anzahl_schlafzimmer != null && property.anzahl_schlafzimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <BedDouble className="h-4 w-4 shrink-0" />
-              {property.anzahl_schlafzimmer} Schlafzimmer
+              {property.anzahl_schlafzimmer} {bedroomsLabel}
             </span>
           )}
           {property.anzahl_badezimmer != null && property.anzahl_badezimmer > 0 && (
             <span className="flex items-center gap-1.5">
               <Bath className="h-4 w-4 shrink-0" />
-              {property.anzahl_badezimmer} Badezimmer
+              {property.anzahl_badezimmer} {bathroomsLabel}
             </span>
           )}
           {(() => {
@@ -126,7 +157,7 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
           })()}
           {showGrundstueck && (
             <span className="flex items-center gap-1.5">
-              {property.grundstuecksflaeche} m² Grundstück
+              {property.grundstuecksflaeche} m² {plotLabel}
             </span>
           )}
         </div>
@@ -140,7 +171,7 @@ export default function PropertyCard({ property, previewImageOverride }: Propert
               </span>
               <p className="text-lg font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
                 {priceLabel}
-                {formatPrice(price)}
+                {formatPrice(price, lang)}
               </p>
             </div>
           </>
