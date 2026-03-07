@@ -34,12 +34,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 308);
   }
 
-  // Statische Dateien und Next-internes nicht anfassen
+  // Statische Dateien, SEO-Dateien und Next-internes nicht anfassen
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/img") ||
     pathname.startsWith("/Zertifikate") ||
     pathname.startsWith("/downloads") ||
+    pathname === "/sitemap.xml" ||
+    pathname === "/robots.txt" ||
     pathname.includes(".") // favicon, etc.
   ) {
     return NextResponse.next();
@@ -64,5 +66,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|img|.*\\..*).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|img|robots\\.txt|sitemap\\.xml|.*\\..*).*)",
+  ],
 };
