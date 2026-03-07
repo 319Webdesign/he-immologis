@@ -20,8 +20,19 @@ function getPreferredLocale(acceptLanguage: string | null): Locale {
   return "de";
 }
 
+const CANONICAL_HOST = "www.he-immologis.de";
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get("host") ?? request.nextUrl.host;
+
+  // Non-www auf www umleiten (SEO: eine kanonische Domain)
+  if (host === "he-immologis.de") {
+    const url = request.nextUrl.clone();
+    url.protocol = "https:";
+    url.host = CANONICAL_HOST;
+    return NextResponse.redirect(url, 308);
+  }
 
   // Statische Dateien und Next-internes nicht anfassen
   if (
@@ -48,7 +59,8 @@ export function middleware(request: NextRequest) {
   const locale = getPreferredLocale(request.headers.get("accept-language"));
   const url = request.nextUrl.clone();
   url.pathname = pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
-  return NextResponse.redirect(url);
+  // 308 Permanent Redirect – SEO-kritisch: 307 würde von Suchmaschinen nicht indexiert
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {

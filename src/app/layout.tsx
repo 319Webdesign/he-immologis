@@ -15,7 +15,10 @@ const geistSans = Geist({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.he-immologis.de";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: { url: "/img/Logo.svg", type: "image/svg+xml" },
     apple: "/apple-touch-icon.png",
