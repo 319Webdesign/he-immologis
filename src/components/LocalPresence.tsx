@@ -46,20 +46,31 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
 
   return (
     <section
-      className="w-full max-w-full overflow-x-hidden bg-white pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-12"
+      className="w-full max-w-full overflow-x-hidden bg-white pt-10 pb-8 sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-12"
       aria-labelledby="kompetenz-heading"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Titel & Untertitel */}
-        <header className="mx-auto max-w-3xl text-center">
-          <h2
-            id="kompetenz-heading"
-            className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
-            dangerouslySetInnerHTML={{ __html: heading }}
-          />
-          <p className="mt-4 text-lg text-slate-600">
-            {subline}
-          </p>
+        {/* Titel, Holger-Porträt (rund) & Untertitel – Text exakt mittig, Bild rechts */}
+        <header className="relative mx-auto w-full max-w-4xl">
+          <div className="w-full text-center sm:pr-[7rem] lg:pr-[10rem]">
+            <h2
+              id="kompetenz-heading"
+              className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+              dangerouslySetInnerHTML={{ __html: heading }}
+            />
+            <p className="mt-4 text-lg text-slate-600">
+              {subline}
+            </p>
+          </div>
+          <div className="mt-6 flex justify-center sm:absolute sm:right-0 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2">
+            <img
+              src="/img/holger.jpeg"
+              alt="Holger Eberhard – Ihr Ansprechpartner für Immobilien in Weinheim und an der Bergstraße"
+              className="h-28 w-28 rounded-full object-cover ring-2 ring-slate-200 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
+              width={160}
+              height={160}
+            />
+          </div>
         </header>
 
         {/* Kompetenz-Karten Grid: auf Handy zentriert, ab sm Grid */}
