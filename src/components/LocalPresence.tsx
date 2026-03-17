@@ -66,8 +66,9 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
           </div>
         </header>
 
-        {/* Kompetenz-Karten Grid: auf Handy zentriert, ab sm Grid */}
-        <div className="mt-12 flex flex-col items-center gap-6 sm:mt-16 sm:grid sm:grid-cols-2 sm:items-stretch lg:grid-cols-4 lg:gap-8">
+        {/* Karten + Region in einem Grid, damit Region dieselbe Breite wie die Karten hat */}
+        <div className="mt-12 flex flex-col items-center gap-6 sm:mt-16 sm:grid sm:grid-cols-2 sm:items-stretch sm:gap-6 lg:grid-cols-4 lg:gap-8">
+          {/* Kompetenz-Karten */}
           {cards.map((card, index) => {
             const Icon = ICONS[index];
             const { title, description, smart } = card;
@@ -76,7 +77,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               <article
                 key={title}
                 className={`flex w-full max-w-sm flex-col rounded-xl border border-slate-200 p-6 transition-shadow hover:shadow-md sm:max-w-none lg:p-8 ${
-                  isLogisticsCard ? "lg:min-w-[20rem]" : ""
+                  isLogisticsCard ? "pr-3 lg:pr-4" : ""
                 } ${isLogisticsCard ? "" : "bg-slate-50/50"}`}
                 style={isLogisticsCard ? { backgroundColor: "#AEADA8" } : undefined}
               >
@@ -103,25 +104,24 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               </article>
             );
           })}
-        </div>
-
-        {/* Unsere Region */}
-        <div
-          className="mt-16 rounded-2xl px-4 py-10 sm:mt-20 sm:px-5 sm:py-12 lg:px-6 lg:py-14"
-          style={{ backgroundColor: "#8AAFA3" }}
-        >
-          <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            {regionTitle}
-          </h3>
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {CITIES.map((city) => (
-              <span
-                key={city}
-                className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
-              >
-                {city}
-              </span>
-            ))}
+          {/* Unsere Region – spannt alle Spalten, gleiche Breite wie Kartenzeile */}
+          <div
+            className="w-full rounded-2xl px-4 py-10 sm:col-span-2 sm:px-5 sm:py-12 lg:col-span-4 lg:px-6 lg:py-14"
+            style={{ backgroundColor: "#8AAFA3" }}
+          >
+            <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              {regionTitle}
+            </h3>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {CITIES.map((city) => (
+                <span
+                  key={city}
+                  className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
+                >
+                  {city}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
