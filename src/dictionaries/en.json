@@ -4,7 +4,7 @@
       "line1": "Something new can finally begin.",
       "line2": "Sell. Find.",
       "line2Next": "Make it possible.",
-      "subline": "Weinheim. Bergstraße.",
+      "subline": "Weinheim. Bergstraße. Rhine-Neckar District",
       "ctaBuy": "Buy Property",
       "ctaRent": "Rent Property",
       "ctaSearch": "Search Property"
@@ -58,7 +58,7 @@
   "footer": {
     "companyLine1": "HE immologis UG",
     "companyLine2": "(haftungsbeschränkt) i. Gr.",
-    "partnerText": "Your partner for <br> real estate & logistics consulting in <br> Baden-Württemberg & Hessen.",
+    "partnerText": "Your partner for <br> real estate & logistics consulting<br> in the Rhein-Neckar district.",
     "contact": "Contact",
     "managingDirector": "Managing Director",
     "openingHours": "Opening Hours",
@@ -68,17 +68,22 @@
     "openingTime2": "9:00 – 12:00",
     "courtInfo": "Mannheim Local Court, HRB 755995",
     "vatPlaceholder": "VAT ID [placeholder]",
+    "ourServices": "Our Services",
     "quickLinks": "Quick Links",
-    "sell": "Sell",
-    "buy": "Buy",
-    "rent": "Rent",
-    "search": "Search",
+    "sell": "Sell Property",
+    "buy": "Buy Property",
+    "rent": "Rent Property",
+    "search": "Search Properties",
     "tipGive": "Give a tip",
     "bannerAd": "Banner advertising",
     "displayAd": "Display advertising",
     "logistics": "Logistics Consulting",
     "service": "Service",
     "contactLink": "Contact",
+    "socialFacebook": "Facebook",
+    "socialWhatsApp": "WhatsApp",
+    "socialLinkedIn": "LinkedIn",
+    "socialEmail": "E-Mail",
     "bankDetails": "Bank Details",
     "legalLinksAria": "Legal links",
     "imprint": "Imprint",
@@ -95,7 +100,7 @@
     "subtitle": "Share QR barcode by email<br>– Recommend.",
     "buttonLabel": "Share by email",
     "mailSubject": "Recommendation: Real Estate – HE immologis in Weinheim / Holger Eberhard",
-    "mailBody": "Hello,\n\nI would like to point you to Holger Eberhard and HE immologis UG (haftungsbeschränkt) i. Gr.\n\nFurther information can be found at: {{url}}\n\nFor any questions or requests, Holger Eberhard is personally available in Weinheim:\n+49 177 6361 394\neberhard@he-immologis.de\n\nIf anyone in the Weinheim region is looking for support with property matters, this could be a helpful contact.\n\nBest regards"
+    "mailBody": "Hello,\n\nI would like to point you to Holger Eberhard and HE immologis UG (haftungsbeschränkt) i. Gr.\n\nFurther information can be found at: {{url}}\n\nFor any questions or requests, Holger Eberhard is personally available in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nIf anyone in the Weinheim region is looking for support with property matters, this could be a helpful contact.\n\nBest regards"
   },
   "localPresence": {
     "heading": "Sell. Buy. Rent.<br> Services. Search.",
@@ -194,7 +199,7 @@
       },
       {
         "id": "02",
-        "headline": "Flexible ways to get in touch.",
+        "headline": "Communication",
         "tagline": "Your property. Reachable anytime.",
         "paragraphs": [
           "You can rely on me to act flexibly and reliably whenever we arrange appointments. Punctuality and availability are a matter of course for me.",

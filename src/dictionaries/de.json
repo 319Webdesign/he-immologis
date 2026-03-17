@@ -4,7 +4,7 @@
       "line1": "Neues kann endlich beginnen.",
       "line2": "Verkaufen. Finden.",
       "line2Next": "Möglich machen.",
-      "subline": "Weinheim. Bergstraße.",
+      "subline": "Weinheim. Bergstraße. Rhein-Neckar-Kreis",
       "ctaBuy": "Immobilie kaufen",
       "ctaRent": "Immobilie mieten",
       "ctaSearch": "Immobilie suchen"
@@ -58,7 +58,7 @@
   "footer": {
     "companyLine1": "HE immologis UG",
     "companyLine2": "(haftungsbeschränkt) i. Gr.",
-    "partnerText": "Ihr Partner für <br> Immobilien- & Logistikberatung in <br> Baden-Württemberg & Hessen.",
+    "partnerText": "Ihr Partner für <br> Immobilien- & Logistikberatung<br> im Rhein-Neckar-Kreis.",
     "contact": "Kontakt",
     "managingDirector": "Geschäftsführer",
     "openingHours": "Öffnungszeiten",
@@ -68,17 +68,22 @@
     "openingTime2": "9:00 Uhr – 12:00 Uhr",
     "courtInfo": "Amtsgericht Mannheim, HRB 755995",
     "vatPlaceholder": "USt.-Ident. [Platzhalter]",
+    "ourServices": "Unsere Leistungen",
     "quickLinks": "Quick Links",
-    "sell": "Verkaufen",
-    "buy": "Kaufen",
-    "rent": "Mieten",
-    "search": "Suchen",
+    "sell": "Immobilie Verkaufen",
+    "buy": "Immobilie Kaufen",
+    "rent": "Immobilie Mieten",
+    "search": "Immobilien Suchen",
     "tipGive": "Tipp geben",
     "bannerAd": "Banner werben",
     "displayAd": "Aufsteller werben",
     "logistics": "Logistikberatung",
     "service": "Service",
     "contactLink": "Kontakt",
+    "socialFacebook": "Facebook",
+    "socialWhatsApp": "WhatsApp",
+    "socialLinkedIn": "LinkedIn",
+    "socialEmail": "E-Mail",
     "bankDetails": "Bankverbindung",
     "legalLinksAria": "Rechtliche Links",
     "imprint": "Impressum",
@@ -95,7 +100,7 @@
     "subtitle": "QR-Barcode per E-Mail teilen<br>– Weiterempfehlen.",
     "buttonLabel": "Per E-Mail weiterempfehlen",
     "mailSubject": "Empfehlung: Immobilien – HE immologis in Weinheim / Holger Eberhard",
-    "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG (haftungsbeschränkt) i. Gr. hinweisen.\n\nWeitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 177 6361 394\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
+    "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG (haftungsbeschränkt) i. Gr. hinweisen.\n\nWeitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
   },
   "localPresence": {
     "heading": "Verkaufen. Kaufen. Mieten. Services. Suchen.",
@@ -194,7 +199,7 @@
       },
       {
         "id": "02",
-        "headline": "Flexible Kontaktmöglichkeiten.",
+        "headline": "Kommunikation",
         "tagline": "Ihre Immobilie. Jederzeit erreichbar.",
         "paragraphs": [
           "Sie können sich darauf verlassen, dass ich flexibel und zuverlässig agiere, wann immer wir Termine vereinbaren. Pünktlichkeit und Erreichbarkeit sind für mich selbstverständlich.",

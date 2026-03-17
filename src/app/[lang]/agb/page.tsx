@@ -131,7 +131,7 @@ export default async function AgbPage({
                 The withdrawal period is fourteen days from the day of conclusion of the contract.
               </p>
               <p className="mt-2">
-                To exercise the right of withdrawal, the client must inform HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, email info@he-immologis.de, mobile +49 177 6361 394, of the decision to withdraw from this contract by means of a clear statement (e.g. by letter or email). The client may use the model withdrawal form provided for this purpose, although its use is not mandatory.
+                To exercise the right of withdrawal, the client must inform HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, email info@he-immologis.de, mobile +49 177 636 1394, of the decision to withdraw from this contract by means of a clear statement (e.g. by letter or email). The client may use the model withdrawal form provided for this purpose, although its use is not mandatory.
               </p>
               <p className="mt-2">
                 To comply with the withdrawal period, it is sufficient for the client to send the notification of exercise of the right of withdrawal before the expiry of the withdrawal period.
@@ -376,7 +376,7 @@ export default async function AgbPage({
                 Müvekkil BGB § 13 kapsamında tüketici ise ve vekâlet sözleşmesi işyeri dışında veya uzaktan iletişim (e-posta, telefon, çevrimiçi form) ile akdedilmişse, müvekkilin yasal cayma hakkı vardır.
               </p>
               <p className="mt-2">
-                Cayma süresi sözleşme tarihinden itibaren 14 gündür. Cayma için bize (HE immologis UG, Ahornstr. 59, 69469 Weinheim, info@he-immologis.de, +49 177 6361 394) net bir bildirim (mektup veya e-posta) yeterlidir.
+                Cayma süresi sözleşme tarihinden itibaren 14 gündür. Cayma için bize (HE immologis UG, Ahornstr. 59, 69469 Weinheim, info@he-immologis.de, +49 177 636 1394) net bir bildirim (mektup veya e-posta) yeterlidir.
               </p>
               <p className="mt-2">
                 Tam cayma bildirimi ve örnek form için{" "}
@@ -400,7 +400,7 @@ export default async function AgbPage({
               <p className="mt-2">
                 Satış için alıcı provizyonu 3,57% KDV dahil. Kiralama için 2 net kira artı KDV. Detaylar ve tam metin için Almanca sürüme bakınız. İletişim:{" "}
                 <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">info@he-immologis.de</a>,{" "}
-                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">+49 177 6361 394</a>.{" "}
+                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">+49 177 636 1394</a>.{" "}
                 <Link href={`${prefix}/impressum`} className="text-[#F37A5A] underline hover:no-underline">Künye</Link>.
               </p>
             </section>
@@ -493,7 +493,7 @@ export default async function AgbPage({
               Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.
             </p>
             <p className="mt-2">
-              Um das Widerrufsrecht auszuüben, muss der Auftraggeber der HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, E-Mail info@he-immologis.de, Mobil +49 177 6361 394, mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über seinen Entschluss, diesen Vertrag zu widerrufen, informieren. Der Auftraggeber kann dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
+              Um das Widerrufsrecht auszuüben, muss der Auftraggeber der HE immologis UG (haftungsbeschränkt) i. Gr., Ahornstr. 59, 69469 Weinheim, E-Mail info@he-immologis.de, Mobil +49 177 636 1394, mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über seinen Entschluss, diesen Vertrag zu widerrufen, informieren. Der Auftraggeber kann dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
             </p>
             <p className="mt-2">
               Zur Wahrung der Widerrufsfrist reicht es aus, dass die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist abgesendet wird.

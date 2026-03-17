@@ -116,7 +116,7 @@ export default function DirektkontaktSection() {
         <p className="mt-4 text-center text-slate-600">
           {t.orCall}{" "}
           <a href="tel:+491776361394" className="font-medium underline hover:no-underline">
-            +49 177 6361 394
+            +49 177 636 1394
           </a>
         </p>
 

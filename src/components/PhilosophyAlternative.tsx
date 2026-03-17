@@ -56,16 +56,6 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
                     : "md:order-last md:text-right"
                 }`}
               >
-                {/* Dezente Hintergrund-Nummerierung – unter dem Text (niedriger z-index) */}
-                <span
-                  className={`pointer-events-none absolute -top-2 z-0 select-none font-sans text-[5rem] font-bold leading-none sm:text-[6rem] lg:text-[7rem] ${
-                    order === "image-first" ? "right-0" : "left-0"
-                  }`}
-                  style={{ color: "rgba(70, 130, 180, 0.25)" }}
-                  aria-hidden
-                >
-                  {id}
-                </span>
                 <h3
                   className="relative z-10 font-sans text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
                   style={{ color: "#F37A5A" }}

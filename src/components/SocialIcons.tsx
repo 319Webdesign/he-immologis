@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useId } from "react";
 import Icon from "react-simple-icons";
 
@@ -30,28 +29,89 @@ function WhatsAppIcon({ className, fill }: { className?: string; fill?: string }
   );
 }
 
+interface SocialLabels {
+  facebook: string;
+  whatsapp: string;
+  linkedin: string;
+  email: string;
+}
+
 interface SocialIconsProps {
   iconClassName?: string;
   iconSize?: number;
   linkClassName?: string;
   /** Icons in einer Farbe (z. B. schwarz) statt Markenfarben */
   monochrome?: boolean;
+  /** Vertikale Liste mit Trennlinien und Textlabels (z. B. im Footer) */
+  variant?: "inline" | "list";
+  labels?: SocialLabels;
 }
+
+const socialLinks = {
+  facebook: "https://www.facebook.com/people/HE-immologis-UG/61584411683113/",
+  instagram: "https://www.instagram.com/he_immologis_ug/",
+  whatsapp: "https://wa.me/491776361394",
+  linkedin: "https://www.linkedin.com/company/he-immologis/",
+  email: "mailto:eberhard@he-immologis.de",
+};
 
 export default function SocialIcons({
   iconClassName = "h-5 w-5",
   iconSize = 20,
   linkClassName = "transition-opacity hover:opacity-80",
   monochrome = false,
+  variant = "inline",
+  labels,
 }: SocialIconsProps) {
   const gradientId = useId();
   const fill = monochrome ? "currentColor" : undefined;
   const iconFill = monochrome ? "currentColor" : undefined;
+
+  const listItems = [
+    { key: "facebook", href: socialLinks.facebook, label: labels?.facebook ?? "Facebook", icon: "facebook" as const },
+    { key: "whatsapp", href: socialLinks.whatsapp, label: labels?.whatsapp ?? "WhatsApp", icon: "whatsapp" as const },
+    { key: "linkedin", href: socialLinks.linkedin, label: labels?.linkedin ?? "LinkedIn", icon: "linkedin" as const },
+    { key: "email", href: socialLinks.email, label: labels?.email ?? "E-Mail", icon: "email" as const },
+  ];
+
+  if (variant === "list") {
+    return (
+      <nav className="text-white" aria-label="Social Media">
+        <ul className="divide-y divide-slate-600">
+          {listItems.map(({ key, href, label, icon }) => (
+            <li key={key}>
+              <a
+                href={href}
+                target={icon === "email" ? undefined : "_blank"}
+                rel={icon === "email" ? undefined : "noopener noreferrer"}
+                className="flex items-center gap-3 py-3 text-sm text-white transition-colors hover:text-slate-200"
+                aria-label={label}
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center text-white">
+                  {icon === "facebook" && <Icon name="facebook" size={20} fill="currentColor" />}
+                  {icon === "whatsapp" && <WhatsAppIcon className="h-5 w-5" fill="currentColor" />}
+                  {icon === "linkedin" && <Icon name="linkedin" size={20} fill="currentColor" />}
+                  {icon === "email" && (
+                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  )}
+                </span>
+                <span>{label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+  }
+
   return (
     <div className={monochrome ? "text-black" : undefined}>
       <div className="flex items-center gap-4" aria-label="Social Media">
         <a
-          href="https://www.instagram.com/he_immologis_ug/"
+          href={socialLinks.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className={linkClassName}
@@ -66,7 +126,7 @@ export default function SocialIcons({
           )}
         </a>
         <a
-          href="https://www.facebook.com/people/HE-immologis-UG/61584411683113/"
+          href={socialLinks.facebook}
           target="_blank"
           rel="noopener noreferrer"
           className={linkClassName}
@@ -84,7 +144,7 @@ export default function SocialIcons({
           <WhatsAppIcon className={iconClassName} fill={fill} />
         </a>
         <a
-          href="https://www.linkedin.com/company/he-immologis/"
+          href={socialLinks.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className={linkClassName}

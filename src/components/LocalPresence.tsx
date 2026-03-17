@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Home, Search, Truck, Key } from "lucide-react";
 
 const ICONS = [Home, Search, Key, Truck] as const;
@@ -18,17 +17,17 @@ export type LocalPresenceDict = {
   cards: LocalPresenceCard[];
 };
 
-const CITIES: { name: string; image?: string; aspect?: "16:9" | "9:16" }[] = [
-  { name: "Weinheim", image: "/img/orte/weinheim.jpeg" },
-  { name: "Heppenheim", image: "/img/orte/heppenheim.jpeg" },
-  { name: "Bensheim", image: "/img/orte/bensheim.jpeg" },
-  { name: "Viernheim", image: "/img/orte/viernheim.jpeg" },
-  { name: "Lorsch", image: "/img/orte/lorsch.jpeg" },
-  { name: "Ladenburg", image: "/img/orte/ladenburg.jpeg", aspect: "9:16" },
-  { name: "Schriesheim", image: "/img/orte/Schriesheim.jpeg" },
-  { name: "Dossenheim", image: "/img/orte/dossenheim.jpeg" },
-  { name: "Lampertheim", image: "/img/orte/lampertheim.jpeg" },
-  { name: "Mannheim", image: "/img/orte/mannheim.jpeg" },
+const CITIES = [
+  "Weinheim",
+  "Heppenheim",
+  "Bensheim",
+  "Viernheim",
+  "Lorsch",
+  "Ladenburg",
+  "Schriesheim",
+  "Dossenheim",
+  "Lampertheim",
+  "Mannheim",
 ];
 
 interface LocalPresenceProps {
@@ -37,12 +36,6 @@ interface LocalPresenceProps {
 
 export default function LocalPresence({ dict }: LocalPresenceProps) {
   const { heading, subline, regionTitle, cards } = dict;
-  const [openCity, setOpenCity] = useState<string | null>(null);
-  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
-
-  const handleImageError = (cityName: string) => {
-    setFailedImages((prev) => new Set(prev).add(cityName));
-  };
 
   return (
     <section
@@ -66,7 +59,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
             <img
               src="/img/holger.jpeg"
               alt="Holger Eberhard – Ihr Ansprechpartner für Immobilien in Weinheim und an der Bergstraße"
-              className="h-28 w-28 rounded-full object-cover ring-2 ring-slate-200 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
+              className="h-28 w-28 rounded-xl object-cover ring-2 ring-slate-200 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
               width={160}
               height={160}
             />
@@ -78,16 +71,17 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
           {cards.map((card, index) => {
             const Icon = ICONS[index];
             const { title, description, smart } = card;
+            const isLogisticsCard = Boolean(smart);
             return (
               <article
                 key={title}
-                className={`flex w-full max-w-sm flex-col rounded-xl border border-slate-200 p-6 transition-shadow hover:shadow-md sm:max-w-none lg:p-8 ${smart ? "bg-slate-200/90 lg:min-w-[20rem]" : "bg-slate-50/50"}`}
+                className={`flex w-full max-w-sm flex-col rounded-xl border border-slate-200 p-6 transition-shadow hover:shadow-md sm:max-w-none lg:p-8 ${
+                  isLogisticsCard ? "lg:min-w-[20rem]" : ""
+                } ${isLogisticsCard ? "" : "bg-slate-50/50"}`}
+                style={isLogisticsCard ? { backgroundColor: "#AEADA8" } : undefined}
               >
-                <div
-                  className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
-                  style={{ backgroundColor: "#F37A5A" }}
-                >
-                  <Icon className="h-6 w-6" aria-hidden />
+                <div className="flex h-10 w-10 items-center justify-center">
+                  <Icon className="h-7 w-7 text-[#F37A5A]" aria-hidden />
                 </div>
                 <h3 className="mt-4 font-sans text-lg font-semibold text-slate-900">
                   {title}
@@ -114,7 +108,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
         {/* Unsere Region */}
         <div
           className="mt-16 rounded-2xl px-4 py-10 sm:mt-20 sm:px-5 sm:py-12 lg:px-6 lg:py-14"
-          style={{ backgroundColor: "#F37A5A" }}
+          style={{ backgroundColor: "#8AAFA3" }}
         >
           <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             {regionTitle}
@@ -122,41 +116,10 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {CITIES.map((city) => (
               <span
-                key={city.name}
-                role={city.image ? "button" : undefined}
-                tabIndex={city.image ? 0 : undefined}
-                onClick={() => city.image && setOpenCity((c) => (c === city.name ? null : city.name))}
-                onKeyDown={(e) => {
-                  if (city.image && (e.key === "Enter" || e.key === " ")) {
-                    e.preventDefault();
-                    setOpenCity((c) => (c === city.name ? null : city.name));
-                  }
-                }}
-                className="group/city relative shrink-0 cursor-pointer rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm touch-manipulation"
+                key={city}
+                className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
               >
-                {city.name}
-                {city.image && !failedImages.has(city.name) && (
-                  <span
-                    className={`pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 rounded-lg border-2 shadow-xl ${openCity === city.name ? "block" : "hidden group-hover/city:block"}`}
-                    style={{
-                      minWidth: city.aspect === "9:16" ? 180 : 320,
-                      borderColor: "#F37A5A",
-                    }}
-                  >
-                    <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#F37A5A" }} />
-                    <img
-                      src={city.image}
-                      alt={`Haus kaufen ${city.name} - Immobilien Bergstraße - HE-immologis`}
-                      className="rounded-md object-cover"
-                      style={
-                        city.aspect === "9:16"
-                          ? { width: 180, height: 320, minWidth: 180, minHeight: 320 }
-                          : { width: 320, height: 180, minWidth: 320, minHeight: 180 }
-                      }
-                      onError={() => handleImageError(city.name)}
-                    />
-                  </span>
-                )}
+                {city}
               </span>
             ))}
           </div>

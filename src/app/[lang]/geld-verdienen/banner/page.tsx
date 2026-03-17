@@ -429,7 +429,7 @@ export default async function BannerPage() {
             <p className="text-slate-600">
               {t.orCall}{" "}
               <a href="tel:+491776361394" className="font-medium hover:underline" style={{ color: BRAND_BLUE }}>
-                +49 177 6361 394
+                +49 177 636 1394
               </a>
             </p>
           </div>

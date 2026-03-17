@@ -379,7 +379,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                   href="tel:+491776361394"
                   className="font-medium text-slate-900 underline hover:no-underline"
                 >
-                  +49 177 6361 394
+                  +49 177 636 1394
                 </a>
               </p>
             </div>
