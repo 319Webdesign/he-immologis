@@ -66,7 +66,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
             <br />
             <span className="whitespace-nowrap">{dict.line2Next}</span>
           </h1>
-          <p className="mt-4 text-lg font-normal tracking-wide sm:text-xl md:mt-6" style={{ color: HERO_ACCENT }}>
+          <p className="mt-4 text-lg font-normal tracking-wide whitespace-pre-line sm:text-xl md:mt-6" style={{ color: HERO_ACCENT }}>
             {dict.subline}
           </p>
         </div>

@@ -43,9 +43,9 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
       aria-labelledby="kompetenz-heading"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Titel, Holger-Porträt (rund) & Untertitel – Text exakt mittig, Bild rechts */}
-        <header className="relative mx-auto w-full max-w-4xl">
-          <div className="w-full text-center sm:pr-[7rem] lg:pr-[10rem]">
+        {/* Titel, Holger-Porträt & Untertitel – ab lg gleiches Grid wie Karten, Bild bündig mit Logistikberatung */}
+        <header className="relative mx-auto w-full max-w-4xl lg:grid lg:max-w-full lg:grid-cols-4 lg:gap-8">
+          <div className="w-full text-center sm:pr-[7rem] lg:col-span-3 lg:pr-0">
             <h2
               id="kompetenz-heading"
               className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
@@ -55,7 +55,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               {subline}
             </p>
           </div>
-          <div className="mt-6 flex justify-center sm:absolute sm:right-0 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2">
+          <div className="mt-6 flex justify-center sm:absolute sm:right-0 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2 lg:relative lg:col-span-1 lg:mt-0 lg:justify-start">
             <img
               src="/img/holger.jpeg"
               alt="Holger Eberhard – Ihr Ansprechpartner für Immobilien in Weinheim und an der Bergstraße"
