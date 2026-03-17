@@ -132,7 +132,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
             {v.provision.headingSrOnly}
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/80 p-6 text-sm leading-relaxed text-zinc-700 sm:p-8">
-            <span className="mb-4 inline-block rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-medium uppercase tracking-wider text-zinc-500">
+            <span className="mb-4 inline-block rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider text-white" style={{ backgroundColor: "#F37A5A" }}>
               {v.provision.badge}
             </span>
             <p className="font-medium text-zinc-800">{v.provision.paragraph1}</p>
