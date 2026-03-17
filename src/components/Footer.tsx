@@ -118,16 +118,16 @@ export default function Footer({ lang, dict }: FooterProps) {
 
       {/* Hauptbereich: 4 Spalten */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 items-start">
           {/* Spalte 1: Firma & Logo */}
           <div className="flex flex-col">
-            <Link href={prefix} className="-mt-2 mb-4 inline-block overflow-visible">
+            <Link href={prefix} className="mb-4 inline-block overflow-visible">
               <Image
-                src="/img/logo.png"
+                src="/img/logo.jpeg"
                 alt="HE immologis"
-                width={150}
-                height={54}
-                className="h-11 w-auto max-w-[150px] object-contain object-left brightness-0 invert"
+                width={300}
+                height={80}
+                className="h-11 w-auto max-w-[180px] object-contain object-left"
               />
             </Link>
             <p className="font-sans text-lg leading-tight text-white">
@@ -220,6 +220,9 @@ export default function Footer({ lang, dict }: FooterProps) {
 
           {/* Spalte 4: Social Media (Liste) & Bankverbindung */}
           <div>
+            <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-white opacity-0 select-none">
+              Social Media
+            </h3>
             <SocialIcons
               variant="list"
               labels={{
