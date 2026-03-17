@@ -54,7 +54,7 @@ interface FooterProps {
 export default function Footer({ lang, dict }: FooterProps) {
   const prefix = `/${lang}`;
   return (
-    <footer className="bg-[#AEADA8] text-white" role="contentinfo">
+    <footer className="bg-[#425159] text-white" role="contentinfo">
       {/* Unsere Leistungen: 10 Quickfacts, 5 pro Zeile */}
       <div className="border-b border-slate-700/80">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
