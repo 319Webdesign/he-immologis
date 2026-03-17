@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, TrendingUp } from "lucide-react";
 import SellForm from "@/components/SellForm";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import SellerServices from "@/components/SellerServices";
@@ -99,11 +99,14 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
         </div>
         <a
           href="#anfrage-formular"
-          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
+          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-4 text-white/90 transition-colors hover:text-white sm:bottom-8 sm:gap-5"
           aria-label={v.hero.ctaAriaLabel}
         >
-          <span className="text-sm font-medium">{v.hero.ctaText}</span>
-          <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
+          <span className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:opacity-95 hover:shadow-xl active:opacity-90 sm:px-6 sm:py-3.5 sm:text-base" style={{ backgroundColor: "#8AAFA3" }}>
+            <TrendingUp className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" style={{ color: "#F37A5A" }} aria-hidden />
+            {v.hero.ctaText}
+          </span>
+          <ChevronDown className="h-7 w-7 animate-bounce text-white/80 sm:h-8 sm:w-8" aria-hidden />
         </a>
       </section>
 
