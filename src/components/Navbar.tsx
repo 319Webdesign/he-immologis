@@ -74,7 +74,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
       : "flex items-center gap-2 text-xs text-black transition-colors hover:opacity-80";
 
   const utilityLinks = (variant: "bar" | "mobile") => (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 lg:gap-2 min-[1200px]:gap-0.5">
       <a href="mailto:info@he-immologis.de" className={utilityLinkClass(variant)}>
         <Mail className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">info@he-immologis.de</span>
