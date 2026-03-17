@@ -9,8 +9,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-const BRAND_BLUE = "#3d6d99";
-const STEELBLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
+const STEELBLUE = "#F37A5A";
 
 const ICONS: LucideIcon[] = [
   BarChart3,
@@ -80,7 +80,7 @@ export default function SellerServices({
         <div className="mt-12 flex justify-center">
           <Link
             href={`${prefix}/immobilien-services`}
-            className="inline-flex items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#F37A5A]/40 focus:ring-offset-2"
             style={{ backgroundColor: BRAND_BLUE }}
           >
             {dict.buttonText}

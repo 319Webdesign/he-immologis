@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Wallet } from "lucide-react";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 const STAFFEL_DE = [
   { range: "Bis 250.000 €", provision: "1.000 €", from: 0, to: 250 },

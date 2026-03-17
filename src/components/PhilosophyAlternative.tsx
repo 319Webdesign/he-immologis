@@ -68,7 +68,7 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
                 </span>
                 <h3
                   className="relative z-10 font-sans text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
-                  style={{ color: "#4682B4" }}
+                  style={{ color: "#F37A5A" }}
                 >
                   {headline}
                 </h3>

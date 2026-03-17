@@ -15,7 +15,7 @@ import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import ScrollToModuleCards from "./ScrollToModuleCards";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 const META = {
   de: {

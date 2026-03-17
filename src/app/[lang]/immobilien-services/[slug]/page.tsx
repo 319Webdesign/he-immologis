@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 interface PageProps {
   params: Promise<{ lang?: string; slug: string }>;
@@ -131,7 +131,7 @@ function KomplettmandatContent({
         </p>
         <p className="mt-4 text-lg leading-relaxed text-slate-700">
           {agbIntro}
-          <Link href={locale === "en" ? "/en/agb" : locale === "tr" ? "/tr/agb" : "/agb"} className="text-[#4682B4] underline hover:no-underline">
+          <Link href={locale === "en" ? "/en/agb" : locale === "tr" ? "/tr/agb" : "/agb"} className="text-[#F37A5A] underline hover:no-underline">
             {agbLinkText}
           </Link>
           {agbOutro}
@@ -368,7 +368,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : locale === "tr" ? "Talep – " + displayTitle : "Anfrage – " + service.title)}`}
-                className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+                className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
                 style={{ backgroundColor: BRAND_BLUE }}
               >
                 {locale === "en" ? "Send email" : locale === "tr" ? "E-posta gönder" : "E-Mail schreiben"}

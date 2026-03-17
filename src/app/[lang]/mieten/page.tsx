@@ -105,7 +105,7 @@ export default async function MietenPage() {
             </p>
             <p className="mt-4 font-medium text-zinc-800">
               {m.provision.paragraph2Prefix}
-              <Link href={`${prefix}/agb`} className="text-[#4682B4] underline hover:no-underline">
+              <Link href={`${prefix}/agb`} className="text-[#F37A5A] underline hover:no-underline">
                 {m.provision.agbLinkText}
               </Link>
               {m.provision.paragraph2Suffix}

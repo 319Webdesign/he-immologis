@@ -74,7 +74,7 @@ export default function ServicesPackagesSection({ dict, lang }: ServicesPackages
           className="mt-12 h-2 w-full rounded-full opacity-30 sm:mt-16"
           style={{
             background:
-              "linear-gradient(180deg, #4682B4 0%, #4682B480 50%, transparent 100%)",
+              "linear-gradient(180deg, #F37A5A 0%, #F37A5A80 50%, transparent 100%)",
           }}
           aria-hidden
         />

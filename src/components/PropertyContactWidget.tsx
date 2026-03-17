@@ -43,7 +43,7 @@ export function PropertyContactWidget({
           <a
             href="#expose-anfordern"
             className="mt-4 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-base font-medium text-white transition-colors hover:opacity-90"
-            style={{ backgroundColor: "#4682B4" }}
+            style={{ backgroundColor: "#F37A5A" }}
           >
             <FileText className="h-4 w-4" />
             {requestDetails}

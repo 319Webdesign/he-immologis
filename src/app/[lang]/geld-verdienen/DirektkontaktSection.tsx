@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail } from "lucide-react";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 const WHATSAPP_GREEN = "#25D366";
 
 const outlineButtonClass =
@@ -105,7 +105,7 @@ export default function DirektkontaktSection() {
           </Link>
           <Link
             href={`mailto:info@he-immologis.de?subject=${t.mailtoSubject}`}
-            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#4682B4]`}
+            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#F37A5A]`}
             style={{ backgroundColor: BRAND_BLUE, borderColor: BRAND_BLUE }}
           >
             <Mail className="h-5 w-5 shrink-0" />

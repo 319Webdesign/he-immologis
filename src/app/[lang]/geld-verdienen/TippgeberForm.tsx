@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Info, Send } from "lucide-react";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 export default function TippgeberForm() {
   const [formState, setFormState] = useState({
@@ -61,7 +61,7 @@ export default function TippgeberForm() {
   };
 
   const inputClass =
-    "mt-2 block w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4682B4] focus:ring-2 focus:ring-[#4682B4]/20 focus:outline-none";
+    "mt-2 block w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#F37A5A] focus:ring-2 focus:ring-[#F37A5A]/20 focus:outline-none";
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
@@ -192,7 +192,7 @@ export default function TippgeberForm() {
             name="donatePremium"
             checked={formState.donatePremium}
             onChange={handleChange}
-            className="mt-1 h-4 w-4 rounded border-slate-300 text-[#4682B4] focus:ring-[#4682B4]"
+            className="mt-1 h-4 w-4 rounded border-slate-300 text-[#F37A5A] focus:ring-[#F37A5A]"
           />
           <label htmlFor="donatePremium" className="text-sm text-slate-700">
             Ich möchte auf meine Prämie verzichten und den Betrag für ein regionales Projekt spenden.
@@ -222,7 +222,7 @@ export default function TippgeberForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 disabled:opacity-70"
+          className="flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 disabled:opacity-70"
           style={{ backgroundColor: BRAND_BLUE }}
         >
           <Send className="h-5 w-5" />

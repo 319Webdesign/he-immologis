@@ -88,11 +88,11 @@ export default async function ImpressumPage({
               </h2>
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Phone:</span>
-                <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">
+                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">
                   +49 177 6361 394
                 </a>
                 <span>Email:</span>
-                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                   info@he-immologis.de
                 </a>
               </div>
@@ -152,7 +152,7 @@ export default async function ImpressumPage({
                   href="https://ec.europa.eu/consumers/odr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#4682B4] underline hover:no-underline"
+                  className="text-[#F37A5A] underline hover:no-underline"
                 >
                   https://ec.europa.eu/consumers/odr
                 </a>
@@ -222,9 +222,9 @@ export default async function ImpressumPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">İletişim</h2>
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Telefon:</span>
-                <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">+49 177 6361 394</a>
+                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">+49 177 6361 394</a>
                 <span>E-posta:</span>
-                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">info@he-immologis.de</a>
+                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">info@he-immologis.de</a>
               </div>
             </section>
             <section>
@@ -256,7 +256,7 @@ export default async function ImpressumPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">AB Uyuşmazlık Çözümü</h2>
               <p className="mt-2">
                 Avrupa Komisyonu çevrimiçi uyuşmazlık çözümü (ODR) platformu sunar:{" "}
-                <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-[#4682B4] underline hover:no-underline">https://ec.europa.eu/consumers/odr</a>.
+                <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-[#F37A5A] underline hover:no-underline">https://ec.europa.eu/consumers/odr</a>.
                 Tüketici hakem heyeti önünde uyuşmazlık çözümüne katılmak zorunda veya istekli değiliz.
               </p>
             </section>
@@ -326,11 +326,11 @@ export default async function ImpressumPage({
             </h2>
             <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
               <span>Telefon:</span>
-              <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">
+              <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">
                 +49 177 6361 394
               </a>
               <span>E-Mail:</span>
-              <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+              <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                 info@he-immologis.de
               </a>
             </div>
@@ -390,7 +390,7 @@ export default async function ImpressumPage({
                 href="https://ec.europa.eu/consumers/odr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#4682B4] underline hover:no-underline"
+                className="text-[#F37A5A] underline hover:no-underline"
               >
                 https://ec.europa.eu/consumers/odr
               </a>

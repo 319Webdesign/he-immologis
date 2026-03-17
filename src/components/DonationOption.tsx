@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
 
-const STEEL_BLUE = "#4682B4";
+const STEEL_BLUE = "#F37A5A";
 
 type Locale = "de" | "en" | "tr";
 
@@ -91,7 +91,7 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
         </div>
         <Link
           href={`/${lang}/spenden`}
-          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4682B4]"
+          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F37A5A]"
           style={{ backgroundColor: STEEL_BLUE }}
         >
           {t.cta}

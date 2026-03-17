@@ -3,7 +3,7 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 
-const STEELBLUE = "#4682B4";
+const STEELBLUE = "#F37A5A";
 
 export type ContactFormDict = {
   address: string;
@@ -121,10 +121,10 @@ export default function Contact({
     ? isDark
       ? "bg-amber-600 hover:bg-amber-500 focus:ring-offset-zinc-800"
       : "bg-zinc-900 hover:bg-zinc-800 focus:ring-offset-2"
-    : "hover:opacity-90 focus:ring-[#4682B4] focus:ring-offset-2";
+    : "hover:opacity-90 focus:ring-[#F37A5A] focus:ring-offset-2";
 
   const focusClass = useSteelblue
-    ? "focus:border-[#4682B4] focus:ring-[#4682B4]"
+    ? "focus:border-[#F37A5A] focus:ring-[#F37A5A]"
     : "focus:border-amber-500 focus:ring-amber-500";
 
   return (
@@ -332,7 +332,7 @@ export default function Contact({
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-70 ${useSteelblue ? "focus:ring-[#4682B4]" : "focus:ring-amber-500"} ${btnClass}`}
+                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-70 ${useSteelblue ? "focus:ring-[#F37A5A]" : "focus:ring-amber-500"} ${btnClass}`}
                   style={btnStyle}
                 >
                   <Send className="h-5 w-5" />

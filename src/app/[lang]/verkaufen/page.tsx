@@ -140,7 +140,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
               {v.provision.paragraph2Prefix}
               <Link
                 href={`${prefix}/agb`}
-                className="text-[#4682B4] underline hover:no-underline"
+                className="text-[#F37A5A] underline hover:no-underline"
               >
                 {v.provision.agbLinkText}
               </Link>

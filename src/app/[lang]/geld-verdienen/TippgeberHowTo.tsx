@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Printer, PenLine, Mail, ArrowRight } from "lucide-react";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 const STEPS_DE = [
   {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 const IMAGE_SRC = "/img/hausvorschau.jpeg";
 
 export type MainServiceCardDict = {
@@ -83,7 +83,7 @@ export default function MainServiceCard({ dict, lang }: MainServiceCardProps) {
           </p>
           <Link
             href={detailHref}
-            className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2 sm:w-auto"
+            className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 sm:w-auto"
             style={{ backgroundColor: BRAND_BLUE }}
           >
             {dict.moreInfoButton}

@@ -7,7 +7,7 @@ import {
   type ServiceCardItem,
 } from "@/data/services";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 export type { ServiceCardItem };
 
@@ -71,7 +71,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
         )}
         <Link
           href={href}
-          className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#4682B4] focus:ring-offset-2"
+          className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
           style={{ backgroundColor: BRAND_BLUE }}
         >
           {moreInfoText}

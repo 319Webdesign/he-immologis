@@ -6,7 +6,7 @@ import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();

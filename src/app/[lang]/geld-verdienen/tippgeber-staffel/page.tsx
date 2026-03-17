@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -123,7 +123,7 @@ export default async function TippgeberStaffelPage() {
               href={hrefVereinbarung}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#4682B4]`}
+              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -133,7 +133,7 @@ export default async function TippgeberStaffelPage() {
               href={hrefHinweis}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#4682B4]`}
+              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -141,7 +141,7 @@ export default async function TippgeberStaffelPage() {
             </Link>
             <Link
               href="/geld-verdienen#formular-heading"
-              className={`${outlineButtonClass} focus:ring-[#4682B4]`}
+              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               Tipp jetzt einreichen

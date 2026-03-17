@@ -10,7 +10,7 @@ import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { TIPPGEBER_DOCS } from "@/lib/documents";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -112,7 +112,7 @@ export default async function TippGebenPage() {
               href={TIPPGEBER_DOCS.vereinbarung[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#4682B4]`}
+              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -122,7 +122,7 @@ export default async function TippGebenPage() {
               href={TIPPGEBER_DOCS.hinweis[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#4682B4]`}
+              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />

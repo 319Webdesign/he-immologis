@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 import ServiceSchema from "@/components/seo/ServiceSchema";
 import { getDictionary } from "@/dictionaries";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 type Props = { params: Promise<{ lang?: string; slug: string }> };
 

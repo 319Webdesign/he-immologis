@@ -6,7 +6,8 @@
       "line2Next": "Möglich machen.",
       "subline": "Weinheim. Bergstraße.",
       "ctaBuy": "Immobilie kaufen",
-      "ctaRent": "Immobilie mieten"
+      "ctaRent": "Immobilie mieten",
+      "ctaSearch": "Immobilie suchen"
     }
   },
   "nav": {
@@ -31,7 +32,7 @@
       { "label": "T – Transportnetzwerkstrategien" }
     ],
     "aboutMe": "Über mich",
-    "contactNow": "Jetzt kontaktieren",
+    "contactNow": "Kontakt",
     "menuOpen": "Menü öffnen",
     "menuClose": "Menü schließen",
     "ariaLangSwitchDe": "Sprache wechseln (aktuell: Deutsch)",

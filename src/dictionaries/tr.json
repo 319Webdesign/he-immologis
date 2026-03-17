@@ -7,6 +7,7 @@
       "subline": "Weinheim. Bergstraße.",
       "ctaBuy": "Gayrimenkul satın alın",
       "ctaRent": "Gayrimenkul kiralayın",
+      "ctaSearch": "Gayrimenkul arayın",
       "bannerText": "Türkçe versiyon, yalnızca Türkçe konuşan kullanıcılar için bilgi kolaylığı amacıyla sunulmaktadır. Yazılı ilk iletişim Türkçe yapılabilir, ancak sözlü ve sonraki yazılı iletişim Almanca veya İngilizce devam etmelidir. Anlayışınız için teşekkür ederiz!"
     }
   },
@@ -32,7 +33,7 @@
       { "label": "T – Taşıma ağı stratejileri" }
     ],
     "aboutMe": "Hakkımda",
-    "contactNow": "İletişime geçin",
+    "contactNow": "İletişim",
     "menuOpen": "Menüyü aç",
     "menuClose": "Menüyü kapat",
     "ariaLangSwitchDe": "Dil değiştir (şu an: Almanca)",

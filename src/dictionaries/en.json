@@ -6,7 +6,8 @@
       "line2Next": "Make it possible.",
       "subline": "Weinheim. Bergstraße.",
       "ctaBuy": "Buy Property",
-      "ctaRent": "Rent Property"
+      "ctaRent": "Rent Property",
+      "ctaSearch": "Search Property"
     }
   },
   "nav": {
@@ -31,7 +32,7 @@
       { "label": "T – Transport network strategies" }
     ],
     "aboutMe": "About Me",
-    "contactNow": "Contact Now",
+    "contactNow": "Contact",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "ariaLangSwitchDe": "Sprache wechseln (aktuell: Deutsch)",

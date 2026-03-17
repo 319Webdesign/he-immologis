@@ -2,7 +2,7 @@
 
 import { ArrowRight, Home } from "lucide-react";
 
-const BRAND_BLUE = "#3d6d99";
+const BRAND_BLUE = "#F37A5A";
 
 type FinalCTADict = {
   title: string;
@@ -55,7 +55,7 @@ export default function FinalCTA({ dict }: { dict: FinalCTADict }) {
           <button
             type="button"
             onClick={scrollToForm}
-            className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#3d6d99] shadow-lg transition-all duration-200 hover:bg-white/95 hover:shadow-xl hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#3d6d99]"
+            className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#F37A5A] shadow-lg transition-all duration-200 hover:bg-white/95 hover:shadow-xl hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#F37A5A]"
           >
             {dict.buttonText}
             <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />

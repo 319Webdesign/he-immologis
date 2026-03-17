@@ -7,10 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "debug:onoffice": "npx tsx src/lib/onoffice-debug.ts"
+    "debug:onoffice": "npx tsx src/lib/onoffice-debug.ts",
+    "index:google": "npx tsx scripts/google-indexing.ts"
   },
   "dependencies": {
     "framer-motion": "^12.34.0",
+    "google-auth-library": "^10.6.1",
     "lucide-react": "^0.564.0",
     "next": "16.1.6",
     "nodemailer": "^8.0.1",
@@ -26,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "tsx": "^4.19.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

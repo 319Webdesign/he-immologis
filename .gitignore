@@ -1,3 +1,11 @@
+node_modules
+.next
+.env*
+dist
+out
+.vercel
+.turbo
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -32,6 +40,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+
+# Google Service Account (Indexing API)
+service-account.json
 
 # vercel
 .vercel

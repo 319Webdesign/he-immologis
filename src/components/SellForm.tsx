@@ -182,7 +182,7 @@ export default function SellForm({
   };
 
   const inputBase =
-    "mt-2 block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-[#3d6d99] focus:ring-1 focus:ring-[#3d6d99]/30";
+    "mt-2 block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-[#F37A5A] focus:ring-1 focus:ring-[#F37A5A]/30";
   const inputError = "border-red-400 focus:border-red-500 focus:ring-red-500/30";
 
   const p = dict.placeholders;
@@ -192,9 +192,9 @@ export default function SellForm({
   if (isSubmitted) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm sm:p-16">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#3d6d99]/10">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#F37A5A]/10">
           <svg
-            className="h-8 w-8 text-[#3d6d99]"
+            className="h-8 w-8 text-[#F37A5A]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -405,7 +405,7 @@ export default function SellForm({
                 name="agbAkzeptiert"
                 checked={formData.agbAkzeptiert}
                 onChange={handleChange}
-                className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 text-[#3d6d99] focus:ring-[#3d6d99]/30"
+                className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 text-[#F37A5A] focus:ring-[#F37A5A]/30"
                 aria-invalid={!!errors.agbAkzeptiert}
               />
               <label htmlFor="agbAkzeptiert" className="text-sm text-slate-700">
@@ -414,7 +414,7 @@ export default function SellForm({
                   href={`${prefix}/agb`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#3d6d99] underline hover:opacity-80"
+                  className="text-[#F37A5A] underline hover:opacity-80"
                 >
                   {dict.agbLinkText}
                 </Link>
@@ -433,8 +433,8 @@ export default function SellForm({
           <button
             type="submit"
             disabled={isSending}
-            className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#3d6d99]/40 focus:ring-offset-2 disabled:opacity-70 sm:w-auto sm:min-w-[200px]"
-            style={{ backgroundColor: "#3d6d99" }}
+            className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#F37A5A]/40 focus:ring-offset-2 disabled:opacity-70 sm:w-auto sm:min-w-[200px]"
+            style={{ backgroundColor: "#F37A5A" }}
           >
             {isSending ? "Wird gesendet…" : dict.submitButton}
           </button>

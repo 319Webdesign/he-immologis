@@ -159,8 +159,6 @@ function getDetailDataFields(): string[] {
     "stellplatzkaufpreis",
     "stellplatzmiete",
     "anzahl_stellplaetze",
-    "bemerkung",
-    "ausstattung",
     "energieausweis_gueltig_bis",
     "distanz_kindergarten",
     "distanz_grundschule",

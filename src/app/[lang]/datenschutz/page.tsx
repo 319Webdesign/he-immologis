@@ -76,11 +76,11 @@ export default async function DatenschutzPage({
               </p>
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Phone:</span>
-                <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">
+                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">
                   +49 177 6361 394
                 </a>
                 <span>Email:</span>
-                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                   info@he-immologis.de
                 </a>
               </div>
@@ -129,7 +129,7 @@ export default async function DatenschutzPage({
               </h2>
               <p className="mt-2">
                 We use cookies and similar technologies on our website where necessary for the operation of the site or where you have given your consent. For details please see our{" "}
-                <Link href={`${prefix}/cookies`} className="text-[#4682B4] underline hover:no-underline">
+                <Link href={`${prefix}/cookies`} className="text-[#F37A5A] underline hover:no-underline">
                   Cookie Policy
                 </Link>
                 .
@@ -204,9 +204,9 @@ export default async function DatenschutzPage({
               <p className="mt-2"><strong>HE immologis UG</strong><br /><span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span><br />Ahornstr. 59, 69469 Weinheim</p>
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Telefon:</span>
-                <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">+49 177 6361 394</a>
+                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">+49 177 6361 394</a>
                 <span>E-posta:</span>
-                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">info@he-immologis.de</a>
+                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">info@he-immologis.de</a>
               </div>
             </section>
             <section>
@@ -225,7 +225,7 @@ export default async function DatenschutzPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">5. Çerezler ve Yerel Depolama</h2>
               <p className="mt-2">
                 Web sitemizde çerezler ve benzeri teknolojiler kullanıyoruz. Detaylar için{" "}
-                <Link href={`${prefix}/cookies`} className="text-[#4682B4] underline hover:no-underline">Çerez Politikamıza</Link> bakınız.
+                <Link href={`${prefix}/cookies`} className="text-[#F37A5A] underline hover:no-underline">Çerez Politikamıza</Link> bakınız.
               </p>
             </section>
             <section>
@@ -278,11 +278,11 @@ export default async function DatenschutzPage({
             </p>
             <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
               <span>Telefon:</span>
-              <a href="tel:+491776361394" className="text-[#4682B4] underline hover:no-underline">
+              <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">
                 +49 177 6361 394
               </a>
               <span>E-Mail:</span>
-              <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+              <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                 info@he-immologis.de
               </a>
             </div>
@@ -331,7 +331,7 @@ export default async function DatenschutzPage({
             </h2>
             <p className="mt-2">
               Wir setzen auf unserer Website Cookies und vergleichbare Technologien ein, soweit dies für den Betrieb der Seite erforderlich ist oder Sie hierin eingewilligt haben. Details entnehmen Sie unserer{" "}
-              <Link href={`${prefix}/cookies`} className="text-[#4682B4] underline hover:no-underline">
+              <Link href={`${prefix}/cookies`} className="text-[#F37A5A] underline hover:no-underline">
                 Cookie-Richtlinie
               </Link>
               .

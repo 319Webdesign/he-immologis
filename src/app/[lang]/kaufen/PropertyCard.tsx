@@ -110,13 +110,13 @@ export default function PropertyCard({
         />
         <span
           className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-          style={{ backgroundColor: "#BCB88A" }}
+          style={{ backgroundColor: "#F37A5A" }}
           aria-hidden
         >
           {forSale}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#BCB88A] max-sm:group-data-[incenter=true]:bg-[#BCB88A]">
+      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#F37A5A] max-sm:group-data-[incenter=true]:bg-[#F37A5A]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
           {property.titel || noTitle}
         </h2>

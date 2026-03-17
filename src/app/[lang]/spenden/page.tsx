@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
-const STEEL_BLUE = "#4682B4";
+const STEEL_BLUE = "#F37A5A";
 
 type ProjectItem = { title: string; description: string; url: string; image: string };
 

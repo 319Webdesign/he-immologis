@@ -113,11 +113,11 @@ export default async function CookiesPage({
               </h2>
               <p className="mt-2">
                 For more details on the processing of personal data, please see our{" "}
-                <Link href={`${prefix}/datenschutz`} className="text-[#4682B4] underline hover:no-underline">
+                <Link href={`${prefix}/datenschutz`} className="text-[#F37A5A] underline hover:no-underline">
                   Privacy Policy
                 </Link>
                 . If you have any questions, please contact us at:{" "}
-                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                   info@he-immologis.de
                 </a>
                 .
@@ -173,11 +173,11 @@ export default async function CookiesPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">5. Daha fazla bilgi</h2>
               <p className="mt-2">
                 Kişisel verilerin işlenmesi hakkında daha fazla bilgi için{" "}
-                <Link href={`${prefix}/datenschutz`} className="text-[#4682B4] underline hover:no-underline">
+                <Link href={`${prefix}/datenschutz`} className="text-[#F37A5A] underline hover:no-underline">
                   Gizlilik Politikamıza
                 </Link>
                 {" "}bakınız. Sorularınız için:{" "}
-                <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                   info@he-immologis.de
                 </a>.
               </p>
@@ -253,11 +253,11 @@ export default async function CookiesPage({
             </h2>
             <p className="mt-2">
               Weitere Details zur Verarbeitung personenbezogener Daten finden Sie in unserer{" "}
-              <Link href={`${prefix}/datenschutz`} className="text-[#4682B4] underline hover:no-underline">
+              <Link href={`${prefix}/datenschutz`} className="text-[#F37A5A] underline hover:no-underline">
                 Datenschutzerklärung
               </Link>
               . Bei Fragen wenden Sie sich bitte an:{" "}
-              <a href="mailto:info@he-immologis.de" className="text-[#4682B4] underline hover:no-underline">
+              <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">
                 info@he-immologis.de
               </a>
               .

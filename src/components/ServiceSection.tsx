@@ -3,7 +3,7 @@
 import { Calculator, Image, FileCheck, type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
-const BRAND_BLUE = "#4682B4";
+const BRAND_BLUE = "#F37A5A";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   calculator: Calculator,

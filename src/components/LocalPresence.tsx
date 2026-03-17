@@ -85,7 +85,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               >
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-lg text-white"
-                  style={{ backgroundColor: "#4682B4" }}
+                  style={{ backgroundColor: "#F37A5A" }}
                 >
                   <Icon className="h-6 w-6" aria-hidden />
                 </div>
@@ -114,7 +114,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
         {/* Unsere Region */}
         <div
           className="mt-16 rounded-2xl px-4 py-10 sm:mt-20 sm:px-5 sm:py-12 lg:px-6 lg:py-14"
-          style={{ backgroundColor: "#4682B4" }}
+          style={{ backgroundColor: "#F37A5A" }}
         >
           <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             {regionTitle}
@@ -140,10 +140,10 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                     className={`pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 rounded-lg border-2 shadow-xl ${openCity === city.name ? "block" : "hidden group-hover/city:block"}`}
                     style={{
                       minWidth: city.aspect === "9:16" ? 180 : 320,
-                      borderColor: "#4682B4",
+                      borderColor: "#F37A5A",
                     }}
                   >
-                    <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#4682B4" }} />
+                    <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 -rotate-45 border-l border-t bg-white" style={{ borderColor: "#F37A5A" }} />
                     <img
                       src={city.image}
                       alt={`Haus kaufen ${city.name} - Immobilien Bergstraße - HE-immologis`}
