@@ -79,11 +79,12 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <Mail className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">info@he-immologis.de</span>
       </a>
-      <a href="tel:+491776361394" className={utilityLinkClass(variant)}>
-        <Phone className="h-3.5 w-3.5" />
-        <span className="hidden sm:inline">+49 177 636 1394</span>
-      </a>
-      <span className={`${utilityLinkClass(variant)} flex items-center gap-1`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : lang === "en" ? dict.ariaLangSwitchEn : dict.ariaLangSwitchTr}>
+      <div className="flex items-center gap-4">
+        <a href="tel:+491776361394" className={utilityLinkClass(variant)}>
+          <Phone className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">+49 177 636 1394</span>
+        </a>
+        <span className={`${utilityLinkClass(variant)} flex items-center gap-1`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : lang === "en" ? dict.ariaLangSwitchEn : dict.ariaLangSwitchTr}>
         <span className="flex items-center gap-1 [&_img]:align-middle">
           <Link href={switchToDe} title="Deutsch" className="flex h-4 shrink-0 items-center">
             <Image
@@ -117,6 +118,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           </Link>
         </span>
       </span>
+      </div>
     </div>
   );
 

@@ -39,7 +39,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
   return (
     <section
       className="relative pt-10 pb-3 sm:pt-12 sm:pb-4"
-      style={{ backgroundColor: "#D3EFDE" }}
+      style={{ backgroundColor: "#8AAFA3" }}
       aria-labelledby="wertermittlung-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -47,7 +47,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
           {/* Links: Icon + Headline + Begleittext */}
           <div className="flex flex-1 items-center gap-4">
             <div
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-slate-200 bg-white shadow-sm text-slate-600"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-white/40 bg-white/90 shadow-sm text-slate-600"
               aria-hidden
             >
               <span className="relative">
@@ -61,11 +61,11 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
             <div>
               <h2
                 id="wertermittlung-heading"
-                className="font-sans text-xl font-bold tracking-tight text-slate-800 sm:text-2xl"
+                className="font-sans text-xl font-bold tracking-tight text-white sm:text-2xl"
               >
                 {dict.headingLine1} <br /> {dict.headingLine2}
               </h2>
-              <p className="mt-1 text-sm leading-snug text-slate-600 sm:text-base">
+              <p className="mt-1 text-sm leading-snug text-white/90 sm:text-base">
                 {dict.subline}
               </p>
             </div>
