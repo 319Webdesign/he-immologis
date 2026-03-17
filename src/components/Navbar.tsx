@@ -84,34 +84,34 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <span className="hidden sm:inline">+49 177 6361 394</span>
       </a>
       <span className={`${utilityLinkClass(variant)} flex items-center gap-1`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : lang === "en" ? dict.ariaLangSwitchEn : dict.ariaLangSwitchTr}>
-        <span className="flex items-center gap-1">
-          <Link href={switchToDe} title="Deutsch" className="block">
+        <span className="flex items-center gap-1 [&_img]:align-middle">
+          <Link href={switchToDe} title="Deutsch" className="flex h-4 shrink-0 items-center">
             <Image
               src="/img/flags/de.svg"
               alt=""
               width={24}
               height={16}
-              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "de" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-4 w-6 rounded-sm object-contain object-center transition-opacity ${lang === "de" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>
-          <Link href={switchToEn} title="English" className="block">
+          <Link href={switchToEn} title="English" className="flex h-4 shrink-0 items-center">
             <Image
               src="/img/flags/en.svg"
               alt=""
               width={24}
-              height={12}
-              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "en" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              height={16}
+              className={`block h-4 w-6 rounded-sm object-contain object-center transition-opacity ${lang === "en" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>
-          <Link href={switchToTr} title="Türkçe" className="block">
+          <Link href={switchToTr} title="Türkçe" className="flex h-4 shrink-0 items-center">
             <Image
               src="/img/flags/tr.svg"
               alt=""
               width={24}
               height={16}
-              className={`block h-4 w-6 rounded-sm object-cover transition-opacity ${lang === "tr" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-4 w-6 rounded-sm object-contain object-center transition-opacity ${lang === "tr" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>
@@ -127,34 +127,33 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white">
-      {/* Obere Utility-Leiste */}
-      <div className="bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-end px-4 pt-2 pb-1 text-sm text-black sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr] items-center gap-x-4 px-4 pt-2 pb-1 sm:px-6 lg:px-8">
+        {/* Zeile 1: Platzhalter (lg) | Utility (E-Mail, Telefon, Flaggen) – Spalte 2, rechtsbündig */}
+        <div className="hidden lg:block" aria-hidden />
+        <div className="col-start-2 flex min-w-0 justify-end pr-4 text-sm text-black lg:pr-6">
           {utilityLinks("bar")}
         </div>
-      </div>
 
-      {/* Haupt-Navigation */}
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 pt-1 pb-1 sm:px-6 lg:px-8">
-        {/* Logo links */}
-        <Link
-          href={prefix}
-          className="block shrink-0 overflow-visible transition-opacity hover:opacity-80"
-        >
-          <Image
-            src="/img/logo.png"
-            alt={dict.logoAlt}
-            width={280}
-            height={100}
-            className="block mb-1 h-16 w-auto object-contain object-left sm:h-20"
-            sizes="(max-width: 640px) 220px, 280px"
-            priority
-          />
-        </Link>
+        {/* Zeile 2: Logo (Spalte 1) | Nav-Punkte + Hamburger (Spalte 2) */}
+        <nav className="flex items-center pt-1 pb-1 lg:pt-0 lg:pb-0" aria-label="Hauptnavigation">
+          <Link
+            href={prefix}
+            className="block shrink-0 overflow-visible transition-opacity hover:opacity-80"
+          >
+            <Image
+              src="/img/logo.png"
+              alt={dict.logoAlt}
+              width={280}
+              height={100}
+              className="block mb-1 h-16 w-auto object-contain object-left sm:h-20"
+              sizes="(max-width: 640px) 220px, 280px"
+              priority
+            />
+          </Link>
+        </nav>
 
-        {/* Nav-Punkte zentriert */}
-        <div className="hidden flex-1 justify-center lg:flex">
-          <div className="flex flex-nowrap items-center gap-1 xl:gap-2">
+        <div className="flex min-w-0 items-center justify-end gap-2 pt-1 pb-1 pr-4 lg:pr-6 lg:pt-0 lg:pb-0">
+          <div className="hidden flex-nowrap items-center gap-1 xl:gap-2 lg:flex">
             <Link href={`${prefix}/verkaufen`} className={navLinkClass(`${prefix}/verkaufen`)}>
               {dict.sell}
             </Link>
@@ -170,6 +169,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             >
               {dict.service}
             </Link>
+
             {/* Tipp-Prämie / Referral Bonus mit Dropdown */}
             <div
               className="relative"
@@ -247,43 +247,29 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             <Link href={`${prefix}/ueber-mich`} className={navLinkClass(`${prefix}/ueber-mich`)}>
               {dict.aboutMe}
             </Link>
+            <Link
+              href={`${prefix}/ueber-mich#kontakt`}
+              className={`${navLinkClass(`${prefix}/ueber-mich#kontakt`)} pr-0`}
+            >
+              {dict.contactNow}
+            </Link>
           </div>
-        </div>
 
-        {/* Rechts: CTA */}
-        <div className="hidden md:block">
-          <Link
-            href={`${prefix}/ueber-mich#kontakt`}
-            className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
-            style={{ backgroundColor: "#F37A5A" }}
+          <button
+            type="button"
+            className="rounded-lg p-2 text-zinc-600 transition-colors hover:bg-zinc-100 lg:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? dict.menuClose : dict.menuOpen}
           >
-            {dict.contactNow}
-          </Link>
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="rounded-lg p-2 text-zinc-600 transition-colors hover:bg-zinc-100 lg:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? dict.menuClose : dict.menuOpen}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
+      </div>
 
       {/* Mobile Menü */}
       {mobileMenuOpen && (
         <div className="border-t border-zinc-100 bg-white lg:hidden max-h-[calc(100vh-7.5rem)] overflow-y-auto overscroll-contain">
           <div className="space-y-2 px-4 py-4 pb-8">
-            <Link
-              href={`${prefix}/ueber-mich#kontakt`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex w-full items-center justify-center rounded-md px-5 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
-              style={{ backgroundColor: "#F37A5A" }}
-            >
-              {dict.contactNow}
-            </Link>
-
             <div className="flex flex-col gap-1">
                 <Link
                   href={`${prefix}/verkaufen`}
@@ -312,6 +298,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 {dict.service}
+              </Link>
+              <Link
+                href={`${prefix}/ueber-mich#kontakt`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
+              >
+                {dict.contactNow}
               </Link>
               <div className="rounded-lg">
                 <button
