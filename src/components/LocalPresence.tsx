@@ -88,9 +88,9 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                   {title}
                 </h3>
                 {smart ? (
-                  <ul className="mt-2 flex-1 space-y-1.5 text-sm leading-relaxed text-slate-600">
+                  <ul className="mt-2 flex-1 space-y-1.5 text-xs leading-relaxed text-slate-600 sm:text-sm">
                     {smart.map(({ letter, label }) => (
-                      <li key={letter}>
+                      <li key={letter} className="whitespace-nowrap">
                         <span className="font-semibold text-slate-600">{letter}</span> – {label}
                       </li>
                     ))}
@@ -113,14 +113,19 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               {regionTitle}
             </h3>
             <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {CITIES.map((city) => (
-                <span
-                  key={city}
-                  className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
-                >
-                  {city}
-                </span>
-              ))}
+              {CITIES.map((city) => {
+                const bgColor =
+                  city === "Weinheim" ? "#F37A5A" : city === "Heppenheim" ? "#AEADA8" : undefined;
+                return (
+                  <span
+                    key={city}
+                    className={`shrink-0 rounded-full border border-white/30 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm ${!bgColor ? "bg-white/10" : ""}`}
+                    style={bgColor ? { backgroundColor: bgColor } : undefined}
+                  >
+                    {city}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
