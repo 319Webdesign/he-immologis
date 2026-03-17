@@ -90,7 +90,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                   <ul className="mt-2 flex-1 space-y-1.5 text-sm leading-relaxed text-slate-600">
                     {smart.map(({ letter, label }) => (
                       <li key={letter}>
-                        <span className="font-semibold text-slate-800">{letter}</span> – {label}
+                        <span className="font-semibold text-slate-600">{letter}</span> – {label}
                       </li>
                     ))}
                   </ul>

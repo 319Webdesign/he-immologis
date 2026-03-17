@@ -220,9 +220,7 @@ export default function Footer({ lang, dict }: FooterProps) {
 
           {/* Spalte 4: Social Media (Liste) & Bankverbindung */}
           <div>
-            <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-white opacity-0 select-none">
-              Social Media
-            </h3>
+            <div className="-mt-4">
             <SocialIcons
               variant="list"
               labels={{
@@ -232,6 +230,7 @@ export default function Footer({ lang, dict }: FooterProps) {
                 email: dict.socialEmail,
               }}
             />
+            </div>
             <div className="mt-5 border-t border-slate-700 pt-4">
               <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-white">
                 {dict.bankDetails}
