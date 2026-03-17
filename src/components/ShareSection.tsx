@@ -54,8 +54,8 @@ export default function ShareSection({ dict }: ShareSectionProps) {
           <button
             type="button"
             onClick={handleClick}
-            className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-slate-800 transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#B0E5C2] focus:ring-offset-2 active:opacity-95 sm:px-8 sm:py-4 sm:text-base"
-            style={{ backgroundColor: "#D3EFDE" }}
+            className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#8AAFA3] focus:ring-offset-2 active:opacity-95 sm:px-8 sm:py-4 sm:text-base"
+            style={{ backgroundColor: "#8AAFA3" }}
             aria-label={dict.buttonLabel}
           >
             <Mail className="h-5 w-5 shrink-0" aria-hidden />

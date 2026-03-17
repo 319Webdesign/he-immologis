@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 const BRAND_BLUE = "#F37A5A";
-const STEELBLUE = "#F37A5A";
+const CARD_BG = "#8AAFA3";
 
 const ICONS: LucideIcon[] = [
   BarChart3,
@@ -59,7 +59,7 @@ export default function SellerServices({
               <div
                 key={service.title}
                 className="flex min-h-[200px] flex-col rounded-xl p-6 text-white shadow-md transition-shadow duration-200 hover:shadow-lg"
-                style={{ backgroundColor: STEELBLUE }}
+                style={{ backgroundColor: CARD_BG }}
               >
                 <div
                   className="mb-4 flex h-10 w-10 shrink-0 items-center justify-center text-white"
