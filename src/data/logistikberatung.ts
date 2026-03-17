@@ -4,7 +4,7 @@ export const SMART_INTRO = {
   acronym: [
     { letter: "S", label: "Schulung" },
     { letter: "M", label: "M & A" },
-    { letter: "A", label: "Aufbau Entscheidernetzwerke" },
+    { letter: "A", label: "Aufbau Entscheidernetzwerk" },
     { letter: "R", label: "Regionale Interim-Lösungen" },
     { letter: "T", label: "Transportnetzwerkstrategien" },
   ],
@@ -97,7 +97,7 @@ export const SMART_MODULE: SmartModul[] = [
   {
     slug: "entscheidernetzwerke",
     letter: "A",
-    title: "Aufbau Entscheidernetzwerke",
+    title: "Aufbau Entscheidernetzwerk",
     shortDescription:
       "Europäisches Netzwerk aus Entscheidern der Logistik- und Pharmalogistikbranche – strukturiert an einen Tisch.",
     paragraphs: [

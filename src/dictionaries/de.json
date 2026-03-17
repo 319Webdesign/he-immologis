@@ -27,7 +27,7 @@
       { "label": "Übersicht SMART" },
       { "label": "S – Schulung" },
       { "label": "M – M & A" },
-      { "label": "A – Entscheidernetzwerke" },
+      { "label": "A – Entscheidernetzwerk" },
       { "label": "R – Interim-Lösungen" },
       { "label": "T – Transportnetzwerkstrategien" }
     ],
@@ -125,7 +125,7 @@
         "smart": [
           { "letter": "S", "label": "Schulung" },
           { "letter": "M", "label": "M & A" },
-          { "letter": "A", "label": "Aufbau Entscheidernetzwerke" },
+          { "letter": "A", "label": "Aufbau Entscheidernetzwerk" },
           { "letter": "R", "label": "Regionale Interim-Lösungen" },
           { "letter": "T", "label": "Transportnetzwerkstrategien" }
         ]
