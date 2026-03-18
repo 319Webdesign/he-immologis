@@ -163,7 +163,7 @@ export default function Contact({
                 <div>
                   <h3 className="font-medium">{labels.address}</h3>
                   <p className={isDark ? "text-zinc-400" : "text-zinc-600"}>
-                    HE immologis UG
+                    HE immologis
                     <br />
                     Ahornstr. 59
                     <br />
