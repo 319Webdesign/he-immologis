@@ -53,6 +53,7 @@ export default async function UeberMichPage() {
     companySubline: string;
     contactTitle: string;
     contactSubtitle: string;
+    contactSubmitButton?: string;
   };
 
   return (

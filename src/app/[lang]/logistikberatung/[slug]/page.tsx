@@ -67,6 +67,8 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
     allModules: string;
     contactTitleSlug: string;
     contactSubtitleSlug: string;
+    contactSubmitButton?: string;
+    contactSubmitButtonSlug?: string;
   };
   const modules = locale === "en" ? SMART_MODULE_EN : locale === "tr" ? SMART_MODULE_TR : SMART_MODULE;
   const modulIndex = modules.findIndex((m) => m.slug === slug);

@@ -251,7 +251,7 @@ export default async function GeldVerdienenPage() {
         title="Fragen zum Tippgeber-Programm?"
         subtitle="Wir erklären Ihnen gerne die Details – unverbindlich und diskret."
         accentColor="steelblue"
-        formLabels={{ ...dict.contactForm, submitButton: dict.geldVerdienen?.contactSubmitButton ?? dict.contactForm.submitButton }}
+        formLabels={{ ...dict.contactForm, submitButton: dict.tippgeber?.contactSubmitButton ?? dict.contactForm.submitButton }}
       />
     </>
   );

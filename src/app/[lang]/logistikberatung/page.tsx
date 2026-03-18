@@ -80,6 +80,7 @@ export default async function LogistikberatungPage() {
     eiswuerfelQuote: string;
     contactTitle: string;
     contactSubtitle: string;
+    contactSubmitButton?: string;
     srOnlyModules: string;
     srOnlyEiswuerfel: string;
     moduleLabel: string;
