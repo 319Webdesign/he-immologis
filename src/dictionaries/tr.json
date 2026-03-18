@@ -1,9 +1,10 @@
 {
   "home": {
     "hero": {
-      "line1": "Yeni bir başlangıç artık mümkün.",
-      "line2": "Satın. Bulun.",
-      "line2Next": "Gerçekleştirin.",
+      "line1": "HAREKET EDEN BİR KONUM.",
+      "line2": "Gayrimenkulleriniz merkezde.",
+      "line2Next": "",
+      "tagline": "Satın. Bulun. Gerçekleştirin.",
       "subline": "Weinheim. Bergstraße. Rhein-Neckar-Kreis.",
       "ctaBuy": "Gayrimenkul satın alın",
       "ctaRent": "Gayrimenkul kiralayın",

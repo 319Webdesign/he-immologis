@@ -17,6 +17,7 @@ export type HomeHeroDict = {
   line1: string;
   line2: string;
   line2Next: string;
+  tagline?: string;
   subline: string;
   ctaBuy: string;
   ctaRent: string;
@@ -61,12 +62,25 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
         <div className="text-center hero-text-fade">
           <h1 className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
             {dict.line1}
-            <br />
-            {dict.line2}
-            <br />
-            <span className="whitespace-nowrap">{dict.line2Next}</span>
+            {dict.line2 && (
+              <>
+                <br />
+                <span style={{ color: "#F37A5A" }}>{dict.line2}</span>
+              </>
+            )}
+            {dict.line2Next && (
+              <>
+                <br />
+                <span className="whitespace-nowrap">{dict.line2Next}</span>
+              </>
+            )}
           </h1>
-          <p className="mt-4 text-lg font-normal tracking-wide whitespace-pre-line sm:text-xl md:mt-6" style={{ color: HERO_ACCENT }}>
+          {dict.tagline && (
+            <p className="mt-3 text-xl font-normal tracking-wide text-white/90 sm:text-2xl md:mt-4 md:text-3xl">
+              {dict.tagline}
+            </p>
+          )}
+          <p className="mt-2 text-lg font-normal tracking-wide whitespace-pre-line sm:text-xl md:mt-6" style={{ color: HERO_ACCENT }}>
             {dict.subline}
           </p>
         </div>
