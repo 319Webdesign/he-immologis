@@ -377,7 +377,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 {locale === "en" ? "Or call: " : locale === "tr" ? "Veya arayın: " : "Oder anrufen: "}
                 <a
                   href="tel:+491776361394"
-                  className="font-medium text-slate-900 underline hover:no-underline"
+                  className="font-medium underline hover:no-underline"
+                  style={{ color: BRAND_BLUE }}
                 >
                   +49 177 636 1394
                 </a>
