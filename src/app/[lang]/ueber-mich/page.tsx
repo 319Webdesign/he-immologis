@@ -41,6 +41,8 @@ export default async function UeberMichPage() {
     attitudeHeading: string;
     attitude1: string;
     attitude2: string;
+    heroSlogan1: string;
+    heroSlogan2: string;
     whyHeHeading: string;
     whyHe1: string;
     whyHe2: string;
@@ -106,6 +108,11 @@ export default async function UeberMichPage() {
               </h3>
               <p className="mt-4 leading-relaxed text-slate-600">{t.attitude1}</p>
               <p className="mt-4 leading-relaxed text-slate-600">{t.attitude2}</p>
+              <p className="mt-6 leading-relaxed text-slate-900">
+                <span className="font-semibold">{t.heroSlogan1}</span>
+                <br />
+                <span className="font-semibold" style={{ color: BRAND_BLUE }}>{t.heroSlogan2}</span>
+              </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
                 {t.whyHeHeading}
