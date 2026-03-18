@@ -1,10 +1,10 @@
+import Image from "next/image";
 import {
-  Crown,
   Clock,
   Layers,
 } from "lucide-react";
 
-const SECTION_ICONS = [Crown, Clock, Layers] as const;
+const SECTION_ICONS = [null, Clock, Layers] as const;
 const SECTION_ORDERS: ("text-first" | "image-first")[] = ["text-first", "image-first", "text-first"];
 
 export type PhilosophySection = {
@@ -43,6 +43,7 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
           {sections.map(({ id, headline, paragraphs, tagline, extra }, index) => {
             const Icon = SECTION_ICONS[index];
             const order = SECTION_ORDERS[index];
+            const isExclusivity = index === 0;
             return (
             <article
               key={id}
@@ -79,24 +80,38 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
                 </div>
               </div>
 
-              {/* Design-Element (Icon) */}
+              {/* Design-Element (Bild oder Icon) */}
               <div
-                className={`relative z-10 flex flex-1 items-center justify-center ${
+                className={`relative z-10 flex flex-1 items-center ${
                   order === "text-first"
                     ? "md:order-last md:justify-end"
                     : "md:order-first md:justify-start"
                 }`}
               >
-                <div
-                  className="flex h-28 w-28 items-center justify-center rounded-2xl bg-slate-50 text-slate-300 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
-                  style={{ animation: "float 4s ease-in-out infinite" }}
-                >
-                  <Icon
-                    className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24"
-                    strokeWidth={1}
-                    aria-hidden
-                  />
-                </div>
+                {isExclusivity ? (
+                  <div className="relative ml-auto h-64 w-full max-w-md overflow-hidden sm:h-72 lg:h-80 lg:max-w-xl">
+                    <Image
+                      src="/img/flexible.png"
+                      alt=""
+                      fill
+                      className="rounded-l-2xl object-cover object-right"
+                      sizes="(max-width: 768px) 100vw, 576px"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="flex h-28 w-28 items-center justify-center rounded-2xl bg-slate-50 text-slate-300 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
+                    style={{ animation: "float 4s ease-in-out infinite" }}
+                  >
+                    {Icon && (
+                      <Icon
+                        className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24"
+                        strokeWidth={1}
+                        aria-hidden
+                      />
+                    )}
+                  </div>
+                )}
               </div>
             </article>
           );

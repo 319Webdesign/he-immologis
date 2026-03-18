@@ -190,8 +190,8 @@ export default async function AufstellerPage() {
         aria-labelledby="aufsteller-hero-heading"
         style={{
           backgroundImage: "url(/img/banner-aufsteller.jpeg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center 85%",
+          backgroundSize: "100% auto",
+          backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
         }}
       >

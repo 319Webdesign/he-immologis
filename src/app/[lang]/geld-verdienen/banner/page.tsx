@@ -180,8 +180,8 @@ export default async function BannerPage() {
         aria-labelledby="banner-hero-heading"
         style={{
           backgroundImage: "url(/img/hero-banner.jpeg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center 85%",
+          backgroundSize: "100% auto",
+          backgroundPosition: "center 65%",
           backgroundRepeat: "no-repeat",
         }}
       >
