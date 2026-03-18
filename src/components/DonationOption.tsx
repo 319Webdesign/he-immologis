@@ -57,7 +57,7 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
       />
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "rgba(70, 130, 180, 0.45)" }}
+        style={{ backgroundColor: "rgba(174, 173, 168, 0.5)" }}
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-3xl">
@@ -67,30 +67,25 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
             style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
             aria-hidden
           >
-            <Heart className="h-6 w-6" style={{ color: "#F37A5A" }} />
+            <Heart className="h-6 w-6" style={{ color: "#8B0000" }} />
           </div>
           <h2
             id="donation-option-heading"
-            className="font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+            className="font-sans text-2xl font-semibold tracking-tight sm:text-3xl"
+            style={{ color: "#425159" }}
           >
-            {locale === "de" ? (
-              <>
-                <span style={{ color: "#8AAFA3" }}>Spenden</span> statt Prämie
-              </>
-            ) : (
-              t.headline
-            )}
+            {t.headline}
           </h2>
         </div>
-        <div className="mt-4 space-y-3 text-white leading-relaxed sm:text-lg">
+        <div className="mt-4 space-y-3 leading-relaxed sm:text-lg" style={{ color: "#425159" }}>
           {paragraphs.map((para, i) => (
             <p key={i}>{para}</p>
           ))}
         </div>
         <Link
           href={`/${lang}/spenden`}
-          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8AAFA3]"
-          style={{ backgroundColor: "#8AAFA3" }}
+          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8AAFA3]"
+          style={{ backgroundColor: "#8AAFA3", color: "#425159" }}
         >
           {t.cta}
           <ArrowRight className="h-5 w-5" aria-hidden />
