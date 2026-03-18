@@ -52,7 +52,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
           className="mt-3 inline-flex w-fit rounded-lg px-3 py-1.5 text-sm font-semibold"
           style={{
             backgroundColor: "#8AAFA315",
-            color: "#8AAFA3",
+            color: "#000000",
           }}
         >
           {price}
