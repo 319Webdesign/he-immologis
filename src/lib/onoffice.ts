@@ -829,7 +829,7 @@ export async function fetchPropertyById(
     const useNumericId = /^\d+$/.test(slugStr);
     const numericId = useNumericId ? parseInt(slugStr, 10) : null;
 
-    const doFetch = async (dataFields: string[]): Promise<{ ok: true; record: OnOfficeRecord } | { ok: false; errorcode?: number; json: OnOfficeReadResponse }> => {
+    const doFetch = async (dataFields: string[], slugToTry: string = slugStr): Promise<{ ok: true; record: OnOfficeRecord } | { ok: false; errorcode?: number; json: OnOfficeReadResponse }> => {
       const timestamp = String(Math.floor(Date.now() / 1000));
       const actionid = READ_ACTION_ID;
       const resourcetype = RESOURCE_TYPE_ESTATE;
@@ -840,7 +840,7 @@ export async function fetchPropertyById(
       parameters.estatelanguage = isoLang;
       if (!useNumericId) {
         parameters.filter = {
-          objektnr_extern: [{ op: "=", val: slugStr }],
+          objektnr_extern: [{ op: "=", val: slugToTry }],
           status: [{ op: "=", val: "1" }],
         };
         parameters.listlimit = 1;
@@ -933,6 +933,11 @@ export async function fetchPropertyById(
         result = await doFetch(coreFields);
         break;
       }
+    }
+
+    // Fallback: onOffice speichert objektnr_extern oft großgeschrieben (z. B. EFH-K-26-001)
+    if (!result.ok && !useNumericId && slugStr !== slugStr.toUpperCase()) {
+      result = await doFetch(fields, slugStr.toUpperCase());
     }
 
     if (!result.ok) {

@@ -96,7 +96,7 @@ export default function PropertyCard({
   return (
     <Link
       ref={cardRef}
-      href={`/${lang}/kaufen/${encodeURIComponent(property.objektnr_extern || String(property.id))}`}
+      href={`/${lang}/kaufen/${encodeURIComponent(String(property.objektnr_extern || property.id).toLowerCase())}`}
       className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
       data-incenter={isInCenter}
     >

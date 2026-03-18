@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Screaming Frog und andere HTML-Parser erhalten Metadaten im <head>
+  // statt im Body (Next.js 15.2+ Streaming Metadata)
+  htmlLimitedBots: /Screaming Frog SEO Spider|Slackbot|Twitterbot|bingbot|Googlebot|Mediapartners-Google|AdsBot-Google|Google-PageRenderer/i,
   images: {
     remotePatterns: [
       {

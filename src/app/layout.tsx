@@ -19,6 +19,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.he-immologis.d
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "./",
+  },
   icons: {
     icon: { url: "/img/logo.png", type: "image/png" },
     apple: { url: "/img/logo.png", type: "image/png", sizes: "180x180" },

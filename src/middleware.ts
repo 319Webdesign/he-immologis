@@ -53,6 +53,18 @@ export function middleware(request: NextRequest) {
 
   if (hasLocale) {
     const locale = pathname.split("/")[1] as Locale;
+    // Immobilien-URLs kleinschreiben: /de/kaufen/EFH-K-26-001 → /de/kaufen/efh-k-26-001
+    const kaufenMatch = pathname.match(new RegExp(`^/(${LOCALES.join("|")})/kaufen/([^/]+)$`));
+    const mietenMatch = pathname.match(new RegExp(`^/(${LOCALES.join("|")})/mieten/([^/]+)$`));
+    const match = kaufenMatch ?? mietenMatch;
+    if (match) {
+      const id = match[2];
+      if (id !== id.toLowerCase()) {
+        const url = request.nextUrl.clone();
+        url.pathname = `/${match[1]}/${kaufenMatch ? "kaufen" : "mieten"}/${id.toLowerCase()}`;
+        return NextResponse.redirect(url, 308);
+      }
+    }
     const response = NextResponse.next();
     response.headers.set("x-next-locale", locale);
     return response;
