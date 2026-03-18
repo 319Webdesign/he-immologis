@@ -222,7 +222,7 @@ export default async function SpendenPage() {
           >
             {lang === "de" ? (
               <>
-                Ihre Empfehlung. Unsere <span style={{ color: "#8B0000" }}>Spende.</span>
+                <span style={{ color: "#8B0000" }}>Ihre</span> Empfehlung. Unsere <span style={{ color: "#8B0000" }}>Spende.</span>
               </>
             ) : (
               t.heroTitle
