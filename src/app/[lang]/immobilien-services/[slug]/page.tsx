@@ -92,8 +92,7 @@ function KomplettmandatContent({
         {[0, 2, 4, 6, 8].map((idx) => (
           <div
             key={idx}
-            className="flex gap-4 rounded-2xl border border-slate-200 p-6 shadow-sm transition-shadow hover:shadow-md sm:gap-5 sm:p-7"
-            style={{ backgroundColor: "#AEADA8" }}
+            className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md sm:gap-5 sm:p-7"
           >
             <span
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white sm:h-12 sm:w-12"
@@ -116,8 +115,8 @@ function KomplettmandatContent({
       <section
         className="mt-12 rounded-2xl border-2 px-6 py-7 sm:px-8 sm:py-8"
         style={{
-          borderColor: BRAND_BLUE,
-          backgroundColor: `${BRAND_BLUE}08`,
+          borderColor: "#8AAFA3",
+          backgroundColor: "#8AAFA315",
         }}
         aria-labelledby="verguetung-heading"
       >
