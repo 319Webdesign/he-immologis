@@ -108,10 +108,10 @@ export default async function UeberMichPage() {
               </h3>
               <p className="mt-4 leading-relaxed text-slate-600">{t.attitude1}</p>
               <p className="mt-4 leading-relaxed text-slate-600">{t.attitude2}</p>
-              <p className="mt-6 leading-relaxed text-slate-900">
-                <span className="font-semibold">{t.heroSlogan1}</span>
+              <p className="mt-8 font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+                {t.heroSlogan1}
                 <br />
-                <span className="font-semibold" style={{ color: BRAND_BLUE }}>{t.heroSlogan2}</span>
+                <span style={{ color: BRAND_BLUE }}>{t.heroSlogan2}</span>
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
