@@ -10,22 +10,22 @@ const BRAND_COLOR = "#F37A5A";
 const STAFFEL_DE = [
   { range: "Bis 250.000 €", provision: "1.000 €", from: 0, to: 250 },
   { range: "250.000 € – 500.000 €", provision: "1.500 €", from: 250, to: 500 },
-  { range: "500.000 € – 1 Mio. €", provision: "2.500 €", from: 500, to: 1000 },
-  { range: "Ab 1 Mio. €", provision: "5.000 €", from: 1000, to: 1000 },
+  { range: "500.000 € – 1.000.000 €", provision: "2.500 €", from: 500, to: 1000 },
+  { range: "Ab 1.000.000 €", provision: "5.000 €", from: 1000, to: 1000 },
 ];
 
 const STAFFEL_EN = [
   { range: "Up to €250,000", provision: "€1,000", from: 0, to: 250 },
   { range: "€250,000 – €500,000", provision: "€1,500", from: 250, to: 500 },
-  { range: "€500,000 – €1m", provision: "€2,500", from: 500, to: 1000 },
-  { range: "From €1m", provision: "€5,000", from: 1000, to: 1000 },
+  { range: "€500,000 – €1,000,000", provision: "€2,500", from: 500, to: 1000 },
+  { range: "From €1,000,000", provision: "€5,000", from: 1000, to: 1000 },
 ];
 
 const STAFFEL_TR = [
   { range: "250.000 €'ye kadar", provision: "1.000 €", from: 0, to: 250 },
   { range: "250.000 € – 500.000 €", provision: "1.500 €", from: 250, to: 500 },
-  { range: "500.000 € – 1 Milyon €", provision: "2.500 €", from: 500, to: 1000 },
-  { range: "1 Milyon € ve üzeri", provision: "5.000 €", from: 1000, to: 1000 },
+  { range: "500.000 € – 1.000.000 €", provision: "2.500 €", from: 500, to: 1000 },
+  { range: "1.000.000 € ve üzeri", provision: "5.000 €", from: 1000, to: 1000 },
 ];
 
 export default function ProvisionsStaffel() {
@@ -45,7 +45,7 @@ export default function ProvisionsStaffel() {
       className="mt-12"
     >
       {/* Desktop: horizontale Karten mit Fortschritts-Visualisierung */}
-      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:items-stretch">
         {staffel.map((stufe, i) => (
           <div
             key={stufe.range}
@@ -64,11 +64,15 @@ export default function ProvisionsStaffel() {
               <Wallet className="h-5 w-5 shrink-0" style={{ color: BRAND_COLOR }} />
               <span className="text-sm font-medium">{labelKaufpreis}</span>
             </div>
-            <p className="mt-2 font-semibold text-slate-800">{stufe.range}</p>
-            <p className="mt-3 text-2xl font-bold" style={{ color: CARD_ACCENT }}>
-              {stufe.provision}
-            </p>
-            <p className="mt-1 text-sm text-slate-500">{labelProvision}</p>
+            <div className={i === 0 || i === staffel.length - 1 ? "mt-4" : "mt-auto pt-4"}>
+              <p className="font-semibold text-slate-800">{stufe.range}</p>
+            </div>
+            <div className="mt-auto pt-3">
+              <p className="text-2xl font-bold" style={{ color: CARD_ACCENT }}>
+                {stufe.provision}
+              </p>
+              <p className="mt-1 text-sm text-slate-500">{labelProvision}</p>
+            </div>
           </div>
         ))}
       </div>
