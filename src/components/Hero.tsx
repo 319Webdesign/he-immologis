@@ -79,7 +79,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
             <Link
               href={`/${lang}/kaufen`}
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
-              style={{ backgroundColor: HERO_ACCENT, color: "#1e293b" }}
+              style={{ backgroundColor: HERO_ACCENT, color: "#ffffff" }}
             >
               <Home className="h-4 w-4 shrink-0" style={{ color: "#F37A5A" }} aria-hidden />
               {dict.ctaBuy}
@@ -87,7 +87,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
             <Link
               href={`/${lang}/mieten`}
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
-              style={{ backgroundColor: HERO_ACCENT, color: "#1e293b" }}
+              style={{ backgroundColor: HERO_ACCENT, color: "#ffffff" }}
             >
               <Key className="h-4 w-4 shrink-0" style={{ color: "#F37A5A" }} aria-hidden />
               {dict.ctaRent}
@@ -95,7 +95,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
             <Link
               href={`/${lang}/immobilie-suchen`}
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
-              style={{ backgroundColor: HERO_ACCENT, color: "#1e293b" }}
+              style={{ backgroundColor: HERO_ACCENT, color: "#ffffff" }}
             >
               <Search className="h-4 w-4 shrink-0" style={{ color: "#F37A5A" }} aria-hidden />
               {dict.ctaSearch}
