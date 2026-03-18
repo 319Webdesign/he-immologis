@@ -52,10 +52,10 @@ export default async function MietenPage() {
         </div>
         <a
           href="#mietobjekte"
-          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
+          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 transition-colors hover:opacity-90 sm:bottom-8"
           aria-label={m.hero.ctaAriaLabel}
         >
-          <span className="text-sm font-medium">{m.hero.ctaText}</span>
+          <span className="text-sm font-medium" style={{ color: "#F37A5A" }}>{m.hero.ctaText}</span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
