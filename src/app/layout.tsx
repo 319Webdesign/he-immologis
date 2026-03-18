@@ -20,8 +20,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.he-immologis.d
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
-    icon: { url: "/img/Logo.svg", type: "image/svg+xml" },
-    apple: "/apple-touch-icon.png",
+    icon: { url: "/img/logo.png", type: "image/png" },
+    apple: { url: "/img/logo.png", type: "image/png", sizes: "180x180" },
   },
   title: {
     default: "Immobilienmakler Weinheim & Bergstraße | HE-immologis",
