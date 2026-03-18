@@ -74,7 +74,19 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
             className="font-sans text-2xl font-semibold tracking-tight sm:text-3xl"
             style={{ color: "#425159" }}
           >
-            {t.headline}
+            {locale === "de" ? (
+              <>
+                <span style={{ color: "#8B0000" }}>Spenden</span> statt Prämie
+              </>
+            ) : locale === "en" ? (
+              <>
+                <span style={{ color: "#8B0000" }}>Donate</span> instead of bonus
+              </>
+            ) : (
+              <>
+                Ödül yerine <span style={{ color: "#8B0000" }}>bağış</span>
+              </>
+            )}
           </h2>
         </div>
         <div className="mt-4 space-y-3 leading-relaxed sm:text-lg" style={{ color: "#425159" }}>
