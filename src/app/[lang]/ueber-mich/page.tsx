@@ -37,7 +37,6 @@ export default async function UeberMichPage() {
     career3: string;
     regional: string;
     regionalPlaces: string;
-    kapstadtTip: string;
     whyRealEstateHeading: string;
     attitudeHeading: string;
     attitude1: string;
@@ -99,8 +98,6 @@ export default async function UeberMichPage() {
                 <br />
                 {t.regionalPlaces}
               </p>
-              <p className="mt-4 leading-relaxed text-slate-600">{t.kapstadtTip}</p>
-
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
                 {t.whyRealEstateHeading}
               </h2>
