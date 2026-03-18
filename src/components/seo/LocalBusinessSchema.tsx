@@ -18,7 +18,7 @@ export default function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": "https://www.he-immologis.de/#localbusiness",
-    name: "HE immologis UG (haftungsbeschränkt) i. Gr.",
+    name: "HE immologis UG",
     description:
       "Immobilienmakler in Weinheim, Pfungstadt und der Bergstraße. Immobilienbewertung, Verkauf, Kauf und Vermietung in Weinheim, Pfungstadt, Bensheim, Heppenheim, Viernheim, Lampertheim, Lorsch und Hemsbach.",
     url: "https://www.he-immologis.de",

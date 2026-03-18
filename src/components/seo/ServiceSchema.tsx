@@ -13,7 +13,7 @@ export default function ServiceSchema() {
     url: "https://www.he-immologis.de/de/logistikberatung",
     provider: {
       "@type": "Organization",
-      name: "HE immologis UG (haftungsbeschränkt) i. Gr.",
+      name: "HE immologis UG",
       url: "https://www.he-immologis.de",
     },
     areaServed: "Europe",

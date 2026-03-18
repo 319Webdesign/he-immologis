@@ -132,8 +132,12 @@ export default function Footer({ lang, dict }: FooterProps) {
             </Link>
             <p className="font-sans text-lg leading-tight text-white">
               <span className="font-semibold">{dict.companyLine1}</span>
-              <br />
-              <span className="text-base font-normal">{dict.companyLine2}</span>
+              {dict.companyLine2 && (
+                <>
+                  <br />
+                  <span className="text-base font-normal">{dict.companyLine2}</span>
+                </>
+              )}
             </p>
             <p
               className="mt-2 text-sm text-slate-100"

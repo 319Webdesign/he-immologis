@@ -57,7 +57,7 @@
   },
   "footer": {
     "companyLine1": "HE immologis UG",
-    "companyLine2": "(haftungsbeschränkt) i. Gr.",
+    "companyLine2": "",
     "partnerText": "Ihr Partner für <br> Immobilien- & Logistikberatung<br> im Rhein-Neckar-Kreis.",
     "contact": "Kontakt",
     "managingDirector": "Geschäftsführer",
@@ -100,11 +100,11 @@
     "subtitle": "QR-Barcode per E-Mail teilen<br>– Weiterempfehlen.",
     "buttonLabel": "Per E-Mail weiterempfehlen",
     "mailSubject": "Empfehlung: Immobilien – HE immologis in Weinheim / Holger Eberhard",
-    "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG (haftungsbeschränkt) i. Gr. hinweisen.\n\nWeitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
+    "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG hinweisen.\n\nWeitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
   },
   "localPresence": {
     "heading": "Verkaufen. Kaufen. Mieten.<br>Services. Suchen.",
-    "subline": "Ihr neues Zuhause in Weinheim, Bergstraße und Rhein-Neckar-Kreis\nbeginnt hier.",
+    "subline": "Ihr neues Zuhause beginnt hier.<br>\nWeinheim. Bergstraße. Rhein-Neckar-Kreis.",
     "regionTitle": "Zuhause im Rhein-Neckar-Kreis.",
     "cards": [
       {
@@ -178,7 +178,7 @@
     "signoff": "Herzlich",
     "managingDirector": "Geschäftsführer",
     "signatureAlt": "Unterschrift Holger Eberhard",
-    "companyLine": "HE immologis UG (haftungsbeschränkt) i. G.",
+    "companyLine": "HE immologis UG",
     "companySubline": "Immobilien- und Logistikberatung · Wertermittlung (TA)",
     "contactTitle": "Kontakt aufnehmen",
     "contactSubtitle": "Haben Sie Fragen oder möchten Sie unverbindlich ins Gespräch kommen? Ich freue mich auf Ihre Nachricht."
@@ -640,7 +640,7 @@
     },
     "hints": {
       "gwgHeading": "Geldwäschegesetz (GwG)",
-      "gwgP1": "Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.",
+      "gwgP1": "Die HE immologis UG ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.",
       "gwgP2": "Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.",
       "gwgP3": "Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.",
       "gwgP4": "Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.",

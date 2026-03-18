@@ -876,7 +876,7 @@ export function PropertyDetailLayout({
             {isKaufen && (
               <div>
                 <h3 className="mb-2 font-sans font-semibold text-zinc-900">{h("gwgHeading", "Geldwäschegesetz (GwG)")}</h3>
-                <p className="mb-2 leading-relaxed">{h("gwgP1", "Die HE immologis UG (haftungsbeschränkt) i. Gr. ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.")}</p>
+                <p className="mb-2 leading-relaxed">{h("gwgP1", "Die HE immologis UG ist als Immobilienmakler gemäß § 2 Abs. 1 Nr. 14 sowie § 10 Abs. 3 Geldwäschegesetz (GwG) verpflichtet, bei Aufnahme einer Geschäftsbeziehung die Identität des Vertragspartners festzustellen und zu überprüfen.")}</p>
                 <p className="mb-2 leading-relaxed">{h("gwgP2", "Dazu erfassen wir nach § 11 GwG die relevanten Daten Ihres gültigen Personalausweises, sofern Sie als natürliche Person handeln – beispielsweise durch Anfertigung einer Kopie.")}</p>
                 <p className="mb-2 leading-relaxed">{h("gwgP3", "Handeln Sie im Namen einer juristischen Person, benötigen wir einen aktuellen Handelsregisterauszug, aus dem der wirtschaftlich Berechtigte hervorgeht.")}</p>
                 <p className="leading-relaxed">{h("gwgP4", "Das Gesetz verpflichtet uns, diese Unterlagen für die Dauer von fünf Jahren aufzubewahren.")}</p>

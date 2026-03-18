@@ -58,7 +58,7 @@
   },
   "footer": {
     "companyLine1": "HE immologis UG",
-    "companyLine2": "(haftungsbeschränkt) i. Gr.",
+    "companyLine2": "",
     "partnerText": "Rhein-Neckar-Kreis'te <br> gayrimenkul ve lojistik danışmanlığında<br> güvenilir iş ortağınız.",
     "contact": "İletişim",
     "managingDirector": "Yönetici",
@@ -101,7 +101,7 @@
     "subtitle": "QR barkodu e-posta ile paylaşın<br>– Önerin.",
     "buttonLabel": "E-posta ile paylaş",
     "mailSubject": "Öneri: Gayrimenkul – HE immologis Weinheim / Holger Eberhard",
-    "mailBody": "Merhaba,\n\nHolger Eberhard ve HE immologis UG (haftungsbeschränkt) i. Gr.'ye dikkat çekmek isterim.\n\nDaha fazla bilgi: {{url}}\n\nSorular veya istekler için Holger Eberhard Weinheim'da kişisel olarak şu numaradan ulaşılabilir:\n+49 177 636 1394\neberhard@he-immologis.de\n\nWeinheim bölgesinde gayrimenkul konusunda destek arayan biri varsa, bu faydalı bir adres olabilir.\n\nSaygılarımla"
+    "mailBody": "Merhaba,\n\nHolger Eberhard ve HE immologis UG'ye dikkat çekmek isterim.\n\nDaha fazla bilgi: {{url}}\n\nSorular veya istekler için Holger Eberhard Weinheim'da kişisel olarak şu numaradan ulaşılabilir:\n+49 177 636 1394\neberhard@he-immologis.de\n\nWeinheim bölgesinde gayrimenkul konusunda destek arayan biri varsa, bu faydalı bir adres olabilir.\n\nSaygılarımla"
   },
   "localPresence": {
     "heading": "Satış. Satın alma. Kiralama. Hizmetler. Arama.",
@@ -179,7 +179,7 @@
     "signoff": "Saygılarımla",
     "managingDirector": "Yönetici",
     "signatureAlt": "Holger Eberhard imzası",
-    "companyLine": "HE immologis UG (haftungsbeschränkt) i. G.",
+    "companyLine": "HE immologis UG",
     "companySubline": "Gayrimenkul ve lojistik danışmanlığı · Değerleme (TA)",
     "contactTitle": "İletişime geçin",
     "contactSubtitle": "Sorularınız mı var ya da bağlayıcı olmayan bir görüşme mi yapmak istiyorsunuz? Mesajınızı bekliyorum."
@@ -678,7 +678,7 @@
     },
     "hints": {
       "gwgHeading": "Kara Para Aklamayı Önleme Yasası (GwG)",
-      "gwgP1": "HE immologis UG (sorumluluğu sınırlı) i. Gr., Alman Kara Para Aklamayı Önleme Yasası (GwG) § 2 (1) no. 14 ve § 10 (3) uyarınca bir iş ilişkisi kurulduğunda sözleşme tarafının kimliğini tespit etmek ve doğrulamakla yükümlüdür.",
+      "gwgP1": "HE immologis UG, Alman Kara Para Aklamayı Önleme Yasası (GwG) § 2 (1) no. 14 ve § 10 (3) uyarınca bir iş ilişkisi kurulduğunda sözleşme tarafının kimliğini tespit etmek ve doğrulamakla yükümlüdür.",
       "gwgP2": "Bu amaçla, gerçek kişi olarak hareket etmeniz halinde § 11 GwG uyarınca geçerli kimlik kartınızdan ilgili verileri – örneğin bir kopya çıkararak – topluyoruz.",
       "gwgP3": "Bir tüzel kişi adına hareket ediyorsanız, yararlanıcı sahibi gösteren güncel bir ticaret sicili özeti gereklidir.",
       "gwgP4": "Yasa, bu belgeleri beş yıl süreyle saklamamızı zorunlu kılmaktadır.",

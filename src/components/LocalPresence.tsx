@@ -30,6 +30,11 @@ const CITIES = [
   "Mannheim",
 ];
 
+function getCityImagePath(city: string): string {
+  const slug = city.toLowerCase().replace(/\s+/g, "-");
+  return `/img/orte/${slug}.jpeg`;
+}
+
 interface LocalPresenceProps {
   dict: LocalPresenceDict;
 }
@@ -44,30 +49,31 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Titel, Holger-Porträt & Untertitel – ab lg gleiches Grid wie Karten, Bild bündig mit Logistikberatung */}
-        <header className="relative mx-auto w-full max-w-4xl lg:grid lg:max-w-full lg:grid-cols-4 lg:gap-8">
+        <header className="relative mx-auto w-full max-w-4xl lg:grid lg:max-w-full lg:grid-cols-4 lg:items-start lg:gap-8">
           <div className="w-full text-center sm:pr-[7rem] lg:col-span-3 lg:pr-0">
             <h2
               id="kompetenz-heading"
               className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
               dangerouslySetInnerHTML={{ __html: heading }}
             />
-            <p className="mt-4 text-lg text-slate-600">
-              {subline}
-            </p>
+            <p
+              className="mt-4 text-xl text-slate-600"
+              dangerouslySetInnerHTML={{ __html: subline }}
+            />
           </div>
-          <div className="mt-6 flex justify-center sm:absolute sm:right-0 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2 lg:relative lg:col-span-1 lg:mt-0 lg:justify-start">
+          <div className="mt-6 flex justify-center sm:absolute sm:right-0 sm:bottom-0 sm:mt-0 lg:relative lg:right-auto lg:bottom-auto lg:col-span-1 lg:mt-0 lg:self-end lg:justify-center">
             <img
               src="/img/holger.jpeg"
               alt="Holger Eberhard – Ihr Ansprechpartner für Immobilien in Weinheim und an der Bergstraße"
-              className="h-28 w-28 rounded-xl object-cover ring-2 ring-slate-200 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
-              width={160}
-              height={160}
+              className="h-36 w-36 rounded-xl object-cover object-center ring-2 ring-slate-200 sm:h-44 sm:w-44 lg:h-48 lg:w-48"
+              width={400}
+              height={500}
             />
           </div>
         </header>
 
         {/* Karten und Region zentriert, gleiche Breite */}
-        <div className="mt-12 flex flex-col items-center gap-6 sm:mt-16 sm:gap-6 lg:gap-8">
+        <div className="mt-8 flex flex-col items-center gap-6 sm:mt-10 sm:gap-6 lg:mt-8 lg:gap-8">
           <div className="flex w-full justify-center">
             <div className="flex w-full flex-col gap-6 lg:w-max lg:gap-8">
               <div
@@ -123,9 +129,18 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               {CITIES.map((city) => (
                 <span
                   key={city}
-                  className="shrink-0 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
+                  className="group relative shrink-0 cursor-default rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
                 >
                   {city}
+                  <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-48 -translate-x-1/2 overflow-hidden rounded-xl border border-white/20 shadow-xl group-hover:block sm:w-56">
+                    <img
+                      src={getCityImagePath(city)}
+                      alt={`${city} – Ortsbild`}
+                      className="aspect-video w-full object-cover"
+                      width={224}
+                      height={126}
+                    />
+                  </span>
                 </span>
               ))}
             </div>

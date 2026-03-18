@@ -57,7 +57,7 @@
   },
   "footer": {
     "companyLine1": "HE immologis UG",
-    "companyLine2": "(haftungsbeschränkt) i. Gr.",
+    "companyLine2": "",
     "partnerText": "Your partner for <br> real estate & logistics consulting<br> in the Rhein-Neckar district.",
     "contact": "Contact",
     "managingDirector": "Managing Director",
@@ -100,7 +100,7 @@
     "subtitle": "Share QR barcode by email<br>– Recommend.",
     "buttonLabel": "Share by email",
     "mailSubject": "Recommendation: Real Estate – HE immologis in Weinheim / Holger Eberhard",
-    "mailBody": "Hello,\n\nI would like to point you to Holger Eberhard and HE immologis UG (haftungsbeschränkt) i. Gr.\n\nFurther information can be found at: {{url}}\n\nFor any questions or requests, Holger Eberhard is personally available in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nIf anyone in the Weinheim region is looking for support with property matters, this could be a helpful contact.\n\nBest regards"
+    "mailBody": "Hello,\n\nI would like to point you to Holger Eberhard and HE immologis UG\n\nFurther information can be found at: {{url}}\n\nFor any questions or requests, Holger Eberhard is personally available in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nIf anyone in the Weinheim region is looking for support with property matters, this could be a helpful contact.\n\nBest regards"
   },
   "localPresence": {
     "heading": "Sell. Buy. Rent.<br> Services. Search.",
@@ -178,7 +178,7 @@
     "signoff": "Warm regards",
     "managingDirector": "Managing Director",
     "signatureAlt": "Signature Holger Eberhard",
-    "companyLine": "HE immologis UG (limited liability) i. G.",
+    "companyLine": "HE immologis UG",
     "companySubline": "Real estate and logistics consulting · Property valuation (TA)",
     "contactTitle": "Get in touch",
     "contactSubtitle": "Do you have questions or would you like to have a non-binding conversation? I look forward to hearing from you."
@@ -650,7 +650,7 @@
     },
     "hints": {
       "gwgHeading": "Anti-Money Laundering Act (GwG)",
-      "gwgP1": "HE immologis UG (limited liability) i. Gr. is required as a real estate agent under § 2 (1) no. 14 and § 10 (3) of the German Anti-Money Laundering Act (GwG) to verify and identify the contractual partner when establishing a business relationship.",
+      "gwgP1": "HE immologis UG is required as a real estate agent under § 2 (1) no. 14 and § 10 (3) of the German Anti-Money Laundering Act (GwG) to verify and identify the contractual partner when establishing a business relationship.",
       "gwgP2": "For this purpose, we collect the relevant data from your valid ID card in accordance with § 11 GwG, provided you act as a natural person – for example by making a copy.",
       "gwgP3": "If you act on behalf of a legal entity, we require a current extract from the commercial register showing the beneficial owner.",
       "gwgP4": "The law requires us to keep these documents for a period of five years.",
