@@ -213,21 +213,22 @@ export default async function SpendenPage() {
           className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden
         />
-        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(174, 173, 168, 0.5)" }} aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl px-2 text-center">
           <h1
             id="spenden-hero-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+            className="font-sans text-4xl font-semibold tracking-tight drop-shadow-sm sm:text-5xl"
+            style={{ color: "#425159" }}
           >
             {lang === "de" ? (
               <>
-                Ihre Empfehlung. Unsere <span className="text-red-800">Spende.</span>
+                Ihre Empfehlung. Unsere <span style={{ color: "#8B0000" }}>Spende.</span>
               </>
             ) : (
               t.heroTitle
             )}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-sm sm:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed drop-shadow-sm sm:text-xl" style={{ color: "#425159" }}>
             {t.heroSubline}
           </p>
         </div>

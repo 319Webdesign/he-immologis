@@ -60,7 +60,7 @@ export default async function TippGebenPage() {
           >
             {t.heroTitle}
           </h1>
-          <p className="mt-8 inline-block animate-breathe text-2xl font-bold drop-shadow-sm sm:text-3xl" style={{ color: "#8AAFA3" }}>
+          <p className="mt-8 inline-block animate-breathe text-2xl font-bold drop-shadow-sm sm:text-3xl" style={{ color: BRAND_BLUE }}>
             {t.heroCta}
           </p>
         </div>
