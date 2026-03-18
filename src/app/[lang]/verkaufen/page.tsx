@@ -153,7 +153,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
 
       <SellerServices dict={v.sellerServices} lang={locale} />
 
-      <ShareSection dict={dict.shareSection} />
+      <ShareSection dict={{ ...dict.shareSection, buttonLabel: dict.shareSection.pageLabels?.verkaufen ?? dict.shareSection.buttonLabel }} />
     </>
   );
 }

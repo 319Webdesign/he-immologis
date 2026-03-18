@@ -142,7 +142,7 @@ export default async function ImmobilieSuchenPage({
         <SearchRequestForm lang={lang} />
       </section>
 
-      <ShareSection dict={dict.shareSection} />
+      <ShareSection dict={{ ...dict.shareSection, buttonLabel: dict.shareSection.pageLabels?.immobilieSuchen ?? dict.shareSection.buttonLabel }} />
     </>
   );
 }

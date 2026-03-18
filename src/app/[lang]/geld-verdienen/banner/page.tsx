@@ -14,6 +14,7 @@ import { getLocaleFromHeaders } from "@/lib/i18n";
 import { BANNER_DOCS } from "@/lib/documents";
 
 const BRAND_BLUE = "#F37A5A";
+const CTA_ACCENT = "#8AAFA3";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -203,8 +204,8 @@ export default async function BannerPage() {
             {t.heroIntro}
           </p>
           <p
-            className="mt-4 inline-block animate-breathe text-2xl font-bold text-white drop-shadow-sm sm:text-3xl"
-            style={{ color: "#93c5fd" }}
+            className="mt-4 inline-block animate-breathe text-2xl font-bold drop-shadow-sm sm:text-3xl"
+            style={{ color: "#F37A5A" }}
           >
             {t.heroCta}
           </p>
@@ -226,7 +227,7 @@ export default async function BannerPage() {
             <li className="flex items-start gap-3">
               <span
                 className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: `${BRAND_BLUE}20`, color: BRAND_BLUE }}
+                style={{ backgroundColor: `${CTA_ACCENT}20`, color: CTA_ACCENT }}
               >
                 <Check className="h-4 w-4" />
               </span>
@@ -238,7 +239,7 @@ export default async function BannerPage() {
             <li className="flex items-start gap-3">
               <span
                 className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: `${BRAND_BLUE}20`, color: BRAND_BLUE }}
+                style={{ backgroundColor: `${CTA_ACCENT}20`, color: CTA_ACCENT }}
               >
                 <Check className="h-4 w-4" />
               </span>
@@ -250,7 +251,7 @@ export default async function BannerPage() {
             <li className="flex items-start gap-3">
               <span
                 className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: `${BRAND_BLUE}20`, color: BRAND_BLUE }}
+                style={{ backgroundColor: `${CTA_ACCENT}20`, color: CTA_ACCENT }}
               >
                 <Check className="h-4 w-4" />
               </span>
@@ -278,7 +279,7 @@ export default async function BannerPage() {
             <div className="flex flex-col items-center text-center">
               <span
                 className="flex h-12 w-12 items-center justify-center rounded-full font-sans text-xl font-bold text-white"
-                style={{ backgroundColor: BRAND_BLUE }}
+                style={{ backgroundColor: CTA_ACCENT }}
               >
                 1
               </span>
@@ -288,7 +289,7 @@ export default async function BannerPage() {
             <div className="flex flex-col items-center text-center">
               <span
                 className="flex h-12 w-12 items-center justify-center rounded-full font-sans text-xl font-bold text-white"
-                style={{ backgroundColor: BRAND_BLUE }}
+                style={{ backgroundColor: CTA_ACCENT }}
               >
                 2
               </span>
@@ -298,7 +299,7 @@ export default async function BannerPage() {
             <div className="flex flex-col items-center text-center">
               <span
                 className="flex h-12 w-12 items-center justify-center rounded-full font-sans text-xl font-bold text-white"
-                style={{ backgroundColor: BRAND_BLUE }}
+                style={{ backgroundColor: CTA_ACCENT }}
               >
                 3
               </span>
@@ -337,7 +338,7 @@ export default async function BannerPage() {
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
               <div
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-                style={{ backgroundColor: `${BRAND_BLUE}18` }}
+                style={{ backgroundColor: `${CTA_ACCENT}18` }}
               >
                 <Home className="h-6 w-6" style={{ color: BRAND_BLUE }} />
               </div>
@@ -347,8 +348,8 @@ export default async function BannerPage() {
                 href={BANNER_DOCS.privat[localeKey]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#F37A5A]`}
-                style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#8AAFA3]`}
+                style={{ borderColor: CTA_ACCENT, color: CTA_ACCENT }}
               >
                 <FileDown className="h-5 w-5 shrink-0" />
                 {t.downloadPrivat}
@@ -357,7 +358,7 @@ export default async function BannerPage() {
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
               <div
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-                style={{ backgroundColor: `${BRAND_BLUE}18` }}
+                style={{ backgroundColor: `${CTA_ACCENT}18` }}
               >
                 <Store className="h-6 w-6" style={{ color: BRAND_BLUE }} />
               </div>
@@ -367,8 +368,8 @@ export default async function BannerPage() {
                 href={BANNER_DOCS.gewerbe[localeKey]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#F37A5A]`}
-                style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#8AAFA3]`}
+                style={{ borderColor: CTA_ACCENT, color: CTA_ACCENT }}
               >
                 <FileDown className="h-5 w-5 shrink-0" />
                 {t.downloadGewerbe}
@@ -411,16 +412,16 @@ export default async function BannerPage() {
                 href="https://wa.me/491776361394"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} focus:ring-[#F37A5A]`}
-                style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#8AAFA3]`}
+                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
               >
                 <MessageCircle className="h-5 w-5 shrink-0" />
                 WhatsApp
               </a>
               <a
                 href="mailto:info@he-immologis.de"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} focus:ring-[#F37A5A]`}
-                style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#8AAFA3]`}
+                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
               >
                 <Mail className="h-5 w-5 shrink-0" />
                 E-Mail
@@ -428,7 +429,7 @@ export default async function BannerPage() {
             </div>
             <p className="text-slate-600">
               {t.orCall}{" "}
-              <a href="tel:+491776361394" className="font-medium hover:underline" style={{ color: BRAND_BLUE }}>
+              <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: BRAND_BLUE }}>
                 +49 177 636 1394
               </a>
             </p>

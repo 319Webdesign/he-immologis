@@ -37,7 +37,6 @@ export default async function UeberMichPage() {
     career3: string;
     regional: string;
     regionalPlaces: string;
-    kapstadt2: string;
     kapstadtTip: string;
     whyRealEstateHeading: string;
     attitudeHeading: string;
@@ -51,7 +50,6 @@ export default async function UeberMichPage() {
     signoff: string;
     managingDirector: string;
     signatureAlt: string;
-    companyLine: string;
     companySubline: string;
     contactTitle: string;
     contactSubtitle: string;
@@ -100,7 +98,6 @@ export default async function UeberMichPage() {
                 <br />
                 {t.regionalPlaces}
               </p>
-              <p className="mt-4 leading-relaxed text-slate-600">{t.kapstadt2}</p>
               <p className="mt-4 leading-relaxed text-slate-600">{t.kapstadtTip}</p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
@@ -122,7 +119,7 @@ export default async function UeberMichPage() {
 
               <div
                 className="mt-10 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-                style={{ borderColor: BRAND_BLUE, backgroundColor: `${BRAND_BLUE}08` }}
+                style={{ borderColor: "#8AAFA3", backgroundColor: "#8AAFA308" }}
               >
                 <p className="font-semibold text-slate-900">{t.signoff}</p>
                 <p className="mt-2 text-xl font-semibold text-slate-900">Holger Eberhard</p>
@@ -134,21 +131,20 @@ export default async function UeberMichPage() {
                   height={80}
                   className="mt-4 object-contain object-left"
                 />
-                <p className="mt-4 text-slate-700">{t.companyLine}</p>
-                <p className="mt-1 text-sm text-slate-600">{t.companySubline}</p>
+                <p className="mt-4 text-slate-700">{t.companySubline}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <ShareSection dict={dict.shareSection} />
+      <ShareSection dict={{ ...dict.shareSection, buttonLabel: dict.shareSection.pageLabels?.ueberMich ?? dict.shareSection.buttonLabel }} />
 
       <Contact
         title={t.contactTitle}
         subtitle={t.contactSubtitle}
         accentColor="steelblue"
-        formLabels={dict.contactForm}
+        formLabels={{ ...dict.contactForm, submitButton: t.contactSubmitButton ?? dict.contactForm.submitButton }}
       />
     </>
   );

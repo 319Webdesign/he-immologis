@@ -10,6 +10,7 @@ export type ShareSectionDict = {
   heading: string;
   subtitle: string;
   buttonLabel: string;
+  pageLabels?: Record<string, string>;
   mailSubject: string;
   mailBody: string;
 };

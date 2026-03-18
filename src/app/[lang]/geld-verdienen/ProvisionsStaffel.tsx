@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Wallet } from "lucide-react";
 
-const BRAND_BLUE = "#F37A5A";
+const CARD_ACCENT = "#8AAFA3";
+const BRAND_COLOR = "#F37A5A";
 
 const STAFFEL_DE = [
   { range: "Bis 250.000 €", provision: "1.000 €", from: 0, to: 250 },
@@ -49,22 +50,22 @@ export default function ProvisionsStaffel() {
           <div
             key={stufe.range}
             className="relative flex flex-col rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            style={{ borderColor: i === staffel.length - 1 ? BRAND_BLUE : undefined }}
+            style={{ borderColor: i === staffel.length - 1 ? CARD_ACCENT : undefined }}
           >
             {i === staffel.length - 1 && (
               <div
                 className="absolute -top-2 right-4 rounded-full px-3 py-0.5 text-xs font-semibold text-white"
-                style={{ backgroundColor: BRAND_BLUE }}
+                style={{ backgroundColor: BRAND_COLOR }}
               >
                 {isTr ? "Maks." : "Max."}
               </div>
             )}
             <div className="flex items-center gap-2 text-slate-600">
-              <Wallet className="h-5 w-5 shrink-0" style={{ color: BRAND_BLUE }} />
+              <Wallet className="h-5 w-5 shrink-0" style={{ color: BRAND_COLOR }} />
               <span className="text-sm font-medium">{labelKaufpreis}</span>
             </div>
             <p className="mt-2 font-semibold text-slate-800">{stufe.range}</p>
-            <p className="mt-3 text-2xl font-bold" style={{ color: BRAND_BLUE }}>
+            <p className="mt-3 text-2xl font-bold" style={{ color: CARD_ACCENT }}>
               {stufe.provision}
             </p>
             <p className="mt-1 text-sm text-slate-500">{labelProvision}</p>
@@ -76,7 +77,7 @@ export default function ProvisionsStaffel() {
       <div className="sm:hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <table className="w-full text-left">
           <thead>
-            <tr style={{ backgroundColor: `${BRAND_BLUE}12` }}>
+            <tr style={{ backgroundColor: `${CARD_ACCENT}12` }}>
               <th className="px-4 py-3 text-sm font-semibold text-slate-800">{labelKaufpreis}</th>
               <th className="px-4 py-3 text-sm font-semibold text-slate-800 text-right">{labelProvision}</th>
             </tr>
@@ -85,7 +86,7 @@ export default function ProvisionsStaffel() {
             {staffel.map((stufe) => (
               <tr key={stufe.range} className="border-t border-slate-100">
                 <td className="px-4 py-3 text-slate-700">{stufe.range}</td>
-                <td className="px-4 py-3 text-right font-semibold" style={{ color: BRAND_BLUE }}>
+                <td className="px-4 py-3 text-right font-semibold" style={{ color: CARD_ACCENT }}>
                   {stufe.provision}
                 </td>
               </tr>

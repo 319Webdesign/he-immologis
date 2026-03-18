@@ -57,8 +57,6 @@
     "successMessage": "Mesajınız için teşekkür ederiz. Önümüzdeki 24 saat içinde sizinle iletişime geçeceğiz.<br>Saygılarımızla<br>Holger Eberhard"
   },
   "footer": {
-    "companyLine1": "HE immologis UG",
-    "companyLine2": "",
     "partnerText": "Rhein-Neckar-Kreis'te <br> gayrimenkul ve lojistik danışmanlığında<br> güvenilir iş ortağınız.",
     "contact": "İletişim",
     "managingDirector": "Yönetici",
@@ -100,6 +98,14 @@
     "heading": "Bu sayfayı bir tıkla paylaşın, başkalarının yeni yuvasına kavuşmasına yardımcı olun!",
     "subtitle": "QR barkodu e-posta ile paylaşın<br>– Önerin.",
     "buttonLabel": "E-posta ile paylaş",
+    "pageLabels": {
+      "verkaufen": "Satış sayfasını e-posta ile paylaş",
+      "kaufen": "Alım sayfasını e-posta ile paylaş",
+      "mieten": "Kiralama sayfasını e-posta ile paylaş",
+      "ueberMich": "Profili e-posta ile paylaş",
+      "immobilieSuchen": "Arama sayfasını e-posta ile paylaş",
+      "immobilienServices": "Hizmetleri e-posta ile paylaş"
+    },
     "mailSubject": "Öneri: Gayrimenkul – HE immologis Weinheim / Holger Eberhard",
     "mailBody": "Merhaba,\n\nHolger Eberhard ve HE immologis UG'ye dikkat çekmek isterim.\n\nDaha fazla bilgi: {{url}}\n\nSorular veya istekler için Holger Eberhard Weinheim'da kişisel olarak şu numaradan ulaşılabilir:\n+49 177 636 1394\neberhard@he-immologis.de\n\nWeinheim bölgesinde gayrimenkul konusunda destek arayan biri varsa, bu faydalı bir adres olabilir.\n\nSaygılarımla"
   },
@@ -139,13 +145,15 @@
     "eiswuerfelQuote": "Bir buz küpü nasıl yalnızca doğru koşullarda stabil kalıyorsa, eğitim, strateji, ağ ve geçici çözümlerle – kontrollü ve normal sıcaklık lojistik senaryolarında – stabil yapılar oluşturuyoruz.",
     "contactTitle": "Lojistik danışmanlığı – Talebiniz",
     "contactSubtitle": "Bir SMART modülü hakkında daha fazla bilgi almak veya bağlayıcı olmayan bir görüşme ayarlamak ister misiniz? Bizimle iletişime geçin.",
+    "contactSubmitButton": "Danışmanlık talebi gönder",
     "srOnlyModules": "SMART modülleri",
     "srOnlyEiswuerfel": "Lojistikte stabil yapılar",
     "moduleLabel": "SMART modül",
     "backToSmart": "← Lojistik danışmanlığı SMART",
     "allModules": "Tüm SMART modülleri",
     "contactTitleSlug": "İletişim – SMART Lojistik danışmanlığı",
-    "contactSubtitleSlug": "Bize ulaşın – talebinizi dinlemek için buradayız."
+    "contactSubtitleSlug": "Bize ulaşın – talebinizi dinlemek için buradayız.",
+    "contactSubmitButtonSlug": "Danışmanlık talebi gönder"
   },
   "ueberMich": {
     "metaTitle": "Holger Eberhard Weinheim",
@@ -164,8 +172,7 @@
     "career2": "Bu yalnız yapı, öz sorumluluk, ekonomi ve maddi güç ile mümkündür.",
     "career3": "Bu deneyimleri bugün bölgesel gayrimenkul piyasasına taşıyorum.",
     "regional": "Bölgesel mi?",
-    "regionalPlaces": "Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim – Bergstraße boyunca, bitişik Odenwald ve ötesi.",
-    "kapstadt2": "Aynısı elbette ikinci yuvamız Cape Town için de geçerli. Burada Table Mountain, Atlas Okyanusu ve Hint Okyanusu çevresindeki yardım projeleri ve yaşam için çalışıyorum.",
+    "regionalPlaces": "Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim, Rhein-Neckar-Kreis ve Bergstraße boyunca ve Vorderer Odenwald.",
     "kapstadtTip": "Cape Town'da göç, yaşam ve gayrimenkul hakkında ipuçları ve bilgi isterseniz, size de açık yürekle yardımcı olmaya hazırım.",
     "whyRealEstateHeading": "Peki neden gayrimenkul?",
     "attitudeHeading": "Gayrimenkule yaklaşımım",
@@ -182,7 +189,8 @@
     "companyLine": "HE immologis UG",
     "companySubline": "Gayrimenkul ve lojistik danışmanlığı · Değerleme (TA)",
     "contactTitle": "İletişime geçin",
-    "contactSubtitle": "Sorularınız mı var ya da bağlayıcı olmayan bir görüşme mi yapmak istiyorsunuz? Mesajınızı bekliyorum."
+    "contactSubtitle": "Sorularınız mı var ya da bağlayıcı olmayan bir görüşme mi yapmak istiyorsunuz? Mesajınızı bekliyorum.",
+    "contactSubmitButton": "Mesaj gönder"
   },
   "philosophy": {
     "heading": "Daha fazla değer. Sizin artınız.",
@@ -329,7 +337,8 @@
     "afterCheck": "İncelemeden sonra yazılı öneri veren sözleşmesi alırsınız. Başarılı işlemde priminizi doğrudan size öderiz.",
     "contactTitle": "İletişim kişiniz",
     "contactName": "Holger Eberhard",
-    "contactRole": "Yönetici, HE immologis UG"
+    "contactRole": "Yönetici",
+    "contactSubmitButton": "Öneri veren talebi gönder"
   },
   "verkaufen": {
     "meta": {
@@ -496,7 +505,8 @@
     },
     "contact": {
       "title": "Gayrimenkul talebi",
-      "subtitle": "Gayrimenkullerimizden biriyle mi ilgileniyorsunuz ya da gayrimenkulünüzü mü satmak istiyorsunuz?<br /> Size memnuniyetle ve bağlayıcı olmadan danışmanlık sunarız."
+      "subtitle": "Gayrimenkullerimizden biriyle mi ilgileniyorsunuz ya da gayrimenkulünüzü mü satmak istiyorsunuz?<br /> Size memnuniyetle ve bağlayıcı olmadan danışmanlık sunarız.",
+      "submitButton": "Gayrimenkul talebi gönder"
     }
   },
   "mieten": {
@@ -568,7 +578,7 @@
       "title": "Size özel satış çözümleri.",
       "subtitleLine1": "Tam satış veya tek modüller",
       "subtitleLine2": "– Karar sizin.",
-      "ctaText": "Hizmetleri inceleyin",
+      "ctaText": "Hizmetlerimizi inceleyin",
       "ctaAriaLabel": "Hizmetlere kaydır"
     },
     "mainCard": {

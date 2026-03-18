@@ -56,8 +56,6 @@
     "successMessage": "Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard"
   },
   "footer": {
-    "companyLine1": "HE immologis UG",
-    "companyLine2": "",
     "partnerText": "Ihr Partner für <br> Immobilien- & Logistikberatung<br> im Rhein-Neckar-Kreis.",
     "contact": "Kontakt",
     "managingDirector": "Geschäftsführer",
@@ -96,9 +94,17 @@
     "designedBy": "Designed by"
   },
   "shareSection": {
-    "heading": "Teile diese Seite mit einem Klick und hilf anderen,<br> ihr neues Zuhause zu finden!",
+    "heading": "Teile diese Seite mit nur einem Klick und hilf anderen,<br> ihr neues Zuhause zu finden!",
     "subtitle": "QR-Barcode per E-Mail teilen<br>– Weiterempfehlen.",
     "buttonLabel": "Per E-Mail weiterempfehlen",
+    "pageLabels": {
+      "verkaufen": "Verkaufsseite per E-Mail teilen",
+      "kaufen": "Kaufseite per E-Mail teilen",
+      "mieten": "Mietseite per E-Mail teilen",
+      "ueberMich": "Profil per E-Mail weiterempfehlen",
+      "immobilieSuchen": "Suchseite per E-Mail teilen",
+      "immobilienServices": "Services per E-Mail teilen"
+    },
     "mailSubject": "Empfehlung: Immobilien – HE immologis in Weinheim / Holger Eberhard",
     "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG hinweisen.\n\nWeitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
   },
@@ -138,13 +144,15 @@
     "eiswuerfelQuote": "Wie ein Eiswürfel nur unter den richtigen Bedingungen stabil bleibt, schaffen wir mit Schulung, Strategie, Netzwerk und Interimslösungen stabile Strukturen – in temperierten wie nicht temperierten Logistikszenarien.",
     "contactTitle": "Logistikberatung – Ihr Anliegen",
     "contactSubtitle": "Sie möchten mehr zu einem SMART-Modul erfahren oder ein unverbindliches Gespräch vereinbaren? Kontaktieren Sie uns.",
+    "contactSubmitButton": "Beratungsanfrage senden",
     "srOnlyModules": "SMART Module",
     "srOnlyEiswuerfel": "Stabile Strukturen in der Logistik",
     "moduleLabel": "SMART Modul",
     "backToSmart": "← Logistikberatung SMART",
     "allModules": "Alle SMART Module",
     "contactTitleSlug": "Kontakt – SMART Logistikberatung",
-    "contactSubtitleSlug": "Sprechen Sie uns an – wir freuen uns auf Ihr Anliegen."
+    "contactSubtitleSlug": "Sprechen Sie uns an – wir freuen uns auf Ihr Anliegen.",
+    "contactSubmitButtonSlug": "Beratungsanfrage senden"
   },
   "ueberMich": {
     "metaTitle": "Holger Eberhard Weinheim",
@@ -163,8 +171,7 @@
     "career2": "Dies geht nur mit Struktur, Eigenverantwortung und wirtschaftlicher Tragfähigkeit.",
     "career3": "Diese Erfahrungen bringe ich heute in den regionalen Immobilienmarkt ein.",
     "regional": "Regional?",
-    "regionalPlaces": "Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim – entlang der Bergstraße, angrenzender Odenwald und darüber hinaus.",
-    "kapstadt2": "Gleiches gilt natürlich für Kapstadt, unser zweites Zuhause. Hier engagiere ich mich für Hilfsprojekte und das Leben rund um Tafelberg, Atlantik und Indischer Ozean.",
+    "regionalPlaces": "Weinheim, Heppenheim, Bensheim, Ladenburg, Viernheim, Laudenbach, Lampertheim, Rhein-Neckar-Kreis und entlang der Bergstraße und Vorderer Odenwald.",
     "kapstadtTip": "Falls Sie Tipps und Informationen zu Auswandern, Leben und Immobilien in Kapstadt wünschen, stehe ich Ihnen ebenfalls mit offenem Herzen zur Verfügung.",
     "whyRealEstateHeading": "Doch warum nun Immobilien?",
     "attitudeHeading": "Meine Haltung zu Immobilien",
@@ -181,7 +188,8 @@
     "companyLine": "HE immologis UG",
     "companySubline": "Immobilien- und Logistikberatung · Wertermittlung (TA)",
     "contactTitle": "Kontakt aufnehmen",
-    "contactSubtitle": "Haben Sie Fragen oder möchten Sie unverbindlich ins Gespräch kommen? Ich freue mich auf Ihre Nachricht."
+    "contactSubtitle": "Haben Sie Fragen oder möchten Sie unverbindlich ins Gespräch kommen? Ich freue mich auf Ihre Nachricht.",
+    "contactSubmitButton": "Nachricht senden"
   },
   "philosophy": {
     "heading": "Mehr Wert. Ihr Plus.",
@@ -328,7 +336,8 @@
     "afterCheck": "Nach Prüfung erhalten Sie eine schriftliche Tippgebervereinbarung. Bei erfolgreichem Abschluss zahlen wir Ihre Prämie direkt an Sie aus.",
     "contactTitle": "Ihr Ansprechpartner",
     "contactName": "Holger Eberhard",
-    "contactRole": "Geschäftsführer, HE immologis UG"
+    "contactRole": "Geschäftsführer",
+    "contactSubmitButton": "Tippgeber-Anfrage senden"
   },
   "verkaufen": {
     "meta": {
@@ -356,7 +365,7 @@
     },
     "finalCta": {
       "title": "Sie sind sich noch unsicher über den Marktwert?",
-      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen.<br /><span class=\"font-semibold\">Wir bewerten Ihre Immobilie fachgerecht – selbstverständlich kostenfrei.</span>",
+      "description": "Lassen Sie uns den ersten Schritt gemeinsam gehen.<br />Wir bewerten Ihre Immobilie fachgerecht und professionell - <br /> bei Erteilung eines Vermarktungsauftrages <span class=\"font-bold\">selbstverständlich kostenfrei</span>.",
       "buttonText": "Kostenlose Wertermittlung anfragen",
       "callText": "Lieber direkt anrufen?"
     },
@@ -464,7 +473,8 @@
     },
     "contact": {
       "title": "Immobilien-Anfrage",
-      "subtitle": "Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen?<br /> Wir beraten Sie gerne und unverbindlich."
+      "subtitle": "Interessieren Sie sich für eine unserer Immobilien oder möchten Sie Ihre Immobilie verkaufen?<br /> Wir beraten Sie gerne und unverbindlich.",
+      "submitButton": "Immobilien-Anfrage senden"
     }
   },
   "mieten": {
@@ -535,8 +545,8 @@
     "hero": {
       "title": "Maßgeschneiderte Verkaufslösungen.",
       "subtitleLine1": "Komplettverkauf oder Einzelmodule",
-      "subtitleLine2": "– Sie entscheiden.",
-      "ctaText": "Leistungen ansehen",
+      "subtitleLine2": " – Sie entscheiden.",
+      "ctaText": "Unsere Leistungen ansehen",
       "ctaAriaLabel": "Zu den Leistungen scrollen"
     },
     "mainCard": {

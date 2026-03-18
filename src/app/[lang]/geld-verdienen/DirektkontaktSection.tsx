@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, Mail } from "lucide-react";
 
 const BRAND_BLUE = "#F37A5A";
-const WHATSAPP_GREEN = "#25D366";
+const CTA_ACCENT = "#8AAFA3";
 
 const outlineButtonClass =
   "inline-flex min-h-[48px] flex-1 min-w-0 items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -97,16 +97,16 @@ export default function DirektkontaktSection() {
             href={t.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#25D366]`}
-            style={{ backgroundColor: WHATSAPP_GREEN, borderColor: WHATSAPP_GREEN }}
+            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#8AAFA3]`}
+            style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
           >
             <MessageCircle className="h-5 w-5 shrink-0" />
             <span>{t.whatsapp}</span>
           </Link>
           <Link
             href={`mailto:info@he-immologis.de?subject=${t.mailtoSubject}`}
-            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#F37A5A]`}
-            style={{ backgroundColor: BRAND_BLUE, borderColor: BRAND_BLUE }}
+            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#8AAFA3]`}
+            style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
           >
             <Mail className="h-5 w-5 shrink-0" />
             <span>{t.email}</span>
@@ -115,7 +115,7 @@ export default function DirektkontaktSection() {
 
         <p className="mt-4 text-center text-slate-600">
           {t.orCall}{" "}
-          <a href="tel:+491776361394" className="font-medium underline hover:no-underline">
+          <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: "#F37A5A" }}>
             +49 177 636 1394
           </a>
         </p>

@@ -4,8 +4,6 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import SocialIcons from "./SocialIcons";
 
 export type FooterDict = {
-  companyLine1: string;
-  companyLine2: string;
   partnerText: string;
   contact: string;
   managingDirector: string;
@@ -121,7 +119,7 @@ export default function Footer({ lang, dict }: FooterProps) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 items-start">
           {/* Spalte 1: Firma & Logo */}
           <div className="flex flex-col">
-            <Link href={prefix} className="mb-4 inline-block overflow-visible">
+            <Link href={prefix} className="mb-2 inline-block overflow-visible">
               <Image
                 src="/img/logo.jpeg"
                 alt="HE immologis"
@@ -130,17 +128,8 @@ export default function Footer({ lang, dict }: FooterProps) {
                 className="h-11 w-auto max-w-[180px] object-contain object-left"
               />
             </Link>
-            <p className="font-sans text-lg leading-tight text-white">
-              <span className="font-semibold">{dict.companyLine1}</span>
-              {dict.companyLine2 && (
-                <>
-                  <br />
-                  <span className="text-base font-normal">{dict.companyLine2}</span>
-                </>
-              )}
-            </p>
             <p
-              className="mt-2 text-sm text-slate-100"
+              className="mt-1 text-sm text-slate-100"
               dangerouslySetInnerHTML={{ __html: dict.partnerText }}
             />
             <div className="mt-4 inline-grid max-w-[8.5rem] grid-cols-1 gap-1.5 justify-items-center">
@@ -312,7 +301,7 @@ export default function Footer({ lang, dict }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold transition-colors hover:opacity-80"
-                style={{ color: "#D3EFDE" }}
+                style={{ color: "#8AAFA3" }}
               >
                 319Webdesign
               </a>

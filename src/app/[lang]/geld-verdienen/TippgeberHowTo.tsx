@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Printer, PenLine, Mail, ArrowRight } from "lucide-react";
 
-const BRAND_BLUE = "#F37A5A";
+const SECTION_ACCENT = "#8AAFA3";
 
 const STEPS_DE = [
   {
@@ -107,7 +107,7 @@ export default function TippgeberHowTo() {
           >
             <span
               className="mb-3 inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-sm font-semibold text-white"
-              style={{ backgroundColor: BRAND_BLUE }}
+              style={{ backgroundColor: SECTION_ACCENT }}
             >
               {step}
             </span>
@@ -115,7 +115,7 @@ export default function TippgeberHowTo() {
               className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-50"
               aria-hidden
             >
-              <Icon className="h-7 w-7" style={{ color: BRAND_BLUE }} />
+              <Icon className="h-7 w-7" style={{ color: SECTION_ACCENT }} />
             </div>
             <p className="mt-4 font-sans text-slate-700">{text}</p>
             {index < stepCount - 1 && (

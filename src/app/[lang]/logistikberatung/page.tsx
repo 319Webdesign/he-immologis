@@ -123,7 +123,7 @@ export default async function LogistikberatungPage() {
               <span
                 key={letter}
                 className="rounded-lg px-4 py-2 text-sm text-white"
-                style={{ backgroundColor: BRAND_BLUE }}
+                style={{ backgroundColor: "#8AAFA3" }}
                 title={label}
               >
                 <span className="font-semibold">{letter}</span> – {label}
@@ -160,7 +160,7 @@ export default async function LogistikberatungPage() {
             >
               <span
                 className="inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white"
-                style={{ backgroundColor: BRAND_BLUE }}
+                style={{ backgroundColor: "#8AAFA3" }}
               >
                 {modul.letter}
               </span>
@@ -226,7 +226,7 @@ export default async function LogistikberatungPage() {
         accentColor="steelblue"
         title={lb.contactTitle}
         subtitle={lb.contactSubtitle}
-        formLabels={dict.contactForm}
+        formLabels={{ ...dict.contactForm, submitButton: lb.contactSubmitButton ?? dict.contactForm.submitButton }}
       />
     </>
   );

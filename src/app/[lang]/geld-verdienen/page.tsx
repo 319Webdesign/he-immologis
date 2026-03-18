@@ -65,7 +65,7 @@ export default async function GeldVerdienenPage() {
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-sm">
             Werden Sie Tippgeber und profitieren Sie von Ihrer Empfehlung.
           </p>
-          <p className="mt-4 text-2xl font-bold text-white drop-shadow-sm sm:text-3xl">
+          <p className="mt-4 text-2xl font-bold drop-shadow-sm sm:text-3xl" style={{ color: "#8AAFA3" }}>
             Provision bis zu 5.000 €
           </p>
         </div>
@@ -251,7 +251,7 @@ export default async function GeldVerdienenPage() {
         title="Fragen zum Tippgeber-Programm?"
         subtitle="Wir erklären Ihnen gerne die Details – unverbindlich und diskret."
         accentColor="steelblue"
-        formLabels={dict.contactForm}
+        formLabels={{ ...dict.contactForm, submitButton: dict.geldVerdienen?.contactSubmitButton ?? dict.contactForm.submitButton }}
       />
     </>
   );

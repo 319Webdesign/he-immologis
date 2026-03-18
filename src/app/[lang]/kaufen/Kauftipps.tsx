@@ -450,7 +450,8 @@ export default function Kauftipps({ dict, lang }: KauftippsProps) {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 rounded-xl border border-zinc-200 bg-white px-4 py-4 text-left shadow-sm transition-colors hover:border-zinc-300 hover:bg-zinc-50/80 sm:px-5 sm:py-5"
+                  className="flex w-full items-center justify-between gap-4 rounded-xl border border-zinc-200 px-4 py-4 text-left shadow-sm transition-colors hover:border-zinc-300 sm:px-5 sm:py-5"
+                  style={{ backgroundColor: "#AEADA8" }}
                   aria-expanded={isOpen}
                   aria-controls={`kauftipp-content-${index}`}
                   id={`kauftipp-trigger-${index}`}
@@ -469,7 +470,7 @@ export default function Kauftipps({ dict, lang }: KauftippsProps) {
                   aria-labelledby={`kauftipp-trigger-${index}`}
                   className={`overflow-hidden transition-all duration-200 ease-out ${isOpen ? "max-h-[4500px] opacity-100" : "max-h-0 opacity-0"}`}
                 >
-                  <div className="rounded-b-xl border border-t-0 border-zinc-200 bg-white px-4 py-5 shadow-sm sm:px-5 sm:py-6">
+                  <div className="rounded-b-xl border border-t-0 border-zinc-200 px-4 py-5 shadow-sm sm:px-5 sm:py-6" style={{ backgroundColor: "#AEADA8" }}>
                     {typeof tip.content === "string" ? (
                       <p className="leading-relaxed text-zinc-700">{tip.content}</p>
                     ) : (

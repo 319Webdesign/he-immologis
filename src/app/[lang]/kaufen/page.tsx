@@ -74,7 +74,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
           className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
           aria-label={k.hero.ctaAriaLabel}
         >
-          <span className="text-sm font-medium">{k.hero.ctaText}</span>
+          <span className="text-sm font-medium" style={{ color: "#F37A5A" }}>{k.hero.ctaText}</span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
@@ -95,13 +95,13 @@ export default async function KaufenPage({ searchParams }: PageProps) {
 
       <Kauftipps dict={k.kauftipps} lang={locale} />
 
-      <ShareSection dict={dict.shareSection} />
+      <ShareSection dict={{ ...dict.shareSection, buttonLabel: dict.shareSection.pageLabels?.kaufen ?? dict.shareSection.buttonLabel }} />
 
       <Contact
         title={k.contact.title}
         subtitle={k.contact.subtitle}
         accentColor="steelblue"
-        formLabels={dict.contactForm}
+        formLabels={{ ...dict.contactForm, submitButton: k.contact.submitButton ?? dict.contactForm.submitButton }}
       />
     </>
   );

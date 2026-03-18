@@ -51,8 +51,8 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
         <span
           className="mt-3 inline-flex w-fit rounded-lg px-3 py-1.5 text-sm font-semibold"
           style={{
-            backgroundColor: `${BRAND_BLUE}15`,
-            color: BRAND_BLUE,
+            backgroundColor: "#8AAFA315",
+            color: "#8AAFA3",
           }}
         >
           {price}
@@ -71,7 +71,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
         )}
         <Link
           href={href}
-          className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
+          className="mt-6 inline-flex w-fit self-start items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
           style={{ backgroundColor: BRAND_BLUE }}
         >
           {moreInfoText}

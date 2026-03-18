@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 
 const STEELBLUE = "#F37A5A";
+const MINT_LEFT = "#8AAFA3";
 
 export type ContactFormDict = {
   address: string;
@@ -101,7 +102,7 @@ export default function Contact({
   const useSteelblue = accentColor === "steelblue";
 
   const iconWrapperStyle = useSteelblue
-    ? { backgroundColor: `${STEELBLUE}20`, color: STEELBLUE }
+    ? { backgroundColor: `${MINT_LEFT}20`, color: MINT_LEFT }
     : undefined;
   const iconWrapperClass = !useSteelblue
     ? isDark
@@ -156,7 +157,7 @@ export default function Contact({
                 >
                   <MapPin
                     className={`h-6 w-6 ${iconClass}`}
-                    style={useSteelblue ? { color: STEELBLUE } : undefined}
+                    style={useSteelblue ? { color: MINT_LEFT } : undefined}
                   />
                 </div>
                 <div>
@@ -178,7 +179,7 @@ export default function Contact({
                 >
                   <Phone
                     className={`h-6 w-6 ${iconClass}`}
-                    style={useSteelblue ? { color: STEELBLUE } : undefined}
+                    style={useSteelblue ? { color: MINT_LEFT } : undefined}
                   />
                 </div>
                 <div>
@@ -199,7 +200,7 @@ export default function Contact({
                 >
                   <Mail
                     className={`h-6 w-6 ${iconClass}`}
-                    style={useSteelblue ? { color: STEELBLUE } : undefined}
+                    style={useSteelblue ? { color: MINT_LEFT } : undefined}
                   />
                 </div>
                 <div>

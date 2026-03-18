@@ -126,7 +126,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
           </Link>
           <div
             className="ml-3 mt-4 inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white sm:ml-4"
-            style={{ backgroundColor: BRAND_BLUE }}
+            style={{ backgroundColor: "#8AAFA3" }}
           >
             {modul.letter}
           </div>
@@ -228,7 +228,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
         variant="dark"
         title={lb.contactTitleSlug}
         subtitle={lb.contactSubtitleSlug}
-        formLabels={dict.contactForm}
+        formLabels={{ ...dict.contactForm, submitButton: lb.contactSubmitButtonSlug ?? lb.contactSubmitButton ?? dict.contactForm.submitButton }}
       />
     </>
   );

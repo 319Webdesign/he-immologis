@@ -112,7 +112,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           </span>
         </div>
       </Link>
-      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#F37A5A] max-sm:group-data-[incenter=true]:bg-[#F37A5A]">
+      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#8AAFA3] max-sm:group-data-[incenter=true]:bg-[#8AAFA3]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
           <Link href={detailHref}>{property.titel}</Link>
         </h2>

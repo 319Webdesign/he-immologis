@@ -151,13 +151,13 @@ export default async function TippgeberStaffelPage() {
           {/* Ihr Ansprechpartner */}
           <div
             className="mt-16 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-            style={{ borderColor: BRAND_BLUE, backgroundColor: `${BRAND_BLUE}08` }}
+            style={{ borderColor: "#8AAFA3", backgroundColor: "#8AAFA308" }}
           >
             <h2 className="font-sans text-xl font-semibold tracking-tight text-slate-900">
               Ihr Ansprechpartner
             </h2>
             <p className="mt-2 text-2xl font-semibold text-slate-900">Holger Eberhard</p>
-            <p className="mt-1 text-slate-600">Geschäftsführer, HE immologis UG</p>
+            <p className="mt-1 text-slate-600">Geschäftsführer</p>
           </div>
         </div>
       </section>

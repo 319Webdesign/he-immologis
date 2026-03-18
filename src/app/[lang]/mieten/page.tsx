@@ -114,7 +114,7 @@ export default async function MietenPage() {
         </div>
       </section>
 
-      <ShareSection dict={dict.shareSection} />
+      <ShareSection dict={{ ...dict.shareSection, buttonLabel: dict.shareSection.pageLabels?.mieten ?? dict.shareSection.buttonLabel }} />
     </>
   );
 }

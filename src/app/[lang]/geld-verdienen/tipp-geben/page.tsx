@@ -11,6 +11,7 @@ import { getLocaleFromHeaders } from "@/lib/i18n";
 import { TIPPGEBER_DOCS } from "@/lib/documents";
 
 const BRAND_BLUE = "#F37A5A";
+const SECTION_ACCENT = "#8AAFA3";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -59,7 +60,7 @@ export default async function TippGebenPage() {
           >
             {t.heroTitle}
           </h1>
-          <p className="mt-8 inline-block animate-breathe text-2xl font-bold text-white drop-shadow-sm sm:text-3xl">
+          <p className="mt-8 inline-block animate-breathe text-2xl font-bold drop-shadow-sm sm:text-3xl" style={{ color: "#8AAFA3" }}>
             {t.heroCta}
           </p>
         </div>
@@ -112,8 +113,8 @@ export default async function TippGebenPage() {
               href={TIPPGEBER_DOCS.vereinbarung[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
-              style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+              className={`${outlineButtonClass} focus:ring-[#8AAFA3]`}
+              style={{ borderColor: SECTION_ACCENT, color: SECTION_ACCENT }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
               {t.downloadAgreement}
@@ -122,8 +123,8 @@ export default async function TippGebenPage() {
               href={TIPPGEBER_DOCS.hinweis[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
-              style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
+              className={`${outlineButtonClass} focus:ring-[#8AAFA3]`}
+              style={{ borderColor: SECTION_ACCENT, color: SECTION_ACCENT }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
               {t.downloadLetter}
@@ -165,7 +166,7 @@ export default async function TippGebenPage() {
         <div className="mx-auto max-w-4xl">
           <div
             className="rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-            style={{ borderColor: BRAND_BLUE, backgroundColor: `${BRAND_BLUE}08` }}
+            style={{ borderColor: "#8AAFA3", backgroundColor: "#8AAFA308" }}
           >
             <h2
               id="ansprechpartner-heading"

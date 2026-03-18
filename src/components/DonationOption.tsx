@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
 
-const STEEL_BLUE = "#F37A5A";
-
 type Locale = "de" | "en" | "tr";
 
 const TEXTS: Record<
@@ -69,7 +67,7 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
             style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
             aria-hidden
           >
-            <Heart className="h-6 w-6 text-red-800" />
+            <Heart className="h-6 w-6" style={{ color: "#F37A5A" }} />
           </div>
           <h2
             id="donation-option-heading"
@@ -77,7 +75,7 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
           >
             {locale === "de" ? (
               <>
-                <span className="text-red-800">Spenden</span> statt Prämie
+                <span style={{ color: "#8AAFA3" }}>Spenden</span> statt Prämie
               </>
             ) : (
               t.headline
@@ -91,8 +89,8 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
         </div>
         <Link
           href={`/${lang}/spenden`}
-          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F37A5A]"
-          style={{ backgroundColor: STEEL_BLUE }}
+          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8AAFA3]"
+          style={{ backgroundColor: "#8AAFA3" }}
         >
           {t.cta}
           <ArrowRight className="h-5 w-5" aria-hidden />

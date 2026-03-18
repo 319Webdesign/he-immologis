@@ -304,8 +304,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span
             className="mt-4 inline-flex rounded-lg px-3 py-1.5 text-sm font-semibold"
             style={{
-              backgroundColor: `${BRAND_BLUE}15`,
-              color: BRAND_BLUE,
+              backgroundColor: "#8AAFA315",
+              color: "#8AAFA3",
             }}
           >
             {displayPrice}

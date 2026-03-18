@@ -70,7 +70,7 @@ export default function MainServiceCard({ dict, lang }: MainServiceCardProps) {
               <li key={i} className="flex items-center gap-3 text-slate-700">
                 <span
                   className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white"
-                  style={{ backgroundColor: BRAND_BLUE }}
+                  style={{ backgroundColor: "#8AAFA3" }}
                 >
                   <Check className="h-3.5 w-3.5" aria-hidden />
                 </span>
@@ -83,7 +83,7 @@ export default function MainServiceCard({ dict, lang }: MainServiceCardProps) {
           </p>
           <Link
             href={detailHref}
-            className="mt-6 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 sm:w-auto"
+            className="mt-6 inline-flex w-fit self-start items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
             style={{ backgroundColor: BRAND_BLUE }}
           >
             {dict.moreInfoButton}
