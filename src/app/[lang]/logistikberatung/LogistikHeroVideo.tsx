@@ -10,7 +10,7 @@ export default function LogistikHeroVideo() {
     if (!video) return;
 
     const setSpeed = () => {
-      video.playbackRate = 0.5;
+      video.playbackRate = 0.75;
     };
 
     if (video.readyState >= 2) {
