@@ -1,5 +1,5 @@
 export const SMART_INTRO = {
-  title: ["„Wir drehen Ihre Performance", "kontrolliert nach oben“."],
+  title: ["EIN STANDORT, DER BEWEGT", "Ihre Logistik im Mittelpunkt."],
   subtitle: "Menschen. Struktur. Strategie. Netzwerk.",
   acronym: [
     { letter: "S", label: "Schulung" },
@@ -16,7 +16,7 @@ export const SMART_INTRO = {
 } as const;
 
 export const SMART_INTRO_EN = {
-  title: ["“We will increase", "your performance in a controlled manner.”"],
+  title: ["ONE LOCATION THAT MOVES", "Your logistics at the centre."],
   subtitle: "People. Structure. Strategy. Network.",
   acronym: [
     { letter: "S", label: "Training" },
@@ -33,7 +33,7 @@ export const SMART_INTRO_EN = {
 } as const;
 
 export const SMART_INTRO_TR = {
-  title: ["„Performansınızı kontrollü", "şekilde artırıyoruz.“"],
+  title: ["HAREKET EDEN BİR KONUM", "Lojistiğiniz merkezde."],
   subtitle: "İnsanlar. Yapı. Strateji. Ağ.",
   acronym: [
     { letter: "S", label: "Eğitim" },

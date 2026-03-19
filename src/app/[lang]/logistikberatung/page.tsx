@@ -91,24 +91,24 @@ export default async function LogistikberatungPage() {
   const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
 
   return (
-    <>
+    <div className="-mt-[7.5rem] w-full min-w-0 bg-slate-900">
       <ServiceSchema />
       <Suspense fallback={null}>
         <ScrollToModuleCards />
       </Suspense>
       <section
-        className="relative min-h-[92vh] overflow-hidden border-b border-slate-200 bg-slate-900 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        className="relative min-h-[92vh] overflow-hidden border-b border-slate-200 bg-slate-900 px-4 pt-[7.5rem] pb-16 sm:px-6 sm:pt-[7.5rem] sm:pb-24 lg:px-8"
         aria-labelledby="hero-logistik-heading"
       >
         <LogistikHeroVideo />
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-4xl pt-20 text-center sm:pt-0">
+        <div className="relative z-10 mx-auto max-w-4xl pt-24 text-center sm:pt-28">
           <h1
             id="hero-logistik-heading"
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
             {smartIntro.title.map((line, i) => (
-              <span key={i}>
+              <span key={i} style={i === 1 ? { color: "#F37A5A" } : undefined}>
                 {line}
                 {i < smartIntro.title.length - 1 && <br />}
               </span>
@@ -148,9 +148,9 @@ export default async function LogistikberatungPage() {
         </div>
       </section>
 
-      <section id="module-cards" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 scroll-mt-24">
+      <section id="module-cards" className="w-full bg-white px-4 pt-24 pb-16 sm:px-6 sm:pt-28 sm:pb-20 lg:px-8 scroll-mt-24">
         <h2 className="sr-only">{lb.srOnlyModules}</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto max-w-7xl grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {smartModule.map((modul) => (
             <Link
               key={modul.slug}
@@ -227,6 +227,6 @@ export default async function LogistikberatungPage() {
         subtitle={lb.contactSubtitle}
         formLabels={{ ...dict.contactForm, submitButton: lb.contactSubmitButton ?? dict.contactForm.submitButton }}
       />
-    </>
+    </div>
   );
 }
