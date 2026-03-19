@@ -14,6 +14,7 @@ import ServiceSchema from "@/components/seo/ServiceSchema";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import ScrollToModuleCards from "./ScrollToModuleCards";
+import LogistikHeroVideo from "./LogistikHeroVideo";
 
 const BRAND_BLUE = "#F37A5A";
 
@@ -96,13 +97,10 @@ export default async function LogistikberatungPage() {
         <ScrollToModuleCards />
       </Suspense>
       <section
-        className="relative min-h-[70vh] border-b border-slate-200 bg-cover bg-center bg-no-repeat px-4 py-16 sm:px-6 sm:py-24 lg:bg-[length:100%_auto] lg:px-8"
+        className="relative min-h-[70vh] overflow-hidden border-b border-slate-200 bg-slate-900 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
         aria-labelledby="hero-logistik-heading"
-        style={{
-          backgroundImage: "url(/img/hero-logistikberatung.jpeg)",
-          backgroundColor: "#1e293b",
-        }}
       >
+        <LogistikHeroVideo />
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl pt-20 text-center sm:pt-0">
           <h1
