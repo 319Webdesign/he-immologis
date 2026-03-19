@@ -3,7 +3,7 @@ export const SMART_INTRO = {
   subtitle: "Menschen. Struktur. Strategie. Netzwerk.",
   acronym: [
     { letter: "S", label: "Schulung" },
-    { letter: "M", label: "Merges & Aquisition" },
+    { letter: "M", label: "Mergers & Acquisition" },
     { letter: "A", label: "Aufbau Entscheidernetzwerk" },
     { letter: "R", label: "Regionale Interim-Lösungen" },
     { letter: "T", label: "Transportnetzwerkstrategien" },
@@ -20,7 +20,7 @@ export const SMART_INTRO_EN = {
   subtitle: "People. Structure. Strategy. Network.",
   acronym: [
     { letter: "S", label: "Training" },
-    { letter: "M", label: "Merges & Aquisition" },
+    { letter: "M", label: "Mergers & Acquisition" },
     { letter: "A", label: "Building decision-maker networks" },
     { letter: "R", label: "Regional interim solutions" },
     { letter: "T", label: "Transport network strategies" },
@@ -37,7 +37,7 @@ export const SMART_INTRO_TR = {
   subtitle: "İnsanlar. Yapı. Strateji. Ağ.",
   acronym: [
     { letter: "S", label: "Eğitim" },
-    { letter: "M", label: "Merges & Aquisition" },
+    { letter: "M", label: "Mergers & Acquisition" },
     { letter: "A", label: "Karar verici ağları kurma" },
     { letter: "R", label: "Bölgesel geçici çözümler" },
     { letter: "T", label: "Taşıma ağı stratejileri" },

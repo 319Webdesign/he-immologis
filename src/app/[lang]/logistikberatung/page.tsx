@@ -122,7 +122,7 @@ export default async function LogistikberatungPage() {
               <span
                 key={letter}
                 className="rounded-lg px-4 py-2 text-sm text-white"
-                style={{ backgroundColor: "#F37A5A" }}
+                style={{ backgroundColor: "#8AAFA3" }}
                 title={label}
               >
                 <span className="font-semibold">{letter}</span> – {label}
