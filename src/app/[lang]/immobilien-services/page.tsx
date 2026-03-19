@@ -34,14 +34,14 @@ export default async function ImmobilienServicesPage() {
         className="relative flex min-h-[70vh] flex-col overflow-hidden px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8"
         aria-labelledby="services-hero-heading"
         style={{
-          backgroundImage: "url(/img/hero-service.jpeg)",
+          backgroundImage: "url(/img/services.jpeg)",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center 65%",
           backgroundRepeat: "no-repeat",
           backgroundColor: "#1e293b",
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
+        <div className="absolute inset-0 bg-slate-900/20" aria-hidden />
         <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center pt-20 text-center sm:pt-0">
           <h1
             id="services-hero-heading"
@@ -51,8 +51,12 @@ export default async function ImmobilienServicesPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95 drop-shadow-sm sm:text-xl">
             {s.hero.subtitleLine1}
-            <br className="sm:hidden" />
-            {s.hero.subtitleLine2}
+            {s.hero.subtitleLine2 && (
+              <>
+                <br className="sm:hidden" />
+                {s.hero.subtitleLine2}
+              </>
+            )}
           </p>
         </div>
         <a

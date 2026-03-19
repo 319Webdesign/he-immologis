@@ -97,7 +97,7 @@ export default async function LogistikberatungPage() {
         <ScrollToModuleCards />
       </Suspense>
       <section
-        className="relative min-h-[70vh] overflow-hidden border-b border-slate-200 bg-slate-900 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        className="relative min-h-[92vh] overflow-hidden border-b border-slate-200 bg-slate-900 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
         aria-labelledby="hero-logistik-heading"
       >
         <LogistikHeroVideo />
@@ -122,7 +122,7 @@ export default async function LogistikberatungPage() {
               <span
                 key={letter}
                 className="rounded-lg px-4 py-2 text-sm text-white"
-                style={{ backgroundColor: "#8AAFA3" }}
+                style={{ backgroundColor: "#F37A5A" }}
                 title={label}
               >
                 <span className="font-semibold">{letter}</span> – {label}
