@@ -113,7 +113,7 @@
   },
   "localPresence": {
     "heading": "Satış. Satın alma. Kiralama. Hizmetler. Arama.",
-    "subline": "Weinheim ve Bergstraße'deki yeni yuvanız burada başlıyor.",
+    "subline": "Yeni eviniz burada başlıyor.<br>\nWeinheim. Bergstraße. Rhein-Neckar İlçesi.",
     "regionTitle": "Rhein-Neckar bölgesinde ev.",
     "cards": [
       {
@@ -235,8 +235,8 @@
     ]
   },
   "valueBanner": {
-    "headingLine1": "Ücretsiz",
-    "headingLine2": "gayrimenkul değerlemesi",
+    "headingLine1": "Kapsamlı",
+    "headingLine2": "Değerleme",
     "subline": "Bölgedeki objeniz için güvenilir bir piyasa değerlendirmesi alın.",
     "labelObjekttyp": "Obje tipi",
     "labelZustand": "Gayrimenkul durumu",
