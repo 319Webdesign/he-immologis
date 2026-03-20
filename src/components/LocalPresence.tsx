@@ -35,6 +35,9 @@ function getCityImagePath(city: string): string {
   return `/img/orte/${slug}.jpeg`;
 }
 
+/** Fallback-Bild, wenn Ortsbild fehlt (z. B. schriesheim.jpeg) */
+const FALLBACK_ORT_IMG = "/img/holger.jpeg";
+
 interface LocalPresenceProps {
   dict: LocalPresenceDict;
 }
@@ -91,10 +94,10 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                 className={`flex min-w-0 w-full flex-col rounded-xl border border-slate-200 p-6 transition-shadow hover:shadow-md lg:p-8 ${
                   isLogisticsCard ? "" : "bg-slate-50/50"
                 }`}
-                style={isLogisticsCard ? { backgroundColor: "#AEADA8" } : undefined}
+                style={isLogisticsCard ? { backgroundColor: "#BFB8AF" } : undefined}
               >
                 <div className="flex h-10 w-10 items-center justify-center">
-                  <Icon className="h-7 w-7 text-[#F37A5A]" aria-hidden />
+                  <Icon className="h-7 w-7 text-[#F9423A]" aria-hidden />
                 </div>
                 <h3 className="mt-4 font-sans text-base font-semibold text-slate-900">
                   {title}
@@ -120,7 +123,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               {/* Unsere Region – gleiche Breite wie Karten, mittig */}
               <div
                 className="w-full rounded-2xl px-4 py-10 sm:px-5 sm:py-12 lg:px-6 lg:py-14"
-                style={{ backgroundColor: "#8AAFA3" }}
+                style={{ backgroundColor: "#85b09a" }}
               >
             <h3 className="text-center font-sans text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               {regionTitle}
@@ -139,6 +142,10 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                       className="aspect-video w-full object-cover"
                       width={224}
                       height={126}
+                      onError={(e) => {
+                        const el = e.currentTarget;
+                        if (el.src !== FALLBACK_ORT_IMG) el.src = FALLBACK_ORT_IMG;
+                      }}
                     />
                   </span>
                 </span>

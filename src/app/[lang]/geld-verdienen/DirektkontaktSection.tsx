@@ -1,12 +1,13 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail } from "lucide-react";
 
-const BRAND_BLUE = "#F37A5A";
-const CTA_ACCENT = "#8AAFA3";
+const BRAND_BLUE = "#F9423A";
+const CTA_ACCENT = "#85b09a";
 
 const outlineButtonClass =
   "inline-flex min-h-[48px] flex-1 min-w-0 items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -21,6 +22,7 @@ const TEXTS = {
     whatsapp: "Tipp per WhatsApp senden",
     email: "Anfrage per E-Mail",
     orCall: "Oder anrufen:",
+    contactLabel: "Ihr Ansprechpartner",
     disclaimer:
       "Ihre Daten werden absolut diskret behandelt. Eine Tippgebervergütung erfolgt nach den Bedingungen unserer Vereinbarung (siehe Downloads).",
     whatsappHref:
@@ -36,6 +38,7 @@ const TEXTS = {
     whatsapp: "Send tip via WhatsApp",
     email: "Inquiry via e-mail",
     orCall: "Or call:",
+    contactLabel: "Your contact person",
     disclaimer:
       "Your data will be treated in strict confidence. Referrer fees are paid according to the terms of our agreement (see Downloads).",
     whatsappHref:
@@ -51,6 +54,7 @@ const TEXTS = {
     whatsapp: "Öneriyi WhatsApp ile gönder",
     email: "E-posta ile talepte bulun",
     orCall: "Veya arayın:",
+    contactLabel: "İletişim kişiniz",
     disclaimer:
       "Verileriniz kesinlikle gizli tutulacaktır. Öneri veren ücreti anlaşmamızın koşullarına göre ödenir (İndirmeler bölümüne bakın).",
     whatsappHref:
@@ -97,7 +101,7 @@ export default function DirektkontaktSection() {
             href={t.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#8AAFA3]`}
+            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#85b09a]`}
             style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
           >
             <MessageCircle className="h-5 w-5 shrink-0" />
@@ -105,7 +109,7 @@ export default function DirektkontaktSection() {
           </Link>
           <Link
             href={`mailto:info@he-immologis.de?subject=${t.mailtoSubject}`}
-            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#8AAFA3]`}
+            className={`${outlineButtonClass} w-full sm:w-auto sm:flex-initial text-white focus:ring-[#85b09a]`}
             style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
           >
             <Mail className="h-5 w-5 shrink-0" />
@@ -115,10 +119,22 @@ export default function DirektkontaktSection() {
 
         <p className="mt-4 text-center text-slate-600">
           {t.orCall}{" "}
-          <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: "#F37A5A" }}>
+          <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: "#F9423A" }}>
             +49 177 636 1394
           </a>
         </p>
+
+        <div className="mt-6 flex flex-col items-center">
+          <p className="text-sm font-medium text-slate-700">{t.contactLabel}</p>
+          <p className="mt-1 text-lg font-semibold text-slate-900">Holger Eberhard</p>
+          <Image
+            src="/img/unterschrift-neu.png"
+            alt="Unterschrift Holger Eberhard"
+            width={200}
+            height={80}
+            className="mt-3 max-h-16 w-auto object-contain object-center"
+          />
+        </div>
 
         <p className="mt-6 text-center text-sm text-slate-500">
           {t.disclaimer}

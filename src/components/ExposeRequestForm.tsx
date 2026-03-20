@@ -441,7 +441,7 @@ export function ExposeRequestForm({
           errors.datenschutz
             ? "border-red-500 bg-red-50/50"
             : lightLabels
-              ? "border-white/40 bg-[#F37A5A]"
+              ? "border-white/40 bg-[#F9423A]"
               : "border-zinc-200 bg-white"
         }`}
       >
@@ -459,7 +459,7 @@ export function ExposeRequestForm({
           <Link
             href={`/${locale}/datenschutz`}
             className="underline hover:opacity-80"
-            style={{ color: "#F37A5A" }}
+            style={{ color: "#F9423A" }}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -482,8 +482,8 @@ export function ExposeRequestForm({
       <button
         type="submit"
         disabled={status === "sending" || !isValid()}
-        className="flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 disabled:cursor-not-allowed sm:w-auto hover:opacity-90 disabled:hover:opacity-100 disabled:opacity-70"
-        style={{ backgroundColor: "#F37A5A" }}
+        className="flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2 disabled:cursor-not-allowed sm:w-auto hover:opacity-90 disabled:hover:opacity-100 disabled:opacity-70"
+        style={{ backgroundColor: "#F9423A" }}
       >
         <FileText className="h-5 w-5" />
         {status === "sending"
@@ -550,7 +550,7 @@ export function ExposeRequestForm({
                 <Link
                   href={`/${locale}/agb#widerruf`}
                   className="underline hover:opacity-80"
-                  style={{ color: "#F37A5A" }}
+                  style={{ color: "#F9423A" }}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -633,7 +633,7 @@ export function ExposeRequestForm({
                 onClick={handlePopupConfirm}
                 disabled={status === "sending" || !isPopupValid()}
                 className="flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed hover:opacity-90 disabled:hover:opacity-100 disabled:opacity-70"
-                style={{ backgroundColor: "#F37A5A" }}
+                style={{ backgroundColor: "#F9423A" }}
               >
                 {status === "sending" ? t("sending", "Wird gesendet…") : t("confirmSend", "Bestätigen & Senden")}
               </button>

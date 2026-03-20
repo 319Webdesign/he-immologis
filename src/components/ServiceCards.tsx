@@ -7,7 +7,7 @@ import {
   type ServiceCardItem,
 } from "@/data/services";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 export type { ServiceCardItem };
 
@@ -51,7 +51,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
         <span
           className="mt-3 inline-flex w-fit rounded-lg px-3 py-1.5 text-sm font-semibold"
           style={{
-            backgroundColor: "#8AAFA315",
+            backgroundColor: "#85b09a15",
             color: "#000000",
           }}
         >
@@ -71,7 +71,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
         )}
         <Link
           href={href}
-          className="mt-6 inline-flex w-fit self-start items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
+          className="mt-6 inline-flex w-fit self-start items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2"
           style={{ backgroundColor: BRAND_BLUE }}
         >
           {moreInfoText}

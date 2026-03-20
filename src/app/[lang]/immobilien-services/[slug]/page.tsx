@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 interface PageProps {
   params: Promise<{ lang?: string; slug: string }>;
@@ -96,7 +96,7 @@ function KomplettmandatContent({
           >
             <span
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white sm:h-12 sm:w-12"
-              style={{ backgroundColor: "#8AAFA3" }}
+              style={{ backgroundColor: "#85b09a" }}
             >
               {idx / 2 + 1}
             </span>
@@ -115,8 +115,8 @@ function KomplettmandatContent({
       <section
         className="mt-12 rounded-2xl border-2 px-6 py-7 sm:px-8 sm:py-8"
         style={{
-          borderColor: "#8AAFA3",
-          backgroundColor: "#8AAFA315",
+          borderColor: "#85b09a",
+          backgroundColor: "#85b09a15",
         }}
         aria-labelledby="verguetung-heading"
       >
@@ -131,7 +131,7 @@ function KomplettmandatContent({
         </p>
         <p className="mt-4 text-lg leading-relaxed text-slate-700">
           {agbIntro}
-          <Link href={locale === "en" ? "/en/agb" : locale === "tr" ? "/tr/agb" : "/agb"} className="text-[#F37A5A] underline hover:no-underline">
+          <Link href={locale === "en" ? "/en/agb" : locale === "tr" ? "/tr/agb" : "/agb"} className="text-[#F9423A] underline hover:no-underline">
             {agbLinkText}
           </Link>
           {agbOutro}
@@ -304,7 +304,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span
             className="mt-4 inline-flex rounded-lg px-3 py-1.5 text-sm font-semibold"
             style={{
-              backgroundColor: "#8AAFA315",
+              backgroundColor: "#85b09a15",
               color: "#000000",
             }}
           >
@@ -368,7 +368,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : locale === "tr" ? "Talep – " + displayTitle : "Anfrage – " + service.title)}`}
-                className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
+                className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2"
                 style={{ backgroundColor: BRAND_BLUE }}
               >
                 {locale === "en" ? "Send email" : locale === "tr" ? "E-posta gönder" : "E-Mail schreiben"}

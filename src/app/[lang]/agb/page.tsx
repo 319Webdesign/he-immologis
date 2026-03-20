@@ -310,7 +310,7 @@ export default async function AgbPage({
           </div>
 
           <p className="mt-10 text-sm text-slate-500">
-            <Link href={`${prefix}/widerruf`} className="text-[#F37A5A] underline hover:no-underline">
+            <Link href={`${prefix}/widerruf`} className="text-[#F9423A] underline hover:no-underline">
               Right of withdrawal (short overview)
             </Link>
           </p>
@@ -349,7 +349,7 @@ export default async function AgbPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">§2 Veri Koruma</h2>
               <p className="mt-2">
                 Müvekkil, HE immologis UG'nin yükümlülüklerini ifa etmek için geçerli yasal hükümlere uygun olarak kişisel verileri işleme yetkisine sahip olduğunu açıkça kabul eder. Detaylar için{" "}
-                <Link href={`${prefix}/datenschutz`} className="text-[#F37A5A] underline hover:no-underline">Gizlilik Politikamıza</Link> bakınız.
+                <Link href={`${prefix}/datenschutz`} className="text-[#F9423A] underline hover:no-underline">Gizlilik Politikamıza</Link> bakınız.
               </p>
             </section>
             <section>
@@ -380,7 +380,7 @@ export default async function AgbPage({
               </p>
               <p className="mt-2">
                 Tam cayma bildirimi ve örnek form için{" "}
-                <Link href={`${prefix}/widerruf`} className="text-[#F37A5A] underline hover:no-underline">Cayma Hakkı</Link> sayfamıza bakınız.
+                <Link href={`${prefix}/widerruf`} className="text-[#F9423A] underline hover:no-underline">Cayma Hakkı</Link> sayfamıza bakınız.
               </p>
             </section>
             <section>
@@ -399,9 +399,9 @@ export default async function AgbPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">Provizyon ve Diğer Koşullar</h2>
               <p className="mt-2">
                 Satış için alıcı provizyonu 3,57% KDV dahil. Kiralama için 2 net kira artı KDV. Detaylar ve tam metin için Almanca sürüme bakınız. İletişim:{" "}
-                <a href="mailto:info@he-immologis.de" className="text-[#F37A5A] underline hover:no-underline">info@he-immologis.de</a>,{" "}
-                <a href="tel:+491776361394" className="text-[#F37A5A] underline hover:no-underline">+49 177 636 1394</a>.{" "}
-                <Link href={`${prefix}/impressum`} className="text-[#F37A5A] underline hover:no-underline">Künye</Link>.
+                <a href="mailto:info@he-immologis.de" className="text-[#F9423A] underline hover:no-underline">info@he-immologis.de</a>,{" "}
+                <a href="tel:+491776361394" className="text-[#F9423A] underline hover:no-underline">+49 177 636 1394</a>.{" "}
+                <Link href={`${prefix}/impressum`} className="text-[#F9423A] underline hover:no-underline">Künye</Link>.
               </p>
             </section>
           </div>
@@ -672,7 +672,7 @@ export default async function AgbPage({
         </div>
 
         <p className="mt-10 text-sm text-slate-500">
-          <Link href={`${prefix}/widerruf`} className="text-[#F37A5A] underline hover:no-underline">
+          <Link href={`${prefix}/widerruf`} className="text-[#F9423A] underline hover:no-underline">
             Widerrufsrecht (kurze Übersicht)
           </Link>
         </p>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 const IMAGE_SRC = "/img/hausvorschau.jpeg";
 
 export type MainServiceCardDict = {
@@ -70,7 +70,7 @@ export default function MainServiceCard({ dict, lang }: MainServiceCardProps) {
               <li key={i} className="flex items-center gap-3 text-slate-700">
                 <span
                   className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white"
-                  style={{ backgroundColor: "#8AAFA3" }}
+                  style={{ backgroundColor: "#85b09a" }}
                 >
                   <Check className="h-3.5 w-3.5" aria-hidden />
                 </span>
@@ -83,7 +83,7 @@ export default function MainServiceCard({ dict, lang }: MainServiceCardProps) {
           </p>
           <Link
             href={detailHref}
-            className="mt-6 inline-flex w-fit self-start items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
+            className="mt-6 inline-flex w-fit self-start items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2"
             style={{ backgroundColor: BRAND_BLUE }}
           >
             {dict.moreInfoButton}

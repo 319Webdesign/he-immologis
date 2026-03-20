@@ -52,7 +52,7 @@ interface FooterProps {
 export default function Footer({ lang, dict }: FooterProps) {
   const prefix = `/${lang}`;
   return (
-    <footer className="bg-[#425159] text-white" role="contentinfo">
+    <footer className="bg-[#54585a] text-white" role="contentinfo">
       {/* Unsere Leistungen: 10 Quickfacts, 5 pro Zeile */}
       <div className="border-b border-slate-700/80">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -301,7 +301,7 @@ export default function Footer({ lang, dict }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold transition-colors hover:opacity-80"
-                style={{ color: "#8AAFA3" }}
+                style={{ color: "#85b09a" }}
               >
                 319Webdesign
               </a>

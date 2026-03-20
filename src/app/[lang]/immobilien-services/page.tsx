@@ -7,7 +7,7 @@ import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
@@ -64,7 +64,7 @@ export default async function ImmobilienServicesPage() {
           className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
           aria-label={s.hero.ctaAriaLabel}
         >
-          <span className="text-sm font-medium" style={{ color: "#F37A5A" }}>{s.hero.ctaText}</span>
+          <span className="text-sm font-medium" style={{ color: "#F9423A" }}>{s.hero.ctaText}</span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
@@ -90,7 +90,7 @@ export default async function ImmobilienServicesPage() {
           <div className="mt-10">
             <Link
               href={prefix}
-              className="inline-flex items-center justify-center rounded-3xl px-8 py-4 text-base font-semibold text-white shadow-md transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-3xl px-8 py-4 text-base font-semibold text-white shadow-md transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2"
               style={{ backgroundColor: BRAND_BLUE }}
             >
               {s.cta.button}

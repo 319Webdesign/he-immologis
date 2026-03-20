@@ -100,7 +100,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
         <a
           href="#anfrage-formular"
           className="absolute bottom-3 left-0 right-0 z-10 flex flex-col items-center gap-3 transition-colors hover:opacity-90 sm:bottom-5 sm:gap-4"
-          style={{ color: "#F37A5A" }}
+          style={{ color: "#F9423A" }}
           aria-label={v.hero.ctaAriaLabel}
         >
           <span className="text-sm font-medium drop-shadow-md sm:text-base" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.4)" }}>{v.hero.ctaText}</span>
@@ -133,7 +133,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
             {v.provision.headingSrOnly}
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/80 p-6 text-sm leading-relaxed text-zinc-700 sm:p-8">
-            <span className="mb-4 inline-block rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider text-white" style={{ backgroundColor: "#F37A5A" }}>
+            <span className="mb-4 inline-block rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider text-white" style={{ backgroundColor: "#F9423A" }}>
               {v.provision.badge}
             </span>
             <p className="font-medium text-zinc-800">{v.provision.paragraph1}</p>
@@ -141,7 +141,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
               {v.provision.paragraph2Prefix}
               <Link
                 href={`${prefix}/agb`}
-                className="text-[#F37A5A] underline hover:no-underline"
+                className="text-[#F9423A] underline hover:no-underline"
               >
                 {v.provision.agbLinkText}
               </Link>

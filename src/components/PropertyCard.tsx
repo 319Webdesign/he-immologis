@@ -105,14 +105,14 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           />
           <span
             className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-            style={{ backgroundColor: "#F37A5A" }}
+            style={{ backgroundColor: "#F9423A" }}
             aria-hidden
           >
             {badgeLabel}
           </span>
         </div>
       </Link>
-      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#8AAFA3] max-sm:group-data-[incenter=true]:bg-[#8AAFA3]">
+      <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#85b09a] max-sm:group-data-[incenter=true]:bg-[#85b09a]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
           <Link href={detailHref}>{property.titel}</Link>
         </h2>
@@ -168,7 +168,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         )}
         <Link
           href={detailHref}
-          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors sm:group-hover:border-white sm:group-hover:text-white max-sm:group-data-[incenter=true]:border-white max-sm:group-data-[incenter=true]:text-white hover:bg-white hover:text-[#F37A5A] sm:w-auto"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors sm:group-hover:border-white sm:group-hover:text-white max-sm:group-data-[incenter=true]:border-white max-sm:group-data-[incenter=true]:text-white hover:bg-white hover:text-[#F9423A] sm:w-auto"
         >
           {viewDetails}
         </Link>

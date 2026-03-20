@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Key, Search } from "lucide-react";
@@ -11,7 +12,7 @@ import { Home, Key, Search } from "lucide-react";
  */
 const VIDEO_SRC = "/video/startseitefilm.webm";
 const POSTER_SRC = "/img/hero-poster.jpg";
-const HERO_ACCENT = "#8AAFA3";
+const HERO_ACCENT = "#85b09a";
 
 export type HomeHeroDict = {
   line1: string;
@@ -65,7 +66,20 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
             {dict.line2 && (
               <>
                 <br />
-                <span style={{ color: "#F37A5A" }}>{dict.line2}</span>
+                {lang === "de" ? (
+                  <span className="inline-block mt-2">
+                    <Image
+                      src="/img/slogan.png"
+                      alt={dict.line2}
+                      width={640}
+                      height={120}
+                      className="max-w-full h-auto"
+                      priority
+                    />
+                  </span>
+                ) : (
+                  <span style={{ color: "#F9423A" }}>{dict.line2}</span>
+                )}
               </>
             )}
             {dict.line2Next && (
@@ -95,7 +109,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
               style={{ backgroundColor: HERO_ACCENT, color: "#ffffff" }}
             >
-              <Home className="h-4 w-4 shrink-0" style={{ color: "#F37A5A" }} aria-hidden />
+              <Home className="h-4 w-4 shrink-0" style={{ color: "#F9423A" }} aria-hidden />
               {dict.ctaBuy}
             </Link>
             <Link
@@ -103,7 +117,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
               style={{ backgroundColor: HERO_ACCENT, color: "#ffffff" }}
             >
-              <Key className="h-4 w-4 shrink-0" style={{ color: "#F37A5A" }} aria-hidden />
+              <Key className="h-4 w-4 shrink-0" style={{ color: "#F9423A" }} aria-hidden />
               {dict.ctaRent}
             </Link>
             <Link
@@ -111,7 +125,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium shadow transition-all duration-200 hover:scale-[1.03] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/30"
               style={{ backgroundColor: HERO_ACCENT, color: "#ffffff" }}
             >
-              <Search className="h-4 w-4 shrink-0" style={{ color: "#F37A5A" }} aria-hidden />
+              <Search className="h-4 w-4 shrink-0" style={{ color: "#F9423A" }} aria-hidden />
               {dict.ctaSearch}
             </Link>
           </div>

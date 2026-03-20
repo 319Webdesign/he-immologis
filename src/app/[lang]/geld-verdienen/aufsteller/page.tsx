@@ -14,8 +14,8 @@ import DonationOption from "@/components/DonationOption";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { AUFSTELLER_DOCS } from "@/lib/documents";
 
-const BRAND_BLUE = "#F37A5A";
-const CTA_ACCENT = "#8AAFA3";
+const BRAND_BLUE = "#F9423A";
+const CTA_ACCENT = "#85b09a";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -215,7 +215,7 @@ export default async function AufstellerPage() {
           </p>
           <p
             className="mt-4 inline-block animate-breathe text-2xl font-bold drop-shadow-sm sm:text-3xl"
-            style={{ color: "#F37A5A" }}
+            style={{ color: "#F9423A" }}
           >
             {t.heroCta}
           </p>
@@ -363,7 +363,7 @@ export default async function AufstellerPage() {
                 href={AUFSTELLER_DOCS.privat[localeKey]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#8AAFA3]`}
+                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#85b09a]`}
                 style={{ borderColor: CTA_ACCENT, color: CTA_ACCENT }}
               >
                 <FileDown className="h-5 w-5 shrink-0" />
@@ -383,7 +383,7 @@ export default async function AufstellerPage() {
                 href={AUFSTELLER_DOCS.gewerbe[localeKey]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#8AAFA3]`}
+                className={`mt-4 inline-flex ${outlineButtonClass} focus:ring-[#85b09a]`}
                 style={{ borderColor: CTA_ACCENT, color: CTA_ACCENT }}
               >
                 <FileDown className="h-5 w-5 shrink-0" />
@@ -427,7 +427,7 @@ export default async function AufstellerPage() {
                 href="https://wa.me/491776361394"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#8AAFA3]`}
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
                 style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
               >
                 <MessageCircle className="h-5 w-5 shrink-0" />
@@ -435,7 +435,7 @@ export default async function AufstellerPage() {
               </a>
               <a
                 href="mailto:info@he-immologis.de"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#8AAFA3]`}
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
                 style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
               >
                 <Mail className="h-5 w-5 shrink-0" />

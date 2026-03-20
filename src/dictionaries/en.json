@@ -1,8 +1,8 @@
 {
   "home": {
     "hero": {
-      "line1": "A LOCATION THAT MOVES",
-      "line2": "Your property at the centre.",
+      "line1": "A LOCATION THAT MOVES.",
+      "line2": "Your property center stage.",
       "line2Next": "",
       "tagline": "Sell. Find. Make it possible.",
       "subline": "Weinheim. Bergstraße. Rhine-Neckar District.",
@@ -91,7 +91,7 @@
     "revocation": "Right of withdrawal",
     "cookies": "Cookies",
     "certificates": "Certificates",
-    "copyright": "© 2026 HE immologis UG. All rights reserved.",
+    "copyright": "© 2026 HE immologis. All rights reserved.",
     "designedBy": "Designed by"
   },
   "shareSection": {

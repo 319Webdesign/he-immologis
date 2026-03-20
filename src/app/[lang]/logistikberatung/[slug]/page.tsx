@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 import ServiceSchema from "@/components/seo/ServiceSchema";
 import { getDictionary } from "@/dictionaries";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 type Props = { params: Promise<{ lang?: string; slug: string }> };
 
@@ -128,7 +128,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
           </Link>
           <div
             className="ml-3 mt-4 inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white sm:ml-4"
-            style={{ backgroundColor: "#8AAFA3" }}
+            style={{ backgroundColor: "#85b09a" }}
           >
             {modul.letter}
           </div>

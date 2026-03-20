@@ -2,8 +2,8 @@
 
 import { ArrowRight, Home } from "lucide-react";
 
-const SECTION_BG = "#8AAFA3";
-const BUTTON_BG = "#F37A5A";
+const SECTION_BG = "#85b09a";
+const BUTTON_BG = "#F9423A";
 
 type FinalCTADict = {
   title: string;
@@ -56,7 +56,7 @@ export default function FinalCTA({ dict }: { dict: FinalCTADict }) {
           <button
             type="button"
             onClick={scrollToForm}
-            className="group inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-200 hover:opacity-95 hover:shadow-xl hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#8AAFA3]"
+            className="group inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:opacity-95 hover:shadow-xl hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#85b09a]"
             style={{ backgroundColor: BUTTON_BG }}
           >
             {dict.buttonText}
@@ -67,8 +67,8 @@ export default function FinalCTA({ dict }: { dict: FinalCTADict }) {
             {dict.callText}{" "}
             <a
               href="tel:+491776361394"
-              className="font-medium underline decoration-white/60 underline-offset-2 hover:decoration-white"
-              style={{ color: "#F37A5A" }}
+              className="font-bold no-underline"
+              style={{ color: "#F9423A" }}
             >
               +49 177 636 1394
             </a>

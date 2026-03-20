@@ -72,7 +72,7 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
           <h2
             id="donation-option-heading"
             className="font-sans text-2xl font-semibold tracking-tight sm:text-3xl"
-            style={{ color: "#425159" }}
+            style={{ color: "#54585a" }}
           >
             {locale === "de" ? (
               <>
@@ -89,15 +89,15 @@ export default function DonationOption({ lang, customDescription }: DonationOpti
             )}
           </h2>
         </div>
-        <div className="mt-4 space-y-3 leading-relaxed sm:text-lg" style={{ color: "#425159" }}>
+        <div className="mt-4 space-y-3 leading-relaxed sm:text-lg" style={{ color: "#54585a" }}>
           {paragraphs.map((para, i) => (
             <p key={i}>{para}</p>
           ))}
         </div>
         <Link
           href={`/${lang}/spenden`}
-          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8AAFA3]"
-          style={{ backgroundColor: "#8AAFA3", color: "#425159" }}
+          className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#85b09a]"
+          style={{ backgroundColor: "#85b09a", color: "#54585a" }}
         >
           {t.cta}
           <ArrowRight className="h-5 w-5" aria-hidden />

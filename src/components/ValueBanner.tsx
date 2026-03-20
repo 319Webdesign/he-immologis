@@ -39,7 +39,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
   return (
     <section
       className="relative pt-10 pb-3 sm:pt-12 sm:pb-4"
-      style={{ backgroundColor: "#8AAFA3" }}
+      style={{ backgroundColor: "#85b09a" }}
       aria-labelledby="wertermittlung-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
               <span className="relative">
                 <Home className="h-6 w-6 text-slate-600" strokeWidth={1.75} />
                 <Search
-                  className="absolute -right-1.5 -top-1.5 h-3.5 w-3.5 text-[#F37A5A]"
+                  className="absolute -right-1.5 -top-1.5 h-3.5 w-3.5 text-[#F9423A]"
                   strokeWidth={2}
                 />
               </span>
@@ -81,7 +81,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
                 id="objekttyp"
                 value={objekttyp}
                 onChange={(e) => setObjekttyp(e.target.value)}
-                className="min-w-0 flex-1 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#F37A5A] focus:ring-2 focus:ring-[#F37A5A]/25"
+                className="min-w-0 flex-1 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#F9423A] focus:ring-2 focus:ring-[#F9423A]/25"
               >
                 <option value="">{dict.labelObjekttyp}</option>
                 {dict.objekttypen.map((o) => (
@@ -97,7 +97,7 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
                 id="zustand"
                 value={zustand}
                 onChange={(e) => setZustand(e.target.value)}
-                className="min-w-0 flex-1 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#F37A5A] focus:ring-2 focus:ring-[#F37A5A]/25"
+                className="min-w-0 flex-1 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 shadow-sm outline-none transition-colors focus:border-[#F9423A] focus:ring-2 focus:ring-[#F9423A]/25"
               >
                 <option value="">{dict.labelZustandShort}</option>
                 {dict.zustaende.map((z) => (
@@ -109,9 +109,9 @@ export default function ValueBanner({ dict, lang: langProp }: ValueBannerProps) 
             </div>
             <Link
               href={wertermittlungHref}
-              className="inline-flex w-full items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2 sm:w-auto"
               style={{
-                backgroundColor: "#F37A5A",
+                backgroundColor: "#F9423A",
                 boxShadow: "0 10px 15px -3px rgba(70, 130, 180, 0.35)",
               }}
             >

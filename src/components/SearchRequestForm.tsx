@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 const OBJEKTTYPEN = [
   "Einfamilienhaus",
@@ -197,7 +197,7 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
   };
 
   const inputBase =
-    "mt-2 block w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-[#F37A5A] focus:ring-1 focus:ring-[#F37A5A]/30";
+    "mt-2 block w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-[#F9423A] focus:ring-1 focus:ring-[#F9423A]/30";
   const labelBase = "block text-sm font-medium text-slate-700";
 
   if (isSubmitted) {
@@ -282,7 +282,7 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
                     type="checkbox"
                     checked={lagePraef.has(value)}
                     onChange={() => toggleLage(value)}
-                    className="h-4 w-4 shrink-0 rounded border-slate-300 text-[#F37A5A] focus:ring-[#F37A5A]"
+                    className="h-4 w-4 shrink-0 rounded border-slate-300 text-[#F9423A] focus:ring-[#F9423A]"
                   />
                   <span className="text-sm text-slate-700 lg:whitespace-nowrap">{opt}</span>
                 </label>
@@ -498,7 +498,7 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
         <button
           type="submit"
           disabled={isSending}
-          className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 disabled:opacity-70 sm:w-auto sm:min-w-[220px]"
+          className="w-full rounded-lg px-6 py-4 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2 disabled:opacity-70 sm:w-auto sm:min-w-[220px]"
           style={{ backgroundColor: BRAND_BLUE }}
         >
           {isSending ? (isEn ? "Sending…" : isTr ? "Gönderiliyor…" : "Wird gesendet…") : (isEn ? "Submit search request" : isTr ? "Arama talebini gönder" : "Suchauftrag absenden")}

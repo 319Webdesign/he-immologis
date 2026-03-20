@@ -82,7 +82,7 @@ export default function CookieBanner() {
             {t.text}{" "}
             <Link
               href={`${prefix}/cookies`}
-              className="font-medium text-[#F37A5A] underline decoration-[#F37A5A]/60 underline-offset-2 transition-colors hover:text-[#f5957a] hover:decoration-[#f5957a]"
+              className="font-medium text-[#F9423A] underline decoration-[#F9423A]/60 underline-offset-2 transition-colors hover:text-[#fb6a5a] hover:decoration-[#fb6a5a]"
             >
               {t.learnMore}
             </Link>
@@ -100,7 +100,7 @@ export default function CookieBanner() {
           <button
             type="button"
             onClick={acceptAll}
-            className="rounded-lg bg-[#F37A5A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#f5957a] focus:outline-none focus:ring-2 focus:ring-[#F37A5A] focus:ring-offset-2 focus:ring-offset-slate-900"
+            className="rounded-lg bg-[#F9423A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#fb6a5a] focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2 focus:ring-offset-slate-900"
           >
             {t.acceptAll}
           </button>

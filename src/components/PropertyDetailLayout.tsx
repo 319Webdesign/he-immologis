@@ -847,7 +847,7 @@ export function PropertyDetailLayout({
         {/* Exposé anfordern */}
         <section id="expose-anfordern" className="mt-8 scroll-mt-20 flex flex-col items-center">
           <div className="w-full max-w-xl overflow-hidden rounded-xl border border-zinc-200 shadow-sm">
-            <div className="px-5 py-5" style={{ backgroundColor: "#8AAFA3" }}>
+            <div className="px-5 py-5" style={{ backgroundColor: "#85b09a" }}>
               <h2 className="font-sans text-lg font-semibold text-white">
                 {dict?.expose?.heading ?? "Exposé anfordern"}
               </h2>

@@ -16,7 +16,7 @@ import { getLocaleFromHeaders } from "@/lib/i18n";
 import ScrollToModuleCards from "./ScrollToModuleCards";
 import LogistikHeroVideo from "./LogistikHeroVideo";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 const META = {
   de: {
@@ -108,7 +108,7 @@ export default async function LogistikberatungPage() {
             className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
           >
             {smartIntro.title.map((line, i) => (
-              <span key={i} style={i === 1 ? { color: "#F37A5A" } : undefined}>
+              <span key={i} style={i === 1 ? { color: "#F9423A" } : undefined}>
                 {line}
                 {i < smartIntro.title.length - 1 && <br />}
               </span>
@@ -122,7 +122,7 @@ export default async function LogistikberatungPage() {
               <span
                 key={letter}
                 className="rounded-lg px-4 py-2 text-sm text-white"
-                style={{ backgroundColor: "#8AAFA3" }}
+                style={{ backgroundColor: "#85b09a" }}
                 title={label}
               >
                 <span className="font-semibold">{letter}</span> – {label}
@@ -159,7 +159,7 @@ export default async function LogistikberatungPage() {
             >
               <span
                 className="inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-white"
-                style={{ backgroundColor: "#8AAFA3" }}
+                style={{ backgroundColor: "#85b09a" }}
               >
                 {modul.letter}
               </span>

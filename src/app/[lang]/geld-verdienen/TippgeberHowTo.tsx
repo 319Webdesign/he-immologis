@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Printer, PenLine, Mail, ArrowRight } from "lucide-react";
 
-const SECTION_ACCENT = "#8AAFA3";
+const SECTION_ACCENT = "#85b09a";
 
 const STEPS_DE = [
   {

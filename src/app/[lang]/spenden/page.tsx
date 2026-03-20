@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
-const STEEL_BLUE = "#F37A5A";
+const STEEL_BLUE = "#F9423A";
 
 type ProjectItem = { title: string; description: string; url: string; image: string };
 
@@ -218,7 +218,7 @@ export default async function SpendenPage() {
           <h1
             id="spenden-hero-heading"
             className="font-sans text-4xl font-semibold tracking-tight drop-shadow-sm sm:text-5xl"
-            style={{ color: "#425159" }}
+            style={{ color: "#54585a" }}
           >
             {lang === "de" ? (
               <>
@@ -228,7 +228,7 @@ export default async function SpendenPage() {
               t.heroTitle
             )}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed drop-shadow-sm sm:text-xl" style={{ color: "#425159" }}>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed drop-shadow-sm sm:text-xl" style={{ color: "#54585a" }}>
             {t.heroSubline}
           </p>
         </div>

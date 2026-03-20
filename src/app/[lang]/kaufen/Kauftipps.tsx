@@ -450,17 +450,17 @@ export default function Kauftipps({ dict, lang }: KauftippsProps) {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 rounded-xl border border-zinc-200 px-4 py-4 text-left shadow-sm transition-colors hover:border-zinc-300 sm:px-5 sm:py-5"
-                  style={{ backgroundColor: "#AEADA8" }}
+                  className="flex w-full items-center justify-between gap-4 rounded-xl border border-white/20 px-4 py-4 text-left text-white shadow-sm transition-colors hover:border-white/30 sm:px-5 sm:py-5"
+                  style={{ backgroundColor: "#85b09a" }}
                   aria-expanded={isOpen}
                   aria-controls={`kauftipp-content-${index}`}
                   id={`kauftipp-trigger-${index}`}
                 >
-                  <span className="font-sans font-semibold text-zinc-900">
+                  <span className="font-sans font-semibold">
                     {index + 1}. {tip.title}
                   </span>
                   <ChevronDown
-                    className={`h-5 w-5 shrink-0 text-zinc-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    className={`h-5 w-5 shrink-0 text-white transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     aria-hidden
                   />
                 </button>
@@ -470,11 +470,11 @@ export default function Kauftipps({ dict, lang }: KauftippsProps) {
                   aria-labelledby={`kauftipp-trigger-${index}`}
                   className={`overflow-hidden transition-all duration-200 ease-out ${isOpen ? "max-h-[4500px] opacity-100" : "max-h-0 opacity-0"}`}
                 >
-                  <div className="rounded-b-xl border border-t-0 border-zinc-200 px-4 py-5 shadow-sm sm:px-5 sm:py-6" style={{ backgroundColor: "#AEADA8" }}>
+                  <div className="rounded-b-xl border border-t-0 border-white/20 px-4 py-5 text-white shadow-sm sm:px-5 sm:py-6 [&_*]:text-white" style={{ backgroundColor: "#85b09a" }}>
                     {typeof tip.content === "string" ? (
-                      <p className="leading-relaxed text-zinc-700">{tip.content}</p>
+                      <p className="leading-relaxed">{tip.content}</p>
                     ) : (
-                      <div className="leading-relaxed text-zinc-700">{tip.content}</div>
+                      <div className="leading-relaxed [&_h3]:text-white [&_p]:text-white [&_li]:text-white [&_.text-zinc-900]:text-white [&_.text-zinc-700]:text-white [&_.bg-zinc-50]:bg-white/20 [&_.border-zinc-200]:border-white/30">{tip.content}</div>
                     )}
                   </div>
                 </div>

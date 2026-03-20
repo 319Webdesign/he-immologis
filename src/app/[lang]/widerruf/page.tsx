@@ -62,14 +62,14 @@ export default async function WiderrufPage({
           <div className="mt-10 space-y-6 text-slate-700">
             <p>
               The complete withdrawal notice and the model withdrawal form can be found in our{" "}
-              <Link href={`${prefix}/agb#widerruf`} className="text-[#F37A5A] underline hover:no-underline">
+              <Link href={`${prefix}/agb#widerruf`} className="text-[#F9423A] underline hover:no-underline">
                 Terms and Conditions (§ 6 Right of Withdrawal)
               </Link>
               .
             </p>
             <p>
               <strong>Short overview:</strong> The withdrawal period is 14 days from the date of conclusion of the contract. To exercise the right of withdrawal, a clear statement (e.g. by email or post) to us is sufficient. You can find our contact details in the{" "}
-              <Link href={`${prefix}/impressum`} className="text-[#F37A5A] underline hover:no-underline">
+              <Link href={`${prefix}/impressum`} className="text-[#F9423A] underline hover:no-underline">
                 Imprint
               </Link>
               .
@@ -96,14 +96,14 @@ export default async function WiderrufPage({
           <div className="mt-10 space-y-6 text-slate-700">
             <p>
               Tam cayma bildirimi ve örnek cayma formu{" "}
-              <Link href={`${prefix}/agb#widerruf`} className="text-[#F37A5A] underline hover:no-underline">
+              <Link href={`${prefix}/agb#widerruf`} className="text-[#F9423A] underline hover:no-underline">
                 Kullanım Koşullarımızda (§ 6 Cayma bildirimi)
               </Link>
               yer almaktadır.
             </p>
             <p>
               <strong>Kısa özet:</strong> Cayma süresi sözleşme tarihinden itibaren 14 gündür. Cayma hakkını kullanmak için bize net bir bildirim (örn. e-posta veya posta ile) yeterlidir. İletişim bilgilerimiz{" "}
-              <Link href={`${prefix}/impressum`} className="text-[#F37A5A] underline hover:no-underline">
+              <Link href={`${prefix}/impressum`} className="text-[#F9423A] underline hover:no-underline">
                 Künye
               </Link>
               sayfasındadır.
@@ -131,14 +131,14 @@ export default async function WiderrufPage({
         <div className="mt-10 space-y-6 text-slate-700">
           <p>
             Die vollständige Widerrufsbelehrung und das Muster-Widerrufsformular finden Sie in unseren{" "}
-            <Link href={`${prefix}/agb#widerruf`} className="text-[#F37A5A] underline hover:no-underline">
+            <Link href={`${prefix}/agb#widerruf`} className="text-[#F9423A] underline hover:no-underline">
               AGB (§ 6 Widerrufsbelehrung)
             </Link>
             .
           </p>
           <p>
             <strong>Kurzüberblick:</strong> Die Widerrufsfrist beträgt 14 Tage ab Vertragsschluss. Zur Ausübung des Widerrufs genügt eine eindeutige Erklärung (z. B. per E-Mail oder Post) an uns. Unsere Kontaktdaten finden Sie im{" "}
-            <Link href={`${prefix}/impressum`} className="text-[#F37A5A] underline hover:no-underline">
+            <Link href={`${prefix}/impressum`} className="text-[#F9423A] underline hover:no-underline">
               Impressum
             </Link>
             .

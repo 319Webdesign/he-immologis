@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -65,7 +65,7 @@ export default async function GeldVerdienenPage() {
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-sm">
             Werden Sie Tippgeber und profitieren Sie von Ihrer Empfehlung.
           </p>
-          <p className="mt-4 text-2xl font-bold drop-shadow-sm sm:text-3xl" style={{ color: "#8AAFA3" }}>
+          <p className="mt-4 text-2xl font-bold drop-shadow-sm sm:text-3xl" style={{ color: "#85b09a" }}>
             Provision bis zu 5.000 €
           </p>
         </div>
@@ -94,7 +94,7 @@ export default async function GeldVerdienenPage() {
               href={TIPPGEBER_DOCS.vereinbarung[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+              className={`${outlineButtonClass} focus:ring-[#F9423A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -102,7 +102,7 @@ export default async function GeldVerdienenPage() {
             </Link>
             <Link
               href="/geld-verdienen/tippgeber-staffel"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+              className={`${outlineButtonClass} focus:ring-[#F9423A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               Provisionsstaffel im Detail anzeigen
@@ -154,7 +154,7 @@ export default async function GeldVerdienenPage() {
               <div className="mt-6 flex flex-wrap gap-4">
                 <Link
                   href="/geld-verdienen/aufsteller"
-                  className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+                  className={`${outlineButtonClass} focus:ring-[#F9423A]`}
                   style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
                 >
                   Alle Infos zum Werbe-Aufsteller
@@ -164,7 +164,7 @@ export default async function GeldVerdienenPage() {
                   href={MUSTERVERTRAG_WERBEFLAECHE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+                  className={`${outlineButtonClass} focus:ring-[#F9423A]`}
                   style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
                 >
                   <FileDown className="h-5 w-5 shrink-0" />
@@ -200,7 +200,7 @@ export default async function GeldVerdienenPage() {
                   href={MUSTERVERTRAG_WERBEFLAECHE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+                  className={`${outlineButtonClass} focus:ring-[#F9423A]`}
                   style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
                 >
                   <FileDown className="h-5 w-5 shrink-0" />

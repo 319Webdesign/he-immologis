@@ -55,7 +55,7 @@ export default async function MietenPage() {
           className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 transition-colors hover:opacity-90 sm:bottom-8"
           aria-label={m.hero.ctaAriaLabel}
         >
-          <span className="text-sm font-medium" style={{ color: "#F37A5A" }}>{m.hero.ctaText}</span>
+          <span className="text-sm font-medium" style={{ color: "#F9423A" }}>{m.hero.ctaText}</span>
           <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
         </a>
       </section>
@@ -77,7 +77,7 @@ export default async function MietenPage() {
             {m.provision.headingSrOnly}
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/80 p-6 text-sm leading-relaxed text-zinc-700 sm:p-8">
-            <span className="mb-4 inline-block rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider text-white" style={{ backgroundColor: "#F37A5A" }}>
+            <span className="mb-4 inline-block rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider text-white" style={{ backgroundColor: "#F9423A" }}>
               {m.provision.badge}
             </span>
 
@@ -105,7 +105,7 @@ export default async function MietenPage() {
             </p>
             <p className="mt-4 font-medium text-zinc-800">
               {m.provision.paragraph2Prefix}
-              <Link href={`${prefix}/agb`} className="text-[#F37A5A] underline hover:no-underline">
+              <Link href={`${prefix}/agb`} className="text-[#F9423A] underline hover:no-underline">
                 {m.provision.agbLinkText}
               </Link>
               {m.provision.paragraph2Suffix}

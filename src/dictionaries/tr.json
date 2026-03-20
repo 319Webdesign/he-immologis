@@ -1,11 +1,11 @@
 {
   "home": {
     "hero": {
-      "line1": "HAREKET EDEN BİR KONUM",
-      "line2": "Gayrimenkulleriniz merkezde.",
+      "line1": "HAREKET YARATAN BİR KONUM",
+      "line2": "Gayrimenkulünüz odakta.",
       "line2Next": "",
       "tagline": "Satın. Bulun. Gerçekleştirin.",
-      "subline": "Weinheim. Bergstraße. Rhein-Neckar-Kreis.",
+      "subline": "Weinheim. Bergstrasse. Rhein-Neckar bölgesi.",
       "ctaBuy": "Gayrimenkul satın alın",
       "ctaRent": "Gayrimenkul kiralayın",
       "ctaSearch": "Gayrimenkul arayın",
@@ -92,7 +92,7 @@
     "revocation": "Cayma hakkı",
     "cookies": "Çerezler",
     "certificates": "Sertifikalar",
-    "copyright": "© 2026 HE immologis UG. Tüm hakları saklıdır.",
+    "copyright": "© 2026 HE immologis. Tüm hakları saklıdır.",
     "designedBy": "Tasarım"
   },
   "shareSection": {

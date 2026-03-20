@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -123,7 +123,7 @@ export default async function TippgeberStaffelPage() {
               href={hrefVereinbarung}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+              className={`${outlineButtonClass} focus:ring-[#F9423A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -133,7 +133,7 @@ export default async function TippgeberStaffelPage() {
               href={hrefHinweis}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+              className={`${outlineButtonClass} focus:ring-[#F9423A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -141,7 +141,7 @@ export default async function TippgeberStaffelPage() {
             </Link>
             <Link
               href="/geld-verdienen#formular-heading"
-              className={`${outlineButtonClass} focus:ring-[#F37A5A]`}
+              className={`${outlineButtonClass} focus:ring-[#F9423A]`}
               style={{ borderColor: BRAND_BLUE, color: BRAND_BLUE }}
             >
               Tipp jetzt einreichen
@@ -151,7 +151,7 @@ export default async function TippgeberStaffelPage() {
           {/* Ihr Ansprechpartner */}
           <div
             className="mt-16 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-            style={{ borderColor: "#8AAFA3", backgroundColor: "#8AAFA308" }}
+            style={{ borderColor: "#85b09a", backgroundColor: "#85b09a08" }}
           >
             <h2 className="font-sans text-xl font-semibold tracking-tight text-slate-900">
               Ihr Ansprechpartner

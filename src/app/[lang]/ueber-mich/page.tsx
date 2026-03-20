@@ -6,7 +6,7 @@ import ShareSection from "@/components/ShareSection";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
-const BRAND_BLUE = "#F37A5A";
+const BRAND_BLUE = "#F9423A";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
@@ -111,7 +111,19 @@ export default async function UeberMichPage() {
               <p className="mt-8 font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
                 {t.heroSlogan1}
                 <br />
-                <span style={{ color: BRAND_BLUE }}>{t.heroSlogan2}</span>
+                {locale === "de" ? (
+                  <span className="mt-2 inline-block max-w-[360px] sm:max-w-[450px]">
+                    <Image
+                      src="/img/slogan.png"
+                      alt={t.heroSlogan2}
+                      width={450}
+                      height={85}
+                      className="max-w-full h-auto"
+                    />
+                  </span>
+                ) : (
+                  <span style={{ color: BRAND_BLUE }}>{t.heroSlogan2}</span>
+                )}
               </p>
 
               <h2 className="mt-12 font-sans text-2xl font-semibold tracking-tight text-slate-900">
@@ -124,17 +136,17 @@ export default async function UeberMichPage() {
 
               <div
                 className="mt-10 rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-                style={{ borderColor: "#8AAFA3", backgroundColor: "#8AAFA308" }}
+                style={{ borderColor: "#85b09a", backgroundColor: "#85b09a08" }}
               >
                 <p className="font-semibold text-slate-900">{t.signoff}</p>
                 <p className="mt-2 text-xl font-semibold text-slate-900">Holger Eberhard</p>
                 <p className="mt-1 text-slate-600">{t.managingDirector}</p>
                 <Image
-                  src="/img/unterschrift.png"
+                  src="/img/unterschrift-neu.png"
                   alt="Unterschrift Holger Eberhard Immobilienmakler - HE-immologis"
-                  width={200}
-                  height={80}
-                  className="mt-4 object-contain object-left"
+                  width={260}
+                  height={104}
+                  className="mt-0.5 object-contain object-left"
                 />
                 <p className="mt-4 text-slate-700">{t.companySubline}</p>
               </div>

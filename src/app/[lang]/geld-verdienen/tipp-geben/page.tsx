@@ -10,8 +10,8 @@ import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { TIPPGEBER_DOCS } from "@/lib/documents";
 
-const BRAND_BLUE = "#F37A5A";
-const SECTION_ACCENT = "#8AAFA3";
+const BRAND_BLUE = "#F9423A";
+const SECTION_ACCENT = "#85b09a";
 
 const outlineButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-lg border-2 bg-white px-4 py-3 font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -44,7 +44,7 @@ export default async function TippGebenPage() {
         aria-labelledby="hero-tipp-heading"
       >
         <Image
-          src="/img/dartscheibe.jpeg"
+          src="/img/tipp-geben.jpeg"
           alt="Haus kaufen Weinheim - Tippgeber-Programm Immobilien - HE-immologis"
           fill
           className="object-cover object-center scale-105"
@@ -113,7 +113,7 @@ export default async function TippGebenPage() {
               href={TIPPGEBER_DOCS.vereinbarung[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#8AAFA3]`}
+              className={`${outlineButtonClass} focus:ring-[#85b09a]`}
               style={{ borderColor: SECTION_ACCENT, color: SECTION_ACCENT }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -123,7 +123,7 @@ export default async function TippGebenPage() {
               href={TIPPGEBER_DOCS.hinweis[localeKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${outlineButtonClass} focus:ring-[#8AAFA3]`}
+              className={`${outlineButtonClass} focus:ring-[#85b09a]`}
               style={{ borderColor: SECTION_ACCENT, color: SECTION_ACCENT }}
             >
               <FileDown className="h-5 w-5 shrink-0" />
@@ -156,34 +156,6 @@ export default async function TippGebenPage() {
       >
         <div className="mx-auto max-w-4xl">
           <DirektkontaktSection />
-        </div>
-      </section>
-
-      <section
-        className="border-b border-slate-200 bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
-        aria-labelledby="ansprechpartner-heading"
-      >
-        <div className="mx-auto max-w-4xl">
-          <div
-            className="rounded-2xl border-2 px-6 py-6 sm:px-8 sm:py-8"
-            style={{ borderColor: "#8AAFA3", backgroundColor: "#8AAFA308" }}
-          >
-            <h2
-              id="ansprechpartner-heading"
-              className="font-sans text-xl font-semibold tracking-tight text-slate-900"
-            >
-              {t.contactTitle}
-            </h2>
-            <p className="mt-2 text-2xl font-semibold text-slate-900">{t.contactName}</p>
-            <p className="mt-1 text-slate-600">{t.contactRole}</p>
-            <Image
-              src="/img/unterschrift.png"
-              alt="Unterschrift Holger Eberhard Immobilienmakler Weinheim - HE-immologis"
-              width={200}
-              height={80}
-              className="mt-4 max-h-16 w-auto object-contain object-left"
-            />
-          </div>
         </div>
       </section>
     </>
