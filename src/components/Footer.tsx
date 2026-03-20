@@ -301,7 +301,7 @@ export default function Footer({ lang, dict }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold transition-colors hover:opacity-80"
-                style={{ color: "#85b09a" }}
+                style={{ color: "#F9423A" }}
               >
                 319Webdesign
               </a>
