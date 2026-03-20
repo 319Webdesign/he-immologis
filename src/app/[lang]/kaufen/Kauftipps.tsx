@@ -225,7 +225,7 @@ const KAUFTIPPS_EN: { content: string | React.ReactNode }[] = [
     content: (
       <div className="space-y-5">
         <p>
-          Buying a property is one of the most important decisions in life. Alongside emotions, legal, financial and structural aspects play a major role – and that is exactly why this step should be accompanied in a structured way. Especially in the Bergstraße region and the Rhine-Neckar area, locations often differ more than they appear at first glance: between hillside, valley, district and neighbouring town, value development, everyday suitability and quality of life can vary significantly. We therefore see our task not simply as showing you properties. Our aim is to work with you to find out which property really fits your life.
+          Buying a property is one of the most important decisions in life. Alongside emotions, legal, financial and structural aspects play a major role – and that is exactly why this step should be accompanied in a structured way. Especially in the Bergstraße region and the Rhine-Neckar Area, locations often differ more than they appear at first glance: between hillside, valley, district and neighbouring town, value development, everyday suitability and quality of life can vary significantly. We therefore see our task not simply as showing you properties. Our aim is to work with you to find out which property really fits your life.
         </p>
         <div>
           <h3 className="font-sans font-semibold text-zinc-900">The foundation: your personal situation</h3>
@@ -240,7 +240,7 @@ const KAUFTIPPS_EN: { content: string | React.ReactNode }[] = [
         </div>
         <div>
           <h3 className="font-sans font-semibold text-zinc-900">The right location – not just the right address</h3>
-          <p className="mt-1 text-zinc-700">In Weinheim, the Bergstraße and the Rhine-Neckar region, details often make the difference:</p>
+          <p className="mt-1 text-zinc-700">In Weinheim, the Bergstraße and the Rhine-Neckar Region, details often make the difference:</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-700">
             <li>Hillside or flat land</li>
             <li>Town centre, district or outskirts</li>

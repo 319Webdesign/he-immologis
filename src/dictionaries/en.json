@@ -58,7 +58,7 @@
     "successMessage": "Thank you for your message. We will get back to you within the next 24 hours.<br>Yours sincerely<br>Holger Eberhard"
   },
   "footer": {
-    "partnerText": "Your partner for <br> real estate & logistics consulting<br> in the Rhein-Neckar district.",
+    "partnerText": "Your partner for <br> real estate & logistics consulting<br> in the Rhine-Neckar District.",
     "contact": "Contact",
     "managingDirector": "Managing Director",
     "openingHours": "Opening Hours",
@@ -112,8 +112,8 @@
   },
   "localPresence": {
     "heading": "Sell. Buy. Rent.<br> Services. Search.",
-    "subline": "Your new home starts here.<br>\nWeinheim. Bergstraße. Rhein-Neckar district.",
-    "regionTitle": "Home in the Rhein-Neckar district.",
+    "subline": "Your new home starts here.<br>\nWeinheim. Bergstraße. Rhine-Neckar District.",
+    "regionTitle": "Home in the Rhine-Neckar District.",
     "cards": [
       {
         "title": "Sell",
@@ -351,9 +351,9 @@
       "keywords": ["Real estate agent Weinheim", "Sell property Bergstraße", "Buy house Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
-      "titleLine1": "Sell in Weinheim and Rhein-Neckar.",
+      "titleLine1": "Sell in Weinheim and Rhine-Neckar.",
       "titleLine2": "No castles – but gladly your property.",
-      "titleLine1Mobile": "Sell in Weinheim<br>and Rhein-Neckar.",
+      "titleLine1Mobile": "Sell in Weinheim<br>and Rhine-Neckar.",
       "titleLine2Mobile": "No castles –<br>but gladly your property.",
       "subtitle": "Clearly valued. Optimally positioned. Securely sold.",
       "subtitleMobile": "Clearly valued. Optimally positioned.<br>Securely sold.",
@@ -441,9 +441,9 @@
       "keywords": ["Real estate agent Weinheim", "Buy house Bergstraße", "Bensheim", "Heppenheim", "Lampertheim"]
     },
     "hero": {
-      "title": "Buy in Weinheim and Rhein-Neckar.",
+      "title": "Buy in Weinheim and Rhine-Neckar.",
       "titleMobileLine1": "Buy in Weinheim",
-      "titleMobileLine2": "and Rhein-Neckar.",
+      "titleMobileLine2": "and Rhine-Neckar.",
       "subtitle": "Carefully selected. Clearly reviewed. Securely executed.",
       "subtitleMobileLine1": "Carefully selected. Clearly reviewed.",
       "subtitleMobileLine2": "Securely executed.",
@@ -475,7 +475,7 @@
       "intro": "Purchasing a property is a significant decision. With the right preparation, you can make informed and confident choices.",
       "tipTitles": ["Initial Consultation", "Financing", "Search and Selection", "Property Condition Inspection", "Review of Documents and Land Registry Entries", "Price Negotiation", "Notarization", "Handover and Move-In", "Aftercare"],
       "tipContents": [
-        "We clarify your personal situation, budget and location preferences before starting the search. Our aim is to find a property that truly fits your life – in Weinheim, the Bergstraße and the Rhine-Neckar region.",
+        "We clarify your personal situation, budget and location preferences before starting the search. Our aim is to find a property that truly fits your life – in Weinheim, the Bergstraße and the Rhine-Neckar Region.",
         "Plan your finances early: equity, running costs, notary and land registry fees, and broker commission. Compare financing options and obtain a financing certificate so you can act quickly when you find the right property.",
         "We continuously monitor the market in Weinheim and the Bergstraße region and will contact you when a property matches your criteria. You receive clear descriptions and can decide in peace whether to view it.",
         "During viewings we check the condition of the property: structure, heating, electrics, moisture, defects and refurbishment needs. We recommend an independent surveyor if needed so you can assess the price and plan realistically.",
@@ -499,7 +499,7 @@
       "keywords": ["Rental apartment Weinheim", "Rent house Bergstraße", "Real estate agent Weinheim", "Rental properties Weinheim", "Bensheim", "Heppenheim", "Viernheim", "Holger Eberhard Weinheim"]
     },
     "hero": {
-      "title": "Rent in Weinheim and Rhein-Neckar.",
+      "title": "Rent in Weinheim and Rhine-Neckar.",
       "subtitle": "Carefully selected. Transparently arranged. Feel at home.",
       "ctaText": "Find the right rental property",
       "ctaAriaLabel": "Scroll to rental properties"
