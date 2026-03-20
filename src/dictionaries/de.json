@@ -1,11 +1,12 @@
 {
   "home": {
     "hero": {
-      "line1": "EIN STANDORT, DER BEWEGT",
+      "line1": "EIN STANDORT, DER BEWEGT.",
       "line2": "Ihre Immobilie im Mittelpunkt.",
       "line2Next": "",
       "tagline": "Verkaufen. Finden. Möglich machen.",
       "subline": "Weinheim. Bergstraße. Rhein-Neckar-Kreis.",
+      "sublineMobile": "Weinheim. Bergstraße.\nRhein-Neckar-Kreis.",
       "ctaBuy": "Immobilie kaufen",
       "ctaRent": "Immobilie mieten",
       "ctaSearch": "Immobilie suchen"
@@ -178,7 +179,7 @@
     "attitudeHeading": "Meine Haltung zu Immobilien",
     "attitude1": "Immobilien sind für mich mehr als Objekte. Sie stehen für Lebensentscheidungen, Übergänge und Neuanfänge – kaum etwas spiegelt das Leben so sehr wider.",
     "attitude2": "Mein Anspruch ist es, für Sie wirtschaftlich tragfähige Lösungen zu entwickeln und dabei Ihre Vorstellungen, Wünsche und realistischen Möglichkeiten stets im Blick zu behalten.",
-    "heroSlogan1": "EIN STANDORT, DER BEWEGT",
+    "heroSlogan1": "EIN STANDORT, DER BEWEGT.",
     "heroSlogan2": "Ihre Immobilie im Mittelpunkt.",
     "whyHeHeading": "Warum HE immologis?",
     "whyHe1": "Aus meiner internationalen Logistik- und Beratungserfahrung und meiner regionalen Immobilienleidenschaft entstand mein Unternehmensname:",

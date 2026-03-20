@@ -20,6 +20,7 @@ export type HomeHeroDict = {
   line2Next: string;
   tagline?: string;
   subline: string;
+  sublineMobile?: string;
   ctaBuy: string;
   ctaRent: string;
   ctaSearch: string;
@@ -90,12 +91,13 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
             )}
           </h1>
           {dict.tagline && (
-            <p className="mt-3 text-xl font-normal tracking-wide text-white/90 sm:text-2xl md:mt-4 md:text-3xl">
+            <p className="mt-3 text-base font-normal tracking-wide text-white/90 sm:text-xl sm:mt-3 md:mt-4 md:text-2xl lg:text-3xl">
               {dict.tagline}
             </p>
           )}
-          <p className="mt-2 text-lg font-normal tracking-wide whitespace-pre-line sm:text-xl md:mt-6" style={{ color: HERO_ACCENT }}>
-            {dict.subline}
+          <p className="mt-2 text-base font-normal tracking-wide sm:text-lg md:mt-6 md:text-xl" style={{ color: HERO_ACCENT }}>
+            <span className="whitespace-pre-line sm:hidden">{dict.sublineMobile ?? dict.subline}</span>
+            <span className="hidden sm:inline">{dict.subline}</span>
           </p>
         </div>
       </div>

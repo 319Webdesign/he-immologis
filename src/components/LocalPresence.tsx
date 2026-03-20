@@ -80,8 +80,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
           <div className="flex w-full justify-center">
             <div className="flex w-full flex-col gap-6 lg:w-max lg:gap-8">
               <div
-                className="grid w-full gap-6 sm:items-stretch lg:gap-8"
-                style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}
+                className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 sm:items-stretch lg:grid-cols-4 lg:gap-8"
               >
                 {/* Kompetenz-Karten */}
                 {cards.map((card, index) => {

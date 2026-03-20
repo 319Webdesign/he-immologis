@@ -1,5 +1,5 @@
 export const SMART_INTRO = {
-  title: ["EIN STANDORT, DER BEWEGT", "Ihre Logistik im Mittelpunkt."],
+  title: ["EIN STANDORT, DER BEWEGT.", "Ihre Logistik im Mittelpunkt."],
   subtitle: "Menschen. Struktur. Strategie. Netzwerk.",
   acronym: [
     { letter: "S", label: "Schulung" },
@@ -33,7 +33,7 @@ export const SMART_INTRO_EN = {
 } as const;
 
 export const SMART_INTRO_TR = {
-  title: ["HAREKET EDEN BİR KONUM", "Lojistiğiniz merkezde."],
+  title: ["HAREKET EDEN BİR KONUM.", "Lojistiğiniz merkezde."],
   subtitle: "İnsanlar. Yapı. Strateji. Ağ.",
   acronym: [
     { letter: "S", label: "Eğitim" },
