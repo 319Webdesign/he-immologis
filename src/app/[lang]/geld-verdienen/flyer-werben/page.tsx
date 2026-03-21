@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft,
-  Check,
   Mail,
   MessageCircle,
 } from "lucide-react";
@@ -25,17 +24,14 @@ const TEXTS = {
     backLink: "Zurück zu Geld verdienen",
     heroTitle: "Geld verdienen mit Tippgeber-Flyern",
     heroIntro:
-      "Bestellen Sie kostenlos Tippgeber-Flyer von HE immologis und verteilen Sie diese in Ihrem Umfeld.\nIn Ihrer Nachbarschaft, Freunden und Bekannten, im Verein, am Arbeitsplatz.\n\nIhre Stadtviertel. Ihre Flyer. Ihre Provision.",
+      "Bestellen Sie kostenlos Tippgeber-Flyer von HE immologis und verteilen Sie diese in Ihrem Umfeld.\nIn Ihrer Nachbarschaft, Freunden und Bekannten, im Verein, am Arbeitsplatz.",
     heroCta: "Prämie bei erfolgreichem Verkauf",
-    vorteileTitle: "Ihre Vorteile",
-    v1: "Kostenlos bestellen",
-    v1b: " – Sie erhalten die Flyer unentgeltlich von HE immologis.",
-    v2: "Einfach verteilen",
-    v2b:
-      " – Legen Sie Flyer aus oder geben Sie sie weiter. Kein Verkauf, keine Verpflichtung.",
-    v3: "Prämie kassieren",
-    v3b:
-      " – Kommt ein Kunde über Ihren Flyer zu uns und es entsteht ein erfolgreicher Verkauf, erhalten Sie Ihre Prämie.",
+    flyerPateTitle: "Ihre Stadtviertel. Ihre Flyer. Ihre Provision.",
+    flyerPateSubtitle: "Werden Sie Flyer-Pate für Ihr Stadtviertel",
+    flyerPateBody:
+      "Sichern Sie sich Ihr Gebiet und übernehmen Sie die Verteilung der Flyer in Ihrem Viertel. Sie bestellen die Flyer ganz unkompliziert per WhatsApp, und ich liefere sie Ihnen persönlich nach Hause. Auf diese Weise können Sie in Ihrem Umfeld ganz einfach Empfehlungen weitergeben und sich attraktive Provisionen sichern.",
+    flyerPateNote:
+      "Natürlich erhalten Sie eine offizielle Tippgeber-Vereinbarung. Es gelten dieselben Provisionsregelungen wie für alle anderen Tippgeber.",
     ablaufTitle: "So funktioniert's",
     step1Title: "Flyer bestellen",
     step1Text: 'Senden Sie "TIPPGEBER FLYER" per WhatsApp an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden.',
@@ -62,15 +58,12 @@ const TEXTS = {
     heroIntro:
       "Order free referrer flyers from HE immologis and distribute them in your area – to neighbours, at your club, at work or in your neighbourhood.",
     heroCta: "Bonus on successful sale",
-    vorteileTitle: "Your benefits",
-    v1: "Order free",
-    v1b: " – You receive the flyers free of charge from HE immologis.",
-    v2: "Easy to distribute",
-    v2b:
-      " – Display flyers or pass them on. No sales, no obligation.",
-    v3: "Receive your bonus",
-    v3b:
-      " – If a customer comes to us through your flyer and a successful sale is completed, you receive your bonus.",
+    flyerPateTitle: "Your neighbourhood. Your flyers. Your commission.",
+    flyerPateSubtitle: "Become a flyer patron for your neighbourhood",
+    flyerPateBody:
+      "Secure your area and take over the distribution of flyers in your neighbourhood. You order the flyers easily via WhatsApp, and I deliver them to your home personally. This way you can simply pass on recommendations in your area and secure attractive commissions.",
+    flyerPateNote:
+      "Of course you will receive an official referrer agreement. The same commission rules apply as for all other referrers.",
     ablaufTitle: "How it works",
     step1Title: "Order flyers",
     step1Text: 'Send "TIPPGEBER FLYER" via WhatsApp to 0177 636 1394. We will get back to you within 24 hours.',
@@ -97,15 +90,12 @@ const TEXTS = {
     heroIntro:
       "HE immologis'ten ücretsiz öneri veren broşürleri sipariş edin ve çevrenizde dağıtın – komşulara, kulüpte, işte veya mahallenizde.",
     heroCta: "Başarılı satışta prim",
-    vorteileTitle: "Avantajlarınız",
-    v1: "Ücretsiz sipariş",
-    v1b: " – Broşürleri HE immologis'ten ücretsiz alırsınız.",
-    v2: "Kolay dağıtım",
-    v2b:
-      " – Broşürleri sergileyin veya dağıtın. Satış yok, taahhüt yok.",
-    v3: "Priminizi alın",
-    v3b:
-      " – Bir müşteri broşürünüz üzerinden bize gelir ve başarılı satış gerçekleşirse priminizi alırsınız.",
+    flyerPateTitle: "Mahalleniz. Broşürleriniz. Komisyonunuz.",
+    flyerPateSubtitle: "Mahalleniz için broşür patronu olun",
+    flyerPateBody:
+      "Bölgenizi güvence altına alın ve mahallenizde broşür dağıtımını üstlenin. Broşürleri WhatsApp ile kolayca sipariş edin, ben de size kişisel olarak eve teslim ediyorum. Bu şekilde çevrenizde kolayca tavsiyeleri iletebilir ve cazip komisyonlar kazanabilirsiniz.",
+    flyerPateNote:
+      "Tabii ki resmi bir öneri veren sözleşmesi alacaksınız. Tüm diğer öneri verenler için geçerli olan aynı komisyon kuralları uygulanır.",
     ablaufTitle: "Nasıl çalışır",
     step1Title: "Broşür sipariş edin",
     step1Text: '0177 636 1394 numarasına WhatsApp ile "TIPPGEBER FLYER" gönderin. 24 saat içinde size geri dönüş yapacağız.',
@@ -202,53 +192,24 @@ export default async function FlyerWerbenPage() {
 
       <section
         className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-        aria-labelledby="vorteile-heading"
+        aria-labelledby="flyer-pate-heading"
       >
         <div className="mx-auto max-w-4xl">
           <h2
-            id="vorteile-heading"
+            id="flyer-pate-heading"
             className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
           >
-            {t.vorteileTitle}
+            {t.flyerPateTitle}
           </h2>
-          <ul className="mt-6 space-y-4">
-            <li className="flex items-start gap-3">
-              <span
-                className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: `${CTA_ACCENT}20`, color: CTA_ACCENT }}
-              >
-                <Check className="h-4 w-4" />
-              </span>
-              <span className="text-slate-700">
-                <strong className="text-slate-900">{t.v1}</strong>
-                {t.v1b}
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span
-                className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: `${CTA_ACCENT}20`, color: CTA_ACCENT }}
-              >
-                <Check className="h-4 w-4" />
-              </span>
-              <span className="text-slate-700">
-                <strong className="text-slate-900">{t.v2}</strong>
-                {t.v2b}
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span
-                className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: `${CTA_ACCENT}20`, color: CTA_ACCENT }}
-              >
-                <Check className="h-4 w-4" />
-              </span>
-              <span className="text-slate-700">
-                <strong className="text-slate-900">{t.v3}</strong>
-                {t.v3b}
-              </span>
-            </li>
-          </ul>
+          <h3 className="mt-4 font-sans text-xl font-semibold tracking-tight text-slate-800">
+            {t.flyerPateSubtitle}
+          </h3>
+          <p className="mt-4 text-lg leading-relaxed text-slate-700">
+            {t.flyerPateBody}
+          </p>
+          <p className="mt-4 text-slate-700">
+            {t.flyerPateNote}
+          </p>
         </div>
       </section>
 
