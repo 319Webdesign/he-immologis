@@ -33,7 +33,7 @@ export default function LogistikHeroVideo() {
       muted
       loop
       playsInline
-      className="absolute inset-0 h-full w-full min-w-full min-h-full object-cover bg-slate-900"
+      className="logistik-hero-video-mobile absolute inset-0 h-full w-full min-w-full min-h-full object-cover bg-slate-900 sm:object-center"
       aria-hidden
     />
   );

@@ -97,7 +97,7 @@ export default async function ZertifikatePage() {
         <div className="mx-auto max-w-3xl text-center">
           <h1
             id="zertifikate-hero-heading"
-            className="font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl"
+            className="w-full font-sans text-3xl font-semibold tracking-tight text-slate-900 sm:w-auto sm:text-4xl"
           >
             {d.heroTitle}
           </h1>

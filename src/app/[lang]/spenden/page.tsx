@@ -217,7 +217,7 @@ export default async function SpendenPage() {
         <div className="relative z-10 mx-auto max-w-4xl px-2 text-center">
           <h1
             id="spenden-hero-heading"
-            className="font-sans text-4xl font-semibold tracking-tight drop-shadow-sm sm:text-5xl"
+            className="w-full font-sans text-4xl font-semibold tracking-tight drop-shadow-sm sm:w-auto sm:text-5xl"
             style={{ color: "#54585a" }}
           >
             {lang === "de" ? (

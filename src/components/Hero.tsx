@@ -62,8 +62,17 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
       {/* Inhalt zentral – auf Handy etwas nach unten, ab sm zentriert */}
       <div className="absolute inset-0 z-10 flex items-center justify-center px-4 pt-20 sm:pt-0">
         <div className="text-center hero-text-fade">
-          <h1 className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
-            {dict.line1}
+          <h1 className="w-full font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-md sm:w-auto sm:text-3xl md:text-4xl lg:text-5xl">
+            {lang === "de" ? (
+              <>
+                <span className="hidden min-[391px]:inline">{dict.line1}</span>
+                <span className="inline min-[391px]:hidden">
+                  EIN STANDORT,<br />DER BEWEGT.
+                </span>
+              </>
+            ) : (
+              dict.line1
+            )}
             {dict.line2 && (
               <>
                 <br />

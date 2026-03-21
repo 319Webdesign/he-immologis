@@ -105,7 +105,7 @@ export default async function LogistikberatungPage() {
         <div className="relative z-10 mx-auto max-w-4xl pt-24 text-center sm:pt-28">
           <h1
             id="hero-logistik-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+            className="w-full font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
             {smartIntro.title.map((line, i) => (
               <span key={i} style={i === 1 ? { color: "#F9423A" } : undefined}>

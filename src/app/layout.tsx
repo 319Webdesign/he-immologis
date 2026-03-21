@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   icons: {
-    icon: { url: "/img/logo.png", type: "image/png" },
-    apple: { url: "/img/logo.png", type: "image/png", sizes: "180x180" },
+    icon: { url: "/img/favicon.jpeg", type: "image/jpeg" },
+    apple: { url: "/img/favicon.jpeg", type: "image/jpeg", sizes: "180x180" },
   },
   title: {
     default: "Immobilienmakler Weinheim & Bergstraße | HE-immologis",

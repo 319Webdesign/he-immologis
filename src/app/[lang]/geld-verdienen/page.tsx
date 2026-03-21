@@ -58,7 +58,7 @@ export default async function GeldVerdienenPage() {
           </div>
           <h1
             id="hero-geld-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+            className="w-full font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
             Geld verdienen mit Ihrem Netzwerk
           </h1>

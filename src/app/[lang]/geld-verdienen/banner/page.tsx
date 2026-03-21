@@ -196,7 +196,7 @@ export default async function BannerPage() {
           </Link>
           <h1
             id="banner-hero-heading"
-            className="font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl"
+            className="w-full font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-4xl"
           >
             {t.heroTitle}
           </h1>

@@ -1,6 +1,19 @@
 "use client";
 
-import { Home, Search, Truck, Key } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Home, Search, Truck, Key, X } from "lucide-react";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    setIsMobile(mq.matches);
+    const handler = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return isMobile;
+}
 
 const ICONS = [Home, Search, Key, Truck] as const;
 
@@ -44,6 +57,8 @@ interface LocalPresenceProps {
 
 export default function LocalPresence({ dict }: LocalPresenceProps) {
   const { heading, subline, regionTitle, cards } = dict;
+  const [mobileSelectedCity, setMobileSelectedCity] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   return (
     <section
@@ -131,10 +146,20 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
               {CITIES.map((city) => (
                 <span
                   key={city}
-                  className="group relative shrink-0 cursor-default rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:text-sm"
+                  className="group relative shrink-0 cursor-pointer rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white sm:cursor-default sm:text-sm"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => isMobile && setMobileSelectedCity((prev) => (prev === city ? null : city))}
+                  onKeyDown={(e) => {
+                    if (isMobile && (e.key === "Enter" || e.key === " ")) {
+                      e.preventDefault();
+                      setMobileSelectedCity((prev) => (prev === city ? null : city));
+                    }
+                  }}
                 >
                   {city}
-                  <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-48 -translate-x-1/2 overflow-hidden rounded-xl border border-white/20 shadow-xl group-hover:block sm:w-56">
+                  {/* Desktop: Hover-Tooltip */}
+                  <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-48 -translate-x-1/2 overflow-hidden rounded-xl border border-white/20 shadow-xl sm:block sm:w-56 sm:opacity-0 sm:transition-opacity sm:group-hover:opacity-100">
                     <img
                       src={getCityImagePath(city)}
                       alt={`${city} – Ortsbild`}
@@ -150,6 +175,43 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                 </span>
               ))}
             </div>
+            {/* Mobile: Overlay beim Tippen */}
+            {isMobile && mobileSelectedCity && (
+              <div
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4"
+                onClick={() => setMobileSelectedCity(null)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Escape" && setMobileSelectedCity(null)}
+                aria-label="Bild schließen"
+              >
+                <div
+                  className="relative max-h-[85vh] max-w-full overflow-hidden rounded-xl border-2 border-white/30 shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    className="absolute right-2 top-2 z-10 rounded-full bg-black/50 p-1.5 text-white transition-colors hover:bg-black/70"
+                    onClick={() => setMobileSelectedCity(null)}
+                    aria-label="Schließen"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                  <img
+                    src={getCityImagePath(mobileSelectedCity)}
+                    alt={`${mobileSelectedCity} – Ortsbild`}
+                    className="max-h-[80vh] w-auto object-contain"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      if (el.src !== FALLBACK_ORT_IMG) el.src = FALLBACK_ORT_IMG;
+                    }}
+                  />
+                  <p className="bg-white/20 px-4 py-2 text-center font-semibold text-white">
+                    {mobileSelectedCity}
+                  </p>
+                </div>
+              </div>
+            )}
               </div>
             </div>
           </div>

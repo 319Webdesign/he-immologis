@@ -112,7 +112,7 @@ export default async function UeberMichPage() {
               </h3>
               <p className="mt-4 leading-relaxed text-slate-600">{t.attitude1}</p>
               <p className="mt-4 leading-relaxed text-slate-600">{t.attitude2}</p>
-              <p className="mt-8 font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              <p className="mt-8 font-sans text-base font-semibold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
                 {t.heroSlogan1}
                 <br />
                 {locale === "de" ? (

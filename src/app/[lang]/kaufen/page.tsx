@@ -51,7 +51,7 @@ export default async function KaufenPage({ searchParams }: PageProps) {
         <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center pt-20 text-center sm:pt-0">
           <h1
             id="hero-kaufen-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+            className="w-full font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
             <span className="sm:hidden">
               {k.hero.titleMobileLine1}

@@ -92,3 +92,10 @@ body {
   animation: marquee 80s linear infinite;
   will-change: transform;
 }
+
+/* Logistik Hero Video: Kompass auf Handy mittig positionieren */
+@media (max-width: 639px) {
+  .logistik-hero-video-mobile {
+    object-position: 35% center;
+  }
+}

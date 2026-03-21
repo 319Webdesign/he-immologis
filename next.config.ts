@@ -31,8 +31,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/logistik", destination: "/logistikberatung", permanent: true },
-      // Favicon: Browser lädt logo.png für alle Tabs
-      { source: "/favicon.ico", destination: "/img/logo.png", permanent: false },
+      // Favicon: Browser und Google nutzen favicon.jpeg
+      { source: "/favicon.ico", destination: "/img/favicon.jpeg", permanent: false },
     ];
   },
 };

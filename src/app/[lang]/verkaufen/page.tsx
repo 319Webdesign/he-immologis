@@ -79,7 +79,7 @@ export default async function VerkaufenPage({ searchParams }: VerkaufenPageProps
         <div className="relative z-10 mx-auto flex max-w-7xl flex-1 flex-col items-center justify-center pt-20 text-center sm:pt-0">
           <h1
             id="hero-verkaufen-heading"
-            className="w-[95%] font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
+            className="w-full font-sans text-3xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
             <span className="sm:hidden">
               <span dangerouslySetInnerHTML={{ __html: v.hero.titleLine1Mobile }} />

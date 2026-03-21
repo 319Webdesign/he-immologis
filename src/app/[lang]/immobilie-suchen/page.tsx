@@ -117,7 +117,7 @@ export default async function ImmobilieSuchenPage({
         <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-2 pt-20 text-center sm:px-0 sm:pt-0">
           <h1
             id="hero-suche-heading"
-            className="font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
+            className="w-full font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-4xl lg:text-5xl"
           >
             {heroHeading}
           </h1>

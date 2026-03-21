@@ -56,7 +56,7 @@ export default async function TippGebenPage() {
         <div className="relative z-10 mx-auto max-w-4xl px-2 text-center">
           <h1
             id="hero-tipp-heading"
-            className="font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl"
+            className="w-full font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
             {t.heroTitle}
           </h1>
@@ -154,9 +154,7 @@ export default async function TippGebenPage() {
         id="formular-heading"
         className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       >
-        <div className="mx-auto max-w-4xl">
-          <DirektkontaktSection />
-        </div>
+        <DirektkontaktSection />
       </section>
     </>
   );
