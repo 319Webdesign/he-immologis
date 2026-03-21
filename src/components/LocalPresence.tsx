@@ -32,9 +32,9 @@ export type LocalPresenceDict = {
 
 const CITIES = [
   "Weinheim",
-  "Hirschberg",
   "Hemsbach",
-  "Laudenbach",
+  "Mannheim",
+  "Heidelberg",
   "Viernheim",
   "Heppenheim",
   "Bensheim",
@@ -45,7 +45,8 @@ const CITIES = [
 
 function getCityImagePath(city: string): string {
   const slug = city.toLowerCase().replace(/\s+/g, "-");
-  return `/img/orte/${slug}.jpeg`;
+  const ext = city === "Hemsbach" ? "png" : "jpeg";
+  return `/img/orte/${slug}.${ext}`;
 }
 
 /** Fallback-Bild, wenn Ortsbild fehlt (z. B. schriesheim.jpeg) */

@@ -113,8 +113,8 @@
     "mailBody": "Hallo,\n\nich möchte auf Holger Eberhard und die HE immologis UG hinweisen.\n\nWeitere Infos gibt es unter: {{url}}\n\nBei Fragen oder Wünschen ist Holger Eberhard persönlich erreichbar in Weinheim:\n+49 177 636 1394\neberhard@he-immologis.de\n\nFalls jemand in der Region Weinheim Unterstützung bei Immobilien sucht, könnte dies eine hilfreiche Adresse sein.\n\nBeste Grüße"
   },
   "localPresence": {
-    "heading": "Ihre Immobilie in Weinheim & Rhein-Neckar.<br>Verkaufen. Kaufen. Mieten.",
-    "subline": "Expertise für Südhessen & Nordbaden.<br>\nWeinheim, Hirschberg, Hemsbach, Laudenbach, Viernheim – Ihr Immobilienmakler vor Ort.",
+    "heading": "Ihre Immobilie in <br> Weinheim & Rhein-Neckar.<br><span class=\"text-2xl sm:text-3xl lg:text-4xl\">Verkaufen. Kaufen. Mieten.</span>",
+    "subline": "Expertise in Weinheim, Heidelberg, Mannheim, Lampertheim, Viernheim – <br> Ihr Immobilienmakler vor Ort.",
     "regionTitle": "Zuhause im Rhein-Neckar-Kreis.",
     "cards": [
       {
