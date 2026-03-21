@@ -124,7 +124,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
   );
 
   const navLinkClass = (href: string) =>
-    `whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
+    `whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 max-[1200px]:text-sm max-[1200px]:px-2 max-[1200px]:py-1.5 ${
       pathname === href || pathname.startsWith(href + "/") ? "opacity-100" : "opacity-90"
     }`;
 
@@ -141,14 +141,14 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <nav className="flex items-center pt-1 pb-1 lg:pt-0 lg:pb-0" aria-label="Hauptnavigation">
           <Link
             href={prefix}
-            className={`block shrink-0 overflow-visible transition-opacity hover:opacity-80 ${lang === "tr" ? "max-[1240px]:max-w-[180px]" : ""}`}
+            className="block shrink-0 overflow-visible transition-opacity hover:opacity-80 max-[1240px]:max-w-[180px]"
           >
             <Image
               src="/img/logo-neu.png"
               alt={dict.logoAlt}
               width={320}
               height={90}
-              className={`block mb-1 h-12 w-auto object-contain object-left sm:h-14 ${lang === "tr" ? "max-w-full" : ""}`}
+              className="block mb-1 h-12 w-auto max-w-full object-contain object-left sm:h-14"
               sizes="(max-width: 640px) 240px, 320px"
               priority
             />
@@ -156,7 +156,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         </nav>
 
         <div className="flex min-w-0 items-center justify-end gap-2 pt-1 pb-1 pr-4 lg:pr-6 lg:pt-0 lg:pb-0">
-          <div className="hidden flex-nowrap items-center gap-1 xl:gap-2 lg:flex">
+          <div className="hidden flex-nowrap items-center gap-1 xl:gap-2 lg:flex max-[1200px]:gap-0.5 max-[1200px]:[&_a]:px-2 max-[1200px]:[&_button]:px-2">
             <Link href={`${prefix}/verkaufen`} className={navLinkClass(`${prefix}/verkaufen`)}>
               {dict.sell}
             </Link>
@@ -181,7 +181,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             >
               <button
                 type="button"
-                className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
+                className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 max-[1200px]:text-sm max-[1200px]:px-2 max-[1200px]:py-1.5 ${
                   pathname.includes("/geld-verdienen") ? "opacity-100" : "opacity-90"
                 }`}
               >
@@ -218,7 +218,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             >
               <button
                 type="button"
-                className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 ${
+                className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-base font-normal text-black transition-colors hover:opacity-80 max-[1200px]:text-sm max-[1200px]:px-2 max-[1200px]:py-1.5 ${
                   pathname.includes("/logistikberatung") ? "opacity-100" : "opacity-90"
                 }`}
               >
