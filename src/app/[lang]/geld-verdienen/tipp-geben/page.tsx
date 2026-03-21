@@ -138,6 +138,13 @@ export default async function TippGebenPage() {
         </div>
       </section>
 
+      <section
+        id="formular-heading"
+        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      >
+        <DirektkontaktSection />
+      </section>
+
       <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <DonationOption
@@ -151,13 +158,6 @@ export default async function TippGebenPage() {
             }
           />
         </div>
-      </section>
-
-      <section
-        id="formular-heading"
-        className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
-      >
-        <DirektkontaktSection />
       </section>
     </>
   );
