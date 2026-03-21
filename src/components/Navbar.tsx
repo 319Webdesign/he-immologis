@@ -156,7 +156,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         </nav>
 
         <div className="flex min-w-0 items-center justify-end gap-2 pt-1 pb-1 pr-4 lg:pr-6 lg:pt-0 lg:pb-0">
-          <div className="hidden flex-nowrap items-center gap-1 xl:gap-2 lg:flex max-[1200px]:gap-0.5 max-[1200px]:[&_a]:px-2 max-[1200px]:[&_button]:px-2">
+          <div className={`hidden flex-nowrap items-center lg:flex max-[1200px]:[&_a]:px-2 max-[1200px]:[&_button]:px-2 ${lang === "tr" ? "gap-0.5 xl:gap-1" : "gap-1 xl:gap-2 max-[1200px]:gap-0.5"}`}>
             <Link href={`${prefix}/verkaufen`} className={navLinkClass(`${prefix}/verkaufen`)}>
               {dict.sell}
             </Link>
