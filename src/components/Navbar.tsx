@@ -141,14 +141,14 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <nav className="flex items-center pt-1 pb-1 lg:pt-0 lg:pb-0" aria-label="Hauptnavigation">
           <Link
             href={prefix}
-            className="block shrink-0 overflow-visible transition-opacity hover:opacity-80 max-[1240px]:max-w-[180px]"
+            className={`block shrink-0 overflow-visible transition-opacity hover:opacity-80 ${lang === "tr" ? "max-[1240px]:max-w-[180px]" : ""}`}
           >
             <Image
               src="/img/logo-neu.png"
               alt={dict.logoAlt}
               width={320}
               height={90}
-              className="block mb-1 h-12 w-auto max-w-full object-contain object-left sm:h-14"
+              className={`block mb-1 h-12 w-auto object-contain object-left sm:h-14 ${lang === "tr" ? "max-w-full" : ""}`}
               sizes="(max-width: 640px) 240px, 320px"
               priority
             />
