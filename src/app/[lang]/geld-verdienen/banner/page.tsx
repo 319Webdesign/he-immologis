@@ -186,7 +186,7 @@ export default async function BannerPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/55" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-4xl">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
           <Link
             href={`${prefix}/geld-verdienen`}
             className="mb-8 inline-flex items-center gap-2 text-white/90 transition-colors hover:text-white"

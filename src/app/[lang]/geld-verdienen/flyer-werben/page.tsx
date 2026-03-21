@@ -26,25 +26,27 @@ const TEXTS = {
     heroIntro:
       "Bestellen Sie kostenlos Tippgeber-Flyer von HE immologis und verteilen Sie diese in Ihrem Umfeld.\nIn Ihrer Nachbarschaft, Freunden und Bekannten, im Verein, am Arbeitsplatz.",
     heroCta: "Prämie bei erfolgreichem Verkauf",
-    flyerPateTitle: "Ihre Stadtviertel. Ihre Flyer. Ihre Provision.",
+    flyerPateTitle: "Ihr Stadtviertel. Ihre Flyer. Ihre Provision.",
     flyerPateSubtitle: "Werden Sie Flyer-Pate für Ihr Stadtviertel",
-    flyerPateBody:
-      "Sichern Sie sich Ihr Gebiet und übernehmen Sie die Verteilung der Flyer in Ihrem Viertel. Sie bestellen die Flyer ganz unkompliziert per WhatsApp, und ich liefere sie Ihnen persönlich nach Hause. Auf diese Weise können Sie in Ihrem Umfeld ganz einfach Empfehlungen weitergeben und sich attraktive Provisionen sichern.",
+    flyerPateBodyBefore:
+      "Sichern Sie sich Ihr Flyer-Gebiet und übernehmen Sie die Verteilung der Flyer in Ihrem Viertel.\nSie bestellen die Flyer ganz unkompliziert per WhatsApp in einem Wort „",
+    flyerPateBodyHighlight: "Tippgeber Flyer",
+    flyerPateBodyAfter:
+      "\". Ich liefere Ihnen die Flyer persönlich nachhause.\nAuf diese Weise können Sie in Ihrem Umfeld ganz einfach Empfehlungen weitergeben und sich attraktive Provisionen sichern.",
     flyerPateNote:
       "Natürlich erhalten Sie eine offizielle Tippgeber-Vereinbarung. Es gelten dieselben Provisionsregelungen wie für alle anderen Tippgeber.",
     ablaufTitle: "So funktioniert's",
     step1Title: "Flyer bestellen",
-    step1Text: 'Senden Sie "TIPPGEBER FLYER" per WhatsApp an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden.',
+    step1TextBefore: 'Senden Sie in einem Wort:\n„',
+    step1TextHighlight: "Tippgeber Flyer",
+    step1TextAfter: '" per WhatsApp an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden.',
     step2Title: "Flyer verteilen",
     step2Text: "Verteilen Sie die Flyer in Ihrem Umfeld – dort, wo Sie Menschen kennen, die verkaufen möchten.",
     step3Title: "Prämie erhalten",
     step3Text: "Bei erfolgreichem Immobilienverkauf über Ihren Flyer erhalten Sie Ihre Prämie nach notariellem Kaufvertragsabschluss.",
-    content1: "Die Tippgeber-Flyer informieren über das Programm und laden dazu ein, HE immologis bei einem Verkaufswunsch zu kontaktieren.",
     content2:
-      "Sie müssen niemanden ansprechen oder vermitteln – der Flyer spricht für sich. Kommt ein Verkauf zustande, erhalten Sie Ihre Prämie.",
-    content3:
-      "Bestellung und Verteilung sind kostenlos und unverbindlich. Sie handeln rechtlich selbstständig.",
-    ctaTitle: "Flyer bestellen?",
+      "Sie müssen niemanden ansprechen oder vermitteln – der Flyer spricht für sich. Kommt ein Verkauf zustande, erhalten Sie Ihre Prämie. Bestellung und Verteilung sind kostenlos und unverbindlich. Sie handeln rechtlich selbstständig.",
+    ctaTitle: "Tippgeber Flyer bestellen",
     ctaSub: "Schicken Sie uns eine Nachricht per WhatsApp oder E-Mail.",
     orCall: "Oder anrufen:",
   },
@@ -60,22 +62,24 @@ const TEXTS = {
     heroCta: "Bonus on successful sale",
     flyerPateTitle: "Your neighbourhood. Your flyers. Your commission.",
     flyerPateSubtitle: "Become a flyer patron for your neighbourhood",
-    flyerPateBody:
-      "Secure your area and take over the distribution of flyers in your neighbourhood. You order the flyers easily via WhatsApp, and I deliver them to your home personally. This way you can simply pass on recommendations in your area and secure attractive commissions.",
+    flyerPateBodyBefore:
+      "Secure your flyer area and take over the distribution of flyers in your neighbourhood.\nYou order the flyers easily via WhatsApp with one word „",
+    flyerPateBodyHighlight: "Tippgeber Flyer",
+    flyerPateBodyAfter:
+      "\". I deliver the flyers to your home personally.\nThis way you can simply pass on recommendations in your area and secure attractive commissions.",
     flyerPateNote:
       "Of course you will receive an official referrer agreement. The same commission rules apply as for all other referrers.",
     ablaufTitle: "How it works",
     step1Title: "Order flyers",
-    step1Text: 'Send "TIPPGEBER FLYER" via WhatsApp to 0177 636 1394. We will get back to you within 24 hours.',
+    step1TextBefore: 'Send:\n"',
+    step1TextHighlight: "Tippgeber Flyer",
+    step1TextAfter: '" in one word via WhatsApp to 0177 636 1394. We will get back to you within 24 hours.',
     step2Title: "Distribute flyers",
     step2Text: "Distribute the flyers in your area – where you know people who want to sell.",
     step3Title: "Receive your bonus",
     step3Text: "On successful property sale through your flyer, you receive your bonus after completion of the notarial purchase contract.",
-    content1: "The referrer flyers inform about the programme and invite people to contact HE immologis when they want to sell.",
     content2:
-      "You don't have to approach or refer anyone – the flyer speaks for itself. If a sale is completed, you receive your bonus.",
-    content3:
-      "Ordering and distribution are free and non-binding. You act as an independent party.",
+      "You don't have to approach or refer anyone – the flyer speaks for itself. If a sale is completed, you receive your bonus. Ordering and distribution are free and non-binding. You act as an independent party.",
     ctaTitle: "Order flyers?",
     ctaSub: "Send us a message via WhatsApp or email.",
     orCall: "Or call:",
@@ -92,23 +96,25 @@ const TEXTS = {
     heroCta: "Başarılı satışta prim",
     flyerPateTitle: "Mahalleniz. Broşürleriniz. Komisyonunuz.",
     flyerPateSubtitle: "Mahalleniz için broşür patronu olun",
-    flyerPateBody:
-      "Bölgenizi güvence altına alın ve mahallenizde broşür dağıtımını üstlenin. Broşürleri WhatsApp ile kolayca sipariş edin, ben de size kişisel olarak eve teslim ediyorum. Bu şekilde çevrenizde kolayca tavsiyeleri iletebilir ve cazip komisyonlar kazanabilirsiniz.",
+    flyerPateBodyBefore:
+      "Broşür bölgenizi güvence altına alın ve mahallenizde broşür dağıtımını üstlenin.\nBroşürleri WhatsApp ile kolayca tek kelimeyle „",
+    flyerPateBodyHighlight: "Tippgeber Flyer",
+    flyerPateBodyAfter:
+      "\" sipariş edin. Broşürleri size kişisel olarak eve teslim ediyorum.\nBu şekilde çevrenizde kolayca tavsiyeleri iletebilir ve cazip komisyonlar kazanabilirsiniz.",
     flyerPateNote:
       "Tabii ki resmi bir öneri veren sözleşmesi alacaksınız. Tüm diğer öneri verenler için geçerli olan aynı komisyon kuralları uygulanır.",
     ablaufTitle: "Nasıl çalışır",
     step1Title: "Broşür sipariş edin",
-    step1Text: '0177 636 1394 numarasına WhatsApp ile "TIPPGEBER FLYER" gönderin. 24 saat içinde size geri dönüş yapacağız.',
+    step1TextBefore: '0177 636 1394 numarasına WhatsApp ile tek kelimeyle:\n"',
+    step1TextHighlight: "Tippgeber Flyer",
+    step1TextAfter: '" gönderin. 24 saat içinde size geri dönüş yapacağız.',
     step2Title: "Broşürleri dağıtın",
     step2Text: "Broşürleri çevrenizde dağıtın – satmak isteyen insanları tanıdığınız yerde.",
     step3Title: "Priminizi alın",
     step3Text: "Broşürünüz üzerinden başarılı gayrimenkul satışında noter satış sözleşmesinden sonra priminizi alırsınız.",
-    content1: "Öneri veren broşürleri program hakkında bilgi verir ve satış isteği olanların HE immologis ile iletişime geçmesini davet eder.",
     content2:
-      "Kimseye hitap etmeniz veya aracılık yapmanız gerekmiyor – broşür kendisi konuşuyor. Satış gerçekleşirse priminizi alırsınız.",
-    content3:
-      "Sipariş ve dağıtım ücretsiz ve bağlayıcı değildir. Hukuken bağımsız hareket ediyorsunuz.",
-    ctaTitle: "Broşür sipariş etmek ister misiniz?",
+      "Kimseye hitap etmeniz veya aracılık yapmanız gerekmiyor – broşür kendisi konuşuyor. Satış gerçekleşirse priminizi alırsınız. Sipariş ve dağıtım ücretsiz ve bağlayıcı değildir. Hukuken bağımsız hareket ediyorsunuz.",
+    ctaTitle: "Öneri veren broşürü sipariş edin",
     ctaSub: "Bize WhatsApp veya e-posta ile mesaj gönderin.",
     orCall: "Veya arayın:",
   },
@@ -201,15 +207,63 @@ export default async function FlyerWerbenPage() {
           >
             {t.flyerPateTitle}
           </h2>
-          <h3 className="mt-4 font-sans text-xl font-semibold tracking-tight text-slate-800">
+          <h3 className="mt-4 font-sans text-xl font-semibold tracking-tight" style={{ color: BRAND_BLUE }}>
             {t.flyerPateSubtitle}
           </h3>
-          <p className="mt-4 text-lg leading-relaxed text-slate-700">
-            {t.flyerPateBody}
+          <p className="mt-4 whitespace-pre-line text-lg leading-relaxed text-slate-700">
+            {t.flyerPateBodyBefore}
+            <span style={{ color: BRAND_BLUE }}>{t.flyerPateBodyHighlight}</span>
+            {t.flyerPateBodyAfter}
           </p>
           <p className="mt-4 text-slate-700">
             {t.flyerPateNote}
           </p>
+          <p className="mt-6 text-lg leading-relaxed text-slate-700">
+            {t.content2}
+          </p>
+        </div>
+      </section>
+
+      <section
+        className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        aria-labelledby="cta-heading"
+      >
+        <div className="mx-auto max-w-2xl text-center">
+          <h2
+            id="cta-heading"
+            className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
+          >
+            {t.ctaTitle}
+          </h2>
+          <p className="mt-3 text-lg text-slate-600">{t.ctaSub}</p>
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://wa.me/491776361394?text=TIPPGEBER%20FLYER"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#25D366]`}
+                style={{ backgroundColor: "#25D366", borderColor: "#25D366" }}
+              >
+                <MessageCircle className="h-5 w-5 shrink-0" />
+                WhatsApp
+              </a>
+              <a
+                href="mailto:info@he-immologis.de"
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
+                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
+              >
+                <Mail className="h-5 w-5 shrink-0" />
+                E-Mail
+              </a>
+            </div>
+            <p className="text-slate-600">
+              {t.orCall}{" "}
+              <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: BRAND_BLUE }}>
+                +49 177 636 1394
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -233,7 +287,11 @@ export default async function FlyerWerbenPage() {
                 1
               </span>
               <p className="mt-4 font-medium text-slate-900">{t.step1Title}</p>
-              <p className="mt-1 text-sm text-slate-600">{t.step1Text}</p>
+              <p className="mt-1 whitespace-pre-line text-sm text-slate-600">
+                {t.step1TextBefore}
+                <span style={{ color: BRAND_BLUE }}>{t.step1TextHighlight}</span>
+                {t.step1TextAfter}
+              </p>
             </div>
             <div className="flex flex-col items-center text-center">
               <span
@@ -259,14 +317,6 @@ export default async function FlyerWerbenPage() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl space-y-6 text-lg leading-relaxed text-slate-700">
-          <p>{t.content1}</p>
-          <p>{t.content2}</p>
-          <p>{t.content3}</p>
-        </div>
-      </section>
-
       <section className="border-b border-slate-200 bg-slate-50/50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <DonationOption
@@ -279,49 +329,6 @@ export default async function FlyerWerbenPage() {
                   : "Broşür priminden vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.\n\nİster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – ayrıca Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) destekliyoruz.\n\nBaşarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin.\n\nBirlikte daha fazlasını başarırız."
             }
           />
-        </div>
-      </section>
-
-      <section
-        className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-        aria-labelledby="cta-heading"
-      >
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            id="cta-heading"
-            className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
-          >
-            {t.ctaTitle}
-          </h2>
-          <p className="mt-3 text-lg text-slate-600">{t.ctaSub}</p>
-          <div className="mt-8 flex flex-col items-center gap-4">
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="https://wa.me/491776361394?text=TIPPGEBER%20FLYER"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
-                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
-              >
-                <MessageCircle className="h-5 w-5 shrink-0" />
-                WhatsApp
-              </a>
-              <a
-                href="mailto:info@he-immologis.de"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
-                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
-              >
-                <Mail className="h-5 w-5 shrink-0" />
-                E-Mail
-              </a>
-            </div>
-            <p className="text-slate-600">
-              {t.orCall}{" "}
-              <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: BRAND_BLUE }}>
-                +49 177 636 1394
-              </a>
-            </p>
-          </div>
         </div>
       </section>
     </>
