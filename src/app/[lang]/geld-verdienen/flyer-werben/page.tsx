@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowLeft,
-  Mail,
-  MessageCircle,
-} from "lucide-react";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 import DonationOption from "@/components/DonationOption";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
@@ -237,26 +233,16 @@ export default async function FlyerWerbenPage() {
           </h2>
           <p className="mt-3 text-lg text-slate-600">{t.ctaSub}</p>
           <div className="mt-8 flex flex-col items-center gap-4">
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="https://wa.me/491776361394?text=TIPPGEBER%20FLYER"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
-                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
-              >
-                <MessageCircle className="h-5 w-5 shrink-0" />
-                WhatsApp
-              </a>
-              <a
-                href="mailto:info@he-immologis.de"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
-                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
-              >
-                <Mail className="h-5 w-5 shrink-0" />
-                E-Mail
-              </a>
-            </div>
+            <a
+              href="https://wa.me/491776361394?text=TIPPGEBER%20FLYER"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#25D366]`}
+              style={{ backgroundColor: "#25D366", borderColor: "#25D366" }}
+            >
+              <MessageCircle className="h-5 w-5 shrink-0" />
+              WhatsApp
+            </a>
             <p className="text-slate-600">
               {t.orCall}{" "}
               <a href="tel:+491776361394" className="font-medium underline hover:no-underline" style={{ color: BRAND_BLUE }}>

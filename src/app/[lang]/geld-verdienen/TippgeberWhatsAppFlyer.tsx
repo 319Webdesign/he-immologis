@@ -7,22 +7,25 @@ import { MessageCircle } from "lucide-react";
 const TEXTS = {
   de: {
     tippgeberTitle: "Schnell per WhatsApp",
-    tippgeberText:
-      'Melden Sie Ihren Tippgeberhinweis ganz bequem per WhatsApp. Senden Sie einfach das Stichwort „TIPPGEBER" an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
+    tippgeberTextBefore:
+      'Melden Sie Ihren Tippgeberhinweis ganz bequem per WhatsApp. Senden Sie einfach das Stichwort „',
+    tippgeberTextAfter: '" an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
     tippgeberCta: "WhatsApp öffnen",
     whatsappTippgeberHref: "https://wa.me/491776361394?text=TIPPGEBER",
   },
   en: {
     tippgeberTitle: "Quick via WhatsApp",
-    tippgeberText:
-      'Report your referrer tip conveniently via WhatsApp. Simply send the keyword „TIPPGEBER" to 0177 636 1394. We will get back to you within 24 hours.',
+    tippgeberTextBefore:
+      'Report your referrer tip conveniently via WhatsApp. Simply send the keyword „',
+    tippgeberTextAfter: '" to 0177 636 1394. We will get back to you within 24 hours.',
     tippgeberCta: "Open WhatsApp",
     whatsappTippgeberHref: "https://wa.me/491776361394?text=TIPPGEBER",
   },
   tr: {
     tippgeberTitle: "WhatsApp ile hızlı",
-    tippgeberText:
-      'Öneri veren ipucunuzu WhatsApp ile rahatça bildirin. Sadece „TIPPGEBER" anahtar kelimesini 0177 636 1394 numarasına gönderin. 24 saat içinde size geri dönüş yapacağız.',
+    tippgeberTextBefore:
+      'Öneri veren ipucunuzu WhatsApp ile rahatça bildirin. Sadece „',
+    tippgeberTextAfter: '" anahtar kelimesini 0177 636 1394 numarasına gönderin. 24 saat içinde size geri dönüş yapacağız.',
     tippgeberCta: "WhatsApp'ı aç",
     whatsappTippgeberHref: "https://wa.me/491776361394?text=TIPPGEBER",
   },
@@ -52,7 +55,9 @@ export default function TippgeberWhatsAppFlyer() {
               {t.tippgeberTitle}
             </h3>
             <p className="mt-3 text-slate-600 leading-relaxed text-sm">
-              {t.tippgeberText}
+              {t.tippgeberTextBefore}
+              <span style={{ color: "#F9423A", fontWeight: 600 }}>TIPPGEBER</span>
+              {t.tippgeberTextAfter}
             </p>
             <Link
               href={t.whatsappTippgeberHref}
