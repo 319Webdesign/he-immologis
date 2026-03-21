@@ -186,6 +186,15 @@ export default async function ImpressumPage({
                 The content and works created by the site operators on these pages are subject to German copyright law. Reproduction, editing, distribution and any kind of use outside the limits of copyright law require the written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use. In so far as the content on this site was not created by the operator, the copyright of third parties is respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement we ask that you notify us accordingly. Upon becoming aware of legal violations we will remove such content immediately.
               </p>
             </section>
+
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">
+                Images and Videos Used
+              </h2>
+              <p className="mt-2">
+                The images used on this website are from, among others, iStock.com, Pixabay.com, Heinerfilm – Tim Pfeifer, Photologo.co and other sources. All rights remain with the respective copyright holders.
+              </p>
+            </section>
           </div>
         </div>
       </article>
@@ -276,6 +285,12 @@ export default async function ImpressumPage({
               <h2 className="font-sans text-lg font-semibold text-slate-900">Telif hakkı</h2>
               <p className="mt-2">
                 Site operatörleri tarafından oluşturulan içerik ve eserler Alman telif hakkı yasasına tabidir. Çoğaltma, düzenleme, dağıtım ve telif hakkı sınırları dışında her türlü kullanım ilgili yazarın/yaratıcının yazılı onayını gerektirir. Bu sitenin indirilmesi ve kopyalanması yalnızca özel, ticari olmayan kullanım için izinlidir. Yasal ihlaller tespit edildiğinde ilgili içerikleri derhal kaldıracağız.
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Kullanılan Görseller ve Videolar</h2>
+              <p className="mt-2">
+                Bu web sitesinde kullanılan görseller iStock.com, Pixabay.com, Heinerfilm – Tim Pfeifer, Photologo.co ve diğer kaynaklardan alınmıştır. Tüm haklar ilgili telif hakkı sahiplerinde kalır.
               </p>
             </section>
           </div>
@@ -417,13 +432,22 @@ export default async function ImpressumPage({
           </section>
 
           <section>
-            <h2 className="font-sans text-lg font-semibold text-slate-900">
-              Urheberrecht
-            </h2>
-            <p className="mt-2">
-              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
-            </p>
-          </section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">
+                Urheberrecht
+              </h2>
+              <p className="mt-2">
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+              </p>
+            </section>
+
+          <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">
+                Verwendete Bilder und Videos
+              </h2>
+              <p className="mt-2">
+                Die auf dieser Website verwendeten Bilder stammen unter anderem von iStock.com, Pixabay.com, Heinerfilm – Tim Pfeifer, Photologo.co und weiteren Quellen. Alle Rechte verbleiben bei den jeweiligen Urhebern.
+              </p>
+            </section>
         </div>
       </div>
     </article>

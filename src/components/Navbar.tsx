@@ -144,11 +144,11 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             className="block shrink-0 overflow-visible transition-opacity hover:opacity-80"
           >
             <Image
-              src="/img/logo.jpeg"
+              src="/img/logo-neu.png"
               alt={dict.logoAlt}
               width={320}
               height={90}
-              className="block mb-1 h-12 w-auto object-contain object-left sm:h-14"
+              className="block mb-1 h-14 w-auto object-contain object-left sm:h-16"
               sizes="(max-width: 640px) 240px, 320px"
               priority
             />

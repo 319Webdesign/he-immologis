@@ -127,11 +127,11 @@ export default function Footer({ lang, dict }: FooterProps) {
           <div className="flex flex-col">
             <Link href={prefix} className="mb-2 inline-block overflow-visible">
               <Image
-                src="/img/logo.jpeg"
+                src="/img/logo-footer.png"
                 alt="HE immologis"
                 width={300}
                 height={80}
-                className="h-11 w-auto max-w-[180px] object-contain object-left"
+                className="h-12 w-auto max-w-[200px] object-contain object-left"
               />
             </Link>
             <p
