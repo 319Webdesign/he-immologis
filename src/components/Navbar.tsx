@@ -148,7 +148,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               alt={dict.logoAlt}
               width={320}
               height={90}
-              className="block mb-1 h-14 w-auto object-contain object-left sm:h-16"
+              className="block mb-1 h-12 w-auto object-contain object-left sm:h-14"
               sizes="(max-width: 640px) 240px, 320px"
               priority
             />
