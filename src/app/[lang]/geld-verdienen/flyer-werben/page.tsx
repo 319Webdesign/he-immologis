@@ -58,29 +58,29 @@ const TEXTS = {
     backLink: "Back to Earn money",
     heroTitle: "Earn money with referrer flyers",
     heroIntro:
-      "Order free referrer flyers from HE immologis and distribute them in your area – to neighbours, at your club, at work or in your neighbourhood.",
+      "Order free referrer flyers from HE immologis and distribute them in your area – to neighbours, friends and acquaintances, at your club, or at work.",
     heroCta: "Bonus on successful sale",
     flyerPateTitle: "Your neighbourhood. Your flyers. Your commission.",
     flyerPateSubtitle: "Become a flyer patron for your neighbourhood",
     flyerPateBodyBefore:
-      "Secure your flyer area and take over the distribution of flyers in your neighbourhood.\nYou order the flyers easily via WhatsApp with one word „",
-    flyerPateBodyHighlight: "Tippgeber Flyer",
+      "Secure your flyer area and take over the distribution of flyers in your neighbourhood.\nYou can order the flyers easily via WhatsApp with just one word: „",
+    flyerPateBodyHighlight: "Referrer Flyer",
     flyerPateBodyAfter:
-      "\".\nI deliver the flyers to your home personally.\nThis way you can simply pass on recommendations in your area and secure attractive commissions.",
+      "\".\nI will deliver the flyers to your home personally.\nThis way you can simply pass on recommendations in your area and secure attractive commissions.",
     flyerPateNote:
       "Of course you will receive an official referrer agreement. The same commission rules apply as for all other referrers.",
     ablaufTitle: "How it works",
     step1Title: "Order flyers",
-    step1TextBefore: 'Send:\n"',
-    step1TextHighlight: "Tippgeber Flyer",
-    step1TextAfter: '" in one word via WhatsApp to 0177 636 1394. We will get back to you within 24 hours.',
+    step1TextBefore: 'Send the message „',
+    step1TextHighlight: "Referrer Flyer",
+    step1TextAfter: '" via WhatsApp to 0177 636 1394. We will get back to you within 24 hours.',
     step2Title: "Distribute flyers",
     step2Text: "Distribute the flyers in your area – where you know people who want to sell.",
     step3Title: "Receive your bonus",
     step3Text: "On successful property sale through your flyer, you receive your bonus after completion of the notarial purchase contract.",
     content2:
       "You don't have to approach or refer anyone – the flyer speaks for itself. If a sale is completed, you receive your bonus. Ordering and distribution are free and non-binding. You act as an independent party.",
-    ctaTitle: "Order flyers?",
+    ctaTitle: "Order referrer flyers",
     ctaSub: "Send us a message via WhatsApp or email.",
     orCall: "Or call:",
   },
@@ -92,26 +92,26 @@ const TEXTS = {
     backLink: "Para kazanmaya geri dön",
     heroTitle: "Öneri veren broşürleriyle para kazanın",
     heroIntro:
-      "HE immologis'ten ücretsiz öneri veren broşürleri sipariş edin ve çevrenizde dağıtın – komşulara, kulüpte, işte veya mahallenizde.",
+      "HE immologis'ten ücretsiz öneri veren broşürleri sipariş edin ve çevrenizde dağıtın.\nMahallenizde, arkadaş ve tanıdıklarınıza, dernekte veya işyerinde.",
     heroCta: "Başarılı satışta prim",
     flyerPateTitle: "Mahalleniz. Broşürleriniz. Komisyonunuz.",
     flyerPateSubtitle: "Mahalleniz için broşür patronu olun",
     flyerPateBodyBefore:
       "Broşür bölgenizi güvence altına alın ve mahallenizde broşür dağıtımını üstlenin.\nBroşürleri WhatsApp ile kolayca tek kelimeyle „",
-    flyerPateBodyHighlight: "Tippgeber Flyer",
+    flyerPateBodyHighlight: "Öneri Veren Broşürü",
     flyerPateBodyAfter:
       "\" sipariş edin.\nBroşürleri size kişisel olarak eve teslim ediyorum.\nBu şekilde çevrenizde kolayca tavsiyeleri iletebilir ve cazip komisyonlar kazanabilirsiniz.",
     flyerPateNote:
       "Tabii ki resmi bir öneri veren sözleşmesi alacaksınız. Tüm diğer öneri verenler için geçerli olan aynı komisyon kuralları uygulanır.",
     ablaufTitle: "Nasıl çalışır",
     step1Title: "Broşür sipariş edin",
-    step1TextBefore: '0177 636 1394 numarasına WhatsApp ile tek kelimeyle:\n"',
-    step1TextHighlight: "Tippgeber Flyer",
+    step1TextBefore: '0177 636 1394 numarasına WhatsApp ile tek kelimeyle „',
+    step1TextHighlight: "Öneri Veren Broşürü",
     step1TextAfter: '" gönderin. 24 saat içinde size geri dönüş yapacağız.',
     step2Title: "Broşürleri dağıtın",
     step2Text: "Broşürleri çevrenizde dağıtın – satmak isteyen insanları tanıdığınız yerde.",
     step3Title: "Priminizi alın",
-    step3Text: "Broşürünüz üzerinden başarılı gayrimenkul satışında noter satış sözleşmesinden sonra priminizi alırsınız.",
+    step3Text: "Broşürünüz üzerinden başarılı gayrimenkul satışında noter satış sözleşmesi tamamlandıktan sonra priminizi alırsınız.",
     content2:
       "Kimseye hitap etmeniz veya aracılık yapmanız gerekmiyor – broşür kendisi konuşuyor. Satış gerçekleşirse priminizi alırsınız. Sipariş ve dağıtım ücretsiz ve bağlayıcı değildir. Hukuken bağımsız hareket ediyorsunuz.",
     ctaTitle: "Öneri veren broşürü sipariş edin",
@@ -326,7 +326,7 @@ export default async function FlyerWerbenPage() {
                 ? "Verzichten Sie auf die Flyer-Prämie, spendet die Firma HE immologis Ihre volle Provision an eine gemeinnützige Organisation Ihrer Wahl.\n\nOb Tafel, Tierheim oder Kinderhilfe in Weinheim – ebenso unterstützen wir das Deutsche Krebsforschungszentrum (DKFZ) in Heidelberg oder den Deutscher Hospiz- und PalliativVerband (DHPV) in Berlin.\n\nTeilen Sie uns im Erfolgsfall mit, welche Einrichtung wir unterstützen dürfen.\n\nGemeinsam bewirken wir mehr."
                 : locale === "en"
                   ? "If you waive the flyer bonus, HE immologis will donate your full commission to a charitable organization of your choice.\n\nWhether food bank, animal shelter or children's charity in Weinheim – we also support the German Cancer Research Center (DKFZ) in Heidelberg or the German Hospice and Palliative Association (DHPV) in Berlin.\n\nLet us know in the event of success which organization we may support.\n\nTogether we achieve more."
-                  : "Broşür priminden vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.\n\nİster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – ayrıca Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Palyatif Derneği (DHPV) destekliyoruz.\n\nBaşarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin.\n\nBirlikte daha fazlasını başarırız."
+                  : "Broşür priminden vazgeçerseniz, HE immologis tam komisyonunuzu seçtiğiniz bir hayır kurumuna bağışlar.\n\nİster Weinheim'da gıda bankası, hayvan barınağı veya çocuk yardımı – Heidelberg'deki Alman Kanser Araştırma Merkezi (DKFZ) veya Berlin'deki Alman Hospiz ve Paliatif Derneği (DHPV) de desteklediğimiz kurumlar arasındadır.\n\nBaşarı durumunda hangi kurumu destekleyebileceğimizi bize bildirin.\n\nBirlikte daha fazlasını başarırız."
             }
           />
         </div>
