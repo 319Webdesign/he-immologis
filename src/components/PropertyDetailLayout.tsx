@@ -498,8 +498,8 @@ export function PropertyDetailLayout({
                 const objType = p.objektart?.trim() || (isKaufen ? "Immobilie" : "Mietobjekt");
                 const ort = p.ort?.trim() || "Weinheim";
                 return isKaufen
-                  ? `${objType} zum Kauf in ${ort} - HE-immologis`
-                  : `${objType} zur Miete in ${ort} - HE-immologis`;
+                  ? `${objType} zum Kauf in ${ort} – Rhein-Neckar – HE-immologis`
+                  : `${objType} zur Miete in ${ort} – Rhein-Neckar – HE-immologis`;
               })()
             }
             usePlaceholder

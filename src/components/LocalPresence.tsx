@@ -32,15 +32,15 @@ export type LocalPresenceDict = {
 
 const CITIES = [
   "Weinheim",
+  "Hirschberg",
+  "Hemsbach",
+  "Laudenbach",
+  "Viernheim",
   "Heppenheim",
   "Bensheim",
-  "Viernheim",
   "Lorsch",
   "Ladenburg",
-  "Schriesheim",
-  "Dossenheim",
   "Lampertheim",
-  "Mannheim",
 ];
 
 function getCityImagePath(city: string): string {
@@ -162,7 +162,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                   <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-48 -translate-x-1/2 overflow-hidden rounded-xl border border-white/20 shadow-xl sm:block sm:w-56 sm:opacity-0 sm:transition-opacity sm:group-hover:opacity-100">
                     <img
                       src={getCityImagePath(city)}
-                      alt={`${city} – Ortsbild`}
+                      alt={`${city} – Immobilien in Weinheim und Rhein-Neckar, Ortsbild`}
                       className="aspect-video w-full object-cover"
                       width={224}
                       height={126}
@@ -199,7 +199,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
                   </button>
                   <img
                     src={getCityImagePath(mobileSelectedCity)}
-                    alt={`${mobileSelectedCity} – Ortsbild`}
+                    alt={`${mobileSelectedCity} – Immobilien in Weinheim und Rhein-Neckar, Ortsbild`}
                     className="max-h-[80vh] w-auto object-contain"
                     onError={(e) => {
                       const el = e.currentTarget;

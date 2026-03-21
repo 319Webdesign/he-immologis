@@ -38,7 +38,7 @@ export default function MainServiceCard({ dict, lang }: MainServiceCardProps) {
         <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[320px]">
           <Image
             src={IMAGE_SRC}
-            alt="Haus kaufen Weinheim - Einfamilienhaus Immobilien Bergstraße - HE-immologis"
+            alt="Einfamilienhaus in Weinheim – Gartenansicht, Immobilien Rhein-Neckar – HE-immologis"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"

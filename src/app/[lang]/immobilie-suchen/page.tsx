@@ -51,19 +51,18 @@ export async function generateMetadata({
     };
   }
   return {
-    title: "Immobilie suchen Weinheim & Bergstraße",
+    title: "Immobilie suchen Weinheim & Rhein-Neckar | HE-immologis",
     description:
-      "Kostenloser Suchauftrag Weinheim & Bergstraße. HE immologis findet Ihre passende Immobilie in Bensheim, Heppenheim, Viernheim, Lampertheim. Holger Eberhard berät Sie.",
+      "Kostenloser Suchauftrag Weinheim & Rhein-Neckar. HE immologis findet Ihre Immobilie in Hirschberg, Hemsbach, Viernheim. Holger Eberhard berät Sie. Jetzt Suchauftrag anlegen!",
     keywords: [
       "Immobilie suchen Weinheim",
       "Immobilienmakler Weinheim",
-      "Haus kaufen Weinheim",
-      "Bensheim",
-      "Heppenheim",
-      "Viernheim",
-      "Lampertheim",
-      "Lorsch",
+      "Haus kaufen Rhein-Neckar",
+      "Immobilienbewertung Weinheim",
+      "Hirschberg",
       "Hemsbach",
+      "Laudenbach",
+      "Viernheim",
       "HE-immologis",
     ],
   };

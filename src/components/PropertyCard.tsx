@@ -98,7 +98,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
           <Image
             src={imageSrc}
-            alt={`${objekttypLabel || "Mietobjekt"} zur Miete in ${property.ort?.trim() || "Weinheim"} - HE-immologis`}
+            alt={`${objekttypLabel || "Mietobjekt"} zur Miete in ${property.ort?.trim() || "Weinheim"} – Rhein-Neckar – HE-immologis`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

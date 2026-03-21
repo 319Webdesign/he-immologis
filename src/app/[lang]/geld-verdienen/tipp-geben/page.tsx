@@ -45,7 +45,7 @@ export default async function TippGebenPage() {
       >
         <Image
           src="/img/tipp-geben.jpeg"
-          alt="Haus kaufen Weinheim - Tippgeber-Programm Immobilien - HE-immologis"
+          alt="Tippgeber-Programm – Immobilienmakler Weinheim und Rhein-Neckar – HE-immologis"
           fill
           className="object-cover object-center scale-105"
           sizes="100vw"

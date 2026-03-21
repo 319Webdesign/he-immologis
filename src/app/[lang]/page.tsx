@@ -10,15 +10,18 @@ import type { Locale } from "@/lib/i18n";
 
 const HOME_META = {
   de: {
-    title: "Immobilienmakler Weinheim & Bergstraße",
+    title: "Immobilienmakler Weinheim | HE-immologis | Rhein-Neckar",
     description:
-      "Ihr Experte für Immobilien in Weinheim. Haus kaufen, Wohnung verkaufen oder professionelle Immobilienbewertung an der Bergstraße. Holger Eberhard berät Sie persönlich.",
+      "Immobilienmakler Weinheim & Rhein-Neckar: Haus kaufen, Wohnung verkaufen, Immobilienbewertung. Holger Eberhard – Ihre Adresse vor Ort. Jetzt beraten.",
     keywords: [
       "Immobilienmakler Weinheim",
-      "Haus kaufen Bergstraße",
-      "Bensheim",
-      "Heppenheim",
-      "Lampertheim",
+      "Haus kaufen Rhein-Neckar",
+      "Immobilienbewertung Weinheim",
+      "Wohnung verkaufen Bergstraße",
+      "Hirschberg",
+      "Hemsbach",
+      "Laudenbach",
+      "Viernheim",
       "HE-immologis",
     ],
   },

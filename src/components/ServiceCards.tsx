@@ -35,7 +35,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
       <div className="relative aspect-video overflow-hidden bg-slate-100">
         <Image
           src={service.image}
-          alt={`Haus kaufen Weinheim - ${title} - HE-immologis`}
+          alt={`${title} – Immobilien Weinheim und Rhein-Neckar – HE-immologis`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
