@@ -67,7 +67,7 @@ export default function FinalCTA({ dict }: { dict: FinalCTADict }) {
             {dict.callText}{" "}
             <a
               href="tel:+491776361394"
-              className="font-bold no-underline"
+              className="font-normal no-underline"
               style={{ color: "#F9423A" }}
             >
               +49 177 636 1394

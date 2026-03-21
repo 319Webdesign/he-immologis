@@ -125,7 +125,7 @@ export default function Footer({ lang, dict }: FooterProps) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 items-start">
           {/* Spalte 1: Firma & Logo */}
           <div className="flex flex-col">
-            <Link href={prefix} className="-mt-2 mb-2 inline-block overflow-visible">
+            <Link href={prefix} className="-mt-3 mb-2 inline-block overflow-visible">
               <Image
                 src="/img/logo-footer.png"
                 alt="HE immologis"
