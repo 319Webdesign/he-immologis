@@ -32,7 +32,7 @@ const TEXTS = {
       "Sichern Sie sich Ihr Flyer-Gebiet und übernehmen Sie die Verteilung der Flyer in Ihrem Viertel.\nSie bestellen die Flyer ganz unkompliziert per WhatsApp in einem Wort „",
     flyerPateBodyHighlight: "Tippgeber Flyer",
     flyerPateBodyAfter:
-      "\". Ich liefere Ihnen die Flyer persönlich nachhause.\nAuf diese Weise können Sie in Ihrem Umfeld ganz einfach Empfehlungen weitergeben und sich attraktive Provisionen sichern.",
+      "\".\nIch liefere Ihnen die Flyer persönlich nachhause.\nAuf diese Weise können Sie in Ihrem Umfeld ganz einfach Empfehlungen weitergeben und sich attraktive Provisionen sichern.",
     flyerPateNote:
       "Natürlich erhalten Sie eine offizielle Tippgeber-Vereinbarung. Es gelten dieselben Provisionsregelungen wie für alle anderen Tippgeber.",
     ablaufTitle: "So funktioniert's",
@@ -66,7 +66,7 @@ const TEXTS = {
       "Secure your flyer area and take over the distribution of flyers in your neighbourhood.\nYou order the flyers easily via WhatsApp with one word „",
     flyerPateBodyHighlight: "Tippgeber Flyer",
     flyerPateBodyAfter:
-      "\". I deliver the flyers to your home personally.\nThis way you can simply pass on recommendations in your area and secure attractive commissions.",
+      "\".\nI deliver the flyers to your home personally.\nThis way you can simply pass on recommendations in your area and secure attractive commissions.",
     flyerPateNote:
       "Of course you will receive an official referrer agreement. The same commission rules apply as for all other referrers.",
     ablaufTitle: "How it works",
@@ -100,7 +100,7 @@ const TEXTS = {
       "Broşür bölgenizi güvence altına alın ve mahallenizde broşür dağıtımını üstlenin.\nBroşürleri WhatsApp ile kolayca tek kelimeyle „",
     flyerPateBodyHighlight: "Tippgeber Flyer",
     flyerPateBodyAfter:
-      "\" sipariş edin. Broşürleri size kişisel olarak eve teslim ediyorum.\nBu şekilde çevrenizde kolayca tavsiyeleri iletebilir ve cazip komisyonlar kazanabilirsiniz.",
+      "\" sipariş edin.\nBroşürleri size kişisel olarak eve teslim ediyorum.\nBu şekilde çevrenizde kolayca tavsiyeleri iletebilir ve cazip komisyonlar kazanabilirsiniz.",
     flyerPateNote:
       "Tabii ki resmi bir öneri veren sözleşmesi alacaksınız. Tüm diğer öneri verenler için geçerli olan aynı komisyon kuralları uygulanır.",
     ablaufTitle: "Nasıl çalışır",
@@ -197,7 +197,7 @@ export default async function FlyerWerbenPage() {
       </section>
 
       <section
-        className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        className="bg-white px-4 pt-12 pb-4 sm:px-6 sm:pt-16 sm:pb-6 lg:px-8"
         aria-labelledby="flyer-pate-heading"
       >
         <div className="mx-auto max-w-4xl">
@@ -225,7 +225,7 @@ export default async function FlyerWerbenPage() {
       </section>
 
       <section
-        className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        className="border-t-0 bg-white px-4 pt-6 pb-12 sm:px-6 sm:pt-8 sm:pb-16 lg:px-8"
         aria-labelledby="cta-heading"
       >
         <div className="mx-auto max-w-2xl text-center">
@@ -242,8 +242,8 @@ export default async function FlyerWerbenPage() {
                 href="https://wa.me/491776361394?text=TIPPGEBER%20FLYER"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#25D366]`}
-                style={{ backgroundColor: "#25D366", borderColor: "#25D366" }}
+                className={`inline-flex items-center gap-2 ${outlineButtonClass} text-white focus:ring-[#85b09a]`}
+                style={{ backgroundColor: CTA_ACCENT, borderColor: CTA_ACCENT }}
               >
                 <MessageCircle className="h-5 w-5 shrink-0" />
                 WhatsApp
