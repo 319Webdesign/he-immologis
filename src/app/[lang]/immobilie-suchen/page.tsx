@@ -51,7 +51,7 @@ export async function generateMetadata({
     };
   }
   return {
-    title: "Immobilie suchen Weinheim & Rhein-Neckar | HE-immologis",
+    title: "Immobilie suchen Weinheim & Rhein-Neckar",
     description:
       "Kostenloser Suchauftrag Weinheim & Rhein-Neckar. HE immologis findet Ihre Immobilie in Hirschberg, Hemsbach, Viernheim. Holger Eberhard berät Sie. Jetzt Suchauftrag anlegen!",
     keywords: [

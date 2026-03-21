@@ -10,7 +10,7 @@ import type { Locale } from "@/lib/i18n";
 
 const HOME_META = {
   de: {
-    title: "Immobilienmakler Weinheim | HE-immologis | Rhein-Neckar",
+    title: "Immobilienmakler Weinheim | Rhein-Neckar",
     description:
       "Immobilienmakler Weinheim & Rhein-Neckar: Haus kaufen, Wohnung verkaufen, Immobilienbewertung. Holger Eberhard – Ihre Adresse vor Ort. Jetzt beraten.",
     keywords: [

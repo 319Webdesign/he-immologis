@@ -443,7 +443,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
   {
     id: "9",
     slug: "immobilienverkauf",
-    title: "Der ganzheitliche Verkaufsprozess – von der Bewertung bis zur Übergabe",
+    title: "Verkaufsprozess – Bewertung bis Übergabe",
     subtitle: "Ein sicherer Verkauf in 5 klaren Schritten",
     price: "3,57 % inklusive MwSt. vom Verkaufspreis der Immobilie",
     priceEn: "3.57% incl. VAT of the property sale price",
@@ -451,7 +451,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Vollständige Vermarktung Ihrer Immobilie – von der Wertermittlung bis zur erfolgreichen Übergabe.",
     descriptionEn:
       "Full marketing of your property – from valuation to successful handover.",
-    titleEn: "The holistic sales process – from valuation to handover",
+    titleEn: "Sales process – valuation to handover",
     subtitleEn: "A secure sale in 5 clear steps",
     image:
       "https://placehold.co/800x450/94a3b8/1e293b?text=Immobilienverkauf&font=source-sans",
@@ -487,7 +487,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Transparent remuneration",
       "For this comprehensive service we charge you the customary success fee of 3.57% incl. VAT based on the notarially certified purchase price. If the transaction could not be concluded, we charge an expense allowance.",
     ],
-    titleTr: "Bütüncül satış süreci – değerlemeden teslimata",
+    titleTr: "Satış süreci – değerlemeden teslimata",
     subtitleTr: "5 net adımda güvenli satış",
     descriptionTr: "Gayrimenkulünüzün tam pazarlaması – değerlemeden başarılı teslimata.",
     priceTr: "Gayrimenkul satış fiyatının %3,57 KDV dahil",

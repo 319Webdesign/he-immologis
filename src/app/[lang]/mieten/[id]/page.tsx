@@ -48,7 +48,9 @@ export async function generateMetadata({
     };
   }
   const immoNr = prop.objektnr_extern || String(prop.id);
-  const baseTitle = prop.titel || "Mietobjekt";
+  const rawTitle = prop.titel || "Mietobjekt";
+  const maxBaseLen = 44 - 4 - `Exposé ${immoNr}`.length;
+  const baseTitle = rawTitle.length > maxBaseLen ? rawTitle.slice(0, maxBaseLen - 1) + "…" : rawTitle;
   const title = `${baseTitle} | Exposé ${immoNr}`;
   const description = buildMietenDescription(prop, locale);
   return {

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     apple: { url: "/img/favicon.jpeg", type: "image/jpeg", sizes: "180x180" },
   },
   title: {
-    default: "Immobilienmakler Weinheim | HE-immologis | Rhein-Neckar",
+    default: "Immobilienmakler Weinheim | Rhein-Neckar",
     template: "%s | HE-immologis",
   },
   description:

@@ -11,7 +11,7 @@ import { getLocaleFromHeaders } from "@/lib/i18n";
 import { TIPPGEBER_DOCS, MUSTERVERTRAG_WERBEFLAECHE } from "@/lib/documents";
 
 export const metadata: Metadata = {
-  title: "Geld verdienen – Tippgeber-Programm | HE immologis",
+  title: "Geld verdienen – Tippgeber-Programm",
   description:
     "Werden Sie Tippgeber und sichern Sie sich bis zu 5.000 € Provision. Kennen Sie jemanden, der verkaufen möchte? Oder vermieten Sie Werbefläche – Aufsteller oder Banner. HE immologis UG.",
   keywords: [

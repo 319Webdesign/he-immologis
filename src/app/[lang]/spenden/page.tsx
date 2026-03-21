@@ -9,7 +9,7 @@ type ProjectItem = { title: string; description: string; url: string; image: str
 
 const TEXTS = {
   de: {
-    metaTitle: "Spenden & Soziales Engagement Weinheim | HE immologis spendet",
+    metaTitle: "Spenden & Soziales Engagement Weinheim",
     metaDescription:
       "HE-immologis spendet: Tippgeber-Prämie spenden Bergstraße. Soziales Engagement Weinheim – Ihr Verzicht auf die Prämie wird zu regionalen Projekten. Transparent. Gemeinsam Gutes bewirken.",
     heroTitle: "Ihre Empfehlung. Unsere Spende.",
@@ -119,7 +119,7 @@ const TEXTS = {
     ] as ProjectItem[],
   },
   tr: {
-    metaTitle: "Bağış & Sosyal Sorumluluk Weinheim | HE immologis bağışlıyor",
+    metaTitle: "Bağış & Sosyal Sorumluluk Weinheim",
     metaDescription:
       "HE immologis bağışlıyor: Tavsiyeci primi Bergstraße'da bağış. Weinheim'da sosyal sorumluluk – priminiz bölgesel projelere gidiyor. Şeffaf. Birlikte iyilik.",
     heroTitle: "Sizin tavsiyeniz. Bizim bağışımız.",

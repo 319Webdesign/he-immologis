@@ -48,7 +48,9 @@ export async function generateMetadata({
   const prop = await fetchPropertyById(id, locale).catch(() => null);
   if (prop) {
     const immoNr = prop.objektnr_extern || String(prop.id);
-    const baseTitle = prop.titel || "Immobilie";
+    const rawTitle = prop.titel || "Immobilie";
+    const maxBaseLen = 44 - 4 - `Exposé ${immoNr}`.length;
+    const baseTitle = rawTitle.length > maxBaseLen ? rawTitle.slice(0, maxBaseLen - 1) + "…" : rawTitle;
     const title = `${baseTitle} | Exposé ${immoNr}`;
     const description = buildKaufenDescription(prop, locale);
     return { title, description };
@@ -60,8 +62,12 @@ export async function generateMetadata({
     const desc = rawDesc
       ? rawDesc.slice(0, 160) + (rawDesc.length > 160 ? "…" : "")
       : `${staticProp.titel} – ${staticProp.ort} – ${formatCurrency(staticProp.preis, { locale })}`.slice(0, 160);
+    const immoNr = staticProp.objektnr_extern || staticProp.id;
+    const rawTitle = staticProp.titel || "Immobilie";
+    const maxBaseLen = 44 - 4 - `Exposé ${immoNr}`.length;
+    const baseTitle = rawTitle.length > maxBaseLen ? rawTitle.slice(0, maxBaseLen - 1) + "…" : rawTitle;
     return {
-      title: staticProp.titel,
+      title: `${baseTitle} | Exposé ${immoNr}`,
       description: desc,
     };
   }

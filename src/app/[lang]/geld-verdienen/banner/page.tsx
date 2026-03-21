@@ -21,7 +21,7 @@ const outlineButtonClass =
 
 const TEXTS = {
   de: {
-    metaTitle: "Banner werben – 500 € Prämie für Privatgrundstücke & Zäune | HE immologis",
+    metaTitle: "Banner werben – 500 € Prämie Privatgrundstücke",
     metaDescription:
       "Vermieten Sie Werbefläche: Banner von HE immologis an Zaun, Garage oder Grundstück. Dauerhaft sichtbar, ohne Platz zu nehmen. 500 € Prämie bei Verkauf.",
     metaKeywords: ["Banner Werbung Immobilien", "Werbefläche vermieten", "500 € Prämie Banner", "HE immologis"],
@@ -66,7 +66,7 @@ const TEXTS = {
     orCall: "Oder anrufen:",
   },
   en: {
-    metaTitle: "Banner advertising – €500 bonus for private land & fences | HE immologis",
+    metaTitle: "Banner advertising – €500 bonus",
     metaDescription:
       "Rent out advertising space: HE immologis banner on fence, garage or land. Permanently visible, no space lost. €500 bonus on sale.",
     metaKeywords: ["Banner advertising real estate", "Rent advertising space", "€500 bonus banner", "HE immologis"],
@@ -111,7 +111,7 @@ const TEXTS = {
     orCall: "Or call:",
   },
   tr: {
-    metaTitle: "Banner reklamı – Özel arsa ve çitler için 500 € prim | HE immologis",
+    metaTitle: "Banner reklamı – 500 € prim",
     metaDescription:
       "Reklam alanı kiralayın: HE immologis bannerı çit, garaj veya arsada. Kalıcı görünür, yer kaplamaz. Satışta 500 € prim.",
     metaKeywords: ["Banner reklamı gayrimenkul", "Reklam alanı kirala", "500 € prim banner", "HE immologis"],

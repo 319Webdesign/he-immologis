@@ -22,7 +22,7 @@ const outlineButtonClass =
 
 const TEXTS = {
   de: {
-    metaTitle: "Werbe-Aufsteller – 500 € Prämie für Geschäfte & Büros | HE immologis",
+    metaTitle: "Werbe-Aufsteller – 500 € Prämie",
     metaDescription:
       "Stellen Sie einen Immobilien-Aufsteller von HE immologis auf – ohne Verpflichtung. Auf- und Abbau durch uns. 500 € Prämie bei erfolgreichem Verkauf.",
     metaKeywords: ["Aufsteller Werbung", "Werbefläche Immobilien", "500 € Prämie Aufsteller", "HE immologis"],
@@ -118,7 +118,7 @@ const TEXTS = {
     orCall: "Or call:",
   },
   tr: {
-    metaTitle: "Werbe-Aufsteller – Mağaza ve bürolar için 500 € prim | HE immologis",
+    metaTitle: "Werbe-Aufsteller – 500 € prim",
     metaDescription:
       "HE immologis gayrimenkul pano sunucusu yerleştirin – taahhüt yok. Kurulum ve kaldırma bizim tarafımızdan. Başarılı satışta 500 € prim.",
     metaKeywords: ["Pano reklamı", "Gayrimenkul reklam alanı", "500 € prim pano", "HE immologis"],

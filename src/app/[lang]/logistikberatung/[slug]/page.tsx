@@ -40,8 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const kw = slugKeywords[modul.slug] ?? { de: "Logistikberatung Deutschland", en: "Logistics consulting Germany" };
   const titleKw = locale === "en" ? kw.en : kw.de;
   const title =
-    (locale === "en" ? `SMART module ${modul.letter} – ${modul.title}` : locale === "tr" ? `SMART modül ${modul.letter} – ${modul.title}` : `SMART Modul ${modul.letter} – ${modul.title}`) +
-    " | HE-immologis";
+    locale === "en" ? `SMART module ${modul.letter} – ${modul.title}` : locale === "tr" ? `SMART modül ${modul.letter} – ${modul.title}` : `SMART Modul ${modul.letter} – ${modul.title}`;
   const description =
     modul.shortDescription.slice(0, 155) + (modul.shortDescription.length > 155 ? "…" : "");
   return {
@@ -121,7 +120,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
       >
         <div className="mx-auto max-w-3xl">
           <Link
-            href={`${prefix}/logistikberatung?scroll=module-cards`}
+            href={`${prefix}/logistikberatung#module-cards`}
             className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
           >
             {lb.backToSmart}
@@ -208,7 +207,7 @@ export default async function LogistikberatungSlugPage({ params }: Props) {
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <Link
-            href={`${prefix}/logistikberatung?scroll=module-cards`}
+            href={`${prefix}/logistikberatung#module-cards`}
             className="inline-flex items-center text-sm font-semibold"
             style={{ color: BRAND_BLUE }}
           >

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 
 const MODULE_CARDS_ID = "module-cards";
 const HEADER_OFFSET = 100;
@@ -13,27 +12,24 @@ function scrollToModuleCards() {
   window.scrollTo({ top, behavior: "smooth" });
 }
 
-export default function ScrollToModuleCards() {
-  const searchParams = useSearchParams();
+function shouldScroll() {
+  return typeof window !== "undefined" && window.location.hash.slice(1) === MODULE_CARDS_ID;
+}
 
+export default function ScrollToModuleCards() {
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const scrollTarget = searchParams.get("scroll");
-    if (scrollTarget !== MODULE_CARDS_ID) return;
+    if (!shouldScroll()) return;
     scrollToModuleCards();
     const t = setTimeout(scrollToModuleCards, 250);
-    const cleanUrl = () => {
-      const url = new URL(window.location.href);
-      url.searchParams.delete("scroll");
-      url.hash = MODULE_CARDS_ID;
-      window.history.replaceState(null, "", url.pathname + "#" + MODULE_CARDS_ID);
+    const onHashChange = () => {
+      if (shouldScroll()) scrollToModuleCards();
     };
-    const t2 = setTimeout(cleanUrl, 800);
+    window.addEventListener("hashchange", onHashChange);
     return () => {
       clearTimeout(t);
-      clearTimeout(t2);
+      window.removeEventListener("hashchange", onHashChange);
     };
-  }, [searchParams]);
+  }, []);
 
   return null;
 }

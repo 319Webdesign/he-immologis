@@ -6,7 +6,7 @@ import { TIPPGEBER_DOCS } from "@/lib/documents";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: "Tippgeber-Staffel – Geld verdienen mit einem guten Kontakt | HE immologis",
+  title: "Tippgeber-Staffel – Geld verdienen",
   description:
     "Tipp geben und Prämie sichern: Bis 5.000 € Provision. So funktioniert das Tippgeber-Programm, Ihre Staffel und der Ablauf. HE immologis UG.",
   keywords: [
