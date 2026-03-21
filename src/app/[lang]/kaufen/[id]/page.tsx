@@ -62,7 +62,7 @@ export async function generateMetadata({
     const desc = rawDesc
       ? rawDesc.slice(0, 160) + (rawDesc.length > 160 ? "…" : "")
       : `${staticProp.titel} – ${staticProp.ort} – ${formatCurrency(staticProp.preis, { locale })}`.slice(0, 160);
-    const immoNr = staticProp.objektnr_extern || staticProp.id;
+    const immoNr = staticProp.id;
     const rawTitle = staticProp.titel || "Immobilie";
     const maxBaseLen = 44 - 4 - `Exposé ${immoNr}`.length;
     const baseTitle = rawTitle.length > maxBaseLen ? rawTitle.slice(0, maxBaseLen - 1) + "…" : rawTitle;
