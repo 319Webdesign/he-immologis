@@ -21,6 +21,7 @@ export type FooterDict = {
   rent: string;
   search: string;
   tipGive: string;
+  flyerAd: string;
   bannerAd: string;
   displayAd: string;
   logistics: string;
@@ -88,6 +89,11 @@ export default function Footer({ lang, dict }: FooterProps) {
             <li>
               <Link href={`${prefix}/geld-verdienen/tipp-geben`} className="text-slate-100 transition-colors hover:text-white">
                 {dict.tipGive}
+              </Link>
+            </li>
+            <li>
+              <Link href={`${prefix}/geld-verdienen/flyer-werben`} className="text-slate-100 transition-colors hover:text-white">
+                {dict.flyerAd}
               </Link>
             </li>
             <li>

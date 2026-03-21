@@ -21,6 +21,7 @@
     "referralBonus": "Tipp-Prämie",
     "referralSub": [
       { "label": "Tipp geben" },
+      { "label": "Flyer werben" },
       { "label": "Banner werben" },
       { "label": "Aufsteller werben" }
     ],
@@ -75,6 +76,7 @@
     "rent": "Immobilie mieten",
     "search": "Immobilie suchen",
     "tipGive": "Tipp geben",
+    "flyerAd": "Flyer werben",
     "bannerAd": "Banner werben",
     "displayAd": "Aufsteller werben",
     "logistics": "Logistikberatung",

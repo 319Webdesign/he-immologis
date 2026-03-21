@@ -5,6 +5,7 @@ import { FileDown } from "lucide-react";
 import ProvisionsStaffel from "../ProvisionsStaffel";
 import TippgeberHowTo from "../TippgeberHowTo";
 import DirektkontaktSection from "../DirektkontaktSection";
+import TippgeberWhatsAppFlyer from "../TippgeberWhatsAppFlyer";
 import DonationOption from "@/components/DonationOption";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
@@ -65,6 +66,8 @@ export default async function TippGebenPage() {
           </p>
         </div>
       </section>
+
+      <TippgeberWhatsAppFlyer />
 
       <section
         className="border-b border-slate-200 bg-slate-50/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"

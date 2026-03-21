@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MessageCircle, Mail, FileText } from "lucide-react";
+import { MessageCircle, Mail } from "lucide-react";
 
 const BRAND_BLUE = "#F9423A";
 const CTA_ACCENT = "#85b09a";
@@ -28,16 +28,6 @@ const TEXTS = {
     whatsappHref:
       "https://wa.me/491776361394?text=Hallo%20Holger,%20ich%20habe%20einen%20Tipp/Interesse%20an%20einer%20Partnerschaft.",
     mailtoSubject: "Anfrage%20Tippgeber/Standortpartner",
-    tippgeberTitle: "Schnell per WhatsApp",
-    tippgeberText:
-      'Melden Sie Ihren Tippgeberhinweis ganz bequem per WhatsApp. Senden Sie einfach das Stichwort „TIPPGEBER" an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
-    tippgeberCta: "WhatsApp öffnen",
-    whatsappTippgeberHref: "https://wa.me/491776361394?text=TIPPGEBER",
-    flyerTitle: "Tippgeber-Flyer",
-    flyerText:
-      'Bestellen Sie Ihre Tippgeber-Flyer ganz bequem per WhatsApp. Senden Sie einfach das Stichwort „TIPPGEBER FLYER" an 0177 636 1394. Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
-    flyerCta: "Flyer bestellen",
-    whatsappFlyerHref: "https://wa.me/491776361394?text=TIPPGEBER%20FLYER",
   },
   en: {
     guarantee: "Response guarantee < 24h",
@@ -54,16 +44,6 @@ const TEXTS = {
     whatsappHref:
       "https://wa.me/491776361394?text=Hi%20Holger,%20I%20have%20a%20tip/interest%20in%20a%20partnership.",
     mailtoSubject: "Enquiry%20Referrer/Location%20partner",
-    tippgeberTitle: "Quick via WhatsApp",
-    tippgeberText:
-      'Report your referrer tip conveniently via WhatsApp. Simply send the keyword „TIPPGEBER" to 0177 636 1394. We will get back to you within 24 hours.',
-    tippgeberCta: "Open WhatsApp",
-    whatsappTippgeberHref: "https://wa.me/491776361394?text=TIPPGEBER",
-    flyerTitle: "Referrer flyer",
-    flyerText:
-      'Order your referrer flyers conveniently via WhatsApp. Simply send the keyword „TIPPGEBER FLYER" to 0177 636 1394. We will get back to you within 24 hours.',
-    flyerCta: "Order flyer",
-    whatsappFlyerHref: "https://wa.me/491776361394?text=TIPPGEBER%20FLYER",
   },
   tr: {
     guarantee: "24 saat içinde yanıt garantisi",
@@ -80,16 +60,6 @@ const TEXTS = {
     whatsappHref:
       "https://wa.me/491776361394?text=Merhaba%20Holger,%20bir%20önerim/ortaklık%20ilgim%20var.",
     mailtoSubject: "Talep%20Öneri%20veren/Alan%20ortaklığı",
-    tippgeberTitle: "WhatsApp ile hızlı",
-    tippgeberText:
-      'Öneri veren ipucunuzu WhatsApp ile rahatça bildirin. Sadece „TIPPGEBER" anahtar kelimesini 0177 636 1394 numarasına gönderin. 24 saat içinde size geri dönüş yapacağız.',
-    tippgeberCta: "WhatsApp'ı aç",
-    whatsappTippgeberHref: "https://wa.me/491776361394?text=TIPPGEBER",
-    flyerTitle: "Öneri veren broşürü",
-    flyerText:
-      'Öneri veren broşürlerinizi WhatsApp ile rahatça sipariş edin. Sadece „TIPPGEBER FLYER" anahtar kelimesini 0177 636 1394 numarasına gönderin. 24 saat içinde size geri dönüş yapacağız.',
-    flyerCta: "Broşür sipariş et",
-    whatsappFlyerHref: "https://wa.me/491776361394?text=TIPPGEBER%20FLYER",
   },
 } as const;
 
@@ -109,60 +79,7 @@ export default function DirektkontaktSection() {
       className="mx-auto max-w-6xl rounded-2xl border border-slate-200 bg-slate-50 px-6 py-8 shadow-sm sm:px-8 sm:py-10"
       aria-labelledby="direktkontakt-heading"
     >
-      <div className="space-y-8">
-        <div className="grid gap-6 sm:grid-cols-2">
-          <div
-            className="rounded-xl border border-slate-200 bg-white p-5"
-            aria-labelledby="tippgeber-heading"
-          >
-            <h3
-              id="tippgeber-heading"
-              className="font-sans text-lg font-semibold tracking-tight text-slate-900"
-            >
-              {t.tippgeberTitle}
-            </h3>
-            <p className="mt-3 text-slate-600 leading-relaxed text-sm">
-              {t.tippgeberText}
-            </p>
-            <Link
-              href={t.whatsappTippgeberHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 font-medium text-white transition-all duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#25D366]"
-              style={{ backgroundColor: "#25D366", borderColor: "#25D366" }}
-            >
-              <MessageCircle className="h-5 w-5 shrink-0" />
-              <span>{t.tippgeberCta}</span>
-            </Link>
-          </div>
-
-          <div
-            className="rounded-xl border border-slate-200 bg-white p-5"
-            aria-labelledby="flyer-heading"
-          >
-            <h3
-              id="flyer-heading"
-              className="font-sans text-lg font-semibold tracking-tight text-slate-900"
-            >
-              {t.flyerTitle}
-            </h3>
-            <p className="mt-3 text-slate-600 leading-relaxed text-sm">
-              {t.flyerText}
-            </p>
-            <Link
-              href={t.whatsappFlyerHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 font-medium text-white transition-all duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#25D366]"
-              style={{ backgroundColor: "#25D366", borderColor: "#25D366" }}
-            >
-              <FileText className="h-5 w-5 shrink-0" />
-              <span>{t.flyerCta}</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="border-t border-slate-200 pt-8">
+      <div>
           <span className="inline-block rounded-full bg-slate-200 px-3 py-1 text-xs font-medium text-slate-700">
             {t.guarantee}
           </span>
@@ -222,7 +139,6 @@ export default function DirektkontaktSection() {
           <p className="mt-6 text-center text-sm text-slate-500">
             {t.disclaimer}
           </p>
-        </div>
       </div>
     </motion.section>
   );

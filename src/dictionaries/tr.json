@@ -22,6 +22,7 @@
     "referralBonus": "Öneri primi",
     "referralSub": [
       { "label": "Öneri verin" },
+      { "label": "Broşür reklamı" },
       { "label": "Banner reklamı" },
       { "label": "Dikici reklamı" }
     ],
@@ -76,6 +77,7 @@
     "rent": "Gayrimenkul kirala",
     "search": "Gayrimenkul ara",
     "tipGive": "Öneri verin",
+    "flyerAd": "Broşür reklamı",
     "bannerAd": "Banner reklamı",
     "displayAd": "Dikici reklamı",
     "logistics": "Lojistik danışmanlığı",

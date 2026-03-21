@@ -23,6 +23,7 @@ const LOGISTIKBERATUNG_HREFS = [
 
 const TIPP_PRAEMIE_HREFS = [
   "/geld-verdienen/tipp-geben",
+  "/geld-verdienen/flyer-werben",
   "/geld-verdienen/banner",
   "/geld-verdienen/aufsteller",
 ] as const;
