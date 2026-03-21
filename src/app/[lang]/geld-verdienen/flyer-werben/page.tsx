@@ -25,7 +25,7 @@ const TEXTS = {
     backLink: "Zurück zu Geld verdienen",
     heroTitle: "Geld verdienen mit Tippgeber-Flyern",
     heroIntro:
-      "Bestellen Sie kostenlos Tippgeber-Flyer von HE immologis und verteilen Sie diese in Ihrem Umfeld – bei Nachbarn, im Verein, am Arbeitsplatz oder in Ihrer Nachbarschaft.",
+      "Bestellen Sie kostenlos Tippgeber-Flyer von HE immologis und verteilen Sie diese in Ihrem Umfeld.\nIn Ihrer Nachbarschaft, Freunden und Bekannten, im Verein, am Arbeitsplatz.\n\nIhre Stadtviertel. Ihre Flyer. Ihre Provision.",
     heroCta: "Prämie bei erfolgreichem Verkauf",
     vorteileTitle: "Ihre Vorteile",
     v1: "Kostenlos bestellen",
@@ -146,17 +146,35 @@ export default async function FlyerWerbenPage() {
         className="relative flex min-h-[400px] items-center overflow-hidden border-b border-slate-200 px-4 py-12 sm:min-h-[480px] sm:px-6 sm:py-16 lg:px-8"
         aria-labelledby="flyer-hero-heading"
       >
-        <Image
-          src="/img/tipp-geben.jpeg"
-          alt="Tippgeber-Flyer – HE immologis Immobilienmakler Weinheim"
-          fill
-          className="object-cover object-center scale-105"
-          sizes="100vw"
-          priority
-          quality={90}
-        />
-        <div className="absolute inset-0 bg-slate-900/55" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-4xl">
+        {/* Hintergrund: beide Flyer nebeneinander */}
+        <div className="absolute inset-0 flex">
+          <div className="relative w-1/2">
+            <Image
+              src="/img/flyerhinten.jpeg"
+              alt=""
+              fill
+              className="object-cover object-right"
+              sizes="50vw"
+              priority
+              quality={90}
+              aria-hidden
+            />
+          </div>
+          <div className="relative w-1/2">
+            <Image
+              src="/img/flyervorne.jpeg"
+              alt=""
+              fill
+              className="object-cover object-left"
+              sizes="50vw"
+              priority
+              quality={90}
+              aria-hidden
+            />
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-slate-900/70" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
           <Link
             href={`${prefix}/geld-verdienen`}
             className="mb-8 inline-flex items-center gap-2 text-white/90 transition-colors hover:text-white"
@@ -170,7 +188,7 @@ export default async function FlyerWerbenPage() {
           >
             {t.heroTitle}
           </h1>
-          <p className="mt-4 text-lg text-white/95 drop-shadow-sm">
+          <p className="mt-4 whitespace-pre-line text-lg text-white/95 drop-shadow-sm">
             {t.heroIntro}
           </p>
           <p
