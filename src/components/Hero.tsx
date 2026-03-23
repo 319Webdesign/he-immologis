@@ -88,7 +88,7 @@ export default function Hero({ dict, lang: langProp }: HeroProps) {
                     />
                   </span>
                 ) : (
-                  <span style={{ color: "#F9423A", fontFamily: "var(--font-didot), 'GFS Didot', serif" }}>{dict.line2}</span>
+                  <span className="font-normal" style={{ color: "#F9423A", fontFamily: "var(--font-didot), 'GFS Didot', serif" }}>{dict.line2}</span>
                 )}
               </>
             )}
