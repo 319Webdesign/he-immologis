@@ -115,7 +115,7 @@ export default async function LogistikberatungPage() {
                 alt="Ihre Logistik im Mittelpunkt."
                 width={600}
                 height={80}
-                className="mx-auto mt-4 h-auto w-auto max-w-full drop-shadow-sm"
+                className="mx-auto mt-2 h-auto w-auto max-w-full drop-shadow-sm"
                 priority
               />
             ) : (
