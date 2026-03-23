@@ -109,14 +109,18 @@ export default async function LogistikberatungPage() {
             className="w-full font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
             <span className="block w-full text-xl sm:text-5xl">{smartIntro.title[0]}</span>
-            <Image
-              src="/img/logistik-claim.png"
-              alt="Ihre Logistik im Mittelpunkt."
-              width={600}
-              height={80}
-              className="mx-auto mt-0 h-auto w-auto max-w-full drop-shadow-sm"
-              priority
-            />
+            {locale === "de" ? (
+              <Image
+                src="/img/logistik-claim.png"
+                alt="Ihre Logistik im Mittelpunkt."
+                width={600}
+                height={80}
+                className="mx-auto mt-4 h-auto w-auto max-w-full drop-shadow-sm"
+                priority
+              />
+            ) : (
+              <span style={{ color: "#F9423A" }}>{smartIntro.title[1]}</span>
+            )}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-white/95 drop-shadow-sm">
             {smartIntro.subtitle}
