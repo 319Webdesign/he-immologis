@@ -3,6 +3,31 @@ import { NextRequest, NextResponse } from "next/server";
 const LOCALES = ["de", "en", "tr"] as const;
 type Locale = (typeof LOCALES)[number];
 
+function basicAuth(request: NextRequest): NextResponse | null {
+  const user = process.env.BASIC_AUTH_USER;
+  const pass = process.env.BASIC_AUTH_PASS;
+
+  // Falls keine Credentials gesetzt sind, Auth deaktivieren
+  if (!user || !pass) return null;
+
+  const authHeader = request.headers.get("authorization");
+  if (authHeader) {
+    const [scheme, encoded] = authHeader.split(" ");
+    if (scheme === "Basic" && encoded) {
+      const decoded = Buffer.from(encoded, "base64").toString("utf-8");
+      const [inputUser, inputPass] = decoded.split(":");
+      if (inputUser === user && inputPass === pass) return null;
+    }
+  }
+
+  return new NextResponse("Zugang verweigert", {
+    status: 401,
+    headers: {
+      "WWW-Authenticate": 'Basic realm="Vorschau", charset="UTF-8"',
+    },
+  });
+}
+
 /**
  * Ermittelt die bevorzugte Sprache aus dem Accept-Language-Header.
  * Einfache Logik: erste passende Sprache (de/en/tr) in der Reihenfolge der Client-Präferenz.
@@ -25,6 +50,10 @@ const CANONICAL_HOST = "www.he-immologis.de";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("host") ?? request.nextUrl.host;
+
+  // Basic Auth – schützt alle Routen vor der Veröffentlichung
+  const authResponse = basicAuth(request);
+  if (authResponse) return authResponse;
 
   // Non-www auf www umleiten (SEO: eine kanonische Domain)
   if (host === "he-immologis.de") {

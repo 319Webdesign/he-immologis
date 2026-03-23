@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Montserrat } from "next/font/google";
+import { Playfair_Display, Montserrat, GFS_Didot } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 
@@ -12,6 +12,13 @@ const playfair = Playfair_Display({
 const montserrat = Montserrat({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const gfsDidot = GFS_Didot({
+  variable: "--font-didot",
+  weight: "400",
+  subsets: ["greek"],
   display: "swap",
 });
 
@@ -61,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${montserrat.variable} font-sans antialiased`}
+        className={`${playfair.variable} ${montserrat.variable} ${gfsDidot.variable} font-sans antialiased`}
       >
         {children}
         <CookieBanner />
