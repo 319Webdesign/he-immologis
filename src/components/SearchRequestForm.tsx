@@ -106,7 +106,7 @@ function isValidEmail(email: string): boolean {
 
 export default function SearchRequestForm({ lang }: { lang?: string }) {
   const pathname = usePathname() ?? "";
-  const resolvedLang = lang ?? (pathname.startsWith("/en") ? "en" : pathname.startsWith("/tr") ? "tr" : "de");
+  const resolvedLang = lang ?? (pathname.startsWith("/en") ? "en" : pathname.startsWith("/tr") ? "tr" : pathname.startsWith("/ru") ? "ru" : "de");
   const isEn = resolvedLang === "en";
   const isTr = resolvedLang === "tr";
 
@@ -180,6 +180,7 @@ export default function SearchRequestForm({ lang }: { lang?: string }) {
           ort,
           telefon,
           email,
+          websiteLocale: resolvedLang,
         }),
       });
       const data = await res.json();

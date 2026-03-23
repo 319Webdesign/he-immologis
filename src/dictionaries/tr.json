@@ -648,8 +648,8 @@
     "expose": {
       "heading": "Emlak broşürü talep et",
       "intro": "{{objectNumber}} numaralı emlak broşürünü almak için lütfen ilginizi onaylayın ve iletişim bilgilerinizi girin.",
-      "successTitle": "Mesajınız için teşekkür ederiz.",
-      "successMessage": "Önümüzdeki 24 saat içinde sizinle iletişime geçeceğiz.<br>Saygılarımızla<br>Holger Eberhard",
+      "successTitle": "Teşekkür ederiz!",
+      "successMessage": "Talebiniz doğrudan sistemimize aktarıldı. Broşürü kısa süre içinde alacaksınız.<br>Saygılarımızla<br>Holger Eberhard",
       "firstName": "Ad *",
       "lastName": "Soyad *",
       "street": "Sokak *",

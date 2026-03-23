@@ -866,6 +866,7 @@ export function PropertyDetailLayout({
               propertyTitle={p.titel || (isKaufen ? "Immobilie" : "Mietobjekt")}
               hideIntro
               locale={locale}
+              section={section}
               dict={dict?.expose}
             />
             </div>

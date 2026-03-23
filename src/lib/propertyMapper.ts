@@ -19,6 +19,7 @@ export function staticPropertyToProperty(
   return {
     id: Number.isNaN(numId) ? 0 : numId,
     displayId: p.immoNr ?? p.id,
+    objektnr_extern: p.immoNr ?? p.kennung ?? p.id ?? null,
     estateIdForContact: null,
     titel: p.titel ?? "",
     kaufpreis: p.preis ?? null,

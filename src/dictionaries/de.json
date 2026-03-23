@@ -610,8 +610,8 @@
     "expose": {
       "heading": "Exposé anfordern",
       "intro": "Für den Erhalt des Exposés zur Immobilie {{objectNumber}} bitten wir Sie, Ihr Interesse kurz zu bestätigen und Ihre Kontaktdaten einzutragen.",
-      "successTitle": "Vielen Dank für Ihre Nachricht.",
-      "successMessage": "Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen.<br>Ihr<br>Holger Eberhard",
+      "successTitle": "Vielen Dank!",
+      "successMessage": "Ihre Anfrage wurde direkt in unser System übertragen. Sie erhalten das Exposé in Kürze.<br>Ihr<br>Holger Eberhard",
       "firstName": "Vorname *",
       "lastName": "Name *",
       "street": "Straße *",

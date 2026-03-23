@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { FileText, X } from "lucide-react";
+import { FileText } from "lucide-react";
 
 export type ExposeRequestDict = {
   intro?: string;
@@ -61,8 +61,10 @@ interface ExposeRequestFormProps {
   propertyTitle?: string;
   /** Intro-Text nicht anzeigen, wenn die Sektion ihn bereits rendert */
   hideIntro?: boolean;
-  /** Sprachcode für Links (z. B. datenschutz) */
+  /** Sprachcode für Links (z. B. datenschutz) und onOffice remaxAgentLanguages */
   locale?: string;
+  /** Kaufen / Mieten → ArtDaten in onOffice */
+  section?: "kaufen" | "mieten";
   /** Weiße Labels für dunklen Hintergrund (z. B. Steel Blue) */
   lightLabels?: boolean;
   /** Übersetzungen für EN/TR */
@@ -83,6 +85,7 @@ export function ExposeRequestForm({
   propertyTitle,
   hideIntro = false,
   locale = "de",
+  section = "kaufen",
   lightLabels = false,
   dict,
 }: ExposeRequestFormProps) {
@@ -96,12 +99,7 @@ export function ExposeRequestForm({
     email: "",
     telefon: "",
     datenschutz: false,
-    widerrufsbelehrung: false,
-    ausfuehrungVorWiderrufsfrist: false,
-    widerrufsrechtVerlust: false,
   });
-
-  const [popupOpen, setPopupOpen] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -121,14 +119,6 @@ export function ExposeRequestForm({
       validateEmail(v.email) &&
       validatePhone(v.telefon) &&
       v.datenschutz
-    );
-  }, [formState]);
-
-  const isPopupValid = useCallback(() => {
-    return (
-      formState.widerrufsbelehrung &&
-      formState.ausfuehrungVorWiderrufsfrist &&
-      formState.widerrufsrechtVerlust
     );
   }, [formState]);
 
@@ -191,13 +181,11 @@ export function ExposeRequestForm({
           ort: formState.ort.trim(),
           email: formState.email.trim(),
           telefon: formState.telefon.trim(),
-          widerrufsbelehrung: formState.widerrufsbelehrung,
-          ausfuehrungVorWiderrufsfrist:
-            formState.ausfuehrungVorWiderrufsfrist,
-          widerrufsrechtVerlust: formState.widerrufsrechtVerlust,
           objectNumber,
           estateId: estateId != null ? String(estateId) : undefined,
           propertyTitle: propertyTitle ?? undefined,
+          websiteLocale: locale.trim().toLowerCase().slice(0, 2) || "de",
+          vermarktungsart: section === "mieten" ? "miete" : "kauf",
         }),
       });
       const data = await res.json();
@@ -216,34 +204,17 @@ export function ExposeRequestForm({
         email: "",
         telefon: "",
         datenschutz: false,
-        widerrufsbelehrung: false,
-        ausfuehrungVorWiderrufsfrist: false,
-        widerrufsrechtVerlust: false,
       });
-      setPopupOpen(false);
       setTouched({});
     } catch {
       setStatus("error");
       setErrorMessage(t("errConnection", "Verbindungsfehler. Bitte später erneut versuchen."));
     }
-  }, [formState, objectNumber, estateId, propertyTitle, dict]);
+  }, [formState, objectNumber, estateId, propertyTitle, locale, section, dict]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!runValidation()) return;
-    setPopupOpen(true);
-  };
-
-  const handlePopupConfirm = () => {
-    const popupErrors: Record<string, string> = {};
-    if (!formState.widerrufsbelehrung)
-      popupErrors.widerrufsbelehrung = t("errWiderrufsbelehrung", "Bitte bestätigen Sie die Widerrufsbelehrung.");
-    if (!formState.ausfuehrungVorWiderrufsfrist)
-      popupErrors.ausfuehrungVorWiderrufsfrist = t("errAusfuehrung", "Bitte bestätigen Sie den Beginn vor Ende der Widerrufsfrist.");
-    if (!formState.widerrufsrechtVerlust)
-      popupErrors.widerrufsrechtVerlust = t("errVerlust", "Bitte bestätigen Sie die Kenntnis über den Verlust des Widerrufsrechts.");
-    setErrors((prev) => ({ ...prev, ...popupErrors }));
-    if (Object.keys(popupErrors).length > 0) return;
     doSubmit();
   };
 
@@ -490,157 +461,6 @@ export function ExposeRequestForm({
           ? t("sending", "Wird gesendet…")
           : t("submitButton", "Exposé jetzt anfordern")}
       </button>
-
-      {popupOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="popup-title"
-        >
-          <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-zinc-200 bg-white p-6 shadow-xl">
-            <div className="flex items-center justify-between">
-              <h3 id="popup-title" className="font-sans text-lg font-semibold text-zinc-900">
-                {t("popupTitle", "Bestätigungen zum ")}
-                <Link
-                  href={`/${locale}/widerruf`}
-                  className="text-teal-600 underline hover:text-teal-700"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t("widerrufsverzicht", "Widerrufsverzicht")}
-                </Link>
-              </h3>
-              <button
-                type="button"
-                onClick={() => {
-                  setPopupOpen(false);
-                  setErrors((prev) => ({
-                    ...prev,
-                    widerrufsbelehrung: "",
-                    ausfuehrungVorWiderrufsfrist: "",
-                    widerrufsrechtVerlust: "",
-                  }));
-                }}
-                className="rounded p-1 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700"
-                aria-label={t("close", "Schließen")}
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <p className="mt-2 text-sm text-zinc-600">
-              {t("popupIntro", "Bitte bestätigen Sie alle folgenden Bedingungen:")}
-            </p>
-            <div className="mt-4 space-y-3">
-              <label
-                className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
-                  errors.widerrufsbelehrung ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-zinc-50/50"
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  name="widerrufsbelehrung"
-                  checked={formState.widerrufsbelehrung}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
-                  aria-invalid={!!errors.widerrufsbelehrung}
-                />
-                <span className="text-sm text-zinc-700">
-                  {t("popupWiderrufsbelehrung", "Ich habe die ")}
-                <Link
-                  href={`/${locale}/agb#widerruf`}
-                  className="underline hover:opacity-80"
-                  style={{ color: "#F9423A" }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t("widerrufsbelehrung", "Widerrufsbelehrung")}
-                </Link>
-                  {" "}{t("popupWiderrufsbelehrungSuffix", "gelesen und verstanden.")}
-                </span>
-              </label>
-              <label
-                className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
-                  errors.ausfuehrungVorWiderrufsfrist ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-zinc-50/50"
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  name="ausfuehrungVorWiderrufsfrist"
-                  checked={formState.ausfuehrungVorWiderrufsfrist}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
-                  aria-invalid={!!errors.ausfuehrungVorWiderrufsfrist}
-                />
-                <span className="text-sm text-zinc-700">
-                  {t("popupAusfuehrungPrefix", "Ich verlange ausdrücklich, dass Sie vor Ende der ")}
-                  <Link
-                    href={`/${locale}/widerruf`}
-                    className="text-teal-600 underline hover:text-teal-700"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("widerrufsfrist", "Widerrufsfrist")}
-                  </Link>
-                  {" "}{t("popupAusfuehrungSuffix", "mit der Ausführung der Dienstleistung beginnen.")}
-                </span>
-              </label>
-              <label
-                className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
-                  errors.widerrufsrechtVerlust ? "border-red-500 bg-red-50/50" : "border-zinc-200 bg-zinc-50/50"
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  name="widerrufsrechtVerlust"
-                  checked={formState.widerrufsrechtVerlust}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 shrink-0 rounded border-zinc-300 text-teal-600 focus:ring-teal-500"
-                  aria-invalid={!!errors.widerrufsrechtVerlust}
-                />
-                <span className="text-sm text-zinc-700">
-                  {t("popupVerlustPrefix", "Mir ist bekannt, dass ich bei vollständiger Vertragserfüllung durch Sie mein ")}
-                  <Link
-                    href={`/${locale}/widerruf`}
-                    className="text-teal-600 underline hover:text-teal-700"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("widerrufsrecht", "Widerrufsrecht")}
-                  </Link>
-                  {" "}{t("popupVerlustSuffix", "verliere.")}
-                </span>
-              </label>
-            </div>
-            <div className="mt-6 flex gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setPopupOpen(false);
-                  setErrors((prev) => ({
-                    ...prev,
-                    widerrufsbelehrung: "",
-                    ausfuehrungVorWiderrufsfrist: "",
-                    widerrufsrechtVerlust: "",
-                  }));
-                }}
-                className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
-              >
-                {t("cancel", "Abbrechen")}
-              </button>
-              <button
-                type="button"
-                onClick={handlePopupConfirm}
-                disabled={status === "sending" || !isPopupValid()}
-                className="flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed hover:opacity-90 disabled:hover:opacity-100 disabled:opacity-70"
-                style={{ backgroundColor: "#F9423A" }}
-              >
-                {status === "sending" ? t("sending", "Wird gesendet…") : t("confirmSend", "Bestätigen & Senden")}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </form>
   );
 }

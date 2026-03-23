@@ -1,48 +1,69 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { buildExposeInquiryXml } from "@/lib/exposeInquiryXml";
 import { doContactRequest } from "@/lib/onoffice";
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@he-immologis.de";
+/**
+ * Exposé-Anfrage:
+ * 1. **Plain-Text-E-Mail** mit OpenImmo-XML an anfragen@… → Anfragenmanager (wie Immowelt/Immoscout).
+ * 2. Optional onOffice-API: Adresse + Interessenten-Relation (ohne Maklerbuch-Aktivität).
+ */
 
-function buildTransporter() {
-  const user = process.env.SMTP_USER ?? CONTACT_EMAIL;
-  const pass = process.env.SMTP_PASS;
+/** Postfach für OpenImmo / Anfragenmanager */
+const EXPOSE_REQUEST_EMAIL = "anfragen@heimmologis.de";
+
+/** onOffice-SMTP (anfragen@) */
+function buildOnOfficeMailTransporter() {
+  const user = process.env.SMTP_ANFRAGEN_USER ?? EXPOSE_REQUEST_EMAIL;
+  const pass = process.env.SMTP_ANFRAGEN_PASS;
   if (!pass) {
-    throw new Error(
-      "SMTP_PASS is not set. Bitte in .env.local setzen (Strato-E-Mail-Passwort)."
-    );
+    throw new Error("SMTP_ANFRAGEN_PASS ist nicht gesetzt. Bitte in .env.local setzen.");
   }
   return nodemailer.createTransport({
-    host: "smtp.strato.de",
+    host: "smtp.onoffice.de",
     port: 587,
     secure: false,
     requireTLS: true,
-    auth: {
-      user,
-      pass,
-      method: "LOGIN",
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-    debug: true,
-    logger: true,
+    auth: { user, pass },
+    tls: { rejectUnauthorized: false },
   });
 }
 
-function buildWiderrufsverzichtText(data: {
-  widerrufsbelehrung: boolean;
-  ausfuehrungVorWiderrufsfrist: boolean;
-  widerrufsrechtVerlust: boolean;
-}): string {
-  const lines: string[] = ["Widerrufsverzicht-Bestätigungen:"];
-  if (data.widerrufsbelehrung)
-    lines.push("• Widerrufsbelehrung gelesen und verstanden");
-  if (data.ausfuehrungVorWiderrufsfrist)
-    lines.push("• Ausdrücklicher Verlangen auf Ausführung vor Ende der Widerrufsfrist");
-  if (data.widerrufsrechtVerlust)
-    lines.push("• Kenntnis über Verlust des Widerrufsrechts bei vollständiger Vertragserfüllung");
-  return lines.join("\n");
+/**
+ * Nur Plain Text: lesbarer Block, danach OpenImmo-XML.
+ * Absender: Postfach (SMTP) – Antwort geht an Interessent über Reply-To.
+ */
+async function sendOpenImmoRequestMail(params: {
+  subject: string;
+  textPlain: string;
+  xmlPayload: string;
+  replyTo: string;
+  /** Anzeigename für From (E-Mail bleibt technisch das SMTP-Postfach) */
+  interessentDisplayName: string;
+}): Promise<{ ok: boolean; error?: string }> {
+  const { subject, textPlain, xmlPayload, replyTo, interessentDisplayName } =
+    params;
+  const mailbox = process.env.SMTP_ANFRAGEN_USER ?? EXPOSE_REQUEST_EMAIL;
+  const textBody = `${textPlain}\n\n${xmlPayload}`;
+  /** Technischer Absender (SPF/DKIM des SMTP-Postfachs); direkter Kontakt über Reply-To */
+  const fromHeader = `${interessentDisplayName} (Webseite) <${mailbox}>`;
+
+  try {
+    const t = buildOnOfficeMailTransporter();
+    const info = await t.sendMail({
+      from: fromHeader,
+      to: EXPOSE_REQUEST_EMAIL,
+      replyTo: `${interessentDisplayName} <${replyTo}>`,
+      subject,
+      text: textBody,
+    });
+    console.info("[expose-request] OpenImmo-E-Mail an", EXPOSE_REQUEST_EMAIL, info.messageId ?? "");
+    return { ok: true };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.warn("[expose-request] OpenImmo-E-Mail fehlgeschlagen:", e);
+    return { ok: false, error: msg || "E-Mail-Versand fehlgeschlagen." };
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -56,12 +77,11 @@ export async function POST(request: NextRequest) {
       ort,
       email,
       telefon,
-      widerrufsbelehrung,
-      ausfuehrungVorWiderrufsfrist,
-      widerrufsrechtVerlust,
       objectNumber,
       estateId,
-      propertyTitle,
+      websiteLocale,
+      locale: localeBody,
+      vermarktungsart: vermarktungsartBody,
     } = body as {
       vorname?: string;
       name?: string;
@@ -70,15 +90,13 @@ export async function POST(request: NextRequest) {
       ort?: string;
       email?: string;
       telefon?: string;
-      widerrufsbelehrung?: boolean;
-      ausfuehrungVorWiderrufsfrist?: boolean;
-      widerrufsrechtVerlust?: boolean;
       objectNumber?: string;
       estateId?: string;
-      propertyTitle?: string;
+      websiteLocale?: string;
+      locale?: string;
+      vermarktungsart?: string;
     };
 
-    // Validierung
     if (
       !vorname?.trim() ||
       !name?.trim() ||
@@ -93,76 +111,86 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    if (
-      !widerrufsbelehrung ||
-      !ausfuehrungVorWiderrufsfrist ||
-      !widerrufsrechtVerlust
-    ) {
+    const objectNumberVal = (objectNumber ?? "").toString().trim();
+    if (!objectNumberVal) {
       return NextResponse.json(
-        {
-          success: false,
-          error: "Alle drei Widerrufsverzicht-Bestätigungen sind erforderlich.",
-        },
+        { success: false, error: "Objektnummer fehlt. Bitte Seite neu laden." },
         { status: 400 }
       );
     }
-
-    const bemerkung = buildWiderrufsverzichtText({
-      widerrufsbelehrung,
-      ausfuehrungVorWiderrufsfrist,
-      widerrufsrechtVerlust,
-    });
-
-    // onOffice doContactRequest (falls estateId vorhanden)
+    const objektNr = objectNumberVal;
+    const bemerkung = `Anfrage über die Webseite für Objekt ${objektNr}`;
     const numEstateId = estateId ? parseInt(estateId, 10) : NaN;
-    if (!Number.isNaN(numEstateId) && numEstateId > 0) {
-      const onOfficeResult = await doContactRequest(numEstateId, {
-        vorname: vorname.trim(),
-        name: name.trim(),
-        strasse: strasse.trim(),
-        plz: plz.trim(),
-        ort: ort.trim(),
-        email: email.trim(),
-        telefon: telefon.trim(),
-        bemerkung,
-      });
-      if (!onOfficeResult.success) {
-        console.warn("[expose-request] onOffice:", onOfficeResult.error);
-        // Fortfahren mit E-Mail – onOffice-Fehler sind nicht blockierend
-      }
-    }
+    const hasEstateId = !Number.isNaN(numEstateId) && numEstateId > 0;
+    const websiteLocaleNorm =
+      (websiteLocale ?? localeBody ?? "de").trim().toLowerCase().slice(0, 2) || "de";
+    const vermarktungsart =
+      vermarktungsartBody === "miete" ? "miete" : "kauf";
 
-    // E-Mail versenden
-    const transporter = buildTransporter();
-    const subject = `[Exposé-Anfrage] ${propertyTitle ?? `Objekt ${objectNumber ?? ""}`} – ${vorname} ${name}`;
-    const text = [
-      "Exposé-Anforderung mit Widerrufsverzicht",
+    const customerEmail = email.trim();
+    const nachnameTrim = name?.trim() ?? "";
+    const vornameTrim = vorname.trim();
+    const interessentDisplayName = `${vornameTrim} ${nachnameTrim}`.trim();
+
+    const subject = `Exposé-Anfrage: ${objektNr} - ${nachnameTrim}`;
+    const textPlain = [
+      "Exposé-Anfrage über die Webseite (OpenImmo / Anfragenmanager)",
       "",
-      "Kontaktdaten:",
-      `Vorname: ${vorname}`,
-      `Name: ${name}`,
-      `Straße: ${strasse}`,
-      `PLZ: ${plz}`,
-      `Ort: ${ort}`,
-      `E-Mail: ${email}`,
-      `Telefon: ${telefon}`,
-      "",
-      "Objekt:",
-      `Objekt-Nr: ${objectNumber ?? "–"}`,
-      propertyTitle ? `Titel: ${propertyTitle}` : "",
-      "",
-      bemerkung,
+      `Objektnummer: ${objektNr}`,
+      `Vorname: ${vornameTrim}`,
+      `Nachname: ${nachnameTrim}`,
+      `E-Mail: ${customerEmail}`,
+      `Telefon: ${telefon.trim()}`,
+      `Straße: ${strasse.trim()}`,
+      `PLZ: ${plz.trim()}`,
+      `Ort: ${ort.trim()}`,
+      hasEstateId ? `\nonOffice estateId: ${numEstateId}` : "",
     ]
       .filter(Boolean)
       .join("\n");
 
-    await transporter.sendMail({
-      from: process.env.SMTP_USER ?? CONTACT_EMAIL,
-      to: CONTACT_EMAIL,
-      replyTo: email.trim(),
-      subject,
-      text,
+    const xmlPayload = buildExposeInquiryXml({
+      objektnrExtern: objektNr,
+      vorname: vornameTrim,
+      nachname: nachnameTrim,
+      email: customerEmail,
+      telefon: telefon.trim(),
     });
+
+    const mailResult = await sendOpenImmoRequestMail({
+      subject,
+      textPlain,
+      xmlPayload,
+      replyTo: customerEmail,
+      interessentDisplayName,
+    });
+    if (!mailResult.ok) {
+      return NextResponse.json(
+        { success: false, error: mailResult.error ?? "E-Mail-Versand fehlgeschlagen." },
+        { status: 500 }
+      );
+    }
+
+    if (hasEstateId) {
+      const onOfficeResult = await doContactRequest(numEstateId, {
+        vorname: vornameTrim,
+        name: nachnameTrim,
+        strasse: strasse.trim(),
+        plz: plz.trim(),
+        ort: ort.trim(),
+        email: customerEmail,
+        telefon: telefon.trim(),
+        bemerkung,
+        websiteLocale: websiteLocaleNorm,
+        vermarktungsart,
+      });
+      if (!onOfficeResult.success) {
+        console.warn(
+          "[expose-request] OpenImmo-Mail gesendet, onOffice API (Adresse/Relation) fehlgeschlagen:",
+          onOfficeResult.error
+        );
+      }
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

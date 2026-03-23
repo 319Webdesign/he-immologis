@@ -620,8 +620,8 @@
     "expose": {
       "heading": "Request property brochure",
       "intro": "To receive the property brochure for {{objectNumber}}, please confirm your interest and enter your contact details.",
-      "successTitle": "Thank you for your message.",
-      "successMessage": "We will get back to you within the next 24 hours.<br>Yours sincerely<br>Holger Eberhard",
+      "successTitle": "Thank you!",
+      "successMessage": "Your request has been transferred directly to our system. You will receive the brochure shortly.<br>Yours sincerely<br>Holger Eberhard",
       "firstName": "First name *",
       "lastName": "Last name *",
       "street": "Street *",

@@ -12,6 +12,44 @@ const RESOURCE_TYPE_SEARCHCRITERIA = "searchcriteria";
 const RELATION_INTERESTED =
   "urn:onoffice-de-ns:smart:2.5:relationTypes:estate:address:interested";
 
+/** Website-Sprache → remaxAgentLanguages (Multiselect, immer als Array) */
+const WEBSITE_LOCALE_TO_REMAX_LANG: Record<string, string[]> = {
+  de: ["DEU"],
+  en: ["ENG"],
+  tr: ["TUR"],
+  ru: ["RUS"],
+};
+
+export function remaxAgentLanguagesForWebsiteLocale(
+  locale?: string | null
+): string[] {
+  const key = (locale ?? "de").trim().toLowerCase().slice(0, 2);
+  return WEBSITE_LOCALE_TO_REMAX_LANG[key] ?? ["DEU"];
+}
+
+/** ArtDaten je nach Anfrage-Typ (Multiselect) */
+export function artDatenForVermarktungsart(
+  vermarktungsart?: "kauf" | "miete" | null
+): string[] {
+  return vermarktungsart === "miete" ? ["Interessent Miete"] : ["Interessent Kauf"];
+}
+
+/** Standard-Multiselect-Felder für neue Adressen (resource: address) */
+function applyNewAddressMultiselectFields(
+  createParams: Record<string, unknown>,
+  options: {
+    websiteLocale?: string | null;
+    vermarktungsart?: "kauf" | "miete" | null;
+  }
+): void {
+  createParams.HerkunftKontakt = ["webseite_system"];
+  createParams.remaxAgentLanguages = remaxAgentLanguagesForWebsiteLocale(
+    options.websiteLocale
+  );
+  createParams.ArtDaten = artDatenForVermarktungsart(options.vermarktungsart);
+  createParams.Beziehung = ["Kunde"];
+}
+
 /** Mapping Form-Label → onOffice objektart (Objektklasse, z. B. haus, wohnung) */
 const OBJEKTTYP_TO_ONOFFICE: Record<string, string> = {
   Einfamilienhaus: "haus",
@@ -515,13 +553,15 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
 
 /**
  * Ruft Immobilien von der onOffice-API ab.
- * Filter nur: status = "1" (Aktiv) und vermarktungsart (kauf/miete). Alle Objekte im Account werden geladen.
+ *
+ * Filter: status = 1 (Aktiv) und optional vermarktungsart (Kauf/Miete).
+ * Kein portal_id-Filter – alle aktiven Objekte im Account werden geliefert,
+ * unabhängig von einer Portal-Zuordnung in onOffice.
  */
 export async function fetchProperties(options?: {
   listlimit?: number;
-  /** Nur Objekte zum Kauf ("kauf") oder zur Miete ("miete") */
+  /** Nur Objekte zum Kauf ("Kauf") oder zur Miete ("Miete") */
   vermarktungsart?: Vermarktungsart;
-  filter?: Record<string, Array<{ op: string; val: unknown }>>;
   /** Website-Sprache (de, en, tr) für übersetzte Singleselect-Werte. de->DEU, en->ENG, tr->TUR */
   lang?: string;
 }): Promise<Property[]> {
@@ -541,11 +581,16 @@ export async function fetchProperties(options?: {
     : LANG_TO_ISO.de;
   const outputLang = isoLang;
 
-  /** Filter nur status "1" (Aktiv) und vermarktungsart – keine weiteren Filter (Error 141 vermeiden). */
+  /**
+   * Baut den API-Filter:
+   * - status = 1 (Aktiv) → liefert alle aktiven Objekte, kein portal_id-Filter
+   * - vermarktungsart = "kauf" | "miete" (optional)
+   * Kein "veroeffentlichen"- oder "portal"-Filter, damit auch Objekte ohne
+   * Portal-Zuordnung in onOffice zurückgegeben werden.
+   */
   const buildFilter = (): Record<string, Array<{ op: string; val: unknown }>> => {
     const filter: Record<string, Array<{ op: string; val: unknown }>> = {
-      ...options?.filter,
-      status: [{ op: "=", val: "1" }],
+      status: [{ op: "=", val: 1 }],
     };
     if (options?.vermarktungsart === "Kauf") {
       filter.vermarktungsart = [{ op: "=", val: "kauf" }];
@@ -610,6 +655,9 @@ export async function fetchProperties(options?: {
     return { ok: true, records };
   };
 
+  const activeFilter = buildFilter();
+  console.log("[onOffice fetchProperties] Filter:", JSON.stringify(activeFilter));
+
   let result = await doRequest(dataFields);
 
   if (!result.ok) {
@@ -621,6 +669,18 @@ export async function fetchProperties(options?: {
     );
     throw new Error(
       `onOffice API: ${result.message}${result.errorcode != null ? ` (ErrorCode: ${result.errorcode})` : ""}`
+    );
+  }
+
+  console.log(`[onOffice fetchProperties] ${result.records.length} Objekte geladen (vermarktungsart: ${options?.vermarktungsart ?? "alle"})`);
+
+  if (result.records.length === 0) {
+    console.warn(
+      "[onOffice fetchProperties] 0 Ergebnisse – mögliche Ursachen:\n" +
+      "  1. Kein Objekt in onOffice hat status=1 (Aktiv)\n" +
+      "  2. onOffice-API benötigt eine 'allgemeine Freigabe' (API-Benutzerrechte)\n" +
+      "  3. Alle aktiven Objekte sind einer anderen Vermarktungsart zugeordnet\n" +
+      "  → Tipp: In onOffice unter Benutzerrechte → API prüfen, ob alle Objekte freigegeben sind"
     );
   }
 
@@ -1149,8 +1209,12 @@ export interface ContactRequestData {
   ort: string;
   email: string;
   telefon: string;
-  /** Bemerkung / Widerrufsverzicht-Historie (Checkbox-Bestätigungen) */
+  /** Bemerkung / Notiz für Aktivität (z. B. "Anfrage über die Webseite für Objekt EFH-K-26-002") */
   bemerkung?: string;
+  /** UI-Sprache (de, en, tr, ru) → remaxAgentLanguages */
+  websiteLocale?: string | null;
+  /** Kauf- vs. Miet-Objekt → ArtDaten */
+  vermarktungsart?: "kauf" | "miete" | null;
 }
 
 /** Daten für Suchauftrag-Interessent (Adresse + Suchkriterien) */
@@ -1190,6 +1254,8 @@ export interface SearchRequestInterestedData {
   range_land?: string;
   /** Kaufpreis mindestens → kaufpreis__von */
   price_min?: number | string;
+  /** Website-Sprache für remaxAgentLanguages */
+  websiteLocale?: string | null;
 }
 
 /**
@@ -1283,6 +1349,10 @@ export function mapFormBodyToSearchRequestData(
     range_strasse: range_strasse || undefined,
     range_hausnummer: range_hausnummer || undefined,
     range_land: range_land || undefined,
+    websiteLocale:
+      (body.websiteLocale as string)?.trim() ||
+      (body.locale as string)?.trim() ||
+      undefined,
   };
 }
 
@@ -1365,7 +1435,14 @@ async function findAddressIdByEmail(
 async function createAddressMinimal(
   token: string,
   secret: string,
-  data: { firstname: string; lastname: string; email: string; phone: string }
+  data: {
+    firstname: string;
+    lastname: string;
+    email: string;
+    phone: string;
+    websiteLocale?: string | null;
+    vermarktungsart?: "kauf" | "miete" | null;
+  }
 ): Promise<{ addressId: number } | { error: string }> {
   const timestamp = String(Math.floor(Date.now() / 1000));
   const hmac = buildHmac(secret, timestamp, token, RESOURCE_TYPE_ADDRESS, CREATE_ACTION_ID);
@@ -1377,6 +1454,10 @@ async function createAddressMinimal(
     default_phone: data.phone.trim(),
     Land: "Deutschland",
   };
+  applyNewAddressMultiselectFields(createParams, {
+    websiteLocale: data.websiteLocale,
+    vermarktungsart: data.vermarktungsart,
+  });
   const createRes = await fetch(ONOFFICE_API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -1561,6 +1642,8 @@ export async function createSearchRequestInterested(
       lastname: data.lastname?.trim() ?? "",
       email,
       phone: data.phone?.trim() ?? "",
+      websiteLocale: data.websiteLocale,
+      vermarktungsart: data.vermarktungsart ?? "kauf",
     });
     if ("error" in created) {
       return { success: false, error: created.error };
@@ -1672,8 +1755,10 @@ export async function createSearchRequestInterested(
 
 /**
  * Führt eine Kontaktanfrage (Exposé-Anforderung) durch:
- * 1. Erstellt einen Adress-Datensatz (Interessent) in onOffice
+ * 1. Sucht bestehende Adresse per E-Mail oder legt neue an
  * 2. Verknüpft die Adresse mit der Immobilie als "Interessent" (estate:address:interested)
+ *
+ * Hinweis: Den Anfragenmanager triggert die **OpenImmo-E-Mail** an anfragen@…, nicht dieses API.
  *
  * @param estateId - ID der Immobilie in onOffice
  * @param data - Kontaktdaten des Interessenten
@@ -1693,81 +1778,85 @@ export async function doContactRequest(
     };
   }
 
-  const timestamp = String(Math.floor(Date.now() / 1000));
+  let addressId: number;
 
-  // 1. Adresse anlegen
-  const createHmac = buildHmac(
-    secret,
-    timestamp,
-    token,
-    RESOURCE_TYPE_ADDRESS,
-    CREATE_ACTION_ID
-  );
+  // 1. Adresse suchen (per E-Mail) oder anlegen
+  const existingId = await findAddressIdByEmail(token, secret, data.email.trim());
+  if (existingId != null) {
+    addressId = existingId;
+    console.log("[onOffice doContactRequest] Bestehende Adresse verwendet, addressId:", addressId);
+  } else {
+    const timestamp = String(Math.floor(Date.now() / 1000));
+    const createHmac = buildHmac(
+      secret,
+      timestamp,
+      token,
+      RESOURCE_TYPE_ADDRESS,
+      CREATE_ACTION_ID
+    );
+    const createParams: Record<string, unknown> = {
+      Vorname: data.vorname.trim(),
+      Name: data.name.trim(),
+      Strasse: data.strasse.trim(),
+      Plz: data.plz.trim(),
+      Ort: data.ort.trim(),
+      Land: "Deutschland",
+      email: data.email.trim(),
+      phone: data.telefon.trim(),
+      default_phone: data.telefon.trim(),
+    };
+    if (data.bemerkung?.trim()) {
+      createParams.Bemerkung = data.bemerkung.trim();
+    }
+    applyNewAddressMultiselectFields(createParams, {
+      websiteLocale: data.websiteLocale,
+      vermarktungsart: data.vermarktungsart ?? "kauf",
+    });
 
-  const createParams: Record<string, unknown> = {
-    Vorname: data.vorname.trim(),
-    Name: data.name.trim(),
-    Strasse: data.strasse.trim(),
-    Plz: data.plz.trim(),
-    Ort: data.ort.trim(),
-    Land: "Deutschland",
-    email: data.email.trim(),
-    phone: data.telefon.trim(),
-    default_phone: data.telefon.trim(),
-  };
-  if (data.bemerkung?.trim()) {
-    createParams.Bemerkung = data.bemerkung.trim();
-  }
-
-  const createBody = {
-    token,
-    request: {
-      actions: [
-        {
-          actionid: CREATE_ACTION_ID,
-          resourceid: "",
-          resourcetype: RESOURCE_TYPE_ADDRESS,
-          identifier: "",
-          timestamp,
-          hmac: createHmac,
-          hmac_version: "2",
-          parameters: createParams,
+    const createRes = await fetch(ONOFFICE_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token,
+        request: {
+          actions: [
+            {
+              actionid: CREATE_ACTION_ID,
+              resourceid: "",
+              resourcetype: RESOURCE_TYPE_ADDRESS,
+              identifier: "",
+              timestamp,
+              hmac: createHmac,
+              hmac_version: "2",
+              parameters: createParams,
+            },
+          ],
         },
-      ],
-    },
-  };
+      }),
+    });
 
-  const createRes = await fetch(ONOFFICE_API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(createBody),
-  });
+    if (!createRes.ok) {
+      return { success: false, error: `onOffice Create: HTTP ${createRes.status}` };
+    }
 
-  if (!createRes.ok) {
-    return {
-      success: false,
-      error: `onOffice Create: HTTP ${createRes.status}`,
-    };
-  }
+    const createJson = (await createRes.json()) as OnOfficeCreateResponse;
+    const createStatus = createJson.status?.code ?? createJson.response?.results?.[0]?.status?.code;
+    if (createStatus !== 200) {
+      const msg =
+        createJson.response?.results?.[0]?.status?.message ??
+        createJson.status?.message ??
+        "onOffice Create fehlgeschlagen";
+      console.error("[onOffice doContactRequest] Create error:", msg);
+      return { success: false, error: msg };
+    }
 
-  const createJson = (await createRes.json()) as OnOfficeCreateResponse;
-  const createStatus = createJson.status?.code ?? createJson.response?.results?.[0]?.status?.code;
-  if (createStatus !== 200) {
-    const msg =
-      createJson.response?.results?.[0]?.status?.message ??
-      createJson.status?.message ??
-      "onOffice Create fehlgeschlagen";
-    console.error("[onOffice doContactRequest] Create error:", msg);
-    return { success: false, error: msg };
-  }
-
-  const newRecords = createJson.response?.results?.[0]?.data?.records ?? [];
-  const newAddressId = newRecords[0]?.id;
-  if (newAddressId == null) {
-    return {
-      success: false,
-      error: "onOffice Create: Keine Adress-ID in Response",
-    };
+    const newRecords = createJson.response?.results?.[0]?.data?.records ?? [];
+    const newAddressId = newRecords[0]?.id;
+    if (newAddressId == null) {
+      return { success: false, error: "onOffice Create: Keine Adress-ID in Response" };
+    }
+    addressId = newAddressId;
+    console.log("[onOffice doContactRequest] Neue Adresse angelegt, addressId:", addressId);
   }
 
   // 2. Relation estate:address:interested anlegen (parent=estate, child=address)
@@ -1796,7 +1885,7 @@ export async function doContactRequest(
           parameters: {
             relationtype: RELATION_INTERESTED,
             parentid: [estateId],
-            childid: [newAddressId],
+            childid: [addressId],
           },
         },
       ],
@@ -1815,17 +1904,17 @@ export async function doContactRequest(
       relRes.status,
       "– Adresse wurde erstellt, Verknüpfung evtl. fehlgeschlagen"
     );
-    return { success: true, addressId: newAddressId };
+  } else {
+    const relJson = (await relRes.json()) as OnOfficeCreateResponse;
+    const relStatus = relJson.status?.code ?? relJson.response?.results?.[0]?.status?.code;
+    if (relStatus !== 200) {
+      console.warn(
+        "[onOffice doContactRequest] Relation Create:",
+        relJson.response?.results?.[0]?.status?.message ?? relJson.status?.message
+      );
+    }
   }
+  // Relation-Fehler sind nicht blockierend – Adresse existiert
 
-  const relJson = (await relRes.json()) as OnOfficeCreateResponse;
-  const relStatus = relJson.status?.code ?? relJson.response?.results?.[0]?.status?.code;
-  if (relStatus !== 200) {
-    console.warn(
-      "[onOffice doContactRequest] Relation Create:",
-      relJson.response?.results?.[0]?.status?.message ?? relJson.status?.message
-    );
-  }
-
-  return { success: true, addressId: newAddressId };
+  return { success: true, addressId };
 }
