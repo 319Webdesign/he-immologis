@@ -21,7 +21,7 @@ const TEXTS = {
     heroTitle: "Geld verdienen mit Tippgeber-Flyern",
     heroIntro:
       "Bestellen Sie kostenlos Tippgeber-Flyer von HE immologis und verteilen Sie diese in Ihrem Umfeld.\nIn Ihrer Nachbarschaft, Freunden und Bekannten, im Verein, am Arbeitsplatz.",
-    heroCta: "Prämie bei erfolgreichem Verkauf",
+    heroCta: "800€ Prämie bei erfolgreichem Verkauf",
     flyerPateTitle: "Ihr Stadtviertel. Ihre Flyer. Ihre Provision.",
     flyerPateSubtitle: "Werden Sie Flyer-Pate für Ihr Stadtviertel",
     flyerPateBodyBefore:
