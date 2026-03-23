@@ -39,7 +39,7 @@ export const BANNER_DOCS = {
 /** Aufsteller: privat + Gewerbe/Läden */
 export const AUFSTELLER_DOCS = {
   privat: {
-    de: doc("HE Immologis WerbepartneV Aufsteller privat DE.pdf"),
+    de: doc("HE Immologis WerbepartnerV Aufsteller privat DE.pdf"),
     en: doc("HE Immologis WerbepartneV Aufsteller privat EN.pdf"),
     tr: doc("HE Immologis WerbepartneV Aufsteller privat TR.pdf"),
   } as Record<Locale, string>,
@@ -49,6 +49,9 @@ export const AUFSTELLER_DOCS = {
     tr: doc("HE Immologis WerbepartnerV Aufsteller Läden TR.pdf"),
   } as Record<Locale, string>,
 };
+
+/** AGB als PDF-Download (DE) */
+export const AGB_PDF_DE = doc("AGB_01.03.2026_DE.pdf");
 
 /** Mustervertrag Werbefläche – bleibt bei /downloads, da kein eigenes File in dokumente */
 export const MUSTERVERTRAG_WERBEFLAECHE = "/downloads/HE_Immologis_Mustervertrag_Werbeflaeche.pdf";

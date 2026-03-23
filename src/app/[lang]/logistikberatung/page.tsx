@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import {
@@ -107,12 +108,15 @@ export default async function LogistikberatungPage() {
             id="hero-logistik-heading"
             className="w-full font-sans text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-5xl"
           >
-            {smartIntro.title.map((line, i) => (
-              <span key={i} style={i === 1 ? { color: "#F9423A" } : undefined}>
-                {line}
-                {i < smartIntro.title.length - 1 && <br />}
-              </span>
-            ))}
+            <span className="block w-full text-xl sm:text-5xl">{smartIntro.title[0]}</span>
+            <Image
+              src="/img/logistik-claim.png"
+              alt="Ihre Logistik im Mittelpunkt."
+              width={600}
+              height={80}
+              className="mx-auto mt-0 h-auto w-auto max-w-full drop-shadow-sm"
+              priority
+            />
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-white/95 drop-shadow-sm">
             {smartIntro.subtitle}

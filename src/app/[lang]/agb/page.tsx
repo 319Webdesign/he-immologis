@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AGB_PDF_DE } from "@/lib/documents";
 
 const LEGAL_CONTENT = "mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8";
 
@@ -671,11 +672,23 @@ export default async function AgbPage({
           </p>
         </div>
 
-        <p className="mt-10 text-sm text-slate-500">
-          <Link href={`${prefix}/widerruf`} className="text-[#F9423A] underline hover:no-underline">
-            Widerrufsrecht (kurze Übersicht)
-          </Link>
-        </p>
+        <div className="mt-10 flex flex-col gap-3 text-sm text-slate-500">
+          <p>
+            <a
+              href={AGB_PDF_DE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#F9423A] underline hover:no-underline"
+            >
+              AGB als PDF herunterladen
+            </a>
+          </p>
+          <p>
+            <Link href={`${prefix}/widerruf`} className="text-[#F9423A] underline hover:no-underline">
+              Widerrufsrecht (kurze Übersicht)
+            </Link>
+          </p>
+        </div>
       </div>
     </article>
   );
