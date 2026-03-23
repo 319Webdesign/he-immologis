@@ -119,7 +119,7 @@ export default async function LogistikberatungPage() {
                 priority
               />
             ) : (
-              <span style={{ color: "#F9423A", fontFamily: "var(--font-didot), 'GFS Didot', serif" }}>{smartIntro.title[1]}</span>
+              <span className="font-normal" style={{ color: "#F9423A", fontFamily: "var(--font-didot), 'GFS Didot', serif" }}>{smartIntro.title[1]}</span>
             )}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-white/95 drop-shadow-sm">
