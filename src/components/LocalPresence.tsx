@@ -82,7 +82,7 @@ export default function LocalPresence({ dict }: LocalPresenceProps) {
           </div>
           <div className="mt-6 flex justify-center sm:absolute sm:right-0 sm:bottom-0 sm:mt-0 lg:relative lg:right-auto lg:bottom-auto lg:col-span-1 lg:mt-0 lg:self-end lg:justify-center">
             <img
-              src="/img/Holger73.jpg"
+              src="/img/Holger73.png"
               alt="Holger Eberhard – Ihr Ansprechpartner für Immobilien in Weinheim und an der Bergstraße"
               className="h-36 w-36 rounded-xl object-cover object-center ring-2 ring-slate-200 sm:h-44 sm:w-44 lg:h-48 lg:w-48"
               width={400}
