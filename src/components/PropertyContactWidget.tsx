@@ -3,7 +3,7 @@ import { FileText } from "lucide-react";
 
 const CONTACT = {
   name: "Holger Eberhard",
-  imageSrc: "/img/holger.jpeg",
+  imageSrc: "/img/Holger73.jpg",
 };
 
 export type PropertyContactDict = {

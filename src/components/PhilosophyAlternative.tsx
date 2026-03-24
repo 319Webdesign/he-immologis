@@ -44,6 +44,7 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
             const Icon = SECTION_ICONS[index];
             const order = SECTION_ORDERS[index];
             const isExclusivity = index === 0;
+            const isPuenktlichkeit = index === 1;
             return (
             <article
               key={id}
@@ -95,6 +96,16 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
                       alt=""
                       fill
                       className="rounded-l-2xl object-cover object-right"
+                      sizes="(max-width: 768px) 100vw, 576px"
+                    />
+                  </div>
+                ) : isPuenktlichkeit ? (
+                  <div className="relative h-64 w-full max-w-md overflow-hidden sm:h-72 lg:h-80 lg:max-w-xl">
+                    <Image
+                      src="/img/Holger29.jpg"
+                      alt="Holger Eberhard – Pünktlichkeit und Zuverlässigkeit"
+                      fill
+                      className="rounded-r-2xl object-cover object-top"
                       sizes="(max-width: 768px) 100vw, 576px"
                     />
                   </div>

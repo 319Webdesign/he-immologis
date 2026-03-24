@@ -66,7 +66,7 @@ export default async function UeberMichPage() {
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[30%_1fr] lg:gap-12">
             <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl bg-slate-100 lg:max-w-none">
               <Image
-                src="/img/holger.jpeg"
+                src="/img/Holger24.jpg"
                 alt="Holger Eberhard - Immobilienmakler Weinheim und Pharmalogistik Beratung - HE-immologis"
                 fill
                 className="object-cover"
