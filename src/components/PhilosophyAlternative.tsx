@@ -45,6 +45,7 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
             const order = SECTION_ORDERS[index];
             const isExclusivity = index === 0;
             const isPuenktlichkeit = index === 1;
+            const isFlexibility = index === 2;
             return (
             <article
               key={id}
@@ -100,12 +101,23 @@ export default function PhilosophyAlternative({ dict }: PhilosophyAlternativePro
                     />
                   </div>
                 ) : isPuenktlichkeit ? (
-                  <div className="relative h-64 w-full max-w-md overflow-hidden sm:h-72 lg:h-80 lg:max-w-xl">
+                  <div className="relative h-64 w-full max-w-md overflow-hidden rounded-r-2xl sm:h-72 lg:h-80 lg:max-w-xl">
+                    <video
+                      src="/video/pünktlich.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : isFlexibility ? (
+                  <div className="relative ml-auto h-64 w-full max-w-md overflow-hidden sm:h-72 lg:h-80 lg:max-w-xl">
                     <Image
                       src="/img/Holger29.jpg"
-                      alt="Holger Eberhard – Pünktlichkeit und Zuverlässigkeit"
+                      alt="Holger Eberhard – Flexibilität und Zuverlässigkeit"
                       fill
-                      className="rounded-r-2xl object-cover object-top"
+                      className="rounded-l-2xl object-cover object-top"
                       sizes="(max-width: 768px) 100vw, 576px"
                     />
                   </div>
