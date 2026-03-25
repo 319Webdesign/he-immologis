@@ -83,7 +83,7 @@ export default async function ImmobilieSuchenPage({
     ? "Search in Weinheim and the surrounding area."
     : isTr
       ? "Weinheim ve çevresinde arayın."
-      : "Suche in Weinheim und Umgebung.";
+      : "Suche in Weinheim und Rhein-Neckar.";
   const heroSubline = isEn
     ? "Your requirements – We search specifically for you."
     : isTr
@@ -112,11 +112,11 @@ export default async function ImmobilieSuchenPage({
           backgroundColor: "#1e293b",
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/40" aria-hidden />
-        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-2 pt-20 text-center sm:px-0 sm:pt-0">
+        <div className="absolute inset-0 bg-slate-900/60" aria-hidden />
+        <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-2 pt-20 text-center sm:px-0 sm:pt-0">
           <h1
             id="hero-suche-heading"
-            className="w-full font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:w-auto sm:text-4xl lg:text-5xl"
+            className="w-full whitespace-nowrap font-sans text-2xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-5xl"
           >
             {heroHeading}
           </h1>
@@ -126,13 +126,13 @@ export default async function ImmobilieSuchenPage({
         </div>
         <a
           href="#suchauftrag"
-          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 text-white/90 transition-colors hover:text-white sm:bottom-8"
+          className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-1 transition-colors hover:opacity-90 sm:bottom-8"
           aria-label={isEn ? "Scroll to search request form" : "Zum Suchauftrag-Formular scrollen"}
         >
-          <span className="text-sm font-medium">
+          <span className="text-sm font-medium text-red-400">
             {ctaLabel}
           </span>
-          <ChevronDown className="h-7 w-7 animate-bounce text-white/80" aria-hidden />
+          <ChevronDown className="h-7 w-7 animate-bounce text-red-400" aria-hidden />
         </a>
       </section>
 

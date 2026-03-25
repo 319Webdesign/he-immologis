@@ -76,6 +76,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
   const utilityLinks = (variant: "bar" | "mobile") => (
     <div className="flex items-center gap-4 lg:gap-2 min-[1200px]:gap-0.5">
+      <Link href={`${prefix}/ueber-mich#kontakt`} className={utilityLinkClass(variant)}>
+        <span>{dict.contactNow}</span>
+      </Link>
       <a href="mailto:info@he-immologis.de" className={utilityLinkClass(variant)}>
         <Mail className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">info@he-immologis.de</span>
@@ -166,6 +169,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             <Link href={`${prefix}/mieten`} className={navLinkClass(`${prefix}/mieten`)}>
               {dict.rent}
             </Link>
+            <Link href={`${prefix}/immobilie-suchen`} className={navLinkClass(`${prefix}/immobilie-suchen`)}>
+              {dict.search}
+            </Link>
             <Link
               href={`${prefix}/immobilien-services`}
               className={navLinkClass(`${prefix}/immobilien-services`)}
@@ -247,14 +253,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               )}
             </div>
 
-            <Link href={`${prefix}/ueber-mich`} className={navLinkClass(`${prefix}/ueber-mich`)}>
+            <Link href={`${prefix}/ueber-mich`} className={`${navLinkClass(`${prefix}/ueber-mich`)} pr-0`}>
               {dict.aboutMe}
-            </Link>
-            <Link
-              href={`${prefix}/ueber-mich#kontakt`}
-              className={`${navLinkClass(`${prefix}/ueber-mich#kontakt`)} pr-0`}
-            >
-              {dict.contactNow}
             </Link>
           </div>
 
@@ -296,18 +296,18 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 {dict.rent}
               </Link>
               <Link
+                href={`${prefix}/immobilie-suchen`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
+              >
+                {dict.search}
+              </Link>
+              <Link
                 href={`${prefix}/immobilien-services`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
               >
                 {dict.service}
-              </Link>
-              <Link
-                href={`${prefix}/ueber-mich#kontakt`}
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-semibold text-black hover:bg-zinc-50"
-              >
-                {dict.contactNow}
               </Link>
               <div className="rounded-lg">
                 <button
