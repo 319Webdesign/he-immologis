@@ -118,7 +118,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     description: "",
     image: "/img/nil-zubari.jpeg",
     detailSections: [
-      "Wir Vermitteln Ihnen mögliche Partner für Immobilienfinanzierung in Ihrer Region. Individuell, transparent und auf Ihr Vorhaben abgestimmt.",
+      "Wir vermitteln Ihnen mögliche Partner für Immobilienfinanzierung in Ihrer Region. Individuell, transparent und auf Ihr Vorhaben abgestimmt.",
       "Im Fokus stehen eine ganzheitliche Finanzplanung und die Erstellung eines tragfähigen Finanzierungskonzepts.",
     ],
   },
