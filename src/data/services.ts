@@ -116,9 +116,9 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     subtitle: "Ganzheitliche Finanzplanung und Konzepterstellung.",
     price: "Auf Anfrage",
     description: "",
-    image: "/img/nil-zubari.png",
+    image: "/img/nil-zubari.jpeg",
     detailSections: [
-      "Wir unterstützen Sie bei der Vermittlung passender Immobilienfinanzierungen - individuell, transparent und auf Ihr Vorhaben abgestimmt.",
+      "Wir Vermitteln Ihnen mögliche Partner für Immobilien Finanzierung, in Ihrer Region.\nindividuell, transparent und auf Ihr Vorhaben abgestimmt.",
       "Im Fokus stehen eine ganzheitliche Finanzplanung und die Erstellung eines tragfähigen Finanzierungskonzepts.",
     ],
   },

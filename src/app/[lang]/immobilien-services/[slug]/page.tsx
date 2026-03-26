@@ -244,7 +244,7 @@ function DefaultContent({
           );
         }
         return (
-          <p key={i} className="text-lg leading-relaxed text-slate-600">
+          <p key={i} className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
             {text}
           </p>
         );
@@ -362,7 +362,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
                 <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
                   <Image
-                    src="/img/nil-zubari.png"
+                    src="/img/nil-zubari.jpeg"
                     alt="Nil Zubari"
                     fill
                     className="object-contain p-1"
