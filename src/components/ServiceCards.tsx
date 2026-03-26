@@ -26,6 +26,7 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
   const description = (isTr && service.descriptionTr) ? service.descriptionTr : (isEn && service.descriptionEn) ? service.descriptionEn : service.description;
   const baseHref = lang ? `/${lang}/immobilien-services` : "/immobilien-services";
   const href = service.href ?? `${baseHref}/${service.slug}`;
+  const isFinanceCard = service.slug === "immobilienfinanzierung";
 
   return (
     <article
@@ -37,7 +38,11 @@ export function ServiceCard({ service, lang, moreInfoText = "Mehr Infos" }: Serv
           src={service.image}
           alt={`${title} – Immobilien Weinheim und Rhein-Neckar – HE-immologis`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className={
+            isFinanceCard
+              ? "object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+              : "object-cover transition-transform duration-500 group-hover:scale-105"
+          }
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>

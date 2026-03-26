@@ -362,10 +362,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
                 <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
                   <Image
-                    src="/img/team/nil-zubari.jpg"
+                    src="/img/nil-zubari.png"
                     alt="Nil Zubari"
                     fill
-                    className="object-cover"
+                    className="object-contain p-1"
                     sizes="112px"
                   />
                 </div>
