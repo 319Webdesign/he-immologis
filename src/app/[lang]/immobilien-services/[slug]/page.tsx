@@ -360,13 +360,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 {locale === "en" ? "Contact person for financing" : locale === "tr" ? "Finansman için iletişim" : "Kontakt für Immobilienfinanzierung"}
               </h2>
               <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
-                <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+                <div className="relative h-36 w-36 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white">
                   <Image
-                    src="/img/nil-zubari.jpeg"
+                    src="/img/nil-2w.png"
                     alt="Nil Zubari"
                     fill
                     className="object-contain p-1"
-                    sizes="112px"
+                    sizes="144px"
                   />
                 </div>
                 <div className="min-w-0">
