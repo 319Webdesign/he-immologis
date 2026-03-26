@@ -114,12 +114,26 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     slug: "immobilienfinanzierung",
     title: "Vermittlung von Immobilienfinanzierungen",
     subtitle: "Ganzheitliche Finanzplanung und Konzepterstellung.",
+    titleEn: "Real Estate Financing Brokerage",
+    subtitleEn: "Holistic financial planning and concept development.",
+    titleTr: "Gayrimenkul finansmanı aracılığı",
+    subtitleTr: "Bütünsel finansal planlama ve konsept geliştirme.",
     price: "Auf Anfrage",
+    priceEn: "Upon request",
+    priceTr: "Talep üzerine",
     description: "",
     image: "/img/nil-zubari.jpeg",
     detailSections: [
       "Wir vermitteln Ihnen mögliche Partner für Immobilienfinanzierung in Ihrer Region. Individuell, transparent und auf Ihr Vorhaben abgestimmt.",
       "Im Fokus stehen eine ganzheitliche Finanzplanung und die Erstellung eines tragfähigen Finanzierungskonzepts.",
+    ],
+    detailSectionsEn: [
+      "We connect you with suitable partners for real estate financing in your region. Individual, transparent, and tailored to your project.",
+      "Our focus is on holistic financial planning and the development of a robust financing concept.",
+    ],
+    detailSectionsTr: [
+      "Bölgenizde gayrimenkul finansmanı için uygun iş ortaklarıyla sizi buluşturuyoruz. Bireysel, şeffaf ve projenize uygun.",
+      "Odak noktamız bütünsel finansal planlama ve sürdürülebilir bir finansman konseptinin oluşturulmasıdır.",
     ],
   },
   {
