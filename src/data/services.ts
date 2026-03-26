@@ -110,6 +110,19 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     ],
   },
   {
+    id: "1-1",
+    slug: "immobilienfinanzierung",
+    title: "Vermittlung von Immobilienfinanzierungen",
+    subtitle: "ganzheitliche Finanzplanung und Konzepterstellung",
+    price: "Auf Anfrage",
+    description: "",
+    image: "/img/service/bewertungsmodul.jpeg",
+    detailSections: [
+      "Wir unterstützen Sie bei der Vermittlung passender Immobilienfinanzierungen - individuell, transparent und auf Ihr Vorhaben abgestimmt.",
+      "Im Fokus stehen eine ganzheitliche Finanzplanung und die Erstellung eines tragfähigen Finanzierungskonzepts.",
+    ],
+  },
+  {
     id: "2",
     slug: "beratung-begleitung",
     title: "Beratungsmodul",

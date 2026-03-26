@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
@@ -347,44 +348,103 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </section>
           )}
 
-          {/* Anfrage-Sektion */}
-          <section
-            className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-8 sm:px-8 sm:py-10"
-            aria-labelledby="anfrage-heading"
-          >
-            <h2
-              id="anfrage-heading"
-              className="font-sans text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl"
+          {slug === "immobilienfinanzierung" && (
+            <section
+              className="mt-12 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"
+              aria-labelledby="finance-contact-heading"
             >
-              {locale === "en" ? "Enquiry for this service" : locale === "tr" ? "Bu hizmet için talepte bulunun" : "Anfrage zu diesem Service"}
-            </h2>
-            <p className="mt-3 text-slate-600">
-              {locale === "en"
-                ? "Do you have questions or would you like a non-binding quote? Get in touch – we will get back to you promptly."
-                : locale === "tr"
-                  ? "Sorularınız mı var veya bağlayıcı olmayan bir teklif mi istiyorsunuz? Bize ulaşın – size en kısa sürede geri dönelim."
-                  : "Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot? Schreiben Sie uns – wir melden uns zeitnah bei Ihnen."}
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
-              <a
-                href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : locale === "tr" ? "Talep – " + displayTitle : "Anfrage – " + service.title)}`}
-                className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2"
-                style={{ backgroundColor: BRAND_BLUE }}
+              <h2
+                id="finance-contact-heading"
+                className="font-sans text-xl font-semibold tracking-tight text-slate-900"
               >
-                {locale === "en" ? "Send email" : locale === "tr" ? "E-posta gönder" : "E-Mail schreiben"}
-              </a>
-              <p className="text-slate-600">
-                {locale === "en" ? "Or call: " : locale === "tr" ? "Veya arayın: " : "Oder anrufen: "}
-                <a
-                  href="tel:+491776361394"
-                  className="font-medium underline hover:no-underline"
-                  style={{ color: BRAND_BLUE }}
-                >
-                  +49 177 636 1394
-                </a>
+                {locale === "en" ? "Contact person for financing" : locale === "tr" ? "Finansman için iletişim" : "Kontakt für Immobilienfinanzierung"}
+              </h2>
+              <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
+                <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+                  <Image
+                    src="/img/team/nil-zubari.jpg"
+                    alt="Nil Zubari"
+                    fill
+                    className="object-cover"
+                    sizes="112px"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-lg font-semibold text-slate-900">Nil Zubari</p>
+                  <p className="text-slate-600">Senior Financial Consultant</p>
+                  <p className="text-slate-600">Diplom-Betriebswirtin</p>
+                  <div className="mt-4 space-y-2 text-slate-700">
+                    <p className="font-medium">{locale === "en" ? "Contact details:" : locale === "tr" ? "İletişim bilgileri:" : "Kontaktdaten:"}</p>
+                    <p>
+                      <a
+                        href="tel:+491775967495"
+                        className="font-semibold underline hover:no-underline"
+                        style={{ color: BRAND_BLUE }}
+                      >
+                        0177 5967495
+                      </a>
+                    </p>
+                    <p className="text-slate-600">
+                      {locale === "en"
+                        ? "Feel free to call me at any time."
+                        : locale === "tr"
+                          ? "Beni istediğiniz zaman arayabilirsiniz."
+                          : "Rufen Sie mich gerne jederzeit an."}
+                    </p>
+                    <a
+                      href="https://mlp-heidelberg.de/team/profile/nil-zubari/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center font-medium underline hover:no-underline"
+                      style={{ color: BRAND_BLUE }}
+                    >
+                      {locale === "en" ? "Profile at MLP Heidelberg" : locale === "tr" ? "MLP Heidelberg profili" : "Profil bei MLP Heidelberg"}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {slug !== "immobilienfinanzierung" && (
+            <section
+              className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-8 sm:px-8 sm:py-10"
+              aria-labelledby="anfrage-heading"
+            >
+              <h2
+                id="anfrage-heading"
+                className="font-sans text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl"
+              >
+                {locale === "en" ? "Enquiry for this service" : locale === "tr" ? "Bu hizmet için talepte bulunun" : "Anfrage zu diesem Service"}
+              </h2>
+              <p className="mt-3 text-slate-600">
+                {locale === "en"
+                  ? "Do you have questions or would you like a non-binding quote? Get in touch – we will get back to you promptly."
+                  : locale === "tr"
+                    ? "Sorularınız mı var veya bağlayıcı olmayan bir teklif mi istiyorsunuz? Bize ulaşın – size en kısa sürede geri dönelim."
+                    : "Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot? Schreiben Sie uns – wir melden uns zeitnah bei Ihnen."}
               </p>
-            </div>
-          </section>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <a
+                  href={`mailto:info@he-immologis.de?subject=${encodeURIComponent(locale === "en" ? "Enquiry – " + displayTitle : locale === "tr" ? "Talep – " + displayTitle : "Anfrage – " + service.title)}`}
+                  className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition-colors hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#F9423A] focus:ring-offset-2"
+                  style={{ backgroundColor: BRAND_BLUE }}
+                >
+                  {locale === "en" ? "Send email" : locale === "tr" ? "E-posta gönder" : "E-Mail schreiben"}
+                </a>
+                <p className="text-slate-600">
+                  {locale === "en" ? "Or call: " : locale === "tr" ? "Veya arayın: " : "Oder anrufen: "}
+                  <a
+                    href="tel:+491776361394"
+                    className="font-medium underline hover:no-underline"
+                    style={{ color: BRAND_BLUE }}
+                  >
+                    +49 177 636 1394
+                  </a>
+                </p>
+              </div>
+            </section>
+          )}
         </article>
       </div>
     </>
