@@ -70,7 +70,7 @@ export default async function DatenschutzPage({
               <p className="mt-2">
                 <strong>HE immologis UG</strong>
                 <br />
-                <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
+                <span className="text-base font-normal">(haftungsbeschränkt)</span>
                 <br />
                 Ahornstr. 59, 69469 Weinheim
               </p>
@@ -201,7 +201,7 @@ export default async function DatenschutzPage({
             <section>
               <h2 className="font-sans text-lg font-semibold text-slate-900">1. Veri Sorumlusu</h2>
               <p className="mt-2">Bu web sitesindeki veri işlemeden sorumlu:</p>
-              <p className="mt-2"><strong>HE immologis UG</strong><br /><span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span><br />Ahornstr. 59, 69469 Weinheim</p>
+              <p className="mt-2"><strong>HE immologis UG</strong><br /><span className="text-base font-normal">(haftungsbeschränkt)</span><br />Ahornstr. 59, 69469 Weinheim</p>
               <div className="mt-2 grid grid-cols-[auto_1fr] items-baseline gap-x-2 gap-y-0.5">
                 <span>Telefon:</span>
                 <a href="tel:+491776361394" className="text-[#F9423A] underline hover:no-underline">+49 177 636 1394</a>
@@ -272,7 +272,7 @@ export default async function DatenschutzPage({
             <p className="mt-2">
               <strong>HE immologis UG</strong>
               <br />
-              <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
+              <span className="text-base font-normal">(haftungsbeschränkt)</span>
               <br />
               Ahornstr. 59, 69469 Weinheim
             </p>

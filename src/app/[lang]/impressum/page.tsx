@@ -65,7 +65,7 @@ export default async function ImpressumPage({
               <p className="mt-2">
                 <strong>HE immologis UG</strong>
                 <br />
-                <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
+                <span className="text-base font-normal">(haftungsbeschränkt)</span>
                 <br />
                 Ahornstr. 59
                 <br />
@@ -217,7 +217,7 @@ export default async function ImpressumPage({
               <p className="mt-2">
                 <strong>HE immologis UG</strong>
                 <br />
-                <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
+                <span className="text-base font-normal">(haftungsbeschränkt)</span>
                 <br />
                 Ahornstr. 59<br />
                 69469 Weinheim
@@ -318,7 +318,7 @@ export default async function ImpressumPage({
             <p className="mt-2">
               <strong>HE immologis UG</strong>
               <br />
-              <span className="text-base font-normal">(haftungsbeschränkt) i. Gr.</span>
+              <span className="text-base font-normal">(haftungsbeschränkt)</span>
               <br />
               Ahornstr. 59
               <br />
