@@ -303,7 +303,7 @@ export default function Footer({ lang, dict }: FooterProps) {
             <p className="text-center text-xs text-slate-300">
               {dict.designedBy}{" "}
               <a
-                href="https://319webdesign.com"
+                href="https://www.319webdesign.de/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold transition-colors hover:opacity-80"
