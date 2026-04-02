@@ -8,6 +8,7 @@ import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/Prop
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
+import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 import { formatCurrency } from "@/lib/format";
 
 const staticProperties = propertiesData as PropertyWithDetails[];
@@ -46,6 +47,13 @@ export async function generateMetadata({
   const locale = lang ?? (await getLocaleFromHeaders());
 
   const prop = await fetchPropertyById(id, locale).catch(() => null);
+  if (!arePropertyListingsPubliclyVisible()) {
+    return {
+      title: "Immobilie nicht gefunden",
+      description:
+        "Die angeforderte Immobilie wurde nicht gefunden. Entdecken Sie weitere Immobilien zum Kauf in Weinheim und an der Bergstraße.",
+    };
+  }
   if (prop) {
     const immoNr = prop.objektnr_extern || String(prop.id);
     const rawTitle = prop.titel || "Immobilie";
@@ -89,6 +97,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
     fetchPropertyById(id, locale).catch(() => null),
     fetchEstateFieldMetadata(locale),
   ]);
+  if (!arePropertyListingsPubliclyVisible()) notFound();
   if (property) {
     return (
       <>

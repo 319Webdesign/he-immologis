@@ -114,9 +114,7 @@ export default async function ImpressumPage({
                 VAT Identification Number
               </h2>
               <p className="mt-2">
-                VAT identification number in accordance with § 27a of the German VAT Act (UStG):
-                <br />
-                [VAT ID to be added if applicable]
+                VAT ID has been applied for and will be provided subsequently.
               </p>
             </section>
 
@@ -126,8 +124,6 @@ export default async function ImpressumPage({
               </h2>
               <p className="mt-2">
                 Professional title: Real estate agent / Real estate broker
-                <br />
-                Supervisory body: [e.g. Chamber of Commerce and Industry or relevant professional body – to be added if applicable]
               </p>
             </section>
 
@@ -246,15 +242,14 @@ export default async function ImpressumPage({
             <section>
               <h2 className="font-sans text-lg font-semibold text-slate-900">KDV Kimlik Numarası</h2>
               <p className="mt-2">
-                § 27a UStG kapsamında KDV kimlik numarası:<br />
-                [Gerekirse KDV No. eklenir]
+                KDV kimlik numarası için başvuru yapılmıştır; numara sonradan
+                eklenecektir.
               </p>
             </section>
             <section>
               <h2 className="font-sans text-lg font-semibold text-slate-900">Mesleki unvan ve mesleki düzenlemeler</h2>
               <p className="mt-2">
-                Mesleki unvan: Emlakçı / Gayrimenkul aracısı<br />
-                Denetim kurulu: [Örn. Sanayi ve Ticaret Odası – gerekirse eklenir]
+                Mesleki unvan: Emlakçı / Gayrimenkul aracısı
               </p>
             </section>
             <section>
@@ -367,9 +362,7 @@ export default async function ImpressumPage({
               Umsatzsteuer-ID
             </h2>
             <p className="mt-2">
-              Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:
-              <br />
-              [USt-IdNr. wird bei Bedarf ergänzt]
+              USt-ID ist beantragt und wird nachgereicht.
             </p>
           </section>
 
@@ -379,8 +372,6 @@ export default async function ImpressumPage({
             </h2>
             <p className="mt-2">
               Berufsbezeichnung: Immobilienmakler / Immobilienvermittler
-              <br />
-              Zuständige Kammer: [z. B. Industrie- und Handelskammer oder zuständige Berufskammer – bei Bedarf ergänzen]
             </p>
           </section>
 

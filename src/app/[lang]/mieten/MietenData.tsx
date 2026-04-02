@@ -1,11 +1,12 @@
+import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 import { fetchProperties } from "@/lib/onoffice";
 import type { Rental } from "@/types";
 import MietenContent from "./MietenContent";
 import type { MietenDict } from "./MietenContent";
 
-/** Platzhalter, wenn keine Mietobjekte vorhanden sind (z. B. Expansion Hessen). */
+/** Platzhalter, wenn keine Mietobjekte gelistet werden. */
 const EMPTY_STATE_MESSAGE =
-  "Aktuell sind in dieser Kategorie keine Objekte eingestellt. Wir expandieren nach Hessen – melden Sie sich gern bei uns für exklusive Vorab-Informationen!";
+  "Aktuell sind in dieser Kategorie keine Objekte eingestellt. Melden Sie sich gern bei uns für exklusive Vorab-Informationen!";
 
 interface MietenDataProps {
   dict: MietenDict;
@@ -61,6 +62,14 @@ export default async function MietenData({ dict, lang }: MietenDataProps) {
     listlimit: 500,
     lang,
   }).catch(() => []);
+
+  if (!arePropertyListingsPubliclyVisible()) {
+    return (
+      <p className="mt-10 text-center text-zinc-600">
+        {EMPTY_STATE_MESSAGE}
+      </p>
+    );
+  }
 
   if (allProperties.length === 0) {
     return (

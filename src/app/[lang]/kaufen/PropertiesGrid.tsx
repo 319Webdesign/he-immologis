@@ -1,3 +1,4 @@
+import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 import { fetchProperties, fetchEstateFieldMetadata } from "@/lib/onoffice";
 import PropertyCard from "./PropertyCard";
 import PropertyGridSkeleton from "./PropertyGridSkeleton";
@@ -20,9 +21,9 @@ interface PropertiesGridProps {
   cardLabels?: KaufenCardLabels;
 }
 
-/** Platzhalter, wenn keine Immobilien vorhanden sind (z. B. Expansion Hessen). */
+/** Platzhalter, wenn keine Immobilien gelistet werden. */
 const EMPTY_STATE_MESSAGE =
-  "Aktuell sind in dieser Kategorie keine Objekte eingestellt. Wir expandieren nach Hessen – melden Sie sich gern bei uns für exklusive Vorab-Informationen!";
+  "Aktuell sind in dieser Kategorie keine Objekte eingestellt. Melden Sie sich gern bei uns für exklusive Vorab-Informationen!";
 
 export default async function PropertiesGrid({
   ortFilter,
@@ -40,6 +41,14 @@ export default async function PropertiesGrid({
 
   const properties =
     ortFilter === "alle" ? allProperties : allProperties.filter((p) => p.ort === ortFilter);
+
+  if (!arePropertyListingsPubliclyVisible()) {
+    return (
+      <p className="mt-10 text-center text-zinc-600">
+        {EMPTY_STATE_MESSAGE}
+      </p>
+    );
+  }
 
   if (allProperties.length === 0) {
     return (

@@ -10,6 +10,7 @@ import ShareSection from "@/components/ShareSection";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
+import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 
 interface PageProps {
   searchParams: Promise<{ status?: string; ort?: string }>;
@@ -80,9 +81,11 @@ export default async function KaufenPage({ searchParams }: PageProps) {
       </section>
 
       <section id="immobilien" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100 animate-pulse" />}>
-          <PropertyFilters dict={k.filters} lang={locale} />
-        </Suspense>
+        {arePropertyListingsPubliclyVisible() ? (
+          <Suspense fallback={<div className="h-14 rounded-xl bg-zinc-100 animate-pulse" />}>
+            <PropertyFilters dict={k.filters} lang={locale} />
+          </Suspense>
+        ) : null}
         <Suspense fallback={<PropertyGridSkeleton />}>
           <PropertiesGrid
             ortFilter={ortFilter}
