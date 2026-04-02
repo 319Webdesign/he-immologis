@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 
-const STORAGE_KEY = "he-immologis-coming-soon-dismissed";
 const WHATSAPP_HREF = "https://wa.me/491776361394";
 const CONTACT_EMAIL = "info@he-immologis.de";
 
@@ -118,14 +117,14 @@ function CountdownGrid({
         {cells.map((cell) => (
           <div
             key={cell.label}
-            className={`rounded-xl border border-emerald-200/90 bg-emerald-50/95 px-1 py-2.5 shadow-sm shadow-emerald-900/5 ring-1 ring-emerald-100/80 sm:py-3 ${cell.wide ? "min-w-0" : ""}`}
+            className={`rounded-xl border border-[#85b09a]/45 bg-[#85b09a]/18 px-1 py-2.5 shadow-sm shadow-[#85b09a]/12 ring-1 ring-[#85b09a]/25 sm:py-3 ${cell.wide ? "min-w-0" : ""}`}
           >
             <div
-              className={`font-sans font-semibold tabular-nums text-emerald-950 ${cell.wide ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}
+              className={`font-sans font-semibold tabular-nums text-[#1c2e28] ${cell.wide ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}
             >
               {cell.value}
             </div>
-            <div className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-wide text-emerald-700/90 sm:text-[0.7rem]">
+            <div className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-wide text-[#5a7d6c] sm:text-[0.7rem]">
               {cell.label}
             </div>
           </div>
@@ -144,8 +143,6 @@ export default function ComingSoonModal({ lang }: ComingSoonModalProps) {
   const t = copy[lang];
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (localStorage.getItem(STORAGE_KEY)) return;
     queueMicrotask(() => setOpen(true));
   }, []);
 
@@ -158,14 +155,7 @@ export default function ComingSoonModal({ lang }: ComingSoonModalProps) {
     };
   }, [open]);
 
-  const dismiss = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* ignore quota / private mode */
-    }
-    setOpen(false);
-  };
+  const dismiss = () => setOpen(false);
 
   return (
     <AnimatePresence>
