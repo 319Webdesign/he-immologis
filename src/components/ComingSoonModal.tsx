@@ -57,6 +57,13 @@ const copy = {
   },
 } as const;
 
+type CountdownUnitLabels = {
+  days: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
+};
+
 function useCountdown(target: Date) {
   const [now, setNow] = useState(() => Date.now());
 
@@ -83,7 +90,7 @@ function CountdownGrid({
   units,
 }: {
   target: Date;
-  units: (typeof copy)["de"]["units"];
+  units: CountdownUnitLabels;
 }) {
   const { days, hours, minutes, seconds, expired } = useCountdown(target);
 
