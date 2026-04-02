@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
@@ -9,35 +9,124 @@ const STORAGE_KEY = "he-immologis-coming-soon-dismissed";
 const WHATSAPP_HREF = "https://wa.me/491776361394";
 const CONTACT_EMAIL = "info@he-immologis.de";
 
+/** 11.05.2026, 08:00 Uhr (Mitteleuropäische Sommerzeit, Weinheim) */
+const LAUNCH_AT = new Date("2026-05-11T08:00:00+02:00");
+
 const copy = {
   de: {
-    comingSoon: "Coming Soon",
-    subtitle: "Start am 11.05.!",
+    title: "Countdown 11. Mai 2026",
     body:
-      "In Kürze starten wir unsere Maklertätigkeit. Bis dahin erreichen Sie mich jederzeit via WhatsApp oder per E-Mail.",
+      "Ab dem 11.05.2026 gehen wir als Ihr Immobilienmakler in Weinheim und der Rhein-Neckar-Region an den Start. Bereits heute erreichen Sie uns jederzeit per WhatsApp oder E-Mail.",
+    units: {
+      days: "Tage",
+      hours: "Std",
+      minutes: "Min",
+      seconds: "Sek",
+    },
     emailHint: "E-Mail",
     whatsappHint: "WhatsApp",
-    button: "Verstanden",
+    button: "Erste Einblicke entdecken.",
   },
   en: {
-    comingSoon: "Coming Soon",
-    subtitle: "Launch on 11 May!",
+    title: "Countdown 11 May 2026",
     body:
-      "We will soon begin our brokerage activities. Until then, you can reach me anytime via WhatsApp or by email.",
+      "From 11 May 2026 we will launch as your real estate agent in Weinheim and the Rhine-Neckar region. You can already reach us anytime via WhatsApp or email.",
+    units: {
+      days: "Days",
+      hours: "Hrs",
+      minutes: "Min",
+      seconds: "Sec",
+    },
     emailHint: "Email",
     whatsappHint: "WhatsApp",
-    button: "Okay",
+    button: "Discover first impressions.",
   },
   tr: {
-    comingSoon: "Yakında",
-    subtitle: "11 Mayıs’ta başlıyoruz!",
+    title: "Geri sayım 11 Mayıs 2026",
     body:
-      "Kısa süre içinde aracılık faaliyetimize başlıyoruz. Bu süre boyunca bana WhatsApp veya e-posta ile ulaşabilirsiniz.",
+      "11 Mayıs 2026 tarihinden itibaren Weinheim ve Ren-Neckar bölgesinde emlak danışmanınız olarak faaliyete geçiyoruz. Bugünden itibaren bize dilediğiniz zaman WhatsApp veya e-posta ile ulaşabilirsiniz.",
+    units: {
+      days: "Gün",
+      hours: "Sa",
+      minutes: "Dk",
+      seconds: "Sn",
+    },
     emailHint: "E-posta",
     whatsappHint: "WhatsApp",
-    button: "Tamam",
+    button: "İlk izlenimleri keşfedin.",
   },
 } as const;
+
+function useCountdown(target: Date) {
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return useMemo(() => {
+    const ms = Math.max(0, target.getTime() - now);
+    const totalSec = Math.floor(ms / 1000);
+    return {
+      days: Math.floor(totalSec / 86400),
+      hours: Math.floor((totalSec % 86400) / 3600),
+      minutes: Math.floor((totalSec % 3600) / 60),
+      seconds: totalSec % 60,
+      expired: ms === 0,
+    };
+  }, [now, target]);
+}
+
+function CountdownGrid({
+  target,
+  units,
+}: {
+  target: Date;
+  units: (typeof copy)["de"]["units"];
+}) {
+  const { days, hours, minutes, seconds, expired } = useCountdown(target);
+
+  const pad2 = (n: number) => n.toString().padStart(2, "0");
+  const ariaLabel = expired
+    ? "0"
+    : `${days} ${units.days}, ${hours} ${units.hours}, ${minutes} ${units.minutes}, ${seconds} ${units.seconds}`;
+
+  const cells = [
+    { value: String(expired ? 0 : days), label: units.days, wide: true },
+    { value: pad2(expired ? 0 : hours), label: units.hours, wide: false },
+    { value: pad2(expired ? 0 : minutes), label: units.minutes, wide: false },
+    { value: pad2(expired ? 0 : seconds), label: units.seconds, wide: false },
+  ];
+
+  return (
+    <div className="mt-5">
+      <p className="sr-only" aria-live="polite">
+        {ariaLabel}
+      </p>
+      <div
+        className="grid grid-cols-4 gap-2 sm:gap-3"
+        aria-hidden
+      >
+        {cells.map((cell) => (
+          <div
+            key={cell.label}
+            className={`rounded-xl border border-emerald-200/90 bg-emerald-50/95 px-1 py-2.5 shadow-sm shadow-emerald-900/5 ring-1 ring-emerald-100/80 sm:py-3 ${cell.wide ? "min-w-0" : ""}`}
+          >
+            <div
+              className={`font-sans font-semibold tabular-nums text-emerald-950 ${cell.wide ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}
+            >
+              {cell.value}
+            </div>
+            <div className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-wide text-emerald-700/90 sm:text-[0.7rem]">
+              {cell.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 interface ComingSoonModalProps {
   lang: Locale;
@@ -91,41 +180,26 @@ export default function ComingSoonModal({ lang }: ComingSoonModalProps) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-labelledby="coming-soon-line coming-soon-subline"
+            aria-labelledby="countdown-modal-title"
+            aria-describedby="countdown-modal-desc"
             className="relative w-full max-w-md rounded-2xl border border-stone-200/80 bg-stone-50 px-5 py-6 shadow-xl shadow-stone-900/10 sm:px-7 sm:py-8"
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className="text-center">
-              <div className="relative mx-auto flex min-h-[3.25rem] items-center justify-center sm:min-h-[3.75rem]">
-                <span
-                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  aria-hidden
-                >
-                  <span className="block h-[5.5rem] w-[5.5rem] rounded-full bg-[#F9423A]/20 animate-coming-soon-ping" />
-                </span>
-                <span
-                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  aria-hidden
-                >
-                  <span className="block h-[5.5rem] w-[5.5rem] rounded-full bg-[#F9423A]/15 animate-coming-soon-ping [animation-delay:1.2s]" />
-                </span>
-                <span
-                  id="coming-soon-line"
-                  className="relative font-display text-[1.65rem] font-semibold tracking-wide text-[#F9423A] sm:text-3xl animate-coming-soon-impulse"
-                >
-                  {t.comingSoon}
-                </span>
-              </div>
-              <p
-                id="coming-soon-subline"
-                className="mt-1 font-display text-base font-medium text-stone-800 sm:text-lg"
+              <h2
+                id="countdown-modal-title"
+                className="font-sans text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl"
               >
-                {t.subtitle}
-              </p>
+                {t.title}
+              </h2>
+              <CountdownGrid target={LAUNCH_AT} units={t.units} />
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
+            <p
+              id="countdown-modal-desc"
+              className="mt-5 text-sm leading-relaxed text-stone-600 sm:text-base"
+            >
               {t.body}
             </p>
 
