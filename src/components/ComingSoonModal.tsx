@@ -16,7 +16,7 @@ const copy = {
   de: {
     title: "Countdown 11. Mai 2026",
     body:
-      "Ab dem 11.05.2026 gehen wir als Ihr Immobilienmakler in Weinheim und der Rhein-Neckar-Region an den Start. Bereits heute erreichen Sie uns jederzeit per WhatsApp oder E-Mail.",
+      "Ab dem 11.05.2026 gehen wir als Ihr Immobilienmakler in Weinheim und der Rhein-Neckar-Region an den Start. Bereits heute erreichen Sie uns per WhatsApp oder E-Mail.",
     units: {
       days: "Tage",
       hours: "Std",
@@ -25,12 +25,12 @@ const copy = {
     },
     emailHint: "E-Mail",
     whatsappHint: "WhatsApp",
-    button: "Erste Einblicke entdecken.",
+    button: "Erste Einblicke entdecken",
   },
   en: {
     title: "Countdown 11 May 2026",
     body:
-      "From 11 May 2026 we will launch as your real estate agent in Weinheim and the Rhine-Neckar region. You can already reach us anytime via WhatsApp or email.",
+      "From 11 May 2026 we will launch as your real estate agent in Weinheim and the Rhine-Neckar region. You can already reach us via WhatsApp or email.",
     units: {
       days: "Days",
       hours: "Hrs",
@@ -39,12 +39,12 @@ const copy = {
     },
     emailHint: "Email",
     whatsappHint: "WhatsApp",
-    button: "Discover first impressions.",
+    button: "Discover first impressions",
   },
   tr: {
     title: "Geri sayım 11 Mayıs 2026",
     body:
-      "11 Mayıs 2026 tarihinden itibaren Weinheim ve Ren-Neckar bölgesinde emlak danışmanınız olarak faaliyete geçiyoruz. Bugünden itibaren bize dilediğiniz zaman WhatsApp veya e-posta ile ulaşabilirsiniz.",
+      "11 Mayıs 2026 tarihinden itibaren Weinheim ve Ren-Neckar bölgesinde emlak danışmanınız olarak faaliyete geçiyoruz. Bugünden itibaren bize WhatsApp veya e-posta ile ulaşabilirsiniz.",
     units: {
       days: "Gün",
       hours: "Sa",
@@ -53,7 +53,7 @@ const copy = {
     },
     emailHint: "E-posta",
     whatsappHint: "WhatsApp",
-    button: "İlk izlenimleri keşfedin.",
+    button: "İlk izlenimleri keşfedin",
   },
 } as const;
 
