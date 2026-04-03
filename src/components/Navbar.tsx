@@ -75,7 +75,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
       : "flex items-center gap-2 text-xs text-black transition-colors hover:opacity-80";
 
   const utilityLinks = (variant: "bar" | "mobile") => (
-    <div className="flex items-center gap-4 lg:gap-2 min-[1200px]:gap-0.5">
+    <div className="flex flex-wrap items-center justify-end gap-x-2 gap-y-1 sm:gap-x-3 lg:gap-2 min-[1200px]:gap-x-0.5">
       <Link href={`${prefix}/ueber-mich#kontakt`} className={utilityLinkClass(variant)}>
         <span>{dict.contactNow}</span>
       </Link>
@@ -83,40 +83,40 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <Mail className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">info@he-immologis.de</span>
       </a>
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-4">
         <a href="tel:+491776361394" className={utilityLinkClass(variant)}>
           <Phone className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">+49 177 636 1394</span>
         </a>
-        <span className={`${utilityLinkClass(variant)} flex items-center gap-1`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : lang === "en" ? dict.ariaLangSwitchEn : dict.ariaLangSwitchTr}>
-        <span className="flex items-center gap-1 [&_img]:align-middle">
-          <Link href={switchToDe} title="Deutsch" className="flex h-4 shrink-0 items-center">
+        <span className={`${utilityLinkClass(variant)} flex items-center gap-0.5 sm:gap-1`} role="group" aria-label={lang === "de" ? dict.ariaLangSwitchDe : lang === "en" ? dict.ariaLangSwitchEn : dict.ariaLangSwitchTr}>
+        <span className="flex shrink-0 items-center gap-0.5 sm:gap-1 [&_img]:align-middle">
+          <Link href={switchToDe} title="Deutsch" className="flex h-3.5 shrink-0 items-center sm:h-4">
             <Image
               src="/img/flags/de.svg"
               alt=""
               width={24}
               height={16}
-              className={`block h-4 w-6 rounded-sm object-contain object-center transition-opacity ${lang === "de" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-3.5 w-[22px] rounded-sm object-contain object-center transition-opacity sm:h-4 sm:w-6 ${lang === "de" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>
-          <Link href={switchToEn} title="English" className="flex h-4 shrink-0 items-center">
+          <Link href={switchToEn} title="English" className="flex h-3.5 shrink-0 items-center sm:h-4">
             <Image
               src="/img/flags/en.svg"
               alt=""
               width={24}
               height={16}
-              className={`block h-4 w-6 rounded-sm object-contain object-center transition-opacity ${lang === "en" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-3.5 w-[22px] rounded-sm object-contain object-center transition-opacity sm:h-4 sm:w-6 ${lang === "en" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>
-          <Link href={switchToTr} title="Türkçe" className="flex h-4 shrink-0 items-center">
+          <Link href={switchToTr} title="Türkçe" className="flex h-3.5 shrink-0 items-center sm:h-4">
             <Image
               src="/img/flags/tr.svg"
               alt=""
               width={24}
               height={16}
-              className={`block h-4 w-6 rounded-sm object-contain object-center transition-opacity ${lang === "tr" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
+              className={`block h-3.5 w-[22px] rounded-sm object-contain object-center transition-opacity sm:h-4 sm:w-6 ${lang === "tr" ? "opacity-100 ring-1 ring-slate-500 ring-offset-1" : "opacity-50 hover:opacity-75"}`}
               aria-hidden
             />
           </Link>
@@ -136,7 +136,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
       <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr] items-center gap-x-4 px-4 pt-2 pb-1 sm:px-6 lg:px-8">
         {/* Zeile 1: Platzhalter (lg) | Utility (E-Mail, Telefon, Flaggen) – Spalte 2, rechtsbündig */}
         <div className="hidden lg:block" aria-hidden />
-        <div className="col-start-2 flex min-w-0 justify-end pr-4 text-sm text-black lg:pr-6">
+        {/* Unter lg volle Zeilenbreite: sonst ist Spalte 2 nur „Rest neben Logo“ und die Flaggen rutschen aus dem Viewport */}
+        <div className="col-start-2 flex min-w-0 justify-end text-sm text-black max-lg:col-span-2 max-lg:col-start-1 max-lg:pr-0 lg:pr-6">
           {utilityLinks("bar")}
         </div>
 
@@ -158,7 +159,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           </Link>
         </nav>
 
-        <div className="flex min-w-0 items-center justify-end gap-2 pt-1 pb-1 pr-4 lg:pr-6 lg:pt-0 lg:pb-0">
+        <div className="flex w-full min-w-0 justify-end gap-2 pt-1 pb-1 max-lg:items-start max-lg:pr-0 lg:items-center lg:pr-6 lg:pt-0 lg:pb-0">
           <div className={`hidden flex-nowrap items-center lg:flex max-[1200px]:[&_a]:px-2 max-[1200px]:[&_button]:px-2 ${lang === "tr" ? "gap-0.5 xl:gap-1" : "gap-1 xl:gap-2 max-[1200px]:gap-0.5"}`}>
             <Link href={`${prefix}/verkaufen`} className={navLinkClass(`${prefix}/verkaufen`)}>
               {dict.sell}
