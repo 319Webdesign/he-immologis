@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Playfair_Display, Montserrat, GFS_Didot } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
@@ -70,6 +71,12 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${montserrat.variable} ${gfsDidot.variable} font-sans antialiased`}
       >
+        <Script
+          src="https://api.pirsch.io/pa.js"
+          strategy="afterInteractive"
+          id="pianjs"
+          data-code="DAG8u3MqsqoDFyFHIz5DXp5MhDsBuTge"
+        />
         {children}
         <CookieBanner />
       </body>

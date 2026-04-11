@@ -1,5 +1,8 @@
 import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 import { fetchProperties, fetchEstateFieldMetadata } from "@/lib/onoffice";
+import propertiesData from "@/data/properties.json";
+import type { PropertyWithDetails } from "@/types";
+import { staticPropertyToProperty } from "@/lib/propertyMapper";
 import PropertyCard from "./PropertyCard";
 import PropertyGridSkeleton from "./PropertyGridSkeleton";
 
@@ -31,10 +34,15 @@ export default async function PropertiesGrid({
   lang,
   cardLabels,
 }: PropertiesGridProps) {
-  const [allProperties, fieldMeta] = await Promise.all([
+  const [onOfficeProperties, fieldMeta] = await Promise.all([
     fetchProperties({ vermarktungsart: "Kauf", listlimit: 500, lang }).catch(() => []),
     lang ? fetchEstateFieldMetadata(lang) : Promise.resolve({ labels: {}, permittedValues: {} }),
   ]);
+
+  const staticProperties = (propertiesData as PropertyWithDetails[]).map((p) =>
+    staticPropertyToProperty(p, p.id),
+  );
+  const allProperties = onOfficeProperties.length > 0 ? onOfficeProperties : staticProperties;
 
   const permittedValues =
     Object.keys(fieldMeta.permittedValues).length > 0 ? fieldMeta.permittedValues : undefined;

@@ -1,6 +1,7 @@
 import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 import { fetchProperties } from "@/lib/onoffice";
 import type { Rental } from "@/types";
+import rentalsData from "@/data/rentals.json";
 import MietenContent from "./MietenContent";
 import type { MietenDict } from "./MietenContent";
 
@@ -71,15 +72,16 @@ export default async function MietenData({ dict, lang }: MietenDataProps) {
     );
   }
 
-  if (allProperties.length === 0) {
+  const rentalsFromApi: Rental[] = allProperties.map(mapOnOfficeToRental);
+  const rentals = rentalsFromApi.length > 0 ? rentalsFromApi : (rentalsData as Rental[]);
+
+  if (rentals.length === 0) {
     return (
       <p className="mt-10 text-center text-zinc-600">
         {EMPTY_STATE_MESSAGE}
       </p>
     );
   }
-
-  const rentals: Rental[] = allProperties.map(mapOnOfficeToRental);
 
   return <MietenContent rentals={rentals} dict={dict} lang={lang} />;
 }
