@@ -9,6 +9,7 @@ import { ServiceCard } from "@/components/ServiceCards";
 const EINZELMODUL_SLUGS = [
   "marktwertanalyse",
   "immobilienfinanzierung",
+  "neubau-massivhaus",
   "beratung-begleitung",
   "high-end-immobilienaufnahmen",
   "verkaeuferschutzmodul",

@@ -406,7 +406,66 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </section>
           )}
 
-          {slug !== "immobilienfinanzierung" && (
+          {slug === "neubau-massivhaus" && (
+            <section
+              className="mt-12 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"
+              aria-labelledby="massivhaus-contact-heading"
+            >
+              <h2
+                id="massivhaus-contact-heading"
+                className="font-sans text-xl font-semibold tracking-tight text-slate-900"
+              >
+                {locale === "en" ? "Contact for new-build solid homes" : locale === "tr" ? "Yeni inşa masif evler için iletişim" : "Kontakt Neubau Massivhaus"}
+              </h2>
+              <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
+                <div className="relative h-36 w-36 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white">
+                  <Image
+                    src="/img/service-town-country.png"
+                    alt="Sven Riedmann - Town & Country Haus"
+                    fill
+                    className="object-cover"
+                    sizes="144px"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-lg font-semibold text-slate-900">Sven Riedmann</p>
+                  <p className="text-slate-600">Town & Country Haus</p>
+                  <div className="mt-4 space-y-2 text-slate-700">
+                    <p className="font-medium">{locale === "en" ? "Contact details:" : locale === "tr" ? "İletişim bilgileri:" : "Kontaktdaten:"}</p>
+                    <p>
+                      <a
+                        href="tel:+491715353698"
+                        className="font-semibold underline hover:no-underline"
+                        style={{ color: BRAND_BLUE }}
+                      >
+                        0171 5353698
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="mailto:sven.riedmann@tc.de"
+                        className="font-semibold underline hover:no-underline"
+                        style={{ color: BRAND_BLUE }}
+                      >
+                        sven.riedmann@tc.de
+                      </a>
+                    </p>
+                    <a
+                      href="https://www.riedmann-hausbau.de"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center font-medium underline hover:no-underline"
+                      style={{ color: BRAND_BLUE }}
+                    >
+                      www.riedmann-hausbau.de
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {slug !== "immobilienfinanzierung" && slug !== "neubau-massivhaus" && (
             <section
               className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-8 sm:px-8 sm:py-10"
               aria-labelledby="anfrage-heading"

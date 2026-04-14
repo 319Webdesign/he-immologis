@@ -137,6 +137,18 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
     ],
   },
   {
+    id: "1-2",
+    slug: "neubau-massivhaus",
+    title: "Neubau Massivhaus",
+    subtitle: "Individuelle Massivhäuser - ganzheitliche Beratung",
+    price: "Auf Anfrage",
+    description: "",
+    image: "/img/service-town-country.png",
+    detailSections: [
+      "Als Partner von Town & Country Haus mit der Erfahrung von über 40.000 gebauten Häusern, helfe ich Ihnen den Traum vom Eigenheim in der Region Pfalz und Rhein-Neckar zu verwirklichen.",
+    ],
+  },
+  {
     id: "2",
     slug: "beratung-begleitung",
     title: "Beratungsmodul",
