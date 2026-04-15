@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -148,15 +149,124 @@ const DOKUMENTMODUL_LIST_INTRO_EN =
   "This includes in particular, but not exclusively:";
 const DOKUMENTMODUL_LIST_LENGTH = 6;
 
+const MARKTWERT_PREIS_HEADINGS = new Set([
+  "Preisgestaltung",
+  "Property Valuation – Pricing",
+  "Fiyatlandırma",
+]);
+
+/** Erster Absatz der Preisliste – liegt absichtlich außerhalb der Mint-Box. */
+const MARKTWERT_AFTER_MINT_INTRO: Record<"de" | "en" | "tr", string> = {
+  de: "Die genannten Preise gelten immer für die Bewertung einer Immobilie:",
+  en: "The following prices apply per property valuation:",
+  tr: "Belirtilen fiyatlar her zaman tek bir gayrimenkul değerlemesi için geçerlidir:",
+};
+
+/** Helles Rot für Hervorhebung „kostenfrei“ (Bewertungsmodul). */
+const MARKTWERT_KOSTENFREI_COLOR = "#fb7185";
+
+function highlightMarktwertKostenfrei(
+  text: string,
+  slug: string | undefined,
+  locale: "de" | "en" | "tr" | undefined
+): ReactNode {
+  if (slug !== "marktwertanalyse" || !locale) return text;
+  const phrase =
+    locale === "en"
+      ? "free of charge"
+      : locale === "tr"
+        ? "ücretsizdir"
+        : "kostenfrei";
+  const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = new RegExp(`(${escaped})`, "gi");
+  const parts = text.split(re);
+  if (parts.length < 2) return text;
+  return parts.map((part, idx) => {
+    const isHit = part.toLowerCase() === phrase.toLowerCase();
+    return (
+      <span
+        key={idx}
+        className={isHit ? "font-semibold" : undefined}
+        style={isHit ? { color: MARKTWERT_KOSTENFREI_COLOR } : undefined}
+      >
+        {part}
+      </span>
+    );
+  });
+}
+
 function DefaultContent({
   paragraphs,
   slug,
   locale,
+  skipMarktwertPreisBox,
+  noOuterTopMargin,
+  firstBlockHeadingId,
+  suppressLeadingH2,
 }: {
   paragraphs: string[];
   slug?: string;
   locale?: "de" | "en" | "tr";
+  /** Verhindert rekursive Aufteilung des Preisblocks (marktwertanalyse). */
+  skipMarktwertPreisBox?: boolean;
+  /** Innerer Block in der Preis-Box ohne zusätzliches `mt-8`. */
+  noOuterTopMargin?: boolean;
+  /** `id` für die erste H2 im Preisblock (aria-labelledby). */
+  firstBlockHeadingId?: string;
+  /** Ersten kurzen Absatz nicht als H2 setzen (z. B. Fortsetzung nach Mint-Box). */
+  suppressLeadingH2?: boolean;
 }) {
+  if (slug === "marktwertanalyse" && !skipMarktwertPreisBox) {
+    const preisIdx = paragraphs.findIndex((p) => MARKTWERT_PREIS_HEADINGS.has(p));
+    if (preisIdx >= 0) {
+      const loc = locale ?? "de";
+      const listIntroLine = MARKTWERT_AFTER_MINT_INTRO[loc];
+      const listIntroIdx = paragraphs.findIndex((p) => p === listIntroLine);
+      const mintEndIdx =
+        listIntroIdx > preisIdx ? listIntroIdx : paragraphs.length;
+      const before = paragraphs.slice(0, preisIdx);
+      const inMint = paragraphs.slice(preisIdx, mintEndIdx);
+      const afterMint =
+        mintEndIdx < paragraphs.length ? paragraphs.slice(mintEndIdx) : [];
+      return (
+        <>
+          <DefaultContent
+            paragraphs={before}
+            slug={slug}
+            locale={locale}
+            skipMarktwertPreisBox
+          />
+          <section
+            className="mt-8 rounded-2xl border-2 px-6 py-7 sm:px-8 sm:py-8"
+            style={{
+              borderColor: "#85b09a",
+              backgroundColor: "#85b09a15",
+            }}
+            aria-labelledby="marktwert-preisgestaltung-heading"
+          >
+            <DefaultContent
+              paragraphs={inMint}
+              slug={slug}
+              locale={locale}
+              skipMarktwertPreisBox
+              noOuterTopMargin
+              firstBlockHeadingId="marktwert-preisgestaltung-heading"
+            />
+          </section>
+          {afterMint.length > 0 && (
+            <DefaultContent
+              paragraphs={afterMint}
+              slug={slug}
+              locale={locale}
+              skipMarktwertPreisBox
+              suppressLeadingH2
+            />
+          )}
+        </>
+      );
+    }
+  }
+
   const isDokumentmodul = slug === "energieausweis";
   const listIntro =
     locale === "en" ? DOKUMENTMODUL_LIST_INTRO_EN : locale === "tr" ? DOKUMENTMODUL_LIST_INTRO_TR : DOKUMENTMODUL_LIST_INTRO_DE;
@@ -169,7 +279,7 @@ function DefaultContent({
   const listEnd = listStart + DOKUMENTMODUL_LIST_LENGTH;
 
   return (
-    <div className="mt-8 space-y-8">
+    <div className={noOuterTopMargin ? "space-y-8" : "mt-8 space-y-8"}>
       {paragraphs.map((text, i) => {
         if (isDokumentmodul && listIntroIndex >= 0 && i === listIntroIndex)
           return null;
@@ -188,7 +298,8 @@ function DefaultContent({
             </div>
           );
         }
-        const isH2 = i === 0 && text.length < 80;
+        const isH2 =
+          !suppressLeadingH2 && i === 0 && text.length < 80;
         const isHeading =
           !isH2 &&
           text.length < 70 &&
@@ -199,6 +310,7 @@ function DefaultContent({
           return (
             <h2
               key={i}
+              id={i === 0 && firstBlockHeadingId ? firstBlockHeadingId : undefined}
               className="font-sans text-2xl font-semibold tracking-tight text-slate-900"
             >
               {text}
@@ -245,7 +357,7 @@ function DefaultContent({
         }
         return (
           <p key={i} className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
-            {text}
+            {highlightMarktwertKostenfrei(text, slug, locale)}
           </p>
         );
       })}

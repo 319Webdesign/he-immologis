@@ -62,6 +62,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Einfamilienhaus: 699,00 € inkl. MwSt.",
       "Zweifamilienhaus: 799,00 € inkl. MwSt.",
       "Mehrfamilienhaus: 899,00 € inkl. MwSt.",
+      "* Eigentumswohnung oder Familienhaus: 0,00 Euro bei Verkaufsabsicht.",
     ],
     detailSectionsEn: [
       "Recognise substance. Understand values. Decide with confidence.",
@@ -83,6 +84,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Single-family house: €699.00 incl. VAT",
       "Two-family house: €799.00 incl. VAT",
       "Multi-family house: €899.00 incl. VAT",
+      "* Condominium or single-family house: €0.00 with intention to sell.",
     ],
     titleEn: "Valuation Module",
     descriptionEn: "Precise property valuation & market analysis",
@@ -110,6 +112,7 @@ export const DEFAULT_SERVICES: ServiceCardItem[] = [
       "Müstakil ev: 699,00 € KDV dahil",
       "İki ailelik ev: 799,00 € KDV dahil",
       "Çok aileli bina: 899,00 € KDV dahil",
+      "* Satılık daire veya müstakil ev: Satış niyetiyle 0,00 €.",
     ],
   },
   {
