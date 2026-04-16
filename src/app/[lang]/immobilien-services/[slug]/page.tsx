@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -162,6 +162,110 @@ const MARKTWERT_AFTER_MINT_INTRO: Record<"de" | "en" | "tr", string> = {
   tr: "Belirtilen fiyatlar her zaman tek bir gayrimenkul değerlemesi için geçerlidir:",
 };
 
+const MARKTWERT_VERKAUF_GRID: Record<
+  "de" | "en" | "tr",
+  { title: string; rightTitle: string; rows: string[] }
+> = {
+  de: {
+    title: "Marktwert einschätzung mit Verkaufsabsicht:",
+    rightTitle: "Marktwert Einschätzung ohne Verkaufsabsicht:",
+    rows: [
+      "Eigentumswohnung: 0€",
+      "Einfamilienhaus: 0€",
+      "Zweifamilienhaus: 0€",
+    ],
+  },
+  en: {
+    title: "Market value estimate with intention to sell:",
+    rightTitle: "Market value estimate without intention to sell:",
+    rows: [
+      "Condominium / apartment: €0",
+      "Single-family house: €0",
+      "Two-family house: €0",
+    ],
+  },
+  tr: {
+    title: "Satış niyetiyle piyasa değeri tahmini:",
+    rightTitle: "Satış niyeti olmadan piyasa değeri tahmini:",
+    rows: [
+      "Satılık daire: 0 €",
+      "Müstakil ev: 0 €",
+      "İki ailelik ev: 0 €",
+    ],
+  },
+};
+
+function MarktwertAfterMintPrices({
+  locale,
+  paragraphs,
+}: {
+  locale: "de" | "en" | "tr";
+  paragraphs: string[];
+}) {
+  const intro = MARKTWERT_AFTER_MINT_INTRO[locale];
+  const [head, ...rest] = paragraphs;
+  if (!head || head !== intro) {
+    return (
+      <DefaultContent
+        paragraphs={paragraphs}
+        slug="marktwertanalyse"
+        locale={locale}
+        skipMarktwertPreisBox
+        suppressLeadingH2
+      />
+    );
+  }
+  const rightLines = rest.filter((line) => !line.trimStart().startsWith("*"));
+  const grid = MARKTWERT_VERKAUF_GRID[locale];
+
+  return (
+    <div className="mt-8 space-y-6">
+      <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 border-t border-slate-200 pt-4">
+        {head}
+      </h3>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">
+        <div className="space-y-3">
+          <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
+            {grid.title}
+          </p>
+          <div className="grid max-w-md grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-3 text-lg leading-relaxed">
+            {grid.rows.map((row, i) => {
+              const m = row.match(/^(.+?):\s*(.+)$/);
+              const label = m?.[1]?.trim() ?? row;
+              const value = m?.[2]?.trim() ?? "";
+              if (!m) {
+                return (
+                  <p key={i} className="col-span-2 text-slate-600">
+                    {row}
+                  </p>
+                );
+              }
+              return (
+                <Fragment key={i}>
+                  <span className="text-slate-600">{label}:</span>
+                  <span className="text-right font-medium tabular-nums text-slate-700">
+                    {value}
+                  </span>
+                </Fragment>
+              );
+            })}
+          </div>
+        </div>
+        <div className="space-y-3 border-t border-slate-200 pt-6 sm:border-t-0 sm:border-l sm:border-slate-200 sm:pt-0 sm:pl-10">
+          <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
+            {grid.rightTitle}
+          </p>
+          {rightLines.map((row, i) => (
+            <p key={i} className="text-lg leading-relaxed text-slate-600">
+              {row}
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Helles Rot für Hervorhebung „kostenfrei“ (Bewertungsmodul). */
 const MARKTWERT_KOSTENFREI_COLOR = "#fb7185";
 
@@ -254,12 +358,9 @@ function DefaultContent({
             />
           </section>
           {afterMint.length > 0 && (
-            <DefaultContent
+            <MarktwertAfterMintPrices
+              locale={loc}
               paragraphs={afterMint}
-              slug={slug}
-              locale={locale}
-              skipMarktwertPreisBox
-              suppressLeadingH2
             />
           )}
         </>
