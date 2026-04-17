@@ -162,13 +162,79 @@ const MARKTWERT_AFTER_MINT_INTRO: Record<"de" | "en" | "tr", string> = {
   tr: "Belirtilen fiyatlar her zaman tek bir gayrimenkul değerlemesi için geçerlidir:",
 };
 
+const MARKTWERT_TRANSPARENT_HEADINGS = new Set([
+  "Transparente Rahmenbedingungen",
+  "Transparent framework",
+  "Şeffaf çerçeve",
+]);
+
+function highlightMarktwertGridTitle(
+  text: string,
+  locale: "de" | "en" | "tr",
+  column: "left" | "right"
+): ReactNode {
+  const re =
+    column === "left"
+      ? locale === "de"
+        ? /(\bmit\b)/
+        : locale === "en"
+          ? /(\bwith\b)/
+          : /(niyetiyle)/
+      : locale === "de"
+        ? /(\bohne\b)/
+        : locale === "en"
+          ? /(\bwithout\b)/
+          : /(olmadan)/;
+  const parts = text.split(re);
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <span
+            key={i}
+            className="font-semibold"
+            style={{ color: BRAND_BLUE }}
+          >
+            {part}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
+const ZERO_PRICE_TOKENS = new Set(["€0", "0€", "0 €"]);
+
+function highlightMarktwertZeroPrice(value: string): ReactNode {
+  const parts = value.split(/(€0|0€|0 €)/);
+  return (
+    <>
+      {parts.map((part, i) =>
+        ZERO_PRICE_TOKENS.has(part) ? (
+          <span
+            key={i}
+            className="font-semibold tabular-nums"
+            style={{ color: BRAND_BLUE }}
+          >
+            {part}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
 const MARKTWERT_VERKAUF_GRID: Record<
   "de" | "en" | "tr",
   { title: string; rightTitle: string; rows: string[] }
 > = {
   de: {
-    title: "Marktwert einschätzung mit Verkaufsabsicht:",
-    rightTitle: "Marktwert Einschätzung ohne Verkaufsabsicht:",
+    title: "Marktwerteinschätzung mit Verkaufsabsicht:",
+    rightTitle: "Marktwerteinschätzung ohne Verkaufsabsicht:",
     rows: [
       "Eigentumswohnung: 0€",
       "Einfamilienhaus: 0€",
@@ -223,10 +289,10 @@ function MarktwertAfterMintPrices({
       <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 border-t border-slate-200 pt-4">
         {head}
       </h3>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">
-        <div className="space-y-3">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.65fr)] sm:gap-10">
+        <div className="min-w-0 space-y-3">
           <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
-            {grid.title}
+            {highlightMarktwertGridTitle(grid.title, locale, "left")}
           </p>
           <div className="grid max-w-md grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-3 text-lg leading-relaxed">
             {grid.rows.map((row, i) => {
@@ -244,19 +310,22 @@ function MarktwertAfterMintPrices({
                 <Fragment key={i}>
                   <span className="text-slate-600">{label}:</span>
                   <span className="text-right font-medium tabular-nums text-slate-700">
-                    {value}
+                    {highlightMarktwertZeroPrice(value)}
                   </span>
                 </Fragment>
               );
             })}
           </div>
         </div>
-        <div className="space-y-3 border-t border-slate-200 pt-6 sm:border-t-0 sm:border-l sm:border-slate-200 sm:pt-0 sm:pl-10">
+        <div className="min-w-0 space-y-3 border-t border-slate-200 pt-6 sm:border-t-0 sm:border-l sm:border-slate-200 sm:pt-0 sm:pl-10">
           <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
-            {grid.rightTitle}
+            {highlightMarktwertGridTitle(grid.rightTitle, locale, "right")}
           </p>
           {rightLines.map((row, i) => (
-            <p key={i} className="text-lg leading-relaxed text-slate-600">
+            <p
+              key={i}
+              className="text-lg leading-relaxed text-slate-600 sm:whitespace-nowrap"
+            >
               {row}
             </p>
           ))}
@@ -321,25 +390,34 @@ function DefaultContent({
   suppressLeadingH2?: boolean;
 }) {
   if (slug === "marktwertanalyse" && !skipMarktwertPreisBox) {
+    const loc = locale ?? "de";
+    const priceStart = paragraphs.findIndex(
+      (p) => p === MARKTWERT_AFTER_MINT_INTRO[loc]
+    );
     const preisIdx = paragraphs.findIndex((p) => MARKTWERT_PREIS_HEADINGS.has(p));
-    if (preisIdx >= 0) {
-      const loc = locale ?? "de";
-      const listIntroLine = MARKTWERT_AFTER_MINT_INTRO[loc];
-      const listIntroIdx = paragraphs.findIndex((p) => p === listIntroLine);
-      const mintEndIdx =
-        listIntroIdx > preisIdx ? listIntroIdx : paragraphs.length;
-      const before = paragraphs.slice(0, preisIdx);
-      const inMint = paragraphs.slice(preisIdx, mintEndIdx);
-      const afterMint =
-        mintEndIdx < paragraphs.length ? paragraphs.slice(mintEndIdx) : [];
+    const transparentIdx = paragraphs.findIndex((p) =>
+      MARKTWERT_TRANSPARENT_HEADINGS.has(p)
+    );
+    if (
+      preisIdx >= 0 &&
+      priceStart >= 0 &&
+      transparentIdx > preisIdx
+    ) {
+      const intro = paragraphs.slice(0, priceStart);
+      const priceBlock = paragraphs.slice(priceStart, preisIdx);
+      const inMint = paragraphs.slice(preisIdx, transparentIdx);
+      const afterTransparent = paragraphs.slice(transparentIdx);
       return (
         <>
           <DefaultContent
-            paragraphs={before}
+            paragraphs={intro}
             slug={slug}
             locale={locale}
             skipMarktwertPreisBox
           />
+          {priceBlock.length > 0 && (
+            <MarktwertAfterMintPrices locale={loc} paragraphs={priceBlock} />
+          )}
           <section
             className="mt-8 rounded-2xl border-2 px-6 py-7 sm:px-8 sm:py-8"
             style={{
@@ -357,10 +435,13 @@ function DefaultContent({
               firstBlockHeadingId="marktwert-preisgestaltung-heading"
             />
           </section>
-          {afterMint.length > 0 && (
-            <MarktwertAfterMintPrices
-              locale={loc}
-              paragraphs={afterMint}
+          {afterTransparent.length > 0 && (
+            <DefaultContent
+              paragraphs={afterTransparent}
+              slug={slug}
+              locale={locale}
+              skipMarktwertPreisBox
+              suppressLeadingH2
             />
           )}
         </>
