@@ -8,6 +8,8 @@ import { DEFAULT_SERVICES, type ServiceCardItem } from "@/data/services";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
 const BRAND_BLUE = "#F9423A";
+/** Mint-Akzent (wie Preisgestaltung-Box) für Hervorhebungen im Marktwert-Preisraster. */
+const MARKTWERT_MINT_ACCENT = "#85b09a";
 
 interface PageProps {
   params: Promise<{ lang?: string; slug: string }>;
@@ -193,7 +195,7 @@ function highlightMarktwertGridTitle(
           <span
             key={i}
             className="font-semibold"
-            style={{ color: BRAND_BLUE }}
+            style={{ color: MARKTWERT_MINT_ACCENT }}
           >
             {part}
           </span>
@@ -216,7 +218,7 @@ function highlightMarktwertZeroPrice(value: string): ReactNode {
           <span
             key={i}
             className="font-semibold tabular-nums"
-            style={{ color: BRAND_BLUE }}
+            style={{ color: MARKTWERT_MINT_ACCENT }}
           >
             {part}
           </span>
@@ -294,25 +296,28 @@ function MarktwertAfterMintPrices({
           <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
             {highlightMarktwertGridTitle(grid.title, locale, "left")}
           </p>
-          <div className="grid max-w-md grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-3 text-lg leading-relaxed">
+          <div className="flex max-w-md flex-col gap-y-3 text-lg leading-relaxed">
             {grid.rows.map((row, i) => {
               const m = row.match(/^(.+?):\s*(.+)$/);
               const label = m?.[1]?.trim() ?? row;
               const value = m?.[2]?.trim() ?? "";
               if (!m) {
                 return (
-                  <p key={i} className="col-span-2 text-slate-600">
+                  <p key={i} className="text-slate-600">
                     {row}
                   </p>
                 );
               }
               return (
-                <Fragment key={i}>
+                <div
+                  key={i}
+                  className="flex flex-wrap items-baseline gap-x-1.5"
+                >
                   <span className="text-slate-600">{label}:</span>
-                  <span className="text-right font-medium tabular-nums text-slate-700">
+                  <span className="font-medium tabular-nums text-slate-700">
                     {highlightMarktwertZeroPrice(value)}
                   </span>
-                </Fragment>
+                </div>
               );
             })}
           </div>
