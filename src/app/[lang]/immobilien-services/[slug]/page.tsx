@@ -321,14 +321,26 @@ function MarktwertAfterMintPrices({
           <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
             {highlightMarktwertGridTitle(grid.rightTitle, locale, "right")}
           </p>
-          {rightLines.map((row, i) => (
-            <p
-              key={i}
-              className="text-lg leading-relaxed text-slate-600 sm:whitespace-nowrap"
-            >
-              {row}
-            </p>
-          ))}
+          {rightLines.map((row, i) => {
+            const m = row.match(/^(.+?):\s*(.+)$/);
+            const label = m?.[1]?.trim();
+            const value = m?.[2]?.trim();
+            if (!m || !label || !value) {
+              return (
+                <p key={i} className="text-lg leading-relaxed text-slate-600">
+                  {row}
+                </p>
+              );
+            }
+            return (
+              <p key={i} className="text-lg leading-relaxed text-slate-600">
+                <span>{label}:</span>{" "}
+                <span className="inline [@media(max-width:410px)]:mt-0.5 [@media(max-width:410px)]:block">
+                  {value}
+                </span>
+              </p>
+            );
+          })}
         </div>
       </div>
     </div>
