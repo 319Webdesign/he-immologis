@@ -173,8 +173,34 @@ const MARKTWERT_TRANSPARENT_HEADINGS = new Set([
 function highlightMarktwertGridTitle(
   text: string,
   locale: "de" | "en" | "tr",
-  column: "left" | "right"
+  column: "left" | "right",
+  options?: {
+    omitLineBreak?: boolean;
+    /** Nur schmal: Zeilenumbruch nach „Marktwerteinschätzung“ / „Market value estimate“. */
+    breakAfterEstimateMobile?: boolean;
+  }
 ): ReactNode {
+  if (options?.breakAfterEstimateMobile && locale === "tr") {
+    const needle = "piyasa değeri tahmini";
+    const idx = text.indexOf(needle);
+    if (idx > 0) {
+      const head = text.slice(0, idx).trimEnd();
+      const tail = text.slice(idx);
+      if (head && tail) {
+        const pass = {
+          omitLineBreak: options.omitLineBreak,
+          breakAfterEstimateMobile: false as const,
+        };
+        return (
+          <>
+            {highlightMarktwertGridTitle(head, locale, column, pass)}
+            <br />
+            {highlightMarktwertGridTitle(tail, locale, column, pass)}
+          </>
+        );
+      }
+    }
+  }
   const re =
     column === "left"
       ? locale === "de"
@@ -188,17 +214,31 @@ function highlightMarktwertGridTitle(
           ? /(\bwithout\b)/
           : /(olmadan)/;
   const parts = text.split(re);
+  const showLineBreak =
+    column === "right" &&
+    !options?.omitLineBreak &&
+    !options?.breakAfterEstimateMobile;
+  const mobileHeadBreak =
+    Boolean(options?.breakAfterEstimateMobile) &&
+    (locale === "de" || locale === "en");
   return (
     <>
       {parts.map((part, i) =>
         i % 2 === 1 ? (
-          <span
-            key={i}
-            className="font-semibold"
-            style={{ color: MARKTWERT_MINT_ACCENT }}
-          >
-            {part}
-          </span>
+          <Fragment key={i}>
+            <span
+              className="font-semibold"
+              style={{ color: MARKTWERT_MINT_ACCENT }}
+            >
+              {part}
+            </span>
+            {showLineBreak ? <br /> : null}
+          </Fragment>
+        ) : i === 0 && mobileHeadBreak ? (
+          <Fragment key={i}>
+            <span>{part.trimEnd()}</span>
+            <br />
+          </Fragment>
         ) : (
           <span key={i}>{part}</span>
         )
@@ -228,6 +268,15 @@ function highlightMarktwertZeroPrice(value: string): ReactNode {
       )}
     </>
   );
+}
+
+/** Rechte Marktwert-Spalte: ganze Euro ohne ,00 / .00 (z. B. 599,00 € → 599€). */
+function formatMarktwertRightPriceValue(value: string): string {
+  return value
+    .trim()
+    .replace(/,00(\s*€|€)/g, "€")
+    .replace(/€(\d[\d,.]*)\.00\b/g, "€$1")
+    .replace(/(\d[\d,.]*)\.00\s*€/g, "$1€");
 }
 
 const MARKTWERT_VERKAUF_GRID: Record<
@@ -263,6 +312,12 @@ const MARKTWERT_VERKAUF_GRID: Record<
   },
 };
 
+const MARKTWERT_DOC_FEES_FOOTNOTE: Record<"de" | "en" | "tr", string> = {
+  de: "*Ausgaben für Dokumente\nwerden berechnet.",
+  en: "*Expenses for documents are charged.",
+  tr: "*Belge masrafları ayrıca faturalandırılır.",
+};
+
 function MarktwertAfterMintPrices({
   locale,
   paragraphs,
@@ -291,61 +346,83 @@ function MarktwertAfterMintPrices({
       <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 border-t border-slate-200 pt-4">
         {head}
       </h3>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.65fr)] sm:gap-10">
+      <div className="flex flex-col gap-8 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.65fr)] sm:gap-10">
         <div className="min-w-0 space-y-3">
           <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
-            {highlightMarktwertGridTitle(grid.title, locale, "left")}
+            <span className="sm:hidden">
+              {highlightMarktwertGridTitle(grid.title, locale, "left", {
+                breakAfterEstimateMobile: true,
+              })}
+            </span>
+            <span className="hidden sm:inline">
+              {highlightMarktwertGridTitle(grid.title, locale, "left")}
+            </span>
           </p>
-          <div className="flex max-w-md flex-col gap-y-3 text-lg leading-relaxed">
+          <div className="grid max-w-md grid-cols-[max-content_auto] gap-x-2.5 gap-y-3 items-baseline text-lg leading-relaxed">
             {grid.rows.map((row, i) => {
               const m = row.match(/^(.+?):\s*(.+)$/);
               const label = m?.[1]?.trim() ?? row;
               const value = m?.[2]?.trim() ?? "";
               if (!m) {
                 return (
-                  <p key={i} className="text-slate-600">
+                  <p key={i} className="col-span-2 text-slate-600">
                     {row}
                   </p>
                 );
               }
               return (
-                <div
-                  key={i}
-                  className="flex flex-wrap items-baseline gap-x-1.5"
-                >
+                <Fragment key={i}>
                   <span className="text-slate-600">{label}:</span>
-                  <span className="font-medium tabular-nums text-slate-700">
+                  <span className="justify-self-start font-medium tabular-nums text-slate-700">
                     {highlightMarktwertZeroPrice(value)}
                   </span>
-                </div>
+                </Fragment>
               );
             })}
           </div>
-        </div>
-        <div className="min-w-0 space-y-3 border-t border-slate-200 pt-6 sm:border-t-0 sm:border-l sm:border-slate-200 sm:pt-0 sm:pl-10">
-          <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
-            {highlightMarktwertGridTitle(grid.rightTitle, locale, "right")}
+          <p className="mt-4 max-w-md whitespace-pre-line text-xs leading-relaxed text-slate-500">
+            {MARKTWERT_DOC_FEES_FOOTNOTE[locale]}
           </p>
-          {rightLines.map((row, i) => {
-            const m = row.match(/^(.+?):\s*(.+)$/);
-            const label = m?.[1]?.trim();
-            const value = m?.[2]?.trim();
-            if (!m || !label || !value) {
+        </div>
+        <div className="min-w-0 space-y-3 border-t border-slate-200 pt-6 sm:border-t-0 sm:border-l sm:border-slate-200 sm:pt-0 sm:pl-10 [@media(max-width:410px)]:overflow-x-auto">
+          <p className="mb-5 font-sans text-lg font-semibold text-slate-900 sm:mb-6">
+            <span className="sm:hidden">
+              {highlightMarktwertGridTitle(grid.rightTitle, locale, "right", {
+                breakAfterEstimateMobile: true,
+              })}
+            </span>
+            <span className="hidden sm:inline">
+              {highlightMarktwertGridTitle(grid.rightTitle, locale, "right")}
+            </span>
+          </p>
+          <div className="grid max-w-md grid-cols-[max-content_auto] gap-x-2.5 gap-y-3 items-baseline text-lg leading-relaxed [@media(max-width:410px)]:text-base">
+            {rightLines.map((row, i) => {
+              const m = row.match(/^(.+?):\s*(.+)$/);
+              const label = m?.[1]?.trim();
+              const value = m?.[2]?.trim();
+              if (!m || !label || !value) {
+                return (
+                  <p
+                    key={i}
+                    className="col-span-2 text-lg leading-relaxed text-slate-600"
+                  >
+                    {row}
+                  </p>
+                );
+              }
               return (
-                <p key={i} className="text-lg leading-relaxed text-slate-600">
-                  {row}
-                </p>
+                <Fragment key={i}>
+                  <span className="text-slate-600">{label}:</span>
+                  <span
+                    className="justify-self-start font-semibold tabular-nums [@media(max-width:410px)]:whitespace-nowrap"
+                    style={{ color: MARKTWERT_MINT_ACCENT }}
+                  >
+                    {formatMarktwertRightPriceValue(value)}
+                  </span>
+                </Fragment>
               );
-            }
-            return (
-              <p key={i} className="text-lg leading-relaxed text-slate-600">
-                <span>{label}:</span>{" "}
-                <span className="inline [@media(max-width:410px)]:mt-0.5 [@media(max-width:410px)]:block">
-                  {value}
-                </span>
-              </p>
-            );
-          })}
+            })}
+          </div>
         </div>
       </div>
     </div>
