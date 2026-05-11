@@ -1,4 +1,3 @@
-import ComingSoonModal from "@/components/ComingSoonModal";
 import Hero from "@/components/Hero";
 import LanguageBanner from "@/components/LanguageBanner";
 import LocalPresence from "@/components/LocalPresence";
@@ -89,7 +88,6 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <ComingSoonModal lang={locale} />
       <LocalBusinessSchema />
       <ServiceSchema />
       <Hero dict={dict.home.hero} lang={locale} />
