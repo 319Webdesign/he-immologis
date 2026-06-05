@@ -1,4 +1,7 @@
-import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
+import {
+  arePropertyListingsPubliclyVisible,
+  filterPropertiesByListingWhitelist,
+} from "@/lib/listingsVisibility";
 import { fetchProperties } from "@/lib/onoffice";
 import type { Rental } from "@/types";
 import rentalsData from "@/data/rentals.json";
@@ -72,7 +75,9 @@ export default async function MietenData({ dict, lang }: MietenDataProps) {
     );
   }
 
-  const rentalsFromApi: Rental[] = allProperties.map(mapOnOfficeToRental);
+  const rentalsFromApi: Rental[] = filterPropertiesByListingWhitelist(allProperties).map(
+    mapOnOfficeToRental,
+  );
   const rentals = rentalsFromApi.length > 0 ? rentalsFromApi : (rentalsData as Rental[]);
 
   if (rentals.length === 0) {

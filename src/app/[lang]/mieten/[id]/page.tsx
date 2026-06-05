@@ -5,7 +5,7 @@ import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/Prop
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
-import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
+import { arePropertyListingsPubliclyVisible, isPropertyListingAllowed } from "@/lib/listingsVisibility";
 import { formatCurrency } from "@/lib/format";
 
 function buildMietenDescription(prop: {
@@ -49,6 +49,13 @@ export async function generateMetadata({
         "Die angeforderte Mietimmobilie wurde nicht gefunden. Entdecken Sie weitere Wohnungen und Häuser zur Miete in Weinheim und an der Bergstraße.",
     };
   }
+  if (!isPropertyListingAllowed(id)) {
+    return {
+      title: "Mietobjekt nicht gefunden",
+      description:
+        "Die angeforderte Mietimmobilie wurde nicht gefunden. Entdecken Sie weitere Wohnungen und Häuser zur Miete in Weinheim und an der Bergstraße.",
+    };
+  }
   if (!prop) {
     return {
       title: "Mietobjekt nicht gefunden",
@@ -78,6 +85,7 @@ export default async function MietenDetailPage({ params }: PageProps) {
     fetchEstateFieldMetadata(locale),
   ]);
   if (!arePropertyListingsPubliclyVisible()) notFound();
+  if (!isPropertyListingAllowed(id)) notFound();
   if (!property) notFound();
 
   return (

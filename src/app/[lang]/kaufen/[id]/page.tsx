@@ -8,7 +8,7 @@ import { PropertyDetailLayout, type PropertyDetailDict } from "@/components/Prop
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
-import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
+import { arePropertyListingsPubliclyVisible, isPropertyListingAllowed } from "@/lib/listingsVisibility";
 import { formatCurrency } from "@/lib/format";
 
 const staticProperties = propertiesData as PropertyWithDetails[];
@@ -48,6 +48,13 @@ export async function generateMetadata({
 
   const prop = await fetchPropertyById(id, locale).catch(() => null);
   if (!arePropertyListingsPubliclyVisible()) {
+    return {
+      title: "Immobilie nicht gefunden",
+      description:
+        "Die angeforderte Immobilie wurde nicht gefunden. Entdecken Sie weitere Immobilien zum Kauf in Weinheim und an der Bergstraße.",
+    };
+  }
+  if (!isPropertyListingAllowed(id)) {
     return {
       title: "Immobilie nicht gefunden",
       description:
@@ -98,6 +105,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
     fetchEstateFieldMetadata(locale),
   ]);
   if (!arePropertyListingsPubliclyVisible()) notFound();
+  if (!isPropertyListingAllowed(id)) notFound();
   if (property) {
     return (
       <>
@@ -117,7 +125,7 @@ export default async function KaufenDetailPage({ params }: PageProps) {
 
   // Pfad 2: Statische Properties (Fallback)
   const staticProp = staticProperties.find((p) => p.id === id);
-  if (!staticProp) notFound();
+  if (!staticProp || !isPropertyListingAllowed(staticProp.immoNr ?? staticProp.id)) notFound();
 
   const staticProperty = staticPropertyToProperty(staticProp);
   const staticFieldMeta = await fetchEstateFieldMetadata(locale);
