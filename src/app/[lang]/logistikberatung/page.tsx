@@ -197,17 +197,14 @@ export default async function LogistikberatungPage() {
               </span>
             </Link>
           ))}
-          <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white px-6 py-0 shadow-sm">
-            <div className="flex flex-1 items-end justify-center">
-              <Image
-                src="/img/holger-logistik.jpeg"
-                alt={holgerLogistikAlt}
-                width={240}
-                height={360}
-                className="h-auto max-h-full w-32 object-contain object-bottom sm:w-40 lg:w-48"
-                sizes="192px"
-              />
-            </div>
+          <div className="relative h-full min-h-0 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+            <Image
+              src="/img/holger-logistik.jpeg"
+              alt={holgerLogistikAlt}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
           </div>
         </div>
       </section>
