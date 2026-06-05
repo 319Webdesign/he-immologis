@@ -90,6 +90,12 @@ export default async function LogistikberatungPage() {
   const smartIntro = locale === "en" ? SMART_INTRO_EN : locale === "tr" ? SMART_INTRO_TR : SMART_INTRO;
   const smartModule = locale === "en" ? SMART_MODULE_EN : locale === "tr" ? SMART_MODULE_TR : SMART_MODULE;
   const prefix = locale === "en" ? "/en" : locale === "tr" ? "/tr" : "";
+  const holgerLogistikAlt =
+    locale === "en"
+      ? "Holger Eberhard – Logistics consulting"
+      : locale === "tr"
+        ? "Holger Eberhard – Lojistik danışmanlığı"
+        : "Holger Eberhard – Logistikberatung";
 
   return (
     <div className="-mt-[7.5rem] w-full min-w-0 bg-slate-900">
@@ -191,6 +197,18 @@ export default async function LogistikberatungPage() {
               </span>
             </Link>
           ))}
+          <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white px-6 py-0 shadow-sm">
+            <div className="flex flex-1 items-end justify-center">
+              <Image
+                src="/img/holger-logistik.png"
+                alt={holgerLogistikAlt}
+                width={240}
+                height={360}
+                className="h-auto max-h-full w-32 object-contain object-bottom sm:w-40 lg:w-48"
+                sizes="192px"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
