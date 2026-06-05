@@ -200,7 +200,7 @@ export default async function LogistikberatungPage() {
           <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white px-6 py-0 shadow-sm">
             <div className="flex flex-1 items-end justify-center">
               <Image
-                src="/img/holger-logistik.png"
+                src="/img/holger-logistik.jpeg"
                 alt={holgerLogistikAlt}
                 width={240}
                 height={360}
