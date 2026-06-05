@@ -164,7 +164,7 @@ export default async function LogistikberatungPage() {
 
       <section id="module-cards" className="w-full bg-white px-4 pt-24 pb-16 sm:px-6 sm:pt-28 sm:pb-20 lg:px-8 scroll-mt-24">
         <h2 className="sr-only">{lb.srOnlyModules}</h2>
-        <div className="mx-auto max-w-7xl grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto max-w-7xl grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {smartModule.map((modul) => (
             <Link
               key={modul.slug}
@@ -197,7 +197,7 @@ export default async function LogistikberatungPage() {
               </span>
             </Link>
           ))}
-          <div className="relative h-full min-h-0 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-slate-200 shadow-sm sm:aspect-auto sm:h-full sm:min-h-0">
             <Image
               src="/img/holger-logistik.jpeg"
               alt={holgerLogistikAlt}
