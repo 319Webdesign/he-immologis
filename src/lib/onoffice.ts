@@ -131,6 +131,7 @@ function getDetailDataFieldsCore(): string[] {
     "objektnr_extern",
     "dreizeiler",
     "objektbeschreibung",
+    "veroeffentlichen",
   ];
 }
 
@@ -205,6 +206,7 @@ function getDetailDataFields(): string[] {
     "distanz_autobahn",
     "distanz_zentrum",
     "vermietet",
+    "veroeffentlichen",
   ];
 }
 
@@ -447,6 +449,26 @@ function readBoolean(value: unknown): boolean | null {
   return null;
 }
 
+/** Filter für öffentliche Website: aktiv und unter „Eigene Homepage → Veröffentlichen“ freigegeben. */
+function buildPublicWebsiteEstateFilter(options?: {
+  vermarktungsart?: Vermarktungsart;
+}): Record<string, Array<{ op: string; val: unknown }>> {
+  const filter: Record<string, Array<{ op: string; val: unknown }>> = {
+    status: [{ op: "=", val: 1 }],
+    veroeffentlichen: [{ op: "=", val: 1 }],
+  };
+  if (options?.vermarktungsart === "Kauf") {
+    filter.vermarktungsart = [{ op: "=", val: "kauf" }];
+  } else if (options?.vermarktungsart === "Miete") {
+    filter.vermarktungsart = [{ op: "=", val: "miete" }];
+  }
+  return filter;
+}
+
+function isEstatePublishedOnWebsite(record: OnOfficeRecord): boolean {
+  return readBoolean(record.elements?.veroeffentlichen) === true;
+}
+
 /**
  * Mappt einen onOffice-Record auf unser Property-Interface (nur Felder aus dataFields).
  */
@@ -554,9 +576,8 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
 /**
  * Ruft Immobilien von der onOffice-API ab.
  *
- * Filter: status = 1 (Aktiv) und optional vermarktungsart (Kauf/Miete).
- * Kein portal_id-Filter – alle aktiven Objekte im Account werden geliefert,
- * unabhängig von einer Portal-Zuordnung in onOffice.
+ * Filter: status = 1 (Aktiv), veroeffentlichen = 1 (Auf Website anzeigen)
+ * und optional vermarktungsart (Kauf/Miete).
  */
 export async function fetchProperties(options?: {
   listlimit?: number;
@@ -581,24 +602,8 @@ export async function fetchProperties(options?: {
     : LANG_TO_ISO.de;
   const outputLang = isoLang;
 
-  /**
-   * Baut den API-Filter:
-   * - status = 1 (Aktiv) → liefert alle aktiven Objekte, kein portal_id-Filter
-   * - vermarktungsart = "kauf" | "miete" (optional)
-   * Kein "veroeffentlichen"- oder "portal"-Filter, damit auch Objekte ohne
-   * Portal-Zuordnung in onOffice zurückgegeben werden.
-   */
-  const buildFilter = (): Record<string, Array<{ op: string; val: unknown }>> => {
-    const filter: Record<string, Array<{ op: string; val: unknown }>> = {
-      status: [{ op: "=", val: 1 }],
-    };
-    if (options?.vermarktungsart === "Kauf") {
-      filter.vermarktungsart = [{ op: "=", val: "kauf" }];
-    } else if (options?.vermarktungsart === "Miete") {
-      filter.vermarktungsart = [{ op: "=", val: "miete" }];
-    }
-    return filter;
-  };
+  const buildFilter = () =>
+    buildPublicWebsiteEstateFilter({ vermarktungsart: options?.vermarktungsart });
 
   const doRequest = async (
     fields: string[]
@@ -677,9 +682,9 @@ export async function fetchProperties(options?: {
   if (result.records.length === 0) {
     console.warn(
       "[onOffice fetchProperties] 0 Ergebnisse – mögliche Ursachen:\n" +
-      "  1. Kein Objekt in onOffice hat status=1 (Aktiv)\n" +
+      "  1. Kein Objekt in onOffice hat status=1 (Aktiv) und veroeffentlichen=1 (Auf Website anzeigen)\n" +
       "  2. onOffice-API benötigt eine 'allgemeine Freigabe' (API-Benutzerrechte)\n" +
-      "  3. Alle aktiven Objekte sind einer anderen Vermarktungsart zugeordnet\n" +
+      "  3. Alle freigegebenen Objekte sind einer anderen Vermarktungsart zugeordnet\n" +
       "  → Tipp: In onOffice unter Benutzerrechte → API prüfen, ob alle Objekte freigegeben sind"
     );
   }
@@ -901,7 +906,7 @@ export async function fetchPropertyById(
       if (!useNumericId) {
         parameters.filter = {
           objektnr_extern: [{ op: "=", val: slugToTry }],
-          status: [{ op: "=", val: "1" }],
+          ...buildPublicWebsiteEstateFilter(),
         };
         parameters.listlimit = 1;
       }
@@ -1013,6 +1018,10 @@ export async function fetchPropertyById(
     }
 
     const { record } = result;
+    if (!isEstatePublishedOnWebsite(record)) {
+      return null;
+    }
+
     const property = mapRecordToPropertyDetail(record);
 
     const estateId = record.id;
