@@ -112,6 +112,7 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "grundstuecksflaeche",
     "nebenkosten",
     "objektnr_extern",
+    "veroeffentlichen",
   ];
 }
 
@@ -469,6 +470,21 @@ function isEstatePublishedOnWebsite(record: OnOfficeRecord): boolean {
   return readBoolean(record.elements?.veroeffentlichen) === true;
 }
 
+function filterPublishedEstateRecords(records: OnOfficeRecord[]): OnOfficeRecord[] {
+  const published = records.filter(isEstatePublishedOnWebsite);
+  const hidden = records.length - published.length;
+  if (hidden > 0) {
+    console.log(
+      `[onOffice] ${hidden} Objekt(e) ausgeblendet (veroeffentlichen != 1):`,
+      records
+        .filter((r) => !isEstatePublishedOnWebsite(r))
+        .map((r) => r.elements?.objektnr_extern ?? r.id)
+        .join(", ")
+    );
+  }
+  return published;
+}
+
 /**
  * Mappt einen onOffice-Record auf unser Property-Interface (nur Felder aus dataFields).
  */
@@ -677,9 +693,12 @@ export async function fetchProperties(options?: {
     );
   }
 
-  console.log(`[onOffice fetchProperties] ${result.records.length} Objekte geladen (vermarktungsart: ${options?.vermarktungsart ?? "alle"})`);
+  console.log(`[onOffice fetchProperties] ${result.records.length} Objekte von API (vermarktungsart: ${options?.vermarktungsart ?? "alle"})`);
 
-  if (result.records.length === 0) {
+  const publishedRecords = filterPublishedEstateRecords(result.records);
+  console.log(`[onOffice fetchProperties] ${publishedRecords.length} Objekte nach Website-Freigabe-Filter`);
+
+  if (publishedRecords.length === 0) {
     console.warn(
       "[onOffice fetchProperties] 0 Ergebnisse – mögliche Ursachen:\n" +
       "  1. Kein Objekt in onOffice hat status=1 (Aktiv) und veroeffentlichen=1 (Auf Website anzeigen)\n" +
@@ -689,7 +708,7 @@ export async function fetchProperties(options?: {
     );
   }
 
-  const allProperties = result.records.map(mapRecordToProperty);
+  const allProperties = publishedRecords.map(mapRecordToProperty);
 
   // Titelbilder für die Vorschaukarten laden (Verkaufen/Mieten)
   const estateIds = allProperties.map((p) => p.id);
@@ -903,12 +922,17 @@ export async function fetchPropertyById(
       const parameters: Record<string, unknown> = { data: dataFields };
       const isoLang = LANG_TO_ISO[lang.toLowerCase()] ?? LANG_TO_ISO.de;
       parameters.estatelanguage = isoLang;
-      if (!useNumericId) {
+      parameters.listlimit = 1;
+      if (useNumericId && numericId != null) {
+        parameters.filter = {
+          Id: [{ op: "=", val: numericId }],
+          ...buildPublicWebsiteEstateFilter(),
+        };
+      } else {
         parameters.filter = {
           objektnr_extern: [{ op: "=", val: slugToTry }],
           ...buildPublicWebsiteEstateFilter(),
         };
-        parameters.listlimit = 1;
       }
 
       const res = await fetch(ONOFFICE_API_URL, {
@@ -920,7 +944,7 @@ export async function fetchPropertyById(
             actions: [
               {
                 actionid,
-                resourceid: useNumericId && numericId != null ? String(numericId) : "",
+                resourceid: "",
                 resourcetype,
                 identifier: "",
                 timestamp,
