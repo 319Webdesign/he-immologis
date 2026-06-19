@@ -2,7 +2,7 @@ import {
   arePropertyListingsPubliclyVisible,
   filterPropertiesByListingWhitelist,
 } from "@/lib/listingsVisibility";
-import { fetchProperties, fetchEstateFieldMetadata } from "@/lib/onoffice";
+import { fetchProperties, fetchEstateFieldMetadata, hasOnOfficeCredentials } from "@/lib/onoffice";
 import propertiesData from "@/data/properties.json";
 import type { PropertyWithDetails } from "@/types";
 import { staticPropertyToProperty } from "@/lib/propertyMapper";
@@ -45,8 +45,11 @@ export default async function PropertiesGrid({
   const staticProperties = (propertiesData as PropertyWithDetails[]).map((p) =>
     staticPropertyToProperty(p, p.id),
   );
-  const allPropertiesRaw =
-    onOfficeProperties.length > 0 ? onOfficeProperties : staticProperties;
+  const allPropertiesRaw = hasOnOfficeCredentials()
+    ? onOfficeProperties
+    : onOfficeProperties.length > 0
+      ? onOfficeProperties
+      : staticProperties;
   const allProperties = filterPropertiesByListingWhitelist(allPropertiesRaw);
 
   const permittedValues =

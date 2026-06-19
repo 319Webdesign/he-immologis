@@ -2,6 +2,31 @@ import crypto from "node:crypto";
 
 const ONOFFICE_API_URL = "https://api.onoffice.de/api/stable/api.php";
 
+function onOfficeFetch(body: unknown): Promise<Response> {
+  return fetch(ONOFFICE_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+    cache: "no-store",
+  });
+}
+
+export function hasOnOfficeCredentials(): boolean {
+  return !!(process.env.ONOFFICE_API_KEY?.trim() && process.env.ONOFFICE_API_SECRET?.trim());
+}
+
+/** API-Feld für „Eigene Internetseite → Veröffentlichen“ (in onOffice-Admin aktivieren). */
+function getWebsitePublishFieldName(): string {
+  return process.env.ONOFFICE_PUBLISH_FIELD?.trim() || "veroeffentlichen";
+}
+
+function getOnOfficeEstateFilterId(): number | null {
+  const raw = process.env.ONOFFICE_ESTATE_FILTER_ID?.trim();
+  if (!raw) return null;
+  const id = parseInt(raw, 10);
+  return Number.isNaN(id) ? null : id;
+}
+
 const READ_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:read";
 const GET_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:get";
 const CREATE_ACTION_ID = "urn:onoffice-de-ns:smart:2.5:smartml:action:create";
@@ -112,7 +137,8 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "grundstuecksflaeche",
     "nebenkosten",
     "objektnr_extern",
-    "veroeffentlichen",
+    getWebsitePublishFieldName(),
+    "objekt_offline_seit",
   ];
 }
 
@@ -132,7 +158,8 @@ function getDetailDataFieldsCore(): string[] {
     "objektnr_extern",
     "dreizeiler",
     "objektbeschreibung",
-    "veroeffentlichen",
+    getWebsitePublishFieldName(),
+    "objekt_offline_seit",
   ];
 }
 
@@ -207,7 +234,8 @@ function getDetailDataFields(): string[] {
     "distanz_autobahn",
     "distanz_zentrum",
     "vermietet",
-    "veroeffentlichen",
+    getWebsitePublishFieldName(),
+    "objekt_offline_seit",
   ];
 }
 
@@ -454,9 +482,10 @@ function readBoolean(value: unknown): boolean | null {
 function buildPublicWebsiteEstateFilter(options?: {
   vermarktungsart?: Vermarktungsart;
 }): Record<string, Array<{ op: string; val: unknown }>> {
+  const publishField = getWebsitePublishFieldName();
   const filter: Record<string, Array<{ op: string; val: unknown }>> = {
     status: [{ op: "=", val: 1 }],
-    veroeffentlichen: [{ op: "=", val: 1 }],
+    [publishField]: [{ op: "=", val: 1 }],
   };
   if (options?.vermarktungsart === "Kauf") {
     filter.vermarktungsart = [{ op: "=", val: "kauf" }];
@@ -466,19 +495,32 @@ function buildPublicWebsiteEstateFilter(options?: {
   return filter;
 }
 
+function isEstateOffline(record: OnOfficeRecord): boolean {
+  const offlineSince = readString(record.elements?.objekt_offline_seit);
+  return !!offlineSince?.trim();
+}
+
 function isEstatePublishedOnWebsite(record: OnOfficeRecord): boolean {
-  return readBoolean(record.elements?.veroeffentlichen) === true;
+  if (isEstateOffline(record)) return false;
+  const publishField = getWebsitePublishFieldName();
+  return readBoolean(record.elements?.[publishField]) === true;
 }
 
 function filterPublishedEstateRecords(records: OnOfficeRecord[]): OnOfficeRecord[] {
+  const publishField = getWebsitePublishFieldName();
   const published = records.filter(isEstatePublishedOnWebsite);
   const hidden = records.length - published.length;
   if (hidden > 0) {
     console.log(
-      `[onOffice] ${hidden} Objekt(e) ausgeblendet (veroeffentlichen != 1):`,
+      `[onOffice] ${hidden} Objekt(e) ausgeblendet (${publishField} != 1 oder offline):`,
       records
         .filter((r) => !isEstatePublishedOnWebsite(r))
-        .map((r) => r.elements?.objektnr_extern ?? r.id)
+        .map((r) => {
+          const nr = r.elements?.objektnr_extern ?? r.id;
+          const val = r.elements?.[publishField];
+          const offline = r.elements?.objekt_offline_seit;
+          return `${nr}(${publishField}=${String(val ?? "—")}, offline=${String(offline ?? "—")})`;
+        })
         .join(", ")
     );
   }
@@ -620,6 +662,7 @@ export async function fetchProperties(options?: {
 
   const buildFilter = () =>
     buildPublicWebsiteEstateFilter({ vermarktungsart: options?.vermarktungsart });
+  const estateFilterId = getOnOfficeEstateFilterId();
 
   const doRequest = async (
     fields: string[]
@@ -628,33 +671,34 @@ export async function fetchProperties(options?: {
     const actionid = READ_ACTION_ID;
     const resourcetype = RESOURCE_TYPE_ESTATE;
     const hmac = buildHmac(secret, timestamp, token, resourcetype, actionid);
-    const res = await fetch(ONOFFICE_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        token,
-        request: {
-          actions: [
-            {
-              actionid,
-              resourceid: "",
-              resourcetype,
-              identifier: "",
-              timestamp,
-              hmac,
-              hmac_version: "2",
-              parameters: {
-                data: fields,
-                listlimit,
-                filter: buildFilter(),
-                outputlanguage: outputLang,
-                formatoutput: true,
-                estatelanguage: outputLang,
-              },
-            },
-          ],
-        },
-      }),
+    const parameters: Record<string, unknown> = {
+      data: fields,
+      listlimit,
+      outputlanguage: outputLang,
+      formatoutput: true,
+      estatelanguage: outputLang,
+    };
+    if (estateFilterId != null) {
+      parameters.filterid = estateFilterId;
+    } else {
+      parameters.filter = buildFilter();
+    }
+    const res = await onOfficeFetch({
+      token,
+      request: {
+        actions: [
+          {
+            actionid,
+            resourceid: "",
+            resourcetype,
+            identifier: "",
+            timestamp,
+            hmac,
+            hmac_version: "2",
+            parameters,
+          },
+        ],
+      },
     });
     if (!res.ok) {
       return { ok: false, message: `HTTP ${res.status} ${res.statusText}` };
@@ -676,7 +720,7 @@ export async function fetchProperties(options?: {
     return { ok: true, records };
   };
 
-  const activeFilter = buildFilter();
+  const activeFilter = estateFilterId != null ? { filterid: estateFilterId } : buildFilter();
   console.log("[onOffice fetchProperties] Filter:", JSON.stringify(activeFilter));
 
   let result = await doRequest(dataFields);
@@ -721,6 +765,64 @@ export async function fetchProperties(options?: {
   }
 
   return allProperties;
+}
+
+export type EstatePublishDiagnostic = {
+  id: number;
+  objektnr_extern: string | null;
+  objekttitel: string | null;
+  publishField: string;
+  publishValue: unknown;
+  offlineSince: unknown;
+  shownOnWebsite: boolean;
+};
+
+/** Diagnose: alle aktiven Objekte inkl. Website-Freigabe-Feld (nur für Debugging). */
+export async function fetchEstatePublishDiagnostics(): Promise<EstatePublishDiagnostic[]> {
+  const token = process.env.ONOFFICE_API_KEY;
+  const secret = process.env.ONOFFICE_API_SECRET;
+  if (!token || !secret) return [];
+
+  const publishField = getWebsitePublishFieldName();
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const resourcetype = RESOURCE_TYPE_ESTATE;
+  const hmac = buildHmac(secret, timestamp, token, resourcetype, READ_ACTION_ID);
+
+  const res = await onOfficeFetch({
+    token,
+    request: {
+      actions: [
+        {
+          actionid: READ_ACTION_ID,
+          resourceid: "",
+          resourcetype,
+          identifier: "publish-debug",
+          timestamp,
+          hmac,
+          hmac_version: "2",
+          parameters: {
+            data: ["objekttitel", "objektnr_extern", publishField, "objekt_offline_seit", "vermarktungsart"],
+            listlimit: 500,
+            filter: { status: [{ op: "=", val: 1 }] },
+          },
+        },
+      ],
+    },
+  });
+
+  if (!res.ok) return [];
+  const json = (await res.json()) as OnOfficeReadResponse;
+  const records = json.response?.results?.[0]?.data?.records ?? [];
+
+  return records.map((record) => ({
+    id: record.id,
+    objektnr_extern: readString(record.elements?.objektnr_extern) || null,
+    objekttitel: readString(record.elements?.objekttitel) || null,
+    publishField,
+    publishValue: record.elements?.[publishField] ?? null,
+    offlineSince: record.elements?.objekt_offline_seit ?? null,
+    shownOnWebsite: isEstatePublishedOnWebsite(record),
+  }));
 }
 
 /** Sprachcode-Mapping für onOffice API (ISO 639-2, 3 Zeichen, Großschreibung) */
@@ -935,26 +1037,22 @@ export async function fetchPropertyById(
         };
       }
 
-      const res = await fetch(ONOFFICE_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          token,
-          request: {
-            actions: [
-              {
-                actionid,
-                resourceid: "",
-                resourcetype,
-                identifier: "",
-                timestamp,
-                hmac,
-                hmac_version: "2",
-                parameters,
-              },
-            ],
-          },
-        }),
+      const res = await onOfficeFetch({
+        token,
+        request: {
+          actions: [
+            {
+              actionid,
+              resourceid: "",
+              resourcetype,
+              identifier: "",
+              timestamp,
+              hmac,
+              hmac_version: "2",
+              parameters,
+            },
+          ],
+        },
       });
 
       if (!res.ok) {

@@ -12,6 +12,8 @@ import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 import { arePropertyListingsPubliclyVisible } from "@/lib/listingsVisibility";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   searchParams: Promise<{ status?: string; ort?: string }>;
 }

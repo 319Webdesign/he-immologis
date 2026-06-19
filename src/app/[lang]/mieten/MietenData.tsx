@@ -2,7 +2,7 @@ import {
   arePropertyListingsPubliclyVisible,
   filterPropertiesByListingWhitelist,
 } from "@/lib/listingsVisibility";
-import { fetchProperties } from "@/lib/onoffice";
+import { fetchProperties, hasOnOfficeCredentials } from "@/lib/onoffice";
 import type { Rental } from "@/types";
 import rentalsData from "@/data/rentals.json";
 import MietenContent from "./MietenContent";
@@ -78,7 +78,11 @@ export default async function MietenData({ dict, lang }: MietenDataProps) {
   const rentalsFromApi: Rental[] = filterPropertiesByListingWhitelist(allProperties).map(
     mapOnOfficeToRental,
   );
-  const rentals = rentalsFromApi.length > 0 ? rentalsFromApi : (rentalsData as Rental[]);
+  const rentals = hasOnOfficeCredentials()
+    ? rentalsFromApi
+    : rentalsFromApi.length > 0
+      ? rentalsFromApi
+      : (rentalsData as Rental[]);
 
   if (rentals.length === 0) {
     return (

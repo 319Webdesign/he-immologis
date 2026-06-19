@@ -9,6 +9,8 @@ import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { getDictionary } from "@/dictionaries";
 import { getLocaleFromHeaders } from "@/lib/i18n";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocaleFromHeaders();
   const dict = await getDictionary(locale);
