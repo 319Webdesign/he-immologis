@@ -259,6 +259,7 @@ export type PropertyDetailDict = {
   noTitle?: string;
   coldRent?: string;
   ancillaryCosts?: string;
+  warmRent?: string;
   onRequest?: string;
   priceOnRequest?: string;
   rentOnRequest?: string;
@@ -399,6 +400,8 @@ export function PropertyDetailLayout({
 
   const hasKaltmiete = !isKaufen && p.kaltmiete != null && p.kaltmiete > 0;
   const hasNebenkosten = !isKaufen && p.nebenkosten != null && p.nebenkosten > 0;
+  const hasWarmmiete = !isKaufen && p.warmmiete != null && p.warmmiete > 0;
+  const showSplitRent = !isKaufen && (hasKaltmiete || hasNebenkosten);
 
   const gesamtflaeche =
     p.wohnflaeche != null && p.nutzflaeche != null
@@ -532,13 +535,26 @@ export function PropertyDetailLayout({
               <p className="mt-4 text-xl font-semibold text-zinc-800">
                 {priceDisplay}
               </p>
-            ) : (
+            ) : showSplitRent ? (
               <div className="mt-4 space-y-1">
                 <p className="text-xl font-semibold text-zinc-800">
                   {dict?.coldRent ?? "Kaltmiete"} {hasKaltmiete ? formatCurrency(p.kaltmiete!, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                 </p>
                 <p className="text-base font-medium text-zinc-700">
                   {dict?.ancillaryCosts ?? "Nebenkosten"} {hasNebenkosten ? formatCurrency(p.nebenkosten!, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
+                </p>
+              </div>
+            ) : hasWarmmiete ? (
+              <p className="mt-4 text-xl font-semibold text-zinc-800">
+                {dict?.warmRent ?? "Warmmiete"} {formatCurrency(p.warmmiete!, { decimals: 0, locale })}
+              </p>
+            ) : (
+              <div className="mt-4 space-y-1">
+                <p className="text-xl font-semibold text-zinc-800">
+                  {dict?.coldRent ?? "Kaltmiete"} {dict?.onRequest ?? "auf Anfrage"}
+                </p>
+                <p className="text-base font-medium text-zinc-700">
+                  {dict?.ancillaryCosts ?? "Nebenkosten"} {dict?.onRequest ?? "auf Anfrage"}
                 </p>
               </div>
             )}
@@ -682,15 +698,33 @@ export function PropertyDetailLayout({
                   value={p.kaufpreis != null && p.kaufpreis > 0 ? formatCurrency(p.kaufpreis, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                 />
               )}
-              {!isKaufen && (
+              {!isKaufen && showSplitRent && (
                 <>
                   <DataRow
                     label={lbl("kaltmiete", "Kaltmiete")}
-                    value={p.kaltmiete != null && p.kaltmiete > 0 ? formatCurrency(p.kaltmiete, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
+                    value={hasKaltmiete ? formatCurrency(p.kaltmiete!, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
                   />
                   <DataRow
                     label={lbl("nebenkosten", "Nebenkosten")}
-                    value={p.nebenkosten != null && p.nebenkosten > 0 ? formatCurrency(p.nebenkosten, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
+                    value={hasNebenkosten ? formatCurrency(p.nebenkosten!, { decimals: 0, locale }) : (dict?.onRequest ?? "auf Anfrage")}
+                  />
+                </>
+              )}
+              {!isKaufen && !showSplitRent && hasWarmmiete && (
+                <DataRow
+                  label={lbl("warmmiete", "Warmmiete")}
+                  value={formatCurrency(p.warmmiete!, { decimals: 0, locale })}
+                />
+              )}
+              {!isKaufen && !showSplitRent && !hasWarmmiete && (
+                <>
+                  <DataRow
+                    label={lbl("kaltmiete", "Kaltmiete")}
+                    value={dict?.onRequest ?? "auf Anfrage"}
+                  />
+                  <DataRow
+                    label={lbl("nebenkosten", "Nebenkosten")}
+                    value={dict?.onRequest ?? "auf Anfrage"}
                   />
                 </>
               )}
