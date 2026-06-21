@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, BedDouble, Bath, LayoutGrid } from "lucide-react";
+import { MapPin, DoorOpen, LayoutGrid } from "lucide-react";
 import type { Rental } from "@/types";
 import { formatPrice } from "@/lib/format";
 
@@ -66,8 +66,6 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   };
 
   const badgeLabel = cardLabels?.badgeLabel ?? "Zur Vermietung";
-  const bedroomsLabel = cardLabels?.bedroomsLabel ?? "Schlafzimmer";
-  const bathroomsLabel = cardLabels?.bathroomsLabel ?? "Badezimmer";
   const plotLabel = cardLabels?.plotLabel ?? "Grundstück";
   const coldRentLabel = cardLabels?.coldRent ?? "Kaltmiete";
   const ancillaryCostsLabel = cardLabels?.ancillaryCosts ?? "Nebenkosten";
@@ -120,16 +118,10 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
           <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 sm:group-hover:bg-white/20 sm:group-hover:text-white max-sm:group-data-[incenter=true]:bg-white/20 max-sm:group-data-[incenter=true]:text-white">
             {objekttypLabel}
           </span>
-          {property.schlafzimmer != null && property.schlafzimmer > 0 && (
+          {property.zimmer > 0 && (
             <span className="flex items-center gap-1.5">
-              <BedDouble className="h-4 w-4 shrink-0" />
-              {property.schlafzimmer} {bedroomsLabel}
-            </span>
-          )}
-          {property.badezimmer != null && property.badezimmer > 0 && (
-            <span className="flex items-center gap-1.5">
-              <Bath className="h-4 w-4 shrink-0" />
-              {property.badezimmer} {bathroomsLabel}
+              <DoorOpen className="h-4 w-4 shrink-0" />
+              {property.zimmer} {roomsLabel}
             </span>
           )}
           {property.quadratmeter > 0 && (
@@ -152,15 +144,18 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
                 <MapPin className="h-4 w-4 shrink-0" />
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
-              <div className="text-right text-sm font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
+              <div className="grid shrink-0 grid-cols-[auto_auto] gap-x-2 gap-y-0.5 text-right text-sm text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
                 {property.kaltmiete > 0 && (
-                  <span>{coldRentLabel} {formatPrice(property.kaltmiete, lang)}</span>
-                )}
-                {property.kaltmiete > 0 && property.nebenkosten != null && property.nebenkosten > 0 && (
-                  <span className="mx-2">·</span>
+                  <>
+                    <span className="font-normal">{coldRentLabel}</span>
+                    <span className="font-semibold tabular-nums">{formatPrice(property.kaltmiete, lang)}</span>
+                  </>
                 )}
                 {property.nebenkosten != null && property.nebenkosten > 0 && (
-                  <span>{ancillaryCostsLabel} {formatPrice(property.nebenkosten, lang)}</span>
+                  <>
+                    <span className="font-normal">{ancillaryCostsLabel}</span>
+                    <span className="font-semibold tabular-nums">{formatPrice(property.nebenkosten, lang)}</span>
+                  </>
                 )}
               </div>
             </div>
