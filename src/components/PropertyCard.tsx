@@ -11,7 +11,7 @@ const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
 export type RentalCardLabels = {
   badgeLabel?: string;
-  viewDetails: string;
+  viewDetails?: string;
   netRentSuffix: string;
   roomsLabel: string;
   bedroomsLabel?: string;
@@ -39,7 +39,7 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, lang = "de", cardLabels }: PropertyCardProps) {
-  const cardRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
   const [isInCenter, setIsInCenter] = useState(false);
 
   useEffect(() => {
@@ -73,9 +73,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
     cardLabels && STATUS_MAP[property.status]
       ? cardLabels[STATUS_MAP[property.status]]
       : property.status;
-  const netRentSuffix = cardLabels?.netRentSuffix ?? "Kalt";
   const roomsLabel = cardLabels?.roomsLabel ?? "Zimmer";
-  const viewDetails = cardLabels?.viewDetails ?? "Details ansehen";
   const baseHref = lang ? `/${lang}/mieten` : "/mieten";
   const detailSlug = String(property.objektnr_extern || property.id).toLowerCase();
   const detailHref = `${baseHref}/${encodeURIComponent(detailSlug)}`;
@@ -87,32 +85,31 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
     property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;
 
   return (
-    <article
+    <Link
       ref={cardRef}
+      href={detailHref}
       className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md"
       data-incenter={isInCenter}
     >
-      <Link href={detailHref} className="block">
-        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
-          <Image
-            src={imageSrc}
-            alt={`${objekttypLabel || "Mietobjekt"} zur Miete in ${property.ort?.trim() || "Weinheim"} – Rhein-Neckar – HE-immologis`}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-          <span
-            className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-            style={{ backgroundColor: "#F9423A" }}
-            aria-hidden
-          >
-            {badgeLabel}
-          </span>
-        </div>
-      </Link>
+      <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
+        <Image
+          src={imageSrc}
+          alt={`${objekttypLabel || "Mietobjekt"} zur Miete in ${property.ort?.trim() || "Weinheim"} – Rhein-Neckar – HE-immologis`}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        <span
+          className="absolute right-3 top-3 rounded px-3 py-1.5 text-sm font-medium text-white shadow-sm"
+          style={{ backgroundColor: "#F9423A" }}
+          aria-hidden
+        >
+          {badgeLabel}
+        </span>
+      </div>
       <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#85b09a] max-sm:group-data-[incenter=true]:bg-[#85b09a]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
-          <Link href={detailHref}>{property.titel}</Link>
+          {property.titel}
         </h2>
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-zinc-600 sm:group-hover:text-white/90 max-sm:group-data-[incenter=true]:text-white/90">
           <span className="rounded bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 sm:group-hover:bg-white/20 sm:group-hover:text-white max-sm:group-data-[incenter=true]:bg-white/20 max-sm:group-data-[incenter=true]:text-white">
@@ -161,13 +158,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
             </div>
           </>
         )}
-        <Link
-          href={detailHref}
-          className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-zinc-900 px-4 py-3 text-sm font-medium text-zinc-900 transition-colors sm:group-hover:border-white sm:group-hover:text-white max-sm:group-data-[incenter=true]:border-white max-sm:group-data-[incenter=true]:text-white hover:bg-white hover:text-[#F9423A] sm:w-auto"
-        >
-          {viewDetails}
-        </Link>
       </div>
-    </article>
+    </Link>
   );
 }
