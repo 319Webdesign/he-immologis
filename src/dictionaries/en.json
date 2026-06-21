@@ -548,6 +548,7 @@
       "plotLabel": "Plot",
       "coldRent": "Cold rent",
       "ancillaryCosts": "Ancillary costs",
+      "warmRent": "Warm rent",
       "statusNew": "New",
       "statusReserved": "Reserved",
       "statusAvailable": "Available"

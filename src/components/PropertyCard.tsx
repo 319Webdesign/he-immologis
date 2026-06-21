@@ -19,6 +19,7 @@ export type RentalCardLabels = {
   plotLabel?: string;
   coldRent?: string;
   ancillaryCosts?: string;
+  warmRent?: string;
   statusNew: string;
   statusReserved: string;
   statusAvailable: string;
@@ -69,6 +70,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   const plotLabel = cardLabels?.plotLabel ?? "Grundstück";
   const coldRentLabel = cardLabels?.coldRent ?? "Kaltmiete";
   const ancillaryCostsLabel = cardLabels?.ancillaryCosts ?? "Nebenkosten";
+  const warmRentLabel = cardLabels?.warmRent ?? "Warmmiete";
   const statusLabel =
     cardLabels && STATUS_MAP[property.status]
       ? cardLabels[STATUS_MAP[property.status]]
@@ -83,6 +85,12 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
 
   const showGrundstueck =
     property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;
+
+  const hasColdRent = property.kaltmiete > 0;
+  const hasAncillaryCosts = property.nebenkosten != null && property.nebenkosten > 0;
+  const hasWarmRent = (property.warmmiete ?? 0) > 0;
+  const showSplitRent = hasColdRent || hasAncillaryCosts;
+  const showPriceSection = showSplitRent || hasWarmRent;
 
   return (
     <Link
@@ -133,7 +141,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
             </span>
           )}
         </div>
-        {(property.kaltmiete > 0 || property.nebenkosten != null) && (
+        {showPriceSection && (
           <>
             <hr className="mt-3 border-t border-zinc-300 sm:group-hover:border-white/40 max-sm:group-data-[incenter=true]:border-white/40" />
             <div className="mt-3 flex items-center justify-between gap-4">
@@ -142,17 +150,28 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
                 {[property.plz, property.ort].filter(Boolean).join(" ")}
               </span>
               <div className="grid shrink-0 grid-cols-[auto_auto] gap-x-2 gap-y-0.5 text-right text-sm text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
-                {property.kaltmiete > 0 && (
+                {showSplitRent ? (
                   <>
-                    <span className="font-normal">{coldRentLabel}</span>
-                    <span className="font-semibold tabular-nums">{formatPrice(property.kaltmiete, lang)}</span>
+                    {hasColdRent && (
+                      <>
+                        <span className="font-normal">{coldRentLabel}</span>
+                        <span className="font-semibold tabular-nums">{formatPrice(property.kaltmiete, lang)}</span>
+                      </>
+                    )}
+                    {hasAncillaryCosts && (
+                      <>
+                        <span className="font-normal">{ancillaryCostsLabel}</span>
+                        <span className="font-semibold tabular-nums">{formatPrice(property.nebenkosten!, lang)}</span>
+                      </>
+                    )}
                   </>
-                )}
-                {property.nebenkosten != null && property.nebenkosten > 0 && (
-                  <>
-                    <span className="font-normal">{ancillaryCostsLabel}</span>
-                    <span className="font-semibold tabular-nums">{formatPrice(property.nebenkosten, lang)}</span>
-                  </>
+                ) : (
+                  hasWarmRent && (
+                    <>
+                      <span className="font-normal">{warmRentLabel}</span>
+                      <span className="font-semibold tabular-nums">{formatPrice(property.warmmiete!, lang)}</span>
+                    </>
+                  )
                 )}
               </div>
             </div>

@@ -69,6 +69,7 @@ export interface Rental {
   badezimmer?: number;
   grundstuecksflaeche?: number;
   nebenkosten?: number;
+  warmmiete?: number;
   objekttyp: "Wohnung" | "Haus" | "Gewerbe";
   status: "Neu" | "Reserviert" | "Verfügbar";
   vorschaubild: string;

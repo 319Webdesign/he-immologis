@@ -136,6 +136,7 @@ function getDataFields(vermarktungsart?: Vermarktungsart): string[] {
     "anzahl_badezimmer",
     "grundstuecksflaeche",
     "nebenkosten",
+    "warmmiete",
     "objektnr_extern",
     getWebsitePublishFieldName(),
     "objekt_offline_seit",
@@ -547,6 +548,7 @@ function mapRecordToProperty(record: OnOfficeRecord): Property {
     anzahl_badezimmer: readNumber(e.anzahl_badezimmer),
     grundstuecksflaeche: readNumber(e.grundstuecksflaeche),
     nebenkosten: readNumber(e.nebenkosten),
+    warmmiete: readNumber(e.warmmiete),
     objektnr_extern: readString(e.objektnr_extern ?? e.externalestateno) || null,
   };
 }

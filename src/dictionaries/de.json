@@ -538,6 +538,7 @@
       "plotLabel": "Grundstück",
       "coldRent": "Kaltmiete",
       "ancillaryCosts": "Nebenkosten",
+      "warmRent": "Warmmiete",
       "statusNew": "Neu",
       "statusReserved": "Reserviert",
       "statusAvailable": "Verfügbar"

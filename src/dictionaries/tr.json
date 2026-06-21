@@ -570,6 +570,7 @@
       "plotLabel": "Arsa",
       "coldRent": "Soğuk kira",
       "ancillaryCosts": "Ek maliyetler",
+      "warmRent": "Sıcak kira",
       "statusNew": "Yeni",
       "statusReserved": "Rezerve",
       "statusAvailable": "Müsait"
