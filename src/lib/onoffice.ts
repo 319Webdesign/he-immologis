@@ -453,6 +453,17 @@ function readString(value: unknown): string | null {
   return "";
 }
 
+/** Provision-Felder sind in onOffice Textfelder (z. B. „keine“, „1,5 Monats-Nettokaltmieten“). */
+function readCourtage(value: unknown): string | number | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "number" && !Number.isNaN(value)) return value;
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed || null;
+  }
+  return null;
+}
+
 /** Liest ein String-Array (z. B. Pipe-formatierte Werte oder echte Arrays). */
 function readStringArray(value: unknown): string[] {
   if (value === null || value === undefined) return [];
@@ -579,8 +590,8 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     heizkosten: readNumber(e.heizkosten),
     kaution: readNumber(e.kaution),
     warmmiete: readNumber(e.warmmiete),
-    aussen_courtage: readNumber(e.aussen_courtage) ?? readString(e.aussen_courtage),
-    innen_courtage: readNumber(e.innen_courtage) ?? readString(e.innen_courtage),
+    aussen_courtage: readCourtage(e.aussen_courtage),
+    innen_courtage: readCourtage(e.innen_courtage),
     hausgeld: readNumber(e.hausgeld),
     anzahl_zimmer: readNumber(e.anzahl_zimmer),
     anzahl_schlafzimmer: readNumber(e.anzahl_schlafzimmer),

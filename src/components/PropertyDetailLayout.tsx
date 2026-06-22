@@ -54,7 +54,7 @@ function formatTinyIntJaNein(value: boolean | number | null | undefined): string
   return "—";
 }
 
-/** Provision/Courtage: Prozent oder Euro */
+/** Provision/Courtage: Prozent, Euro oder Freitext aus onOffice */
 function formatCourtage(
   value: string | number | undefined | null,
   locale?: string | null
@@ -72,6 +72,23 @@ function formatCourtage(
     }).format(value) + " %";
   }
   return null;
+}
+
+function formatCourtageField(
+  value: string | number | undefined | null,
+  fieldName: string,
+  locale: string,
+  permittedValues?: Record<string, Record<string, string>>,
+  dict?: PropertyDetailDict
+): string | null {
+  const formatted = formatCourtage(value, locale);
+  if (formatted == null) return null;
+  if (typeof value === "number") return formatted;
+  const translated = translateSelectValue(permittedValues, fieldName, formatted, formatted);
+  if (translated == null || translated === "") return null;
+  if (/^ja$/i.test(translated)) return dict?.valueJa ?? "Ja";
+  if (/^nein$/i.test(translated)) return dict?.valueNein ?? "Nein";
+  return translated;
 }
 
 /** Haustiere: Text/Zahl normalisieren (ja/nein/nach Vereinbarung) */
@@ -402,6 +419,20 @@ export function PropertyDetailLayout({
   const hasNebenkosten = !isKaufen && p.nebenkosten != null && p.nebenkosten > 0;
   const hasWarmmiete = !isKaufen && p.warmmiete != null && p.warmmiete > 0;
   const showSplitRent = !isKaufen && (hasKaltmiete || hasNebenkosten);
+  const aussenCourtageDisplay = formatCourtageField(
+    p.aussen_courtage,
+    "aussen_courtage",
+    locale,
+    permittedValues,
+    dict
+  );
+  const innenCourtageDisplay = formatCourtageField(
+    p.innen_courtage,
+    "innen_courtage",
+    locale,
+    permittedValues,
+    dict
+  );
 
   const gesamtflaeche =
     p.wohnflaeche != null && p.nutzflaeche != null
@@ -728,10 +759,24 @@ export function PropertyDetailLayout({
                   />
                 </>
               )}
-              <DataRow
-                label={lbl("aussen_courtage", "Provision")}
-                value={isKaufen ? formatCourtage(p.aussen_courtage, locale) : (dict?.hints?.provisionRentValue ?? "2 Nettokaltmieten zzgl. MwSt.")}
-              />
+              {isKaufen && (
+                <DataRow
+                  label={lbl("aussen_courtage", "Provision")}
+                  value={aussenCourtageDisplay}
+                />
+              )}
+              {!isKaufen && aussenCourtageDisplay != null && (
+                <DataRow
+                  label={lbl("aussen_courtage", "Außen-Provision")}
+                  value={aussenCourtageDisplay}
+                />
+              )}
+              {!isKaufen && innenCourtageDisplay != null && (
+                <DataRow
+                  label={lbl("innen_courtage", "Innen-Provision")}
+                  value={innenCourtageDisplay}
+                />
+              )}
             </div>
           </div>
         </section>
@@ -943,6 +988,20 @@ export function PropertyDetailLayout({
                 <>
                   <p className="mb-2 leading-relaxed">{h("provisionBuyP1", "Die Käuferprovision beträgt 3,57 % inklusive gesetzlicher Mehrwertsteuer.")}</p>
                   <p className="leading-relaxed">{h("provisionBuyP2", "Gemäß den seit dem 23.12.2020 geltenden gesetzlichen Regelungen zur Aufteilung der Maklerprovision wird diese in der Regel hälftig zwischen Verkäufer und Käufer geteilt. Somit beträgt die Provision für beide Parteien jeweils 3 % zzgl. der jeweils gültigen Mehrwertsteuer – derzeit insgesamt 3,57 % des Kaufpreises – und ist mit notariellem Vertragsabschluss verdient und fällig.")}</p>
+                </>
+              ) : aussenCourtageDisplay || innenCourtageDisplay ? (
+                <>
+                  {aussenCourtageDisplay && (
+                    <p className="mb-2 leading-relaxed">
+                      {lbl("aussen_courtage", "Außen-Provision")}: {aussenCourtageDisplay}
+                    </p>
+                  )}
+                  {innenCourtageDisplay && (
+                    <p className="mb-2 leading-relaxed">
+                      {lbl("innen_courtage", "Innen-Provision")}: {innenCourtageDisplay}
+                    </p>
+                  )}
+                  <p className="leading-relaxed">{h("provisionRentP2", "Gemäß den seit dem 1.6.2015 geltenden gesetzlichen Regelungen – Bestellerprinzip – trägt derjenige die Provision, der den Makler beauftragt hat.")}</p>
                 </>
               ) : (
                 <>
