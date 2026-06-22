@@ -75,20 +75,36 @@ function formatCourtage(
 }
 
 function formatCourtageField(
-  value: string | number | undefined | null,
-  fieldName: string,
+  art: string | number | null | undefined,
+  text: string | number | null | undefined,
+  artFieldName: string,
+  locale: string,
+  permittedValues?: Record<string, Record<string, string>>,
+  dict?: PropertyDetailDict
+): string | null {
+  const fromArt = formatSingleCourtage(art, artFieldName, locale, permittedValues, dict);
+  if (fromArt) return fromArt;
+  // Legacy-Textfeld nur roh anzeigen – keine permittedValues-Übersetzung (vermeidet falsche Defaults).
+  return formatSingleCourtage(text, undefined, locale, undefined, dict);
+}
+
+function formatSingleCourtage(
+  value: string | number | null | undefined,
+  fieldName: string | undefined,
   locale: string,
   permittedValues?: Record<string, Record<string, string>>,
   dict?: PropertyDetailDict
 ): string | null {
   const formatted = formatCourtage(value, locale);
   if (formatted == null) return null;
-  if (typeof value === "number") return formatted;
-  const translated = translateSelectValue(permittedValues, fieldName, formatted, formatted);
-  if (translated == null || translated === "") return null;
-  if (/^ja$/i.test(translated)) return dict?.valueJa ?? "Ja";
-  if (/^nein$/i.test(translated)) return dict?.valueNein ?? "Nein";
-  return translated;
+  let display = formatted;
+  if (fieldName && typeof value === "string") {
+    display =
+      translateSelectValue(permittedValues, fieldName, formatted, formatted) ?? formatted;
+  }
+  if (/^ja$/i.test(display)) return dict?.valueJa ?? "Ja";
+  if (/^nein$/i.test(display)) return dict?.valueNein ?? "Nein";
+  return display;
 }
 
 /** Haustiere: Text/Zahl normalisieren (ja/nein/nach Vereinbarung) */
@@ -420,15 +436,17 @@ export function PropertyDetailLayout({
   const hasWarmmiete = !isKaufen && p.warmmiete != null && p.warmmiete > 0;
   const showSplitRent = !isKaufen && (hasKaltmiete || hasNebenkosten);
   const aussenCourtageDisplay = formatCourtageField(
+    p.provision_aussen_art,
     p.aussen_courtage,
-    "aussen_courtage",
+    "provision_aussen_art",
     locale,
     permittedValues,
     dict
   );
   const innenCourtageDisplay = formatCourtageField(
+    p.provision_innen_art,
     p.innen_courtage,
-    "innen_courtage",
+    "provision_innen_art",
     locale,
     permittedValues,
     dict

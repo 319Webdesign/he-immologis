@@ -186,6 +186,11 @@ function getDetailDataFields(): string[] {
     "kaufpreis",
     "aussen_courtage",
     "innen_courtage",
+    "provision_aussen_art",
+    "provision_innen_art",
+    "provision_aussen_wert",
+    "provision_innen_wert",
+    "provisionsfrei",
     "hausgeld",
     "wohnflaeche",
     "nutzflaeche",
@@ -269,6 +274,11 @@ export interface Property {
   /** Provisionen */
   aussen_courtage?: string | number | null;
   innen_courtage?: string | number | null;
+  provision_aussen_art?: string | null;
+  provision_innen_art?: string | null;
+  provision_aussen_wert?: number | null;
+  provision_innen_wert?: number | null;
+  provisionsfrei?: boolean | number | null;
   hausgeld?: number | null;
   /** Detailseite: Zimmer, Etage, Badezimmer */
   anzahl_zimmer?: number | null;
@@ -592,6 +602,17 @@ function mapRecordToPropertyDetail(record: OnOfficeRecord): Property {
     warmmiete: readNumber(e.warmmiete),
     aussen_courtage: readCourtage(e.aussen_courtage),
     innen_courtage: readCourtage(e.innen_courtage),
+    provision_aussen_art: (() => {
+      const v = readCourtage(e.provision_aussen_art);
+      return typeof v === "string" ? v : v != null ? String(v) : null;
+    })(),
+    provision_innen_art: (() => {
+      const v = readCourtage(e.provision_innen_art);
+      return typeof v === "string" ? v : v != null ? String(v) : null;
+    })(),
+    provision_aussen_wert: readNumber(e.provision_aussen_wert),
+    provision_innen_wert: readNumber(e.provision_innen_wert),
+    provisionsfrei: readBoolean(e.provisionsfrei) ?? readNumber(e.provisionsfrei),
     hausgeld: readNumber(e.hausgeld),
     anzahl_zimmer: readNumber(e.anzahl_zimmer),
     anzahl_schlafzimmer: readNumber(e.anzahl_schlafzimmer),
