@@ -14,6 +14,7 @@ export type FooterDict = {
   openingTime2: string;
   courtInfo: string;
   vatPlaceholder: string;
+  taxNumber: string;
   ourServices: string;
   quickLinks: string;
   sell: string;
@@ -198,6 +199,13 @@ export default function Footer({ lang, dict }: FooterProps) {
                 </a>
               </li>
             </ul>
+            <p className="mt-4 text-sm text-slate-200">
+              {dict.courtInfo}
+              <br />
+              {dict.vatPlaceholder}
+              <br />
+              {dict.taxNumber}
+            </p>
           </div>
 
           {/* Spalte 3: Öffnungszeiten & Rechtliches */}

@@ -114,7 +114,16 @@ export default async function ImpressumPage({
                 VAT Identification Number
               </h2>
               <p className="mt-2">
-                VAT ID has been applied for and will be provided subsequently.
+                DE463961484
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">
+                Tax number
+              </h2>
+              <p className="mt-2">
+                47020 / 38242
               </p>
             </section>
 
@@ -242,8 +251,13 @@ export default async function ImpressumPage({
             <section>
               <h2 className="font-sans text-lg font-semibold text-slate-900">KDV Kimlik Numarası</h2>
               <p className="mt-2">
-                KDV kimlik numarası için başvuru yapılmıştır; numara sonradan
-                eklenecektir.
+                DE463961484
+              </p>
+            </section>
+            <section>
+              <h2 className="font-sans text-lg font-semibold text-slate-900">Vergi numarası</h2>
+              <p className="mt-2">
+                47020 / 38242
               </p>
             </section>
             <section>
@@ -362,7 +376,16 @@ export default async function ImpressumPage({
               Umsatzsteuer-ID
             </h2>
             <p className="mt-2">
-              USt-ID ist beantragt und wird nachgereicht.
+              USt.ID-Nr. DE463961484
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-sans text-lg font-semibold text-slate-900">
+              Steuer-Nr.
+            </h2>
+            <p className="mt-2">
+              47020 / 38242
             </p>
           </section>
 
