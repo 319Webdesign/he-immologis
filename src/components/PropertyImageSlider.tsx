@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import Image from "next/image";
 
 const LOGO_PLACEHOLDER = "/img/Logo.svg";
@@ -16,12 +16,15 @@ interface PropertyImageSliderProps {
   alt: string;
   /** Platzhalter: Logo + "Bild folgt" wenn keine echten Bilder */
   usePlaceholder?: boolean;
+  /** Balken über dem Bild, z. B. erfolgreicher Verkauf oder Vermietung */
+  banner?: ReactNode;
 }
 
 export function PropertyImageSlider({
   images,
   alt,
   usePlaceholder = true,
+  banner,
 }: PropertyImageSliderProps) {
   const validImages = images.filter(isValidImageUrl);
   const hasRealImages = validImages.length > 0;
@@ -56,6 +59,7 @@ export function PropertyImageSlider({
             />
             <p className="text-sm font-medium text-zinc-500">Bild folgt</p>
           </div>
+          {banner}
         </div>
       </div>
     );
@@ -78,6 +82,7 @@ export function PropertyImageSlider({
           loading={currentIndex === 0 ? undefined : "lazy"}
           unoptimized={isExternalUrl}
         />
+        {banner}
       </div>
       {/* Pfeile immer am linken und rechten Rand des gesamten Bereichs */}
       {displayImages.length > 1 && (

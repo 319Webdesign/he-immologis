@@ -15,6 +15,8 @@ import { PropertyMap } from "./PropertyMap";
 import { PropertyContactWidget } from "./PropertyContactWidget";
 import { ExposeRequestForm } from "./ExposeRequestForm";
 import { formatCurrency } from "@/lib/format";
+import { formatSuccessLabel, getSuccessListing } from "@/lib/successListings";
+import { ListingSuccessBanner } from "./ListingSuccessBanner";
 
 function formatNumber(value: number | undefined | null): string {
   if (value == null) return "—";
@@ -405,6 +407,8 @@ export function PropertyDetailLayout({
   const price = isKaufen ? p.kaufpreis : p.kaltmiete;
   const priceLabel = isKaufen ? "Kaufpreis" : "Kaltmiete";
   const objectNumber = p.objektnr_extern ?? p.displayId ?? String(p.id);
+  const success = getSuccessListing(p.objektnr_extern, p.displayId, p.id);
+  const successLabel = success ? formatSuccessLabel(success, locale) : null;
 
   const images = [...(p.galerie ?? [])].filter(
     (src) => src && typeof src === "string"
@@ -547,6 +551,7 @@ export function PropertyDetailLayout({
               })()
             }
             usePlaceholder
+            banner={successLabel ? <ListingSuccessBanner label={successLabel} /> : undefined}
           />
         </div>
 
@@ -571,6 +576,7 @@ export function PropertyDetailLayout({
             <h1 className="font-sans text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl lg:text-4xl">
               {p.titel || (dict?.noTitle ?? "Ohne Titel")}
             </h1>
+            {successLabel ? <ListingSuccessBanner label={successLabel} variant="inline" /> : null}
 
             {isKaufen ? (
               <p className="mt-4 text-xl font-semibold text-zinc-800">

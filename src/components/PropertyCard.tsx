@@ -6,6 +6,8 @@ import Link from "next/link";
 import { MapPin, DoorOpen, LayoutGrid } from "lucide-react";
 import type { Rental } from "@/types";
 import { formatPrice } from "@/lib/format";
+import { formatSuccessLabel, getSuccessListing } from "@/lib/successListings";
+import { ListingSuccessBanner } from "@/components/ListingSuccessBanner";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
@@ -82,6 +84,8 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
   const objekttypLabel =
     cardLabels?.propertyTypeOptions?.find((o) => o.value === property.objekttyp)?.label ??
     property.objekttyp;
+  const success = getSuccessListing(property.objektnr_extern, property.id);
+  const successLabel = success ? formatSuccessLabel(success, lang) : null;
 
   const showGrundstueck =
     property.objekttyp === "Haus" && (property.grundstuecksflaeche ?? 0) > 0;
@@ -114,6 +118,7 @@ export default function PropertyCard({ property, lang = "de", cardLabels }: Prop
         >
           {badgeLabel}
         </span>
+        {successLabel ? <ListingSuccessBanner label={successLabel} /> : null}
       </div>
       <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#85b09a] max-sm:group-data-[incenter=true]:bg-[#85b09a]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">

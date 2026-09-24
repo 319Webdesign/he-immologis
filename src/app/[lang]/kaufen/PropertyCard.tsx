@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { BedDouble, Bath, LayoutGrid, MapPin, DoorOpen } from "lucide-react";
 import type { Property } from "@/lib/onoffice";
 import { formatPrice } from "@/lib/format";
+import { formatSuccessLabel, getSuccessListing } from "@/lib/successListings";
+import { ListingSuccessBanner } from "@/components/ListingSuccessBanner";
 
 const PLACEHOLDER_IMG = "/img/immobilie-placeholder.png";
 
@@ -92,6 +94,8 @@ export default function PropertyCard({
   const bedroomsLabel = l?.bedrooms ?? "Schlafzimmer";
   const bathroomsLabel = l?.bathrooms ?? "Badezimmer";
   const plotLabel = l?.plot ?? "Grundstück";
+  const success = getSuccessListing(property.objektnr_extern, property.displayId, property.id);
+  const successLabel = success ? formatSuccessLabel(success, lang) : null;
 
   return (
     <Link
@@ -115,6 +119,7 @@ export default function PropertyCard({
         >
           {forSale}
         </span>
+        {successLabel ? <ListingSuccessBanner label={successLabel} /> : null}
       </div>
       <div className="flex flex-1 flex-col p-6 transition-colors duration-200 sm:group-hover:bg-[#85b09a] max-sm:group-data-[incenter=true]:bg-[#85b09a]">
         <h2 className="font-sans text-xl font-semibold text-zinc-900 sm:group-hover:text-white max-sm:group-data-[incenter=true]:text-white">
